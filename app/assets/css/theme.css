@@ -1,0 +1,114 @@
+:root {
+  --hk-color-bg-primary-reversed: var(--color-white);
+  --hk-color-bg-primary: var(--color-hanami-500);
+  --hk-color-bg-secondary-reversed: var(--color-white);
+  --hk-color-bg-secondary: var(--color-rom-500);
+  --hk-color-subtle-reversed: var(--color-neutral-50);
+  --hk-color-subtle: var(--color-neutral-200);
+  --hk-color-text-default: var(--color-neutral-800);
+  --hk-color-text-link-underline: var(--color-hanakai-300);
+  --hk-color-text-link: var(--color-neutral-900);
+  --hk-color-text-primary-reversed: var(--color-white);
+  --hk-color-text-primary: var(--color-hanami-500);
+  --hk-color-text-secondary-reversed: var(--color-white);
+  --hk-color-text-secondary: var(--color-rom-500);
+}
+
+.theme-hanami-light {
+  --hk-color-bg-neutral: var(--color-white);
+  --hk-color-bg-primary-reversed: var(--color-white);
+  --hk-color-bg-primary: var(--color-hanami-500);
+  --hk-color-bg-secondary-reversed: var(--color-white);
+  --hk-color-bg-secondary: var(--color-rom-500);
+  --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
+  --hk-color-neutral-subtle: var(--color-neutral-200);
+  --hk-color-text-neutral: var(--color-neutral-800);
+  --hk-color-text-link-underline: var(--color-hanakai-300);
+  --hk-color-text-link: var(--color-neutral-900);
+  --hk-color-text-primary-reversed: var(--color-white);
+  --hk-color-text-primary: var(--color-hanami-500);
+  --hk-color-text-secondary-reversed: var(--color-white);
+  --hk-color-text-secondary: var(--color-rom-500);
+}
+
+.theme-dry-light {
+  --hk-color-bg-neutral: var(--color-white);
+  --hk-color-bg-primary-reversed: var(--color-white);
+  --hk-color-bg-primary: var(--color-dry-500);
+  --hk-color-bg-secondary-reversed: var(--color-white);
+  --hk-color-bg-secondary: var(--color-hanami-500);
+  --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
+  --hk-color-neutral-subtle: var(--color-neutral-200);
+  --hk-color-text-neutral: var(--color-neutral-800);
+  --hk-color-text-link-underline: var(--color-hanakai-300);
+  --hk-color-text-link: var(--color-neutral-900);
+  --hk-color-text-primary-reversed: var(--color-white);
+  --hk-color-text-primary: var(--color-dry-500);
+  --hk-color-text-secondary-reversed: var(--color-white);
+  --hk-color-text-secondary: var(--color-hanami-500);
+}
+
+.theme-rom-light {
+  --hk-color-bg-neutral: var(--color-white);
+  --hk-color-bg-primary-reversed: var(--color-white);
+  --hk-color-bg-primary: var(--color-rom-500);
+  --hk-color-bg-secondary-reversed: var(--color-white);
+  --hk-color-bg-secondary: var(--color-dry-500);
+  --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
+  --hk-color-neutral-subtle: var(--color-neutral-200);
+  --hk-color-text-neutral: var(--color-neutral-800);
+  --hk-color-text-link-underline: var(--color-hanakai-300);
+  --hk-color-text-link: var(--color-neutral-900);
+  --hk-color-text-primary-reversed: var(--color-white);
+  --hk-color-text-primary: var(--color-rom-500);
+  --hk-color-text-secondary-reversed: var(--color-white);
+  --hk-color-text-secondary: var(--color-dry-500);
+}
+
+.bg-neutral {
+  background-color: var(--hk-color-bg-primary-reversed);
+}
+
+.bg-primary-reversed {
+  background-color: var(--hk-color-bg-primary-reversed);
+}
+
+.bg-primary {
+  background-color: var(--hk-color-bg-primary);
+}
+
+.bg-secondary-reversed {
+  background-color: var(--hk-color-bg-secondary-reversed);
+}
+
+.bg-secondary {
+  background-color: var(--hk-color-bg-secondary);
+}
+
+.text-neutral {
+  color: var(--hk-color-text-neutral);
+}
+
+.text-link-underline {
+  color: var(--hk-color-text-link-underline);
+}
+
+.text-link {
+  color: var(--hk-color-text-link);
+}
+
+.text-primary-reversed {
+  color: var(--hk-color-text-primary-reversed);
+}
+
+.text-primary {
+  color: var(--hk-color-text-primary);
+}
+
+.text-secondary-reversed {
+  color: var(--hk-color-text-secondary-reversed);
+}
+
+.text-secondary {
+  color: var(--hk-color-text-secondary);
+}
