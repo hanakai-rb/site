@@ -1,11 +1,18 @@
 :root {
+  --hk-color-bg-neutral: var(--color-white);
   --hk-color-bg-primary-reversed: var(--color-white);
   --hk-color-bg-primary: var(--color-hanami-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-rom-500);
-  --hk-color-subtle-reversed: var(--color-neutral-50);
-  --hk-color-subtle: var(--color-neutral-200);
+  --hk-color-b-neutral: var(--color-stone-50);
+  --hk-color-b-primary-reversed: var(--color-white);
+  --hk-color-b-primary: var(--color-hanami-500);
+  --hk-color-b-secondary-reversed: var(--color-white);
+  --hk-color-b-secondary: var(--color-rom-500);
+  --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
+  --hk-color-neutral-subtle: var(--color-neutral-100);
   --hk-color-text-default: var(--color-neutral-800);
+  --hk-color-text-link-active: var(--color-hanakai-800);
   --hk-color-text-link-underline: var(--color-hanakai-300);
   --hk-color-text-link: var(--color-neutral-900);
   --hk-color-text-primary-reversed: var(--color-white);
@@ -20,9 +27,15 @@
   --hk-color-bg-primary: var(--color-hanami-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-rom-500);
+  --hk-color-b-neutral: var(--color-stone-50);
+  --hk-color-b-primary-reversed: var(--color-white);
+  --hk-color-b-primary: var(--color-hanami-500);
+  --hk-color-b-secondary-reversed: var(--color-white);
+  --hk-color-b-secondary: var(--color-rom-500);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
-  --hk-color-neutral-subtle: var(--color-neutral-200);
+  --hk-color-neutral-subtle: var(--color-neutral-100);
   --hk-color-text-neutral: var(--color-neutral-800);
+  --hk-color-text-link-active: var(--color-hanami-500);
   --hk-color-text-link-underline: var(--color-hanakai-300);
   --hk-color-text-link: var(--color-neutral-900);
   --hk-color-text-primary-reversed: var(--color-white);
@@ -33,12 +46,18 @@
 
 .theme-dry-light {
   --hk-color-bg-neutral: var(--color-white);
+  --hk-color-bg-neutral: var(--color-white);
   --hk-color-bg-primary-reversed: var(--color-white);
   --hk-color-bg-primary: var(--color-dry-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-hanami-500);
+  --hk-color-b-neutral: var(--color-stone-50);
+  --hk-color-b-primary-reversed: var(--color-white);
+  --hk-color-b-primary: var(--color-dry-500);
+  --hk-color-b-secondary-reversed: var(--color-white);
+  --hk-color-b-secondary: var(--color-hanami-500);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
-  --hk-color-neutral-subtle: var(--color-neutral-200);
+  --hk-color-neutral-subtle: var(--color-neutral-100);
   --hk-color-text-neutral: var(--color-neutral-800);
   --hk-color-text-link-underline: var(--color-hanakai-300);
   --hk-color-text-link: var(--color-neutral-900);
@@ -54,8 +73,13 @@
   --hk-color-bg-primary: var(--color-rom-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-dry-500);
+  --hk-color-b-neutral: var(--color-stone-50);
+  --hk-color-b-primary-reversed: var(--color-white);
+  --hk-color-b-primary: var(--color-rom-500);
+  --hk-color-b-secondary-reversed: var(--color-white);
+  --hk-color-b-secondary: var(--color-dry-500);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-50);
-  --hk-color-neutral-subtle: var(--color-neutral-200);
+  --hk-color-neutral-subtle: var(--color-neutral-100);
   --hk-color-text-neutral: var(--color-neutral-800);
   --hk-color-text-link-underline: var(--color-hanakai-300);
   --hk-color-text-link: var(--color-neutral-900);
@@ -83,6 +107,26 @@
 
 .bg-secondary {
   background-color: var(--hk-color-bg-secondary);
+}
+
+.b-neutral {
+  border-color: var(--hk-color-bg-primary-reversed);
+}
+
+.b-primary-reversed {
+  border-color: var(--hk-color-bg-primary-reversed);
+}
+
+.b-primary {
+  border-color: var(--hk-color-bg-primary);
+}
+
+.b-secondary-reversed {
+  border-color: var(--hk-color-bg-secondary-reversed);
+}
+
+.b-secondary {
+  border-color: var(--hk-color-bg-secondary);
 }
 
 .text-neutral {

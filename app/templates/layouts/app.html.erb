@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="en" class="scroll-pt-[calc(var(--hk-nav-height)+var(--spacing)*7)]">
+<html
+  lang="en"
+  class="
+    scroll-pt-[calc(var(--hk-nav-height)+var(--spacing)*7)]
+    theme-hanami-light
+  "
+>
   <head>
     <meta charset="UTF-8">
 
@@ -27,37 +33,12 @@
     <%= javascript_tag "app", async: true %>
   </head>
   <body
-    class="font-sans text-gray-800 bg-white"
+    class="font-sans text-neutral bg-white"
     data-defo-foresight="<%= { elementSelector: "a[href^=/]" }.to_json %>"
   >
+    <%= render "header/base" %>
+
     <div class="mx-auto flex max-w-[1540px] flex-col">
-      <header
-        class="
-          bg-white gap-4 border-neutral-200 px-4 lg:px-6 top-0 sticky flex
-          items-center border-b
-        "
-        data-defo-size-to-var="<%= { blockVarName: "--hn-nav-height" }.to_json %>"
-      >
-        <h1><a href="/">Hanakai</a></h1>
-
-        <nav class="gap-4 flex flex-1">
-          <a href="/guides">Guides</a>
-          <a href="/docs">Docs</a>
-          <a href="/blog">Blog</a>
-          <a href="/community">Community</a>
-          <a href="/conduct">Conduct</a>
-          <a href="/sponsor">Sponsor</a>
-        </nav>
-
-        <div
-          class="py-4"
-          data-defo-docsearch="<%= {
-            appId: settings.docsearch_app_id,
-            apiKey: settings.docsearch_api_key,
-            indexName: settings.docsearch_index_name
-          }.to_json %>"
-        ></div>
-      </header>
       <main class="px-4 lg:px-6 flex flex-col"><%= yield %></main>
     </div>
   </body>

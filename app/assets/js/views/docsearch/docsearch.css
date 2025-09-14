@@ -3,8 +3,7 @@
  * See https://docsearch.algolia.com/docs/styling/
  */
 .DocSearch {
-  /* TODO: Replace with higher-level section variable definition */
-  --docsearch-primary-color: var(--color-hanami-500);
+  --docsearch-primary-color: var(--hk-color-primary);
   --docsearch-text-color: #1c1e21;
   --docsearch-spacing: 12px;
   --docsearch-icon-stroke-width: 2;
@@ -44,10 +43,10 @@
     box-shadow: none;
 
     .DocSearch-Search-Icon path {
-      stroke: var(--color-gray-800);
+      stroke: var(--hk-color-text-neutral);
     }
     .DocSearch-Button-Key {
-      color: var(--color-gray-800);
+      color: var(--hk-color-text-neutral);
     }
   }
 
@@ -58,6 +57,7 @@
 
     path {
       stroke: var(--color-gray-400);
+      stroke: oklch(from var(--hk-color-text-neutral) l c h / 0.35);
       transition: stroke 100ms;
     }
   }

@@ -37,7 +37,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
     initialY: firstLink?.offsetTop ?? 0,
   };
 
-  const activeClass = "text-rose-500";
+  const activeClass = "text-primary";
   const xOffset = 12;
   const xOffsetDepth = 4;
 
