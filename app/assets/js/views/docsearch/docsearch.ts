@@ -14,6 +14,12 @@ export const docsearchViewFn: ViewFn<Props> = (container: HTMLElement, { appId, 
     searchParameters: {
       facetFilters: ["version:latest"],
     },
+    transformItems(items) {
+      return items.map((item) => ({
+        ...item,
+        url: item.url.replace(/^https?:\/\/[^\/]+/, ''),
+      }));
+    },
   });
 
   return {
