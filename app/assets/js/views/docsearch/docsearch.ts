@@ -17,7 +17,7 @@ export const docsearchViewFn: ViewFn<Props> = (container: HTMLElement, { appId, 
     transformItems(items) {
       return items.map((item) => ({
         ...item,
-        url: item.url.replace(/^https?:\/\/[^\/]+/, ''),
+        url: item.url.replace(/^https?:\/\/[^\/]+/, ""),
       }));
     },
   });
