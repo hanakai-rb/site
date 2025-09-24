@@ -1,16 +1,72 @@
-<nav class="hidden md:flex flex-1 text-lg font-bold py-3">
+<nav class="hidden md:flex flex-1 py-3">
   <ul class="flex flex-1">
-    <li>
+    <li
+      class="
+        hover:bg-(--hk-color-bg-primary-reversed) hover:text-(--hk-color-text-primary)
+        hover:drop-shadow-sm
+        group relative rounded-t-xl bg-transparent
+      "
+    >
       <a
-        class="flex items-center px-3 py-2 leading-tight rounded-xl gap-2"
+        class="flex items-center px-3 py-2 leading-tight gap-2 text-lg font-bold"
         href="/guides"
       >
         Guides <%= render "icons/caret_down", height: 12, width: 12, class_name: "fill-current" %>
       </a>
+      <ul
+        class="
+          group-hover:flex hidden
+          absolute bg-primary-reversed min-w-full px-3 rounded-b-xl pb-3
+          flex-col gap-1 items-stretch
+        "
+      >
+        <li>
+          <a
+            class="
+              block
+              transition-all
+              group-hover:opacity-100 group-hover:starting:opacity-0 opacity-0
+              group-hover:translate-x-0 group-hover:starting:-translate-x-1.5 -translate-x-1.5
+            "
+            href="/guides/hanami/v2.2/getting-started"
+          >
+            Hanami
+          </a>
+        </li>
+        <li>
+          <a
+            class="
+              block
+              transition-all delay-[40ms]
+              group-hover:opacity-100 group-hover:starting:opacity-0 opacity-0
+              group-hover:translate-x-0 group-hover:starting:-translate-x-1.5 -translate-x-1.5
+            "
+            href="/guides/dry/v1.0/getting-started"
+          >
+            Dry
+          </a>
+        </li>
+        <li>
+          <a
+            class="
+              block
+              transition-all delay-[80ms]
+              group-hover:opacity-100 group-hover:starting:opacity-0 opacity-0
+              group-hover:translate-x-0 group-hover:starting:-translate-x-1.5 -translate-x-1.5
+            "
+            href="/guides/rom/v5.0/getting-started"
+          >
+            Rom
+          </a>
+        </li>
+      </ul>
     </li>
     <li>
       <a
-        class="flex items-center px-3 py-2 leading-tight rounded-xl gap-2"
+        class="
+          flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg
+          font-bold
+        "
         href="/docs"
       >
         Docs <%= render "icons/caret_down", height: 12, width: 12, class_name: "fill-current" %>
@@ -18,7 +74,10 @@
     </li>
     <li>
       <a
-        class="flex items-center px-3 py-2 leading-tight rounded-xl gap-2"
+        class="
+          flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg
+          font-bold
+        "
         href="/blog"
       >
         Blog
@@ -26,7 +85,10 @@
     </li>
     <li>
       <a
-        class="flex items-center px-3 py-2 leading-tight rounded-xl gap-2"
+        class="
+          flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg
+          font-bold
+        "
         href="/community"
       >
         Community
@@ -34,7 +96,10 @@
     </li>
     <li>
       <a
-        class="flex items-center px-3 py-2 leading-tight rounded-xl gap-2"
+        class="
+          flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg
+          font-bold
+        "
         href="/conduct"
       >
         Conduct
@@ -42,7 +107,10 @@
     </li>
     <li>
       <a
-        class="flex items-center px-3 py-2 leading-tight rounded-xl gap-2"
+        class="
+          flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg
+          font-bold
+        "
         href="/sponsor"
       >
         Sponsor
