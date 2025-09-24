@@ -36,7 +36,7 @@
     class="font-sans text-neutral bg-white"
     data-defo-foresight="<%= { elementSelector: "a[href^=/]" }.to_json %>"
   >
-    <%= render "header/base" %>
+    <%= render "header/base", nav_items: nav_items %>
 
     <div class="mx-auto flex max-w-[1540px] flex-col">
       <main class="px-4 lg:px-6 flex flex-col"><%= yield %></main>
