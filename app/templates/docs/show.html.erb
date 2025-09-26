@@ -8,12 +8,12 @@
 <% end %>
 
 <header>
-  <h1><%= doc.title %></h1>
+  <h1 class="lvl1"><%= doc.title %></h1>
 </header>
 
 <div data-testid="doc-versions">
   <% other_versions.each do |version| %>
-    <a href="<%= doc.url_path(version) %>"><%= version %></a>
+    <a class="lvl2" href="<%= doc.url_path(version) %>"><%= version %></a>
   <% end %>
 </div>
 
@@ -27,7 +27,7 @@
 
 <hr>
 
-<main>
+<main class="search-content">
   <header>
     <h1><%= page.title %></h1>
   </header>
