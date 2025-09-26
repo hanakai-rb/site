@@ -18,13 +18,15 @@
         lg:overflow-y-auto lg:max-h-[calc(100vh-var(--hn-nav-height))]
       "
     >
+      <h2 class="font-black mb-4 text-rose-500 lvl1"><%= org_name(org) %></h2>
+
       <h2 class="font-mono text-xs tracking-wider pt-1 mb-3 uppercase">
         All guides
       </h2>
 
       <div data-testid="org-guide-versions">
         <% other_versions.each do |version| %>
-          <a href="<%= "/guides/#{org}/#{version}" %>"><%= version %></a>
+          <a class="lvl2" href="<%= "/guides/#{org}/#{version}" %>"><%= version %></a>
         <% end %>
       </div>
 
@@ -49,7 +51,7 @@
     </div>
   </aside>
 
-  <section class="lg:col-span-13 lg:grid lg:grid-cols-13 md:col-span-4">
+  <section class="lg:col-span-13 lg:grid lg:grid-cols-13 md:col-span-4 search-content">
     <aside class="lg:col-span-3 lg:order-2">
       <div
         class="

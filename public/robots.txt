@@ -1,1 +1,1 @@
-Sitemap: http://hanamirb.org/sitemap.xml.gz
+Sitemap: https://hanakai.org/sitemap.xml.gz
