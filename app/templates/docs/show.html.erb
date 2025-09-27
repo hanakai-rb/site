@@ -13,7 +13,7 @@
 
 <div data-testid="doc-versions">
   <% other_versions.each do |version| %>
-    <a class="lvl2" href="<%= doc.url_path(version) %>"><%= version %></a>
+    <a href="<%= doc.url_path(version) %>"><%= version %></a>
   <% end %>
 </div>
 
