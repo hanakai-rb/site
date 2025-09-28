@@ -1,13 +1,13 @@
 <% content_for :title, post.title %>
 
-<article class="search-content">
+<article>
   <header>
-    <h2><%= post.title %></h2>
+    <h2 class="search-lvl2"><%= post.title %></h2>
 
     <p data-testid="date"><%= post.published_date %></p>
 
     <p data-testid="author"><%= post.author %></p>
   </header>
 
-  <div class="content"><%= post.content_html %></div>
+  <div class="content search-content"><%= post.content_html %></div>
 </article>
