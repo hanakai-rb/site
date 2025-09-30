@@ -1,5 +1,5 @@
 <nav class="hidden md:flex flex-1 py-3">
-  <ul class="flex flex-1">
+  <ul class="flex flex-1 gap-1">
     <% nav_items.each do |nav_item| %>
       <% if nav_item.children.length > 0 %>
         <li
@@ -11,8 +11,8 @@
         >
           <a
             class="
-              flex items-center px-3 py-2 leading-tight gap-2 text-lg
-              font-bold
+              flex items-center px-3 py-2 leading-tight gap-2 text-lg font-bold
+              <%= "bg-primary-reversed text-primary" if nav_item.selected %>
             "
             href="<%= nav_item.url %>"
           >
@@ -26,20 +26,9 @@
               flex-col gap-1 items-stretch
             "
           >
-            <% delay_classes = %w[delay-25 delay-50 delay-75 delay-100 delay-125 delay-150 delay-175 delay-200] %>
             <% nav_item.children.each_with_index do |child_nav_item, index| %>
               <li>
-                <a
-                  class="
-                    block
-                    transition-all <%= delay_classes[index % delay_classes.length] %>
-                    group-hover:opacity-100 group-hover:starting:opacity-0 opacity-0
-                    group-hover:translate-x-0 group-hover:starting:-translate-x-1.5 -translate-x-1.5
-                  "
-                  href="<%= child_nav_item.url %>"
-                >
-                  <%= child_nav_item.label %>
-                </a>
+                <a class="block" href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
               </li>
             <% end %>
           </ul>
@@ -48,8 +37,8 @@
         <li>
           <a
             class="
-              flex items-center px-3 py-2 leading-tight rounded-xl gap-2
-              text-lg font-bold
+              flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg font-bold
+              <%= "bg-primary-reversed text-primary" if nav_item.selected %>
             "
             href="<%= nav_item.url %>"
           >
