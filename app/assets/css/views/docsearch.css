@@ -34,45 +34,50 @@
   --docsearch-footer-shadow: 0 -1px 0 0 #e0e3e8, 0 -3px 6px 0 rgba(69, 98, 155, 0.12);
 }
 
+.DocSearch-Button-Placeholder {
+  display: none;
+}
+
+.DocSearch-Search-Icon {
+  height: 16px;
+  stroke-width: 2.5;
+  width: 16px;
+}
+
+.DocSearch-Button {
+  margin: 0;
+}
+
 @variant md {
   .DocSearch {
     --docsearch-text-color: #1c1e21;
     --docsearch-searchbox-background: #fff;
     --docsearch-searchbox-focus-background: #fff;
   }
-}
+  .DocSearch-Button {
+    border-radius: var(--radius-lg);
+    gap: calc(var(--spacing) * 2);
+    height: 32px;
+    padding-right: calc(var(--spacing) * 1);
+    margin: 0 0 0 calc(var(--spacing) * 4);
 
-.DocSearch-Button {
-  border-radius: var(--radius-lg);
-  gap: calc(var(--spacing) * 2);
-  height: 32px;
-  padding-right: calc(var(--spacing) * 1);
+    &:hover,
+    &:active {
+      box-shadow: none;
 
-  &:hover,
-  &:active {
-    box-shadow: none;
-
-    .DocSearch-Search-Icon path {
-      stroke: var(--hk-color-text-neutral);
+      .DocSearch-Search-Icon path {
+        stroke: var(--hk-color-text-neutral);
+      }
+      .DocSearch-Button-Key {
+        color: var(--hk-color-text-neutral);
+      }
     }
-    .DocSearch-Button-Key {
-      color: var(--hk-color-text-neutral);
-    }
-  }
 
-  .DocSearch-Search-Icon {
-    height: 16px;
-    stroke-width: 2.5;
-    width: 16px;
-
-    path {
-      stroke: var(--color-gray-400);
-      stroke: oklch(from var(--hk-color-text-neutral) l c h / 0.35);
-      transition: stroke 100ms;
+    .DocSearch-Search-Icon {
+      path {
+        stroke: oklch(from var(--hk-color-text-neutral) l c h / 0.35);
+        transition: stroke 100ms;
+      }
     }
   }
-}
-
-.DocSearch-Button-Placeholder {
-  display: none;
 }

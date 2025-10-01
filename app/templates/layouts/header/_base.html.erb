@@ -1,19 +1,23 @@
 <header
-  class="
-    bg-primary flex items-center gap-4 px-4 lg:px-6 sticky top-0
-    text-primary-reversed rounded-b-2xl z-30
-  "
+  class="bg-primary sticky top-0 text-primary-reversed rounded-b-2xl z-30"
   data-defo-size-to-var="<%= { blockVarName: "--hk-nav-height" }.to_json %>"
 >
-  <a href="/">Hanakai</a>
+  <div class="flex items-center gap-4 px-4 lg:px-6 py-2 justify-between">
+    <a href="/">Hanakai</a>
 
-  <%= render "header/nav_desktop", nav_items: nav_items %>
+    <%= render "header/nav_desktop", nav_items: nav_items %>
 
-  <div
-    data-defo-docsearch="<%= {
+    <div class="flex gap-1">
+      <div
+        data-defo-docsearch="<%= {
       appId: settings.docsearch_app_id,
       apiKey: settings.docsearch_api_key,
       indexName: settings.docsearch_index_name
     }.to_json %>"
-  ></div>
+      ></div>
+
+      <%= render "header/nav_mobile_button" %>
+    </div>
+  </div>
+  <%= render "header/nav_mobile", nav_items: nav_items %>
 </header>

@@ -1,0 +1,25 @@
+<div
+  class="
+    md:hidden flex justify-center
+    h-0 overflow-hidden transition-all duration-250 ease-[cubic-bezier(.58,-.25,.265,1.25)]
+  "
+  id="nav-mobile"
+>
+  <nav class="max-w-sm flex-1 pt-4 pb-6 px-2">
+    <ul class="flex flex-col">
+      <% nav_items.each do |nav_item| %>
+        <li>
+          <a
+            class="
+              flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg font-bold
+              <%= "bg-primary-reversed text-primary" if nav_item.selected %>
+            "
+            href="<%= nav_item.url %>"
+          >
+            <%= nav_item.label %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
