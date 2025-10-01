@@ -4,13 +4,14 @@ import postcss from "postcss";
 import tailwindcss from "@tailwindcss/postcss";
 import path from "node:path";
 
-const postcssPlugin = ({ plugins = [], extraWatchDirs = [] } = {}) => {
+const postcssPlugin = ({ plugins = [] } = {}) => {
   return {
     name: "postcss",
     setup(build) {
       build.onLoad({ filter: /\.css$/ }, async (args) => {
         const raw = await readFile(args.path, "utf8");
-        const source = await postcss(plugins).process(raw.toString(), {
+        const rawCss = raw.toString();
+        const source = await postcss(plugins).process(rawCss, {
           from: args.path,
         });
 
@@ -30,10 +31,23 @@ const postcssPlugin = ({ plugins = [], extraWatchDirs = [] } = {}) => {
           }
         }
 
-        // Ensure any extra watch directories are included (e.g. template dirs referenced via @source)
-        for (const dir of extraWatchDirs) {
-          if (dir) watchDirs.add(path.resolve(dir));
-        }
+        // Add directories declared via Tailwind's `@source` directive in the CSS being processed
+        try {
+          const root = postcss.parse(rawCss, { from: args.path });
+          root.walkAtRules("source", (atRule) => {
+            const p = atRule.params?.trim() || "";
+            if (!p) return;
+            // Support quoted strings and simple unquoted paths. Multiple entries are space- or comma-separated.
+            const matches = Array.from(p.matchAll(/"([^"]+)"|'([^']+)'|([^,\s]+)/g));
+            for (const m of matches) {
+              const val = m[1] || m[2] || m[3];
+              if (!val) continue;
+              const resolved = path.resolve(path.dirname(args.path), val);
+              watchDirs.add(resolved);
+            }
+          });
+        } catch {}
+
         return {
           contents: source.css,
           loader: "css",
@@ -61,8 +75,6 @@ await assets.run({
         ...esbuildOptions.plugins,
         postcssPlugin({
           plugins: [tailwindcss],
-          // Ensure changes under app/templates trigger rebuilds while watching
-          extraWatchDirs: [path.resolve(process.cwd(), "app/templates")],
         }),
       ],
     };
