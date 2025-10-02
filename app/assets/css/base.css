@@ -1,5 +1,6 @@
 :root {
-  --hn-nav-height: 69px;
+  --hk-nav-height: 69px;
+  interpolate-size: allow-keywords;
 }
 
 @media (prefers-reduced-motion: no-preference) {

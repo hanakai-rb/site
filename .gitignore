@@ -8,6 +8,3 @@ public/
 !public/*.html
 !public/robots.txt
 spec/examples.txt
-
-# Generated (pre-compilation) assets
-/app/assets/builds

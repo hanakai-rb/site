@@ -1,0 +1,51 @@
+<nav class="hidden md:flex flex-1 py-3">
+  <ul class="flex flex-1 gap-1">
+    <% nav_items.each do |nav_item| %>
+      <% if nav_item.children.length > 0 %>
+        <li
+          class="
+            hover:bg-(--hk-color-bg-primary-reversed) hover:text-(--hk-color-text-primary)
+            hover:drop-shadow-sm
+            group relative rounded-t-xl bg-transparent
+          "
+        >
+          <a
+            class="
+              flex items-center px-3 py-2 leading-tight gap-2 text-lg font-bold
+              <%= "bg-primary-reversed text-primary" if nav_item.selected %>
+            "
+            href="<%= nav_item.url %>"
+          >
+            <%= nav_item.label %>
+            <%= render "icons/caret_down", height: 12, width: 12, class_name: "fill-current" %>
+          </a>
+          <ul
+            class="
+              group-hover:flex hidden
+              absolute bg-primary-reversed min-w-full px-3 rounded-b-xl pb-3
+              flex-col gap-1 items-stretch
+            "
+          >
+            <% nav_item.children.each_with_index do |child_nav_item, index| %>
+              <li>
+                <a class="block" href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% else %>
+        <li>
+          <a
+            class="
+              flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg font-bold
+              <%= "bg-primary-reversed text-primary" if nav_item.selected %>
+            "
+            href="<%= nav_item.url %>"
+          >
+            <%= nav_item.label %>
+          </a>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>

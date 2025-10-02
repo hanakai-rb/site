@@ -1,4 +1,6 @@
-@import "../builds/tailwind.css";
+@import "./tailwind.css";
 @import "./fonts.css";
 @import "./base.css";
+@import "./theme.css";
 @import "./content.css";
+@import "./views/docsearch.css";

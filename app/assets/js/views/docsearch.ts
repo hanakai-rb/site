@@ -1,5 +1,3 @@
-import "@docsearch/css";
-import "./docsearch.css";
 import docsearch from "@docsearch/js";
 import type { ViewFn } from "@icelab/defo";
 

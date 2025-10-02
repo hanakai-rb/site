@@ -3,13 +3,13 @@
   h1,
   h2,
   h3 {
-    color: var(--color-neutral-800);
+    color: var(--hk-color-text-neutral);
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
   }
 
   h1 {
-    color: var(--color-rose-500);
+    color: var(--hk-color-text-primary);
     font-size: var(--text-3xl);
     margin-block-end: calc(var(--spacing) * 3);
   }
@@ -53,23 +53,26 @@
   p,
   li {
     a {
-      color: var(--color-rose-500);
+      color: var(--hk-color-text-link);
       text-decoration-line: underline;
-      text-decoration-color: currentColor;
+      text-decoration-color: var(--hk-color-text-link-underline);
+      text-decoration-thickness: 3px;
+      text-decoration-skip-ink: none;
 
       &:visited {
-        color: var(--color-pink-700);
+        color: var(--hk-color-text-link-visited);
       }
 
+      &:active,
       &:hover {
-        color: var(--color-gray-800);
+        color: var(--hk-color-text-link-active);
       }
     }
   }
 
   code {
     border-radius: var(--radius-sm);
-    background-color: var(--color-stone-100);
+    background-color: var(--hk-color-neutral-subtle);
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1);
@@ -77,7 +80,7 @@
 
   pre {
     border-radius: var(--radius-lg);
-    background-color: var(--color-stone-100);
+    background-color: var(--hk-color-neutral-subtle);
     box-shadow: var(--shadow-sm);
     font-size: var(--text-sm);
     max-width: 100%;
@@ -98,11 +101,11 @@
 
   thead {
     tr {
-      border-bottom: 1px var(--color-gray-300) solid;
+      border-bottom: 1px var(--hk-color-neutral-subtle) solid;
     }
 
     th {
-      border-right: 1px var(--color-gray-200) solid;
+      border-right: 1px var(--hk-color-neutral-subtle) solid;
       font-weight: var(--font-weight-semibold);
       text-align: left;
       padding: calc(var(--spacing) * 2);
@@ -120,7 +123,7 @@
 
   tbody {
     tr {
-      border-bottom: 1px var(--color-gray-200) solid;
+      border-bottom: 1px var(--hk-color-neutral-subtle) solid;
 
       &:last-child {
         border-bottom: none;
@@ -128,7 +131,7 @@
     }
 
     td {
-      border-right: 1px var(--color-gray-200) solid;
+      border-right: 1px var(--hk-color-neutral-subtle) solid;
       text-align: left;
       padding: calc(var(--spacing) * 2);
 

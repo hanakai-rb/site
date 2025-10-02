@@ -14,8 +14,8 @@
     <div
       class="
         lg:sticky
-        lg:pt-8 lg:top-[calc(var(--hn-nav-height))]
-        lg:overflow-y-auto lg:max-h-[calc(100vh-var(--hn-nav-height))]
+        lg:pt-8 lg:top-[calc(var(--hk-nav-height))]
+        lg:overflow-y-auto lg:max-h-[calc(100vh-var(--hk-nav-height))]
       "
     >
       <h2 class="font-black mb-4 text-rose-500 search-lvl1">
@@ -57,9 +57,9 @@
     <aside class="lg:col-span-3 lg:order-2">
       <div
         class="
-          lg:pt-8 lg:sticky lg:top-[calc(var(--hn-nav-height))]
+          lg:pt-8 lg:sticky lg:top-[calc(var(--hk-nav-height))]
           lg:overflow-y-auto lg:overflow-x-hidden
-          lg:max-h-[calc(100vh-var(--hn-nav-height))] lg:h-full relative
+          lg:max-h-[calc(100vh-var(--hk-nav-height))] lg:h-full relative
         "
       >
         <div
@@ -95,20 +95,13 @@
     </aside>
     <div class="lg:col-span-10 lg:pr-8 lg:mt-8 lg:mb-14">
       <header class="pt-1 mb-3">
-        <h1
-          class="
-            font-mono text-xs text-rose-500 tracking-wider uppercase
-            search-lvl2
-          "
-        >
+        <h1 class="font-mono text-xs text-primary tracking-wider uppercase">
           <a href="<%= guide.url_path %>"><%= guide.title %></a>
         </h1>
       </header>
 
       <header>
-        <h1 class="text-4xl font-black mb-4 text-rose-500 search-lvl3">
-          <%= page.title %>
-        </h1>
+        <h1 class="text-4xl font-black mb-4 text-primary"><%= page.title %></h1>
       </header>
 
       <div class="content search-content"><%= page.content_html %></div>
