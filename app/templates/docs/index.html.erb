@@ -9,3 +9,11 @@
     <li><a href="<%= doc.url_path %>"><%= doc.slug %></a></li>
   <% end %>
 </ol>
+
+<h2>Hanami</h2>
+
+<ol data-testid="hanami-docs">
+  <% docs.fetch("hanami").each do |doc| %>
+    <li><a href="<%= doc.url_path %>"><%= doc.slug %></a></li>
+  <% end %>
+</ol>
