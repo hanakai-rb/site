@@ -3,7 +3,24 @@
   data-defo-size-to-var="<%= { blockVarName: "--hk-nav-height" }.to_json %>"
 >
   <div class="flex items-center gap-4 px-4 lg:px-6 py-2 justify-between">
-    <a href="/">Hanakai</a>
+    <div
+      class="
+        relative
+        after:hidden after:lg:block after:w-[2px] after:rounded-xs after:bg-(--hk-color-bg-primary-reversed) after:opacity-20
+        after:top-0 after:bottom-0 after:absolute after:right-0
+        lg:pr-8
+      "
+    >
+      <a
+        class="
+          flex gap-3 font-black text-xl antialiased tracking-tight
+          lg:text-2xl items-center
+        "
+        href="/"
+      >
+        <%= render "svgs/hanakai_logo", height: 32, width: 32 %> Hanakai
+      </a>
+    </div>
 
     <%= render "header/nav_desktop", nav_items: nav_items %>
 
