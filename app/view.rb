@@ -14,7 +14,7 @@ module Site
     expose :settings, decorate: false
 
     NavItem = Data.define(:label, :url, :selected, :children)
-    expose :nav_items, layout: true do |context:|
+    expose :header_nav_items, layout: true do |context:|
       path = context.request.path
       [
         NavItem.new(label: "Guides", url: "/guides", selected: path.start_with?("/guides"), children: []),
