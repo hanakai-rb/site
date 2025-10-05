@@ -9,6 +9,7 @@ export const docsearchViewFn: ViewFn<Props> = (container: HTMLElement, { appId, 
     appId,
     apiKey,
     indexName,
+    maxResultsPerGroup: 10,
     searchParameters: {
       facetFilters: ["version:latest"],
     },
