@@ -2,15 +2,10 @@
   <div class="bg-white rounded-b-2xl h-4"></div>
   <div class="px-4 lg:px-6 py-6 flex flex-col md:flex-row gap-6">
     <a href="/"><%= render "svgs/hanakai_logo", height: 32, width: 32 %></a>
-    <nav class="">
-      <ul
-        class="
-          grid grid-flow-row auto-rows-max grid-cols-2 md:grid-cols-4
-          lg:grid-cols-6 gap-6
-        "
-      >
+    <nav class="flex-1">
+      <ul>
         <% nav_items.each do |nav_item| %>
-          <li class="flex-1 text-lg">
+          <li class="text-lg md:float-left md:w-48 mb-3.5">
             <a class="font-bold" href="<%= nav_item.url %>"><%= nav_item.label %></a>
             <% if nav_item.children.any? %>
               <ul>
