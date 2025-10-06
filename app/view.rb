@@ -14,13 +14,37 @@ module Site
     expose :settings, decorate: false
 
     NavItem = Data.define(:label, :url, :selected, :children)
-    expose :nav_items, layout: true do |context:|
+    expose :header_nav_items, layout: true do |context:|
       path = context.request.path
       [
         NavItem.new(label: "Guides", url: "/guides", selected: path.start_with?("/guides"), children: []),
         NavItem.new(label: "Docs", url: "/docs", selected: path.start_with?("/docs"), children: []),
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: []),
+        NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
+        NavItem.new(label: "Sponsor", url: "/sponsor", selected: path == "/sponsor", children: [])
+      ]
+    end
+
+    expose :footer_nav_items, layout: true do |context:|
+      path = context.request.path
+      [
+        NavItem.new(label: "Guides", url: "/guides", selected: path.start_with?("/guides"), children: [
+          NavItem.new(label: "Hanami", url: "/guides#hanami", selected: false, children: []),
+          NavItem.new(label: "Dry", url: "/guides#dry", selected: false, children: []),
+          NavItem.new(label: "Rom", url: "/guides#rom", selected: false, children: [])
+        ]),
+        NavItem.new(label: "Docs", url: "/docs", selected: path.start_with?("/docs"), children: [
+          NavItem.new(label: "Hanami", url: "/docs#hanami", selected: false, children: []),
+          NavItem.new(label: "Dry", url: "/docs#dry", selected: false, children: []),
+          NavItem.new(label: "Rom", url: "/docs#rom", selected: false, children: [])
+        ]),
+        NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: [
+          NavItem.new(label: "Code repository", url: "https://github.com/hanami", selected: false, children: []),
+          NavItem.new(label: "Discussion forum", url: "https://discourse.hanamirb.org/", selected: false, children: []),
+          NavItem.new(label: "Chat room", url: "https://discord.gg/KFCxDmk3JQ", selected: false, children: [])
+        ]),
+        NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
         NavItem.new(label: "Sponsor", url: "/sponsor", selected: path == "/sponsor", children: [])
       ]

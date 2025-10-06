@@ -51,7 +51,14 @@
   margin: 0;
 }
 
-@variant md {
+.DocSearch-Button-Keys {
+  display: none;
+}
+
+@variant lg {
+  .DocSearch-Button-Keys {
+    display: flex;
+  }
   .DocSearch-Modal {
     border-radius: var(--radius-xl);
   }

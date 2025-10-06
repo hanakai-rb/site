@@ -11,7 +11,7 @@
         >
           <a
             class="
-              flex items-center px-3 py-2 leading-tight gap-2 text-lg font-bold
+              flex items-center sm:px-3 md:px-2 lg:px-3 py-2 leading-tight gap-2 text-lg font-bold
               <%= "bg-primary-reversed text-primary" if nav_item.selected %>
             "
             href="<%= nav_item.url %>"
@@ -37,7 +37,7 @@
         <li>
           <a
             class="
-              flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg font-bold
+              flex items-center sm:px-3 md:px-2.5 lg:px-3 py-2 leading-tight rounded-xl text-lg font-bold
               <%= "bg-primary-reversed text-primary hover:shadow-md" if nav_item.selected %>
             "
             href="<%= nav_item.url %>"
