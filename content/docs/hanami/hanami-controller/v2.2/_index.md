@@ -47,7 +47,7 @@ $ gem install hanami-controller
 ## Usage
 
 Hanami::Controller is a micro library for web frameworks.
-It works beautifully with [Hanami::Router](https://github.com/hanami/router), but it can be employed everywhere.
+It works beautifully with [Hanami::Router](//doc/hanami/router), but it can be employed everywhere.
 It's designed to be fast and testable.
 
 ### Actions

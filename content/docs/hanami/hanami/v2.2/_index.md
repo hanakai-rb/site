@@ -59,7 +59,7 @@ You can give back to Open Source, by supporting Hanami development via [GitHub S
 
 We care about building a friendly, inclusive and helpful community. We welcome people of all backgrounds, genders and experience levels, and respect you all equally.
 
-We do not tolerate nazis, transphobes, racists, or any kind of bigotry. See our [code of conduct](http://hanamirb.org/conduct) for more.
+We do not tolerate nazis, transphobes, racists, or any kind of bigotry. See our [code of conduct](/conduct) for more.
 
 ## Contributing
 
