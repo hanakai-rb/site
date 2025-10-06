@@ -2,7 +2,6 @@ docs:
   - slug: hanami
   - slug: hanami-api
   - slug: hanami-assets
-  - slug: assets-js
   - slug: hanami-cli
   - slug: hanami-controller
   - slug: hanami-db
