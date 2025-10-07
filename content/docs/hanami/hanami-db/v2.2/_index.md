@@ -15,16 +15,16 @@ It's a thin layer on top of [ROM](//doc/rom) 5.
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Community](https://hanakai.org/community)
-* [Guides](https://hanakai.org/guides/hanami/getting-started)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-db)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Community](https://hanakai.org/community)
+- [Guides](https://hanakai.org/guides/hanami/getting-started)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-db)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 
-__Hanami::DB__ supports Ruby (MRI) 3.1+
+**Hanami::DB** supports Ruby (MRI) 3.1+
 
 Add this line to your Hanami application's Gemfile:
 
@@ -40,7 +40,7 @@ $ bundle
 
 ## Versioning
 
-__Hanami::DB__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::DB** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 

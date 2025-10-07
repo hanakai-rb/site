@@ -5,16 +5,17 @@ title: Introduction & Usage
 # Hanami::Model (deprecated)
 
 ## _Important notice_
+
 **NOTE**: Hanami::Model was the persistence layer for Hanami 1.x. This library will not receive any updates.
 
 For the persistence layer for Hanami 2.x, please see [`hanami/db`](//doc/hanami-db)
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-model)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-model)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Rubies
 
@@ -102,28 +103,28 @@ delegated to the current adapter.
 
 This architecture has several advantages:
 
-  * Applications depend on a standard API, instead of low level details
-    (Dependency Inversion principle)
+- Applications depend on a standard API, instead of low level details
+  (Dependency Inversion principle)
 
-  * Applications depend on a stable API, that doesn't change if the
-    storage changes
+- Applications depend on a stable API, that doesn't change if the
+  storage changes
 
-  * Developers can postpone storage decisions
+- Developers can postpone storage decisions
 
-  * Confines persistence logic at a low level
+- Confines persistence logic at a low level
 
-  * Multiple data sources can easily coexist in an application
+- Multiple data sources can easily coexist in an application
 
 When a class inherits from `Hanami::Repository`, it will receive the following interface:
 
-  * `#create(data)`     – Create a record for the given data (or entity)
-  * `#update(id, data)` – Update the record corresponding to the given id by setting the given data (or entity)
-  * `#delete(id)`       – Delete the record corresponding to the given id
-  * `#all`              - Fetch all the entities from the relation
-  * `#find`             - Fetch an entity from the relation by primary key
-  * `#first`            - Fetch the first entity from the relation
-  * `#last`             - Fetch the last entity from the relation
-  * `#clear`            - Delete all the records from the relation
+- `#create(data)` – Create a record for the given data (or entity)
+- `#update(id, data)` – Update the record corresponding to the given id by setting the given data (or entity)
+- `#delete(id)` – Delete the record corresponding to the given id
+- `#all` - Fetch all the entities from the relation
+- `#find` - Fetch an entity from the relation by primary key
+- `#first` - Fetch the first entity from the relation
+- `#last` - Fetch the last entity from the relation
+- `#clear` - Delete all the records from the relation
 
 **A relation is a homogenous set of records.**
 It corresponds to a table for a SQL database or to a MongoDB collection.
@@ -139,15 +140,15 @@ ArticleRepository.new.where(author_id: 23).order(:published_at).limit(8)
 
 This is **bad** for a variety of reasons:
 
-  * The caller has an intimate knowledge of the internal mechanisms of the Repository.
+- The caller has an intimate knowledge of the internal mechanisms of the Repository.
 
-  * The caller works on several levels of abstraction.
+- The caller works on several levels of abstraction.
 
-  * It doesn't express a clear intent, it's just a chain of methods.
+- It doesn't express a clear intent, it's just a chain of methods.
 
-  * The caller can't be easily tested in isolation.
+- The caller can't be easily tested in isolation.
 
-  * If we change the storage, we are forced to change the code of the caller(s).
+- If we change the storage, we are forced to change the code of the caller(s).
 
 There is a better way:
 
@@ -165,15 +166,15 @@ end
 
 This is a **huge improvement**, because:
 
-  * The caller doesn't know how the repository fetches the entities.
+- The caller doesn't know how the repository fetches the entities.
 
-  * The caller works on a single level of abstraction. It doesn't even know about records, only works with entities.
+- The caller works on a single level of abstraction. It doesn't even know about records, only works with entities.
 
-  * It expresses a clear intent.
+- It expresses a clear intent.
 
-  * The caller can be easily tested in isolation. It's just a matter of stubbing this method.
+- The caller can be easily tested in isolation. It's just a matter of stubbing this method.
 
-  * If we change the storage, the callers aren't affected.
+- If we change the storage, the callers aren't affected.
 
 ### Mapping
 
@@ -196,11 +197,12 @@ class UserRepository < Hanami::Repository
   end
 end
 ```
+
 **NOTE:** This feature should be used only when **_automapping_** fails because of the naming mismatch.
 
 ### Conventions
 
-  * A repository must be named after an entity, by appending `"Repository"` to the entity class name (eg. `Article` => `ArticleRepository`).
+- A repository must be named after an entity, by appending `"Repository"` to the entity class name (eg. `Article` => `ArticleRepository`).
 
 ### Thread safety
 
@@ -263,13 +265,13 @@ end
 
 It accepts the following arguments:
 
-  * `stream`: a Ruby StringIO object - it can be `$stdout` or a path to file (eg. `"log/development.log"`) - Defaults to `$stdout`
-  * `:level`: logging level - it can be: `:debug`, `:info`, `:warn`, `:error`, `:fatal`, `:unknown` - Defaults to `:debug`
-  * `:formatter`: logging formatter - it can be: `:default` or `:json` - Defaults to `:default`
+- `stream`: a Ruby StringIO object - it can be `$stdout` or a path to file (eg. `"log/development.log"`) - Defaults to `$stdout`
+- `:level`: logging level - it can be: `:debug`, `:info`, `:warn`, `:error`, `:fatal`, `:unknown` - Defaults to `:debug`
+- `:formatter`: logging formatter - it can be: `:default` or `:json` - Defaults to `:default`
 
 ## Versioning
 
-__Hanami::Model__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::Model** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 

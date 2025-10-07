@@ -15,17 +15,17 @@ Internal support gem for `Hanami::Action` params validation.
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Community](https://hanakai.org/community)
-* [Guides](https://hanakai.org/guides/hanami/getting-started)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-validations)
-* [Bugs/Issues](https://github.com/hanami/validations/issues)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Community](https://hanakai.org/community)
+- [Guides](https://hanakai.org/guides/hanami/getting-started)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-validations)
+- [Bugs/Issues](https://github.com/hanami/validations/issues)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 
-__Hanami::Validations__ supports Ruby (MRI) 3.1+
+**Hanami::Validations** supports Ruby (MRI) 3.1+
 
 Add this line to your application's Gemfile:
 

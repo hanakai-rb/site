@@ -15,16 +15,16 @@ Complete, fast, and testable actions for Rack and [Hanami](//doc/hanami)
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Community](https://hanakai.org/community)
-* [Guides](https://hanakai.org/guides/hanami/getting-started)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-controller)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Community](https://hanakai.org/community)
+- [Guides](https://hanakai.org/guides/hanami/getting-started)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-controller)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 
-__Hanami::Controller__ supports Ruby (MRI) 3.1+
+**Hanami::Controller** supports Ruby (MRI) 3.1+
 
 Add this line to your application's Gemfile:
 
@@ -72,7 +72,7 @@ To provide custom behaviour when your actions are being called, you can implemen
 In other words, you have the freedom to instantiate, inject dependencies and test it, both at the unit and integration level.
 
 In the example below, the default repository is `ArticleRepository`. During a unit test we can inject a stubbed version, and invoke `#call` with the params.
-__We're avoiding HTTP calls__, we're also going to avoid hitting the database (it depends on the stubbed repository), __we're just dealing with message passing__.
+**We're avoiding HTTP calls**, we're also going to avoid hitting the database (it depends on the stubbed repository), **we're just dealing with message passing**.
 Imagine how **fast** the unit test could be.
 
 ```ruby
@@ -99,7 +99,7 @@ action.call(id: 23)
 ### Params
 
 The request params are part of the request passed as an argument to the `#handle` method.
-If routed with *Hanami::Router*, it extracts the relevant bits from the Rack `env` (e.g. the requested `:id`).
+If routed with _Hanami::Router_, it extracts the relevant bits from the Rack `env` (e.g. the requested `:id`).
 Otherwise everything is passed as is: the full Rack `env` in production, and the given `Hash` for unit tests.
 
 With `Hanami::Router`:
@@ -850,8 +850,9 @@ end
 ```
 
 Note:
-* In development, Hanami' code reloading needs to be disabled for streaming to work. This is because `Shotgun` interferes with the streaming action. You can disable it like this `hanami server --code-reloading=false`
-* Streaming does not work with WEBrick as it buffers its response. We recommend using `puma`, though you may find success with other servers
+
+- In development, Hanami' code reloading needs to be disabled for streaming to work. This is because `Shotgun` interferes with the streaming action. You can disable it like this `hanami server --code-reloading=false`
+- Streaming does not work with WEBrick as it buffers its response. We recommend using `puma`, though you may find success with other servers
 
 ### No rendering, please
 
@@ -944,7 +945,7 @@ An Action is **immutable**, it works without global state, so it's thread-safe b
 
 ## Versioning
 
-__Hanami::Controller__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::Controller** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 

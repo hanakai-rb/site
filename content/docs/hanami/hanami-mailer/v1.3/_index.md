@@ -20,16 +20,16 @@ Mail for Ruby applications.
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rdoc.info/gems/hanami-mailer)
-* [Bugs/Issues](https://github.com/hanami/mailer/issues)
-* [Support](http://stackoverflow.com/questions/tagged/hanami)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rdoc.info/gems/hanami-mailer)
+- [Bugs/Issues](https://github.com/hanami/mailer/issues)
+- [Support](http://stackoverflow.com/questions/tagged/hanami)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Rubies
 
-__Hanami::Mailer__ supports Ruby (MRI) 3.0+
+**Hanami::Mailer** supports Ruby (MRI) 3.0+
 
 ## Installation
 
@@ -51,10 +51,10 @@ Or install it yourself as:
 
 ### Conventions
 
-  * Templates are searched under `Hanami::Mailer::Configuration#root`, set this value according to your app structure (eg. `"app/templates"`).
-  * A mailer will look for a template with a file name that is composed by its full class name (eg. `"articles/index"`).
-  * A template must have two concatenated extensions: one for the format and one for the engine (eg. `".html.erb"`).
-  * The framework must be loaded before rendering the first time: `Hanami::Mailer.finalize(configuration)`.
+- Templates are searched under `Hanami::Mailer::Configuration#root`, set this value according to your app structure (eg. `"app/templates"`).
+- A mailer will look for a template with a file name that is composed by its full class name (eg. `"articles/index"`).
+- A template must have two concatenated extensions: one for the format and one for the engine (eg. `".html.erb"`).
+- The framework must be loaded before rendering the first time: `Hanami::Mailer.finalize(configuration)`.
 
 ### Mailers
 
@@ -346,10 +346,9 @@ For instance, if [ERubis](http://www.kuwata-lab.com/erubis/) is loaded, it will 
   </tr>
 </table>
 
-
 ### Configuration
 
-__Hanami::Mailer__ can be configured with a DSL that determines its behavior.
+**Hanami::Mailer** can be configured with a DSL that determines its behavior.
 It supports a few options:
 
 ```ruby
@@ -388,7 +387,7 @@ end
 
 ### Delivery Method
 
-The global delivery method is defined through the __Hanami::Mailer__ configuration, as:
+The global delivery method is defined through the **Hanami::Mailer** configuration, as:
 
 ```ruby
 configuration = Hanami::Mailer::Configuration.new do |config|
@@ -404,11 +403,11 @@ end
 
 Builtin options are:
 
-  * Exim (`:exim`)
-  * Sendmail (`:sendmail`)
-  * SMTP (`:smtp`, for local installations)
-  * SMTP Connection (`:smtp_connection`, via `Net::SMTP` - for remote installations)
-  * Test (`:test`, for testing purposes)
+- Exim (`:exim`)
+- Sendmail (`:sendmail`)
+- SMTP (`:smtp`, for local installations)
+- SMTP Connection (`:smtp_connection`, via `Net::SMTP` - for remote installations)
+- Test (`:test`, for testing purposes)
 
 ### Custom Delivery Method
 
@@ -451,7 +450,7 @@ Please note that **they aren't both mandatory, but at least one of them MUST** b
 
 ## Versioning
 
-__Hanami::Mailer__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::Mailer** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Copyright
 

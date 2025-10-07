@@ -10,11 +10,11 @@ Hanami is a **full-stack** Ruby web framework. It's made up of smaller, single-p
 
 This repository is for the full-stack framework, which provides the glue that ties all the parts together:
 
-* [**Hanami::Router**](//doc/hanami-router) - Rack compatible HTTP router for Ruby
-* [**Hanami::Controller**](//doc/hanami-controller) - Full featured, fast and testable actions for Rack
-* [**Hanami::View**](//doc/hanami-view) - Presentation with a separation between views and templates
-* [**Hanami::DB**](//doc/hanami-db) - Database integration, complete with migrations, repositories, relations, and structs
-* [**Hanami::Assets**](//doc/hanami-assets) - Assets management for Ruby
+- [**Hanami::Router**](//doc/hanami-router) - Rack compatible HTTP router for Ruby
+- [**Hanami::Controller**](//doc/hanami-controller) - Full featured, fast and testable actions for Rack
+- [**Hanami::View**](//doc/hanami-view) - Presentation with a separation between views and templates
+- [**Hanami::DB**](//doc/hanami-db) - Database integration, complete with migrations, repositories, relations, and structs
+- [**Hanami::Assets**](//doc/hanami-assets) - Assets management for Ruby
 
 These components are designed to be used independently or together in a Hanami application.
 
@@ -48,12 +48,12 @@ You can give back to Open Source, by supporting Hanami development via [GitHub S
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Community](https://hanakai.org/community)
-* [Guides](https://hanakai.org/guides/hanami/getting-started)
-* [Issues](https://github.com/hanami/hanami/issues)
-* [Forum](https://discourse.hanamirb.org)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Community](https://hanakai.org/community)
+- [Guides](https://hanakai.org/guides/hanami/getting-started)
+- [Issues](https://github.com/hanami/hanami/issues)
+- [Forum](https://discourse.hanamirb.org)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Community
 
@@ -99,9 +99,9 @@ $ bundle exec rspec path/to/spec.rb
 
 ### Development Requirements
 
-* Ruby >= 3.1
-* Bundler
-* Node.js
+- Ruby >= 3.1
+- Bundler
+- Node.js
 
 ## Versioning
 

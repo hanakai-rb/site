@@ -18,10 +18,10 @@ Versioning of this gem follows Reloader.
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [Bugs/Issues](https://github.com/hanami/reloader/issues)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [Bugs/Issues](https://github.com/hanami/reloader/issues)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 

@@ -15,15 +15,15 @@ Minimal, extremely fast, lightweight Ruby framework for HTTP APIs.
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-api)
-* [Bugs/Issues](https://github.com/hanami/api/issues)
-* [Chat](http://chat.hanamirb.org)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-api)
+- [Bugs/Issues](https://github.com/hanami/api/issues)
+- [Chat](http://chat.hanamirb.org)
 
 ## Installation
 
-__Hanami::API__ supports Ruby (MRI) 3.2+
+**Hanami::API** supports Ruby (MRI) 3.2+
 
 Add these lines to your application's `Gemfile`:
 
@@ -44,7 +44,6 @@ Or install it yourself as:
 $ gem install hanami-api
 ```
 
-
 ## Performance
 
 Benchmark against an app with 10,000 routes, hitting the 10,000th to measure the worst case scenario.
@@ -55,7 +54,7 @@ Based on [`jeremyevans/r10k`](https://github.com/jeremyevans/r10k), `Hanami::API
 Runtime to complete 20,000 requests (lower is better).
 
 | Framework  | Seconds to complete |
-|------------|---------------------|
+| ---------- | ------------------- |
 | hanami-api | 0.116               |
 | watts      | 0.235               |
 | roda       | 0.348               |
@@ -70,7 +69,7 @@ Runtime to complete 20,000 requests (lower is better).
 Memory footprint for 10,000 routes app (lower is better).
 
 | Framework  | Bytes  |
-|------------|--------|
+| ---------- | ------ |
 | roda       | 47252  |
 | hanami-api | 53988  |
 | cuba       | 55420  |
@@ -86,7 +85,7 @@ For this benchmark there are two apps for each framework: one with the root rout
 Requests per second hitting the 1st (and only route) and the 10,000th route to measure the best and worst case scenario (higher is better).
 
 | Framework  | 1st route | 10,000th route |
-|------------|-----------|----------------|
+| ---------- | --------- | -------------- |
 | hanami-api | 14719.95  | 14290.20       |
 | watts      | 13912.31  | 12609.68       |
 | roda       | 13965.20  | 11051.27       |
@@ -121,9 +120,9 @@ Start the Rack server with `bundle exec rackup`
 
 A route is a combination of three elements:
 
-  * HTTP method (e.g. `get`)
-  * Path (e.g. `"/"`)
-  * Endpoint (e.g. `MyEndpoint.new`)
+- HTTP method (e.g. `get`)
+- Path (e.g. `"/"`)
+- Endpoint (e.g. `MyEndpoint.new`)
 
 ```ruby
 get "/", to: MyEndpoint.new
@@ -133,16 +132,16 @@ get "/", to: MyEndpoint.new
 
 `Hanami::API` supports the following HTTP methods:
 
-  * `get`
-  * `head`
-  * `post`
-  * `patch`
-  * `put`
-  * `delete`
-  * `options`
-  * `trace`
-  * `link`
-  * `unlink`
+- `get`
+- `head`
+- `post`
+- `patch`
+- `put`
+- `delete`
+- `options`
+- `trace`
+- `link`
+- `unlink`
 
 ### Endpoints
 
@@ -551,12 +550,12 @@ end
 
 Note:
 
-* Returning an `Enumerator` will also work without `Rack::Chunked`, it just
+- Returning an `Enumerator` will also work without `Rack::Chunked`, it just
   won't stream but return the whole body at the end instead.
-* Data pushed to `yielder` MUST be a `String`.
-* Streaming does not work with WEBrick as it buffers its response. We recommend
+- Data pushed to `yielder` MUST be a `String`.
+- Streaming does not work with WEBrick as it buffers its response. We recommend
   using `puma`, though you may find success with other servers.
-* To manual test this feature use a web browser or cURL:
+- To manual test this feature use a web browser or cURL:
 
 ```shell
 $ curl --raw -i http://localhost:2300/stream/data
@@ -579,12 +578,13 @@ use Hanami::Middleware::BodyParser, :json
 ## Testing
 
 ## Unit testing
+
 You can unit test your `Hanami::API` app by passing a `env` hash to your app's `#call` method.
 
 The keys that (based on the Rack standard) `Hanami::API` uses for routing are:
-* `PATH_INFO`
-* `REQUEST_METHOD`
 
+- `PATH_INFO`
+- `REQUEST_METHOD`
 
 For example, a spec for the basic app in the [Usage section](https://github.com/hanami/api#usage) could be:
 
@@ -602,6 +602,7 @@ end
 ```
 
 ## Integration testing
+
 Add this line to your application's `Gemfile`:
 
 ```ruby

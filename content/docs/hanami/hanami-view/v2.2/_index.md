@@ -15,16 +15,16 @@ A view layer for [Hanami](//doc/hanami)
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Community](https://hanakai.org/community)
-* [Guides](https://hanakai.org/guides/hanami/getting-started)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-view)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Community](https://hanakai.org/community)
+- [Guides](https://hanakai.org/guides/hanami/getting-started)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-view)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Rubies
 
-__Hanami::View__ supports Ruby (MRI) 3.1+
+**Hanami::View** supports Ruby (MRI) 3.1+
 
 ## Installation
 
@@ -48,7 +48,7 @@ $ gem install hanami-view
 
 ## Versioning
 
-__Hanami::View__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::View** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 

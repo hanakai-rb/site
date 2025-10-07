@@ -18,11 +18,11 @@ Please update your Gemfiles accordingly.
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [Bugs/Issues](https://github.com/hanami/cli/issues)
-* [API Doc](http://rubydoc.info/gems/hanami-cli)
-* [Forum](https://discourse.hanamirb.org)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [Bugs/Issues](https://github.com/hanami/cli/issues)
+- [API Doc](http://rubydoc.info/gems/hanami-cli)
+- [Forum](https://discourse.hanamirb.org)
 
 ## Installation
 

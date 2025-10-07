@@ -15,15 +15,15 @@ Rack compatible, lightweight, and fast HTTP Router for Ruby and [Hanami](//doc/h
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-router)
-* [Bugs/Issues](https://github.com/hanami/router/issues)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-router)
+- [Bugs/Issues](https://github.com/hanami/router/issues)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 
-__Hanami::Router__ supports Ruby (MRI) 3.1.+
+**Hanami::Router** supports Ruby (MRI) 3.1.+
 
 Add this line to your application's Gemfile:
 
@@ -66,7 +66,7 @@ $ bundle exec rackup
 
 ## Usage
 
-__Hanami::Router__ is designed to work as a standalone framework or within a
+**Hanami::Router** is designed to work as a standalone framework or within a
 context of a [Hanami](http://hanamirb.org) application.
 
 For the standalone usage, it supports neat features:
@@ -176,7 +176,6 @@ router.path(:hanami) # => "/hanami"
 router.url(:hanami)  # => "https://hanamirb.org/hanami"
 ```
 
-
 ### Scopes:
 
 ```ruby
@@ -192,8 +191,6 @@ end
 
 router.path(:animals_mammals_cats) # => "/animals/mammals/cats"
 ```
-
-
 
 ### Mount Rack applications:
 
@@ -350,7 +347,7 @@ route.routable? # => false
 
 ## Versioning
 
-__Hanami::Router__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::Router** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 

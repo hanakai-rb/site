@@ -15,7 +15,7 @@ title: Introduction & Usage
 
 ## Installation
 
-__Hanami::Webconsole__ supports Ruby (MRI) 3.1+.
+**Hanami::Webconsole** supports Ruby (MRI) 3.1+.
 
 Add this line to your Hanami project's `Gemfile`:
 
@@ -43,8 +43,8 @@ This gem in **not compatible** with `hanami` code reloading.
 
 In order to use this gem, you have two alternatives:
 
-  1. Start the server without code reloading: `bundle exec hanami server --no-code-reloading`
-  1. Use [`hanami-reloader`](https://rubygems.org/gems/hanami-reloader) gem and start the server as usual: `bundle exec hanami server`
+1. Start the server without code reloading: `bundle exec hanami server --no-code-reloading`
+1. Use [`hanami-reloader`](https://rubygems.org/gems/hanami-reloader) gem and start the server as usual: `bundle exec hanami server`
 
 ## Development
 

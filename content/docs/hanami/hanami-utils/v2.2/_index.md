@@ -15,11 +15,11 @@ Ruby core extensions and class utilities for [Hanami](//doc/hanami)
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-utils)
-* [Bugs/Issues](https://github.com/hanami/utils/issues)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-utils)
+- [Bugs/Issues](https://github.com/hanami/utils/issues)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 

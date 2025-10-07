@@ -16,16 +16,16 @@ View helpers for Ruby applications
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-helpers)
-* [Bugs/Issues](https://github.com/hanami/helpers/issues)
-* [Support](http://stackoverflow.com/questions/tagged/hanami)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-helpers)
+- [Bugs/Issues](https://github.com/hanami/helpers/issues)
+- [Support](http://stackoverflow.com/questions/tagged/hanami)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Rubies
 
-__Hanami::Helpers__ supports Ruby (MRI) 3.0+
+**Hanami::Helpers** supports Ruby (MRI) 3.0+
 
 ## Installation
 
@@ -117,7 +117,7 @@ Output:
 
 ```html
 <form action="/books" method="POST" accept-charset="utf-8" id="book-form">
-  <input type="text" name="book[title]" id="book-id" value="">
+  <input type="text" name="book[title]" id="book-id" value="" />
   <button type="submit">Create</button>
 </form>
 ```
@@ -152,7 +152,7 @@ Output:
 
 ```html
 <form action="/books" method="POST" accept-charset="utf-8" id="book-form">
-  <input type="text" name="book[title]" id="book-id" value="">
+  <input type="text" name="book[title]" id="book-id" value="" />
   <button type="submit">Create</button>
 </form>
 ```
@@ -216,7 +216,7 @@ Output for new:
 
 ```html
 <form action="/books" method="POST" accept-charset="utf-8" id="book-form">
-  <input type="text" name="book[title]" id="book-id" value="">
+  <input type="text" name="book[title]" id="book-id" value="" />
   <button type="submit">Create</button>
 </form>
 ```
@@ -225,8 +225,8 @@ Output for edit:
 
 ```html
 <form action="/books/23" method="POST" accept-charset="utf-8" id="book-form">
-  <input type="hidden" name="_method" value="PATCH">
-  <input type="text" name="book[title]" id="book-id" value="TDD">
+  <input type="hidden" name="_method" value="PATCH" />
+  <input type="text" name="book[title]" id="book-id" value="TDD" />
   <button type="submit">Update</button>
 </form>
 ```
@@ -263,8 +263,7 @@ Template:
 Output:
 
 ```html
-<a href="https://example.org" title="Maria's website">My Blog</a>
-<code>puts "Hello, World!"</code>
+<a href="https://example.org" title="Maria's website">My Blog</a> <code>puts "Hello, World!"</code>
 ```
 
 ### Routing Helper
@@ -375,7 +374,7 @@ In order to test the value that will be printed becomes easier: `Users::Show#fol
 
 ## Versioning
 
-__Hanami::Helpers__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::Helpers** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 

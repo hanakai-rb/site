@@ -15,17 +15,17 @@ Assets management for Ruby web projects
 
 ## Contact
 
-* [Home page](https://hanakai.org/)
-* [Community](https://hanakai.org/community)
-* [Guides](https://hanakai.org/guides/hanami/getting-started)
-* [Mailing List](http://hanamirb.org/mailing-list)
-* [API Doc](http://rubydoc.info/gems/hanami-assets)
-* [Forum](https://discourse.hanamirb.org)
-* [Chat](https://discord.gg/KFCxDmk3JQ)
+- [Home page](https://hanakai.org/)
+- [Community](https://hanakai.org/community)
+- [Guides](https://hanakai.org/guides/hanami/getting-started)
+- [Mailing List](http://hanamirb.org/mailing-list)
+- [API Doc](http://rubydoc.info/gems/hanami-assets)
+- [Forum](https://discourse.hanamirb.org)
+- [Chat](https://discord.gg/KFCxDmk3JQ)
 
 ## Installation
 
-__Hanami::Assets__ supports Ruby (MRI) 3.1+
+**Hanami::Assets** supports Ruby (MRI) 3.1+
 
 Add this line to your application's Gemfile:
 
@@ -79,18 +79,18 @@ Given the following template:
 It will output this markup:
 
 ```html
-<!doctype HTML>
+<!doctype html>
 <html>
   <head>
     <title>Assets example</title>
-    <link href="/assets/reset.css" type="text/css" rel="stylesheet">
-    <link href="/assets/app.css" type="text/css" rel="stylesheet">
+    <link href="/assets/reset.css" type="text/css" rel="stylesheet" />
+    <link href="/assets/app.css" type="text/css" rel="stylesheet" />
   </head>
 
   <body>
-  <!-- ... -->
-  <script src="/assets/app.js" type="text/javascript"></script>
-  <script src="https://cdn.somethirdparty.script/foo.js" type="text/javascript" async></script>
+    <!-- ... -->
+    <script src="/assets/app.js" type="text/javascript"></script>
+    <script src="https://cdn.somethirdparty.script/foo.js" type="text/javascript" async></script>
   </body>
 </html>
 ```
@@ -99,14 +99,14 @@ It will output this markup:
 
 The `hanami` gem ships with the following helpers for assets:
 
-  * `asset_url`
-  * `javascript_tag`
-  * `stylesheet_tag`
-  * `favicon_tag`
-  * `image_tag`
-  * `video_tag`
-  * `audio_tag`
-  * `path_tag`
+- `asset_url`
+- `javascript_tag`
+- `stylesheet_tag`
+- `favicon_tag`
+- `image_tag`
+- `video_tag`
+- `audio_tag`
+- `path_tag`
 
 ## App Structure
 
@@ -135,8 +135,8 @@ This process includes any kind of asset: other JavaScript files, stylesheets, im
 
 The default entry points are:
 
-  * `app/assets/js/app.ts`
-  * `slices/[slice-name]/assets/js/app.ts`
+- `app/assets/js/app.ts`
+- `slices/[slice-name]/assets/js/app.ts`
 
 You can specify custom Entry Points, by adding an `app.{js,ts,mjs,mts,tsx,jsx}` file into the assets directory of the app or a slice.
 
@@ -199,7 +199,12 @@ Once turned on, it will look at `/public/assets.json`, and helpers such as `java
 ```
 
 ```html
-<script src="/assets/app-QECGTTYG.js" type="text/javascript" integrity="sha384-d9ndh67iVrvaACuWjEDJDJlThKvAOdILG011RxYJt1dQynvf4JXNORcUiZ9nO7lP" crossorigin="anonymous"></script>
+<script
+  src="/assets/app-QECGTTYG.js"
+  type="text/javascript"
+  integrity="sha384-d9ndh67iVrvaACuWjEDJDJlThKvAOdILG011RxYJt1dQynvf4JXNORcUiZ9nO7lP"
+  crossorigin="anonymous"
+></script>
 ```
 
 #### Content Delivery Network (CDN) Mode
@@ -224,7 +229,10 @@ From now on, helpers will return the absolute URL for the asset, hosted on the C
 ```
 
 ```html
-<script src="https://123.cloudfront.net/assets/application-d1829dc353b734e3adc24855693b70f9.js" type="text/javascript"></script>
+<script
+  src="https://123.cloudfront.net/assets/application-d1829dc353b734e3adc24855693b70f9.js"
+  type="text/javascript"
+></script>
 ```
 
 ```erb
@@ -241,8 +249,8 @@ NOTE: We suggest to use SRI mode when using CDN.
 
 Install:
 
-  * Node
-  * NPM
+- Node
+- NPM
 
 ```bash
 $ npm install
@@ -251,7 +259,7 @@ $ bundle exec rake test
 
 ## Versioning
 
-__Hanami::Assets__ uses [Semantic Versioning 2.0.0](http://semver.org)
+**Hanami::Assets** uses [Semantic Versioning 2.0.0](http://semver.org)
 
 ## Contributing
 
