@@ -2,5 +2,6 @@
 @import "./fonts.css";
 @import "./base.css";
 @import "./theme.css";
+@import "./scrollbar.css";
 @import "./content.css";
 @import "./views/docsearch.css";

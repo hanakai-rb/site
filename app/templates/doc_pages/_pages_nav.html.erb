@@ -1,9 +1,7 @@
 <%= tag.ol("data-testid" => testid) do %>
   <% pages.each do |(page, child_pages)| %>
-    <!-- prettier-ignore -->
     <% selected = page.title == current_page_title %>
     <li>
-      <!-- prettier-ignore -->
       <% base_link_classes = "block py-1 text-gray-500 hover:underline hover:text-gray-800"
     selected_link_classes = "block py-1 font-bold text-primary" %>
       <a

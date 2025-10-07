@@ -15,41 +15,42 @@
       class="
         lg:sticky
         lg:pt-8 lg:top-[calc(var(--hk-nav-height))]
-        lg:overflow-y-auto lg:max-h-[calc(100vh-var(--hk-nav-height))]
+        lg:max-h-[calc(100vh-var(--hk-nav-height)-(var(--spacing)*8))]
+        flex flex-col
       "
     >
-      <h2 class="font-black mb-4 text-primary search-lvl1">
-        <%= org_name(org) %>
-      </h2>
+      <div class="lg:overflow-y-auto flex-1 scrolling-panel">
+        <h2 class="font-black mb-4 text-primary search-lvl1">
+          <%= org_name(org) %>
+        </h2>
 
-      <h2 class="font-mono text-xs tracking-wider pt-1 mb-3 uppercase">
-        All guides
-      </h2>
+        <h2 class="font-mono text-xs tracking-wider pt-1 mb-3 uppercase">
+          All guides
+        </h2>
 
-      <div data-testid="org-guide-versions">
-        <% other_versions.each do |version| %>
-          <a href="<%= "/guides/#{org}/#{version}" %>"><%= version %></a>
-        <% end %>
-      </div>
+        <div data-testid="org-guide-versions">
+          <% other_versions.each do |version| %>
+            <a href="<%= "/guides/#{org}/#{version}" %>"><%= version %></a>
+          <% end %>
+        </div>
 
-      <ol data-testid="guides-list">
-        <% other_guides.each do |guide_for_nav| %>
-          <li>
-            <a
-              class="py-1 text-gray-500 block"
-              href="<%= guide_for_nav.url_path %>"
-            >
-              <%= guide_for_nav.title %>
-            </a>
-            <% if guide.title == guide_for_nav.title %>
+        <ol data-testid="guides-list">
+          <% other_guides.each do |guide_for_nav| %>
+            <li>
+              <a
+                class="py-1 text-gray-500 block"
+                href="<%= guide_for_nav.url_path %>"
+              >
+                <%= guide_for_nav.title %>
+              </a>
               <div class="border-gray-200 pl-3 ml-1 border-l-1">
-                <%= render "doc_pages/pages_nav", pages: guide.pages.nested, testid: "pages-nav", current_page_title:
+                <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, testid: "pages-nav", current_page_title:
             page.title %>
               </div>
-            <% end %>
-          </li>
-        <% end %>
-      </ol>
+            </li>
+          <% end %>
+        </ol>
+      </div>
     </div>
   </aside>
 
