@@ -3,10 +3,10 @@
     <% selected = page.url_path == current_page_url %>
     <!-- TODO: Ensure anchor is on screen after navigation -->
     <li>
-      <% base_link_classes = "border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100"
+      <% inactive_link_classes = "border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100 pr-2"
     selected_link_classes = "b-primary font-bold" %>
       <a
-        class="inline-block py-1 pl-4 border-l-2 <%= selected ? selected_link_classes : base_link_classes %>"
+        class="inline-block py-1 pl-4 border-l-2 <%= selected ? selected_link_classes : inactive_link_classes %>"
         <%= 'aria-current=page' if selected %>
         href="<%= page.url_path %>"
       >
