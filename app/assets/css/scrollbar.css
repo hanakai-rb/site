@@ -18,6 +18,7 @@ html {
   &::after {
     content: "";
     position: sticky;
+    pointer-events: none;
     display: block;
     bottom: 0;
     width: 100%;
