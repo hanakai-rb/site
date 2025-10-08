@@ -1,10 +1,14 @@
 html {
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--color-hanakai-300) var(--hk-color-neutral-subtle);
+  }
+
   &::-webkit-scrollbar {
     width: calc(var(--spacing) * 1.5);
     background-color: #f5f5f5;
   }
   &::-webkit-scrollbar-track {
-    background-color: var(--hk-neutral-subtle);
+    background-color: var(--hk-color-neutral-subtle);
     box-shadow: inset var(--shadow-xs);
   }
   &::-webkit-scrollbar-thumb {
@@ -14,7 +18,11 @@ html {
 }
 
 .scrolling-panel {
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--hk-color-bg-primary) var(--hk-color-neutral-subtle);
+  }
   position: relative;
+
   &::after {
     content: "";
     position: sticky;
@@ -28,10 +36,10 @@ html {
 
   &::-webkit-scrollbar {
     width: calc(var(--spacing) * 1.5);
-    background-color: #f5f5f5;
+    background-color: var(--hk-color-neutral-subtle);
   }
   &::-webkit-scrollbar-track {
-    background-color: var(--hk-neutral-subtle);
+    background-color: var(--hk-color-neutral-subtle);
     border-radius: var(--radius-md);
     box-shadow: inset var(--shadow-xs);
   }
