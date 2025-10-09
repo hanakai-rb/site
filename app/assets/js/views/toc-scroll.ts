@@ -12,6 +12,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
   linkContainerNode: HTMLElement,
   { anchorContainerSelector, indicatorSelector = ".toc-indicator", linkSelector = "a[href^='#']" }: Props,
 ) => {
+  // TODO: Use #hash if it exists
   const { anchors, anchorToLinkMap, indicator, links } = findElements({
     anchorContainerSelector,
     indicatorSelector,
