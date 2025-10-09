@@ -1,7 +1,6 @@
 <ol data-testid="<%= testid %>">
   <% pages.each do |(page, child_pages)| %>
     <% selected = page.url_path == current_page_url %>
-    <!-- TODO: Ensure anchor is on screen after navigation -->
     <li>
       <% inactive_link_classes = "border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100 pr-2"
     selected_link_classes = "b-primary font-bold" %>
