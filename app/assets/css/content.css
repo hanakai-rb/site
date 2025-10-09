@@ -149,4 +149,9 @@
   > :first-child {
     margin-block-start: 0;
   }
+
+  hr {
+    border-top: 2px var(--hk-color-neutral-subtle) solid;
+    border-radius: var(--radius-xs);
+  }
 }
