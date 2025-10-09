@@ -18,11 +18,17 @@
       "
     >
       <div
-        class="lg:overflow-y-auto flex-1 pr-4 scrolling-panel scrollling-panel--with-bottom-overlay"
+        class="
+          lg:overflow-y-auto flex-1 pr-4 scrolling-panel
+          scrollling-panel--with-bottom-overlay
+        "
         data-defo-ensure-active-nav-link-visible
       >
         <div class="sticky top-0">
-          <div class="bg-white flex gap-2 pb-2 items-center" data-testid="org-guide-versions">
+          <div
+            class="bg-white flex gap-2 pb-2 items-center"
+            data-testid="org-guide-versions"
+          >
             <%= render "svgs/#{org}_logo", width: 24, height: 24 %>
             <%= render "doc_pages/version_select",
                       id: "org-guide-versions",
@@ -30,7 +36,12 @@
                       other_versions: other_versions,
                       path_prefix: "/guides/#{org}" %>
           </div>
-          <div class="bg-gradient-to-b from-white to-transparent h-4 pointer-events-none"></div>
+          <div
+            class="
+              bg-gradient-to-b from-white to-transparent h-4
+              pointer-events-none
+            "
+          ></div>
         </div>
 
         <nav>
