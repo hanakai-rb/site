@@ -1,0 +1,46 @@
+<%# TODO: Handle when no other versions %>
+
+<div class="relative font-mono text-sm" data-testid="<%= id %>">
+  <button
+    class="
+      inline-flex gap-1 items-center bg-primary rounded-lg px-2 py-1 text-primary-reversed
+      cursor-pointer
+    "
+    data-defo-toggle-class="<%= {
+      clickAway: true,
+      targetSelector: "##{id}-popover",
+      targetToggleClassName: "flex hidden -translate-y-1.5 translate-y-0 opacity-0 opacity-100"
+      }.to_json %>"
+  >
+    <%= version %>
+    <%= render "svgs/icons/caret_down",
+      class_name: "fill-current transition-colors duration-150",
+      width: 14,
+      height: 14 %>
+  </button>
+  <div
+    id="<%= id %>-popover"
+    class="
+      hidden w-20 absolute bg-primary rounded-lg transition-all flex-col
+      transition-discrete starting:-translate-y-1.5 -translate-y-1.5 duration-150
+      starting:opacity-0 opacity-0 mt-1 p-1 shadow-md min-w-28 gap-0.5
+    "
+  >
+    <% other_versions.each do |other_version| %>
+      <% active = other_version === version
+      base_classes =
+        "transition-colors duration-150 flex items-center gap-2 justify-between"
+      active_classes = "bg-primary-reversed text-primary px-2 py-1 rounded-md"
+      inactive_classes = "text-white px-2 py-1 hover:underline" %>
+      <a
+        class="<%= base_classes %> <%= active ? active_classes : inactive_classes %>"
+        href="<%= "#{path_prefix}/#{other_version}" %>"
+      >
+        <%= other_version %>
+        <% if active %>
+          <%= render "svgs/icons/check", class_name: "fill-current", width: 16, height: 16 %>
+        <% end %>
+      </a>
+    <% end %>
+  </div>
+</div>

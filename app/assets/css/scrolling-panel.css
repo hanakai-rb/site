@@ -1,0 +1,34 @@
+.scrolling-panel {
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--hk-color-bg-primary) var(--hk-color-neutral-subtle);
+  }
+
+  &::-webkit-scrollbar {
+    width: calc(var(--spacing) * 1.5);
+    background-color: var(--hk-color-neutral-subtle);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--hk-color-neutral-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: inset var(--shadow-xs);
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-md);
+    background-color: var(--hk-color-bg-primary);
+  }
+}
+
+.scrollling-panel--with-bottom-overlay {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: sticky;
+    pointer-events: none;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: calc(var(--spacing) * 10);
+    background-image: linear-gradient(to top, var(--color-white), oklch(from var(--color-white) l c h / 0));
+  }
+}

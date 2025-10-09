@@ -26,7 +26,7 @@ module Site
           guide_repo.versions_for(org:)
         end
 
-        expose :other_guides do |org:, version:|
+        expose :org_guides do |org:, version:|
           guide_repo.all_for(org:, version:)
         end
 

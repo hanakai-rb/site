@@ -31,12 +31,12 @@
   </head>
   <body
     class="font-sans text-neutral bg-white flex flex-col min-h-dvh"
-    data-defo-foresight="<%= { elementSelector: "a[href^=/]" }.to_json %>"
+    data-defo-foresight
   >
     <%= render "header/base", nav_items: header_nav_items %>
 
     <div class="mx-auto flex w-full max-w-[1540px] flex-col mb-6 lg:mb-8 flex-1">
-      <main class="px-4 lg:px-6 flex flex-col"><%= yield %></main>
+      <main class="px-4 lg:px-6 flex flex-col flex-1"><%= yield %></main>
     </div>
 
     <%= render "footer", nav_items: footer_nav_items %>
