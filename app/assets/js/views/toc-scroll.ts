@@ -12,7 +12,6 @@ export const tocScrollViewFn: ViewFn<Props> = (
   linkContainerNode: HTMLElement,
   { anchorContainerSelector, indicatorSelector = ".toc-indicator", linkSelector = "a[href^='#']" }: Props,
 ) => {
-  // TODO: Use #hash if it exists
   const { anchors, anchorToLinkMap, indicator, links } = findElements({
     anchorContainerSelector,
     indicatorSelector,
@@ -36,31 +35,35 @@ export const tocScrollViewFn: ViewFn<Props> = (
     x: 0,
     y: firstLink?.offsetTop ?? 0,
     initialY: firstLink?.offsetTop ?? 0,
+    scale: 0,
   };
+  console.log({ indicatorPosition });
 
-  const activeClass = "text-primary";
-  const xOffset = 12;
-  const xOffsetDepth = 4;
+  const activeClasses = ["font-bold", "b-primary"];
+  const xOffset = 11;
+  const xOffsetDepth = 0;
 
   const onChangeAnchor = (activeAnchor: HTMLElement | undefined) => {
     requestAnimationFrame(() => {
       // Remove active class from all links
-      links.forEach((node) => node.classList.remove(activeClass));
+      links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
 
       // Find the active link tuple
       const activeLinkTuple = activeAnchor ? anchorToLinkMap.get(activeAnchor) : undefined;
       if (activeLinkTuple) {
         const [activeLinkNode, depth] = activeLinkTuple;
         // Add the active class
-        activeLinkNode.classList.add(activeClass);
+        activeClasses.forEach((activeClass) => activeLinkNode.classList.add(activeClass));
         // Calculate the position of the indicator
         indicatorPosition = {
           ...indicatorPosition,
           x: xOffset + depth * xOffsetDepth,
-          y: activeLinkNode.offsetTop + activeLinkNode.offsetHeight / 2 - 13,
+          y: activeLinkNode.offsetTop + activeLinkNode.offsetHeight / 2 - 9,
+          scale: 1,
         };
       } else {
         // If no match, set the x offset to 0 to hide it
+        indicatorPosition.scale = 0;
         indicatorPosition.x = 0;
       }
       // Calculate the rotation between the initial position and current one
@@ -68,7 +71,8 @@ export const tocScrollViewFn: ViewFn<Props> = (
       const distance = Math.abs(indicatorPosition.initialY - indicatorPosition.y);
       const rotationInDegrees = (distance / circumference) * 360;
       // Apply the transform
-      indicator.style.transform = `translate(${indicatorPosition.x}px, ${indicatorPosition.y}px) rotate(${rotationInDegrees}deg)`;
+      indicator.style.transform = `translate(${indicatorPosition.x}px, ${indicatorPosition.y}px) rotate(${rotationInDegrees}deg) scale(${indicatorPosition.scale})`;
+      indicator.style.scale = indicatorPosition.scale.toString();
     });
   };
 
@@ -78,7 +82,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
       onChangeAnchor,
     }),
     20,
-    { maxWait: 40 },
+    { maxWait: 150 },
   );
 
   window.addEventListener("scroll", onScroll);
@@ -86,7 +90,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
   return {
     destroy: () => {
       window.removeEventListener("scroll", onScroll);
-      links.forEach((node) => node.classList.remove(activeClass));
+      links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
     },
   };
 };
@@ -174,7 +178,7 @@ export function findClosestIndex(arr: number[], target: number) {
 }
 
 // How much of the window to offset the scroll-comparison value by
-const WINDOW_THRESHOLD_PERCENTAGE = 0.1;
+const WINDOW_THRESHOLD_PERCENTAGE = 0.2;
 
 /**
  * Create the onScroll function
