@@ -88,13 +88,14 @@
           </div>
         </div>
         <div
+          id="toc-scrolling-panel"
           class="flex-1 overflow-y-auto over scrolling-panel scrolling-panel--with-bottom-overlay"
         >
           <h2 class="font-mono text-xs tracking-wider uppercase text-primary pt-1 mb-3">
             On this page
           </h2>
 
-          <nav data-defo-toc-scroll="<%= { anchorContainerSelector: ".content", breakpoints: ["lg"] }.to_json %>">
+          <nav data-defo-toc-scroll="<%= { anchorContainerSelector: ".content", "scrollReferenceSelector": "#toc-scrolling-panel", breakpoints: ["lg"] }.to_json %>">
             <%= render "doc_pages/headings_toc", headings: page.nested_headings, testid: "headings-toc", depth: 0 %>
           </nav>
         </div>

@@ -6,11 +6,19 @@ type Props = {
   anchorContainerSelector?: string;
   indicatorSelector?: string;
   linkSelector?: string;
+  // Optional: selector for a scrollable element whose vertical scroll
+  // offset should be subtracted from the indicator's Y position
+  scrollReferenceSelector?: string;
 };
 
 export const tocScrollViewFn: ViewFn<Props> = (
   linkContainerNode: HTMLElement,
-  { anchorContainerSelector, indicatorSelector = ".toc-indicator", linkSelector = "a[href^='#']" }: Props,
+  {
+    anchorContainerSelector,
+    indicatorSelector = ".toc-indicator",
+    linkSelector = "a[href^='#']",
+    scrollReferenceSelector,
+  }: Props,
 ) => {
   const { anchors, anchorToLinkMap, indicator, links } = findElements({
     anchorContainerSelector,
@@ -18,6 +26,11 @@ export const tocScrollViewFn: ViewFn<Props> = (
     linkContainerNode,
     linkSelector,
   });
+
+  // Resolve optional scroll reference element (e.g. a scrollable content container)
+  const scrollReferenceEl = scrollReferenceSelector
+    ? (document.querySelector<HTMLElement>(scrollReferenceSelector) ?? undefined)
+    : undefined;
 
   const firstAnchor = anchors[0];
 
@@ -71,7 +84,8 @@ export const tocScrollViewFn: ViewFn<Props> = (
       const distance = Math.abs(indicatorPosition.initialY - indicatorPosition.y);
       const rotationInDegrees = (distance / circumference) * 360;
       // Apply the transform
-      indicator.style.transform = `translate(${indicatorPosition.x}px, ${indicatorPosition.y}px) rotate(${rotationInDegrees}deg) scale(${indicatorPosition.scale})`;
+      const scrollYOffset = scrollReferenceEl?.scrollTop ?? 0;
+      indicator.style.transform = `translate(${indicatorPosition.x}px, ${indicatorPosition.y - scrollYOffset}px) rotate(${rotationInDegrees}deg) scale(${indicatorPosition.scale})`;
       indicator.style.scale = indicatorPosition.scale.toString();
     });
   };
@@ -86,10 +100,17 @@ export const tocScrollViewFn: ViewFn<Props> = (
   );
 
   window.addEventListener("scroll", onScroll);
+  // If we have a scroll reference element, also listen to its scroll events
+  if (scrollReferenceEl) {
+    scrollReferenceEl.addEventListener("scroll", onScroll);
+  }
 
   return {
     destroy: () => {
       window.removeEventListener("scroll", onScroll);
+      if (scrollReferenceEl) {
+        scrollReferenceEl.removeEventListener("scroll", onScroll);
+      }
       links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
     },
   };
@@ -178,7 +199,7 @@ export function findClosestIndex(arr: number[], target: number) {
 }
 
 // How much of the window to offset the scroll-comparison value by
-const WINDOW_THRESHOLD_PERCENTAGE = 0.2;
+const WINDOW_THRESHOLD_PERCENTAGE = 0.075;
 
 /**
  * Create the onScroll function
@@ -233,9 +254,10 @@ function createOnScrollFn({
     // Wait for every item to be measured.
     await Promise.all(promises);
 
-    // Add the window scrollY offset to the start of the yPosition array so we use it as an anchor
-    // to ensure we don’t always select the first item.
-    yPositions.unshift(window.scrollY * -1);
+    // Add the scroll offset (window or reference element) to the start of the yPosition array so
+    // we use it as an anchor to ensure we don’t always select the first item.
+    const effectiveScrollOffset = window.scrollY * -1;
+    yPositions.unshift(effectiveScrollOffset);
 
     // Find the closest matching position (accounting for the fake value from the scroll position)
     const closestIndex = findClosestIndex(yPositions, viewportMarginThreshold) - 1;
