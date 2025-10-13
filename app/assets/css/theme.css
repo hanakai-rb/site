@@ -5,6 +5,7 @@
   --hk-color-bg-primary: var(--color-sky-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-hanakai-500);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
   --hk-color-b-primary: var(--color-sky-500);
@@ -28,6 +29,7 @@
   --hk-color-bg-primary: var(--color-hanami-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-sky-500);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
   --hk-color-b-primary: var(--color-hanami-500);
@@ -47,11 +49,11 @@
 
 .theme-dry-light {
   --hk-color-bg-neutral: var(--color-white);
-  --hk-color-bg-neutral: var(--color-white);
   --hk-color-bg-primary-reversed: var(--color-white);
   --hk-color-bg-primary: var(--color-dry-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-sky-500);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
   --hk-color-b-primary: var(--color-dry-500);
@@ -74,6 +76,7 @@
   --hk-color-bg-primary: var(--color-rom-500);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-sky-500);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
   --hk-color-b-primary: var(--color-rom-500);
