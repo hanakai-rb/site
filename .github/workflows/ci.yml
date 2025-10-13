@@ -69,7 +69,6 @@ jobs:
 
       - name: Rake
         run: |-
-          bundle exec rake tailwind:compile
           bundle exec hanami assets compile
           bundle exec rake
 
