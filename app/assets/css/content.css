@@ -138,7 +138,7 @@
 
     th {
       border-right: 1px var(--hk-color-neutral-subtle) solid;
-      font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-medium);
       text-align: left;
       padding: calc(var(--spacing) * 2);
 
