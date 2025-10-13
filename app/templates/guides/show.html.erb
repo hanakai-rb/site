@@ -56,8 +56,7 @@
                 >
                   <%= guide_for_nav.title %>
                 </div>
-                <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, testid: "pages-nav", current_page_url:
-            page.url_path %>
+                <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: page.url_path %>
               </li>
             <% end %>
           </ol>

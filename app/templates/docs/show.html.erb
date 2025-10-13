@@ -17,7 +17,7 @@
   <% end %>
 </div>
 
-<%= render "doc_pages/pages_nav", pages: doc.pages.nested, testid: "pages-nav", current_page_url: page.url_path %>
+<%= render "doc_pages/pages_nav", pages: doc.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: page.url_path %>
 
 <hr>
 

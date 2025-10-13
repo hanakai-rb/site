@@ -1,4 +1,4 @@
-<%= tag.ol("data-testid" => testid) do %>
+<ol data-testid="<%= testid %>" data-depth="<%= depth %>">
   <% headings.each do |(heading, child_headings)| %>
     <li>
       <% depths = ["pl-4", "pl-6", "pl-8", "pl-10"] %>
@@ -12,10 +12,8 @@
         <%= heading.text %>
       </a>
       <% if child_headings.any? %>
-        <ol>
-          <%= render "doc_pages/headings_toc", headings: child_headings, testid: nil, depth: depth + 1 %>
-        </ol>
+        <%= render "doc_pages/headings_toc", headings: child_headings, testid: nil, depth: depth + 1 %>
       <% end %>
     </li>
   <% end %>
-<% end %>
+</ol>

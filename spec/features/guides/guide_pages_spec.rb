@@ -15,20 +15,20 @@ RSpec.feature "Guides / Guide pages" do
     expect(page).to have_selector "main header h1", text: "Context"
   end
 
-  it "links to all the guide's pages" do
+  it "links to all the guide pages for an org" do
     visit "/guides/hanami/v2.2/views"
 
-    within "[data-testid=pages-nav]" do
+    within "[data-testid=guides-list]" do
       links = page.find_all("a")
 
-      expect(links[0..2].map(&:text)).to eq [
+      expect(links.map(&:text)).to include(
+        "Building a web app",
         "Overview",
         "Working with dependencies",
-        "Input and exposures"
-      ]
+        "Number formatting"
+      )
 
-      expect(links[0][:href]).to eq "/guides/hanami/v2.2/views"
-      expect(links[1][:href]).to eq "/guides/hanami/v2.2/views/working-with-dependencies"
+      expect(links[0][:href]).to eq "/guides/hanami/v2.2/getting-started"
     end
   end
 
@@ -72,10 +72,12 @@ RSpec.feature "Guides / Guide pages" do
     within "[data-testid=guides-list]" do
       all_guide_names = page.find_all("li a").map(&:text)
 
-      expect(all_guide_names[0..2]).to eq [
-        "Getting started",
-        "Command line",
-        "App"
+      expect(all_guide_names[0..4]).to eq [
+        "Getting Started",
+        "Building a web app",
+        "Building an API",
+        "Commands",
+        "New"
       ]
     end
   end
