@@ -6,19 +6,31 @@ type Props = {
   anchorContainerSelector?: string;
   indicatorSelector?: string;
   linkSelector?: string;
+  // Optional: selector for a scrollable element whose vertical scroll
+  // offset should be subtracted from the indicator's Y position
+  scrollReferenceSelector?: string;
 };
 
 export const tocScrollViewFn: ViewFn<Props> = (
   linkContainerNode: HTMLElement,
-  { anchorContainerSelector, indicatorSelector = ".toc-indicator", linkSelector = "a[href^='#']" }: Props,
+  {
+    anchorContainerSelector,
+    indicatorSelector = ".toc-indicator",
+    linkSelector = "a[href^='#']",
+    scrollReferenceSelector,
+  }: Props,
 ) => {
-  // TODO: Use #hash if it exists
   const { anchors, anchorToLinkMap, indicator, links } = findElements({
     anchorContainerSelector,
     indicatorSelector,
     linkContainerNode,
     linkSelector,
   });
+
+  // Resolve optional scroll reference element (e.g. a scrollable content container)
+  const scrollReferenceEl = scrollReferenceSelector
+    ? (document.querySelector<HTMLElement>(scrollReferenceSelector) ?? undefined)
+    : undefined;
 
   const firstAnchor = anchors[0];
 
@@ -36,31 +48,35 @@ export const tocScrollViewFn: ViewFn<Props> = (
     x: 0,
     y: firstLink?.offsetTop ?? 0,
     initialY: firstLink?.offsetTop ?? 0,
+    scale: 0,
   };
+  console.log({ indicatorPosition });
 
-  const activeClass = "text-primary";
-  const xOffset = 12;
-  const xOffsetDepth = 4;
+  const activeClasses = ["font-bold", "b-primary"];
+  const xOffset = 11;
+  const xOffsetDepth = 0;
 
   const onChangeAnchor = (activeAnchor: HTMLElement | undefined) => {
     requestAnimationFrame(() => {
       // Remove active class from all links
-      links.forEach((node) => node.classList.remove(activeClass));
+      links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
 
       // Find the active link tuple
       const activeLinkTuple = activeAnchor ? anchorToLinkMap.get(activeAnchor) : undefined;
       if (activeLinkTuple) {
         const [activeLinkNode, depth] = activeLinkTuple;
         // Add the active class
-        activeLinkNode.classList.add(activeClass);
+        activeClasses.forEach((activeClass) => activeLinkNode.classList.add(activeClass));
         // Calculate the position of the indicator
         indicatorPosition = {
           ...indicatorPosition,
           x: xOffset + depth * xOffsetDepth,
-          y: activeLinkNode.offsetTop + activeLinkNode.offsetHeight / 2 - 13,
+          y: activeLinkNode.offsetTop + activeLinkNode.offsetHeight / 2 - 9,
+          scale: 1,
         };
       } else {
         // If no match, set the x offset to 0 to hide it
+        indicatorPosition.scale = 0;
         indicatorPosition.x = 0;
       }
       // Calculate the rotation between the initial position and current one
@@ -68,7 +84,9 @@ export const tocScrollViewFn: ViewFn<Props> = (
       const distance = Math.abs(indicatorPosition.initialY - indicatorPosition.y);
       const rotationInDegrees = (distance / circumference) * 360;
       // Apply the transform
-      indicator.style.transform = `translate(${indicatorPosition.x}px, ${indicatorPosition.y}px) rotate(${rotationInDegrees}deg)`;
+      const scrollYOffset = scrollReferenceEl?.scrollTop ?? 0;
+      indicator.style.transform = `translate(${indicatorPosition.x}px, ${indicatorPosition.y - scrollYOffset}px) rotate(${rotationInDegrees}deg) scale(${indicatorPosition.scale})`;
+      indicator.style.scale = indicatorPosition.scale.toString();
     });
   };
 
@@ -78,15 +96,22 @@ export const tocScrollViewFn: ViewFn<Props> = (
       onChangeAnchor,
     }),
     20,
-    { maxWait: 40 },
+    { maxWait: 150 },
   );
 
   window.addEventListener("scroll", onScroll);
+  // If we have a scroll reference element, also listen to its scroll events
+  if (scrollReferenceEl) {
+    scrollReferenceEl.addEventListener("scroll", onScroll);
+  }
 
   return {
     destroy: () => {
       window.removeEventListener("scroll", onScroll);
-      links.forEach((node) => node.classList.remove(activeClass));
+      if (scrollReferenceEl) {
+        scrollReferenceEl.removeEventListener("scroll", onScroll);
+      }
+      links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
     },
   };
 };
@@ -174,7 +199,7 @@ export function findClosestIndex(arr: number[], target: number) {
 }
 
 // How much of the window to offset the scroll-comparison value by
-const WINDOW_THRESHOLD_PERCENTAGE = 0.1;
+const WINDOW_THRESHOLD_PERCENTAGE = 0.075;
 
 /**
  * Create the onScroll function
@@ -229,9 +254,10 @@ function createOnScrollFn({
     // Wait for every item to be measured.
     await Promise.all(promises);
 
-    // Add the window scrollY offset to the start of the yPosition array so we use it as an anchor
-    // to ensure we don’t always select the first item.
-    yPositions.unshift(window.scrollY * -1);
+    // Add the scroll offset (window or reference element) to the start of the yPosition array so
+    // we use it as an anchor to ensure we don’t always select the first item.
+    const effectiveScrollOffset = window.scrollY * -1;
+    yPositions.unshift(effectiveScrollOffset);
 
     // Find the closest matching position (accounting for the fake value from the scroll position)
     const closestIndex = findClosestIndex(yPositions, viewportMarginThreshold) - 1;
