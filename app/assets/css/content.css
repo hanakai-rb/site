@@ -102,6 +102,25 @@
     margin-block-start: calc(var(--spacing) * 3);
     margin-block-end: calc(var(--spacing) * 5);
 
+    @supports not selector(::-webkit-scrollbar) {
+      scrollbar-color: var(--hk-color-bg-primary) var(--hk-color-neutral-subtle);
+    }
+
+    &::-webkit-scrollbar {
+      height: calc(var(--spacing) * 1.5);
+      width: calc(var(--spacing) * 1.5);
+      background-color: var(--hk-color-neutral-subtle);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: var(--hk-color-neutral-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: inset var(--shadow-xs);
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-md);
+      background-color: var(--hk-color-bg-primary);
+    }
+
     code {
       padding: 0;
     }
