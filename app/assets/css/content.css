@@ -193,6 +193,14 @@
     background-color: var(--hk-color-bg-secondary-subtle);
     color: var(--hk-color-text-neutral);
 
+    .block {
+      /*
+       * Avoid Tailwind overridding these values, could possibly be avoiding instead using
+       * css_class_prefix from the underlying lib
+       */
+      display: inline;
+    }
+
     /* Comments */
     .comment,
     .punctuation.definition.comment {
