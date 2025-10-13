@@ -3,9 +3,11 @@
     <li>
       <% depths = ["pl-4", "pl-6", "pl-8", "pl-10"] %>
       <a
-        class="inline-block py-1 pr-2 <%= depths[depth] %> border-l-2 border-slate-100 text-neutral
-        hover:text-gray-800 hover:border-slate-300
-        transition-color duration-200 "
+        class="
+          inline-block py-1 pr-2 <%= depths[depth] %> border-l-2 border-slate-100 text-neutral
+          hover:text-gray-800 hover:border-slate-300
+          transition-color duration-200
+        "
         data-depth="<%= depth %>"
         href="<%= heading.href %>"
       >
