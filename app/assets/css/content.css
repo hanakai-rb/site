@@ -7,6 +7,12 @@
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
   }
+  h4,
+  h5 {
+    color: var(--hk-color-text-neutral);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.01em;
+  }
 
   h1 {
     color: var(--hk-color-text-primary);
@@ -22,6 +28,13 @@
 
   h3 {
     font-size: var(--text-xl);
+    margin-block-start: calc(var(--spacing) * 5);
+    margin-block-end: calc(var(--spacing) * 2.5);
+  }
+
+  h4,
+  h5 {
+    font-size: var(--text-lg);
     margin-block-start: calc(var(--spacing) * 5);
     margin-block-end: calc(var(--spacing) * 2.5);
   }
