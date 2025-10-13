@@ -83,7 +83,8 @@ module Site
           context: {
             markdown: {
               extension: {alerts: true},
-              render: {unsafe: true}
+              render: {unsafe: true},
+              plugins: {syntax_highlighter: {theme: ""}}
             }
           }
         ),

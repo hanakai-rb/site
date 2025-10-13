@@ -7,6 +7,12 @@
     font-weight: var(--font-weight-bold);
     letter-spacing: -0.01em;
   }
+  h4,
+  h5 {
+    color: var(--hk-color-text-neutral);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.01em;
+  }
 
   h1 {
     color: var(--hk-color-text-primary);
@@ -22,6 +28,13 @@
 
   h3 {
     font-size: var(--text-xl);
+    margin-block-start: calc(var(--spacing) * 5);
+    margin-block-end: calc(var(--spacing) * 2.5);
+  }
+
+  h4,
+  h5 {
+    font-size: var(--text-lg);
     margin-block-start: calc(var(--spacing) * 5);
     margin-block-end: calc(var(--spacing) * 2.5);
   }
@@ -72,7 +85,7 @@
 
   code {
     border-radius: var(--radius-sm);
-    background-color: var(--hk-color-neutral-subtle);
+    background-color: var(--hk-color-bg-secondary-subtle);
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1);
@@ -80,8 +93,9 @@
 
   pre {
     border-radius: var(--radius-lg);
-    background-color: var(--hk-color-neutral-subtle);
-    box-shadow: var(--shadow-sm);
+    border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.08) solid;
+    background-color: var(--hk-color-bg-secondary-subtle);
+    box-shadow: var(--shadow-xs);
     font-size: var(--text-sm);
     max-width: 100%;
     overflow: auto hidden;
@@ -89,7 +103,27 @@
     margin-block-start: calc(var(--spacing) * 3);
     margin-block-end: calc(var(--spacing) * 5);
 
+    @supports not selector(::-webkit-scrollbar) {
+      scrollbar-color: var(--hk-color-bg-primary) var(--hk-color-neutral-subtle);
+    }
+
+    &::-webkit-scrollbar {
+      height: calc(var(--spacing) * 1.5);
+      width: calc(var(--spacing) * 1.5);
+      background-color: var(--hk-color-neutral-subtle);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: var(--hk-color-neutral-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: inset var(--shadow-xs);
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-md);
+      background-color: var(--hk-color-bg-primary);
+    }
+
     code {
+      background: transparent;
       padding: 0;
     }
   }
@@ -106,7 +140,7 @@
 
     th {
       border-right: 1px var(--hk-color-neutral-subtle) solid;
-      font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-medium);
       text-align: left;
       padding: calc(var(--spacing) * 2);
 
@@ -153,5 +187,122 @@
   hr {
     border-top: 2px var(--hk-color-neutral-subtle) solid;
     border-radius: var(--radius-xs);
+  }
+
+  .syntax-highlighting {
+    background-color: var(--hk-color-bg-secondary-subtle);
+    color: var(--hk-color-text-neutral);
+
+    .block {
+      /*
+       * Avoid Tailwind overridding these values, could possibly be avoiding instead using
+       * css_class_prefix from the underlying lib
+       */
+      display: inline;
+    }
+
+    /* Comments */
+    .comment,
+    .punctuation.definition.comment {
+      color: var(--hk-color-neutral-subtle-reversed);
+      font-style: italic;
+    }
+
+    /* Strings */
+    .string {
+      color: var(--hk-color-text-secondary);
+    }
+
+    .punctuation.definition.string {
+      color: var(--hk-color-text-secondary);
+    }
+
+    /* Numbers */
+    .constant.numeric {
+      color: var(--hk-color-text-primary);
+    }
+
+    /* Keywords */
+    .keyword,
+    .storage.type,
+    .storage.modifier {
+      color: var(--hk-color-text-primary);
+      font-weight: 600;
+    }
+
+    /* Operators */
+    .keyword.operator {
+      color: var(--hk-color-text-neutral);
+    }
+
+    /* Punctuation */
+    .punctuation {
+      color: var(--hk-color-neutral-subtle-reversed);
+    }
+
+    /* Function calls */
+    .entity.name.function,
+    .support.function {
+      color: var(--hk-color-text-secondary);
+    }
+
+    /* Classes and types */
+    .entity.name.class,
+    .entity.name.type,
+    .support.class,
+    .support.type {
+      color: var(--hk-color-text-primary);
+      font-weight: 600;
+    }
+
+    /* Constants and symbols */
+    .constant,
+    .constant.other.symbol {
+      color: var(--hk-color-text-secondary);
+    }
+
+    /* Variables */
+    .variable {
+      color: var(--hk-color-text-neutral);
+    }
+
+    /* Attributes */
+    .entity.other.attribute-name {
+      color: var(--hk-color-text-primary);
+    }
+
+    /* Tags */
+    .entity.name.tag {
+      color: var(--hk-color-text-primary);
+    }
+
+    /* Markup - Heading */
+    .markup.heading {
+      color: var(--hk-color-text-primary);
+      font-weight: 700;
+    }
+
+    /* Markup - Bold */
+    .markup.bold {
+      font-weight: 700;
+    }
+
+    /* Markup - Italic */
+    .markup.italic {
+      font-style: italic;
+    }
+
+    /* Markup - Link */
+    .markup.underline.link {
+      color: var(--hk-color-text-link);
+      text-decoration-color: var(--hk-color-text-link-underline);
+    }
+
+    /* Markup - Code */
+    .markup.raw,
+    .markup.inline.raw {
+      color: var(--hk-color-text-secondary);
+      background-color: var(--hk-color-neutral-subtle);
+    }
   }
 }
