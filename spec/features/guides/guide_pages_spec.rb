@@ -4,14 +4,14 @@ RSpec.feature "Guides / Guide pages" do
   it "renders a guide index page" do
     visit "/guides/hanami/v2.2/views"
 
-    expect(page).to have_selector "header h1", text: "Views"
+    expect(page).to have_selector "[aria-label=Breadcrumb] a", text: "Views"
     expect(page).to have_selector "main header h1", text: "Overview"
   end
 
   it "renders a guide page" do
     visit "/guides/hanami/v2.2/views/context"
 
-    expect(page).to have_selector "header h1", text: "Views"
+    expect(page).to have_selector "[aria-label=Breadcrumb] a", text: "Views"
     expect(page).to have_selector "main header h1", text: "Context"
   end
 
