@@ -10,6 +10,11 @@ module Site
           doc_repo.find(slug:, version:)
         end
 
+        # TODO: Make real ord
+        expose :org do
+          "dry"
+        end
+
         expose :page do |doc, path:|
           doc.pages[path]
         end
@@ -22,6 +27,15 @@ module Site
 
         expose :other_versions, decorate: false do |slug:|
           doc_repo.versions_for(slug:)
+        end
+
+        # TODO: Move this and add ancestors to chain
+        Breadcrumb = Data.define(:label, :url)
+        expose :breadcrumbs do |doc, org|
+          [
+            Breadcrumb.new(label: org.capitalize, url: "/docs##{org}"),
+            Breadcrumb.new(label: doc.title, url: doc.url_path)
+          ]
         end
 
         scope do

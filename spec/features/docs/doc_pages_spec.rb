@@ -4,14 +4,14 @@ RSpec.feature "Docs / Doc pages" do
   it "renders a doc index page" do
     visit "/docs/dry-operation/v1.0"
 
-    expect(page).to have_selector "header h1", text: "dry-operation"
+    expect(page).to have_selector "[aria-label=Breadcrumb] a", text: "dry-operation"
     expect(page).to have_selector "main header h1", text: "Introduction"
   end
 
   it "renders a doc page" do
     visit "/docs/dry-operation/v1.0/configuration"
 
-    expect(page).to have_selector "header h1", text: "dry-operation"
+    expect(page).to have_selector "[aria-label=Breadcrumb] a", text: "dry-operation"
     expect(page).to have_selector "main header h1", text: "Configuration"
   end
 
@@ -52,7 +52,7 @@ RSpec.feature "Docs / Doc pages" do
   it "links to other versions of the doc" do
     visit "/docs/dry-types/v1.8"
 
-    within "[data-testid=doc-versions]" do
+    within "[data-testid=version-select]" do
       expect(page).to have_link "v1.8", href: "/docs/dry-types/v1.8"
       expect(page).to have_link "v1.7", href: "/docs/dry-types/v1.7"
     end
