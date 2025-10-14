@@ -33,9 +33,7 @@ module Site
         @_slots[name]
       end
 
-      def _slots
-        @_slots
-      end
+      attr_reader :_slots
     end
   end
 end
