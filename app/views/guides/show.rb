@@ -30,6 +30,14 @@ module Site
           guide_repo.all_for(org:, version:)
         end
 
+        Breadcrumb = Data.define(:label, :url)
+        expose :breadcrumbs do |guide, org:|
+          [
+            Breadcrumb.new(label: org.capitalize, url: "/guides##{org}"),
+            Breadcrumb.new(label: guide.title, url: guide.url_path)
+          ]
+        end
+
         scope do
           # Strip leading "v" for docsearch:version meta, which wants a pure numerical version
           def version_number

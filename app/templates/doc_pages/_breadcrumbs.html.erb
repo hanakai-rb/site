@@ -1,0 +1,24 @@
+<nav
+  aria-label="Breadcrumb"
+  class="
+    font-mono text-xs font-semibold text-primary tracking-wider uppercase
+    pt-1 mb-5
+  "
+>
+  <ol class="flex gap-2 items-center">
+    <% breadcrumbs.each do |breadcrumb| %>
+      <li>
+        <% if breadcrumb.url %>
+          <a class="hover:underline" href="<%= breadcrumb.url %>"><%= breadcrumb.label %></a>
+        <% else %>
+          <%= breadcrumb.label %>
+        <% end %>
+      </li>
+      <% if breadcrumb != breadcrumbs.last %>
+        <li>
+          <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current -mt-0.5" %>
+        </li>
+      <% end %>
+    <% end %>
+  </ol>
+</nav>
