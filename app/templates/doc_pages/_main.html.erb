@@ -1,0 +1,39 @@
+<div class="lg:grid lg:grid-cols-16 lg:gap-8 md:grid md:grid-cols-5 md:gap-8">
+  <aside class="lg:col-span-3">
+    <div
+      class="
+        lg:sticky
+        lg:pt-8 lg:top-[calc(var(--hk-nav-height))]
+        lg:max-h-[calc(100vh-var(--hk-nav-height)-(var(--spacing)*8))]
+        flex flex-col
+      "
+    >
+      <div
+        class="
+          lg:overflow-y-auto flex-1 pr-4 scrolling-panel
+          scrolling-panel--with-bottom-overlay
+        "
+        data-defo-ensure-active-nav-link-visible
+      >
+        <%= render_slot :navigation %>
+      </div>
+    </div>
+  </aside>
+
+  <section class="lg:col-span-13 lg:grid lg:grid-cols-13 md:col-span-4">
+    <aside
+      class="
+        lg:col-span-3 lg:order-2 lg:self-start
+        lg:pt-8 lg:sticky lg:top-[calc(var(--hk-nav-height))]
+        lg:max-h-[calc(100vh-var(--hk-nav-height)-(var(--spacing)*8))]
+        relative
+        flex flex-col
+      "
+    >
+      <%= render_slot :toc %>
+    </aside>
+    <div class="lg:col-span-10 lg:pr-8 lg:mt-8 lg:mb-14">
+      <%= render_slot :content %>
+    </div>
+  </section>
+</div>

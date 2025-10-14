@@ -30,6 +30,7 @@ module Site
           guide_repo.all_for(org:, version:)
         end
 
+        # TODO: Move this and add ancestors to chain
         Breadcrumb = Data.define(:label, :url)
         expose :breadcrumbs do |guide, org:|
           [

@@ -7,128 +7,100 @@
   >
 <% end %>
 
-<div class="lg:grid lg:grid-cols-16 lg:gap-8 md:grid md:grid-cols-5 md:gap-8">
-  <aside class="lg:col-span-3">
-    <div
-      class="
-        lg:sticky
-        lg:pt-8 lg:top-[calc(var(--hk-nav-height))]
-        lg:max-h-[calc(100vh-var(--hk-nav-height)-(var(--spacing)*8))]
-        flex flex-col
-      "
-    >
+<%= render_with_slots "doc_pages/main" do |main| %>
+  <% # Navigation %>
+  <%= main.slot :navigation do %>
+    <div class="sticky top-0">
       <div
+        class="bg-white flex gap-2 pb-2 items-center"
+        data-testid="org-guide-versions"
+      >
+        <%= render "svgs/#{org}_logo", width: 24, height: 24 %>
+        <%= render "doc_pages/version_select",
+                  id: "org-guide-versions",
+                  version: version,
+                  other_versions: other_versions,
+                  path_prefix: "/guides/#{org}" %>
+      </div>
+      <div class="bg-gradient-to-b from-white to-transparent h-4 pointer-events-none"></div>
+    </div>
+
+    <nav>
+      <ol data-testid="guides-list">
+        <% org_guides.each do |guide_for_nav| %>
+          <li class="mb-6">
+            <div
+              class="
+                font-mono uppercase text-xs font-semibold text-primary
+                tracking-wide mb-2
+              "
+            >
+              <%= guide_for_nav.title %>
+            </div>
+            <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: page.url_path %>
+          </li>
+        <% end %>
+      </ol>
+    </nav>
+  <% end %>
+
+  <% # Table of contents %>
+  <%= main.slot :toc do %>
+    <% if page.nested_headings.length > 0 %>
+      <div class="absolute top-8 bottom-0 right-full w-9 overflow-hidden">
+        <div
+          class="
+            toc-indicator lg:block top-0 absolute right-[calc(100%)+var(--spacing)*4)]
+            hidden transition-transform duration-500
+            ease-in-out scale-0
+          "
+        >
+          <%= render "svgs/#{org}_logo", width: 20, height: 20 %>
+        </div>
+      </div>
+      <div
+        id="toc-scrolling-panel"
         class="
-          lg:overflow-y-auto flex-1 pr-4 scrolling-panel
+          flex-1 overflow-y-auto over scrolling-panel
           scrolling-panel--with-bottom-overlay
         "
-        data-defo-ensure-active-nav-link-visible
       >
         <div class="sticky top-0">
-          <div
-            class="bg-white flex gap-2 pb-2 items-center"
-            data-testid="org-guide-versions"
-          >
-            <%= render "svgs/#{org}_logo", width: 24, height: 24 %>
-            <%= render "doc_pages/version_select",
-                      id: "org-guide-versions",
-                      version: version,
-                      other_versions: other_versions,
-                      path_prefix: "/guides/#{org}" %>
+          <div class="bg-white flex gap-2">
+            <h2
+              class="
+                font-mono text-xs font-semibold tracking-wider uppercase
+                text-primary pt-1 mb-3
+              "
+            >
+              On this page
+            </h2>
           </div>
           <div
             class="
-              bg-gradient-to-b from-white to-transparent h-4
+              bg-gradient-to-b from-white to-transparent h-2
               pointer-events-none
             "
           ></div>
         </div>
 
-        <nav>
-          <ol data-testid="guides-list">
-            <% org_guides.each do |guide_for_nav| %>
-              <li class="mb-6">
-                <div
-                  class="
-                    font-mono uppercase text-xs font-semibold text-primary
-                    tracking-wide mb-2
-                  "
-                >
-                  <%= guide_for_nav.title %>
-                </div>
-                <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: page.url_path %>
-              </li>
-            <% end %>
-          </ol>
+        <nav
+          data-defo-toc-scroll="<%= { anchorContainerSelector: ".content", "scrollReferenceSelector": "#toc-scrolling-panel", breakpoints: ["lg"] }.to_json %>"
+        >
+          <%= render "doc_pages/headings_toc", headings: page.nested_headings, testid: "headings-toc", depth: 0 %>
         </nav>
       </div>
-    </div>
-  </aside>
+    <% end %>
+  <% end %>
 
-  <section class="lg:col-span-13 lg:grid lg:grid-cols-13 md:col-span-4">
-    <aside
-      class="
-        lg:col-span-3 lg:order-2 lg:self-start
-        lg:pt-8 lg:sticky lg:top-[calc(var(--hk-nav-height))]
-        lg:max-h-[calc(100vh-var(--hk-nav-height)-(var(--spacing)*8))]
-        relative
-        flex flex-col
-      "
-    >
-      <% if page.nested_headings.length > 0 %>
-        <div class="absolute top-8 bottom-0 right-full w-9 overflow-hidden">
-          <div
-            class="
-              toc-indicator lg:block top-0 absolute right-[calc(100%)+var(--spacing)*4)]
-              hidden transition-transform duration-500
-              ease-in-out scale-0
-            "
-          >
-            <%= render "svgs/#{org}_logo", width: 20, height: 20 %>
-          </div>
-        </div>
-        <div
-          id="toc-scrolling-panel"
-          class="
-            flex-1 overflow-y-auto over scrolling-panel
-            scrolling-panel--with-bottom-overlay
-          "
-        >
-          <div class="sticky top-0">
-            <div class="bg-white flex gap-2">
-              <h2
-                class="
-                  font-mono text-xs font-semibold tracking-wider uppercase
-                  text-primary pt-1 mb-3
-                "
-              >
-                On this page
-              </h2>
-            </div>
-            <div
-              class="
-                bg-gradient-to-b from-white to-transparent h-2
-                pointer-events-none
-              "
-            ></div>
-          </div>
+  <% # Content %>
+  <%= main.slot :content do %>
+    <%= render "doc_pages/breadcrumbs", breadcrumbs: breadcrumbs %>
 
-          <nav
-            data-defo-toc-scroll="<%= { anchorContainerSelector: ".content", "scrollReferenceSelector": "#toc-scrolling-panel", breakpoints: ["lg"] }.to_json %>"
-          >
-            <%= render "doc_pages/headings_toc", headings: page.nested_headings, testid: "headings-toc", depth: 0 %>
-          </nav>
-        </div>
-      <% end %>
-    </aside>
-    <div class="lg:col-span-10 lg:pr-8 lg:mt-8 lg:mb-14">
-      <%= render "doc_pages/breadcrumbs", breadcrumbs: breadcrumbs %>
+    <header>
+      <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
+    </header>
 
-      <header>
-        <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
-      </header>
-
-      <div class="content search-content"><%= page.content_html %></div>
-    </div>
-  </section>
-</div>
+    <div class="content search-content"><%= page.content_html %></div>
+  <% end %>
+<% end %>
