@@ -32,3 +32,20 @@
     background-image: linear-gradient(to top, var(--color-white), oklch(from var(--color-white) l c h / 0));
   }
 }
+
+@variant lg {
+  .scrolling-panel--with-bottom-overlay {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: sticky;
+      pointer-events: none;
+      display: block;
+      bottom: 0;
+      width: 100%;
+      height: calc(var(--spacing) * 10);
+      background-image: linear-gradient(to top, var(--color-white), oklch(from var(--color-white) l c h / 0));
+    }
+  }
+}

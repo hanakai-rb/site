@@ -1,0 +1,49 @@
+<div class="lg:hidden -mx-4">
+  <div
+    class="flex flex-1 justify-between bg-neutral px-2"
+    data-defo-size-to-var="<%= { blockVarName: "--hk-mobile-page-nav-height" }.to_json %>"
+  >
+    <button class="
+      px-2 py-2 flex items-center gap-1
+      font-mono text-xs font-semibold text-primary tracking-wider uppercase
+    ">
+      Menu
+      <%= render "svgs/icons/caret_down", width: 16, height: 16, class_name: "fill-current -mt-0.5" %>
+    </button>
+    <button class="
+      px-2 py-3 flex items-center gap-1
+      font-mono text-xs font-semibold text-primary tracking-wider uppercase
+    ">
+      On this page
+      <%= render "svgs/icons/caret_down", width: 16, height: 16, class_name: "fill-current -mt-0.5" %>
+    </button>
+  </div>
+  <div class="bg-primary h-0.5 mx-4 rounded-xs"></div>
+
+  <div
+    class="
+      fixed bg-amber-100 left-0 right-0
+      top-[calc(var(--hk-nav-height)+var(--hk-mobile-page-nav-height))]
+      max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height))]
+      z-31
+    "
+  >
+    <div
+      class="
+        h-0 overflow-hidden transition-all duration-250
+        ease-[cubic-bezier(.58,-.25,.265,1.25)]
+      "
+    >
+      <%= render_slot :nav %>
+    </div>
+
+    <div
+      class="
+        h-0 overflow-hidden transition-all duration-250
+        ease-[cubic-bezier(.58,-.25,.265,1.25)]
+      "
+    >
+      <%= render_slot :toc %>
+    </div>
+  </div>
+</div>
