@@ -1,7 +1,7 @@
 <%= content_for :title, "#{guide.title} / #{page.title} &middot; #{org_name(org)} #{version} Guides" %>
 
 <%= render_with_slots "doc_pages/main" do |main| %>
-  <% # Navigation %>
+  <%# Navigation %>
   <%= main.slot :navigation do %>
     <%= render_with_slots "doc_pages/navigation_desktop", org:, version:, other_versions:, path_prefix: "/guides/#{org}" do |navigation_desktop| %>
       <%= navigation_desktop.slot :nav do %>
@@ -22,16 +22,25 @@
         </ol>
       <% end %>
     <% end %>
+
+    <%= render_with_slots "doc_pages/navigation_mobile" do |navigation_mobile| %>
+      <%= navigation_mobile.slot :nav do %>
+        <p>Nav!</p>
+      <% end %>
+      <%= navigation_mobile.slot :toc do %>
+        Toc!
+      <% end %>
+    <% end %>
   <% end %>
 
-  <% # Table of contents %>
+  <%# Table of contents %>
   <%= main.slot :toc do %>
     <%= render "doc_pages/toc_desktop", org: org, headings: page.nested_headings %>
   <% end %>
 
-  <% # Content %>
+  <%# Content %>
   <%= main.slot :content do %>
-    <%= render "doc_pages/breadcrumbs", breadcrumbs: breadcrumbs %>
+    <%= render "doc_pages/breadcrumbs", breadcrumbs:, org: %>
 
     <header>
       <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
