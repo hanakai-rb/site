@@ -4,13 +4,14 @@ export interface SearchDocument {
   id: string;
   title: string;
   section: string;
-  subsection: string;
-  version: string;
-  versionWeight: number;
+  subsection?: string;
+  version?: string;
+  versionWeight?: number;
   path: string;
   content: string;
   headings: string[];
-  isLatest: boolean;
+  isLatest?: boolean;
+  date?: string;
 }
 
 export interface SearchResult extends SearchDocument {
@@ -21,6 +22,8 @@ export interface GroupedResults {
   hanami: SearchResult[];
   rom: SearchResult[];
   dry: SearchResult[];
+  blog: SearchResult[];
+  community: SearchResult[];
 }
 
 let index: lunr.Index | null = null;
@@ -152,7 +155,7 @@ function sortResults(results: SearchResult[]): SearchResult[] {
 }
 
 /**
- * Group search results by section (hanami, rom, dry)
+ * Group search results by section (hanami, rom, dry, blog, community)
  */
 export function groupResults(results: SearchResult[]): GroupedResults {
   return results.reduce(
@@ -163,7 +166,7 @@ export function groupResults(results: SearchResult[]): GroupedResults {
       }
       return groups;
     },
-    { hanami: [], rom: [], dry: [] } as GroupedResults
+    { hanami: [], rom: [], dry: [], blog: [], community: [] } as GroupedResults
   );
 }
 
