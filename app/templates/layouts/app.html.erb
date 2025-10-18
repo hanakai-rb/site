@@ -21,12 +21,6 @@
     <%= favicon_tag %>
     <%= stylesheet_tag "app" %>
     <%= raw content_for(:meta) %>
-    <link
-      rel="preconnect"
-      href="https://<%= settings.docsearch_app_id %>-dsn.algolia.net"
-      crossorigin
-    >
-
     <%= javascript_tag "app", async: true, type: "module" %>
   </head>
   <body

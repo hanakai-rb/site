@@ -1,12 +1,5 @@
 <%= content_for :title, "#{guide.title} / #{page.title} &middot; #{org_name(org)} #{version} Guides" %>
 
-<%= content_for :meta do %>
-  <meta
-    name="docsearch:version"
-    content="<%= [version_number, ("latest" if version == latest_version)].compact.join(",") %>"
-  >
-<% end %>
-
 <%= render_with_slots "doc_pages/main" do |main| %>
   <% # Navigation %>
   <%= main.slot :navigation do %>
@@ -44,6 +37,6 @@
       <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
     </header>
 
-    <div class="content search-content"><%= page.content_html %></div>
+    <div class="content"><%= page.content_html %></div>
   <% end %>
 <% end %>
