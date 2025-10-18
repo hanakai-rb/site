@@ -13,14 +13,18 @@
               <a href="#hanami">Hanami</a>
             </span>
           </div>
-          <% guides.fetch("hanami").each do |guide| %>
-            <div class="mb-6">
-              <div class="font-mono uppercase text-xs font-semibold text-primary tracking-wide mb-2">
-                <%= guide.title %>
-              </div>
-              <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
-            </div>
-          <% end %>
+          <ol>
+            <% guides.fetch("hanami").each do |guide| %>
+              <li>
+                <a
+                  href="<%= guide.url_path %>"
+                  class="inline-block py-1 pl-4 border-l-2 border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100 pr-2"
+                >
+                  <%= guide.title %>
+                </a>
+              </li>
+            <% end %>
+          </ol>
         </li>
 
         <!-- Dry -->
@@ -31,14 +35,18 @@
               <a href="#dry">Dry</a>
             </span>
           </div>
-          <% guides.fetch("dry").each do |guide| %>
-            <div class="mb-6">
-              <div class="font-mono uppercase text-xs font-semibold text-primary tracking-wide mb-2">
-                <%= guide.title %>
-              </div>
-              <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
-            </div>
-          <% end %>
+          <ol>
+            <% guides.fetch("dry").each do |guide| %>
+              <li>
+                <a
+                  href="<%= guide.url_path %>"
+                  class="inline-block py-1 pl-4 border-l-2 border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100 pr-2"
+                >
+                  <%= guide.title %>
+                </a>
+              </li>
+            <% end %>
+          </ol>
         </li>
 
         <!-- Rom -->
@@ -49,14 +57,18 @@
               <a href="#rom">Rom</a>
             </span>
           </div>
-          <% guides.fetch("rom").each do |guide| %>
-            <div class="mb-6">
-              <div class="font-mono uppercase text-xs font-semibold text-primary tracking-wide mb-2">
-                <%= guide.title %>
-              </div>
-              <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
-            </div>
-          <% end %>
+          <ol>
+            <% guides.fetch("rom").each do |guide| %>
+              <li>
+                <a
+                  href="<%= guide.url_path %>"
+                  class="inline-block py-1 pl-4 border-l-2 border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100 pr-2"
+                >
+                  <%= guide.title %>
+                </a>
+              </li>
+            <% end %>
+          </ol>
         </li>
       </ol>
     </div>
