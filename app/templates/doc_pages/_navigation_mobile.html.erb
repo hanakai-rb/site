@@ -70,7 +70,7 @@
         scrolling-panel scrolling-panel--with-bottom-overlay
         shadow-2xl
       "
-      data-defo-ensure-active-nav-link-visible="<%= { id: "mobile-pages-nav", block: "start" }.to_json %>"
+      data-defo-ensure-active-nav-link-visible="<%= { block: "start", id: "mobile-pages-nav", minThreshold: 400 }.to_json %>"
     >
       <div
         class="
@@ -78,7 +78,7 @@
           pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
         "
       >
-        <div class="px-4 pt-4"><%= render_slot :nav %></div>
+        <div class="px-4 pt-3"><%= render_slot :nav %></div>
       </div>
     </div>
   </div>
@@ -112,7 +112,7 @@
             pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
           "
         >
-          <div class="px-4 pt-4"><%= render_slot :toc %></div>
+          <div class="px-4 pt-3"><%= render_slot :toc %></div>
         </div>
       </div>
     </div>

@@ -50,7 +50,6 @@ export const tocScrollViewFn: ViewFn<Props> = (
     initialY: firstLink?.offsetTop ?? 0,
     scale: 0,
   };
-  console.log({ indicatorPosition });
 
   const activeClasses = ["font-bold", "b-primary"];
   const xOffset = 11;

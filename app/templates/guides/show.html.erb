@@ -25,21 +25,32 @@
 
     <%= render_with_slots "doc_pages/navigation_mobile" do |navigation_mobile| %>
       <%= navigation_mobile.slot :nav do %>
-        <ol data-testid="guides-list">
-          <% org_guides.each do |guide_for_nav| %>
-            <li class="mb-6">
-              <div
-                class="
-                  font-mono uppercase text-xs font-semibold text-primary
-                  tracking-wide mb-2
-                "
-              >
-                <%= guide_for_nav.title %>
-              </div>
-              <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: page.url_path %>
-            </li>
-          <% end %>
-        </ol>
+        <div class="flex">
+          <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
+            <%= render "doc_pages/version_select",
+                        id: "version-select",
+                        version: version,
+                        other_versions: other_versions,
+                        path_prefix: "/guides/#{org}",
+                        anchor: "right" %>
+            <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
+          </div>
+          <ol class="order-1 flex-1 mt-1.5" data-testid="guides-list">
+            <% org_guides.each do |guide_for_nav| %>
+              <li class="mb-6">
+                <div
+                  class="
+                    font-mono uppercase text-xs font-semibold text-primary
+                    tracking-wide mb-2
+                  "
+                >
+                  <%= guide_for_nav.title %>
+                </div>
+                <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: page.url_path %>
+              </li>
+            <% end %>
+          </ol>
+        </div>
       <% end %>
 
       <% if page.nested_headings.length > 0 %>

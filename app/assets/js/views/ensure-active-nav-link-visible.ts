@@ -6,14 +6,18 @@ const EXPIRY_MS = 1500;
  */
 export const ensureActiveNavLinkVisibleViewFn = (
   container: HTMLElement,
-  { id, block = "center" }: { id: string; block: ScrollIntoViewOptions["block"] },
+  {
+    block = "center",
+    id,
+    minThreshold,
+  }: { block: ScrollIntoViewOptions["block"]; id: string; minThreshold: number | undefined },
 ) => {
   const storageKey = `hkActiveNavScroll--${id}`;
   const currentPath = window.location.pathname;
   const match = container.querySelector<HTMLAnchorElement>(`a[href="${currentPath}"]`);
 
   if (match) {
-    scrollToMatch({ block, container, match, storageKey });
+    scrollToMatch({ block, container, match, minThreshold, storageKey });
   }
 
   // Record scroll position in sessionStorage when user clicks on a link within our scope.
@@ -47,11 +51,13 @@ function scrollToMatch({
   block = "center",
   container,
   match,
+  minThreshold,
   storageKey,
 }: {
   block: ScrollIntoViewOptions["block"];
   container: HTMLElement;
   match: HTMLAnchorElement;
+  minThreshold: number | undefined;
   storageKey: string;
 }) {
   let scrollPosition: number | undefined = undefined;
@@ -74,9 +80,13 @@ function scrollToMatch({
     const linkTop = match.offsetTop;
     const linkHeight = match.offsetHeight;
     const containerHeight = container.clientHeight;
+    const currentScroll = container.scrollTop;
 
     switch (block) {
       case "start":
+        if (minThreshold && currentScroll === 0 && minThreshold > linkTop) {
+          break;
+        }
         scrollPosition = linkTop - 40;
         break;
       case "end":
@@ -84,7 +94,6 @@ function scrollToMatch({
         break;
       case "nearest":
         // Only scroll if not already visible
-        const currentScroll = container.scrollTop;
         const linkBottom = linkTop + linkHeight;
         const containerBottom = currentScroll + containerHeight;
 
