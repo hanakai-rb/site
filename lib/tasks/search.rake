@@ -32,11 +32,11 @@ namespace :search do
         # Skip if not enough parts
         next if path_parts.length < 4
 
-        section = path_parts[2] # dry, hanami, rom
+        section = path_parts[2] # dry-*, hanami, rom
 
         # Determine version and subsection
         # Path can be: content/guides/dry/v1.0/getting-started/_index.md
-        # or: content/docs/dry/dry-monads/v1.8/getting-started.md
+        # or: content/docs/dry-monads/v1.8/getting-started.md
         version_match = path_parts.find { |p| p =~ /^v\d+/ }
         next unless version_match
 
@@ -69,6 +69,13 @@ namespace :search do
             .sub("content/", "/")
             .sub(/_index\.md$/, "")
             .sub(/\.md$/, "")
+            .sub(%r{/$}, "")  # Remove trailing slash
+
+          # For docs section, remove the redundant first-level directory (dry, hanami, rom)
+          if content_type == "docs"
+            # Transform /docs/dry/dry-types/... to /docs/dry-types/...
+            url_path = url_path.sub(%r{^(/docs/)[^/]+/}, '\1')
+          end
 
           # Create document ID
           doc_id = [section, subsection, version, title]
@@ -84,14 +91,14 @@ namespace :search do
 
           doc = {
             id: doc_id,
-            title: title,
-            section: section,
-            subsection: subsection,
-            version: version,
+            title:,
+            section:,
+            subsection:,
+            version:,
             versionWeight: version_weight,
             path: url_path,
-            content: content,
-            headings: headings,
+            content:,
+            headings:,
             isLatest: false # Will be set later
           }
 
@@ -99,7 +106,7 @@ namespace :search do
 
           # Track versions
           key = "#{section}/#{subsection}"
-          version_tracker[key] << { version: version, weight: version_weight, doc: doc }
+          version_tracker[key] << { version:, weight: version_weight, doc: }
         rescue => e
           puts "Error processing #{file_path}: #{e.message}"
         end
