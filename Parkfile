@@ -71,3 +71,24 @@ Parklife.application.routes do
   # Services typically allow a custom 404 page.
   # get '/404.html'
 end
+
+# Build search index after Parkfile is loaded
+# This will run during the build process
+at_exit do
+  if $!.nil? || $!.is_a?(SystemExit) && $!.success?
+    # Only build search index if parklife build was successful
+    if defined?(Parklife) && ARGV.include?("build")
+      puts "\n==> Building search index..."
+      require "rake"
+      require "fileutils"
+      load File.expand_path("Rakefile", __dir__)
+      Rake::Task["search:build_index"].invoke
+
+      # Copy search files to build directory
+      puts "Copying search index files to build directory..."
+      FileUtils.cp("public/lunr-index.json", "build/lunr-index.json")
+      FileUtils.cp("public/search-documents.json", "build/search-documents.json")
+      puts "✓ Search files copied to build/"
+    end
+  end
+end
