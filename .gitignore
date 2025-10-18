@@ -9,3 +9,4 @@ public/
 !public/robots.txt
 spec/examples.txt
 app/assets/builds
+tmp
