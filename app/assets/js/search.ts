@@ -1,4 +1,4 @@
-import lunr from 'lunr';
+import lunr from "lunr";
 
 export interface SearchDocument {
   id: string;
@@ -41,7 +41,7 @@ export async function initializeSearch(checksum: string): Promise<void> {
   initPromise = (async () => {
     if (index && documents) return;
 
-    console.log('Loading search index...');
+    console.log("Loading search index...");
     const startTime = performance.now();
 
     try {
@@ -57,7 +57,7 @@ export async function initializeSearch(checksum: string): Promise<void> {
       const loadTime = (performance.now() - startTime).toFixed(0);
       console.log(`✓ Search index loaded in ${loadTime}ms (v${checksum})`);
     } catch (error) {
-      console.error('Failed to load search index:', error);
+      console.error("Failed to load search index:", error);
       throw error;
     }
   })();
@@ -70,7 +70,7 @@ export async function initializeSearch(checksum: string): Promise<void> {
  */
 export function search(query: string, maxResults: number = 10): SearchResult[] {
   if (!index || !documents) {
-    console.warn('Search index not initialized');
+    console.warn("Search index not initialized");
     return [];
   }
 
@@ -105,7 +105,7 @@ export function search(query: string, maxResults: number = 10): SearchResult[] {
 
     return results.slice(0, maxResults);
   } catch (error) {
-    console.error('Search error:', error);
+    console.error("Search error:", error);
     return [];
   }
 }
@@ -166,7 +166,7 @@ export function groupResults(results: SearchResult[]): GroupedResults {
       }
       return groups;
     },
-    { hanami: [], rom: [], dry: [], blog: [], community: [] } as GroupedResults
+    { hanami: [], rom: [], dry: [], blog: [], community: [] } as GroupedResults,
   );
 }
 
