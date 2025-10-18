@@ -27,11 +27,11 @@
       crossorigin
     >
 
-    <%= javascript_tag "app", async: true %>
+    <%= javascript_tag "app", async: true, type: "module" %>
   </head>
   <body
     class="font-sans text-neutral bg-white flex flex-col min-h-dvh"
-    data-defo-foresight
+    data-defo-foresight="<%= { elementSelector: "a[href^='/']" }.to_json %>"
   >
     <%= render "header/base", nav_items: header_nav_items %>
 
