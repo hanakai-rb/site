@@ -13,6 +13,7 @@ gem "hanami-view", "~> 2.2"
 gem "dry-types", "~> 1.7"
 gem "dry-operation"
 gem "puma"
+gem "rack-rewrite"
 gem "rake"
 gem "sqlite3"
 
