@@ -432,6 +432,7 @@ DEPENDENCIES
   hanami-view (~> 2.2)
   hanami-webconsole (~> 2.2)
   html-pipeline
+  listen (~> 3.0)
   parklife
   puma
   rack-rewrite
