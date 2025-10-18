@@ -8,3 +8,4 @@ public/
 !public/*.html
 !public/robots.txt
 spec/examples.txt
+app/assets/builds
