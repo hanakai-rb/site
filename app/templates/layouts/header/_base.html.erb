@@ -26,12 +26,37 @@
 
     <div class="flex gap-1">
       <div
-        data-defo-docsearch="<%= {
-      appId: settings.docsearch_app_id,
-      apiKey: settings.docsearch_api_key,
-      indexName: settings.docsearch_index_name
-    }.to_json %>"
-      ></div>
+        class="relative py-4"
+        data-defo-static-search
+        data-search-checksum="<%= checksum %>"
+      >
+        <input
+          type="search"
+          placeholder="Search docs... (⌘K)"
+          class="
+            px-4 py-2 border border-gray-300 rounded-lg w-64
+            focus:outline-none focus:ring-2 focus:ring-blue-500
+            focus:border-transparent
+          "
+          data-static-search-input
+          autocomplete="off"
+        >
+
+        <div
+          class="
+            absolute top-full right-0 mt-2 bg-white border border-gray-200
+            rounded-lg shadow-xl hidden max-h-[32rem] overflow-y-auto
+            w-[600px] z-50
+          "
+          data-static-search-results
+        ></div>
+
+        <div
+          class="fixed inset-0 hidden"
+          data-static-search-overlay
+          style="z-index: 40;"
+        ></div>
+      </div>
 
       <%= render "header/nav_mobile_button" %>
     </div>

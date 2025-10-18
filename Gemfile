@@ -20,6 +20,8 @@ gem "sqlite3"
 gem "commonmarker"
 gem "front_matter_parser"
 gem "html-pipeline"
+gem "amazing_print" # Required by html-pipeline
+gem "debug" # Required by html-pipeline
 
 # Views
 gem "builder"
@@ -30,6 +32,7 @@ gem "sitemap_generator"
 
 group :development do
   gem "hanami-webconsole", "~> 2.2"
+  gem "listen", "~> 3.0"
 end
 
 group :development, :test do

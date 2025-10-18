@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "hanami/view"
+require "json"
 
 # For .xml.builder templates
 require "builder"
@@ -12,6 +13,15 @@ module Site
 
     # Used in the app layout
     expose :settings, decorate: false
+
+    expose :search_checksum, layout: true, decorate: false do
+      manifest_path = File.join(Dir.pwd, "public", "search-manifest.json")
+      if File.exist?(manifest_path)
+        JSON.parse(File.read(manifest_path))["checksum"]
+      else
+        "00000000"
+      end
+    end
 
     NavItem = Data.define(:label, :url, :selected, :children)
     expose :header_nav_items, layout: true do |context:|

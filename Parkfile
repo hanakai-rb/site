@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+# encoding: utf-8
+
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
 
 require "hanami/boot"
 
@@ -25,6 +29,25 @@ Parklife::Utils.class_eval do
   end
 end
 
+# Patch Parklife crawler to handle errors gracefully
+require "parklife/crawler"
+
+module AllowErrorAndRedirect
+  def process_route(...)
+    super
+  rescue Parklife::HTTPError => e
+    # Handle 500 errors and redirects by warning and continuing
+    if e.message.include?("500 response") || e.message =~ /30[0-8] response/
+      $stderr.puts "Warning: #{e.message} - skipping"
+      false
+    else
+      raise
+    end
+  end
+end
+
+Parklife::Crawler.prepend AllowErrorAndRedirect
+
 Parklife.application.configure do |config|
   config.app = Site::App
 
@@ -47,4 +70,28 @@ Parklife.application.routes do
 
   # Services typically allow a custom 404 page.
   # get '/404.html'
+end
+
+# Build search index after Parkfile is loaded
+# This will run during the build process
+at_exit do
+  if $!.nil? || $!.is_a?(SystemExit) && $!.success?
+    # Only build search index if parklife build was successful
+    if defined?(Parklife) && ARGV.include?("build")
+      puts "\n==> Building search index..."
+      require "rake"
+      require "fileutils"
+      load File.expand_path("Rakefile", __dir__)
+      Rake::Task["search:build_index"].invoke
+
+      # Copy search files to build directory
+      puts "Copying search index files to build directory..."
+
+      # Copy versioned search files (with checksum in filename)
+      Dir.glob("public/lunr-index.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
+      Dir.glob("public/search-documents.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
+
+      puts "✓ Search files copied to build/"
+    end
+  end
 end

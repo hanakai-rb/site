@@ -38,13 +38,6 @@ module Site
             Breadcrumb.new(label: guide.title, url: guide.url_path)
           ]
         end
-
-        scope do
-          # Strip leading "v" for docsearch:version meta, which wants a pure numerical version
-          def version_number
-            version.sub(/^v/, "")
-          end
-        end
       end
     end
   end
