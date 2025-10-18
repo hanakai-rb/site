@@ -33,13 +33,22 @@
       </div>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="guides">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      data-testid="guides"
+    >
       <% guides.each do |guide| %>
         <a
           href="<%= guide.url_path %>"
-          class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-primary"
+          class="
+            block p-6 bg-white border border-gray-200 rounded-lg shadow-sm
+            hover:shadow-md transition-shadow duration-200
+            hover:border-primary
+          "
         >
-          <h3 class="text-xl font-semibold mb-2 text-gray-900"><%= guide.title %></h3>
+          <h3 class="text-xl font-semibold mb-2 text-gray-900">
+            <%= guide.title %>
+          </h3>
           <div class="text-sm text-primary font-medium">
             View guide →
           </div>
