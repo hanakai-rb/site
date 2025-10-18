@@ -25,6 +25,25 @@ Parklife::Utils.class_eval do
   end
 end
 
+# Patch Parklife crawler to handle errors gracefully
+require "parklife/crawler"
+
+module AllowErrorAndRedirect
+  def process_route(...)
+    super
+  rescue Parklife::HTTPError => e
+    # Handle 500 errors and redirects by warning and continuing
+    if e.message.include?("500 response") || e.message =~ /30[0-8] response/
+      $stderr.puts "Warning: #{e.message} - skipping"
+      false
+    else
+      raise
+    end
+  end
+end
+
+Parklife::Crawler.prepend AllowErrorAndRedirect
+
 Parklife.application.configure do |config|
   config.app = Site::App
 
