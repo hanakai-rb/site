@@ -1,5 +1,8 @@
 <header
-  class="bg-primary sticky top-0 text-primary-reversed rounded-b-2xl z-30"
+  class="
+    bg-primary sticky top-0 text-primary-reversed rounded-b-2xl z-30
+    pl-[calc(env(safe-area-inset-left)-var(--spacing)*4)] pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
+  "
   data-defo-size-to-var="<%= { blockVarName: "--hk-nav-height" }.to_json %>"
 >
   <div class="flex items-center gap-2 lg:gap-4 px-4 lg:px-6 py-2 justify-between">
