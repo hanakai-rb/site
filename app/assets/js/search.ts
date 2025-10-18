@@ -31,7 +31,7 @@ let initPromise: Promise<void> | null = null;
  * Initialize search index (lazy loaded on first use)
  * Loads pre-serialized Lunr index and documents from server
  */
-export async function initializeSearch(): Promise<void> {
+export async function initializeSearch(checksum: string): Promise<void> {
   // Return existing initialization if in progress or complete
   if (initPromise) return initPromise;
 
@@ -43,8 +43,8 @@ export async function initializeSearch(): Promise<void> {
 
     try {
       const [indexData, docsData] = await Promise.all([
-        fetch('/lunr-index.json').then((r) => r.json()),
-        fetch('/search-documents.json').then((r) => r.json()),
+        fetch(`/lunr-index.${checksum}.json`).then((r) => r.json()),
+        fetch(`/search-documents.${checksum}.json`).then((r) => r.json()),
       ]);
 
       // Load pre-built index (instant!)
@@ -52,7 +52,7 @@ export async function initializeSearch(): Promise<void> {
       documents = docsData;
 
       const loadTime = (performance.now() - startTime).toFixed(0);
-      console.log(`✓ Search index loaded in ${loadTime}ms`);
+      console.log(`✓ Search index loaded in ${loadTime}ms (v${checksum})`);
     } catch (error) {
       console.error('Failed to load search index:', error);
       throw error;

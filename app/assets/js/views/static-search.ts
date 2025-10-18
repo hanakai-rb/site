@@ -11,9 +11,17 @@ export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
   const input = element.querySelector<HTMLInputElement>('[data-static-search-input]');
   const results = element.querySelector<HTMLElement>('[data-static-search-results]');
   const overlay = element.querySelector<HTMLElement>('[data-static-search-overlay]');
+  const checksum = element.dataset.searchChecksum;
 
   if (!input || !results) {
     console.error('Static search: missing required elements');
+    return {
+      destroy: () => {},
+    };
+  }
+
+  if (!checksum) {
+    console.error('Static search: missing checksum');
     return {
       destroy: () => {},
     };
@@ -29,7 +37,7 @@ export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
 
     try {
       input.placeholder = 'Loading search...';
-      await initializeSearch();
+      await initializeSearch(checksum);
       isIndexLoaded = true;
       input.placeholder = 'Search docs...';
     } catch (error) {
