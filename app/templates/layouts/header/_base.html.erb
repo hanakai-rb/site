@@ -25,17 +25,29 @@
     <%= render "header/nav_desktop", nav_items: nav_items %>
 
     <div class="flex gap-1">
-      <div class="relative py-4" data-defo-static-search data-search-checksum="<%= checksum %>">
+      <div
+        class="relative py-4"
+        data-defo-static-search
+        data-search-checksum="<%= checksum %>"
+      >
         <input
           type="search"
           placeholder="Search docs... (⌘K)"
-          class="px-4 py-2 border border-gray-300 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="
+            px-4 py-2 border border-gray-300 rounded-lg w-64
+            focus:outline-none focus:ring-2 focus:ring-blue-500
+            focus:border-transparent
+          "
           data-static-search-input
           autocomplete="off"
         >
 
         <div
-          class="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl hidden max-h-[32rem] overflow-y-auto w-[600px] z-50"
+          class="
+            absolute top-full right-0 mt-2 bg-white border border-gray-200
+            rounded-lg shadow-xl hidden max-h-[32rem] overflow-y-auto
+            w-[600px] z-50
+          "
           data-static-search-results
         ></div>
 

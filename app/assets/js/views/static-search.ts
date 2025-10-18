@@ -1,5 +1,5 @@
-import type { ViewFn } from '@icelab/defo';
-import { initializeSearch, search, groupResults, type SearchResult } from '~/search';
+import type { ViewFn } from "@icelab/defo";
+import { initializeSearch, search, groupResults, type SearchResult } from "~/search";
 
 interface StaticSearchElements {
   input: HTMLInputElement;
@@ -8,20 +8,20 @@ interface StaticSearchElements {
 }
 
 export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
-  const input = element.querySelector<HTMLInputElement>('[data-static-search-input]');
-  const results = element.querySelector<HTMLElement>('[data-static-search-results]');
-  const overlay = element.querySelector<HTMLElement>('[data-static-search-overlay]');
+  const input = element.querySelector<HTMLInputElement>("[data-static-search-input]");
+  const results = element.querySelector<HTMLElement>("[data-static-search-results]");
+  const overlay = element.querySelector<HTMLElement>("[data-static-search-overlay]");
   const checksum = element.dataset.searchChecksum;
 
   if (!input || !results) {
-    console.error('Static search: missing required elements');
+    console.error("Static search: missing required elements");
     return {
       destroy: () => {},
     };
   }
 
   if (!checksum) {
-    console.error('Static search: missing checksum');
+    console.error("Static search: missing checksum");
     return {
       destroy: () => {},
     };
@@ -36,13 +36,13 @@ export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
     if (isIndexLoaded) return;
 
     try {
-      input.placeholder = 'Loading search...';
+      input.placeholder = "Loading search...";
       await initializeSearch(checksum);
       isIndexLoaded = true;
-      input.placeholder = 'Search docs...';
+      input.placeholder = "Search docs...";
     } catch (error) {
-      console.error('Failed to load search index:', error);
-      input.placeholder = 'Search unavailable';
+      console.error("Failed to load search index:", error);
+      input.placeholder = "Search unavailable";
     }
   };
 
@@ -66,26 +66,26 @@ export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
   // Handle keyboard shortcuts
   const handleKeydown = (e: KeyboardEvent) => {
     // Cmd+K or Ctrl+K to focus search
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
       e.preventDefault();
       input.focus();
     }
 
     // Escape to close
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       hideResults(els);
       input.blur();
     }
   };
 
   // Event listeners
-  input.addEventListener('focus', loadIndex);
-  input.addEventListener('input', handleInput);
-  document.addEventListener('keydown', handleKeydown);
+  input.addEventListener("focus", loadIndex);
+  input.addEventListener("input", handleInput);
+  document.addEventListener("keydown", handleKeydown);
 
   // Close on overlay click
   if (overlay) {
-    overlay.addEventListener('click', () => hideResults(els));
+    overlay.addEventListener("click", () => hideResults(els));
   }
 
   // Close on outside click
@@ -94,15 +94,15 @@ export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
       hideResults(els);
     }
   };
-  document.addEventListener('click', handleOutsideClick);
+  document.addEventListener("click", handleOutsideClick);
 
   // Cleanup
   return {
     destroy: () => {
-      input.removeEventListener('focus', loadIndex);
-      input.removeEventListener('input', handleInput);
-      document.removeEventListener('keydown', handleKeydown);
-      document.removeEventListener('click', handleOutsideClick);
+      input.removeEventListener("focus", loadIndex);
+      input.removeEventListener("input", handleInput);
+      document.removeEventListener("keydown", handleKeydown);
+      document.removeEventListener("click", handleOutsideClick);
     },
   };
 };
@@ -122,12 +122,12 @@ function displayResults(els: StaticSearchElements, results: SearchResult[], quer
   }
 
   const grouped = groupResults(results);
-  const sections = ['hanami', 'rom', 'dry', 'blog', 'community'] as const;
+  const sections = ["hanami", "rom", "dry", "blog", "community"] as const;
 
   const html = sections
     .filter((section) => grouped[section] && grouped[section].length > 0)
     .map((section) => renderSection(section, grouped[section]))
-    .join('');
+    .join("");
 
   els.results.innerHTML = html;
   showResults(els);
@@ -142,7 +142,7 @@ function renderSection(section: string, results: SearchResult[]): string {
       <div class="px-4 py-2 bg-gray-50 text-xs font-semibold uppercase text-gray-600 sticky top-0">
         ${escapeHtml(section)}
       </div>
-      ${results.map((result) => renderResult(result)).join('')}
+      ${results.map((result) => renderResult(result)).join("")}
     </div>
   `;
 }
@@ -178,7 +178,7 @@ function renderResult(result: SearchResult): string {
  * Render badge for search result (date for blog, version for docs/guides)
  */
 function renderBadge(result: SearchResult): string {
-  if (result.section === 'blog' && result.date) {
+  if (result.section === "blog" && result.date) {
     return `<span class="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-medium">${formatDate(result.date)}</span>`;
   }
 
@@ -189,15 +189,15 @@ function renderBadge(result: SearchResult): string {
     return `<span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded font-medium">${escapeHtml(result.version)}</span>`;
   }
 
-  return '';
+  return "";
 }
 
 /**
  * Render subtitle showing section and subsection
  */
 function renderSubtitle(result: SearchResult): string {
-  if (result.section === 'blog' || !result.subsection) {
-    return '';
+  if (result.section === "blog" || !result.subsection) {
+    return "";
   }
 
   return `<div class="text-sm text-gray-600 mt-1">${escapeHtml(result.section)} › ${escapeHtml(result.subsection)}</div>`;
@@ -208,11 +208,11 @@ function renderSubtitle(result: SearchResult): string {
  */
 function renderPreview(content?: string): string {
   if (!content) {
-    return '';
+    return "";
   }
 
   const preview = content.substring(0, 150);
-  const ellipsis = content.length > 150 ? '...' : '';
+  const ellipsis = content.length > 150 ? "..." : "";
 
   return `
     <div class="text-sm text-gray-500 mt-1 line-clamp-2">
@@ -227,7 +227,7 @@ function renderPreview(content?: string): string {
 function formatDate(dateString: string): string {
   try {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    return date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
   } catch {
     return dateString;
   }
@@ -237,9 +237,9 @@ function formatDate(dateString: string): string {
  * Show results dropdown
  */
 function showResults(els: StaticSearchElements) {
-  els.results.classList.remove('hidden');
+  els.results.classList.remove("hidden");
   if (els.overlay) {
-    els.overlay.classList.remove('hidden');
+    els.overlay.classList.remove("hidden");
   }
 }
 
@@ -247,9 +247,9 @@ function showResults(els: StaticSearchElements) {
  * Hide results dropdown
  */
 function hideResults(els: StaticSearchElements) {
-  els.results.classList.add('hidden');
+  els.results.classList.add("hidden");
   if (els.overlay) {
-    els.overlay.classList.add('hidden');
+    els.overlay.classList.add("hidden");
   }
 }
 
@@ -257,7 +257,7 @@ function hideResults(els: StaticSearchElements) {
  * Escape HTML to prevent XSS
  */
 function escapeHtml(text: string): string {
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   div.textContent = text;
   return div.innerHTML;
 }
