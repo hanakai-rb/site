@@ -21,6 +21,8 @@ gem "sqlite3"
 gem "commonmarker"
 gem "front_matter_parser"
 gem "html-pipeline"
+gem "amazing_print" # Required by html-pipeline
+gem "debug" # Required by html-pipeline
 
 # Views
 gem "builder"
