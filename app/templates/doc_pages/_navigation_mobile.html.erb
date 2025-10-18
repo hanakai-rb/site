@@ -78,7 +78,20 @@
           pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
         "
       >
-        <div class="px-4 pt-3"><%= render_slot :nav %></div>
+        <div class="px-4 pt-3">
+          <div class="flex">
+            <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
+              <%= render "doc_pages/version_select",
+                        id: "version-select",
+                        version: version,
+                        other_versions: other_versions,
+                        path_prefix: path_prefix,
+                        anchor: "right" %>
+              <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
+            </div>
+            <div class="order-1 flex-1 mt-1.5"><%= render_slot :nav %></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -103,6 +116,7 @@
           max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
           scrolling-panel scrolling-panel--with-bottom-overlay
           shadow-2xl
+          overscroll-none
         "
         data-defo-ensure-active-nav-link-visible="<%= { id: "mobile-pages-nav", block: "start" }.to_json %>"
       >
