@@ -1,39 +1,163 @@
 <% content_for :title, "Guides" %>
 
-<h1>Guides</h1>
+<%= render_with_slots "doc_pages/main" do |main| %>
+  <% # Navigation %>
+  <%= main.slot :navigation do %>
+    <div class="hidden md:block">
+      <ol data-testid="guides-list">
+        <!-- Hanami -->
+        <li class="mb-8 theme-hanami-light">
+          <div class="flex items-center gap-2 pb-2 mb-4">
+            <%= render "svgs/hanami_logo", width: 24, height: 24 %>
+            <span class="font-mono uppercase text-sm font-semibold text-hanami-500 tracking-wide">
+              <a href="#hanami">Hanami</a>
+            </span>
+          </div>
+          <% guides.fetch("hanami").each do |guide| %>
+            <div class="mb-6">
+              <div class="font-mono uppercase text-xs font-semibold text-primary tracking-wide mb-2">
+                <%= guide.title %>
+              </div>
+              <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
+            </div>
+          <% end %>
+        </li>
 
-<h2>Hanami</h2>
+        <!-- Dry -->
+        <li class="mb-8 theme-dry-light">
+          <div class="flex items-center gap-2 pb-2 mb-4">
+            <%= render "svgs/dry_logo", width: 24, height: 24 %>
+            <span class="font-mono uppercase text-sm font-semibold text-dry-500 tracking-wide">
+              <a href="#dry">Dry</a>
+            </span>
+          </div>
+          <% guides.fetch("dry").each do |guide| %>
+            <div class="mb-6">
+              <div class="font-mono uppercase text-xs font-semibold text-primary tracking-wide mb-2">
+                <%= guide.title %>
+              </div>
+              <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
+            </div>
+          <% end %>
+        </li>
 
-<ol data-testid="hanami-guides">
-  <% guides.fetch("hanami").each do |guide| %>
-    <li><a href="<%= guide.url_path %>"><%= guide.title %></a></li>
+        <!-- Rom -->
+        <li class="mb-8 theme-rom-light">
+          <div class="flex items-center gap-2 pb-2 mb-4">
+            <%= render "svgs/rom_logo", width: 24, height: 24 %>
+            <span class="font-mono uppercase text-sm font-semibold text-rom-500 tracking-wide">
+              <a href="#rom">Rom</a>
+            </span>
+          </div>
+          <% guides.fetch("rom").each do |guide| %>
+            <div class="mb-6">
+              <div class="font-mono uppercase text-xs font-semibold text-primary tracking-wide mb-2">
+                <%= guide.title %>
+              </div>
+              <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
+            </div>
+          <% end %>
+        </li>
+      </ol>
+    </div>
   <% end %>
-</ol>
 
-<div data-testid="hanami-versions">
-  <%= render :version_links, versions: versions.fetch("hanami"), org_slug: "hanami" %>
-</div>
+  <% # Content %>
+  <%= main.slot :content do %>
+    <header class="mb-12">
+      <h1 class="text-4xl font-black mb-4">Guides</h1>
+      <p class="text-lg text-gray-600">
+        Learn how to use Hanami, Dry, and Rom with our comprehensive guides.
+      </p>
+    </header>
 
-<h2>Dry</h2>
+    <div class="space-y-16">
+      <!-- Hanami Guides -->
+      <section id="hanami" class="theme-hanami-light">
+        <div class="flex items-center gap-3 mb-6">
+          <%= render "svgs/hanami_logo", width: 32, height: 32 %>
+          <h2 class="text-3xl font-bold text-hanami-500">Hanami</h2>
+          <div data-testid="hanami-versions">
+            <%= render "doc_pages/version_select",
+                      id: "hanami-version-select",
+                      version: versions.fetch("hanami").first,
+                      other_versions: versions.fetch("hanami"),
+                      path_prefix: "/guides/hanami" %>
+          </div>
+        </div>
 
-<ol data-testid="dry-guides">
-  <% guides.fetch("dry").each do |guide| %>
-    <li><a href="<%= guide.url_path %>"><%= guide.title %></a></li>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="hanami-guides">
+          <% guides.fetch("hanami").each do |guide| %>
+            <a
+              href="<%= guide.url_path %>"
+              class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-hanami-500"
+            >
+              <h3 class="text-xl font-semibold mb-2 text-gray-900"><%= guide.title %></h3>
+              <div class="text-sm text-hanami-500 font-medium">
+                View guide →
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </section>
+
+      <!-- Dry Guides -->
+      <section id="dry" class="theme-dry-light">
+        <div class="flex items-center gap-3 mb-6">
+          <%= render "svgs/dry_logo", width: 32, height: 32 %>
+          <h2 class="text-3xl font-bold text-dry-500">Dry</h2>
+          <div data-testid="dry-versions">
+            <%= render "doc_pages/version_select",
+                      id: "dry-version-select",
+                      version: versions.fetch("dry").first,
+                      other_versions: versions.fetch("dry"),
+                      path_prefix: "/guides/dry" %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="dry-guides">
+          <% guides.fetch("dry").each do |guide| %>
+            <a
+              href="<%= guide.url_path %>"
+              class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-dry-500"
+            >
+              <h3 class="text-xl font-semibold mb-2 text-gray-900"><%= guide.title %></h3>
+              <div class="text-sm text-dry-500 font-medium">
+                View guide →
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </section>
+
+      <!-- Rom Guides -->
+      <section id="rom" class="theme-rom-light">
+        <div class="flex items-center gap-3 mb-6">
+          <%= render "svgs/rom_logo", width: 32, height: 32 %>
+          <h2 class="text-3xl font-bold text-rom-500">Rom</h2>
+          <div data-testid="rom-versions">
+            <%= render "doc_pages/version_select",
+                      id: "rom-version-select",
+                      version: versions.fetch("rom").first,
+                      other_versions: versions.fetch("rom"),
+                      path_prefix: "/guides/rom" %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="rom-guides">
+          <% guides.fetch("rom").each do |guide| %>
+            <a
+              href="<%= guide.url_path %>"
+              class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-rom-500"
+            >
+              <h3 class="text-xl font-semibold mb-2 text-gray-900"><%= guide.title %></h3>
+              <div class="text-sm text-rom-500 font-medium">
+                View guide →
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </section>
+    </div>
   <% end %>
-</ol>
-
-<div data-testid="dry-versions">
-  <%= render :version_links, versions: versions.fetch("dry"), org_slug: "dry" %>
-</div>
-
-<h2>Rom</h2>
-
-<ol data-testid="rom-guides">
-  <% guides.fetch("rom").each do |guide| %>
-    <li><a href="<%= guide.url_path %>"><%= guide.title %></a></li>
-  <% end %>
-</ol>
-
-<div data-testid="rom-versions">
-  <%= render :version_links, versions: versions.fetch("rom"), org_slug: "rom" %>
-</div>
+<% end %>
