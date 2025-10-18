@@ -122,10 +122,10 @@ function displayResults(els: StaticSearchElements, results: SearchResult[], quer
   }
 
   const grouped = groupResults(results);
-  const sections = ['hanami', 'rom', 'dry'] as const;
+  const sections = ['hanami', 'rom', 'dry', 'blog', 'community'] as const;
 
   const html = sections
-    .filter((section) => grouped[section].length > 0)
+    .filter((section) => grouped[section] && grouped[section].length > 0)
     .map((section) => renderSection(section, grouped[section]))
     .join('');
 
@@ -151,9 +151,9 @@ function renderSection(section: string, results: SearchResult[]): string {
  * Render individual search result
  */
 function renderResult(result: SearchResult): string {
-  const versionBadge = result.isLatest
-    ? '<span class="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded font-medium">Latest</span>'
-    : `<span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded font-medium">${escapeHtml(result.version)}</span>`;
+  const badge = renderBadge(result);
+  const subtitle = renderSubtitle(result);
+  const preview = renderPreview(result.content);
 
   return `
     <a
@@ -164,22 +164,73 @@ function renderResult(result: SearchResult): string {
         <div class="flex-1 min-w-0">
           <div class="font-medium text-gray-900 flex items-center gap-2 flex-wrap">
             <span class="truncate">${escapeHtml(result.title)}</span>
-            ${versionBadge}
+            ${badge}
           </div>
-
-          <div class="text-sm text-gray-600 mt-1">
-            ${escapeHtml(result.section)} › ${escapeHtml(result.subsection)}
-          </div>
-
-          ${result.content ? `
-            <div class="text-sm text-gray-500 mt-1 line-clamp-2">
-              ${escapeHtml(result.content.substring(0, 150))}${result.content.length > 150 ? '...' : ''}
-            </div>
-          ` : ''}
+          ${subtitle}
+          ${preview}
         </div>
       </div>
     </a>
   `;
+}
+
+/**
+ * Render badge for search result (date for blog, version for docs/guides)
+ */
+function renderBadge(result: SearchResult): string {
+  if (result.section === 'blog' && result.date) {
+    return `<span class="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-medium">${formatDate(result.date)}</span>`;
+  }
+
+  if (result.version) {
+    if (result.isLatest) {
+      return '<span class="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded font-medium">Latest</span>';
+    }
+    return `<span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded font-medium">${escapeHtml(result.version)}</span>`;
+  }
+
+  return '';
+}
+
+/**
+ * Render subtitle showing section and subsection
+ */
+function renderSubtitle(result: SearchResult): string {
+  if (result.section === 'blog' || !result.subsection) {
+    return '';
+  }
+
+  return `<div class="text-sm text-gray-600 mt-1">${escapeHtml(result.section)} › ${escapeHtml(result.subsection)}</div>`;
+}
+
+/**
+ * Render content preview
+ */
+function renderPreview(content?: string): string {
+  if (!content) {
+    return '';
+  }
+
+  const preview = content.substring(0, 150);
+  const ellipsis = content.length > 150 ? '...' : '';
+
+  return `
+    <div class="text-sm text-gray-500 mt-1 line-clamp-2">
+      ${escapeHtml(preview)}${ellipsis}
+    </div>
+  `;
+}
+
+/**
+ * Format date for display
+ */
+function formatDate(dateString: string): string {
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  } catch {
+    return dateString;
+  }
 }
 
 /**
