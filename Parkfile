@@ -86,8 +86,11 @@ at_exit do
 
       # Copy search files to build directory
       puts "Copying search index files to build directory..."
-      FileUtils.cp("public/lunr-index.json", "build/lunr-index.json")
-      FileUtils.cp("public/search-documents.json", "build/search-documents.json")
+
+      # Copy versioned search files (with checksum in filename)
+      Dir.glob("public/lunr-index.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
+      Dir.glob("public/search-documents.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
+
       puts "✓ Search files copied to build/"
     end
   end

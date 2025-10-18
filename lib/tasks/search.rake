@@ -10,6 +10,29 @@ Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
 namespace :search do
+  desc "Watch content files and rebuild search index on changes"
+  task :watch do
+    require "listen"
+
+    puts "👀 Watching for content changes..."
+
+    # Build initial index
+    Rake::Task["search:build_index"].invoke
+
+    listener = Listen.to("content/") do |modified, added, removed|
+      changes = (modified + added + removed).select { |f| f.end_with?(".md") }
+
+      if changes.any?
+        puts "\n🔄 Content changed, rebuilding search index..."
+        Rake::Task["search:build_index"].reenable
+        Rake::Task["search:build_index"].invoke
+      end
+    end
+
+    listener.start
+    sleep
+  end
+
   desc "Build search index for Lunr.js"
   task :build_index do
     puts "Building search index..."
@@ -87,7 +110,7 @@ namespace :search do
 
           # Extract version number for sorting
           version_number = version.scan(/\d+/).map(&:to_i)
-          version_weight = version_number.map.with_index { |n, i| n.to_f / (100 ** i) }.sum
+          version_weight = version_number.map.with_index { |n, i| n.to_f / (100**i) }.sum
 
           doc = {
             id: doc_id,
@@ -106,7 +129,7 @@ namespace :search do
 
           # Track versions
           key = "#{section}/#{subsection}"
-          version_tracker[key] << { version:, weight: version_weight, doc: }
+          version_tracker[key] << {version:, weight: version_weight, doc:}
         rescue => e
           puts "Error processing #{file_path}: #{e.message}"
         end
@@ -129,14 +152,20 @@ namespace :search do
     puts "Extracted #{documents.length} documents"
     puts "Running Node.js to build Lunr index..."
 
+    # Clean old search files
+    Dir.glob("public/lunr-index.*.json").each(&File.method(:delete))
+    Dir.glob("public/search-documents.*.json").each(&File.method(:delete))
+
     # Run Node.js script to build Lunr index
     result = system("node lib/search/build_lunr_index.mjs")
 
     if result
       puts "✓ Search index built successfully"
       puts "  - tmp/search-documents.json"
-      puts "  - public/search-documents.json"
-      puts "  - public/lunr-index.json"
+      puts "  - public/search-manifest.json"
+      manifest = JSON.parse(File.read("public/search-manifest.json"))
+      puts "  - public/lunr-index.#{manifest["checksum"]}.json"
+      puts "  - public/search-documents.#{manifest["checksum"]}.json"
     else
       puts "✗ Failed to build Lunr index"
       exit 1

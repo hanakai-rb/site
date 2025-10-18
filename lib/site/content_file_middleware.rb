@@ -22,7 +22,7 @@ module Site
 
     PATH_HANDLERS = [
       {
-        pattern: %r{^/(lunr-index|search-documents)\.json$},
+        pattern: %r{^/(lunr-index|search-documents)\.([a-f0-9]{8})\.json$},
         mapper: ->(m) { "public/#{m[0]}" }
       },
       {

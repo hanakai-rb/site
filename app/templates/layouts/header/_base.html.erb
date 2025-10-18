@@ -25,7 +25,7 @@
     <%= render "header/nav_desktop", nav_items: nav_items %>
 
     <div class="flex gap-1">
-      <div class="relative py-4" data-defo-static-search>
+      <div class="relative py-4" data-defo-static-search data-search-checksum="<%= checksum %>">
         <input
           type="search"
           placeholder="Search docs... (⌘K)"
