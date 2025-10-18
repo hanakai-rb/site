@@ -1,4 +1,5 @@
 import type { ViewFn } from "@icelab/defo";
+import { preventScroll } from "../utils/prevent-scroll";
 
 type Props = {
   navButtonSelector: string;
@@ -49,6 +50,7 @@ function setup({
   containerSelector: string;
 }) {
   let active = false;
+  let releaseScroll: (() => void) | null = null;
   const buttonEl = contextNode.querySelector<HTMLElement>(buttonSelector);
   const containerEl = contextNode.querySelector<HTMLElement>(containerSelector);
 
@@ -60,12 +62,19 @@ function setup({
     active = true;
     buttonEl.classList.add(...buttonActiveClasses);
     containerEl.classList.add(...containerActiveClasses);
+    if (!releaseScroll) {
+      releaseScroll = preventScroll();
+    }
   };
 
   const deactivate = () => {
     active = false;
     buttonEl.classList.remove(...buttonActiveClasses);
     containerEl.classList.remove(...containerActiveClasses);
+    if (releaseScroll) {
+      releaseScroll();
+      releaseScroll = null;
+    }
   };
 
   const onButtonClick = () => {
