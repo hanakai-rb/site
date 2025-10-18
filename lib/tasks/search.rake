@@ -103,8 +103,7 @@ namespace :search do
             .compact
             .join("-")
             .downcase
-            .gsub(/[^a-z0-9\-]/, "-")
-            .gsub(/-+/, "-")
+            .gsub(/[^a-z0-9\-]/, "-").squeeze("-")
 
           # Extract version number for sorting
           version_number = version.scan(/\d+/).map(&:to_i)
@@ -144,11 +143,10 @@ namespace :search do
     posts_dir = "content/posts"
     if Dir.exist?(posts_dir)
       Dir.glob("#{posts_dir}/**/*.md").each do |file_path|
-        begin
-          parsed = FrontMatterParser::Parser.parse_file(file_path)
+        parsed = FrontMatterParser::Parser.parse_file(file_path)
 
-          title = parsed.front_matter["title"] || File.basename(file_path, ".md")
-          date = parsed.front_matter["date"]
+        title = parsed.front_matter["title"] || File.basename(file_path, ".md")
+        date = parsed.front_matter["date"]
 
         # Extract headings and content
         headings = extract_headings(parsed.content)
@@ -162,8 +160,7 @@ namespace :search do
         # Create document ID from filename
         doc_id = "blog-#{File.basename(file_path, ".md")}"
           .downcase
-          .gsub(/[^a-z0-9\-]/, "-")
-          .gsub(/-+/, "-")
+          .gsub(/[^a-z0-9\-]/, "-").squeeze("-")
 
         doc = {
           id: doc_id,
