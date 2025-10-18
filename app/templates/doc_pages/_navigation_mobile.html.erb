@@ -65,7 +65,7 @@
         h-0 transition-all duration-300
         ease-[cubic-bezier(.58,-.25,.265,1.25)]
         [.active_&]:h-auto
-        overflow-y-scroll
+        overflow-y-scroll overscroll-contain
         max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
         scrolling-panel scrolling-panel--with-bottom-overlay
         shadow-2xl
@@ -112,11 +112,10 @@
           h-0 transition-all duration-300
           ease-[cubic-bezier(.58,-.25,.265,1.25)]
           [.active_&]:h-auto
-          overflow-y-scroll
+          overflow-y-scroll overscroll-contain
           max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
           scrolling-panel scrolling-panel--with-bottom-overlay
           shadow-2xl
-          overscroll-none
         "
         data-defo-ensure-active-nav-link-visible="<%= { id: "mobile-pages-nav", block: "start" }.to_json %>"
       >
