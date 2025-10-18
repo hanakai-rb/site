@@ -8,3 +8,7 @@
     scroll-behavior: smooth;
   }
 }
+
+button {
+  touch-action: manipulation;
+}
