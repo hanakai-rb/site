@@ -4,7 +4,14 @@ require "hanami"
 
 module Site
   class App < Hanami::App
+    require "rack/rewrite"
     require "site/content_file_middleware"
+
+    # Remove trailing slashes from URLs
+    config.middleware.use Rack::Rewrite do
+      r302 %r{^/(.*)/+$}, '/$1'
+    end
+
     config.middleware.use ContentFileMiddleware
 
     config.actions.content_security_policy[:script_src] += " 'unsafe-inline'"

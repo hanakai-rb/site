@@ -15,6 +15,7 @@ gem "dry-operation"
 gem "puma"
 gem "rake"
 gem "sqlite3"
+gem "rack-rewrite"
 
 # Markdown content handling
 gem "commonmarker"
