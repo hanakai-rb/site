@@ -50,7 +50,6 @@ export const tocScrollViewFn: ViewFn<Props> = (
     initialY: firstLink?.offsetTop ?? 0,
     scale: 0,
   };
-  console.log({ indicatorPosition });
 
   const activeClasses = ["font-bold", "b-primary"];
   const xOffset = 11;
@@ -59,14 +58,14 @@ export const tocScrollViewFn: ViewFn<Props> = (
   const onChangeAnchor = (activeAnchor: HTMLElement | undefined) => {
     requestAnimationFrame(() => {
       // Remove active class from all links
-      links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
+      links.forEach((node) => node.classList.remove(...activeClasses));
 
       // Find the active link tuple
       const activeLinkTuple = activeAnchor ? anchorToLinkMap.get(activeAnchor) : undefined;
       if (activeLinkTuple) {
         const [activeLinkNode, depth] = activeLinkTuple;
         // Add the active class
-        activeClasses.forEach((activeClass) => activeLinkNode.classList.add(activeClass));
+        activeLinkNode.classList.add(...activeClasses);
         // Calculate the position of the indicator
         indicatorPosition = {
           ...indicatorPosition,
@@ -111,7 +110,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
       if (scrollReferenceEl) {
         scrollReferenceEl.removeEventListener("scroll", onScroll);
       }
-      links.forEach((node) => activeClasses.forEach((activeClass) => node.classList.remove(activeClass)));
+      links.forEach((node) => node.classList.remove(...activeClasses));
     },
   };
 };

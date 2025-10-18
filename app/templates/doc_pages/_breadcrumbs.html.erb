@@ -2,23 +2,26 @@
   aria-label="Breadcrumb"
   class="
     font-mono text-xs font-semibold text-primary tracking-wider uppercase
-    pt-1 mb-5
+    pt-3 lg:pt-1 mb-5 flex justify-between
   "
 >
   <ol class="flex gap-2 items-center">
     <% breadcrumbs.each do |breadcrumb| %>
-      <li>
+      <% list_classes = "lg:hidden" if breadcrumb.root %>
+      <li class="<%= list_classes %>">
         <% if breadcrumb.url %>
           <a class="hover:underline" href="<%= breadcrumb.url %>"><%= breadcrumb.label %></a>
         <% else %>
           <%= breadcrumb.label %>
         <% end %>
       </li>
+
       <% if breadcrumb != breadcrumbs.last %>
-        <li>
+        <li class="<%= list_classes %>">
           <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current -mt-0.5" %>
         </li>
       <% end %>
     <% end %>
   </ol>
+  <%= render "svgs/#{org}_logo", width: 28, height: 28, class_name: "lg:hidden -mt-0.5" %>
 </nav>

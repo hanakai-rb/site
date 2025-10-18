@@ -1,5 +1,4 @@
-const STORAGE_KEY = `hkActiveNavScroll`;
-const EXPIRY_MS = 5000;
+const EXPIRY_MS = 1500;
 
 /**
  * Ensure active link (the one that matches the current path) is visible on screen. Useful for long
@@ -7,13 +6,18 @@ const EXPIRY_MS = 5000;
  */
 export const ensureActiveNavLinkVisibleViewFn = (
   container: HTMLElement,
-  block: ScrollIntoViewOptions["block"] = "center",
+  {
+    block = "center",
+    id,
+    minThreshold,
+  }: { block: ScrollIntoViewOptions["block"]; id: string; minThreshold: number | undefined },
 ) => {
+  const storageKey = `hkActiveNavScroll--${id}`;
   const currentPath = window.location.pathname;
   const match = container.querySelector<HTMLAnchorElement>(`a[href="${currentPath}"]`);
 
   if (match) {
-    scrollToMatch({ block, container, match });
+    scrollToMatch({ block, container, match, minThreshold, storageKey });
   }
 
   // Record scroll position in sessionStorage when user clicks on a link within our scope.
@@ -26,7 +30,7 @@ export const ensureActiveNavLinkVisibleViewFn = (
     }
 
     sessionStorage.setItem(
-      STORAGE_KEY,
+      storageKey,
       JSON.stringify({
         scrollTop: container.scrollTop,
         timestamp: Date.now(),
@@ -47,43 +51,49 @@ function scrollToMatch({
   block = "center",
   container,
   match,
+  minThreshold,
+  storageKey,
 }: {
   block: ScrollIntoViewOptions["block"];
   container: HTMLElement;
   match: HTMLAnchorElement;
+  minThreshold: number | undefined;
+  storageKey: string;
 }) {
   let scrollPosition: number | undefined = undefined;
 
   // If we recently clicked a link to this path, prefer its stored scrollTop
   try {
-    const { scrollTop, timestamp } = JSON.parse(sessionStorage.getItem(STORAGE_KEY) ?? "") as {
+    const { scrollTop, timestamp } = JSON.parse(sessionStorage.getItem(storageKey) ?? "") as {
       scrollTop: number;
       timestamp: number;
     };
     const delta = Date.now() - timestamp;
     if (delta <= EXPIRY_MS) {
       scrollPosition = scrollTop;
-      sessionStorage.removeItem(STORAGE_KEY);
+      sessionStorage.removeItem(storageKey);
     }
   } catch (_err) {
     // Ignore parse/storage errors and continue with calculated behavior
   }
-
   if (scrollPosition === undefined) {
     const linkTop = match.offsetTop;
     const linkHeight = match.offsetHeight;
     const containerHeight = container.clientHeight;
+    const currentScroll = container.scrollTop;
 
     switch (block) {
       case "start":
-        scrollPosition = linkTop;
+        if (minThreshold && currentScroll === 0 && minThreshold > linkTop) {
+          break;
+        }
+        scrollPosition = linkTop - 40;
         break;
       case "end":
         scrollPosition = linkTop - containerHeight + linkHeight;
         break;
       case "nearest":
         // Only scroll if not already visible
-        const currentScroll = container.scrollTop;
         const linkBottom = linkTop + linkHeight;
         const containerBottom = currentScroll + containerHeight;
 

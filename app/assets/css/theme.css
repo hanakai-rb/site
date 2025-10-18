@@ -94,7 +94,7 @@
 }
 
 .bg-neutral {
-  background-color: var(--hk-color-bg-primary-reversed);
+  background-color: var(--hk-color-bg-neutral);
 }
 
 .bg-primary-reversed {
@@ -114,7 +114,7 @@
 }
 
 .b-neutral {
-  border-color: var(--hk-color-bg-primary-reversed);
+  border-color: var(--hk-color-bg-neutral);
 }
 
 .b-primary-reversed {

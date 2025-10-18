@@ -9,7 +9,7 @@ type Props = { blockVarName?: string; inlineVarName?: string; boxSize?: "border"
  * on the :root element (`documentElement`)
  *
  * @example
- * <div data-def-size-to-var='{"blockVarName": "--block"}' style="width: 50px" />
+ * <div data-defo-size-to-var='{"blockVarName": "--block"}' style="width: 50px" />
  * --> <html style="--block: 50px">
  */
 export const sizeToVarViewFn: ViewFn<Props> = (

@@ -24,6 +24,11 @@
       hidden w-20 absolute bg-primary rounded-lg transition-all flex-col
       transition-discrete starting:-translate-y-1.5 -translate-y-1.5 duration-150
       starting:opacity-0 opacity-0 mt-1 p-1 shadow-md min-w-28 gap-0.5
+      <%= if anchor == "right"
+      "right-0"
+      else
+      "left-0"
+      end %>
     "
   >
     <% other_versions.each do |other_version| %>
