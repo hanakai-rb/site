@@ -77,7 +77,7 @@ function scrollToMatch({
 
     switch (block) {
       case "start":
-        scrollPosition = linkTop - 20;
+        scrollPosition = linkTop - 40;
         break;
       case "end":
         scrollPosition = linkTop - containerHeight + linkHeight;
