@@ -60,16 +60,12 @@ function setup({
     active = true;
     buttonEl.classList.add(...buttonActiveClasses);
     containerEl.classList.add(...containerActiveClasses);
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
   };
 
   const deactivate = () => {
     active = false;
     buttonEl.classList.remove(...buttonActiveClasses);
     containerEl.classList.remove(...containerActiveClasses);
-    document.body.style.overflow = "";
-    document.body.style.position = "";
   };
 
   const onButtonClick = () => {
