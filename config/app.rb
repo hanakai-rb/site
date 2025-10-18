@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# encoding: utf-8
 
 # Ensure UTF-8 encoding for all file operations
 Encoding.default_external = Encoding::UTF_8

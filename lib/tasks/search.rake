@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# encoding: utf-8
 
 require "json"
 require "fileutils"
@@ -76,7 +75,6 @@ namespace :search do
 
         # Parse markdown
         begin
-          file_content = File.read(file_path, encoding: "UTF-8")
           parsed = FrontMatterParser::Parser.parse_file(file_path)
 
           title = parsed.front_matter["title"] || File.basename(file_path, ".md").gsub(/[-_]/, " ").capitalize
@@ -140,6 +138,92 @@ namespace :search do
     version_tracker.each do |key, versions|
       latest = versions.max_by { |v| v[:weight] }
       latest[:doc][:isLatest] = true if latest
+    end
+
+    # Process blog posts (content/posts/YYYY/*.md)
+    posts_dir = "content/posts"
+    if Dir.exist?(posts_dir)
+      Dir.glob("#{posts_dir}/**/*.md").each do |file_path|
+        begin
+          parsed = FrontMatterParser::Parser.parse_file(file_path)
+
+          title = parsed.front_matter["title"] || File.basename(file_path, ".md")
+          date = parsed.front_matter["date"]
+
+        # Extract headings and content
+        headings = extract_headings(parsed.content)
+        content = clean_content(parsed.content)
+
+        # Build URL: content/posts/2022/2022-02-10-title.md -> /blog/2022/2022-02-10-title
+        url_path = file_path
+          .sub("content/posts/", "/blog/")
+          .sub(/\.md$/, "")
+
+        # Create document ID from filename
+        doc_id = "blog-#{File.basename(file_path, ".md")}"
+          .downcase
+          .gsub(/[^a-z0-9\-]/, "-")
+          .gsub(/-+/, "-")
+
+        doc = {
+          id: doc_id,
+          title:,
+          section: "blog",
+          path: url_path,
+          content:,
+          headings:,
+          date: date&.to_s
+        }
+
+        documents << doc
+      rescue => e
+        puts "Error processing #{file_path}: #{e.message}"
+      end
+    end
+
+    # Process community pages (ERB templates)
+    community_pages = [
+      {file: "app/templates/pages/conduct.html.erb", path: "/conduct", title: "Code of Conduct"},
+      {file: "app/templates/pages/community.html.erb", path: "/community", title: "Community"}
+    ]
+
+    community_pages.each do |page_info|
+      if File.exist?(page_info[:file])
+        begin
+          file_content = File.read(page_info[:file], encoding: "UTF-8")
+
+          # Extract headings from HTML (h1, h2, h3)
+          headings = file_content.scan(/<h[1-3][^>]*>(.*?)<\/h[1-3]>/m).flatten.map do |h|
+            h.gsub(/<[^>]+>/, "").strip
+          end
+
+          # Clean HTML content for indexing
+          content = file_content
+            .gsub(/<%.*?%>/m, " ")  # Remove ERB tags
+            .gsub(/<script\b[^>]*>.*?<\/script>/m, " ")  # Remove script tags
+            .gsub(/<style\b[^>]*>.*?<\/style>/m, " ")  # Remove style tags
+            .gsub(/<[^>]+>/, " ")  # Remove all HTML tags
+            .gsub(/\s+/, " ")  # Normalize whitespace
+            .strip
+
+          doc_id = "community-#{File.basename(page_info[:file], ".html.erb")}"
+            .downcase
+            .gsub(/[^a-z0-9\-]/, "-")
+
+          doc = {
+            id: doc_id,
+            title: page_info[:title],
+            section: "community",
+            path: page_info[:path],
+            content: content[0..500],  # Truncate to 500 chars
+            headings:
+          }
+
+          documents << doc
+        rescue => e
+          puts "Error processing #{page_info[:file]}: #{e.message}"
+        end
+      end
     end
 
     # Ensure tmp and public directories exist
