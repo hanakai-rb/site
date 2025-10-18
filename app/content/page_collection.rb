@@ -1,6 +1,11 @@
 # frozen_string_literal: true
+# encoding: utf-8
 
 require "front_matter_parser"
+
+# Ensure UTF-8 encoding for parsing markdown files
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
 
 module Site
   module Content
@@ -53,7 +58,9 @@ module Site
         file_path = root.join(path)
 
         begin
-          parsed_file = FrontMatterParser::Parser.parse_file("#{file_path}.md")
+          # Read file with explicit UTF-8 encoding
+          content = File.read("#{file_path}.md", encoding: "UTF-8")
+          parsed_file = FrontMatterParser::Parser.new(:md).call(content)
         rescue Errno::ENOENT
           raise Content::NotFoundError, file_path
         end

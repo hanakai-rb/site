@@ -1,9 +1,13 @@
 # frozen_string_literal: true
+# encoding: utf-8
 
 require "json"
 require "fileutils"
 require "front_matter_parser"
 require "commonmarker"
+
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
 
 namespace :search do
   desc "Build search index for Lunr.js"
