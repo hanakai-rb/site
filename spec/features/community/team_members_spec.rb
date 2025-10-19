@@ -13,8 +13,8 @@ RSpec.feature "Team Members" do
       first_member = core_members.first
       expect(first_member).to have_selector "img.avatar"
       expect(first_member).to have_selector "h3"
-      expect(first_member).to have_selector "p", text: /Location:/
-      expect(first_member).to have_selector "p", text: /GitHub:/
+      expect(first_member).to have_selector "p svg"
+      expect(first_member).to have_link(href: %r{\Ahttps://github.com/})
     end
 
     expect(page).to have_selector "h2", text: "Maintainers"
@@ -26,8 +26,8 @@ RSpec.feature "Team Members" do
       first_member = maintainer_members.first
       expect(first_member).to have_selector "img.avatar"
       expect(first_member).to have_selector "h3"
-      expect(first_member).to have_selector "p", text: /Location:/
-      expect(first_member).to have_selector "p", text: /GitHub:/
+      expect(first_member).to have_selector "p svg"
+      expect(first_member).to have_link(href: %r{\Ahttps://github.com/})
     end
   end
 end
