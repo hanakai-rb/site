@@ -6,23 +6,6 @@ title: Introduction & Usage
 
 Internal support gem for `Hanami::Action` params validation.
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-validations.svg)](https://badge.fury.io/rb/hanami-validations)
-[![CI](https://github.com/hanami/validations/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/validations/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/validations/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/validations)
-[![Depfu](https://badges.depfu.com/badges/af6c6be539d9d587c7541ae7a013c9ff/overview.svg)](https://depfu.com/github/hanami/validations?project=Bundler)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Community](https://hanakai.org/community)
-- [Guides](https://hanakai.org/guides/hanami/getting-started)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-validations)
-- [Bugs/Issues](https://github.com/hanami/validations/issues)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Installation
 
 **Hanami::Validations** supports Ruby (MRI) 3.1+
@@ -71,15 +54,3 @@ end
 See [hanami-controller][controller] for more detail on params validation.
 
 [controller]: http://github.com/hanami/controller
-
-## Contributing
-
-1. Fork it ( https://github.com/hanami/validations/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-## Copyright
-
-Copyright © 2014–2024 Hanami Team – Released under MIT License

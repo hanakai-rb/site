@@ -18,11 +18,6 @@ This repository is for the full-stack framework, which provides the glue that ti
 
 These components are designed to be used independently or together in a Hanami application.
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami.svg)](https://badge.fury.io/rb/hanami)
-[![CI](https://github.com/hanami/hanami/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/hanami/actions?query=workflow%3Aci+branch%3Amain)
-
 ## Installation
 
 Hanami supports Ruby (MRI) 3.1+.
@@ -46,32 +41,13 @@ Please follow along with the [Getting Started guide](https://hanakai.org/guides/
 
 You can give back to Open Source, by supporting Hanami development via [GitHub Sponsors](https://github.com/sponsors/hanami).
 
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Community](https://hanakai.org/community)
-- [Guides](https://hanakai.org/guides/hanami/getting-started)
-- [Issues](https://github.com/hanami/hanami/issues)
-- [Forum](https://discourse.hanamirb.org)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Community
 
 We care about building a friendly, inclusive and helpful community. We welcome people of all backgrounds, genders and experience levels, and respect you all equally.
 
 We do not tolerate nazis, transphobes, racists, or any kind of bigotry. See our [code of conduct](/conduct) for more.
 
-## Contributing
-
-1. Fork it ( https://github.com/hanami/hanami/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-In addition to contributing code, you can help to triage issues. This can include reproducing bug reports, or asking for vital information such as version numbers or reproduction instructions. If you would like to start triaging issues, one easy way to get started is to [subscribe to hanami on CodeTriage](https://www.codetriage.com/hanami/hanami).
-
-### Tests
+## Tests
 
 To run all test suite:
 
@@ -102,11 +78,3 @@ $ bundle exec rspec path/to/spec.rb
 - Ruby >= 3.1
 - Bundler
 - Node.js
-
-## Versioning
-
-Hanami uses [Semantic Versioning 2.0.0](http://semver.org).
-
-## Copyright
-
-Copyright © 2014–2025 Hanami Team – Released under MIT License.

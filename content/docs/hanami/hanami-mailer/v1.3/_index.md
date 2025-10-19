@@ -10,23 +10,6 @@ Mail for Ruby applications.
 
 **This branch contains the code for `hanami-mailer` 2.x.**
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-mailer.svg)](https://badge.fury.io/rb/hanami-mailer)
-[![CI](https://github.com/hanami/mailer/workflows/ci/badge.svg?branch=main)](https://github.com/hanami/mailer/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/mailer/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/mailer)
-[![Depfu](https://badges.depfu.com/badges/739c6e10eaf20d3ba4240d00828284db/overview.svg)](https://depfu.com/github/hanami/mailer?project=Bundler)
-[![Inline Docs](http://inch-ci.org/github/hanami/mailer.svg)](http://inch-ci.org/github/hanami/mailer)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rdoc.info/gems/hanami-mailer)
-- [Bugs/Issues](https://github.com/hanami/mailer/issues)
-- [Support](http://stackoverflow.com/questions/tagged/hanami)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Rubies
 
 **Hanami::Mailer** supports Ruby (MRI) 3.0+
@@ -447,13 +430,3 @@ InvoiceMailer.new(configuration: configuration).deliver(format: :txt) # delivers
 ```
 
 Please note that **they aren't both mandatory, but at least one of them MUST** be present.
-
-## Versioning
-
-**Hanami::Mailer** uses [Semantic Versioning 2.0.0](http://semver.org)
-
-## Copyright
-
-Copyright © 2015-2021 Luca Guidi – Released under MIT License
-
-This project was formerly known as Lotus (`lotus-mailer`).

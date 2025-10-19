@@ -10,13 +10,6 @@ title: Introduction & Usage
 
 For the persistence layer for Hanami 2.x, please see [`hanami/db`](//doc/hanami-db)
 
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-model)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Rubies
 
 `Hanami::Model` **supports Hanami 1.x only**, and Ruby (MRI) 2.6 and 2.7.
@@ -268,21 +261,3 @@ It accepts the following arguments:
 - `stream`: a Ruby StringIO object - it can be `$stdout` or a path to file (eg. `"log/development.log"`) - Defaults to `$stdout`
 - `:level`: logging level - it can be: `:debug`, `:info`, `:warn`, `:error`, `:fatal`, `:unknown` - Defaults to `:debug`
 - `:formatter`: logging formatter - it can be: `:default` or `:json` - Defaults to `:default`
-
-## Versioning
-
-**Hanami::Model** uses [Semantic Versioning 2.0.0](http://semver.org)
-
-## Contributing
-
-1. Fork it ( https://github.com/hanami/model/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## Copyright
-
-Copyright © 2014-2021 Luca Guidi – Released under MIT License
-
-This project was formerly known as Lotus (`lotus-model`).

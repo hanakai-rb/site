@@ -6,13 +6,6 @@ title: Introduction & Usage
 
 [Hanami](//doc/hanami) development web console.
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-webconsole.svg)](https://badge.fury.io/rb/hanami-webconsole)
-[![CI](https://github.com/hanami/webconsole/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/webconsole/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/webconsole/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/webconsole)
-[![Depfu](https://badges.depfu.com/badges/a8545fb67cf32a2c75b6227bc0821027/overview.svg)](https://depfu.com/github/hanami/webconsole?project=Bundler)
-
 ## Installation
 
 **Hanami::Webconsole** supports Ruby (MRI) 3.1+.
@@ -55,14 +48,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 To run all the test, use `script/ci`.
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/hanami/webconsole.
-
 ## Acknowledgements
 
 This gem is based on the great work of [`better_errors`](https://rubygems.org/gems/better_errors) and [`binding_of_caller`](https://rubygems.org/gems/binding_of_caller) gems. Thank you!
-
-## Copyright
-
-Copyright © 2014–2024 Hanami Team – Released under MIT License

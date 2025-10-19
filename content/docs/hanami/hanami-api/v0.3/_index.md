@@ -6,21 +6,6 @@ title: Introduction & Usage
 
 Minimal, extremely fast, lightweight Ruby framework for HTTP APIs.
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-api.svg)](https://badge.fury.io/rb/hanami-api)
-[![CI](https://github.com/hanami/api/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/api/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/api/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/api)
-[![Depfu](https://badges.depfu.com/badges/a8545fb67cf32a2c75b6227bc0821027/overview.svg)](https://depfu.com/github/hanami/api?project=Bundler)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-api)
-- [Bugs/Issues](https://github.com/hanami/api/issues)
-- [Chat](http://chat.hanamirb.org)
-
 ## Installation
 
 **Hanami::API** supports Ruby (MRI) 3.2+
@@ -635,11 +620,3 @@ end
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/hanami/api.
-
-## Copyright
-
-Copyright © 2014–2024 Hanami Team – Released under MIT License.

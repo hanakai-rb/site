@@ -6,21 +6,6 @@ title: Introduction & Usage
 
 Rack compatible, lightweight, and fast HTTP Router for Ruby and [Hanami](//doc/hanami).
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-router.svg)](https://badge.fury.io/rb/hanami-router)
-[![CI](https://github.com/hanami/router/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/router/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/router/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/router)
-[![Depfu](https://badges.depfu.com/badges/5f6b8e8fa3b0d082539f0b0f84d55960/overview.svg)](https://depfu.com/github/hanami/router?project=Bundler)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-router)
-- [Bugs/Issues](https://github.com/hanami/router/issues)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Installation
 
 **Hanami::Router** supports Ruby (MRI) 3.1.+
@@ -344,24 +329,3 @@ route = router.recognize("/books/23", {}, method: :post)
 route.verb      # "POST"
 route.routable? # => false
 ```
-
-## Versioning
-
-**Hanami::Router** uses [Semantic Versioning 2.0.0](http://semver.org)
-
-## Contributing
-
-1. Fork this repo to your account and clone it locally (`git clone git@github.com:your-pseudo/your-cloned-repo.git`)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Install the dependencies (`bundle install`)
-4. Run tests, they should all pass (`./script/ci`)
-5. Make your changes & check that the tests still pass. Add some test cases if needed.
-6. Commit your changes (`git commit -am 'Add some feature'`)
-7. Push to the branch (`git push origin my-new-feature`)
-8. Create new Pull Request on Github with some context on what you're trying to fix or to improve with this contribution
-
-Thank you for contributing!
-
-## Copyright
-
-Copyright © 2014–2025 Hanami Team – Released under MIT License

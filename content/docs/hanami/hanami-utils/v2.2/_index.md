@@ -6,21 +6,6 @@ title: Introduction & Usage
 
 Ruby core extensions and class utilities for [Hanami](//doc/hanami)
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-utils.svg)](https://badge.fury.io/rb/hanami-utils)
-[![CI](https://github.com/hanami/utils/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/utils/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/utils/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/utils)
-[![Depfu](https://badges.depfu.com/badges/a8545fb67cf32a2c75b6227bc0821027/overview.svg)](https://depfu.com/github/hanami/utils?project=Bundler)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-utils)
-- [Bugs/Issues](https://github.com/hanami/utils/issues)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Installation
 
 **Hanami::Utils** supports Ruby (MRI) 3.1+.
@@ -109,19 +94,3 @@ Shell colorizer [[API doc](http://www.rubydoc.info/gems/hanami-utils/Hanami/Util
 ### Hanami::Utils::String
 
 Enhanced version of Ruby's `String`. [[API doc](http://www.rubydoc.info/gems/hanami-utils/Hanami/Utils/String)]
-
-## Versioning
-
-**Hanami::Utils** uses [Semantic Versioning 2.0.0](http://semver.org)
-
-## Contributing
-
-1. Fork it ( https://github.com/hanami/utils/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## Copyright
-
-Copyright © 2014–2024 Hanami Team – Released under MIT License
