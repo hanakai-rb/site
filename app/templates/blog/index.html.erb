@@ -9,36 +9,24 @@
   </header>
 
   <% if posts.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white border border-gray-200 rounded-lg">
       <% posts.each do |post| %>
         <article
-          class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
+          class="p-6 first:rounded-t-lg last:rounded-b-lg border-b border-gray-200 last:border-b-0"
           data-testid="blog-post"
         >
-          <h2 class="text-xl font-semibold text-gray-900 mb-2">
+          <h2 class="text-xl font-semibold text-gray-900">
             <a class="hover:underline text-gray-900" href="<%= post.url_path %>"><%= post.title %></a>
           </h2>
 
-          <p class="text-sm text-gray-500 mb-3" data-testid="date">
+          <p class="text-sm text-gray-500 mt-1" data-testid="date">
             <%= post.published_date %>
             <% if post.respond_to?(:author) && post.author %>
               · <span data-testid="author"><%= post.author %></span>
             <% end %>
           </p>
 
-          <p class="text-gray-700 line-clamp-3"><%= post.excerpt %></p>
-
-          <div class="mt-4">
-            <a
-              href="<%= post.url_path %>"
-              class="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900"
-            >
-              Read more
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
+          <p class="text-gray-700 mt-2 line-clamp-2"><%= post.excerpt %></p>
         </article>
       <% end %>
     </div>
@@ -73,5 +61,4 @@
       <% end %>
     </div>
   </nav>
-</div>
 </div>
