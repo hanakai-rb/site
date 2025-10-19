@@ -10,9 +10,8 @@ module Site
           doc_repo.find(slug:, version:)
         end
 
-        # TODO: Make real ord
-        expose :org do
-          "dry"
+        expose :org do |slug:|
+          slug.split("-").first
         end
 
         expose :page do |doc, path:|
