@@ -6,10 +6,5 @@ module Site
     setting :site_url,
       constructor: Types::String.optional.constructor(->(v) { v.sub(%r{/$}, "") }),
       default: "https://hanamirb.org"
-
-    # DocSearch settings (see also .env)
-    setting :docsearch_app_id, constructor: Types::String
-    setting :docsearch_api_key, constructor: Types::String
-    setting :docsearch_index_name, constructor: Types::String
   end
 end

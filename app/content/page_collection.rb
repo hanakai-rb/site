@@ -53,7 +53,9 @@ module Site
         file_path = root.join(path)
 
         begin
-          parsed_file = FrontMatterParser::Parser.parse_file("#{file_path}.md")
+          # Read file with explicit UTF-8 encoding
+          content = File.read("#{file_path}.md", encoding: "UTF-8")
+          parsed_file = FrontMatterParser::Parser.new(:md).call(content)
         rescue Errno::ENOENT
           raise Content::NotFoundError, file_path
         end
