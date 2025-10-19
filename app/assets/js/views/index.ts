@@ -16,8 +16,7 @@ export const views: Views = {
     const { foresightViewFn } = await import("./foresight");
     return foresightViewFn;
   }),
-  // mobilePageNav: breakpointFilter(mobilePageNavViewFn),
-  mobilePageNav: mobilePageNavViewFn,
+  mobilePageNav: breakpointFilter(mobilePageNavViewFn),
   sizeToVar: sizeToVarViewFn,
   staticSearch: staticSearchViewFn,
   targetCurrent: targetCurrentViewFn,
