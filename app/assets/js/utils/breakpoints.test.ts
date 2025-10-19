@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, afterEach, expect, test, describe, vi } from "vitest";
-import { breakpointFilter, breakpointMatches, type Breakpoint } from "./breakpoints";
+import { breakpointFilter, breakpointMatches, type Breakpoint, type BreakpointQuery } from "./breakpoints";
 
 // Mock MediaQueryList
 class MockMediaQueryList {
@@ -234,6 +234,48 @@ test("creates correct media query string for multiple breakpoints", () => {
   wrappedViewFn(node, { breakpoints: ["sm", "md", "xl"] });
 
   expect(mockMatchMedia).toHaveBeenCalledWith("(width >= 40rem), (width >= 48rem), (width >= 80rem)");
+});
+
+test("creates correct media query with comparator override (single)", () => {
+  const mockViewFn = vi.fn().mockReturnValue({ destroy: vi.fn() });
+  const mockMediaQueryList = new MockMediaQueryList(false);
+  mockMatchMedia.mockReturnValue(mockMediaQueryList);
+
+  const wrappedViewFn = breakpointFilter(mockViewFn);
+  const node = document.createElement("div");
+
+  const breakpoints = [{ breakpoint: "md", comparator: "<" }] satisfies BreakpointQuery[];
+  wrappedViewFn(node, { breakpoints });
+
+  expect(mockMatchMedia).toHaveBeenCalledWith("(width < 48rem)");
+});
+
+test("creates correct media query with comparator override (mix)", () => {
+  const mockViewFn = vi.fn().mockReturnValue({ destroy: vi.fn() });
+  const mockMediaQueryList = new MockMediaQueryList(false);
+  mockMatchMedia.mockReturnValue(mockMediaQueryList);
+
+  const wrappedViewFn = breakpointFilter(mockViewFn);
+  const node = document.createElement("div");
+
+  const breakpoints = ["sm", { breakpoint: "xl", comparator: "<=" }] satisfies BreakpointQuery[];
+  wrappedViewFn(node, { breakpoints });
+
+  expect(mockMatchMedia).toHaveBeenCalledWith("(width >= 40rem), (width <= 80rem)");
+});
+
+test("creates correct media query with comparator '='", () => {
+  const mockViewFn = vi.fn().mockReturnValue({ destroy: vi.fn() });
+  const mockMediaQueryList = new MockMediaQueryList(false);
+  mockMatchMedia.mockReturnValue(mockMediaQueryList);
+
+  const wrappedViewFn = breakpointFilter(mockViewFn);
+  const node = document.createElement("div");
+
+  const breakpoints = [{ breakpoint: "md", comparator: "=" }] satisfies BreakpointQuery[];
+  wrappedViewFn(node, { breakpoints });
+
+  expect(mockMatchMedia).toHaveBeenCalledWith("(width = 48rem)");
 });
 
 test("preserves other props when calling wrapped view function", () => {

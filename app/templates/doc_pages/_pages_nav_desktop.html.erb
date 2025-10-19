@@ -1,0 +1,27 @@
+<div
+  class="
+    hidden lg:block
+    lg:overflow-y-auto flex-1 pr-4 scrolling-panel
+    lg:scrolling-panel--with-bottom-overlay
+  "
+  data-defo-ensure-active-nav-link-visible="<%= { id: "desktop-pages-nav" }.to_json %>"
+>
+  <div class="sticky top-0">
+    <div
+      class="bg-white flex gap-2 pb-2 items-center"
+      data-testid="org-guide-versions"
+    >
+      <%= render "svgs/#{org}_logo", width: 24, height: 24 %>
+      <%= render "doc_pages/version_select",
+              id: "version-select",
+              version: version,
+              other_versions: other_versions,
+              path_prefix: path_prefix,
+              anchor: "left" %>
+    </div>
+    <div class="bg-gradient-to-b from-white to-transparent h-4 pointer-events-none"></div>
+  </div>
+
+  <%# TODO: Make simple yield? %>
+  <nav class="hidden lg:block"><%= render_slot :nav %></nav>
+</div>

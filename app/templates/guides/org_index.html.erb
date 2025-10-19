@@ -3,8 +3,8 @@
 <%= render_with_slots "doc_pages/main" do |main| %>
   <% # Navigation %>
   <%= main.slot :navigation do %>
-    <%= render_with_slots "doc_pages/navigation_desktop", org: org_slug, version:, other_versions: versions, path_prefix: "/guides/#{org_slug}" do |navigation_desktop| %>
-      <%= navigation_desktop.slot :nav do %>
+    <%= render_with_slots "doc_pages/pages_nav_desktop", org: org_slug, version:, other_versions: versions, path_prefix: "/guides/#{org_slug}" do |pages_nav_desktop| %>
+      <%= pages_nav_desktop.slot :nav do %>
         <ol data-testid="guides-list">
           <% guides.each do |guide_for_nav| %>
             <li class="mb-6">

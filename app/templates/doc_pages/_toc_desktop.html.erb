@@ -1,5 +1,5 @@
 <% if headings.length > 0 %>
-  <div class="absolute top-8 bottom-0 right-full w-9 overflow-hidden">
+  <div class="hidden lg:block absolute top-8 bottom-0 right-full w-9 overflow-hidden">
     <div
       class="
         toc-indicator lg:block top-0 absolute right-[calc(100%)+var(--spacing)*4)]
@@ -13,6 +13,7 @@
   <div
     id="toc-scrolling-panel"
     class="
+      hidden lg:block
       flex-1 overflow-y-auto over scrolling-panel
       scrolling-panel--with-bottom-overlay
     "

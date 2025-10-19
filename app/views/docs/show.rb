@@ -10,9 +10,8 @@ module Site
           doc_repo.find(slug:, version:)
         end
 
-        # TODO: Make real ord
-        expose :org do
-          "dry"
+        expose :org do |slug:|
+          slug.split("-").first
         end
 
         expose :page do |doc, path:|
@@ -30,11 +29,12 @@ module Site
         end
 
         # TODO: Move this and add ancestors to chain
-        Breadcrumb = Data.define(:label, :url)
+        Breadcrumb = Data.define(:label, :url, :root)
         expose :breadcrumbs do |doc, org|
           [
-            Breadcrumb.new(label: org.capitalize, url: "/docs##{org}"),
-            Breadcrumb.new(label: doc.title, url: doc.url_path)
+            Breadcrumb.new(label: "Docs", url: "/docs", root: true),
+            Breadcrumb.new(label: org.capitalize, url: "/docs##{org}", root: false),
+            Breadcrumb.new(label: doc.title, url: doc.url_path, root: false)
           ]
         end
       end

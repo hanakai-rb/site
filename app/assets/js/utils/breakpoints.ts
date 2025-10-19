@@ -1,6 +1,8 @@
 import type { ViewFn, ViewFnReturnValue } from "@icelab/defo";
 
 export type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl";
+export type BreakpointComparator = ">=" | ">" | "<" | "<=" | "=";
+export type BreakpointQuery = Breakpoint | { breakpoint: Breakpoint; comparator: BreakpointComparator };
 
 // These match Tailwind’s default breakpoints: https://tailwindcss.com/docs/responsive-design
 const breakpointMap: Record<Breakpoint, string> = {
@@ -13,9 +15,11 @@ const breakpointMap: Record<Breakpoint, string> = {
 
 const breakpointNames = Object.keys(breakpointMap) as Breakpoint[];
 
-function createMediaQueryString(breakpoint: Breakpoint): string {
-  const minWidth = breakpointMap[breakpoint];
-  return `(width >= ${minWidth})`;
+function createMediaQueryString(input: BreakpointQuery): string {
+  const { breakpoint, comparator } =
+    typeof input === "string" ? { breakpoint: input, comparator: ">=" as BreakpointComparator } : input;
+  const width = breakpointMap[breakpoint];
+  return `(width ${comparator} ${width})`;
 }
 
 /**
@@ -50,7 +54,7 @@ export function breakpointMatches(): Record<Breakpoint, boolean> {
  * // Usage: <div data-defo-my-view='{"breakpoints": ["md", "lg"], ...otherProps}'></div>
  */
 export function breakpointFilter<T extends Record<string, unknown>>(viewFn: ViewFn<T>) {
-  return (node: HTMLElement, props: { breakpoints: Breakpoint[] } & T) => {
+  return (node: HTMLElement, props: { breakpoints: BreakpointQuery[] } & T) => {
     const { breakpoints, ...restProps } = props;
     const mediaQueries = breakpoints.map(createMediaQueryString).join(", ");
     const mediaQueryList = window.matchMedia(mediaQueries);

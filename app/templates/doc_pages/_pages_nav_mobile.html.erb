@@ -1,0 +1,133 @@
+<% id_prefix = "mpn"
+  mobile_page_nav_props = {
+    navButtonSelector: "##{id_prefix}-nav-button",
+    navContainerSelector: "##{id_prefix}-nav-container",
+    tocButtonSelector: "##{id_prefix}-toc-button",
+    tocContainerSelector: "##{id_prefix}-toc-container",
+    breakpoints: [{ breakpoint: "lg", comparator: "<"}]
+  } %>
+
+<div
+  class="lg:hidden -mx-4"
+  data-defo-mobile-page-nav="<%= mobile_page_nav_props.to_json %>"
+>
+  <div
+    class="flex flex-1 justify-between bg-neutral px-2"
+    data-defo-size-to-var="<%= { blockVarName: "--hk-mobile-page-nav-height" }.to_json %>"
+  >
+    <% if slot? :nav %>
+      <button
+        id="<%= id_prefix %>-nav-button"
+        class="
+          px-2 py-2 flex items-center gap-1
+          font-mono text-xs font-semibold text-primary tracking-wider uppercase
+        "
+      >
+        Menu
+        <%= render "svgs/icons/caret_down", width: 16, height: 16, class_name: "fill-current -mt-0.5 [.active_&]:hidden" %>
+        <%= render "svgs/icons/x", width: 16, height: 16, class_name: "fill-current -mt-0.5 hidden [.active_&]:block" %>
+      </button>
+    <% end %>
+
+    <% if slot? :toc %>
+      <button
+        id="<%= id_prefix %>-toc-button"
+        class="
+          px-2 py-3 flex items-center gap-1
+          font-mono text-xs font-semibold text-primary tracking-wider uppercase
+        "
+      >
+        On this page
+        <%= render "svgs/icons/caret_down", width: 16, height: 16, class_name: "fill-current -mt-0.5 [.active_&]:hidden" %>
+        <%= render "svgs/icons/x", width: 16, height: 16, class_name: "fill-current -mt-0.5 hidden [.active_&]:block" %>
+      </button>
+    <% end %>
+  </div>
+
+  <div class="bg-primary h-0.5 mx-4 rounded-xs relative z-50"></div>
+
+  <%#
+    Note: [calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)] is a magic
+    number to avoid the dropdowns touch the address bar area on Safari on iOS 26.
+  %>
+  <div
+    id="<%= id_prefix %>-nav-container"
+    class="
+      left-0 right-0 fixed
+      top-[calc(var(--hk-nav-height)+var(--hk-mobile-page-nav-height))]
+      max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height))]
+      z-40
+    "
+  >
+    <div
+      class="
+        relative z-10 bg-neutral rounded-b-2xl
+        h-0 transition-all duration-300
+        ease-[cubic-bezier(.58,-.25,.265,1.25)]
+        [.active_&]:h-auto
+        overflow-y-scroll overscroll-contain
+        max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
+        scrolling-panel scrolling-panel--with-bottom-overlay
+        shadow-2xl
+      "
+      data-defo-ensure-active-nav-link-visible="<%= { block: "start", id: "mobile-pages-nav", minThreshold: 400 }.to_json %>"
+    >
+      <div
+        class="
+          pl-[calc(env(safe-area-inset-left)-var(--spacing)*4)]
+          pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
+        "
+      >
+        <div class="px-4 pt-3">
+          <div class="flex">
+            <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
+              <%= render "doc_pages/version_select",
+                        id: "version-select",
+                        version: version,
+                        other_versions: other_versions,
+                        path_prefix: path_prefix,
+                        anchor: "right" %>
+              <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
+            </div>
+            <div class="order-1 flex-1 mt-1.5"><%= render_slot :nav %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if slot? :toc %>
+    <div
+      id="<%= id_prefix %>-toc-container"
+      class="
+        left-0 right-0 fixed
+        top-[calc(var(--hk-nav-height)+var(--hk-mobile-page-nav-height))]
+        max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height))]
+        z-40
+      "
+    >
+      <div
+        class="
+          relative z-10 bg-neutral rounded-b-2xl
+          h-0 transition-all duration-300
+          ease-[cubic-bezier(.58,-.25,.265,1.25)]
+          [.active_&]:h-auto
+          overflow-y-scroll overscroll-contain
+          max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
+          scrolling-panel scrolling-panel--with-bottom-overlay
+          shadow-2xl
+        "
+        data-defo-ensure-active-nav-link-visible="<%= { id: "mobile-pages-nav", block: "start" }.to_json %>"
+      >
+        <div
+          class="
+            pl-[calc(env(safe-area-inset-left)-var(--spacing)*4)]
+            pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
+          "
+        >
+          <div class="px-4 pt-3"><%= render_slot :toc %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

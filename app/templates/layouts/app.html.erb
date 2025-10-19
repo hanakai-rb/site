@@ -2,12 +2,15 @@
 
 <html
   lang="en"
-  class="scroll-pt-[calc(var(--hk-nav-height)+var(--spacing)*7)] theme-<%= theme %>-light"
+  class="lg:scroll-pt-[calc(var(--hk-nav-height)+var(--spacing)*7)] scroll-pt-[calc(var(--hk-nav-height)+var(--hk-mobile-page-nav-height)+var(--spacing)*4)] theme-<%= theme %>-light"
 >
   <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    >
 
     <title>
       <% if content_for(:title) %>
@@ -29,7 +32,12 @@
   >
     <%= render "header/base", nav_items: header_nav_items, checksum: search_checksum %>
 
-    <div class="mx-auto flex w-full max-w-[1540px] flex-col mb-6 lg:mb-8 flex-1">
+    <div
+      class="
+        mx-auto flex w-full max-w-[1540px] flex-col mb-6 lg:mb-8 flex-1
+        pl-[calc(env(safe-area-inset-left)-var(--spacing)*4)] pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
+      "
+    >
       <main class="px-4 lg:px-6 flex flex-col flex-1"><%= yield %></main>
     </div>
 
