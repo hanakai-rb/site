@@ -2,10 +2,6 @@
 
 require "front_matter_parser"
 
-# Ensure UTF-8 encoding for parsing markdown files
-Encoding.default_external = Encoding::UTF_8
-Encoding.default_internal = Encoding::UTF_8
-
 module Site
   module Content
     class PageCollection
