@@ -1,12 +1,18 @@
 <% content_for :title, post.title %>
 
-<article>
-  <header>
-    <h2><%= post.title %></h2>
+<article class="lg:mt-8 lg:mb-14">
+  <header class="mb-6">
+    <h1 class="text-4xl font-black mb-2"><%= post.title %></h1>
 
-    <p data-testid="date"><%= post.published_date %></p>
+    <p class="text-sm text-gray-500" data-testid="date">
+      <%= post.published_date %>
+    </p>
 
-    <p data-testid="author"><%= post.author %></p>
+    <% if post.respond_to?(:author) && post.author && !post.author.to_s.strip.empty? %>
+      <p class="text-sm text-gray-500" data-testid="author">
+        <%= post.author %>
+      </p>
+    <% end %>
   </header>
 
   <div class="content"><%= post.content_html %></div>
