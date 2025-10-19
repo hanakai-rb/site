@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 require "hanami"
+require "rack/rewrite"
 
 module Site
   class App < Hanami::App
     require "site/content_file_middleware"
     config.middleware.use ContentFileMiddleware
+    config.middleware.use Rack::Rewrite do
+      r302 %r{^/(.+)/$}, "/$1"
+    end
 
     config.actions.content_security_policy[:script_src] += " 'unsafe-inline'"
     config.actions.content_security_policy[:connect_src] += " https://*.algolia.net https://*.algolianet.com https://*.algolia.io"
@@ -23,9 +27,7 @@ module Site
         self
       end
 
-      private
-
-      def load_content
+      private def load_content
         # Start the db provider, which will auto-migrate the tables (see config/providers/db.rb)
         start :db
 
