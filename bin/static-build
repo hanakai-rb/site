@@ -14,6 +14,9 @@ bundle exec hanami assets compile
 # TODO: after launch, use `rake sitemap:refresh`, to ping search engines.
 bundle exec rake sitemap:create
 
+# Build search index (so checksum is available during render)
+bundle exec rake search:build_index
+
 # Build with Parklife - and forward arguments sent to this script.
 bundle exec parklife build "$@"
 
