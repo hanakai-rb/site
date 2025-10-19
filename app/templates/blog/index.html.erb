@@ -12,17 +12,26 @@
     <div class="bg-white border border-gray-200 rounded-lg">
       <% posts.each do |post| %>
         <article
-          class="p-6 first:rounded-t-lg last:rounded-b-lg border-b border-gray-200 last:border-b-0"
+          class="
+            p-6 first:rounded-t-lg last:rounded-b-lg border-b
+            border-gray-200 last:border-b-0
+          "
           data-testid="blog-post"
         >
           <h2 class="text-xl font-semibold text-gray-900">
-            <a class="hover:underline text-gray-900" href="<%= post.url_path %>"><%= post.title %></a>
+            <a
+              class="hover:underline text-gray-900"
+              href="<%= post.url_path %>"
+            >
+              <%= post.title %>
+            </a>
           </h2>
 
           <p class="text-sm text-gray-500 mt-1" data-testid="date">
             <%= post.published_date %>
             <% if post.respond_to?(:author) && post.author %>
-              · <span data-testid="author"><%= post.author %></span>
+              ·
+              <span data-testid="author"><%= post.author %></span>
             <% end %>
           </p>
 
@@ -33,27 +42,34 @@
   <% end %>
 
   <% if posts.none? %>
-    <p>No more posts. <a class="text-link underline" href="/blog">Back to the beginning.</a></p>
+    <p>
+      No more posts.
+      <a class="text-link underline" href="/blog">Back to the beginning.</a>
+    </p>
   <% end %>
 
   <nav class="mt-10 flex items-center justify-between">
     <div>
       <% if page > 1 %>
         <a
-          class="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          class="
+            inline-flex items-center gap-2 px-3 py-2 border border-gray-300
+            rounded-md text-gray-700 hover:bg-gray-50
+          "
           href="<%= "/blog/page/#{page - 1}" %>"
         >
           ‹ Previous
         </a>
       <% end %>
     </div>
-    <div class="text-sm text-gray-500">
-      Page <%= page %>
-    </div>
+    <div class="text-sm text-gray-500">Page <%= page %></div>
     <div>
       <% if posts.any? %>
         <a
-          class="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          class="
+            inline-flex items-center gap-2 px-3 py-2 border border-gray-300
+            rounded-md text-gray-700 hover:bg-gray-50
+          "
           href="<%= "/blog/page/#{page + 1}" %>"
         >
           Next ›
