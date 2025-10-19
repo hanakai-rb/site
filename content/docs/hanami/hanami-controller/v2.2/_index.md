@@ -6,22 +6,6 @@ title: Introduction & Usage
 
 Complete, fast, and testable actions for Rack and [Hanami](//doc/hanami)
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-controller.svg)](https://badge.fury.io/rb/hanami-controller)
-[![CI](https://github.com/hanami/controller/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/controller/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/controller/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/controller)
-[![Depfu](https://badges.depfu.com/badges/7cd17419fba78b726be1353118fb01de/overview.svg)](https://depfu.com/github/hanami/controller?project=Bundler)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Community](https://hanakai.org/community)
-- [Guides](https://hanakai.org/guides/hanami/getting-started)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-controller)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Installation
 
 **Hanami::Controller** supports Ruby (MRI) 3.1+
@@ -783,7 +767,6 @@ class Show < Hanami::Action
     request.accept?("application/json") # => false
     response.format                     # :html
 
-
     # @_env["HTTP_ACCEPT"] # => "*/*"
 
     request.accept?("text/html")        # => true
@@ -942,19 +925,3 @@ end
 ### Thread safety
 
 An Action is **immutable**, it works without global state, so it's thread-safe by design.
-
-## Versioning
-
-**Hanami::Controller** uses [Semantic Versioning 2.0.0](http://semver.org)
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## Copyright
-
-Copyright © 2014–2024 Hanami Team – Released under MIT License

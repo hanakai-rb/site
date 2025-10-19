@@ -6,23 +6,6 @@ title: Introduction & Usage
 
 View helpers for Ruby applications
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-helpers.svg)](https://badge.fury.io/rb/hanami-helpers)
-[![CI](https://github.com/hanami/helpers/workflows/ci/badge.svg?branch=main)](https://github.com/hanami/helpers/actions?query=workflow%3Aci+branch%3Amain)
-[![Test Coverage](https://codecov.io/gh/hanami/helpers/branch/main/graph/badge.svg)](https://codecov.io/gh/hanami/helpers)
-[![Depfu](https://badges.depfu.com/badges/7b30c5d2a2a78954e2ad86e5c7230c23/overview.svg)](https://depfu.com/github/hanami/helpers?project=Bundler)
-[![Inline Docs](http://inch-ci.org/github/hanami/helpers.svg)](http://inch-ci.org/github/hanami/helpers)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [API Doc](http://rubydoc.info/gems/hanami-helpers)
-- [Bugs/Issues](https://github.com/hanami/helpers/issues)
-- [Support](http://stackoverflow.com/questions/tagged/hanami)
-- [Chat](https://discord.gg/KFCxDmk3JQ)
-
 ## Rubies
 
 **Hanami::Helpers** supports Ruby (MRI) 3.0+
@@ -371,21 +354,3 @@ end
 
 This simplifies the markup.
 In order to test the value that will be printed becomes easier: `Users::Show#followers_count`.
-
-## Versioning
-
-**Hanami::Helpers** uses [Semantic Versioning 2.0.0](http://semver.org)
-
-## Contributing
-
-1. Fork it ( https://github.com/hanami/helpers/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-## Copyright
-
-Copyright © 2014-2021 Luca Guidi – Released under MIT License
-
-This project was formerly known as Lotus (`lotus-helpers`).

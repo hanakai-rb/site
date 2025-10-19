@@ -10,20 +10,6 @@ This library contains all of the CLI commands for [full-stack Hanami application
 That library has since been renamed to [dry-rb/dry-cli](//doc/dry-cli).
 Please update your Gemfiles accordingly.
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/hanami-cli.svg)](https://badge.fury.io/rb/hanami-cli)
-[![CI](https://github.com/hanami/cli/actions/workflows/ci.yml/badge.svg)](https://github.com/hanami/cli/actions?query=workflow%3Aci+branch%3Amain)
-[![Depfu](https://badges.depfu.com/badges/a8545fb67cf32a2c75b6227bc0821027/overview.svg)](https://depfu.com/github/hanami/cli?project=Bundler)
-
-## Contact
-
-- [Home page](https://hanakai.org/)
-- [Mailing List](http://hanamirb.org/mailing-list)
-- [Bugs/Issues](https://github.com/hanami/cli/issues)
-- [API Doc](http://rubydoc.info/gems/hanami-cli)
-- [Forum](https://discourse.hanamirb.org)
-
 ## Installation
 
 **Hanami::CLI** supports Ruby (MRI) 3.1+
@@ -40,10 +26,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 In order to run all of the tests, you should run `docker compose up` separately, to run a `postgres` server.
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/hanami/cli. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/hanami/cli/blob/main/CODE_OF_CONDUCT.md).
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
@@ -51,7 +33,3 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the `Hanami::CLI` project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/hanami/cli/blob/main/CODE_OF_CONDUCT.md).
-
-## Copyright
-
-Copyright © 2014–2024 Hanami Team – Released under MIT License
