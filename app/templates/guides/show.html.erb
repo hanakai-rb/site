@@ -3,8 +3,8 @@
 <%= render_with_slots "doc_pages/main" do |main| %>
   <%# Navigation %>
   <%= main.slot :navigation do %>
-    <%= render_with_slots "doc_pages/navigation_desktop", org:, version:, other_versions:, path_prefix: "/guides/#{org}" do |navigation_desktop| %>
-      <%= navigation_desktop.slot :nav do %>
+    <%= render_with_slots "doc_pages/pages_nav_desktop", org:, version:, other_versions:, path_prefix: "/guides/#{org}" do |pages_nav_desktop| %>
+      <%= pages_nav_desktop.slot :nav do %>
         <ol data-testid="guides-list">
           <% org_guides.each do |guide_for_nav| %>
             <li class="mb-6">
@@ -23,8 +23,8 @@
       <% end %>
     <% end %>
 
-    <%= render_with_slots "doc_pages/navigation_mobile", org:, version:, other_versions:, path_prefix: "/guides/#{org}" do |navigation_mobile| %>
-      <%= navigation_mobile.slot :nav do %>
+    <%= render_with_slots "doc_pages/pages_nav_mobile", org:, version:, other_versions:, path_prefix: "/guides/#{org}" do |pages_nav_mobile| %>
+      <%= pages_nav_mobile.slot :nav do %>
         <ol data-testid="guides-list">
           <% org_guides.each do |guide_for_nav| %>
             <li class="mb-6">
@@ -43,7 +43,7 @@
       <% end %>
 
       <% if page.nested_headings.length > 0 %>
-        <%= navigation_mobile.slot :toc do %>
+        <%= pages_nav_mobile.slot :toc do %>
           <nav
             data-defo-target-current="<%= { activeClassNames: ["font-bold", "b-primary"] }.to_json %>"
           >
