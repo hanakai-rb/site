@@ -130,6 +130,7 @@ function displayResults(els: StaticSearchElements, results: SearchResult[], quer
     .join("");
 
   els.results.innerHTML = html;
+  applyHighlight(els.results, query);
   showResults(els);
 }
 
@@ -163,7 +164,7 @@ function renderResult(result: SearchResult): string {
       <div class="flex items-start justify-between gap-3">
         <div class="flex-1 min-w-0">
           <div class="font-medium text-gray-900 flex items-center gap-2 flex-wrap">
-            <span class="truncate">${escapeHtml(result.title)}</span>
+            <span class="truncate" data-search-title>${escapeHtml(result.title)}</span>
             ${badge}
           </div>
           ${subtitle}
@@ -215,7 +216,7 @@ function renderPreview(content?: string): string {
   const ellipsis = content.length > 150 ? "..." : "";
 
   return `
-    <div class="text-sm text-gray-500 mt-1 line-clamp-2">
+    <div class="text-sm text-gray-500 mt-1 line-clamp-2" data-search-preview>
       ${escapeHtml(preview)}${ellipsis}
     </div>
   `;
@@ -251,6 +252,43 @@ function hideResults(els: StaticSearchElements) {
   if (els.overlay) {
     els.overlay.classList.add("hidden");
   }
+}
+
+/**
+ * Apply highlight to titles and previews inside the results container
+ * Uses the same yellow as the scrollbar (var(--color-hanakai-300))
+ */
+function applyHighlight(container: HTMLElement, query: string): void {
+  const terms = Array.from(
+    new Set(
+      query
+        .trim()
+        .split(/\s+/)
+        .filter((t) => t.length > 1),
+    ),
+  );
+  if (terms.length === 0) return;
+
+  const pattern = terms.map(escapeRegExp).join("|");
+  const regex = new RegExp(`(${pattern})`, "gi");
+  const wrap = (s: string) =>
+    s.replace(
+      regex,
+      '<mark style="background-color: var(--color-hanakai-300); border-radius: 2px; padding: 0 2px;">$1</mark>',
+    );
+
+  const els = container.querySelectorAll<HTMLElement>("[data-search-title], [data-search-preview]");
+  els.forEach((el) => {
+    // Content here is already HTML-escaped; safe to inject <mark> wrappers
+    el.innerHTML = wrap(el.innerHTML);
+  });
+}
+
+/**
+ * Escape regexp special characters
+ */
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
