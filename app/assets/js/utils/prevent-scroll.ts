@@ -78,8 +78,8 @@ function preventScrollMobileSafari(): () => void {
 
     // Allow dragging selection handles in focused inputs with a range selected.
     if (
-      ("selectionStart" in (target as any)) &&
-      ("selectionEnd" in (target as any)) &&
+      "selectionStart" in (target as any) &&
+      "selectionEnd" in (target as any) &&
       ((target as any).selectionStart as number) < ((target as any).selectionEnd as number) &&
       target.ownerDocument!.activeElement === target
     ) {
@@ -171,10 +171,8 @@ function addEvent(
   handler: EventListenerOrEventListenerObject,
   options?: boolean | AddEventListenerOptions,
 ): () => void {
-  // @ts-ignore
   target.addEventListener(event, handler, options);
   return () => {
-    // @ts-ignore
     target.removeEventListener(event, handler, options);
   };
 }
@@ -183,7 +181,9 @@ function scrollIntoViewWhenReady(target: Element, wasKeyboardVisible: boolean) {
   if (wasKeyboardVisible || !visualViewportRef) {
     scrollIntoView(target);
   } else {
-    (visualViewportRef as VisualViewport).addEventListener("resize", () => scrollIntoView(target), { once: true } as any);
+    (visualViewportRef as VisualViewport).addEventListener("resize", () => scrollIntoView(target), {
+      once: true,
+    } as any);
   }
 }
 
@@ -195,15 +195,25 @@ function scrollIntoView(target: Element) {
     if (scrollable !== document.documentElement && scrollable !== document.body && scrollable !== nextTarget) {
       const scrollableRect = (scrollable as HTMLElement).getBoundingClientRect();
       const targetRect = (nextTarget as HTMLElement).getBoundingClientRect();
-      if (targetRect.top < scrollableRect.top || targetRect.bottom > scrollableRect.top + (nextTarget as HTMLElement).clientHeight) {
+      if (
+        targetRect.top < scrollableRect.top ||
+        targetRect.bottom > scrollableRect.top + (nextTarget as HTMLElement).clientHeight
+      ) {
         let bottom = scrollableRect.bottom;
         if (visualViewportRef) {
           const v = visualViewportRef as VisualViewport;
           bottom = Math.min(bottom, v.offsetTop + v.height);
         }
-        const adjustment = (targetRect.top - scrollableRect.top) - ((bottom - scrollableRect.top) / 2 - targetRect.height / 2);
+        const adjustment =
+          targetRect.top - scrollableRect.top - ((bottom - scrollableRect.top) / 2 - targetRect.height / 2);
         (scrollable as HTMLElement).scrollTo({
-          top: Math.max(0, Math.min((scrollable as HTMLElement).scrollHeight - (scrollable as HTMLElement).clientHeight, (scrollable as HTMLElement).scrollTop + adjustment)),
+          top: Math.max(
+            0,
+            Math.min(
+              (scrollable as HTMLElement).scrollHeight - (scrollable as HTMLElement).clientHeight,
+              (scrollable as HTMLElement).scrollTop + adjustment,
+            ),
+          ),
           behavior: "smooth",
         });
       }
