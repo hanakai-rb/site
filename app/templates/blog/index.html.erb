@@ -1,24 +1,77 @@
 <% content_for :title, "Blog" %>
 
-<% posts.each do |post| %>
-  <div data-testid="blog-post">
-    <h2><a href="<%= post.url_path %>"><%= post.title %></a></h2>
+<div class="lg:mt-8 lg:mb-14">
+  <header class="mb-12">
+    <h1 class="text-4xl font-black mb-4">Blog</h1>
+    <p class="text-lg text-gray-600">
+      Latest news, releases, and guides from the Hanami, Dry, and ROM teams.
+    </p>
+  </header>
 
-    <p data-testid="date"><%= post.published_date %></p>
-
-    <p><%= post.excerpt %></p>
-  </div>
-<% end %>
-
-<% if posts.none? %>
-  <p>No more posts. <a href="/blog">Back to the beginning.</a></p>
-<% end %>
-
-<div class="pagination">
-  <% if page > 1 %>
-    <a href="<%= "/blog/page/#{page - 1}" %>">Previous page</a>
-  <% end %>
   <% if posts.any? %>
-    <a href="<%= "/blog/page/#{page + 1}" %>">Next page</a>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% posts.each do |post| %>
+        <article
+          class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
+          data-testid="blog-post"
+        >
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">
+            <a class="hover:underline text-gray-900" href="<%= post.url_path %>"><%= post.title %></a>
+          </h2>
+
+          <p class="text-sm text-gray-500 mb-3" data-testid="date">
+            <%= post.published_date %>
+            <% if post.respond_to?(:author) && post.author %>
+              · <span data-testid="author"><%= post.author %></span>
+            <% end %>
+          </p>
+
+          <p class="text-gray-700 line-clamp-3"><%= post.excerpt %></p>
+
+          <div class="mt-4">
+            <a
+              href="<%= post.url_path %>"
+              class="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-gray-900"
+            >
+              Read more
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      <% end %>
+    </div>
   <% end %>
+
+  <% if posts.none? %>
+    <p>No more posts. <a class="text-link underline" href="/blog">Back to the beginning.</a></p>
+  <% end %>
+
+  <nav class="mt-10 flex items-center justify-between">
+    <div>
+      <% if page > 1 %>
+        <a
+          class="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          href="<%= "/blog/page/#{page - 1}" %>"
+        >
+          ‹ Previous
+        </a>
+      <% end %>
+    </div>
+    <div class="text-sm text-gray-500">
+      Page <%= page %>
+    </div>
+    <div>
+      <% if posts.any? %>
+        <a
+          class="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          href="<%= "/blog/page/#{page + 1}" %>"
+        >
+          Next ›
+        </a>
+      <% end %>
+    </div>
+  </nav>
+</div>
 </div>

@@ -9,21 +9,21 @@ RSpec.feature "Blog" do
     posts = page.find_all("[data-testid=blog-post]")
     expect(posts.length).to eq 10
 
-    post_titles_1 = posts.map { it.find("h2").text }
+    post_titles_1 = posts.map { |it| it.find("h2").text }
 
-    click_link "Next page"
+    click_link "Next ›"
 
     posts = page.find_all("[data-testid=blog-post]")
     expect(posts.length).to eq 10
 
-    post_titles_2 = posts.map { it.find("h2").text }
+    post_titles_2 = posts.map { |it| it.find("h2").text }
 
     expect((post_titles_1 + post_titles_2).uniq.length).to eq 20
 
-    click_link "Previous page"
+    click_link "‹ Previous"
 
     posts = page.find_all("[data-testid=blog-post]")
-    post_titles_3 = posts.map { it.find("h2").text }
+    post_titles_3 = posts.map { |it| it.find("h2").text }
     expect(post_titles_3).to eq post_titles_1
   end
 
@@ -31,7 +31,7 @@ RSpec.feature "Blog" do
     visit "/blog"
 
     first_post = page.find("[data-testid=blog-post]", match: :first)
-    first_post.find("a").click
+    first_post.find("h2 a").click
 
     expect(page).to have_selector ".content"
   end
