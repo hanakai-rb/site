@@ -1,11 +1,9 @@
 <% content_for :title, "Docs" %>
 
 <%= render_with_slots "doc_pages/main" do |main| %>
-  <% # Navigation %>
   <%= main.slot :navigation do %>
     <div class="hidden md:block">
       <ol data-testid="docs-list">
-        <!-- Hanami -->
         <li class="mb-8 theme-hanami-light">
           <div class="flex items-center gap-2 pb-2 mb-4">
             <%= render "svgs/hanami_logo", width: 24, height: 24 %>
@@ -36,7 +34,6 @@
           </ol>
         </li>
 
-        <!-- Dry -->
         <li class="mb-8 theme-dry-light">
           <div class="flex items-center gap-2 pb-2 mb-4">
             <%= render "svgs/dry_logo", width: 24, height: 24 %>
@@ -67,7 +64,6 @@
           </ol>
         </li>
 
-        <!-- Rom -->
         <li class="mb-8 theme-rom-light">
           <div class="flex items-center gap-2 pb-2 mb-4">
             <%= render "svgs/rom_logo", width: 24, height: 24 %>
@@ -77,7 +73,7 @@
                 tracking-wide
               "
             >
-              <a href="#rom">Rom</a>
+              <a href="#rom">ROM</a>
             </span>
           </div>
           <ol>
@@ -101,17 +97,15 @@
     </div>
   <% end %>
 
-  <% # Content %>
   <%= main.slot :content do %>
     <header class="mb-12">
       <h1 class="text-4xl font-black mb-4">Docs</h1>
       <p class="text-lg text-gray-600">
-        Comprehensive documentation for Hanami, Dry, and Rom libraries.
+        Comprehensive documentation for Hanami, Dry, and ROM libraries.
       </p>
     </header>
 
     <div class="space-y-16">
-      <!-- Hanami Docs -->
       <section id="hanami" class="theme-hanami-light">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/hanami_logo", width: 32, height: 32 %>
@@ -142,7 +136,6 @@
         </div>
       </section>
 
-      <!-- Dry Docs -->
       <section id="dry" class="theme-dry-light">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/dry_logo", width: 32, height: 32 %>
@@ -173,11 +166,10 @@
         </div>
       </section>
 
-      <!-- Rom Docs -->
       <section id="rom" class="theme-rom-light">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/rom_logo", width: 32, height: 32 %>
-          <h2 class="text-3xl font-bold text-rom-500">Rom</h2>
+          <h2 class="text-3xl font-bold text-rom-500">ROM</h2>
         </div>
 
         <div
