@@ -2,6 +2,6 @@
 title: FAQ
 ---
 
-## Getting started
+## FAQ
 
 _Guide coming soon._
