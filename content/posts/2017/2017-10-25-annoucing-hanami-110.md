@@ -213,7 +213,7 @@ Person.new(id: "1", name: "Luca")
 
 ### Selectively boot apps
 
-With Hanami you can build your project by following the [Monolith-First](/guides/1.1/architecture/overview/#monolith-first) principle.
+With Hanami you can build your project by following the [Monolith-First](/guides/1.1/architecture/overview#monolith-first) principle.
 You add more and more code to the project, but growing it organically, by using several Hanami apps.
 
 There are cases of real world products using a **dozen of Hanami apps in the same project** (eg `web` for the frontend, `admin` for the administration, etc..)

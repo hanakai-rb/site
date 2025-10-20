@@ -4,7 +4,7 @@ date: 2019-02-12 12:00 UTC
 author: Tim Riley
 ---
 
-Last month we released [dry-view](/gems/dry-view/) 0.6.0, a very special release that made huge strides towards the system's overall completeness. With 0.6.0, dry-view should now offer _everything you need_ to write better organized views in Ruby.
+Last month we released [dry-view](/gems/dry-view) 0.6.0, a very special release that made huge strides towards the system's overall completeness. With 0.6.0, dry-view should now offer _everything you need_ to write better organized views in Ruby.
 
 From here, our goal is to take dry-view to version 1.0. So please give this release a try! Your feedback at this point will help ensure 1.0 is as polished as possible.
 
@@ -12,7 +12,7 @@ If you're new to dry-view, or would like to see its new features presented in co
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VGWt1OLFzdU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-I'd also invite you to take another look at the [dry-view documentation](/gems/dry-view/). This has been brought up to date and covers all the new features.
+I'd also invite you to take another look at the [dry-view documentation](/gems/dry-view). This has been brought up to date and covers all the new features.
 
 And as for what’s changed with this release, here are the highlights:
 

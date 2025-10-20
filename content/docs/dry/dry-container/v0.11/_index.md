@@ -7,7 +7,7 @@ pages:
 
 ### Introduction
 
-`dry-container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//doc/dry-auto_inject/).
+`dry-container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//doc/dry-auto_inject).
 
 At its most basic, dependency injection is a simple technique that makes it possible to implement patterns or principles of code design that rely on object composition, such as the [SOLID principles](https://en.wikipedia.org/wiki/SOLID). By being passed its dependencies instead of instantiating them itself, your code can be written to depend on abstractions, with implementations that can vary independently, potentially at runtime or for specific use-cases, such as injecting a double instead of an expensive web service call when running tests. A container offers two main improvements to basic dependency injection: it takes the work out of manually instantiating and composing trees of dependencies, and it makes it trivial to swap out one implementation of a dependency for another.
 
