@@ -25,7 +25,7 @@
 
     <%= render_with_slots "doc_pages/pages_nav_mobile", org:, version:, other_versions:, path_prefix: "/guides/#{org}" do |pages_nav_mobile| %>
       <%= pages_nav_mobile.slot :nav do %>
-        <ol data-testid="guides-list">
+        <ol>
           <% org_guides.each do |guide_for_nav| %>
             <li class="mb-6">
               <div
@@ -47,7 +47,7 @@
           <nav
             data-defo-target-current="<%= { activeClassNames: ["font-bold", "b-primary"] }.to_json %>"
           >
-            <%= render "doc_pages/toc_desktop_headings", headings: page.nested_headings, testid: "headings-toc", depth: 0 %>
+            <%= render "doc_pages/toc_desktop_headings", headings: page.nested_headings, testid: nil, depth: 0 %>
           </nav>
         <% end %>
       <% end %>

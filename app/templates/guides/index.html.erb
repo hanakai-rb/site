@@ -114,6 +114,7 @@
           <div data-testid="hanami-versions">
             <%= render "doc_pages/version_select",
                       id: "hanami-version-select",
+                      testid: nil,
                       version: versions.fetch("hanami").first,
                       other_versions: versions.fetch("hanami"),
                       path_prefix: "/guides/hanami",
@@ -153,6 +154,7 @@
           <div data-testid="dry-versions">
             <%= render "doc_pages/version_select",
                       id: "dry-version-select",
+                      testid: nil,
                       version: versions.fetch("dry").first,
                       other_versions: versions.fetch("dry"),
                       path_prefix: "/guides/dry",
@@ -192,6 +194,7 @@
           <div data-testid="rom-versions">
             <%= render "doc_pages/version_select",
                       id: "rom-version-select",
+                      testid: nil,
                       version: versions.fetch("rom").first,
                       other_versions: versions.fetch("rom"),
                       path_prefix: "/guides/rom",
