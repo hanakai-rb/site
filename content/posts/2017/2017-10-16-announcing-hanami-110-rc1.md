@@ -61,7 +61,7 @@ In the example above, `StoryRepository` can reference the author of a comment as
 Entities by default have a set of attributes (schema) which is the representation of a relation.
 For instance `User` will have all the columns of `users` database table.
 
-You can bypass this feature to build customize the attributes via [_custom schema_](http://hanamirb.org/guides/1.0/models/entities/#custom-schema).
+You can bypass this feature to build customize the attributes via [_custom schema_](http://hanamirb.org/guides/1.0/models/entities#custom-schema).
 
 Now you can use entities to be an attribute in a _custom schema_ via `Types::Entity()`.
 

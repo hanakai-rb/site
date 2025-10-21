@@ -6,7 +6,7 @@ author: Tim Riley
 
 Say hello to **dry-view**, the newest member of the dry-rb family!
 
-We’re pleased to announce the release of dry-view 0.2.1 and share its [brand new documentation](/gems/dry-view/).
+We’re pleased to announce the release of dry-view 0.2.1 and share its [brand new documentation](/gems/dry-view).
 
 Keen followers of dry-rb will note that dry-view has been around for a little while now, living on quietly as an extension of solnic’s original rodakase experiment.
 

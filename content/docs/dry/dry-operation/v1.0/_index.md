@@ -109,4 +109,4 @@ end
 
 This pattern matching allows you to handle different types of failures in a clear and explicit manner.
 
-You can read more about dry-monads' `Result` usage in the [dry-monads documentation](//doc/dry-monads/result/).
+You can read more about dry-monads' `Result` usage in the [dry-monads documentation](//doc/dry-monads/result).

@@ -175,4 +175,4 @@ If you're interested in functional programming in general, consider learning oth
 
 ## Credits
 
-dry-monads is inspired by Josep M. Bach’s [Kleisli](https://github.com/txus/kleisli) gem and its usage by [dry-transaction](/gems/dry-transaction/) and [dry-types](/gems/dry-types/).
+dry-monads is inspired by Josep M. Bach’s [Kleisli](https://github.com/txus/kleisli) gem and its usage by [dry-transaction](/gems/dry-transaction) and [dry-types](/gems/dry-types).
