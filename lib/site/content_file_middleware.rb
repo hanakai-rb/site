@@ -18,13 +18,9 @@ module Site
   #
   # Sets content-based ETag headers on the returned image.
   class ContentFileMiddleware
-    ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg json].freeze
+    ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg].freeze
 
     PATH_HANDLERS = [
-      {
-        pattern: %r{^/(lunr-index|search-documents)\.([a-f0-9]{8})\.json$},
-        mapper: ->(m) { "public/#{m[0]}" }
-      },
       {
         pattern: %r{^/guides/(?<org>[^/]+)/(?<version>v\d+\.\d+)/(?<path>.+)},
         mapper: ->(m) { "content/guides/#{m[:org]}/#{m[:version]}/#{m[:path]}" }

@@ -58,20 +58,12 @@ at_exit do
   if $!.nil? || $!.is_a?(SystemExit) && $!.success?
     # Only build search index if parklife build was successful
     if defined?(Parklife) && ARGV.include?("build")
-      puts "\n==> Building search index..."
       require "rake"
       require "fileutils"
       load File.expand_path("Rakefile", __dir__)
-      Rake::Task["search:build_index"].invoke
 
-      # Copy search files to build directory
-      puts "Copying search index files to build directory..."
 
-      # Copy versioned search files (with checksum in filename)
-      Dir.glob("public/lunr-index.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
-      Dir.glob("public/search-documents.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
 
-      puts "✓ Search files copied to build/"
     end
   end
 end
