@@ -58,12 +58,32 @@ at_exit do
   if $!.nil? || $!.is_a?(SystemExit) && $!.success?
     # Only build search index if parklife build was successful
     if defined?(Parklife) && ARGV.include?("build")
+      puts "\n==> Building Pagefind search index..."
       require "rake"
       require "fileutils"
       load File.expand_path("Rakefile", __dir__)
 
+      # Update the search:build_index task to index the build directory
+      # We need to temporarily override the task behavior
+      puts "Indexing build directory..."
+      FileUtils.mkdir_p("build")
+      result = system("npx pagefind --site build")
 
+      if result
+        # Calculate total size of pagefind directory
+        total_size = Dir.glob("build/pagefind/**/*")
+          .select { |f| File.file?(f) }
+          .sum { |f| File.size(f) }
 
+        size_kb = (total_size / 1024.0).round(2)
+
+        puts "✓ Pagefind index built successfully"
+        puts "  - build/pagefind/"
+        puts "  - Index size: #{size_kb}KB"
+      else
+        puts "✗ Failed to build Pagefind index"
+        exit 1
+      end
     end
   end
 end

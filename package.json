@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@icelab/defo": "^1.0.1",
-    "@pagefind/default-ui": "^1.4.0",
     "@tailwindcss/cli": "^4.1.11",
     "hanami-assets": "^2.2.1",
     "js.foresight": "^3.3.0",
@@ -25,6 +24,7 @@
     "@tailwindcss/postcss": "^4.1.13",
     "@types/lodash-es": "^4.17.12",
     "happy-dom": "^18.0.1",
+    "pagefind": "^1.4.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
