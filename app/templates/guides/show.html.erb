@@ -47,7 +47,7 @@
           <nav
             data-defo-target-current="<%= { activeClassNames: ["font-bold", "b-primary"] }.to_json %>"
           >
-            <%= render "doc_pages/toc_desktop_headings", headings: page.nested_headings, testid: nil, depth: 0 %>
+            <%= render "doc_pages/toc_headings", headings: page.nested_headings, testid: nil, depth: 0 %>
           </nav>
         <% end %>
       <% end %>
