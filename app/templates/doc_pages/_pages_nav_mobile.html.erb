@@ -62,12 +62,13 @@
     <div
       class="
         relative z-10 bg-neutral rounded-b-2xl
-        h-0 transition-all duration-300
+        collapse h-0 transition-all duration-300
         ease-[cubic-bezier(.58,-.25,.265,1.25)]
-        [.active_&]:h-auto
+        [.active_&]:h-auto [.active_&]:visible
         overflow-y-scroll overscroll-contain
         max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
         scrolling-panel scrolling-panel--with-bottom-overlay
+        transition-discrete
         shadow-2xl
       "
       data-defo-ensure-active-nav-link-visible="<%= { block: "start", id: "mobile-pages-nav", minThreshold: 400 }.to_json %>"
@@ -110,9 +111,9 @@
       <div
         class="
           relative z-10 bg-neutral rounded-b-2xl
-          h-0 transition-all duration-300
+          collapse h-0 transition-all duration-300
           ease-[cubic-bezier(.58,-.25,.265,1.25)]
-          [.active_&]:h-auto
+          [.active_&]:h-auto  [.active_&]:visible
           overflow-y-scroll overscroll-contain
           max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
           scrolling-panel scrolling-panel--with-bottom-overlay
