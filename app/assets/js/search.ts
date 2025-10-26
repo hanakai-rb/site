@@ -1,5 +1,3 @@
-import lunr from "lunr";
-
 export interface SearchDocument {
   id: string;
   title: string;
@@ -26,38 +24,22 @@ export interface GroupedResults {
   community: SearchResult[];
 }
 
-let index: lunr.Index | null = null;
-let documents: SearchDocument[] | null = null;
 let initPromise: Promise<void> | null = null;
 
 /**
- * Initialize search index (lazy loaded on first use)
- * Loads pre-serialized Lunr index and documents from server
  */
 export async function initializeSearch(): Promise<void> {
   // Return existing initialization if in progress or complete
   if (initPromise) return initPromise;
 
   initPromise = (async () => {
-    if (index && documents) return;
 
-    console.log("Loading search index...");
     const startTime = performance.now();
 
     try {
-      const [indexData, docsData] = await Promise.all([
-        fetch(`/lunr-index.${checksum}.json`).then((r) => r.json()),
-        fetch(`/search-documents.${checksum}.json`).then((r) => r.json()),
-      ]);
-
-      // Load pre-built index (instant!)
-      index = lunr.Index.load(indexData);
-      documents = docsData;
 
       const loadTime = (performance.now() - startTime).toFixed(0);
     } catch (error) {
-      console.error("Failed to load search index:", error);
-      throw error;
     }
   })();
 
@@ -65,11 +47,7 @@ export async function initializeSearch(): Promise<void> {
 }
 
 /**
- * Search documents with version de-duplication and smart sorting
  */
-export function search(query: string, maxResults: number = 10): SearchResult[] {
-  if (!index || !documents) {
-    console.warn("Search index not initialized");
     return [];
   }
 
@@ -78,31 +56,6 @@ export function search(query: string, maxResults: number = 10): SearchResult[] {
   }
 
   try {
-    const rawResults = index.search(query);
-
-    // Map to full documents with scores
-    let results: SearchResult[] = rawResults.map((result) => {
-      const doc = documents!.find((d) => d.id === result.ref);
-      if (!doc) throw new Error(`Document not found: ${result.ref}`);
-
-      return {
-        ...doc,
-        score: result.score,
-      };
-    });
-
-    // Check if user is searching for specific version
-    const hasVersionQuery = /v?\d+\.\d+/.test(query);
-
-    // De-duplicate versions: keep only latest unless user searches for version
-    if (!hasVersionQuery) {
-      results = deduplicateVersions(results);
-    }
-
-    // Sort results intelligently
-    results = sortResults(results);
-
-    return results.slice(0, maxResults);
   } catch (error) {
     console.error("Search error:", error);
     return [];
@@ -110,24 +63,8 @@ export function search(query: string, maxResults: number = 10): SearchResult[] {
 }
 
 /**
- * De-duplicate results by keeping only latest version of each doc
  */
-function deduplicateVersions(results: SearchResult[]): SearchResult[] {
-  const seen = new Map<string, SearchResult>();
 
-  for (const result of results) {
-    const key = `${result.section}/${result.subsection}/${result.title}`;
-    const existing = seen.get(key);
-
-    // Keep this result if:
-    // - We haven't seen this doc before, OR
-    // - This is the latest version
-    if (!existing || result.isLatest) {
-      seen.set(key, result);
-    }
-  }
-
-  return Array.from(seen.values());
 }
 
 /**
