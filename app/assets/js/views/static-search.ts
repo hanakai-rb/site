@@ -51,7 +51,7 @@ export const staticSearchViewFn: ViewFn = (element: HTMLElement) => {
       await loadIndex();
     }
 
-    const searchResults = search(query, 15);
+    const searchResults = await search(query, 15);
     displayResults(els, searchResults, query);
   };
 
@@ -209,7 +209,7 @@ function renderPreview(content?: string): string {
 
   return `
     <div class="text-sm text-gray-500 mt-1 line-clamp-2" data-search-preview>
-      ${escapeHtml(preview)}${ellipsis}
+      ${preview}${ellipsis}
     </div>
   `;
 }
