@@ -48,4 +48,20 @@
       <% end %>
     <% end %>
   </ul>
+
+  <button
+    aria-label="Search"
+    aria-keyshortcuts="/ control+k meta+k"
+    data-defo-is-mac="<%= { macClassName: 'mac'}.to_json %>"
+    class="
+      flex items-center gap-3
+      bg-primary-reversed text-neutral-500 rounded-xl text-sm px-3
+      cursor-pointer
+      hover:text-neutral-800 hover:shadow-md
+      after:tracking-tight
+      after:content-['Ctrl_+_K'] [&.mac]:after:content-['⌘_+_K']
+    "
+  >
+    <%= render "svgs/icons/magnifying_glass", height: 16, width: 16, class_name: "fill-current" %>
+  </button>
 </nav>
