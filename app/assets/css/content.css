@@ -1,5 +1,6 @@
 .content {
   line-height: var(--leading-normal);
+
   h1,
   h2,
   h3 {
@@ -37,6 +38,64 @@
     font-size: var(--text-lg);
     margin-block-start: calc(var(--spacing) * 5);
     margin-block-end: calc(var(--spacing) * 2.5);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    display: flex;
+    a[href^="#"] {
+      order: 2;
+      margin-inline-start: calc(var(--spacing) * 2);
+    }
+    a[href^="#"]:before {
+      content: "#";
+      color: var(--hk-color-text-primary);
+      font-size: var(--text-lg);
+      font-family: var(--font-mono);
+      font-weight: var(--font-weight-normal);
+      position: static;
+    }
+  }
+
+  @variant lg {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      position: relative;
+      a[href^="#"]:before {
+        padding-inline-end: calc(var(--spacing) * 2.5);
+        opacity: 0;
+        position: absolute;
+        left: calc(var(--spacing) * -5);
+        transition-duration: 75ms;
+        transition-property: opacity;
+        transition-timing-function: linear;
+      }
+      &:hover {
+        a[href^="#"]:before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  h1,
+  h2 {
+    a[href^="#"]:before {
+      margin-block-start: calc(var(--spacing) * 1.2);
+    }
+  }
+  h3,
+  h4,
+  h5 {
+    a[href^="#"]:before {
+      margin-block-start: calc(var(--spacing) * 0.6);
+    }
   }
 
   p {
