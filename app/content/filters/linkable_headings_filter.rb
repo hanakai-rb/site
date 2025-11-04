@@ -50,7 +50,7 @@ module Site
         end
 
         def handle_text_chunk(text)
-          # Concact text rather than assigning it, since a header may contain multiple text
+          # Concat text rather than assigning it, since a header may contain multiple text
           # chunks, e.g. a "Keyword arguments (`kwargs`)" markdown header contains 3 text chunks.
           result[:headings].last[:text].concat(text.to_s)
         end
