@@ -11,7 +11,7 @@ module Site
       r302 %r{^/(.+)/$}, "/$1"
     end
 
-    config.actions.content_security_policy[:script_src] += " 'unsafe-inline'"
+    config.actions.content_security_policy[:script_src] += " 'unsafe-inline' 'wasm-unsafe-eval'"
 
     environment :production do
       # We set HANAMI_ENV to production in bin/static-build, but we don't want the noisy default of
