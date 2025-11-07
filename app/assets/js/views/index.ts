@@ -6,7 +6,6 @@ import { isMacViewFn } from "./is-mac";
 import { lazyLoadView } from "~/utils/lazy-load";
 import { mobilePageNavViewFn } from "./mobile-page-nav";
 import { sizeToVarViewFn } from "./size-to-var";
-import { staticSearchViewFn } from "./static-search";
 import { targetCurrentViewFn } from "./target-current";
 import { tocScrollViewFn } from "./toc-scroll";
 import { toggleClassViewFn } from "./toggle-class";
@@ -22,7 +21,6 @@ export const views: Views = {
   mobilePageNav: breakpointFilter(mobilePageNavViewFn),
   sizeToVar: sizeToVarViewFn,
   pagefindSearch: pagefindSearchViewFn,
-  staticSearch: staticSearchViewFn,
   targetCurrent: targetCurrentViewFn,
   tocScroll: breakpointFilter(tocScrollViewFn),
   toggleClass: toggleClassViewFn,
