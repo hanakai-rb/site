@@ -1,18 +1,29 @@
 <div
   data-defo-pagefind-search="<%= {
-    activateSelectors: ".search-activate-button", activeClassNames: ["active"], deactivateSelectors: ".search-close", pagefindUiSelector: "[data-pagefind-ui-owned]"
+    activateSelectors: ".search-activate-button", activeClassNames: ["active"], deactivateSelectors: ".search-deactivate-button", pagefindUiSelector: "[data-pagefind-ui-owned]"
   }.to_json %>"
   class="
     bg-neutral fixed top-2 bottom-4 left-1 right-1 z-50 flex flex-col gap-2 rounded-2xl
-    shadow-md opacity-0 pointer-events-none
+    shadow-md opacity-0 pointer-events-none py-4 pl-4 pr-2
     [&.active]:opacity-100 [&.active]:pointer-events-auto
   "
+  id="pagefind-overrides-hook"
 >
   <!-- Header -->
-  <div class="">
-    <button class="search-close">Close</button>
-  </div>
+  <button
+    class="
+      search-deactivate-button absolute right-6 top-[17px] z-10 p-4 cursor-pointer
+      text-neutral-500
+    "
+  >
+    <%= render "svgs/icons/x", height: 16, width: 16, class_name: "fill-current" %>
+  </button>
+
+  <%= render "svgs/icons/magnifying_glass", height: 16, width: 16, class_name: "absolute left-8 top-[33px] z-10 text-neutral-500 fill-current" %>
 
   <!-- Pagefind search owned -->
-  <div data-pagefind-ui-owned class="flex-1"></div>
+  <div
+    data-pagefind-ui-owned
+    class="flex-1 h-full overflow-y-scroll pr-2 scrolling-panel"
+  ></div>
 </div>
