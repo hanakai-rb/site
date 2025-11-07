@@ -3,27 +3,50 @@
     activateSelectors: ".search-activate-button", activeClassNames: ["active"], deactivateSelectors: ".search-deactivate-button", pagefindUiSelector: "[data-pagefind-ui-owned]"
   }.to_json %>"
   class="
-    bg-neutral fixed top-2 bottom-4 left-1 right-1 z-50 flex flex-col gap-2 rounded-2xl
-    shadow-md opacity-0 pointer-events-none py-4 pl-4 pr-2
-    [&.active]:opacity-100 [&.active]:pointer-events-auto
+    z-50 fixed top-0 bottom-0 left-0 right-0 flex flex-col
+    pointer-events-none
+    justify-center items-center
+    [&.active]:pointer-events-auto
   "
   id="pagefind-overrides-hook"
 >
-  <!-- Header -->
-  <button
+  <div
     class="
-      search-deactivate-button absolute right-6 top-[17px] z-10 p-4 cursor-pointer
-      text-neutral-500
+      search-deactivate-button z-0 absolute top-0 left-0 right-0 bottom-0
+      bg-primary opacity-0 invisible
+      transition-discrete transition-all duration-250 starting:opacity-0
+      lg:[.active_&]:visible lg:[.active_&]:opacity-50
+    "
+  ></div>
+  <div
+    class="
+      flex flex-col flex-1 bg-neutral rounded-2xl
+      shadow-md py-4 pl-4 pr-2 relative w-full
+      max-w-[calc(100%-var(--spacing)*4)] max-h-[calc(100%-var(--spacing)*4)]
+      lg:max-h-[80vh] lg:max-w-[80vh]
+      z-10
+      invisible opacity-0 starting:opacity-0 translate-y-3 starting:translate-y-4
+      transition-discrete transition-all duration-300 ease-in-out
+      [.active_&]:visible [.active_&]:opacity-100 [.active_&]:translate-y-0
     "
   >
-    <%= render "svgs/icons/x", height: 16, width: 16, class_name: "fill-current" %>
-  </button>
+    <!-- Header -->
+    <button
+      class="
+        search-deactivate-button absolute right-5 top-[17px] z-10 p-4 cursor-pointer
+        text-neutral-500 lg:right-6
+      "
+    >
+      <%= render "svgs/icons/x", height: 16, width: 16, class_name: "fill-current" %>
+    </button>
 
-  <%= render "svgs/icons/magnifying_glass", height: 16, width: 16, class_name: "absolute left-8 top-[33px] z-10 text-neutral-500 fill-current" %>
-
-  <!-- Pagefind search owned -->
-  <div
-    data-pagefind-ui-owned
-    class="flex-1 h-full overflow-y-scroll pr-2 scrolling-panel"
-  ></div>
+    <!-- Pagefind search owned -->
+    <div
+      data-pagefind-ui-owned
+      class="
+        flex-1 h-full overflow-y-scroll pr-2 scrolling-panel
+        scrolling-panel--with-bottom-overlay
+      "
+    ></div>
+  </div>
 </div>

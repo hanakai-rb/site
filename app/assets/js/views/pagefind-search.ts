@@ -71,11 +71,16 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     // Insanity needed to stop iOS scrolling when we focus:
     // https://gist.github.com/kiding/72721a0553fa93198ae2bb6eefaa3299
     if (pagefindUiSearchInput) {
-      pagefindUiSearchInput.style.opacity = "0";
-      pagefindUiSearchInput.focus();
+      // This needs to be delayed because we’re transitioning the UI in using a discrete transition
+      // which means the focus doesn’t work immediately (we can remove the delay if we remove the
+      // transition).
       window.setTimeout(() => {
-        pagefindUiSearchInput!.style.opacity = "1";
-      });
+        pagefindUiSearchInput!.style.opacity = "0";
+        pagefindUiSearchInput?.focus();
+        window.setTimeout(() => {
+          pagefindUiSearchInput!.style.opacity = "1";
+        });
+      }, 100);
     }
 
     active = true;

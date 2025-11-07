@@ -160,10 +160,3 @@
 .text-secondary {
   color: var(--hk-color-text-secondary);
 }
-
-mark {
-  background-color: var(--color-hanakai-300);
-  color: inherit;
-  border-radius: 2px;
-  padding: 0 2px;
-}
