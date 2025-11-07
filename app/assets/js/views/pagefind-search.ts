@@ -2,6 +2,21 @@ import type { ViewFn } from "@icelab/defo";
 
 import { loadCSS, loadScript } from "~/utils/load-resource";
 
+// Pagefind doesn’t have type definitions, alas
+declare global {
+  class PagefindUI {
+    constructor(options: {
+      autofocus?: boolean;
+      element: string | HTMLElement;
+      pageSize?: number;
+      resetStyles?: boolean;
+      showImages?: boolean;
+      subResults?: boolean;
+    });
+    destroy: () => void;
+  }
+}
+
 type Props = {
   activeClassNames: string[];
   activateSelectors: string;
@@ -15,7 +30,8 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
 ) => {
   let initialised = false;
   let active = false;
-  let pagefindUiSearchInput: HTMLElement | null = null;
+  let pagefindInstance: PagefindUI;
+  let pagefindUiSearchInput: HTMLInputElement | null = null;
 
   const { activateElements, deactivateElements, pagefindUiElement } = findElements({
     contextNode,
@@ -33,16 +49,15 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     await Promise.all([loadCSS("/pagefind/pagefind-ui.css"), loadScript("/pagefind/pagefind-ui.js")]);
 
     // Initialise Pagefind UI. See https://pagefind.app/docs/ui/ for details.
-    // @ts-expect-error Pagefind doesn’t expose any types
-    new PagefindUI({
-      element: pagefindUiElement,
-      resetStyles: false,
-      pageSize: 20,
-      subResults: true,
-      showImages: false,
+    pagefindInstance = new PagefindUI({
       autofocus: false, // We manage this manually
+      element: pagefindUiElement,
+      pageSize: 20,
+      resetStyles: false,
+      showImages: false,
+      subResults: true,
     });
-    pagefindUiSearchInput = pagefindUiElement.querySelector("input");
+    pagefindUiSearchInput = pagefindUiElement.querySelector("input.pagefind-ui__search-input");
     initialised = true;
   };
 
@@ -82,8 +97,18 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       await activate();
     }
     // Deactivate on Escape (unless we’re in the search input)
-    if (active && e.key === "Escape" && document.activeElement !== pagefindUiSearchInput) {
-      await deactivate();
+    if (active && e.key === "Escape") {
+      // If focused, clear the input but don’t lose focus
+      if (
+        pagefindUiSearchInput &&
+        document.activeElement === pagefindUiSearchInput &&
+        pagefindUiSearchInput.value !== ""
+      ) {
+        // Refocus because Pagefind loses focus here
+        window.requestAnimationFrame(() => pagefindUiSearchInput?.focus());
+      } else {
+        await deactivate();
+      }
     }
   };
 
@@ -98,6 +123,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       activateElements.forEach((el) => el.removeEventListener("click", onActivateClick));
       deactivateElements.forEach((el) => el.removeEventListener("click", onDeactivateClick));
       window.removeEventListener("keydown", onKeyDown, { capture: true });
+      pagefindInstance.destroy();
     },
   };
 };
