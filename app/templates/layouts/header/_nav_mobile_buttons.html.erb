@@ -1,0 +1,23 @@
+<div class="flex gap-2">
+  <button
+    aria-label="Search"
+    aria-keyshortcuts="/ control+k meta+k"
+    data-defo-is-mac="<%= { macClassName: 'mac'}.to_json %>"
+    class="text-primary-reversed cursor-pointer"
+  >
+    <%= render "svgs/icons/magnifying_glass", height: 16, width: 16, class_name: "fill-current" %>
+  </button>
+
+  <button
+    class="md:hidden flex p-2 items-center cursor-pointer"
+    data-defo-toggle-class="<%= {
+        clickAway: false,
+        triggerToggleClassName: "active",
+        targetSelector: "#nav-mobile",
+        targetToggleClassName: "h-0 h-auto collapse"
+        }.to_json %>"
+  >
+    <%= render "svgs/icons/list", height: 18, width: 18, class_name: "fill-current [.active_&]:hidden" %>
+    <%= render "svgs/icons/x", height: 18, width: 18, class_name: "fill-current hidden [.active_&]:block" %>
+  </button>
+</div>
