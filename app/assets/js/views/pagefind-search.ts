@@ -68,8 +68,14 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     await initialise();
     contextNode.classList.add(...activeClassNames);
 
+    // Insanity needed to stop iOS scrolling when we focus:
+    // https://gist.github.com/kiding/72721a0553fa93198ae2bb6eefaa3299
     if (pagefindUiSearchInput) {
+      pagefindUiSearchInput.style.opacity = "0";
       pagefindUiSearchInput.focus();
+      window.setTimeout(() => {
+        pagefindUiSearchInput!.style.opacity = "1";
+      });
     }
 
     active = true;
