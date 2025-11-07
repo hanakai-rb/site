@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@icelab/defo": "^1.0.1",
+    "@pagefind/default-ui": "^1.4.0",
     "@tailwindcss/cli": "^4.1.11",
     "hanami-assets": "^2.2.1",
     "js.foresight": "^3.3.0",
