@@ -10,6 +10,7 @@ import { staticSearchViewFn } from "./static-search";
 import { targetCurrentViewFn } from "./target-current";
 import { tocScrollViewFn } from "./toc-scroll";
 import { toggleClassViewFn } from "./toggle-class";
+import { pagefindSearchViewFn } from "./pagefind-search";
 
 export const views: Views = {
   ensureActiveNavLinkVisible: ensureActiveNavLinkVisibleViewFn,
@@ -20,6 +21,7 @@ export const views: Views = {
   }),
   mobilePageNav: breakpointFilter(mobilePageNavViewFn),
   sizeToVar: sizeToVarViewFn,
+  pagefindSearch: pagefindSearchViewFn,
   staticSearch: staticSearchViewFn,
   targetCurrent: targetCurrentViewFn,
   tocScroll: breakpointFilter(tocScrollViewFn),
