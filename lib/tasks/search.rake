@@ -37,7 +37,7 @@ namespace :search do
     FileUtils.rm_rf("public/pagefind")
 
     # Run Pagefind to index the public directory
-    result = system("npx pagefind --site public")
+    result = system("npx pagefind --site build --output-path public/pagefind")
 
     if result
       # Calculate total size of pagefind directory
@@ -55,5 +55,4 @@ namespace :search do
       exit 1
     end
   end
-
 end
