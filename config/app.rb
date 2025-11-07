@@ -6,6 +6,8 @@ require "rack/rewrite"
 module Site
   class App < Hanami::App
     require "site/content_file_middleware"
+    config.middleware.use Rack::Static, urls: ["/pagefind"], root: "public"
+
     config.middleware.use ContentFileMiddleware
     config.middleware.use Rack::Rewrite do
       r302 %r{^/(.+)/$}, "/$1"
