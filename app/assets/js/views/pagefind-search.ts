@@ -83,11 +83,11 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     active = false;
   };
 
-  const onActivateClick = async (e: MouseEvent) => {
+  const onActivateClick = async () => {
     await activate();
   };
 
-  const onDeactivateClick = async (e: MouseEvent) => {
+  const onDeactivateClick = async () => {
     await deactivate();
   };
 
