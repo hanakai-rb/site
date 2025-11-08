@@ -104,12 +104,12 @@
 
   .pagefind-ui__result-tag {
     background-color: var(--color-neutral-100);
-    color: var(--color-neutral-400);
+    color: var(--color-neutral-500);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     padding: 2px 5px;
     overflow: hidden;
-    &[data-pagefind-ui-meta="version"] {
+    &[data-pagefind-ui-meta="project"] {
       text-indent: -4rem;
     }
   }

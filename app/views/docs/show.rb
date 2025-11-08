@@ -10,7 +10,7 @@ module Site
           doc_repo.find(slug:, version:)
         end
 
-        expose :org do |slug:|
+        expose :org, decorate: false do |slug:|
           slug.split("-").first
         end
 

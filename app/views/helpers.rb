@@ -6,7 +6,7 @@ module Site
     module Helpers
       def org_name(org_slug)
         case org_slug
-        when "hanami" then "Hamami"
+        when "hanami" then "Hanami"
         when "dry" then "Dry"
         when "rom" then "Rom"
         else
