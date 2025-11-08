@@ -72,12 +72,6 @@
       <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
     </header>
 
-    <div
-      class="content"
-      <%= "data-pagefind-ignore" unless version == latest_version %>
-      data-pagefind-body
-    >
-      <%= page.content_html %>
-    </div>
+    <div class="content" <%= "data-pagefind-body" if version == latest_version %>><%= page.content_html %></div>
   <% end %>
 <% end %>
