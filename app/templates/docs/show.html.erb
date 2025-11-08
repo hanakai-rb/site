@@ -35,7 +35,11 @@
   <%= main.slot :content do %>
     <%= render "doc_pages/breadcrumbs", breadcrumbs:, org: %>
 
-    <header>
+    <header
+      data-gem="<%= doc.title %>"
+      data-project="<%= org %>"
+      data-pagefind-filter="gem[data-gem], project[data-project]"
+    >
       <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
     </header>
 
