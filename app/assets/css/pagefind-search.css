@@ -167,6 +167,12 @@
       padding-right: calc(var(--spacing) * 4);
     }
 
+    .pagefind-ui__filter-panel {
+      align-self: self-start;
+      position: sticky;
+      top: 70px;
+    }
+
     .pagefind-ui__results-area {
       margin-top: calc(var(--spacing) * 4);
     }
