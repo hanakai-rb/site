@@ -21,7 +21,7 @@
   <div
     class="
       flex flex-col flex-1 bg-neutral rounded-2xl
-      shadow-md py-4 pl-4 pr-2 relative w-full
+      shadow-md py-6 pl-6 pr-4 relative w-full
       max-w-[calc(100%-var(--spacing)*4)] max-h-[calc(100%-var(--spacing)*4)]
       lg:max-h-[80vh] lg:max-w-[80vh]
       z-10
@@ -33,8 +33,8 @@
     <!-- Header -->
     <button
       class="
-        search-deactivate-button absolute right-5 top-[17px] z-10 p-4 cursor-pointer
-        text-neutral-500 lg:right-6
+        search-deactivate-button absolute right-6 top-[25px] z-10 p-4 cursor-pointer
+        text-neutral-500 lg:right-7
       "
     >
       <%= render "svgs/icons/x", height: 16, width: 16, class_name: "fill-current" %>
@@ -44,7 +44,7 @@
     <div
       data-pagefind-ui-owned
       class="
-        flex-1 h-full overflow-y-scroll pr-2 scrolling-panel
+        flex-1 h-full overflow-y-scroll pr-2 scrolling-panel overscroll-contain
         scrolling-panel--with-bottom-overlay
       "
     ></div>
