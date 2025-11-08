@@ -1,6 +1,7 @@
 import type { ViewFn } from "@icelab/defo";
 
 import { loadCSS, loadScript } from "~/utils/load-resource";
+import { preventScroll } from "~/utils/prevent-scroll";
 
 // Pagefind doesn’t have type definitions, alas
 declare global {
@@ -36,6 +37,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
 ) => {
   let initialised = false;
   let active = false;
+  let releaseScroll: (() => void) | null = null;
   let pagefindInstance: PagefindUI;
   let pagefindUiSearchInput: HTMLInputElement | null = null;
 
@@ -98,6 +100,9 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       }, 100);
     }
 
+    if (!releaseScroll) {
+      releaseScroll = preventScroll();
+    }
     active = true;
   };
 
@@ -106,6 +111,11 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       return;
     }
     contextNode.classList.remove(...activeClassNames);
+
+    if (releaseScroll) {
+      releaseScroll();
+      releaseScroll = null;
+    }
     active = false;
   };
 
