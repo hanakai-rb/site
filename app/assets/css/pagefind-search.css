@@ -40,7 +40,6 @@
     z-index: 8;
 
     &::placeholder,
-    &::-moz-placeholder,
     &::-webkit-input-placeholder {
       color: var(--color-neutral-400);
       opacity: 1;
