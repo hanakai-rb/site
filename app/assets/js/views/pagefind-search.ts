@@ -1,4 +1,5 @@
 import type { ViewFn } from "@icelab/defo";
+import { createFocusTrap } from "focus-trap";
 
 import { loadCSS, loadScript } from "~/utils/load-resource";
 import { preventScroll } from "~/utils/prevent-scroll";
@@ -40,6 +41,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   let releaseScroll: (() => void) | null = null;
   let pagefindInstance: PagefindUI;
   let pagefindUiSearchInput: HTMLInputElement | null = null;
+  const focusTrap = createFocusTrap(contextNode, { escapeDeactivates: false });
 
   const { activateElements, deactivateElements, pagefindUiElement } = findElements({
     contextNode,
@@ -92,6 +94,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       // which means the focus doesn’t work immediately (we can remove the delay if we remove the
       // transition).
       window.setTimeout(() => {
+        focusTrap.activate();
         pagefindUiSearchInput!.style.opacity = "0";
         pagefindUiSearchInput?.focus();
         window.setTimeout(() => {
@@ -116,6 +119,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       releaseScroll();
       releaseScroll = null;
     }
+    focusTrap.deactivate();
     active = false;
   };
 
@@ -183,6 +187,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       window.removeEventListener("keydown", onKeyDown, { capture: true });
       window.removeEventListener("unload", saveTermCache);
       pagefindInstance.destroy();
+      focusTrap.deactivate();
     },
   };
 };
