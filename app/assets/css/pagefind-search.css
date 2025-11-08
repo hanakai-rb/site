@@ -33,6 +33,7 @@
     box-shadow: 0 12px 10px 0 var(--hk-color-bg-neutral);
     font-weight: var(--font-weight-normal);
     outline: 5px var(--hk-color-bg-neutral) solid;
+    outline-offset: 0;
     padding-left: calc(var(--spacing) * 4);
     position: sticky;
     top: 0;
