@@ -64,8 +64,10 @@
     <%= render "doc_pages/breadcrumbs", breadcrumbs:, org: %>
 
     <header
-      data-project="<%= org %>"
       data-pagefind-filter="project[data-project]"
+      data-pagefind-meta="version[data-version]"
+      data-project="<%= org %>"
+      data-version="<%= version %>"
     >
       <h1 class="text-4xl font-black mb-4"><%= page.title %></h1>
     </header>

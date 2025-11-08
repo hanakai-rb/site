@@ -76,10 +76,36 @@
     text-decoration-color: var(--hk-color-text-link-underline);
     text-decoration-thickness: 3px;
     text-decoration-skip-ink: none;
+    &:after {
+      content: attr(href);
+      color: var(--color-neutral-400);
+      display: inline-block;
+      margin-left: calc(var(--spacing) * 2);
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      text-decoration-color: transparent;
+      text-decoration-thickness: 0px;
+    }
   }
 
   .pagefind-ui__result-excerpt {
     font-size: var(--text-md);
+  }
+
+  .pagefind-ui__result-tags {
+    margin-top: calc(var(--spacing) * 1);
+  }
+
+  .pagefind-ui__result-tag {
+    background-color: var(--color-neutral-100);
+    color: var(--color-neutral-400);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 2px 5px;
+    overflow: hidden;
+    &[data-pagefind-ui-meta="version"] {
+      text-indent: -4rem;
+    }
   }
 
   .pagefind-ui__message {
