@@ -16,6 +16,7 @@ declare global {
       processResult: (result: any) => typeof result;
     });
     destroy: () => void;
+    triggerSearch: (term: string) => void;
   }
 }
 
@@ -25,6 +26,9 @@ type Props = {
   deactivateSelectors: string;
   pagefindUiSelector: string;
 };
+
+const LOCALSTORAGE_KEY = "hk-pagefind-search";
+const EXPIRY_MS = 60 * 60 * 1000;
 
 export const pagefindSearchViewFn: ViewFn<Props> = (
   contextNode: HTMLElement,
@@ -65,6 +69,10 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       },
     });
     pagefindUiSearchInput = pagefindUiElement.querySelector("input.pagefind-ui__search-input");
+    const cachedTerm = retrieveTermCache();
+    if (cachedTerm) {
+      pagefindInstance.triggerSearch(cachedTerm);
+    }
     initialised = true;
   };
 
@@ -101,11 +109,32 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     active = false;
   };
 
+  const saveTermCache = () => {
+    const value = pagefindUiSearchInput?.value;
+    if (value && value !== "") {
+      window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ value, timestamp: Date.now() }));
+    }
+  };
+
+  const retrieveTermCache = () => {
+    try {
+      const data = window.localStorage.getItem(LOCALSTORAGE_KEY);
+      const { value, timestamp } = JSON.parse(data!) as { value: string; timestamp: number };
+      if (value && Date.now() - timestamp < EXPIRY_MS) {
+        return value;
+      }
+    } catch {
+      // Do nothing
+    }
+    return undefined;
+  };
+
   const onActivateClick = async () => {
     await activate();
   };
 
   const onDeactivateClick = async () => {
+    saveTermCache();
     await deactivate();
   };
 
@@ -134,6 +163,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   deactivateElements.forEach((el) => el.addEventListener("click", onDeactivateClick));
   // Capture is required to ensure activeElement is correct when we check the handler
   window.addEventListener("keydown", onKeyDown, { capture: true });
+  window.addEventListener("unload", saveTermCache);
 
   return {
     destroy: () => {
@@ -141,6 +171,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       activateElements.forEach((el) => el.removeEventListener("click", onActivateClick));
       deactivateElements.forEach((el) => el.removeEventListener("click", onDeactivateClick));
       window.removeEventListener("keydown", onKeyDown, { capture: true });
+      window.removeEventListener("unload", saveTermCache);
       pagefindInstance.destroy();
     },
   };
