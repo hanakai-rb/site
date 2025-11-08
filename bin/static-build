@@ -9,7 +9,6 @@ export HANAMI_ENV=production
 rm -rf build public/pagefind
 
 # Compile frontend assets
-bundle exec rake tailwind:compile
 bundle exec hanami assets compile
 
 # Generate sitemap
