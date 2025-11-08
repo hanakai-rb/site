@@ -10,6 +10,7 @@ declare global {
       element: string | HTMLElement;
       pageSize?: number;
       resetStyles?: boolean;
+      showEmptyFilters?: boolean;
       showImages?: boolean;
       subResults?: boolean;
     });
@@ -56,6 +57,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       resetStyles: false,
       showImages: false,
       subResults: true,
+      showEmptyFilters: false,
     });
     pagefindUiSearchInput = pagefindUiElement.querySelector("input.pagefind-ui__search-input");
     initialised = true;
