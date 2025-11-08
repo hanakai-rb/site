@@ -9,6 +9,8 @@
     [&.active]:pointer-events-auto
   "
   id="pagefind-overrides-hook"
+  role="dialog"
+  aria-label="Search"
 >
   <div
     class="
@@ -30,12 +32,12 @@
       [.active_&]:visible [.active_&]:opacity-100 [.active_&]:translate-y-0
     "
   >
-    <!-- Header -->
     <button
       class="
         search-deactivate-button absolute right-6 top-[25px] z-10 p-4 cursor-pointer
         text-neutral-500 lg:right-7
       "
+      aria-label="Close"
     >
       <%= render "svgs/icons/x", height: 16, width: 16, class_name: "fill-current" %>
     </button>
