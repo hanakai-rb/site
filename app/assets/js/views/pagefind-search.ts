@@ -13,6 +13,7 @@ declare global {
       showEmptyFilters?: boolean;
       showImages?: boolean;
       subResults?: boolean;
+      processResult: (result: any) => typeof result;
     });
     destroy: () => void;
   }
@@ -58,6 +59,10 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       showImages: false,
       subResults: true,
       showEmptyFilters: false,
+      processResult: (result) => {
+        result.url = result.url.replace(/\.html$/, "");
+        return result;
+      },
     });
     pagefindUiSearchInput = pagefindUiElement.querySelector("input.pagefind-ui__search-input");
     initialised = true;
