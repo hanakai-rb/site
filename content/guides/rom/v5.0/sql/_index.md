@@ -106,7 +106,6 @@ Options below are available to all database drivers and can be used to configure
       Sets the database driver which should be used when making a connection.
       This option is only to be used in situations where a connection string
       is <strong>NOT</strong> provided to the ROM Configuration instance.
-
       <h5>Available Options:</h5>
       <ul>
         <li>:postgres</li>
@@ -217,8 +216,7 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
     <td>
       Determines the priority or whether or not an SSL TCP/IP connection is to
       be made.
-
-      <h5> Available Options:</h5>
+      <h5>Available Options:</h5>
       <ul>
         <li>
           <code>'disable'</code>
@@ -279,19 +277,16 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
     <td>
       Determines if infinite timestamps/dates will be converted. By default, an
       error is raised and no conversion is done.
-
-      <h5> Available Options:</h5>
+      <h5>Available Options:</h5>
       <ul>
         <li>
           <code>:nil</code>
           - Converts the timestamp to nil
         </li>
-
         <li>
           <code>:string</code>
           - Leaves the timestamp as a string
         </li>
-
         <li>
           <code>:float</code>
           - Converts to an infinite float
@@ -300,9 +295,7 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
     </td>
     <td>Symbol</td>
     <td>true</td>
-
   </tr>
-
 </tbody>
 </table>
 
@@ -395,7 +388,6 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
     <td>
       Sets the sql_mode(s) for a given connection.
       eg: <code>[:no_zero_date, :pipes_as_concat]</code>
-
       <p>
         Available sql_modes can be found in MySQL
         <a href="https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sql-mode-full">Server SQL Modes</a>
@@ -404,7 +396,6 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
     </td>
     <td>Array&lt;String, Symbol&gt;, String, Symbol</td>
     <td></td>
-
   </tr>
 
   <tr>
@@ -412,9 +403,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
     <td>
       Flags added to an array are added to the Default flags, while flags with a
       <code>-</code> (minus) prefix are removed from the default flags.
-
       For more information see <a href="https://github.com/brianmario/mysql2#flags-option-parsing">Flag Option Parsing</a>.
-
       <h5> Available Options:</h5>
       <ul>
         <li>'REMEMBER_OPTIONS'</li>
@@ -428,7 +417,6 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
     </td>
     <td>String, Array&lt;String&gt;</td>
     <td></td>
-
   </tr>
 
   <tr>
@@ -445,30 +433,25 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
     <td>
       Determines the priority or whether or not a SSL TCP/IP connection is to
       be made.
-
       <h5> Available Options:</h5>
       <ul>
         <li>
           <code>:disabled</code>
           - Establish an unencrypted connection
         </li>
-
         <li>
           <code>:preferred</code>
           - First try a non-SSL connection; if that fails, try an SSL connection
         </li>
-
         <li>
           <code>:required</code>
           - Establish a secure connection if the server supports secure connections
         </li>
-
         <li>
           <code>:verify_ca</code>
           - Only establish an SSL connection and verify the servers TLS certificate
             against the configured Certificate Authority (CA) certificates.
         </li>
-
         <li>
           <code>:verify_identity</code>
           - Like <code>:verify_ca</code>, but additionally verify the server
