@@ -7,18 +7,19 @@ namespace :search do
   task :watch do
     require "listen"
 
-    puts "👀 Watching for content changes..."
+    puts "Watching for content changes..."
 
     # Build initial index
-    Rake::Task["search:build_index"].invoke
+    system("bin/static-build")
+    copy_index_to_public
 
     listener = Listen.to("content/") do |modified, added, removed|
       changes = (modified + added + removed).select { |f| f.end_with?(".md") }
 
       if changes.any?
-        puts "\n🔄 Content changed, rebuilding search index..."
-        Rake::Task["search:build_index"].reenable
-        Rake::Task["search:build_index"].invoke
+        puts "\nContent changed, rebuilding search index..."
+        system("bin/static-build")
+        copy_index_to_public
       end
     end
 
@@ -26,33 +27,14 @@ namespace :search do
     sleep
   end
 
-  desc "Build search index using Pagefind"
-  task :build_index do
-    puts "Building Pagefind search index..."
-
-    # Ensure public directory exists
-    FileUtils.mkdir_p("public")
-
-    # Remove old pagefind directory
-    FileUtils.rm_rf("public/pagefind")
-
-    # Run Pagefind to index the public directory
-    result = system("npx pagefind --site build --output-path public/pagefind")
-
-    if result
-      # Calculate total size of pagefind directory
-      total_size = Dir.glob("public/pagefind/**/*")
-        .select { |f| File.file?(f) }
-        .sum { |f| File.size(f) }
-
-      size_kb = (total_size / 1024.0).round(2)
-
-      puts "✓ Pagefind index built successfully"
-      puts "  - public/pagefind/"
-      puts "  - Index size: #{size_kb}KB"
+  def copy_index_to_public
+    if Dir.exist?("build/pagefind")
+      FileUtils.mkdir_p("public")
+      FileUtils.rm_rf("public/pagefind")
+      FileUtils.cp_r("build/pagefind", "public/pagefind")
+      puts "Copied search index to public/pagefind/ for dev server"
     else
-      puts "✗ Failed to build Pagefind index"
-      exit 1
+      puts "Warning: build/pagefind/ not found"
     end
   end
 end
