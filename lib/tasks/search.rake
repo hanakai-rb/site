@@ -18,13 +18,19 @@ namespace :search do
 
       if changes.any?
         puts "\nContent changed, rebuilding search index..."
-        system("bin/static-build")
-        copy_index_to_public
+        Rake::Task["search:build_index"].reenable
+        Rake::Task["search:build_index"].invoke
       end
     end
 
     listener.start
     sleep
+  end
+
+  desc "Build search index"
+  task :build_index do
+    system("bin/static-build")
+    copy_index_to_public
   end
 
   def copy_index_to_public
