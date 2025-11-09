@@ -14,7 +14,6 @@ module Site
           team_member_repo.find_by_name(post.author) if post.author
         end
 
-        # TODO: How do we get the global view to know about this value?
         expose :org, decorate: false do |post|
           post.org
         end
