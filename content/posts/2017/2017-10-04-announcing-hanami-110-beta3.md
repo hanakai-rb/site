@@ -4,6 +4,7 @@ date: 2017-10-04 12:12 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Fixes <code>hanami new</code> bug introduced by <code>v1.1.0.beta2</code>
 ---

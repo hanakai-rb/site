@@ -4,6 +4,7 @@ date: 2022-02-10 11:04:32 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Hanami Providers, Partial Slice Import/Export. Ruby 3.0+ only.
 ---

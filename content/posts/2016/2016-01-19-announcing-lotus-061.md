@@ -4,6 +4,7 @@ date: 2016-01-19 8:48 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Minor fixes for CLI, cookie sessions and database exceptions.
 ---

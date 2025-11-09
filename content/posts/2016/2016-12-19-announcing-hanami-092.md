@@ -4,6 +4,7 @@ date: 2016-12-19 14:54 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Patch release for small bug fixes: Pending specs, Rake tasks, SSL redirects, project boot, Rack exceptions, flash messages, form helpers, pluralizations.
 ---

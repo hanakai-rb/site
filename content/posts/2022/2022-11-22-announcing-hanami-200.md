@@ -4,6 +4,7 @@ date: 2022-11-22 12:10 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Hanami 2.0 opens a new chapter for the Ruby community.
 ---

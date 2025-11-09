@@ -3,6 +3,7 @@ title: Introducing Database Migrations
 date: 2015-06-17 14:34 UTC
 tags: features
 author: Luca Guidi
+org: hanami
 excerpt: >
   New feature for the upcoming v0.4.0: database migrations. Fast operations for schema: create, drop, migrate and prepare database. Keep migrations healthy with experimental feature.
 ---

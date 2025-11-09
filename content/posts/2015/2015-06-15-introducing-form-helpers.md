@@ -3,6 +3,7 @@ title: Introducing Form Helpers
 date: 2015-06-15 12:46 UTC
 tags: features
 author: Luca Guidi
+org: hanami
 excerpt: >
   New feature for the upcoming v0.4.0: form helpers. HTML5 form generators with automatic values, CSRF protection, method override, infinite nested fields and ORM agnostic.
 ---

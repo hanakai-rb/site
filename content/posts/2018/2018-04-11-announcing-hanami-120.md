@@ -4,6 +4,7 @@ date: 2018-04-11 12:21 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   HTTP/2 Early Hints, Unobtrusive JavaScript (UJS), new error page based on <code>better_errors</code>, CLI hooks, project middleware, enhanced support for plugins, custom repositories commands, coloured logging, bug fixes. Big announcement for the future!
 ---

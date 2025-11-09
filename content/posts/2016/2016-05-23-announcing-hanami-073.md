@@ -4,6 +4,7 @@ date: 2016-05-23 07:43 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Faster static assets in development
 ---

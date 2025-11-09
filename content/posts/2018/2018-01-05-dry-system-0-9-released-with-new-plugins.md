@@ -2,6 +2,7 @@
 title: "dry-system 0.9 released with new plugins"
 date: 2018-01-05 12:00 UTC
 author: Peter Solnica
+org: hanami
 ---
 
 Hello in 2018! We're starting the year with a couple of new releases, including dry-system 0.9 which comes with support for dry-monitor's notifications and a new plugin API. There are already six built-in plugins that you can enable, and it's very easy to write your own. This release is also sort of a clean up, as a bunch of features that we previously had in dry-web, have been ported to dry-system's plugins.

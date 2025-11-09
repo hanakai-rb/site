@@ -2,6 +2,7 @@
 title: dry-system 0.19 released with Zeitwerk support and more, leading the way for Hanami 2.0
 date: 2021-04-22 12:00 UTC
 author: Tim Riley
+org: dry
 ---
 
 We are very pleased to announce the release of dry-system 0.19.0! This release marks a huge step forward for dry-system, bringing support for [Zeitwerk][zw] and other autoloaders, plus clearer configuration and improved consistency around component resolution for both finalized and lazy loading containers.

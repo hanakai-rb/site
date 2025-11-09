@@ -2,6 +2,7 @@
 title: "dry-view 0.6.0, an introductory talk, and plans for 1.0"
 date: 2019-02-12 12:00 UTC
 author: Tim Riley
+org: dry
 ---
 
 Last month we released [dry-view](/gems/dry-view) 0.6.0, a very special release that made huge strides towards the system's overall completeness. With 0.6.0, dry-view should now offer _everything you need_ to write better organized views in Ruby.

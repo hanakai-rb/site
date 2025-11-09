@@ -4,6 +4,7 @@ date: 2019-01-30 13:24:51 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   First preview of the 2.0 series. App simplification, new router, rewritten actions, fresh code reloading strategy.
 ---

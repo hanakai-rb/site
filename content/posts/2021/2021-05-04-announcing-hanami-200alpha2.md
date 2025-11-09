@@ -4,6 +4,7 @@ date: 2021-05-04 13:45:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   After two years of work, presenting a revolutionary new vision for Hanami 2.0.
 ---

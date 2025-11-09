@@ -4,6 +4,7 @@ date: 2017-10-25 09:38 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   New associations (<code>belongs_to</code>, <code>has_one</code>, <code>has_many :through</code>), rewritten CLI with registrable commands for third-party gems, new extra behaviors for entity manual schema, selectively boot apps, logger filtering, bug fixes.
 ---

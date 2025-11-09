@@ -4,6 +4,7 @@ date: 2019-07-26 13:22:47 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Patch release for bugfixes.
 ---

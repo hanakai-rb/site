@@ -4,6 +4,7 @@ date: 2017-03-17 13:37 UTC
 tags: announcements
 author: Marion Schleifer
 image: true
+org: hanami
 excerpt: >
   Small fixes and enhancements leading up to the stable v1.0.0 version
 ---

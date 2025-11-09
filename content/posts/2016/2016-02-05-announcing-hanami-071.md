@@ -4,6 +4,7 @@ date: 2016-02-05 15:41 UTC
 tags: announcements
 author: Trung Lê
 image: true
+org: hanami
 excerpt: >
   Fixes for static assets serving, Hanami console and minor improvements
 ---

@@ -2,6 +2,7 @@
 title: New gem releases
 date: 2016-09-23 12:00 UTC
 author: Peter Solnica
+org: dry
 ---
 
 We’re happy to announce not one, but four big releases today - dry-validation 0.10, dry-types 0.9, dry-logic 0.4 and the new dry-struct gem! These releases are focused on bug fixes, performance improvements, internal refactorings, and new features, too.

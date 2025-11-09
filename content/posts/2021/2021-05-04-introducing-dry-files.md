@@ -2,6 +2,7 @@
 title: Introducing dry-files
 date: 2021-05-04 12:00 UTC
 author: Luca Guidi
+org: dry
 ---
 
 We talked several times about the union of [dry-rb][dry] + [ROM][rom] + [Hanami][hanami], well today we can share good news on that front: introducing `dry-files`.

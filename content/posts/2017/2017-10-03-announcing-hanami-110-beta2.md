@@ -4,6 +4,7 @@ date: 2017-10-03 17:53 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Initial support for Hanami plugins, new database CLI command <code>hanami db rollback</code>, add error messages to params, bug fixes.
 ---

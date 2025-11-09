@@ -4,6 +4,7 @@ date: 2016-11-18 15:11 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Security patch for JSON body parsers
 ---

@@ -4,6 +4,7 @@ date: 2016-07-22 13:26 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   New validations syntax with predicates, high level rules and error messages.
   JSON logger format, faster static assets serving.

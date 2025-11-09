@@ -4,6 +4,7 @@ date: 2022-08-16 13:30:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Slice and action generators, middlwares inspection, and conditional slice loading
 ---

@@ -2,6 +2,7 @@
 title: "dry-view 0.3.0: another step towards solving the view layer mess"
 date: 2017-05-15 12:00 UTC
 author: Tim Riley
+org: dry
 ---
 
 We’re excited to announce the release of dry-view 0.3.0, which introduces two concepts for better organising your views: view parts and decorators.

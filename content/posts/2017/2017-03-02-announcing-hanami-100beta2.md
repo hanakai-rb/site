@@ -4,6 +4,7 @@ date: 2017-03-02 13:02 UTC
 tags: announcements
 author: Luca Guidi & Oana Sipos
 image: true
+org: hanami
 excerpt: >
   Small fixes preparing the stable 1.0.0 version
 ---

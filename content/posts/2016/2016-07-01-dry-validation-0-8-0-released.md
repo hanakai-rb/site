@@ -2,6 +2,7 @@
 title: dry-validation 0.8.0 released
 date: 2016-07-01 12:00 UTC
 author: Peter Solnica
+org: dry
 ---
 
 After 2 months of hard work we are happy to announce the release of dry-validation 0.8.0! This release includes many new features, performance improvements and important bug fixes.

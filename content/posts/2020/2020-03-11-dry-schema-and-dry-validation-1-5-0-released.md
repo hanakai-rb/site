@@ -2,6 +2,7 @@
 title: dry-schema and dry-validation 1.5.0 released
 date: 2020-03-11 12:00 UTC
 author: Peter Solnica
+org: dry
 ---
 
 We're happy to announce the release of dry-schema 1.5.0! It comes with plenty of new features, fixes, and general improvements. Here are some of the highlights.

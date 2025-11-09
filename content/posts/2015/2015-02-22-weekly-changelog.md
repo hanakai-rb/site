@@ -3,6 +3,7 @@ title: Weekly Changelog
 date: 2015-02-22 10:03 UTC
 tags: changelog
 author: Luca Guidi
+org: hanami
 excerpt: >
   Changelog from Feb 16th to Feb 22th 2015
 ---

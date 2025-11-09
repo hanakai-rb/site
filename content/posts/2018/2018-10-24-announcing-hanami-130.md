@@ -4,6 +4,7 @@ date: 2018-10-24 07:23:18 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Switch to RSpec, deprecations, minor enhancements, and bug fixes. New Guides website.
 ---

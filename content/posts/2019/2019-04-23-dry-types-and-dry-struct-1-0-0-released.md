@@ -2,6 +2,7 @@
 title: "dry-types and dry-struct 1.0.0 released"
 date: 2019-04-23 12:00 UTC
 author: Peter Solnica
+org: dry
 ---
 
 We're very happy to announce the release of `dry-types` and `dry-struct` 1.0.0! `dry-types` is one of the most important and foundational gem in the dry-rb organization. It powers attributes in `dry-struct`, handles coercion in `dry-schema`, and is used extensively in [`rom-rb`](https://rom-rb.org/)'s relation schemas. With this 1.0.0 release, we hope it will be adopted by more projects. `dry-struct` was originally extracted from `dry-types` and it provides the famous `attribute` API for your PORO objects.

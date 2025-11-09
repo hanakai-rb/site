@@ -4,6 +4,7 @@ date: 2016-02-09 11:46 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Fix for static assets middleware
 ---

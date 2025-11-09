@@ -4,6 +4,7 @@ date: 2021-10-18 10:03:14 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Patch release for bugfixes. New default serializer (JSON) for HTTP session Cookies storage.
 ---

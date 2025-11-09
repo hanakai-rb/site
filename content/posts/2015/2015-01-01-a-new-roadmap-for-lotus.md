@@ -4,6 +4,7 @@ date: 2015-01-01 13:26 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Learn from past mistakes, clarify goals, communicate intent, Core Team and priorities such as stability and security.
   This is the new Lotus roadmap.

@@ -4,6 +4,7 @@ date: 2022-03-08 12:00:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Concrete slice classes, consistent action and view class structures
 ---
