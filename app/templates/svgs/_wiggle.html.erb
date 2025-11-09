@@ -1,0 +1,42 @@
+<%# Calculate wave properties based on height %>
+
+<% center = height / 2.0
+   amplitude = height * 0.25  # Wave goes 25% of height up/down from center
+   top = center - amplitude
+   bottom = center + amplitude
+
+   # Scale frequency (wavelength) proportionally to height
+   # Default ratio is 1:0.9 (40px height = 36px wavelength)
+   wavelength = height * 0.9
+   quarter = wavelength / 4.0
+   half = wavelength / 2.0
+   three_quarter = wavelength * 0.75
+
+   # Generate unique ID for this instance
+   pattern_id = "wiggle-#{SecureRandom.hex(4)}" %>
+
+<div class="<%= class_name %>" style="height: <%= height %>px;">
+  <svg preserveAspectRatio="none" class="block w-full h-full">
+    <defs>
+      <pattern
+        id="<%= pattern_id %>"
+        x="0"
+        y="0"
+        width="<%= wavelength %>"
+        height="<%= height %>"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          class="stroke-current"
+          d="M0,<%= center %> Q<%= quarter %>,<%= top %> <%= half %>,<%= center %> Q<%= three_quarter %>,<%= bottom %> <%= wavelength %>,<%= center %>"
+          fill="none"
+          stroke="#4a90e2"
+          stroke-width="<%= stroke_width %>"
+          stroke-linecap="round"
+          vector-effect="non-scaling-stroke"
+        />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#<%= pattern_id %>)" />
+  </svg>
+</div>
