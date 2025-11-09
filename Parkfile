@@ -59,12 +59,8 @@ at_exit do
     # Only build search index if parklife build was successful
     if defined?(Parklife) && ARGV.include?("build")
       puts "\n==> Building Pagefind search index..."
-      require "rake"
       require "fileutils"
-      load File.expand_path("Rakefile", __dir__)
 
-      # Update the search:build_index task to index the build directory
-      # We need to temporarily override the task behavior
       puts "Indexing build directory..."
       FileUtils.mkdir_p("build")
       result = system("npx pagefind --site build")
