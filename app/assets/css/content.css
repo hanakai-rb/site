@@ -163,7 +163,8 @@
     margin-block-end: calc(var(--spacing) * 5);
 
     @supports not selector(::-webkit-scrollbar) {
-      scrollbar-color: var(--hk-color-bg-primary) var(--hk-color-neutral-subtle);
+      scrollbar-color: oklch(from var(--hk-color-bg-secondary) calc(l + 0.3) calc(c - 0.1) h)
+        var(--hk-color-neutral-subtle);
     }
 
     &::-webkit-scrollbar {
@@ -178,7 +179,7 @@
     }
     &::-webkit-scrollbar-thumb {
       border-radius: var(--radius-md);
-      background-color: var(--hk-color-bg-primary);
+      background-color: oklch(from var(--hk-color-bg-secondary) calc(l + 0.3) calc(c - 0.1) h);
     }
 
     code {
