@@ -4,6 +4,7 @@ date: 2024-12-10 10:30:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Everything we did this year, and what we’re looking forward to in the next. A new kind of update!
 ---

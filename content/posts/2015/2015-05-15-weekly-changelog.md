@@ -3,6 +3,7 @@ title: Weekly Changelog
 date: 2015-05-15 12:56 UTC
 tags: changelog
 author: Trung Lê
+org: hanami
 excerpt: >
   Changelog from Apr 28th to May 15th 2015
 ---

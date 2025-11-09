@@ -8,6 +8,7 @@ module Site
         attribute :title, Types::Nominal::String
         attribute :published_at, Types::Nominal::Time.optional
         attribute :author, Types::Nominal::String
+        attribute :org, Types::Nominal::String.optional
         attribute :excerpt, Types::Nominal::String.optional
         attribute :content, Types::Nominal::String
 

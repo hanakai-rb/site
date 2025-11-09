@@ -4,6 +4,7 @@ date: 2019-07-26 13:45:33 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Completely rewritten validation library, compatible with latest DRY & ROM versions. Use it today with Hanami 1!
 ---

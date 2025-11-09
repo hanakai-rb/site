@@ -4,6 +4,7 @@ date: 2021-11-09 13:30:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Streamlined source directories, more flexible settings, better integrated actions, and the beginning of a monthly release cadence.
 ---

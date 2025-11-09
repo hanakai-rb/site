@@ -3,6 +3,7 @@ title: A new chapter for dry-rb and ROM
 date: 2024-12-12 10:00:00 UTC
 tags: announcements
 author: Tim Riley
+org:
 image: true
 ---
 

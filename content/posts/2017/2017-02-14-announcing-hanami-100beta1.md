@@ -4,6 +4,7 @@ date: 2017-02-14 13:33 UTC
 tags: announcements
 author: Luca Guidi & Oana Sipos
 image: true
+org: hanami
 excerpt: >
   Feature freeze, project logger, automatic logging of requests, SQL queries, and migrations. Minor bug fixes.
 ---

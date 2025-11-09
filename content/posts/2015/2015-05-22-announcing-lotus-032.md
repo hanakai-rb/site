@@ -4,6 +4,7 @@ date: 2015-05-22 07:14 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Lotus patch release: Automatic secure cookies, action file send and routing helpers, optional contents for views, Lotus.root and bug fixes.
 ---

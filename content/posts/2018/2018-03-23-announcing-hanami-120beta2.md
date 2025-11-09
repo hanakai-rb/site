@@ -4,6 +4,7 @@ date: 2018-03-23 11:19 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Minor features and bug fixes from <code>v1.2.0.beta1</code>
 ---

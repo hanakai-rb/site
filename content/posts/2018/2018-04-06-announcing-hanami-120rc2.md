@@ -4,6 +4,7 @@ date: 2018-04-06 09:36 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Minor features and bug fixes from <code>v1.2.0.rc1</code>
 ---

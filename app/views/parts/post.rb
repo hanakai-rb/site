@@ -7,6 +7,10 @@ module Site
         def published_date
           published_at.strftime("%B %d, %Y")
         end
+
+        def published_datetime
+          published_at&.iso8601
+        end
       end
     end
   end

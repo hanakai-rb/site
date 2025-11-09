@@ -4,6 +4,7 @@ date: 2017-04-06 07:46 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Hanami v1.0.0 🎉
 ---

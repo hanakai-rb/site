@@ -4,6 +4,7 @@ date: 2015-09-30 07:11 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Features: Mailers, custom data mapper coercions, command / query separation.
   Rails Girls Summer of Code and Hack Day!

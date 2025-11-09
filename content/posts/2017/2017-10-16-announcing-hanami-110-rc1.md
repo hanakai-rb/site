@@ -4,6 +4,7 @@ date: 2017-10-16 12:30 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Association aliases, entities as types in custom schema, <code>--relation</code> option for model generator, RSpec metadata, bug fixes.
 ---

@@ -4,6 +4,7 @@ date: 2015-03-23 17:14 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   This is the most exciting Lotus release ever.
   We have new features, improved security, and more real world use cases.

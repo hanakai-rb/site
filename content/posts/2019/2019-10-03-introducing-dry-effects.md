@@ -2,6 +2,7 @@
 title: Introducing dry-effects
 date: 2019-10-03 12:00 UTC
 author: Nikita Shilnikov
+org: dry
 ---
 
 Today we're introducing another gem and supercharging our toolset: say hello to dry-effects!

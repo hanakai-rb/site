@@ -4,6 +4,7 @@ date: 2016-05-16 07:37 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Hanami will introduce a new syntax for validations based on predicates. It features builtin and custom predicates, type safety, specific coercions for HTTP params, whitelisting, custom error messages with optional i18n support. This release will start a new alliance between Hanami and dry-rb.
 ---

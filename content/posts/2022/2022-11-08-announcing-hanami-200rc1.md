@@ -4,6 +4,7 @@ date: 2022-11-08 08:24:53 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   First Release Candidate! Preparing for the stable release, and sharing a preview of our updated guides.
 ---

@@ -2,6 +2,7 @@
 title: "dry-validation 1.0.0 released"
 date: 2019-06-10 12:00 UTC
 author: Peter Solnica
+org: dry
 ---
 
 We're very happy to announce the release of dry-validation 1.0.0!

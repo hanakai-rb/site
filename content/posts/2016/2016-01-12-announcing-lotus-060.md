@@ -4,6 +4,7 @@ date: 2016-01-12 12:57 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Features: Assets, custom initializers, default Rake tasks, and destroy command.
 ---

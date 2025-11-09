@@ -4,6 +4,7 @@ date: 2022-10-24 13:15:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Our last beta! Improved Hanami::Action memory usage, simplified body parser config, and a whole lot of polish.
 ---

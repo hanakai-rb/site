@@ -4,6 +4,7 @@ date: 2022-07-20 07:54:53 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Hanami 2 first beta: app-centric revolution & CLI. What to expect in 2.0 and 2.1.
 ---

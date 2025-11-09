@@ -4,6 +4,7 @@ date: 2016-11-15 09:42 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   New hanami-model engine based on ROM.
   Database automapping, data integrity for entities, experimental associations, native PostgreSQL types.

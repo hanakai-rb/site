@@ -4,6 +4,7 @@ date: 2018-02-27 17:18 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Patch release for bug fixes and minor enhancements
 ---

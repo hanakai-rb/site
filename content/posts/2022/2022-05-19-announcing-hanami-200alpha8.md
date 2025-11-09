@@ -4,6 +4,7 @@ date: 2022-05-19 12:00:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   New base action and view classes, and a few fixes
 ---

@@ -4,6 +4,7 @@ date: 2017-10-02 07:41 UTC
 tags: announcements
 author: Marion Schleifer
 image: true
+org: hanami
 excerpt: >
   Help us improving our documentation and earn yourself Hanami stickers and other gadgets 🌸
 ---

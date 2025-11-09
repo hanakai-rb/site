@@ -2,6 +2,7 @@
 title: "dry-transaction 0.10.0 brings class-based transactions and a whole new level of flexibility"
 date: 2017-06-15 12:00 UTC
 author: Tim Riley
+org: dry
 ---
 
 We're thrilled to announce the release of [dry-transaction 0.10.0](/gems/dry-transaction), which offers a huge improvement in ease-of-use and flexibility around designing your application's business transactions.

@@ -2,6 +2,7 @@
 title: Introducing dry-system
 date: 2016-08-15 12:00 UTC
 author: Peter Solnica
+org: dry
 ---
 
 We’re happy to announce the release of `dry-system` 0.5.0 (previously known as dry-component), which brings many internal API improvements, and better support for bootable components.

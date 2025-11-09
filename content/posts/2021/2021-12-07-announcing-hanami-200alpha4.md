@@ -4,6 +4,7 @@ date: 2021-12-07 13:15:19 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   New API for Content Security Policy, Router helpers from actions, CLI enhancements.
 ---

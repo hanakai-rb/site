@@ -2,6 +2,7 @@
 title: dry-transaction 0.6 brings powerful new support for custom step adapters
 date: 2016-04-07 12:00 UTC
 author: Tim Riley
+org: dry
 ---
 
 [dry-transaction](http://dry-rb.org/gems/dry-transaction) is dry-rb's answer to modelling complex business transactions in your applications. With dry-transaction, you can arrange multiple processing operations into a linear pipeline, with the output of each step becoming the input of the next. dry-transaction also elevates error handling to a first-class concern. Any error will halt the flow of operations, and you have powerful APIs for matching and acting on errors.

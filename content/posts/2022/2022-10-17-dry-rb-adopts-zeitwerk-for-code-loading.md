@@ -1,6 +1,7 @@
 ---
 title: dry-rb adopts Zeitwerk for code loading
 date: 2022-10-17 12:00 UTC
+org: dry
 author: Peter Solnica
 ---
 

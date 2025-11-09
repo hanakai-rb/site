@@ -2,6 +2,7 @@
 title: Announcing dry-view, a functional view rendering system for Ruby
 date: 2017-01-30 12:00 UTC
 author: Tim Riley
+org: dry
 ---
 
 Say hello to **dry-view**, the newest member of the dry-rb family!

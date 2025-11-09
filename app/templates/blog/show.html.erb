@@ -1,19 +1,49 @@
 <% content_for :title, post.title %>
 
-<article class="lg:mt-8 lg:mb-14">
-  <header class="mb-6">
-    <h1 class="text-4xl font-black mb-2"><%= post.title %></h1>
-
-    <p class="text-sm text-gray-500" data-testid="date">
+<article class="lg:pt-8 pt-5 theme-<%= org %>-light">
+  <header class="lg:max-w-[61.75%] mx-auto mb-6 text-center">
+    <time
+      class="
+        block font-mono uppercase text-xs font-semibold text-primary
+        tracking-wide mb-3
+      "
+      data-testid="date"
+      datetime="<%= post.published_datetime %>"
+    >
       <%= post.published_date %>
-    </p>
+    </time>
+
+    <h1
+      class="
+        lg:text-[2.625rem] text-4xl font-extrabold mb-4 tracking-tight
+        leading-tight
+      "
+    >
+      <%= post.title %>
+    </h1>
 
     <% if post.respond_to?(:author) && post.author && !post.author.to_s.strip.empty? %>
-      <p class="text-sm text-gray-500" data-testid="author">
-        <%= post.author %>
+      <p
+        class="text-lg text-neutral-500 flex items-center justify-center gap-2"
+        data-testid="author"
+      >
+        <% if author_team_member %>
+          <%= image_tag "https://avatars.githubusercontent.com/#{author_team_member.github_user}?size=80",
+              alt: "Avatar for #{post.author}",
+              class: "avatar w-10 h-10 rounded-full border-2 border-gray-200",
+              height: 40,
+              width: 40 %>
+        <% end %>
+        <span><%= post.author %></span>
       </p>
     <% end %>
   </header>
 
-  <div class="content"><%= post.content_html %></div>
+  <div class="lg:max-w-[80%] mx-auto mb-6 flex gap-2 items-center">
+    <%= render "svgs/wiggle", class_name: "text-primary flex-1", height: 14, stroke_width: 2 %>
+    <%= render "svgs/#{org || "hanakai"}_logo", width: 30, height: 30 %>
+    <%= render "svgs/wiggle", class_name: "text-primary flex-1", height: 14, stroke_width: 2 %>
+  </div>
+
+  <div class="content lg:max-w-[61.75%] mx-auto"><%= post.content_html %></div>
 </article>

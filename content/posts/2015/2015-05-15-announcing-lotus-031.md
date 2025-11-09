@@ -4,6 +4,7 @@ date: 2015-05-15 15:09 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Lotus patch release: RESTful nested resource(s), dirty tracking and timestamps for entities, improved code generators, bug fixes.
 ---

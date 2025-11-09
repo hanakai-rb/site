@@ -4,6 +4,7 @@ date: 2017-03-31 08:21 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Small fixes and enhancements leading up to the stable v1.0.0 version
 ---

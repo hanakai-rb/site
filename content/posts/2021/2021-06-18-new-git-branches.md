@@ -4,6 +4,7 @@ date: 2021-06-18 06:57:41 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   New Git branches system, renamed master in favor of main. Main contains code for Hanami 2.0.
 ---

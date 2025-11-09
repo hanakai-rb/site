@@ -4,6 +4,7 @@ date: 2022-01-12 11:00:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
+org: hanami
 excerpt: >
   Sensible default logger, full source dirs config, router loading flexibility, route helpers in views
 ---

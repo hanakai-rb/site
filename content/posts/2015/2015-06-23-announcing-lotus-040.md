@@ -4,6 +4,7 @@ date: 2015-06-23 08:23 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Features: additional architecture, database migrations, HTML5 form helpers, CSRF Protection, Force SSL.
   New Core Team member, Rails Girls Summer of Code and Guides!

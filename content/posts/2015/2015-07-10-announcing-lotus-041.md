@@ -4,6 +4,7 @@ date: 2015-07-10 17:16 UTC
 tags: announcements
 author: Luca Guidi
 image: true
+org: hanami
 excerpt: >
   Lotus patch release: Fix container routes, Rack middleware sessions and CLI commands.
 ---

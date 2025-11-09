@@ -3,6 +3,7 @@ title: Weekly Changelog
 date: 2015-03-08 09:29 UTC
 tags: changelog
 author: Luca Guidi
+org: hanami
 excerpt: >
   Changelog from Mar 2nd to Mar 8th 2015
 ---
