@@ -58,20 +58,28 @@ at_exit do
   if $!.nil? || $!.is_a?(SystemExit) && $!.success?
     # Only build search index if parklife build was successful
     if defined?(Parklife) && ARGV.include?("build")
-      puts "\n==> Building search index..."
-      require "rake"
+      puts "\n==> Building Pagefind search index..."
       require "fileutils"
-      load File.expand_path("Rakefile", __dir__)
-      Rake::Task["search:build_index"].invoke
 
-      # Copy search files to build directory
-      puts "Copying search index files to build directory..."
+      puts "Indexing build directory..."
+      FileUtils.mkdir_p("build")
+      result = system("npx pagefind --site build")
 
-      # Copy versioned search files (with checksum in filename)
-      Dir.glob("public/lunr-index.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
-      Dir.glob("public/search-documents.*.json").each { |f| FileUtils.cp(f, "build/#{File.basename(f)}") }
+      if result
+        # Calculate total size of pagefind directory
+        total_size = Dir.glob("build/pagefind/**/*")
+          .select { |f| File.file?(f) }
+          .sum { |f| File.size(f) }
 
-      puts "✓ Search files copied to build/"
+        size_kb = (total_size / 1024.0).round(2)
+
+        puts "✓ Pagefind index built successfully"
+        puts "  - build/pagefind/"
+        puts "  - Index size: #{size_kb}KB"
+      else
+        puts "✗ Failed to build Pagefind index"
+        exit 1
+      end
     end
   end
 end

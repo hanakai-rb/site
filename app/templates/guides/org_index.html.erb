@@ -1,7 +1,6 @@
 <% content_for :title, "#{org_name(org_slug)} #{version} Guides" %>
 
 <%= render_with_slots "doc_pages/main" do |main| %>
-  <% # Navigation %>
   <%= main.slot :navigation do %>
     <%= render_with_slots "doc_pages/pages_nav_desktop", org: org_slug, version:, other_versions: versions, path_prefix: "/guides/#{org_slug}" do |pages_nav_desktop| %>
       <%= pages_nav_desktop.slot :nav do %>
@@ -24,7 +23,6 @@
     <% end %>
   <% end %>
 
-  <% # Content %>
   <%= main.slot :content do %>
     <header class="mb-12">
       <h1 class="text-4xl font-black mb-4"><%= org_name(org_slug) %> guides</h1>

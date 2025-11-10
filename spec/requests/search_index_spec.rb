@@ -3,102 +3,90 @@
 RSpec.describe "search index", type: :request do
   before do
     # Ensure search index is built
-    unless File.exist?("public/search-manifest.json")
+    unless File.exist?("public/pagefind/pagefind-entry.json")
       require "rake"
       load File.expand_path("../../Rakefile", __dir__)
       Rake::Task["search:build_index"].invoke
     end
   end
 
-  let(:manifest) { JSON.parse(File.read("public/search-manifest.json")) }
-  let(:checksum) { manifest["checksum"] }
+  let(:pagefind_entry) { JSON.parse(File.read("public/pagefind/pagefind-entry.json")) }
 
-  describe "versioned search files" do
-    it "serves the lunr index with checksum in filename" do
-      response = get "/lunr-index.#{checksum}.json"
-
-      expect(response.status).to eq(200)
-      expect(response.headers["Content-Type"]).to include("application/json")
-      expect(response.headers["ETag"].to_s).not_to be_empty
+  describe "pagefind index files" do
+    it "creates the pagefind directory" do
+      expect(File.directory?("public/pagefind")).to be true
     end
 
-    it "serves the search documents with checksum in filename" do
-      response = get "/search-documents.#{checksum}.json"
-
-      expect(response.status).to eq(200)
-      expect(response.headers["Content-Type"]).to include("application/json")
-      expect(response.headers["ETag"].to_s).not_to be_empty
+    it "creates the pagefind-entry.json file" do
+      expect(File.exist?("public/pagefind/pagefind-entry.json")).to be true
     end
 
-    it "returns 404 for non-existent checksums" do
-      response = get "/lunr-index.invalid00.json"
+    it "serves the main pagefind.js file" do
+      response = get "/pagefind/pagefind.js"
 
-      expect(response.status).to eq(404)
+      expect(response.status).to eq(200)
+      expect(response.headers["Content-Type"]).to include("application/javascript")
+    end
+
+    it "serves the pagefind UI files" do
+      response = get "/pagefind/pagefind-ui.js"
+
+      expect(response.status).to eq(200)
+      expect(response.headers["Content-Type"]).to include("application/javascript")
+    end
+
+    it "serves the pagefind UI CSS" do
+      response = get "/pagefind/pagefind-ui.css"
+
+      expect(response.status).to eq(200)
+      expect(response.headers["Content-Type"]).to include("text/css")
     end
   end
 
-  describe "search index content" do
-    let(:documents) { JSON.parse(File.read("public/search-documents.#{checksum}.json")) }
+  describe "search index coverage" do
+    it "indexes an expected number of pages" do
+      page_count = pagefind_entry.dig("languages", "en", "page_count")
+      expect(page_count).to be > 100
+    end
+  end
+
+  describe "indexed content verification" do
+    # Helper to decompress and parse all fragments
+    def load_all_fragments
+      fragment_files = Dir.glob("public/pagefind/fragment/*.pf_fragment")
+
+      fragment_files.map do |file|
+        compressed = File.read(file, mode: "rb")
+
+        # Decompress using zlib
+        require "zlib"
+        gz = Zlib::GzipReader.new(StringIO.new(compressed))
+        decompressed = gz.read
+        gz.close
+
+        # Skip pagefind_dcd signature if present
+        if decompressed[0..11] == "pagefind_dcd"
+          decompressed = decompressed[12..]
+        end
+
+        JSON.parse(decompressed)
+      end
+    end
+
+    let(:fragments) { load_all_fragments }
 
     it "includes guides and docs" do
-      guides = documents.select { |d| d["section"].match?(/hanami|rom|dry/) }
-      expect(guides.length).to be > 0
+      guide_urls = fragments.map { |f| f["url"] }
+        .select { |url| url =~ %r{/guides/(hanami|rom|dry)/} }
+
+      expect(guide_urls.length).to be > 0
     end
 
-    it "includes blog posts" do
-      blog_posts = documents.select { |d| d["section"] == "blog" }
-      expect(blog_posts.length).to be > 0
-
-      # Check blog posts have required fields
-      blog_post = blog_posts.first
-      expect(blog_post).to have_key("title")
-      expect(blog_post).to have_key("path")
-      expect(blog_post).to have_key("content")
-      expect(blog_post).to have_key("date")
-      expect(blog_post["path"]).to start_with("/blog/")
-    end
-
-    it "includes community pages" do
-      community_pages = documents.select { |d| d["section"] == "community" }
-      expect(community_pages.length).to eq(2)
-
-      # Check for conduct and community pages
-      paths = community_pages.map { |p| p["path"] }
-      expect(paths).to include("/conduct")
-      expect(paths).to include("/community")
-    end
-
-    it "includes required fields for all documents" do
-      documents.each do |doc|
-        expect(doc).to have_key("id")
-        expect(doc).to have_key("title")
-        expect(doc).to have_key("section")
-        expect(doc).to have_key("path")
-        expect(doc).to have_key("content")
-        expect(doc).to have_key("headings")
+    it "removes trailing slashes from indexed paths" do
+      fragments.each do |fragment|
+        expect(fragment["url"]).not_to end_with("/"),
+          "Path should not end with /: #{fragment["url"]}"
       end
-    end
-
-    it "marks latest versions for guides and docs" do
-      versioned_docs = documents.select { |d| d["version"] }
-      latest_docs = versioned_docs.select { |d| d["isLatest"] }
-
-      expect(latest_docs.length).to be > 0
-    end
-
-    it "removes trailing slashes from paths" do
-      documents.each do |doc|
-        expect(doc["path"]).not_to end_with("/"), "Path should not end with /: #{doc["path"]}"
-      end
-    end
-  end
-
-  describe "checksum embedding in HTML" do
-    it "checksum is available from manifest file" do
-      # The checksum is read from public/search-manifest.json at runtime
-      # and embedded in the HTML via the search_checksum expose in app/view.rb
-      expect(checksum).to match(/^[a-f0-9]{8}$/)
-      expect(File.exist?("public/search-manifest.json")).to be true
     end
   end
 end

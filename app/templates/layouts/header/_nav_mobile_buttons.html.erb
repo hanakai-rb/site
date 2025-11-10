@@ -1,0 +1,26 @@
+<div class="md:hidden flex -my-3 -mr-1">
+  <button
+    aria-label="Search"
+    aria-keyshortcuts="/ control+k meta+k"
+    data-defo-is-mac="<%= { macClassName: 'mac'}.to_json %>"
+    class="
+      search-activate-button text-primary-reversed cursor-pointer
+      p-[calc(var(--spacing)*2.5)]
+    "
+  >
+    <%= render "svgs/icons/magnifying_glass", height: 18, width: 18, class_name: "fill-current" %>
+  </button>
+
+  <button
+    class="flex p-[calc(var(--spacing)*2.5)] items-center cursor-pointer"
+    data-defo-toggle-class="<%= {
+        clickAway: false,
+        triggerToggleClassName: "active",
+        targetSelector: "#nav-mobile",
+        targetToggleClassName: "h-0 h-auto collapse"
+        }.to_json %>"
+  >
+    <%= render "svgs/icons/list", height: 20, width: 20, class_name: "fill-current [.active_&]:hidden" %>
+    <%= render "svgs/icons/x", height: 20, width: 20, class_name: "fill-current hidden [.active_&]:block" %>
+  </button>
+</div>

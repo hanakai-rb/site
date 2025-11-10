@@ -1,0 +1,54 @@
+<div
+  data-defo-pagefind-search="<%= {
+    activateSelectors: ".search-activate-button", activeClassNames: ["active"], deactivateSelectors: ".search-deactivate-button", pagefindUiSelector: "[data-pagefind-ui-owned]"
+  }.to_json %>"
+  class="
+    z-50 fixed top-0 bottom-0 left-0 right-0 flex flex-col
+    pointer-events-none
+    justify-center items-center
+    [&.active]:pointer-events-auto
+  "
+  id="pagefind-overrides-hook"
+  role="dialog"
+  aria-label="Search"
+>
+  <div
+    class="
+      search-deactivate-button z-0 absolute top-0 left-0 right-0 bottom-0
+      bg-primary opacity-0 invisible
+      transition-discrete transition-all duration-250 starting:opacity-0
+      lg:[.active_&]:visible lg:[.active_&]:opacity-50
+    "
+  ></div>
+  <div
+    class="
+      flex flex-col flex-1 bg-neutral rounded-2xl
+      shadow-md py-6 pl-6 pr-4 relative w-full
+      max-w-[calc(100%-var(--spacing)*4)] max-h-[calc(100%-var(--spacing)*4)]
+      lg:max-h-[80vh] lg:max-w-[80vh]
+      z-10
+      invisible opacity-0 starting:opacity-0 translate-y-3 starting:translate-y-4
+      transition-discrete transition-all duration-300 ease-in-out
+      [.active_&]:visible [.active_&]:opacity-100 [.active_&]:translate-y-0
+    "
+  >
+    <button
+      class="
+        search-deactivate-button absolute right-6 top-[25px] z-10 p-4 cursor-pointer
+        text-neutral-500 lg:right-7
+      "
+      aria-label="Close"
+    >
+      <%= render "svgs/icons/x", height: 16, width: 16, class_name: "fill-current" %>
+    </button>
+
+    <!-- Pagefind search owned -->
+    <div
+      data-pagefind-ui-owned
+      class="
+        flex-1 h-full overflow-y-scroll pr-2 scrolling-panel overscroll-contain
+        scrolling-panel--with-bottom-overlay
+      "
+    ></div>
+  </div>
+</div>

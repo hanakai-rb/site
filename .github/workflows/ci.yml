@@ -69,7 +69,7 @@ jobs:
 
       - name: Rake
         run: |-
-          bundle exec hanami assets compile
+          bin/static-build
           bundle exec rake
 
   workflow-keepalive:

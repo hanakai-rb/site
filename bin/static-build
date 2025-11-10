@@ -5,8 +5,10 @@ set -eu
 export SITE_STATIC_BUILD=true
 export HANAMI_ENV=production
 
+# Clean previous build to avoid caching issues
+rm -rf build public/pagefind
+
 # Compile frontend assets
-bundle exec rake tailwind:compile
 bundle exec hanami assets compile
 
 # Generate sitemap
@@ -14,10 +16,8 @@ bundle exec hanami assets compile
 # TODO: after launch, use `rake sitemap:refresh`, to ping search engines.
 bundle exec rake sitemap:create
 
-# Build search index (so checksum is available during render)
-bundle exec rake search:build_index
-
 # Build with Parklife - and forward arguments sent to this script.
+# Note: Search index is built as part of the Parklife build process (see Parkfile)
 bundle exec parklife build "$@"
 
 # Copy static content files to build/

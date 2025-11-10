@@ -30,7 +30,7 @@
     class="font-sans text-neutral bg-white flex flex-col min-h-dvh"
     data-defo-foresight="<%= { elementSelector: "a[href^='/']" }.to_json %>"
   >
-    <%= render "header/base", nav_items: header_nav_items, checksum: search_checksum %>
+    <%= render "header/base", nav_items: header_nav_items %>
 
     <div
       class="
@@ -42,5 +42,6 @@
     </div>
 
     <%= render "footer", nav_items: footer_nav_items %>
+    <%= render "search/search_modal" %>
   </body>
 </html>
