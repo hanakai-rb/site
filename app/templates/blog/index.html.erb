@@ -1,80 +1,95 @@
 <% content_for :title, "Blog" %>
 
-<div class="lg:mt-8 lg:mb-14">
-  <header class="mb-12">
-    <h1 class="text-4xl font-black mb-4">Blog</h1>
-    <p class="text-lg text-gray-600">
-      Latest news, releases, and guides from the Hanami, Dry, and ROM teams.
+<div class="lg:max-w-[61.75%] w-full mx-auto lg:pt-12 lg:pb-12 pt-5">
+  <header class="lg:mb-12 mb-6 text-center">
+    <h1 class="lg:hidden text-2xl font-semibold mb-1">
+      Blog
+    </h1>
+    <p class="lg:text-lg text-md text-neutral-500 text-balance">
+      The latest updates from the Hanami, Dry, and Rom projects.
     </p>
   </header>
 
   <% if posts.any? %>
-    <div class="bg-white border border-gray-200 rounded-lg">
+    <ol class="flex flex-col lg:gap-8 gap-6 lg:mb-10 mb-6">
       <% posts.each do |post| %>
-        <article
-          class="
-            p-6 first:rounded-t-lg last:rounded-b-lg border-b
-            border-gray-200 last:border-b-0
-          "
+        <li
           data-testid="blog-post"
+          class="theme-<%= post.org || "hanakai" %>-light"
         >
-          <h2 class="text-xl font-semibold text-gray-900">
-            <a
-              class="hover:underline text-gray-900"
-              href="<%= post.url_path %>"
-            >
-              <%= post.title %>
-            </a>
-          </h2>
+          <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-5", height: 14, stroke_width: 2 %>
+          <div class="flex gap-6">
+            <%= render "svgs/#{post.org || "hanakai"}_logo", width: 30, height: 30, class_name: "shrink-0" %>
+            <div class="mt-2 flex flex-col lg:gap-3 gap-2">
+              <time
+                class="
+                  block font-mono uppercase text-xs font-semibold
+                  text-primary tracking-wide
+                "
+                data-testid="date"
+                datetime="<%= post.published_datetime %>"
+              >
+                <%= post.published_date %>
+              </time>
 
-          <p class="text-sm text-gray-500 mt-1" data-testid="date">
-            <%= post.published_date %>
-            <% if post.respond_to?(:author) && post.author %>
-              ·
-              <span data-testid="author"><%= post.author %></span>
-            <% end %>
-          </p>
+              <h2 class="lg:text-3xl text-2xl font-bold">
+                <a
+                  class="
+                    text-link hover:decoration-[3px] hover:underline
+                    hover:decoration-(--hk-color-text-link-underline)
+                  "
+                  href="<%= post.url_path %>"
+                >
+                  <%= post.title %>
+                </a>
+              </h2>
 
-          <p class="text-gray-700 mt-2 line-clamp-2"><%= post.excerpt %></p>
-        </article>
+              <p class="text-lg"><%= post.excerpt %></p>
+            </div>
+          </div>
+        </li>
       <% end %>
+    </ol>
+    <div>
+      <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-8", height: 14, stroke_width: 2 %>
+      <nav
+        class="flex items-center gap-4 justify-center"
+        aria-label="More results"
+      >
+        <% if page > 1 %>
+          <a
+            class="
+              bg-primary text-primary-reversed
+              flex items-center px-3 md:px-2.5 py-2 leading-tight rounded-xl text-lg font-semibold
+              hover:shadow-md
+            "
+            href="<%= "/blog/page/#{page - 1}" %>"
+          >
+            <- Previous page
+          </a>
+        <% end %>
+
+        <% if posts.any? %>
+          <a
+            class="
+              bg-primary text-primary-reversed
+              flex items-center md:px-2.5 px-3 py-2 leading-tight rounded-xl text-lg font-semibold
+              hover:shadow-md
+            "
+            href="<%= "/blog/page/#{page + 1}" %>"
+          >
+            Next page ->
+          </a>
+        <% end %>
+      </nav>
     </div>
   <% end %>
 
   <% if posts.none? %>
-    <p>
+    <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-5", height: 14, stroke_width: 2 %>
+    <p class="text-center text-2xl lg:my-20">
       No more posts.
-      <a class="text-link underline" href="/blog">Back to the beginning.</a>
+      <a class="text-link underline" href="/blog">Back to the beginning?</a>
     </p>
   <% end %>
-
-  <nav class="mt-10 flex items-center justify-between">
-    <div>
-      <% if page > 1 %>
-        <a
-          class="
-            inline-flex items-center gap-2 px-3 py-2 border border-gray-300
-            rounded-md text-gray-700 hover:bg-gray-50
-          "
-          href="<%= "/blog/page/#{page - 1}" %>"
-        >
-          ‹ Previous
-        </a>
-      <% end %>
-    </div>
-    <div class="text-sm text-gray-500">Page <%= page %></div>
-    <div>
-      <% if posts.any? %>
-        <a
-          class="
-            inline-flex items-center gap-2 px-3 py-2 border border-gray-300
-            rounded-md text-gray-700 hover:bg-gray-50
-          "
-          href="<%= "/blog/page/#{page + 1}" %>"
-        >
-          Next ›
-        </a>
-      <% end %>
-    </div>
-  </nav>
 </div>
