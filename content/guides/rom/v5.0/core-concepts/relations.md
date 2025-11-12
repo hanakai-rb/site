@@ -8,9 +8,7 @@ Relations are really the heart of ROM. They provide APIs for reading the data fr
 
 In typical setup of an application using ROM, relations are defined as explicit classes. You can put them in separate files, namespace them or not, and configure them when it's needed (especially useful when using a legacy database with non-standard naming conventions).
 
-The most important responsibility of relations is to expose a clear API for reading data. Every relation _method_ should return another relation, we call them <mark>relation views</mark>. These views can be defined in ways that make them
-_composable_ by including combine-keys in the resulting tuples. This is not limited
-to SQL, you can compose data from different sources.
+The most important responsibility of relations is to expose a clear API for reading data. Every relation _method_ should return another relation, we call them *relation views*. These views can be defined in ways that make them _composable_ by including combine-keys in the resulting tuples. This is not limited to SQL, you can compose data from different sources.
 
 ### Example relation class
 

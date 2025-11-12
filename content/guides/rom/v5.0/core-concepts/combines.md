@@ -4,7 +4,7 @@ title: Combines
 
 Combines are a feature provided by [relations](//page/relations) that take advantage of [associations](//page/associations) between relations to reliably merge (aka combine) and construct complex nested data structures.
 
-In cases where there is a need to load some data along with its dependent nested data then <mark>Relation#combine</mark> is the tool to reach for. It might be a bit of a paradigm shift, but it's important to realize ROM will **never** load associated data unless it is explicitly told to do so.
+In cases where there is a need to load some data along with its dependent nested data then `Relation#combine` is the tool to reach for. It might be a bit of a paradigm shift, but it's important to realize ROM will **never** load associated data unless it is explicitly told to do so.
 
 This idea is in stark contrast with other ORMs such as Active Record for Rails which offer lazy loading by default. Since composing data is so quick and easy lazy loading is not needed preventing a whole class of issues such as N+1 query performance problems.
 
