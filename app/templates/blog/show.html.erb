@@ -1,7 +1,7 @@
 <% content_for :title, post.title %>
 
 <article class="lg:pt-12 pt-5 theme-<%= org %>-light">
-  <header class="lg:max-w-[61.75%] mx-auto mb-6 text-center">
+  <header class="lg:max-w-200 mx-auto mb-6 text-center">
     <time
       class="
         block font-mono uppercase text-xs font-semibold text-primary
@@ -45,5 +45,7 @@
     <%= render "svgs/wiggle", class_name: "text-primary flex-1", height: 14, stroke_width: 2 %>
   </div>
 
-  <div class="content lg:max-w-[61.75%] mx-auto"><%= post.content_html %></div>
+  <div class="content content--large lg:max-w-200 mx-auto">
+    <%= post.content_html %>
+  </div>
 </article>
