@@ -18,73 +18,78 @@ Use the following helpers if your code needs behave differently in different env
 
 `Hanami.env` returns a symbol representing the current environment.
 
-    # HANAMI_ENV=development
+```bash
+# HANAMI_ENV=development
 
-    Hanami.env
-    => :development
+Hanami.env
+=> :development
 
-    # HANAMI_ENV=test
+# HANAMI_ENV=test
 
-    Hanami.env
-    => :test
+Hanami.env
+=> :test
 
-    # HANAMI_ENV=production
+# HANAMI_ENV=production
 
-    Hanami.env
-    => :production
+Hanami.env
+=> :production
+```
 
 ### Hanami.env?
 
 `Hanami.env?(*names)` returns true if the given name(s) match the current environment.
 
-    # HANAMI_ENV=development
+```bash
+# HANAMI_ENV=development
 
-    Hanami.env?(:development)
-    => true
+Hanami.env?(:development)
+=> true
 
-    Hanami.env?(:test)
-    => false
+Hanami.env?(:test)
+=> false
 
-    Hanami.env?(:production)
-    => false
+Hanami.env?(:production)
+=> false
+```
 
 You can match on more than one environment:
 
-    # HANAMI_ENV=development
+```bash
+# HANAMI_ENV=development
+Hanami.env?(:development, :test)
 
-    Hanami.env?(:development, :test)
-    => true
+=> true
+# HANAMI_ENV=test
+Hanami.env?(:development, :test)
 
-    # HANAMI_ENV=test
+=> true
+# HANAMI_ENV=production
+Hanami.env?(:development, :test)
 
-    Hanami.env?(:development, :test)
-    => true
-
-    # HANAMI_ENV=production
-
-    Hanami.env?(:development, :test)
-    => false
+=> false
+```
 
 ## Environment specific app config
 
 Config options that are environment specific can be set on the app class. For example:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        environment(:production) do
-          # Production specific config or initialization
-          config.middleware.use ProductionOnlyMiddleware
-        end
-      end
+module Bookshelf
+  class App < Hanami::App
+    environment(:production) do
+      # Production specific config or initialization
+      config.middleware.use ProductionOnlyMiddleware
     end
+  end
+end
+```
 
-See the [app config guide](/v2.3//app/app-config/) for information on supported config options.
+See the [app config guide](//page/app-config) for information on supported config options.
 
 ## Production deployments
 
 When deploying your application to production, set the `HANAMI_ENV` environment variable to `production`.
 
-In production, Hanami logs to standard out by default, using a structured JSON format with a log level of `:info` rather than `:debug`, which is used in development and test. See the [logger guide](/v2.3/logger/configuration/) for more detail.
-
+In production, Hanami logs to standard out by default, using a structured JSON format with a log level of `:info` rather than `:debug`, which is used in development and test. See the [logger guide](//guide/logger) for more detail.

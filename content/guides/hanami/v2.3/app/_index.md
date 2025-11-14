@@ -38,75 +38,91 @@ This is useful when you want to incur all initialization costs at boot time.
 
 Booting is the approach taken in Hanami’s standard Puma setup. Thus, in Hanami’s `config.ru` file you will see:
 
-    require "hanami/boot"
+```ruby
+require "hanami/boot"
 
-    run Hanami.app
+run Hanami.app
+```
 
 ## Stepping through the boot process
 
 Purely as an exercise, we can explore both preparing and booting by starting `irb` in a directory containing a Hanami project. This is not something that’s needed in day to day development with Hanami - it’s useful here as a demonstration of the booting behaviour.
 
-Assuming we have run `hanami new bookshelf` to generate a new app (see [Getting started](/v2.3/introduction/getting-started/) for a full guide to creating your first Hanami application), let’s create a hello world component in `app/hello_world.rb`:
+Assuming we have run `hanami new bookshelf` to generate a new app (see [Getting started](//guide/introduction) for a full guide to creating your first Hanami application), let’s create a hello world component in `app/hello_world.rb`:
 
-    # app/hello_world.rb
+```ruby
+# app/hello_world.rb
 
-    module Bookshelf
-      class HelloWorld
-        def say_hello
-          "Hello world!"
-        end
-      end
+module Bookshelf
+  class HelloWorld
+    def say_hello
+      "Hello world!"
     end
+  end
+end
+```
 
 And now, in our project directory, let’s run `irb`:
 
-    bundle exec irb
+```bash
+bundle exec irb
 
-    irb(main)>
+irb(main)>
+```
 
 Typing `Hanami` here will result in a `NameError`:
 
-    irb(main)> Hanami
-    (irb):1:in `<main>': uninitialized constant Hanami (NameError)
+```ruby
+irb(main)> Hanami
+(irb):1:in `<main>': uninitialized constant Hanami (NameError)
+```
 
 Let’s address that by running `require "hanami"`.
 
 Once the Hanami module is available, calling `Hanami.setup` will load the Hanami app defined in `config/app.rb`:
 
-    irb(main)> require "hanami"
-    => true
+```ruby
+irb(main)> require "hanami"
+=> true
 
-    irb(main)> Hanami.setup
-    => Bookshelf::App
+irb(main)> Hanami.setup
+=> Bookshelf::App
 
-    irb(main)> Hanami.app
-    => Bookshelf::App
+irb(main)> Hanami.app
+=> Bookshelf::App
+```
 
 We can now ask our app whether it’s prepared or booted:
 
-    irb(main)> Hanami.app.prepared?
-    => false
+```ruby
+irb(main)> Hanami.app.prepared?
+=> false
 
-    irb(main)> Hanami.app.booted?
-    => false
+irb(main)> Hanami.app.booted?
+=> false
+```
 
 We can also see what components are registered with the app by calling `#keys`:
 
-    irb(main)> Hanami.app.keys
-    => []
+```ruby
+irb(main)> Hanami.app.keys
+=> []
+```
 
 This makes sense, as the app hasn’t even been prepared yet, meaning component registration hasn’t begun!
 
 Let’s prepare the app now, then ask what component keys are registered:
 
-    irb(main)> Hanami.prepare
-    => Bookshelf::App
+```ruby
+irb(main)> Hanami.prepare
+=> Bookshelf::App
 
-    irb(main)> Hanami.app.prepared?
-    => true
+irb(main)> Hanami.app.prepared?
+=> true
 
-    irb(main)> Hanami.app.keys
-    => ["settings", "notifications"]
+irb(main)> Hanami.app.keys
+=> ["settings", "notifications"]
+```
 
 Two components are now present: `settings` and `notifications`.
 
@@ -118,28 +134,34 @@ You’ll notice that our hello world component does not appear under the key `"h
 
 Rather than do that though, let’s see what happens if we just try to use our component.
 
-    irb(main):011:0> Hanami.app["hello_world"].say_hello
-    => "Hello world!"
+```ruby
+irb(main):011:0> Hanami.app["hello_world"].say_hello
+=> "Hello world!"
+```
 
 Success! Even though the component wasn’t yet registered, it was lazily loaded when we used it!
 
 If we now check what components have been registered in the app container, we’ll see `"hello_world"`.
 
-    irb(main)> Hanami.app.keys
-    => ["settings", "notifications", "hello_world"]
+```ruby
+irb(main)> Hanami.app.keys
+=> ["settings", "notifications", "hello_world"]
+```
 
 From here, calling `Hanami.boot` will register the remainder of our application’s components, which in this case are just the components registered by Hanami’s default providers: `"routes"`, `"inflector"`, `"logger"` and `"rack.monitor"`.
 
-    irb(main)> Hanami.boot
-    => Bookshelf::App
+```ruby
+irb(main)> Hanami.boot
+=> Bookshelf::App
 
-    irb(main)> Hanami.app.keys
-    ["settings",
-     "notifications",
-     "hello_world",
-     "routes",
-     "inflector",
-     "logger",
-     "rack.monitor"]
+irb(main)> Hanami.app.keys
+["settings",
+ "notifications",
+ "hello_world",
+ "routes",
+ "inflector",
+ "logger",
+ "rack.monitor"]
+```
 
-You can read more about components and containers in more detail in the [container and components guide](/v2.3/app/container-and-components/). Providers are covered in the [providers guide](/v2.3/app/providers/).
+You can read more about components and containers in more detail in the [container and components guide](//page/container-and-components/). Providers are covered in the [providers guide](//page/providers/).
