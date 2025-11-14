@@ -1,0 +1,25 @@
+---
+title: "Routes"
+---
+
+## hanami routes
+
+Displays your application’s routes.
+
+    $ bundle exec hanami routes
+
+    GET / home.index as :root
+    GET /books books.index
+    GET /books/:id books.show
+    POST /books books.create
+
+By default, routes are displayed in “human friendly” format. Routes can be inspected in csv format via the format option:
+
+    $ bundle exec hanami routes --format=csv
+
+    METHOD,PATH,TO,AS,CONSTRAINTS
+    GET,/,home.index,:root,""
+    GET,/books,books.index,"",""
+    GET,/books/:id,books.show,"",""
+    POST,/books,books.create,"",""
+

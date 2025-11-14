@@ -1,0 +1,25 @@
+guides:
+  - slug: introduction
+    title: Introduction
+  - slug: cli-commands
+    title: CLI Commands
+  - slug: app
+    title: App
+  - slug: database
+    title: Database
+  - slug: routing
+    title: Routing
+  - slug: actions
+    title: Actions
+  - slug: operations
+    title: Operations
+  - slug: views
+    title: Views
+  - slug: logger
+    title: Logger
+  - slug: helpers
+    title: Helpers
+  - slug: assets
+    title: Assets
+  - slug: upgrade-notes
+    title: Upgrade notes
