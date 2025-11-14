@@ -8,11 +8,11 @@ Migration filenames are defined in [snake case](https://en.wikipedia.org/wiki/Sn
 
 They are located in the `config/db/migrate` directory.
 
-```bash
+```
 $ tree config/db/migrate
 config/db/migrate
-''' 20240717170227_create_posts.rb
-''' 20240717170318_add_published_at_to_posts.rb
+├── 20240717170227_create_posts.rb
+└── 20240717170318_add_published_at_to_posts.rb
 ```
 
 ## Direction
@@ -25,6 +25,7 @@ ROM::SQL.migration do
     create_table :users do
       primary_key :id
       foreign_key :account_id, :accounts, on_delete: :cascade, null: false
+
       column :given_name, String, null: false
       column :family_name, String, null: false
       column :email, "citext", null: false
@@ -44,6 +45,7 @@ ROM::SQL.migration do
       add_unique_constraint [:email], name: :users_email_uniq
     end
   end
+
   down do
     alter_table :users do
       drop_constraint :users_email_uniq
@@ -61,11 +63,13 @@ Within a migration block, `no_transaction` tells the migrator to run the migrati
 ```ruby
 ROM::SQL.migration do
   no_transaction
+
   up do
     alter_table :users do
       add_index :email, concurrently: true
     end
   end
+
   down do
     alter_table :users do
       drop_index :email, concurrently: true
@@ -82,10 +86,13 @@ Sequel migration syntax provides some flexibility in how you may choose to repre
 create_table :users do
   # column method, explicit SQL type
   column :email, "varchar(255)", null: false
+
   # column method, inferred SQL type: varchar(255)
   column :email, String, null: false
+
   # helper method, no inference, SQL type: text
   text :email, null: false
+
   # Ruby type method, inferred SQL type: varchar(255)
   String :email, null: false
 end
@@ -119,6 +126,7 @@ ROM::SQL.migration do
         EXECUTE PROCEDURE tsvector_update_trigger(search_tsvector, 'public.english', title, content)
     SQL
   end
+
   down do
     execute "DROP TRIGGER posts_tsvector_update() ON public.posts"
   end
@@ -138,5 +146,3 @@ This serves three purposes:
 3. A blank-slate for setting up a development or test database without running all migrations sequentially
 
 Hanami provides this in the form of `config/db/structure.sql`. The choice of using plain SQL to reflect your DB structure gives you maximum flexibility in using the most powerful features of your database.
-
----

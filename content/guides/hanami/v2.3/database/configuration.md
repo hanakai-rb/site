@@ -8,7 +8,7 @@ By default, it uses SQLite as its default database. It also supports MySQL and P
 
 You can specify which database you’d like to use when creating your app, with the –database option:
 
-```bash
+```console
 hanami new bookshelf --database=sqlite # default
 hanami new bookshelf --database=postgres
 hanami new bookshelf --database=mysql
@@ -16,7 +16,7 @@ hanami new bookshelf --database=mysql
 
 You can also suppress the DB layer entirely with –skip-db
 
-```bash
+```console
 hanami new bookshelf --skip-db
 ```
 
@@ -34,7 +34,7 @@ Note that the value you set is the **development** database URL, and the _test_ 
 
 For example:
 
-```bash
+```
 DATABASE_URL=sqlite://config/db/development.sqlite
 DATABASE_URL=postgres://localhost/bookshelf_development
 DATABASE_URL=mysql2://user:password@localhost/bookshelf_dev
@@ -54,17 +54,22 @@ Hanami.app.configure_provider :db do
     # In addition to putting it in the DATABASE_URL env
     # variable, it can also be set in code here
     gw.database_url = "postgres://localhost:5432/mydb"
+
     # The default PostgreSQL configuration would look like this
     gw.adapter :sql do |sql|
+
       # ROM plugins are organized under the applicable component type
       # this plugin is named 'instrumentation' and applies to ROM::Relation
       sql.plugin relations: :instrumentation do |plugin|
+
         # If the plugin defines a config object with more options
         # you can yield it here and set the values
         plugin.notifications = slice["notifications"]
       end
+
       # Not every plugin requires extra configuration
       sql.plugin relations: :auto_restrictions
+
       # Sequel extensions are registered with a single symbolic name
       # sql.extension supports multiple arguments, and you can call it
       # multiple times. We split these up into two simply for readability.
@@ -81,8 +86,10 @@ By default you are adding to the defaults above, but you can tell Hanami to skip
 gw.adapter :sql do |sql|
   # skip everything
   sql.skip_defaults
+
   # skip ROM plugins
   sql.skip_defaults :plugins
+
   # skip Sequel extensions
   sql.skip_defaults :extensions
 end
@@ -142,13 +149,13 @@ DATABASE_URL__LEGACY=mysql://localhost:3306/legacy
 
 This works in concert with Slice configuration, as well:
 
-```ruby
+```
 MAIN __DATABASE_URL__ LEGACY=mysql://localhost:3306/legacy
 ```
 
 Sometimes you will want additional connection options used when opening the connection. These may be added as query parameters on the DATABASE_URL:
 
-```ruby
+```
 DATABASE_URL__LEGACY=mysql://localhost:3306/legacy?max_connections=4
 ```
 
@@ -158,10 +165,12 @@ But as with Slice configuration, you can do more advanced things in code as well
 Hanami.app.configure_provider :db do
   config.gateway :default do |gw|
     gw.connection_options search_path: ['public', 'alt']
+
     gw.adapter :sql do |sql|
       sql.extension :my_custom_ext
     end
   end
+
   config.gateway :legacy do |gw|
     gw.connection_options max_connections: 4
     gw.adapter :sql
@@ -184,8 +193,15 @@ end
 
 Hanami exposes your database configuration through a series of container keys.
 
-`db.config`Final ROM Configuration object`db.rom`ROM instance for this slice`db.gateway`Default DB Gateway`db.gateways.default`Explicitly-named gateway
+<dl class="row">
+  <dt class="col-sm-3"><code>db.config</code></dt>
+  <dd class="col-sm-9">Final ROM Configuration object</dd>
+  <dt class="col-sm-3"><code>db.rom</code></dt>
+  <dd class="col-sm-9">ROM instance for this slice</dd>
+  <dt class="col-sm-3"><code>db.gateway</code></dt>
+  <dd class="col-sm-9">Default DB Gateway</dd>
+  <dt class="col-sm-3"><code>db.gateways.default</code></dt>
+  <dd class="col-sm-9">Explicitly-named gateway</dd>
+</dl>
 
 Any additional gateways that you have defined will be registered under the `db.gateways` namespace.
-
----

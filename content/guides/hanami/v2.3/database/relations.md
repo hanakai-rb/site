@@ -70,7 +70,7 @@ books.by_pk(id).one
 # => { id: 1, title: "Hanami", status: :released }
 ```
 
-The Types namespace available to Relations comes from `ROM::SQL::Types` and is built from [dry-types](https://dry-rb.org/gems/dry-types/).
+The Types namespace available to Relations comes from `ROM::SQL::Types` and is built from [dry-types](//doc/dry-types).
 
 Normally, dry-types model a single type with optional coercion logic. However, SQL introduces a two-fold coercion due to the difference between SQL and Ruby types. When these types diverge, the first type argument is the SQL type to be written, and you pass a `read:` argument with the Ruby type.
 
@@ -84,6 +84,7 @@ module Bookshelf
         input { |jwks| Types::PG::JSONB[jwks.export] }
         output { |jsonb| JWT::JWK::Set.new(jsonb.to_h) }
       end
+
       schema infer: true do
         attribute :jwks, JWKS
       end
@@ -123,6 +124,7 @@ module Bookshelf
       schema :books, infer: true do
         # shorthand syntax
         primary_key :id
+
         # This is equivalent
         attribute :id, Types::Integer.meta(primary_key: true)
       end
@@ -139,7 +141,7 @@ These relationships are called **associations** and they are defined within a `s
 
 ### One-to-Many
 
-booksidbigintpublisher_idbiginttitletextisbn13varchar(13)language_idbigintpagesintpublication_datedatepublishersidbigintnametext
+{{% one-to-many %}}
 
 One-to-many associations are established with `has_many`.
 
@@ -161,7 +163,7 @@ end
 
 ### Many-to-One
 
-booksidbigintpublisher_idbiginttitletextisbn13varchar(13)language_idbigintpagesintpublication_datedatelanguagesidbigintcodevarchar(2)nametext
+{{% many-to-one %}}
 
 Many-to-one associations are established with `belongs_to`. They reference the other table in singular form.
 
@@ -175,6 +177,7 @@ module Bookshelf
         end
       end
     end
+
     class Languages < Hanami::DB::Relation
       schema :languages, infer: true do
         associations do
@@ -190,7 +193,7 @@ end
 
 ### Many-to-Many
 
-booksidbigintpublisher_idbiginttitletextisbn13varchar(13)language_idbigintpagesintpublication_datedateauthorshipsidbigintbook_idbigintauthor_idbigintorderintauthorsidbigintgiven_nametextfamily_nametext
+{{% many-to-many %}}
 
 Many-to-many associations are established with `has_many` with the `through:` option.
 
@@ -204,21 +207,25 @@ module Bookshelf
         end
       end
     end
+
     class Authorships < Hanami::DB::Relation
       schema :authorships do
         primary_key :id
+
         # These may also be inferred from the db if
         # they are actual foreign keys, but this is
         # how you would do it manually.
         attribute :book_id, Types.ForeignKey(:books)
         attribute :author_id, Types.ForeignKey(:authors)
         attribute :order, Types::Integer
+
         associations do
           belongs_to :book
           belongs_to :author
         end
       end
     end
+
     class Authors < Hanami::DB::Relation
       schema :authors, infer: true do
         has_many :books, through: :authorships
@@ -238,6 +245,7 @@ module Bookshelf
     class Authorships < Hanami::DB::Relation
       schema :books_authors, infer: true, as: :authorships
     end
+
     class Books < Hanami::DB::Relation
       schema :books, infer: true do
         associations do
@@ -249,7 +257,9 @@ module Bookshelf
 end
 ```
 
+<p class="convention">
 In addition to the relation name in Repositories, the alias is also used by auto-mapping when you combine relations together. More on combines later.
+</p>
 
 This is also useful for building multiple relation classes against the same table, if you have radically different use-cases and want to separate them.
 
@@ -281,7 +291,10 @@ Hanami supports querying the database using a **query builder** , a pattern that
 
 SQL query building is a _gigantic_ topic, so this will only scratch the suface of what is possible.
 
-ROM Relations are built on top of [Sequel Datasets](http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html). Inspect the generated SQL of a relation by calling `.dataset.sql` on it.
+<p class="notice">
+  ROM Relations are built on top of <a href="http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html">Sequel
+  Datasets</a>. Inspect the generated SQL of a relation by calling <code>.dataset.sql</code> on it.
+</p>
 
 ### Dual Syntactic Conventions
 
@@ -304,7 +317,10 @@ books.where { date_part('year', publication_date) > 2020 }
 
 An approach wedded to Hash syntax may just give up here, and require you to write SQL as a string instead, but we can achieve much more with ROM’s expression syntax.
 
-Proc-based queries leverage [Sequel VirtualRows](https://sequel.jeremyevans.net/rdoc/classes/Sequel/SQL/VirtualRow.html) to support more complex expressions involving functions and operators.
+<p class="notice">
+  Proc-based queries leverage <a href="https://sequel.jeremyevans.net/rdoc/classes/Sequel/SQL/VirtualRow.html">Sequel
+  VirtualRows</a> to support more complex expressions involving functions and operators.
+</p>
 
 ### Negative Restrictions
 
@@ -331,6 +347,7 @@ Multiple calls to `select` will replace the existing projection. If you wish to 
 ```ruby
 books.select(:id, :title).select(:pages).first
 # => { pages: 336 }
+
 books.select(:id, :title).select_append(:pages).first
 # => { id: 1, title: "To Kill a Mockingbird", pages: 336 }
 ```
@@ -373,6 +390,7 @@ books.to_a
   :isbn13=>"9780062409867",
   :pages=>288,
   :publication_date=><Date: 2016-05-03>}]
+
 books.select {[
   integer::count(:id).as(:total),
   integer::count(:id).filter(pages < 300).as(:short),
@@ -429,6 +447,7 @@ module Bookshelf
   module Relations
     class Books < Hanami::DB::Relation
       schema :books, infer: true
+
       dataset do
         select(:id, :title, :publication_date).order(:publication_date)
       end
@@ -444,6 +463,7 @@ module Bookshelf
   module Relations
     class Books < Hanami::DB::Relation
       schema :books, infer: true
+
       dataset { where(archived_at: nil) }
     end
   end
@@ -492,6 +512,7 @@ module Bookshelf
   module Relations
     class Books < Hanami::DB::Relation
       schema :books, infer: true
+
       def recent = where { publication_date > Date.new(2020, 1, 1) }
     end
   end
@@ -504,5 +525,3 @@ It is now present on the relation objects:
 books.recent
 # => SELECT id, title, publication_date FROM books WHERE publication_date > '2020-01-01'
 ```
-
----
