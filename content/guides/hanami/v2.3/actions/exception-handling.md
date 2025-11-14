@@ -6,73 +6,78 @@ When a request crashes with an exception, you may want to handle it in a gracefu
 
 Actions do not handle exceptions raised by your application by default. To handle exceptions, you need to define how a specific exception type should be translated into an HTTP response.
 
-An exception handler can be a HTTP status code (eg.Â&nbsp;`500`,Â&nbsp;`401`), or aÂ&nbsp;symbolÂ&nbsp;that represents a method on the action.
+An exception handler can be a HTTP status code (eg.&nbsp;`500`,&nbsp;`401`), or a &nbsp;symbol &nbsp;that represents a method on the action.
 
 ## Status codes
 
-    # app/actions/books/index.rb
-    module Bookshelf
-      module Actions
-        module Books
-          class Index < Bookshelf::Action
-            handle_exception StandardError => 500
+```ruby
+# app/actions/books/index.rb
 
-            def handle(request, response)
-              raise "error"
-            end
-          end
+module Bookshelf
+  module Actions
+    module Books
+      class Index < Bookshelf::Action
+        handle_exception StandardError => 500
+        def handle(request, response)
+          raise "error"
         end
       end
     end
+  end
+end
+```
 
 In the above action, when `StandardError` is raised in the `#handle` method, a basic `500 Internal Server Error` will be returned.
 
-![Default error response](/v2.3/actions/default-error-response.png)
+![Default error response](//file/default-error-response.png)
 
 ## Using string class names
 
 As an alternative to using class constants you can specify the class name as a string. This can be useful when you want to handle exceptions from dependencies without having to `require` that dependency inside your action.
 
-    module Bookshelf
-      module Actions
-        module Books
-          class Index < Bookshelf::Action
-            handle_exception "Stripe::CardError" => 400
-
-            def handle(request, response)
-              # ...
-            end
-          end
+```ruby
+module Bookshelf
+  module Actions
+    module Books
+      class Index < Bookshelf::Action
+        handle_exception "Stripe::CardError" => 400
+        def handle(request, response)
+          # ...
         end
       end
     end
+  end
+end
+```
 
 ## Custom method handlers
 
 To do more with an exception than simply rendering a particular status code, call a method by providing a symbol with the method’s name:
 
-    module Bookshelf
-      module Actions
-        module Books
-          class Index < Bookshelf::Action
-            handle_exception RecordNotFound => 404
-            handle_exception StandardError => :handle_standard_error
+```ruby
+module Bookshelf
+  module Actions
+    module Books
+      class Index < Bookshelf::Action
+        handle_exception RecordNotFound => 404
+        handle_exception StandardError => :handle_standard_error
 
-            def handle(*, response)
-              raise "error"
-            end
+        def handle(*, response)
+          raise "error"
+        end
 
-            private
+        private
 
-            def handle_standard_error(request, response, exception)
-              response.status = 500
-              response.format = :json
-              response.body = {error: "Sorry, something went wrong handling your request"}.to_json
-            end
-          end
+        def handle_standard_error(request, response, exception)
+          response.status = 500
+          response.format = :json
+          response.body = {error: "Sorry, something went wrong handling your request"}.to_json
         end
       end
     end
+  end
+end
+```
 
 Here, when `StandardError` is raised, `#handle_standard_error` will prepare a JSON response.
 
@@ -84,35 +89,36 @@ Rather than configure exception handling in every action, it’s usually conveni
 
 If you use an error reporting service like Bugsnag or Sentry, you can report on exceptions here too.
 
-    # app/action.rb
+```ruby
+# app/action.rb
 
-    require "hanami/action"
+require "hanami/action"
+module Bookshelf
+  class Action < Hanami::Action
+    include Deps["sentry"]
 
-    module Bookshelf
-      class Action < Hanami::Action
-        include Deps["sentry"]
+    handle_exception StandardError => :handle_standard_error
 
-        handle_exception StandardError => :handle_standard_error
+    private
 
-        private
-
-        def handle_standard_error(request, response, exception)
-          sentry.capture_exception(exception)
-
-          response.status = 500
-          response.body = "Sorry, something went wrong handling your request"
-        end
-      end
+    def handle_standard_error(request, response, exception)
+      sentry.capture_exception(exception)
+      response.status = 500
+      response.body = "Sorry, something went wrong handling your request"
     end
+  end
+end
+```
 
 In development, where seeing a stack trace can be useful, reraise exceptions in order to make them visible in your browser.
 
-    def handle_standard_error(request, response, exception)
-      if Hanami.env?(:development)
-        raise exception
-      else
-        response.status = 500
-        response.body = "Sorry, something went wrong handling your request"
-      end
-    end
-
+```ruby
+def handle_standard_error(request, response, exception)
+  if Hanami.env?(:development)
+    raise exception
+  else
+    response.status = 500
+    response.body = "Sorry, something went wrong handling your request"
+  end
+end
+```

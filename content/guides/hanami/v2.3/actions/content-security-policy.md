@@ -10,21 +10,23 @@ Hanami configures a strict Content Security Policy by default, which you can cus
 
 Hanami sets the following CSP directives by default:
 
-    {
-      base_uri: "'self'",
-      child_src: "'self'",
-      connect_src: "'self'",
-      default_src: "'none'",
-      font_src: "'self'",
-      form_action: "'self'",
-      frame_ancestors: "'self'",
-      frame_src: "'self'",
-      img_src: "'self' https: data:",
-      media_src: "'self'",
-      object_src: "'none'",
-      script_src: "'self'",
-      style_src: "'self' 'unsafe-inline' https:"
-    }
+```ruby
+{
+  base_uri: "'self'",
+  child_src: "'self'",
+  connect_src: "'self'",
+  default_src: "'none'",
+  font_src: "'self'",
+  form_action: "'self'",
+  frame_ancestors: "'self'",
+  frame_src: "'self'",
+  img_src: "'self' https: data:",
+  media_src: "'self'",
+  object_src: "'none'",
+  script_src: "'self'",
+  style_src: "'self' 'unsafe-inline' https:"
+}
+```
 
 This strict default policy:
 
@@ -39,43 +41,53 @@ This strict default policy:
 
 Add additional allowed sources to an existing directive:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        config do
-          config.actions.content_security_policy[:script_src] += " https://cdn.example.com"
-        end
-      end
+module Bookshelf
+  class App < Hanami::App
+    config do
+      config.actions.content_security_policy[:script_src] += " https://cdn.example.com"
     end
+  end
+end
+```
 
 ### Replacing a directive
 
 Completely replace a directive’s value:
 
-    config.actions.content_security_policy[:style_src] = "https://cdn.example.com"
+```ruby
+config.actions.content_security_policy[:style_src] = "https://cdn.example.com"
+```
 
 ### Adding a custom directive
 
 Add directives not included in the default configuration:
 
-    config.actions.content_security_policy[:upgrade_insecure_requests] = ""
+```ruby
+config.actions.content_security_policy[:upgrade_insecure_requests] = ""
+```
 
 ### Removing a directive
 
 Remove a directive entirely:
 
-    # Using delete
-    config.actions.content_security_policy.delete(:object_src)
+```ruby
+# Using delete
+config.actions.content_security_policy.delete(:object_src)
 
-    # Or set to nil
-    config.actions.content_security_policy[:object_src] = nil
+# Or set to nil
+config.actions.content_security_policy[:object_src] = nil
+```
 
 ## Disabling CSP
 
 To disable CSP entirely:
 
-    config.actions.content_security_policy = false
+```ruby
+config.actions.content_security_policy = false
+```
 
 ## Using nonces
 
@@ -83,51 +95,61 @@ Nonces are cryptographic tokens that allow specific inline scripts or styles to 
 
 Add the `'nonce'` directive to the CSP policies where you want to use nonces:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        config do
-          config.actions.content_security_policy[:script_src] = "'self' 'nonce'"
-          config.actions.content_security_policy[:style_src] = "'self' 'nonce'"
-        end
-      end
+module Bookshelf
+  class App < Hanami::App
+    config do
+      config.actions.content_security_policy[:script_src] = "'self' 'nonce'"
+      config.actions.content_security_policy[:style_src] = "'self' 'nonce'"
     end
+  end
+end
+```
 
 By default, Hanami generates nonces using `SecureRandom.urlsafe_base64(16)`, producing a 22-character random string for each request.
 
 You can customize nonce generation by providing your own generator:
 
-    config.actions.content_security_policy_nonce_generator = -> (request) {
-      # Optional: access the Rack request object
-      MyCustomNonceGenerator.generate
-    }
+```ruby
+config.actions.content_security_policy_nonce_generator = -> (request) {
+  # Optional: access the Rack request object
+  MyCustomNonceGenerator.generate
+}
+```
 
 ### Using nonces in views
 
 When nonces are enabled, the `javascript_tag` and `stylesheet_tag` helpers automatically include the nonce attribute:
 
-    <%= javascript_tag "app" %>
+```
+<%= javascript_tag "app" %>
 
-    # Renders as:
-    # <script src="/assets/app.js" type="text/javascript" nonce="mSMnSwfVZVe+LyQy1SPCGw=="></script>
+# Renders as:
+# <script src="/assets/app.js" type="text/javascript" nonce="mSMnSwfVZVe+LyQy1SPCGw=="></script>
+```
 
 You can control nonce behavior on individual tags:
 
-    # Use the auto-generated nonce (default when CSP nonces are enabled)
-    javascript_tag "app"
+```ruby
+# Use the auto-generated nonce (default when CSP nonces are enabled)
+javascript_tag "app"
 
-    # Explicitly enable nonce
-    javascript_tag "app", nonce: true
+# Explicitly enable nonce
+javascript_tag "app", nonce: true
 
-    # Disable nonce for this tag
-    javascript_tag "app", nonce: false
+# Disable nonce for this tag
+javascript_tag "app", nonce: false
 
-    # Use a custom nonce value
-    javascript_tag "app", nonce: "custom-nonce-value"
+# Use a custom nonce value
+javascript_tag "app", nonce: "custom-nonce-value"
+```
 
 You can access the current request’s nonce in your views using the `content_security_policy_nonce` helper:
 
-    <script nonce="<%= content_security_policy_nonce %>">
-      // Your inline script here
-    </script>
+```
+<script nonce="<%= content_security_policy_nonce %>">
+  // Your inline script here
+</script>
+```

@@ -4,50 +4,56 @@ title: "Parameters"
 
 The parameters associated with an incoming request are available via `request.params` within the action’s `#handle` method.
 
-    module Bookshelf
-      module Actions
-        module Books
-          class Show < Bookshelf::Action
-            def handle(request, response)
-              request.params[:id]
-            end
-          end
+```ruby
+module Bookshelf
+  module Actions
+    module Books
+      class Show < Bookshelf::Action
+        def handle(request, response)
+          request.params[:id]
         end
       end
     end
+  end
+end
+```
 
 ## Parameter sources
 
 Parameters for a request come from a number of sources:
 
-- [path variables](/v2.3/routing/overview/) as specified in the route that has matched the request (e.g. `/books/:id`)
+- [path variables](//guide/routing/overview/) as specified in the route that has matched the request (e.g. `/books/:id`)
 - the request’s query string (e.g. `/books?page=2&per_page=10`)
 - the request’s body (for example the JSON-formatted body of a `POST` request with an `application/json` content type).
 
-    def handle(request, response)
-      # GET /books/1
-      request.params[:id] # => "1"
-
-      # GET /books?category=history&page=2
-      request.params[:category] # => "history"
-      request.params[:page] # => "2"
-
-      # POST /books '{"title": "request body", "author":"json"}', Content-Type application/json
-      request.params[:title] # => "request body"
-      request.params[:author] #=> "json"
-    end
+```ruby
+def handle(request, response)
+  # GET /books/1
+  request.params[:id] # => "1"
+  # GET /books?category=history&page=2
+  request.params[:category] # => "history"
+  request.params[:page] # => "2"
+  # POST /books '{"title": "request body", "author":"json"}', Content-Type application/json
+  request.params[:title] # => "request body"
+  request.params[:author] #=> "json"
+end
+```
 
 ## Accessing parameters
 
 Request parameters are referenced by symbols.
 
-    request.params[:q]
-    request.params[:book][:title]
+```ruby
+request.params[:q]
+request.params[:book][:title]
+```
 
 Nested parameters can be safely accessed via the `#dig` method on the `params` object. This method accepts a list of symbols, where each symbol represents a level in our nested structure. If the `:book` param above is missing from the request, using `#dig` avoids a `NoMethodError` when attempting to access `:title`.
 
-    request.params.dig(:book, :title) # => "Hanami"
-    request.params.dig(:deeply, :nested, :param) # => nil instead of NoMethodError
+```ruby
+request.params.dig(:book, :title) # => "Hanami"
+request.params.dig(:deeply, :nested, :param) # => nil instead of NoMethodError
+```
 
 ## Parameter validation
 
@@ -59,25 +65,26 @@ This validation serves several purposes, including allowlisting (ensuring that o
 
 Let’s take a look at a books index action that accepts two parameters, `page` and `per_page`.
 
-    # app/actions/books/index.rb
+```ruby
+# app/actions/books/index.rb
 
-    module Bookshelf
-      module Actions
-        module Books
-          class Index < Bookshelf::Action
-            params do
-              optional(:page).value(:integer)
-              optional(:per_page).value(:integer)
-            end
-
-            def handle(request, response)
-              request.params[:page]
-              request.params[:per_page]
-            end
-          end
+module Bookshelf
+  module Actions
+    module Books
+      class Index < Bookshelf::Action
+        params do
+          optional(:page).value(:integer)
+          optional(:per_page).value(:integer)
+        end
+        def handle(request, response)
+          request.params[:page]
+          request.params[:per_page]
         end
       end
     end
+  end
+end
+```
 
 The schema in the params block specifies the following:
 
@@ -87,76 +94,78 @@ The schema in the params block specifies the following:
 
 With this schema in place, a request with a query string of `/books?page=1&per_page=10` will result in:
 
-    request.params[:page] # => 1
-    request.params[:per_page] # => 10
+```ruby
+request.params[:page] # => 1
+request.params[:per_page] # => 10
+```
 
 Notice that thanks to the defined params schema with types, `"1"` and `"10"` are coerced to their integer representations `1` and `10`.
 
 Additional rules can be added to apply further constraints. The following params block specifies that, when present, `page` and `per_page` must be greater than or equal to 1, and also that `per_page` must be less than or equal to 100.
 
-    params do
-      optional(:page).value(:integer, gteq?: 1)
-      optional(:per_page).value(:integer, gteq?: 1, lteq?: 100)
-    end
+```ruby
+params do
+  optional(:page).value(:integer, gteq?: 1)
+  optional(:per_page).value(:integer, gteq?: 1, lteq?: 100)
+end
+```
 
 Importantly, now that our params schema is doing more than just type coercion, we need to explicitly check for and handle our parameters being invalid.
 
 The `#valid?` method on the params allows the action to check the parameters in order halt and return a `422 Unprocessable` response.
 
-    # app/actions/books/index.rb
+```ruby
+# app/actions/books/index.rb
 
-    module Bookshelf
-      module Actions
-        module Books
-          class Index < Bookshelf::Action
-            params do
-              optional(:page).value(:integer, gteq?: 1)
-              optional(:per_page).value(:integer, gteq?: 1, lteq?: 100)
-            end
-
-            def handle(request, response)
-              halt 422 unless request.params.valid?
-
-              # At this point, we know the params are valid
-              request.params[:page]
-              request.params[:per_page]
-            end
-          end
+module Bookshelf
+  module Actions
+    module Books
+      class Index < Bookshelf::Action
+        params do
+          optional(:page).value(:integer, gteq?: 1)
+          optional(:per_page).value(:integer, gteq?: 1, lteq?: 100)
+        end
+        def handle(request, response)
+          halt 422 unless request.params.valid?
+          # At this point, we know the params are valid
+          request.params[:page]
+          request.params[:per_page]
         end
       end
     end
+  end
+end
+```
 
 Here’s a further example, this time for an action to create a user.
 
-    # app/actions/users/create.rb
+```ruby
+# app/actions/users/create.rb
 
-    module Bookshelf
-      module Actions
-        module Users
-          class Create < Bookshelf::Action
-            params do
-              required(:email).filled(:string)
-              required(:password).filled(:string)
-
-              required(:address).hash do
-                required(:street).filled(:string)
-                required(:country).filled(:string)
-              end
-            end
-
-            def handle(request, response)
-              halt 422 unless request.params.valid?
-
-              request.params[:email] # => "alice@example.org"
-              request.params[:password] # => "secret"
-              request.params[:address][:country] # => "Italy"
-
-              request.params[:admin] # => nil
-            end
+module Bookshelf
+  module Actions
+    module Users
+      class Create < Bookshelf::Action
+        params do
+          required(:email).filled(:string)
+          required(:password).filled(:string)
+          required(:address).hash do
+            required(:street).filled(:string)
+            required(:country).filled(:string)
           end
+        end
+        def handle(request, response)
+          halt 422 unless request.params.valid?
+          request.params[:email] # => "alice@example.org"
+          request.params[:password] # => "secret"
+          request.params[:address][:country] # => "Italy"
+          request.params[:admin] # => nil
         end
       end
     end
+  end
+end
+```
 
 The `params` block in this action specifies that:
 
@@ -168,28 +177,32 @@ The errors associated with a failed parameter validation are available via `requ
 
 Assuming that the users create action was part of a JSON API, we could render these errors by passing a body when calling `halt`:
 
-    halt 422, {errors: request.params.errors}.to_json unless request.params.valid?
+```ruby
+halt 422, {errors: request.params.errors}.to_json unless request.params.valid?
+```
 
 For an empty `POST` request with an empty address object, this action would render:
 
-    {
-        "errors": {
-            "email": [
+```ruby
+{
+    "errors": {
+        "email": [
+            "is missing"
+        ],
+        "password": [
+            "is missing"
+        ],
+        "address": {
+            "street": [
                 "is missing"
             ],
-            "password": [
+            "country": [
                 "is missing"
-            ],
-            "address": {
-                "street": [
-                    "is missing"
-                ],
-                "country": [
-                    "is missing"
-                ]
-            }
+            ]
         }
     }
+}
+```
 
 Action validations use the [dry-validation](https://dry-rb.org/gems/dry-validation/) gem, which provides a powerful DSL for defining schemas.
 
@@ -203,43 +216,43 @@ This makes action validations reusable and easier to test independently of the a
 
 For example:
 
-    # app/actions/users/params/create.rb
+```ruby
+# app/actions/users/params/create.rb
 
-    module Bookshelf
-      module Actions
-        module Users
-          module Params
-            class Create < Hanami::Action::Params
-              params do
-                required(:email).filled(:string)
-                required(:password).filled(:string)
-
-                required(:address).hash do
-                  required(:street).filled(:string)
-                  required(:country).filled(:string)
-                end
-              end
+module Bookshelf
+  module Actions
+    module Users
+      module Params
+        class Create < Hanami::Action::Params
+          params do
+            required(:email).filled(:string)
+            required(:password).filled(:string)
+            required(:address).hash do
+              required(:street).filled(:string)
+              required(:country).filled(:string)
             end
           end
         end
       end
     end
+  end
+end
 
-    # app/actions/users/create.rb
+# app/actions/users/create.rb
 
-    module Bookshelf
-      module Actions
-        module Users
-          class Create < Bookshelf::Action
-            params Params::Create
-
-            def handle(request, response)
-              # ...
-            end
-          end
+module Bookshelf
+  module Actions
+    module Users
+      class Create < Bookshelf::Action
+        params Params::Create
+        def handle(request, response)
+          # ...
         end
       end
     end
+  end
+end
+```
 
 ## Validations at the HTTP layer
 
@@ -259,28 +272,35 @@ Hanami automatically parses request bodies for requests with the following conte
 
 If you need to parse different body types, you can declare a new body parser:
 
-    # lib/foo_parser.rb
-    class FooParser
-      def self.media_types = ["application/foo"]
+```ruby
+# lib/foo_parser.rb
 
-      def parse(body)
-        # Your parsing logic here
-      end
-    end
+class FooParser
+  def self.media_types = ["application/foo"]
+  def parse(body)
+    # Your parsing logic here
+  end
+end
+```
 
 Register that body parser directly and it will parse its own declared media types:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    class App < Hanami::App
-      config.middleware.use :body_parser, FooParser
-    end
+class App < Hanami::App
+  config.middleware.use :body_parser, FooParser
+end
+```
 
 You can also register a body parser to work on additional media types:
 
-    config.middleware.use :body_parser, [FooParser: ["application/x-foo"]]
+```ruby
+config.middleware.use :body_parser, [FooParser: ["application/x-foo"]]
+```
 
 This is particularly useful if you need to activate Hanami’s standard JSON parsing for additional content types:
 
-    config.middleware.use :body_parser, [json: ["application/scim+json"]]
-
+```ruby
+config.middleware.use :body_parser, [json: ["application/scim+json"]]
+```
