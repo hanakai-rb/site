@@ -6,7 +6,8 @@ title: Run
 
 Runs your own scripts or code in the context of your Hanami app.
 
-    $ bundle exec hanami run my_script.rb
+```shell
+$ bundle exec hanami run my_script.rb
 
-    $ bundle exec hanami run 'Hanami.app["repos.book_repo"].count'
-
+$ bundle exec hanami run 'Hanami.app["repos.book_repo"].count'
+```

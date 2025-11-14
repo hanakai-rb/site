@@ -6,6 +6,7 @@ title: Version
 
 Prints the version of the Hanami version used by the application:
 
-    $ bundle exec hanami version
-    v2.3.0
-
+```shell
+$ bundle exec hanami version
+v2.3.0
+```

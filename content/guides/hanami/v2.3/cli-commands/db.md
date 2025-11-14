@@ -2,23 +2,24 @@
 title: Db
 ---
 
-
 ---
 
 ## hanami db
 
 Hanami provides commands to manage all aspects of your database's lifecycle. List all the commands with the `--help` option.
 
-    $ bundle exec hanami db --help
+```shell
+$ bundle exec hanami db --help
 
-    Commands:
-      hanami db create # Create databases
-      hanami db drop # Delete databases
-      hanami db migrate # Migrates database
-      hanami db prepare # Prepare databases
-      hanami db seed # Load seed data
-      hanami db structure [SUBCOMMAND]
-      hanami db version # Print schema version
+Commands:
+  hanami db create # Create databases
+  hanami db drop # Delete databases
+  hanami db migrate # Migrates database
+  hanami db prepare # Prepare databases
+  hanami db seed # Load seed data
+  hanami db structure [SUBCOMMAND]
+  hanami db version # Print schema version
+```
 
 Each of the commands below will target all the databases in your app and slices by default. To target an individual database, provide an `--app` or `--slice=SLICE` option, as well as `--gateway=GATEWAY` if you have multiple gateways configured.
 
@@ -36,7 +37,9 @@ Runs migrations to apply changes to the app’s databases.
 
 To migrate to a specific version (forwards or backwards), provide the `--target` option, along with the timestamp of the target migration.
 
-    $ bundle exec hanami db migrate --target=20241009134756
+```shell
+$ bundle exec hanami db migrate --target=20241009134756
+```
 
 To migrate to the beginning, provide `--target=0`.
 
@@ -52,11 +55,15 @@ Call `rollback` on its own to roll back the most recent migration.
 
 Specify `--steps` to roll back that the n most recent migrations:
 
-    $ bundle exec hanami rollback --steps=2
+```shell
+$ bundle exec hanami rollback --steps=2
+```
 
 Specify `--target` to roll back to a specific migration version:
 
-    $ bundle exec hanami rollback --target=20241009134756
+```shell
+$ bundle exec hanami rollback --target=20241009134756
+```
 
 The rollback command operates on one database at a time. If your app has more than one database, specify the database with `--app`, `--slice=SLICE`, as well as `--gateway=GATEWAY` if you have multiple gateways configured.
 
@@ -92,5 +99,3 @@ This is a faster way to bring a new database into a ready state compared to re-r
 ## hanami db version
 
 Prints current schema version for the app’s databases.
-
----
