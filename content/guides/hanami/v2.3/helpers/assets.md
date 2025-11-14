@@ -6,7 +6,7 @@ Use these asset helpers to access your asset URLs or generate asset-specific HTM
 
 Each of these helpers expects a “source” to be given. This can be an asset path, or in some cases, also an absolute URL. When given an asset path, the relevant asset will be looked up based on the app or slice in which you’re calling the helper.
 
-## asset\_url
+## asset_url
 
 Returns the URL for given asset source.
 
@@ -14,13 +14,14 @@ Returns the URL for given asset source.
 asset_url("app.js") # => "/assets/app-LSLFPUMX.js"
 ```
 
-## javascript\_tag
+## javascript_tag
 
 Returns a `<script>` tag for the given source, either a JavaScript asset or absolute URL.
 
 ```ruby
 javascript_tag("app.js")
 # => <script src="/assets/app-LSLFPUMX.js" type="text/javascript"></script>
+
 javascript_tag("https://example.com/example.js")
 # => <script src="https://example.com/example.js" type="text/javascript"></script>
 ```
@@ -47,13 +48,14 @@ javascript_tag("app", async: true)
 # => <script src="/assets/app-LSLFPUMX.js" type="text/javascript" async="async"></script>
 ```
 
-## stylesheet\_tag
+## stylesheet_tag
 
 Returns a `<link>` tag for the given source, either a stylesheet asset or absolute URL.
 
 ```ruby
 stylesheet_tag("app.css")
 # => <link href="/assets/app-GVDAEYEC.css" type="text/css" rel="stylesheet">
+
 stylesheet_tag("https://example.com/stylesheet.css")
 # => <link href="https://example.com/stylesheet.css" type="text/css" rel="stylesheet">
 ```
@@ -80,13 +82,14 @@ stylesheet_tag("https://example.com/print.css", media: "print")
 # => <link href="https://example.com/stylesheet.css" type="text/css" rel="stylesheet" media="print">
 ```
 
-## image\_tag
+## image_tag
 
 Returns an `<img>` tag for the given source, either an image asset or absolute URL. Sets the tag’s `alt` attribute automatically from the file name.
 
 ```ruby
 image_tag("logo.png")
 # => <img src="/assets/logo-DJHI6WQI.png" alt="Logo">
+
 image_tag("https://example.com/logo.png")
 # => <img src="https://example.com/logo.png" alt="Logo">
 ```
@@ -98,13 +101,14 @@ image_tag("logo.png", alt: "App logo", class: "image")
 # => <img src="/assets/logo-DJHI6WQI.png" alt="App logo" class="image">
 ```
 
-## favicon\_tag
+## favicon_tag
 
 Returns a `<link>` tag for the given asset source. If none is given, it assumes `"favicon.ico"` to be the asset source.
 
 ```ruby
 favicon_tag
 # => <link href="/assets/favicon-RTK3P5FP.ico" rel="shortcut icon" type="image/x-icon">
+
 favicon_tag("fav.ico")
 # => <link href="/assets/fav-EOLTKYGO.ico" rel="shortcut icon" type="image/x-icon">
 ```
@@ -116,13 +120,14 @@ favicon_tag("fav.ico", id: "fav")
 # => <link id="fav" href="/assets/fav-EOLTKYGO.ico" rel="shortcut icon" type="image/x-icon">
 ```
 
-## video\_tag
+## video_tag
 
 Returns a `<video>` tag for the given source, either a video asset or absolute URL.
 
 ```ruby
 video_tag("movie.mp4")
 # => <video src="/assets/movie-DJHI6WQI.mp4"></video>
+
 video_tag("https://example.com/movie.mp4")
 # => <video src="https://example.com/movie.mp4"></video>
 ```
@@ -156,13 +161,14 @@ end
 # </video>
 ```
 
-## audio\_tag
+## audio_tag
 
 Returns an `<audio>` tag for the given source, either an audio asset or absolute URL.
 
 ```ruby
 audio_tag("song.ogg")
 # => <audio src="/assets/song-DJHI6WQI.ogg"></audio>
+
 audio_tag("https://example.com/song.ogg")
 # => <audio src="https://example.com/song.ogg"></audio>
 ```

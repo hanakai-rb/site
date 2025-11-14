@@ -4,18 +4,20 @@ title: String Escaping
 
 ## HTML escaping
 
-`escape_html` (also aliased as `h`) returns an escaped string that is [safe to include in HTML templates](/v2.3/views/templates/). Use this helper when including any untrusted user input in HTML content, particularly within other helpers that mix untrusted input among HTML tags.
+`escape_html` (also aliased as `h`) returns an escaped string that is [safe to include in HTML templates](//guide/views/templates). Use this helper when including any untrusted user input in HTML content, particularly within other helpers that mix untrusted input among HTML tags.
 
 This helper marks the escaped string marked as HTML safe, ensuring it will not be escaped again. If the given string is already marked as HTML safe, then it will be returned without escaping.
 
-    escape_html("Safe content")
-    # => "Safe content"
+```ruby
+escape_html("Safe content")
+# => "Safe content"
 
-    escape_html("<script>alert('xss')</script>")
-    # => "&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;"
+escape_html("<script>alert('xss')</script>")
+# => "&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;"
 
-    escape_html(raw("<p>Not escaped</p>"))
-    # => "<p>Not escaped</p>"
+escape_html(raw("<p>Not escaped</p>"))
+# => "<p>Not escaped</p>"
+```
 
 ## Bypassing HTML escaping
 
@@ -23,11 +25,13 @@ This helper marks the escaped string marked as HTML safe, ensuring it will not b
 
 **This is NOT recommended if the string is coming from untrusted user input. Use at your own peril.**
 
-    raw(user.name)
-    # => "Little Bobby <alert>Tables</alert>"
+```ruby
+raw(user.name)
+# => "Little Bobby <alert>Tables</alert>"
 
-    raw(user.name).html_safe?
-    # => true
+raw(user.name).html_safe?
+# => true
+```
 
 ## URL sanitizing
 
@@ -41,12 +45,13 @@ The default permitted schemes are:
 - `https`
 - `mailto`
 
-    sanitize_url("https://hanamirb.org")
-    # => "http://hanamirb.org"
+```ruby
+sanitize_url("https://hanamirb.org")
+# => "http://hanamirb.org"
 
-    sanitize_url("javascript:alert('xss')")
-    # => ""
+sanitize_url("javascript:alert('xss')")
+# => ""
 
-    sanitize_url("gemini://gemini.circumlunar.space/", %w[http https gemini])
-    # => "gemini://gemini.circumlunar.space/"
-
+sanitize_url("gemini://gemini.circumlunar.space/", %w[http https gemini])
+# => "gemini://gemini.circumlunar.space/"
+```
