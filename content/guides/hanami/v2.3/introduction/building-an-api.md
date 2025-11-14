@@ -2,7 +2,7 @@
 title: "Building an API"
 ---
 
-Now that we've [created our app](//getting-started), let's turn it into an API.
+Now that we've [created our app](//page), let's turn it into an API.
 
 ## Adding our first functionality
 

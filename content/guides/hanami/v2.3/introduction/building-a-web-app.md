@@ -2,7 +2,7 @@
 title: "Building a web app"
 ---
 
-Now that we've [created our app](//getting-started), let's turn it into a web app.
+Now that we've [created our app](//page), let's turn it into a web app.
 
 ## Adding our first functionality
 
