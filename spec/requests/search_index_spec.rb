@@ -25,14 +25,14 @@ RSpec.describe "search index", type: :request do
       response = get "/pagefind/pagefind.js"
 
       expect(response.status).to eq(200)
-      expect(response.headers["Content-Type"]).to include("application/javascript")
+      expect(response.headers["Content-Type"]).to include("text/javascript")
     end
 
     it "serves the pagefind UI files" do
       response = get "/pagefind/pagefind-ui.js"
 
       expect(response.status).to eq(200)
-      expect(response.headers["Content-Type"]).to include("application/javascript")
+      expect(response.headers["Content-Type"]).to include("text/javascript")
     end
 
     it "serves the pagefind UI CSS" do
