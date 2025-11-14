@@ -75,9 +75,9 @@ You can use two CLI commands to compile your assets:
 - `hanami assets compile` will compile all your assets for production.
 - `hanami assets watch` will watch for changes to your assets and compile the relevant files immediately.
 
-The [`hanami dev` command](/v2.3/cli-commands/dev/) will start `hanami assets watch` by defalt, giving you
+The [`hanami dev` command](//guide/cli-commands/dev) will start `hanami assets watch` by defalt, giving you
 
-See the [assets CLI guide](/v2.3/cli-commands/assets/) for more detail.
+See the [assets CLI guide](//guide/cli-commands/assets) for more detail.
 
 ## Asset compilation
 
@@ -97,7 +97,9 @@ You can create one or more entry points, and use these to determine the asset bu
 
 The default entry point for a Hanami app is `app/assets/js/app.js`, which looks like this:
 
-    import "../css/app.css";
+```
+import "../css/app.css";
+```
 
 It imports the default stylesheet, so it can be included in the bundle. You should include the rest of your app’s JavsScript code in this file, or import it from other files.
 
@@ -115,8 +117,10 @@ Hanami uses files named `app.js` as entry points. Other JavaScript extensions ar
 
 For example, to crete an entry point for a “sign in” page, create an `app/assets/js/signin/app.js` file. In this entry point, you can import a matching stylesheet and a related JavaScript function:
 
-    import "../../css/signin/app.css";
-    import { resetPassword } from "./resetPassword";
+```
+import "../../css/signin/app.css";
+import { resetPassword } from "./resetPassword";
+```
 
 At this point, your app will now have two entry points, `app.js` and `signin/app.js`:
 
@@ -191,18 +195,20 @@ Via all the methods below, your app or slice _can only access its own assets_, t
 
 You can reference your assets directly via the assets component, the object registered as `"assets"` within your app or slice container.
 
-    $ bundle exec hanami console
+```bash
+$ bundle exec hanami console
 
-    bookshelf[development]> Hanami.app["assets"]["app.js"]
-    # => #<Hanami::Assets::Asset:0x0000000121882918
-    # @base_url=#<Hanami::Assets::BaseUrl:0x00000001215b5de8 @url="">,
-    # @path="/assets/app.js",
-    # @sri=nil>
+bookshelf[development]> Hanami.app["assets"]["app.js"]
+# => #<Hanami::Assets::Asset:0x0000000121882918
+# @base_url=#<Hanami::Assets::BaseUrl:0x00000001215b5de8 @url="">,
+# @path="/assets/app.js",
+# @sri=nil>
 
-    bookshelf[development]> app["assets"]["app.js"].url
-    # => "/assets/app.js"
+bookshelf[development]> app["assets"]["app.js"].url
+# => "/assets/app.js"
+```
 
-You can include this `"assets"` component as a dependency of any class to access your assets wherever you need across your app. See [Injecting dependencies via `Deps`](/v2.3/app/container-and-components/#injecting-dependencies-via-deps) to learn more.
+You can include this `"assets"` component as a dependency of any class to access your assets wherever you need across your app. See [Injecting dependencies via `Deps`](//guide/app/container-and-components/#injecting-dependencies-via-deps) to learn more.
 
 ### View helpers
 
@@ -210,30 +216,33 @@ Hanami includes a range of helpers for referencing your assets across your views
 
 To use a helper, provide an asset path matching the name of your entry point or any other static asset (such as images, fonts, etc.).
 
-    asset_url("app.js")
-    # => "/assets/app-LSLFPUMX.js"
+```ruby
+asset_url("app.js")
+# => "/assets/app-LSLFPUMX.js"
 
-    javascript_tag("app")
-    # => '<script src="/assets/app-LSLFPUMX.js" type="text/javascript"></script>'
+javascript_tag("app")
+# => '<script src="/assets/app-LSLFPUMX.js" type="text/javascript"></script>'
+```
 
-See the [assets helpers guide](/v2.3/helpers/assets) for more detail.
+See the [assets helpers guide](//guide/helpers/assets) for more detail.
 
 ### Elsewhere in views
 
-This `"assets"` component is automatically included as a dependency of the [view context](/v2.3/views/context/). This means you can access `assets` in your view [parts](/v2.3/views/parts/) and [scopes](/v2.3/views/scopes/) too.
+This `"assets"` component is automatically included as a dependency of the [view context](//guide/views/context). This means you can access `assets` in your view [parts](//guide/views/parts) and [scopes](//guide/views/scopes) too.
 
-    # app/views/parts/book.rb
+```ruby
+# app/views/parts/book.rb
+# auto_register: false
 
-    # auto_register: false
-
-    module Bookshelf
-      module Views
-        module Parts
-          class Book < Bookshelf::Views::Part
-            def cover_image_url
-              value.cover_image_url || context.assets["default-cover-image.jpg"]
-            end
-          end
+module Bookshelf
+  module Views
+    module Parts
+      class Book < Bookshelf::Views::Part
+        def cover_image_url
+          value.cover_image_url || context.assets["default-cover-image.jpg"]
         end
       end
     end
+  end
+end
+```

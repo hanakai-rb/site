@@ -8,20 +8,24 @@ You can configure Hanami to serve your assets from a content delivery network (C
 
 To configure an assets CDN, use `config.assets.base_url` in your app class.
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        environment :production do
-          config.assets.base_url = "https://some-cdn.net/my-site"
-        end
-      end
+module Bookshelf
+  class App < Hanami::App
+    environment :production do
+      config.assets.base_url = "https://some-cdn.net/my-site"
     end
+  end
+end
+```
 
-Once you have configured this `base_url`, all [assets helpers](v2.3/helpers/assets) will return absolute URLs prefixed by this base URL.
+Once you have configured this `base_url`, all [assets helpers](//guide/helpers/assets) will return absolute URLs prefixed by this base URL.
 
-    asset_url("app.js")
-    # => "https://some-cdn.net/my-site/assets/app-LSLFPUMX.js"
+```ruby
+asset_url("app.js")
+# => "https://some-cdn.net/my-site/assets/app-LSLFPUMX.js"
+```
 
 ## Content Security Policy (CSP)
 
@@ -29,19 +33,21 @@ By default, Hanami sets a `Content-Security-Policy` header that only allows reso
 
 Use `config.actions.content_security_policy` in your app class to allow your CDN:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        environment :production do
-          config.actions.content_security_policy[:script_src] += " https://some-cdn.net"
-          config.actions.content_security_policy[:style_src] += " https://some-cdn.net"
-          config.assets.base_url = "https://some-cdn.net/my-site"
-        end
-      end
+module Bookshelf
+  class App < Hanami::App
+    environment :production do
+      config.actions.content_security_policy[:script_src] += " https://some-cdn.net"
+      config.actions.content_security_policy[:style_src] += " https://some-cdn.net"
+      config.assets.base_url = "https://some-cdn.net/my-site"
     end
+  end
+end
+```
 
-For more details about Content Security Policy configuration, including nonce support, custom directives, and security best practices, see [Content Security Policy](/v2.3/actions/content-security-policy).
+For more details about Content Security Policy configuration, including nonce support, custom directives, and security best practices, see [Content Security Policy](//guide/actions/content-security-policy).
 
 ## Subresource integrity
 
@@ -51,24 +57,27 @@ To solve this problem, browser vendors use a defense called [Subresource Integri
 
 To enable subresource integrity, use `config.assets.subresource_integrity` in your app class, choosing one or more checksum algorithms.
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        environment :production do
-          config.assets.subresource_integrity = [:sha256, :sha512]
-        end
-      end
+module Bookshelf
+  class App < Hanami::App
+    environment :production do
+      config.assets.subresource_integrity = [:sha256, :sha512]
     end
+  end
+end
+```
 
-With this config, the `javascript_tag` and `stylesheet_tag` [assets helpers](v2.3/helpers/assets) will return tags with `integrity` and `crossorigin` attributes.
+With this config, the `javascript_tag` and `stylesheet_tag` [assets helpers](//guide/helpers/assets) will return tags with `integrity` and `crossorigin` attributes.
 
-    <script
-      src="/assets/app-LSLFPUMX.js"
-      type="text/javascript"
-      integrity="sha256-WB2pRuy8LdgAZ0aiFxLN8DdfRjKJTc4P4xuEw31iilM= sha512-4gegSER1uqxBvmlb/O9CJypUpRWR49SniwUjOcK2jifCRjFptwGKplFWGlGJ1yms+nSlkjpNCS/Lk9GoKI1Kew=="
-      crossorigin="anonymous"
-    ></script>
+```html
+<script
+  src="/assets/app-LSLFPUMX.js"
+  type="text/javascript"
+  integrity="sha256-WB2pRuy8LdgAZ0aiFxLN8DdfRjKJTc4P4xuEw31iilM= sha512-4gegSER1uqxBvmlb/O9CJypUpRWR49SniwUjOcK2jifCRjFptwGKplFWGlGJ1yms+nSlkjpNCS/Lk9GoKI1Kew=="
+  crossorigin="anonymous"
+></script>
+```
 
-Checksum calculations are CPU intensive, so adding additional subresource\_integrity schemes will extend the time it takes to compile assests, and therefore deploy your app. We suggest using `:sha256` for starters.
-
+Checksum calculations are CPU intensive, so adding additional subresource_integrity schemes will extend the time it takes to compile assests, and therefore deploy your app. We suggest using `:sha256` for starters.
