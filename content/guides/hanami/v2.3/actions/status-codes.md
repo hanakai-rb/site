@@ -1,5 +1,5 @@
 ---
-title: "Status Codes"
+title: Status Codes
 ---
 
 Status codes may be represented as a symbol instead of an integer for improved readability.

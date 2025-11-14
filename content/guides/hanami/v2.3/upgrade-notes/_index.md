@@ -1,5 +1,5 @@
 ---
-title: "Upgrade to 2.3"
+title: Upgrade to 2.3
 pages:
   - v2.2
   - v2.1

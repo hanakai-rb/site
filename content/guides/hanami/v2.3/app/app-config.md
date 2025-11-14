@@ -1,5 +1,5 @@
 ---
-title: "App Config"
+title: App Config
 ---
 
 You can configure various aspects of your Hanami app using `config` in your app class.

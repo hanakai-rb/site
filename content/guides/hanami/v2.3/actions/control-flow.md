@@ -1,5 +1,5 @@
 ---
-title: "Control Flow"
+title: Control Flow
 ---
 
 Actions support control flow through callbacks, halting and redirects.

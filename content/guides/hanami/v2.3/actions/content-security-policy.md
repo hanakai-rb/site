@@ -1,5 +1,5 @@
 ---
-title: "Content Security Policy"
+title: Content Security Policy
 ---
 
 Content Security Policy (CSP) is a security standard that helps prevent Cross-Site Scripting (XSS), clickjacking, and other code injection attacks. CSP allows you to control which resources the browser is allowed to load for your web pages.

@@ -1,5 +1,5 @@
 ---
-title: "Getting Started"
+title: Getting Started
 pages:
   - building-a-web-app
   - building-an-api
@@ -29,7 +29,7 @@ Ideally, you already have some familiarity with web apps and the [Ruby language]
 
 To create a Hanami app, you will need Ruby 3.1 or greater. Check your ruby version:
 
-```bash
+```shell
 $ ruby --version
 ```
 
@@ -37,7 +37,7 @@ If you need to install or upgrade Ruby, follow the instructions on [ruby-lang.or
 
 You also need Node.js installed, for front end assets. To confirm this, check that `npm` is available:
 
-```bash
+```shell
 $ npm --version
 ```
 
@@ -47,7 +47,7 @@ If you need to install or upgrade Node.js, follow the instructions on [nodejs.or
 
 In order to use Hanami, you need to install its gem:
 
-```bash
+```shell
 $ gem install hanami
 ```
 
@@ -55,13 +55,13 @@ $ gem install hanami
 
 To generate a new Hanami app, use `hanami new`, followed by the name of your app:
 
-```bash
+```shell
 $ hanami new bookshelf
 ```
 
 This generates a new `bookshelf` directory containing a fresh Hanami app.
 
-```bash
+```shell
 $ cd bookshelf
 ```
 
@@ -73,7 +73,7 @@ Hanami provides a command for starting all necessary processes to run your app i
 
 Start the development server:
 
-```bash
+```shell
 $ bundle exec hanami dev
 ```
 

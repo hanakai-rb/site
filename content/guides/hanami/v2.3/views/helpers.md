@@ -1,5 +1,5 @@
 ---
-title: "Helpers"
+title: Helpers
 ---
 
 While Hanami views help you keep your view logic close to its associated values via [parts](/v2.3/views/parts/), sometimes you need behavior that works with all kinds of values, in all parts of your views. For this, you can use helpers.

@@ -1,5 +1,5 @@
 ---
-title: "Settings"
+title: Settings
 ---
 
 You can define your own settings for your app through a `Settings` class, defined in `config/settings.rb`.
@@ -52,7 +52,7 @@ end
 
 We can see this in action in the Hanami console:
 
-```bash
+```shell
 $ ANALYTICS_ENABLED=true MAX_CART_ITEMS=100 bundle exec hanami console
 bookshelf[development]> Hanami.app["settings"].analytics_enabled
 => true
@@ -81,7 +81,7 @@ If a setting uses a constructor like `Types::String` or `Types::Params::Bool`, t
 
 The below settings will result in a `Hanami::Settings::InvalidSettingsError` when `DATABASE_URL` and `ANALYTICS_ENABLED` environment variables are not set:
 
-```bash
+```shell
 # config/settings.rb
 
 module Bookshelf
@@ -99,7 +99,7 @@ max_cart_items: can't convert nil into Integer
 
 The same exception will be raised if a setting can’t be correctly coerced:
 
-```bash
+```shell
 $ ANALYTICS_ENABLED=true MAX_CART_ITEMS="not coerceable to integer" bundle exec hanami server
 ! Unable to load application: Hanami::Settings::InvalidSettingsError: Could not initialize settings. The following settings were invalid:
 max_cart_items: invalid value for Integer(): "not coerceable to integer"
@@ -246,7 +246,7 @@ This allows you to maintain specific sets of per-environment variables for your 
 
 `.env.development` is used if `HANAMI_ENV` is “development”:
 
-```bash
+```shell
 # .env.development
 $ DATABASE_URL=postgres://localhost:5432/bookshelf_development
 ANALYTICS_ENABLED=true
@@ -259,7 +259,7 @@ bookshelf[development]> Hanami.app["settings"].analytics_enabled
 
 `.env.test` is used if `HANAMI_ENV` is “test”:
 
-```bash
+```shell
 # .env.test
 $ DATABASE_URL=postgres://localhost:5432/bookshelf_test
 ANALYTICS_ENABLED=false

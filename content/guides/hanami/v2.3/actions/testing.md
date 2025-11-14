@@ -1,5 +1,5 @@
 ---
-title: "Testing"
+title: Testing
 ---
 
 Hanami actions are designed to be easy to test via a range of techniques.
@@ -31,7 +31,7 @@ In this example, `action` is an instance of `Bookshelf::Actions::Books::Index`. 
 
 To test your action, run `bundle exec rspec` with the path to your action’s test file:
 
-```bash
+```shell
 $ bundle exec rspec spec/actions/books/index_spec.rb
 ```
 
@@ -39,7 +39,7 @@ When you run the tests for a single action, Hanami will load only the smallest s
 
 Your action tests will also be included when you run the whole test suite:
 
-```bash
+```shell
 $ bundle exec rspec
 ```
 

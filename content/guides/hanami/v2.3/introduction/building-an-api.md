@@ -1,5 +1,5 @@
 ---
-title: "Building an API"
+title: Building an API
 ---
 
 Now that we've [created our app](//page), let's turn it into an API.
@@ -36,7 +36,7 @@ end
 
 We can use Hanami's action generator to create this action:
 
-```bash
+```shell
 $ bundle exec hanami generate action home.index --skip-view --skip-route --skip-tests
 ```
 
@@ -62,13 +62,13 @@ end
 
 Run the development server:
 
-```bash
+```shell
 $ bin/hanami dev
 ```
 
 Test the endpoint:
 
-```bash
+```shell
 $ curl http://localhost:2300
 Welcome to Bookshelf
 ```

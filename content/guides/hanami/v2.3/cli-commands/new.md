@@ -1,5 +1,5 @@
 ---
-title: "New"
+title: New
 ---
 
 ## hanami new

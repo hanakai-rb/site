@@ -1,5 +1,5 @@
 ---
-title: "Version"
+title: Version
 ---
 
 ## hanami version

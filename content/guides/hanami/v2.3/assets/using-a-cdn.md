@@ -1,5 +1,5 @@
 ---
-title: "Using A Cdn"
+title: Using A Cdn
 ---
 
 ## Content delivery network (CDN)

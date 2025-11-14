@@ -1,5 +1,5 @@
 ---
-title: "Routes"
+title: Routes
 ---
 
 ## hanami routes

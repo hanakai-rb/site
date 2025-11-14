@@ -1,5 +1,5 @@
 ---
-title: "Booting"
+title: Booting
 pages:
   - container-and-components
   - providers
@@ -64,7 +64,7 @@ end
 
 And now, in our project directory, let’s run `irb`:
 
-```bash
+```shell
 bundle exec irb
 
 irb(main)>

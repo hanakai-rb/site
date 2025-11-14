@@ -1,5 +1,5 @@
 ---
-title: "Run"
+title: Run
 ---
 
 ## hanami run

@@ -1,5 +1,5 @@
 ---
-title: "Exception Handling"
+title: Exception Handling
 ---
 
 When a request crashes with an exception, you may want to handle it in a graceful manner. To do this, you can use `handle_exception` in your actions.

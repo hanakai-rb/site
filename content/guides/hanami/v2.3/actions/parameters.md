@@ -1,5 +1,5 @@
 ---
-title: "Parameters"
+title: Parameters
 ---
 
 The parameters associated with an incoming request are available via `request.params` within the action’s `#handle` method.

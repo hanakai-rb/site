@@ -1,5 +1,5 @@
 ---
-title: "Cookies"
+title: Cookies
 ---
 
 Actions can set [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) on outgoing requests via the `response` object.

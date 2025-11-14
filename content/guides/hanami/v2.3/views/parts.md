@@ -1,5 +1,5 @@
 ---
-title: "Parts"
+title: Parts
 ---
 
 All values returned from your [exposures](/v2.3/views/input-and-exposures) are decorated by parts, which provide a home for view-specific behavior alongside your app’s domain objects.

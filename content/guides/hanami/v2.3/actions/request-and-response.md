@@ -1,5 +1,5 @@
 ---
-title: "Request And Response"
+title: Request And Response
 ---
 
 When a Hanami action is called, the incoming HTTP request and outgoing HTTP response are represented by the `request` and `response` objects provided to the action’s `#handle` method.

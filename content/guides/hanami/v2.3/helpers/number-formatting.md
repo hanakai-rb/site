@@ -1,5 +1,5 @@
 ---
-title: "Number Formatting"
+title: Number Formatting
 ---
 
 Hanami offers a helpful way to present numbers via `#format_number` helper method. It returns a formatted string for the given number.

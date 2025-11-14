@@ -1,5 +1,5 @@
 ---
-title: "Code Reloading"
+title: Code Reloading
 ---
 
 Hanami offers fast code reloading in development via the [hanami-reloader](//doc/hanami-reloader) gem.
@@ -32,7 +32,7 @@ Thanks to [Zeitwerk](//page/autoloading) and [lazy loading](//page), code reload
 
 If you have an existing console session and make a code change, you can use your updated code via the `reload` helper:
 
-```bash
+```shell
 bundle exec hanami console
 bookshelf[development]> reload
 Reloading...

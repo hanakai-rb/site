@@ -1,5 +1,5 @@
 ---
-title: "String Escaping"
+title: String Escaping
 ---
 
 ## HTML escaping

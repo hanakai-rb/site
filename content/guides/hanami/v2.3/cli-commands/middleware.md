@@ -1,5 +1,5 @@
 ---
-title: "Middleware"
+title: Middleware
 ---
 
 ## hanami middleware

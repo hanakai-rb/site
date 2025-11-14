@@ -1,5 +1,5 @@
 ---
-title: "Html"
+title: Html
 ---
 
 This helper provides a range of methods for producing HTML.

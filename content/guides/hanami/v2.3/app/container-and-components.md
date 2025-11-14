@@ -1,5 +1,5 @@
 ---
-title: "Container And Components"
+title: Container And Components
 ---
 
 In Hanami, the application code you add to your `app` directory is automatically organised into a **container** , which forms the basis of a **component management system**.
@@ -69,7 +69,7 @@ This means that an instance of the `Bookshelf::Operations::SendWelcomeEmail` cla
 
 We can see this in the Hanami console if we boot our application and ask what keys are registered with the app container:
 
-```bash
+```shell
 bundle exec hanami console
 
 bookshelf[development]> Hanami.app.boot

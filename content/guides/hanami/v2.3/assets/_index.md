@@ -1,5 +1,5 @@
 ---
-title: "Overview"
+title: Overview
 pages:
   - using-a-cdn
   - customization
@@ -13,7 +13,7 @@ Most web apps require various assets (JavaScript, CSS, images, fonts and so on) 
 
 A new Hanami app gives you the following structure for your assets:
 
-```bash
+```shell
 .
 ├── app
 │   ├── assets
@@ -54,7 +54,7 @@ Slices can have their own independent assets. These live in an `assets/` directo
 
 Here’s the structure for assets in a newly generated “admin” slice:
 
-```bash
+```shell
 .
 ├── slices/admin
 │   └── assets
@@ -124,7 +124,7 @@ import { resetPassword } from "./resetPassword";
 
 At this point, your app will now have two entry points, `app.js` and `signin/app.js`:
 
-```bash
+```shell
 app/assets
 ├── css
 │   ├── app.css
@@ -141,7 +141,7 @@ app/assets
 
 These entry points will generate two different compiled **asset bundles** :
 
-```bash
+```shell
 public/assets
 ├── assets.json
 ├── app-GVDAEYEC.css
@@ -195,7 +195,7 @@ Via all the methods below, your app or slice _can only access its own assets_, t
 
 You can reference your assets directly via the assets component, the object registered as `"assets"` within your app or slice container.
 
-```bash
+```shell
 $ bundle exec hanami console
 
 bookshelf[development]> Hanami.app["assets"]["app.js"]

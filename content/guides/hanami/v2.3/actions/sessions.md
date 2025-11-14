@@ -1,5 +1,5 @@
 ---
-title: "Sessions"
+title: Sessions
 ---
 
 Sessions are disabled by default. To enable sessions, add a config like the following to your app:

@@ -1,5 +1,5 @@
 ---
-title: "Formats And Media Types"
+title: Formats And Media Types
 ---
 
 Hanami maps [over 50 of the most common media types](https://github.com/hanami/controller/blob/dc5bb2a1db48b0ccf3faf52aac20eaef0fd135a3/lib/hanami/action/mime.rb#L15-L69) to simple **format** names for you to use when configuring your actions.

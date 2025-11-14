@@ -1,5 +1,5 @@
 ---
-title: "Rack Integration"
+title: Rack Integration
 ---
 
 ## Rack environment
@@ -30,7 +30,7 @@ Hanami mounts a thin default middleware stack. Additional middleware can be moun
 
 Use the `hanami middleware` command to inspect the Rack middleware stack.
 
-```bash
+```shell
 $ bundle exec hanami middleware
 / Dry::Monitor::Rack::Middleware (instance)
 ```
@@ -39,7 +39,7 @@ $ bundle exec hanami middleware
 
 To add middleware at an application level, use the `middleware` config on your app:
 
-```bash
+```shell
 # config/app.rb
 
 module Bookshelf
@@ -56,7 +56,7 @@ $ bundle exec hanami middleware
 
 Middleware will be included in the stack in the order in which it’s added.
 
-```bash
+```shell
 # config/app.rb
 
 module Bookshelf
@@ -75,7 +75,7 @@ $ bundle exec hanami middleware
 
 If needed, you can use `before:` or `after:` to insert a middleware at a particular point in the stack:
 
-```bash
+```shell
 # config/app.rb
 
 module Bookshelf
@@ -111,7 +111,7 @@ end
 
 Adding middleware via your routes config lets you add middleware to specific routes.
 
-```bash
+```shell
 # config/routes.rb
 
 module Bookshelf

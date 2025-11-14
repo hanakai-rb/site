@@ -1,5 +1,5 @@
 ---
-title: "Commands"
+title: Commands
 pages:
   - new
   - install

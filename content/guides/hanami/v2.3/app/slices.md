@@ -1,5 +1,5 @@
 ---
-title: "Slices"
+title: Slices
 ---
 
 In addition to the `app` directory, Hanami also supports organising your application code into **slices**.
@@ -334,7 +334,7 @@ Loading specific slices brings the benefit of stronger code isolation, faster bo
 
 To do this, set the `HANAMI_SLICES` environment variable with a comma-separated list of slice names.
 
-```bash
+```shell
 $ HANAMI_SLICES=cdn,other_slice_here bundle exec your_hanami_command
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Generate"
+title: Generate
 ---
 
 ## hanami generate

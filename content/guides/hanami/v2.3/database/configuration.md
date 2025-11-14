@@ -1,5 +1,5 @@
 ---
-title: "Configuration"
+title: Configuration
 ---
 
 As of 2.3 Hanami will automatically generate DB configuration for your application.
@@ -142,7 +142,7 @@ Consider the case of a database migration from MySQL to PostgreSQL. Doing this i
 
 The simplest configuration may be done using the `DATABASE_URL__GATEWAY` format:
 
-```bash
+```shell
 DATABASE_URL=postgres://localhost:5432/bookshelf_development
 DATABASE_URL__LEGACY=mysql://localhost:3306/legacy
 ```

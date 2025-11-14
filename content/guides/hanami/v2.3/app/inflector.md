@@ -1,5 +1,5 @@
 ---
-title: "Inflector"
+title: Inflector
 ---
 
 Hanami includes an inflector that supports the pluralization, singularization and humanization of English words, as well as other transformations. This inflector is a [Dry::Inflector](//doc/dry-inflector) instance.

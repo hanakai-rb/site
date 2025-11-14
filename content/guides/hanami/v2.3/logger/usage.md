@@ -1,5 +1,5 @@
 ---
-title: "Usage"
+title: Usage
 ---
 
 Hanami logger is compatible with the stdlib `Logger` but it supports structured logging by default. This means that you are encouraged to log _data_, which we refer to as _payloads_ rather than plain text messages. This approach makes it much easier to process and understand your logs when running your system on production.

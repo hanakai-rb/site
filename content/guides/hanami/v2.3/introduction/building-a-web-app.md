@@ -1,5 +1,5 @@
 ---
-title: "Building a web app"
+title: Building a web app
 ---
 
 Now that we've [created our app](//page), let's turn it into a web app.
@@ -36,7 +36,7 @@ end
 
 Hanami provides an action generator we can use to create this action:
 
-```bash
+```shell
 $ bin/hanami generate action home.index --skip-route --skip-tests
 ```
 
@@ -69,7 +69,7 @@ We can find this view's template at `app/templates/home/index.html.erb`. Let's a
 
 Run the following command to start the server:
 
-```bash
+```shell
 $ bin/hanami dev
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Customization"
+title: Customization
 ---
 
 To customize your assets compilation, update `config/assets.js` to match the following:

@@ -1,5 +1,5 @@
 ---
-title: "Overview"
+title: Overview
 pages:
   - string-escaping
   - html

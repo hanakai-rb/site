@@ -1,5 +1,5 @@
 ---
-title: "Input And Exposures"
+title: Input And Exposures
 ---
 
 Each view in a Hanami application starts with a view class. In the same way that actions inherit from a base action class, views inherit from a base view class at (defined in `app/view.rb`).

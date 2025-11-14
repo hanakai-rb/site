@@ -1,5 +1,5 @@
 ---
-title: "Environments"
+title: Environments
 ---
 
 Hanami supports different environments based on a `HANAMI_ENV` environment variable.
@@ -18,7 +18,7 @@ Use the following helpers if your code needs behave differently in different env
 
 `Hanami.env` returns a symbol representing the current environment.
 
-```bash
+```shell
 # HANAMI_ENV=development
 
 Hanami.env
@@ -39,7 +39,7 @@ Hanami.env
 
 `Hanami.env?(*names)` returns true if the given name(s) match the current environment.
 
-```bash
+```shell
 # HANAMI_ENV=development
 
 Hanami.env?(:development)
@@ -54,7 +54,7 @@ Hanami.env?(:production)
 
 You can match on more than one environment:
 
-```bash
+```shell
 # HANAMI_ENV=development
 Hanami.env?(:development, :test)
 

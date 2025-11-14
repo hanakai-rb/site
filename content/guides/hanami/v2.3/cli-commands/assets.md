@@ -1,5 +1,5 @@
 ---
-title: "Assets"
+title: Assets
 ---
 
 ## hanami assets compile
