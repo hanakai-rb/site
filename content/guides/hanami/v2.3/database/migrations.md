@@ -8,45 +8,49 @@ Migration filenames are defined in [snake case](https://en.wikipedia.org/wiki/Sn
 
 They are located in the `config/db/migrate` directory.
 
-    $ tree config/db/migrate
-    config/db/migrate
-    ''' 20240717170227_create_posts.rb
-    ''' 20240717170318_add_published_at_to_posts.rb
+```bash
+$ tree config/db/migrate
+config/db/migrate
+''' 20240717170227_create_posts.rb
+''' 20240717170318_add_published_at_to_posts.rb
+```
 
 ## Direction
 
 Migration files are bi-directional, they define schema changes _forward_ and _backward_, or `up` and `down` in Sequel's syntax. This is important, in case your migration changes cause a problem you will want to roll them back as quickly as possible, and requiring a fresh migration to do this may take too much time.
 
-    ROM::SQL.migration do
-      change do
-        create_table :users do
-          primary_key :id
-          foreign_key :account_id, :accounts, on_delete: :cascade, null: false
-
-          column :given_name, String, null: false
-          column :family_name, String, null: false
-          column :email, "citext", null: false
-        end
-      end
+```ruby
+ROM::SQL.migration do
+  change do
+    create_table :users do
+      primary_key :id
+      foreign_key :account_id, :accounts, on_delete: :cascade, null: false
+      column :given_name, String, null: false
+      column :family_name, String, null: false
+      column :email, "citext", null: false
     end
+  end
+end
+```
 
 In the example above, we used the `change` method to define our migration. This is written in the style of an up migration, and the down version is inferred by Sequel.
 
 Sometimes, this cannot be automatically inferred. You will need to provide explicit `up` and `down` definitions in this case.
 
-    ROM::SQL.migration do
-      up do
-        alter_table :users do
-          add_unique_constraint [:email], name: :users_email_uniq
-        end
-      end
-
-      down do
-        alter_table :users do
-          drop_constraint :users_email_uniq
-        end
-      end
+```ruby
+ROM::SQL.migration do
+  up do
+    alter_table :users do
+      add_unique_constraint [:email], name: :users_email_uniq
     end
+  end
+  down do
+    alter_table :users do
+      drop_constraint :users_email_uniq
+    end
+  end
+end
+```
 
 ## Transactions
 
@@ -54,70 +58,72 @@ The majority of migrations are run within a transaction, so that DDL errors trig
 
 Within a migration block, `no_transaction` tells the migrator to run the migration without first starting a transaction.
 
-    ROM::SQL.migration do
-      no_transaction
-
-      up do
-        alter_table :users do
-          add_index :email, concurrently: true
-        end
-      end
-
-      down do
-        alter_table :users do
-          drop_index :email, concurrently: true
-        end
-      end
+```ruby
+ROM::SQL.migration do
+  no_transaction
+  up do
+    alter_table :users do
+      add_index :email, concurrently: true
     end
+  end
+  down do
+    alter_table :users do
+      drop_index :email, concurrently: true
+    end
+  end
+end
+```
 
 ## Syntax
 
 Sequel migration syntax provides some flexibility in how you may choose to represent your table columns.
 
-    create_table :users do
-      # column method, explicit SQL type
-      column :email, "varchar(255)", null: false
-
-      # column method, inferred SQL type: varchar(255)
-      column :email, String, null: false
-
-      # helper method, no inference, SQL type: text
-      text :email, null: false
-
-      # Ruby type method, inferred SQL type: varchar(255)
-      String :email, null: false
-    end
+```ruby
+create_table :users do
+  # column method, explicit SQL type
+  column :email, "varchar(255)", null: false
+  # column method, inferred SQL type: varchar(255)
+  column :email, String, null: false
+  # helper method, no inference, SQL type: text
+  text :email, null: false
+  # Ruby type method, inferred SQL type: varchar(255)
+  String :email, null: false
+end
+```
 
 Sequel also provides Ruby syntax for defining logical pieces, such as constraints
 
-    create_table :users do
-      primary_key :id
-      column :name, String, null: false
-      constraint(:name_min_length) { char_length(name) > 2 }
-    end
+```ruby
+create_table :users do
+  primary_key :id
+  column :name, String, null: false
+  constraint(:name_min_length) { char_length(name) > 2 }
+end
+```
 
 Read more at [Sequel: Schema modification methods](http://sequel.jeremyevans.net/rdoc/files/doc/schema_modification_rdoc.html)
 
 Ruby syntax is not a requirement, however, and sometimes what you are doing is not easy or possible to express in Sequel's DSL. In those cases, `execute` acts as an escape-hatch into raw SQL. The drawback of `execute` is that it cannot infer how to reverse your changes, so you will have to provide explicit up and down migrations.
 
-    ROM::SQL.migration do
-      up do
-        execute <<~SQL
-            CREATE TRIGGER posts_tsvector_update()
-            BEFORE INSERT OR UPDATE ON public.posts
-            FOR EACH ROW
-            WHEN (
-              OLD.title IS DISTINCT FROM NEW.title OR
-              OLD.content IS DISTINCT FROM NEW.content
-            )
-            EXECUTE PROCEDURE tsvector_update_trigger(search_tsvector, 'public.english', title, content)
-        SQL
-      end
-
-      down do
-        execute "DROP TRIGGER posts_tsvector_update() ON public.posts"
-      end
-    end
+```ruby
+ROM::SQL.migration do
+  up do
+    execute <<~SQL
+        CREATE TRIGGER posts_tsvector_update()
+        BEFORE INSERT OR UPDATE ON public.posts
+        FOR EACH ROW
+        WHEN (
+          OLD.title IS DISTINCT FROM NEW.title OR
+          OLD.content IS DISTINCT FROM NEW.content
+        )
+        EXECUTE PROCEDURE tsvector_update_trigger(search_tsvector, 'public.english', title, content)
+    SQL
+  end
+  down do
+    execute "DROP TRIGGER posts_tsvector_update() ON public.posts"
+  end
+end
+```
 
 In this example, we're storing vector information for PostgreSQL's text search in a column, automatically built by a trigger.
 

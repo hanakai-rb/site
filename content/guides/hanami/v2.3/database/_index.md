@@ -30,17 +30,21 @@ The default adapter used by `Hanami::DB::Relation` is the `ROM::SQL` adapter. Th
 
 The schema defines the shape of the incoming data and how it should be coerced into Ruby types. Most of the time, you will see this inferred from the database directly:
 
-    class Users < Hanami::DB::Relation
-      schema :users, infer: true
-    end
+```ruby
+class Users < Hanami::DB::Relation
+  schema :users, infer: true
+end
+```
 
 However, if you need to make any alterations to the defaults you can explicitly declare schema with or without inference.
 
-    class Users < Hanami::DB::Relation
-      schema :users, infer: true do
-        attribute :email, Types::Email
-      end
-    end
+```ruby
+class Users < Hanami::DB::Relation
+  schema :users, infer: true do
+    attribute :email, Types::Email
+  end
+end
+```
 
 `ROM::SQL` provides a wide array of data types for SQL engines, but you can provide your own based on dry-types. In this example, `Types::Email` would be user-defined.
 
@@ -50,14 +54,16 @@ For more on Schemas, see [the relations guide](https://guides.hanamirb.org/v2.3/
 
 Associations define the relationships between individual Relations.
 
-    class Users < Hanami::DB::Relation
-      schema(infer: true) do
-        associations do
-          has_many :users_tasks
-          has_many :tasks, through: :users_tasks
-        end
-      end
+```ruby
+class Users < Hanami::DB::Relation
+  schema(infer: true) do
+    associations do
+      has_many :users_tasks
+      has_many :tasks, through: :users_tasks
     end
+  end
+end
+```
 
 For more on associations, see [the relations guide](https://guides.hanamirb.org/v2.3/database/relations/#associations).
 
@@ -65,13 +71,14 @@ For more on associations, see [the relations guide](https://guides.hanamirb.org/
 
 Datasets define how the underlying data is fetched by default. ROM defaults to selecting all attributes in the schema, but this is simple to override.
 
-    class Users < Hanami::DB::Relation
-      schema(:users, infer: true)
-
-      dataset do
-        select(:id, :name).order(:name)
-      end
-    end
+```ruby
+class Users < Hanami::DB::Relation
+  schema(:users, infer: true)
+  dataset do
+    select(:id, :name).order(:name)
+  end
+end
+```
 
 The dataset can be thought of as the default state of the query; adding query conditions builds up the query from there.
 
@@ -87,15 +94,19 @@ Because Relation queries are highly dependent on the shape of the persistence la
 
 Consider the case of a users table that originally used emails as the identity of the user.
 
-    class UserRepo < Hanami::DB::Repo
-      def find(email) = users.where(email:).one
-    end
+```ruby
+class UserRepo < Hanami::DB::Repo
+  def find(email) = users.where(email:).one
+end
+```
 
 Let’s say the requirement has changed, to use usernames as the principal identity instead. Without a Repository, every place in your codebase that queries a User would need to accommodate this change. But here, we can do:
 
-    class UserRepo < Hanami::DB::Repo
-      def find(username) = users.where(username:).one
-    end
+```ruby
+class UserRepo < Hanami::DB::Repo
+  def find(username) = users.where(username:).one
+end
+```
 
 If the rest of your business logic treats the identity as an opaque string, then you're done. The encapsulation afforded by Repository restricts the knowledge of the persistence layer from where it does not belong.
 
@@ -107,19 +118,20 @@ The final output of a Repository is a Struct.
 
 A Hanami struct is immutable, and contains no business logic. They are extensible for adding presentation logic:
 
-    module Main
-      module Structs
-        class User < Hanami::DB::Struct
-          def full_name
-            "#{given_name} #{family_name}"
-          end
-
-          def mailbox
-            "#{full_name} <#{email}>"
-          end
-        end
+```ruby
+module Main
+  module Structs
+    class User < Hanami::DB::Struct
+      def full_name
+        "#{given_name} #{family_name}"
+      end
+      def mailbox
+        "#{full_name} <#{email}>"
       end
     end
+  end
+end
+```
 
 But you don't need to define every struct ahead of time, only to extend its functionality. If you don’t define a Struct class, Structs will be generated on-demand in the appropriate namespace.
 

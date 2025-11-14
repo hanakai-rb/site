@@ -8,13 +8,17 @@ By default, it uses SQLite as its default database. It also supports MySQL and P
 
 You can specify which database you’d like to use when creating your app, with the –database option:
 
-    hanami new bookshelf --database=sqlite # default
-    hanami new bookshelf --database=postgres
-    hanami new bookshelf --database=mysql
+```bash
+hanami new bookshelf --database=sqlite # default
+hanami new bookshelf --database=postgres
+hanami new bookshelf --database=mysql
+```
 
 You can also suppress the DB layer entirely with –skip-db
 
-    hanami new bookshelf --skip-db
+```bash
+hanami new bookshelf --skip-db
+```
 
 The default posture is to share a single configuration for the whole application, however Slices support having their own separate config.
 
@@ -30,9 +34,11 @@ Note that the value you set is the **development** database URL, and the _test_ 
 
 For example:
 
-    DATABASE_URL=sqlite://config/db/development.sqlite
-    DATABASE_URL=postgres://localhost/bookshelf_development
-    DATABASE_URL=mysql2://user:password@localhost/bookshelf_dev
+```bash
+DATABASE_URL=sqlite://config/db/development.sqlite
+DATABASE_URL=postgres://localhost/bookshelf_development
+DATABASE_URL=mysql2://user:password@localhost/bookshelf_dev
+```
 
 For more detail on the syntax of the URLs, see [ROM SQL: Connecting to a Database](https://rom-rb.org/learn/sql/3.3/#connecting-to-a-database)
 
@@ -42,46 +48,45 @@ If all you need to do is define `DATABASE_URL`, you don't need to create any fur
 
 This is achieved by creating `config/providers/db.rb`
 
-    Hanami.app.configure_provider :db do
-      config.gateway :default do |gw|
-        # In addition to putting it in the DATABASE_URL env
-        # variable, it can also be set in code here
-        gw.database_url = "postgres://localhost:5432/mydb"
-
-        # The default PostgreSQL configuration would look like this
-        gw.adapter :sql do |sql|
-          # ROM plugins are organized under the applicable component type
-          # this plugin is named 'instrumentation' and applies to ROM::Relation
-          sql.plugin relations: :instrumentation do |plugin|
-            # If the plugin defines a config object with more options
-            # you can yield it here and set the values
-            plugin.notifications = slice["notifications"]
-          end
-
-          # Not every plugin requires extra configuration
-          sql.plugin relations: :auto_restrictions
-
-          # Sequel extensions are registered with a single symbolic name
-          # sql.extension supports multiple arguments, and you can call it
-          # multiple times. We split these up into two simply for readability.
-          sql.extension :caller_logging, :error_sql, :sql_comments
-          sql.extension :pg_array, :pg_enum, :pg_json, :pg_range
-        end
+```ruby
+Hanami.app.configure_provider :db do
+  config.gateway :default do |gw|
+    # In addition to putting it in the DATABASE_URL env
+    # variable, it can also be set in code here
+    gw.database_url = "postgres://localhost:5432/mydb"
+    # The default PostgreSQL configuration would look like this
+    gw.adapter :sql do |sql|
+      # ROM plugins are organized under the applicable component type
+      # this plugin is named 'instrumentation' and applies to ROM::Relation
+      sql.plugin relations: :instrumentation do |plugin|
+        # If the plugin defines a config object with more options
+        # you can yield it here and set the values
+        plugin.notifications = slice["notifications"]
       end
+      # Not every plugin requires extra configuration
+      sql.plugin relations: :auto_restrictions
+      # Sequel extensions are registered with a single symbolic name
+      # sql.extension supports multiple arguments, and you can call it
+      # multiple times. We split these up into two simply for readability.
+      sql.extension :caller_logging, :error_sql, :sql_comments
+      sql.extension :pg_array, :pg_enum, :pg_json, :pg_range
     end
+  end
+end
+```
 
 By default you are adding to the defaults above, but you can tell Hanami to skip them if you wish.
 
-    gw.adapter :sql do |sql|
-      # skip everything
-      sql.skip_defaults
-
-      # skip ROM plugins
-      sql.skip_defaults :plugins
-
-      # skip Sequel extensions
-      sql.skip_defaults :extensions
-    end
+```ruby
+gw.adapter :sql do |sql|
+  # skip everything
+  sql.skip_defaults
+  # skip ROM plugins
+  sql.skip_defaults :plugins
+  # skip Sequel extensions
+  sql.skip_defaults :extensions
+end
+```
 
 More on [Sequel Extensions](http://sequel.jeremyevans.net/rdoc/files/doc/extensions_rdoc.html)
 
@@ -93,28 +98,34 @@ When configuring your slice database, instead of `DATABASE_URL`, you will use th
 
 So, given the following slice definition:
 
-    module Main
-      class Slice < Hanami::Slice
-      end
-    end
+```ruby
+module Main
+  class Slice < Hanami::Slice
+  end
+end
+```
 
 You would define a `MAIN__DATABASE_URL` environment variable and a `slices/main/config/db` directory.
 
 Slice configuration is hierarchical, so if you have database configuration in the parent it will be inherited by all child slices by default. You can opt out of this via the configure_from_parent setting.
 
-    module Main
-      class Slice < Hanami::Slice
-        config.db.configure_from_parent = false # default: true
-      end
-    end
+```ruby
+module Main
+  class Slice < Hanami::Slice
+    config.db.configure_from_parent = false # default: true
+  end
+end
+```
 
 If you prefer to define the relations for the entire app including all slices centrally in `app/relations/`, you can use the import_from_parent setting.
 
-    module Main
-      class Slice < Hanami::Slice
-        config.db.import_from_parent = true # default: false
-      end
-    end
+```ruby
+module Main
+  class Slice < Hanami::Slice
+    config.db.import_from_parent = true # default: false
+  end
+end
+```
 
 ## Gateway Configuration
 
@@ -124,42 +135,50 @@ Consider the case of a database migration from MySQL to PostgreSQL. Doing this i
 
 The simplest configuration may be done using the `DATABASE_URL__GATEWAY` format:
 
-    DATABASE_URL=postgres://localhost:5432/bookshelf_development
-    DATABASE_URL__LEGACY=mysql://localhost:3306/legacy
+```bash
+DATABASE_URL=postgres://localhost:5432/bookshelf_development
+DATABASE_URL__LEGACY=mysql://localhost:3306/legacy
+```
 
 This works in concert with Slice configuration, as well:
 
-    MAIN __DATABASE_URL__ LEGACY=mysql://localhost:3306/legacy
+```ruby
+MAIN __DATABASE_URL__ LEGACY=mysql://localhost:3306/legacy
+```
 
 Sometimes you will want additional connection options used when opening the connection. These may be added as query parameters on the DATABASE_URL:
 
-    DATABASE_URL__LEGACY=mysql://localhost:3306/legacy?max_connections=4
+```ruby
+DATABASE_URL__LEGACY=mysql://localhost:3306/legacy?max_connections=4
+```
 
 But as with Slice configuration, you can do more advanced things in code as well:
 
-    Hanami.app.configure_provider :db do
-      config.gateway :default do |gw|
-        gw.connection_options search_path: ['public', 'alt']
-
-        gw.adapter :sql do |sql|
-          sql.extension :my_custom_ext
-        end
-      end
-
-      config.gateway :legacy do |gw|
-        gw.connection_options max_connections: 4
-        gw.adapter :sql
-      end
+```ruby
+Hanami.app.configure_provider :db do
+  config.gateway :default do |gw|
+    gw.connection_options search_path: ['public', 'alt']
+    gw.adapter :sql do |sql|
+      sql.extension :my_custom_ext
     end
+  end
+  config.gateway :legacy do |gw|
+    gw.connection_options max_connections: 4
+    gw.adapter :sql
+  end
+end
+```
 
 More on [Sequel connection options](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html)
 
 Relations are assigned to the default gateway automatically, so if you are defining a Relation for an alternate, you need to configure that explicitly:
 
-    class Users < Hanami::DB::Relation
-      gateway :legacy
-      schema infer: true
-    end
+```ruby
+class Users < Hanami::DB::Relation
+  gateway :legacy
+  schema infer: true
+end
+```
 
 ## Container Keys
 
