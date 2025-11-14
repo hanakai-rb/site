@@ -4,14 +4,14 @@ title: "Customization"
 
 To customize your assets compilation, update `config/assets.js` to match the following:
 
-```
+```js
 import * as assets from "hanami-assets";
 await assets.run({
   esbuildOptionsFn: (args, esbuildOptions) => {
     // Add to esbuildOptions here. Use `args.watch` as a condition for different options for
     // compile vs watch.
     return esbuildOptions;
-  }
+  },
 });
 ```
 
@@ -19,7 +19,7 @@ Inside `esbuildOptionsFn`, update `esbuildOptions` to set your own [esbuild opti
 
 If you want to apply different options when compiling assets (for production) versus watching assets (for development), use `args.watch` as a conditional.
 
-```ruby
+```js
 await assets.run({
   esbuildOptionsFn: (args, esbuildOptions) => {
     if (args.watch) {
@@ -28,7 +28,7 @@ await assets.run({
       // compile mode (production) options here
     }
     return esbuildOptions;
-  }
+  },
 });
 ```
 
