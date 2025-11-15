@@ -65,7 +65,7 @@ $ bundle exec hanami generate migration --help
 
 ### hanami generate operation
 
-Generates an [operation](//guide/operations):
+Generates an [operation](//guide/overview):
 
 ```shell
 $ bundle exec hanami generate operation books.add
