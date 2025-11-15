@@ -37,6 +37,7 @@ These commands can be listed using the `--help` flag.
 
 ```shell
 $ bundle exec hanami --help
+
 Commands:
   hanami assets [SUBCOMMAND]
   hanami console # Start app console (REPL)

@@ -6,10 +6,10 @@ title: New
 
 Generates a Hanami application with the given APP name, in a new directory from the current location.
 
-````shell
+```shell
 $ hanami new bookshelf # generates a new Bookshelf application in ./bookshelf
 $ hanami new my_app # generates a new MyApp application in ./my_app
-``
+```
 
 On the application generation, Hanami performs gem bundling, NPM bundling, and general application setup.
 
@@ -26,7 +26,7 @@ $ hanami new bookshelf --gem-source=gem.coop
 
 # Generates a Gemfile with:
 # source "https://gem.coop"
-````
+```
 
 ### Skipping features
 

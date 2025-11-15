@@ -8,6 +8,7 @@ Hanami 2.3 provides a few generators:
 
 ```shell
 $ bin/hanami generate --help
+
 Commands:
   hanami generate action NAME
   hanami generate component NAME

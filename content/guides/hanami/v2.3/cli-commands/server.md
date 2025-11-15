@@ -8,6 +8,7 @@ Launches Hanami’s development server for developing against your application l
 
 ```shell
 $ bundle exec hanami server
+
 12:30:50 - INFO - Using Guardfile at bookshelf/Guardfile.
 12:30:50 - INFO - Puma starting on port 2300 in development environment.
 12:30:50 - INFO - Guard is now watching at 'bookshelf'
@@ -46,4 +47,3 @@ $ bundle exec hanami server --no-code-reloading
 ```
 
 Disabling code reloading is essential to debug application code with debuggin Ruby gems like `byebug`, `debug`, or `pry`.
-
