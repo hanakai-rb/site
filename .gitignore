@@ -3,7 +3,9 @@ build/
 db/*.sqlite
 log/*
 node_modules/
-public/
+public/*
+!public/404.html
+!public/500.html
 !public/_headers
 !public/*.html
 !public/robots.txt

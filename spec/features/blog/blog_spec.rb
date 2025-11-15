@@ -9,21 +9,21 @@ RSpec.feature "Blog" do
     posts = page.find_all("[data-testid=blog-post]")
     expect(posts.length).to eq 10
 
-    post_titles_1 = posts.map { |it| it.find("h2").text }
+    post_titles_1 = posts.map { _1.find("h2").text }
 
     click_link "Next page ->"
 
     posts = page.find_all("[data-testid=blog-post]")
     expect(posts.length).to eq 10
 
-    post_titles_2 = posts.map { |it| it.find("h2").text }
+    post_titles_2 = posts.map { _1.find("h2").text }
 
     expect((post_titles_1 + post_titles_2).uniq.length).to eq 20
 
     click_link "<- Previous page"
 
     posts = page.find_all("[data-testid=blog-post]")
-    post_titles_3 = posts.map { |it| it.find("h2").text }
+    post_titles_3 = posts.map { _1.find("h2").text }
     expect(post_titles_3).to eq post_titles_1
   end
 

@@ -1,15 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "search index", type: :request do
-  before do
-    # Ensure search index is built
-    unless File.exist?("public/pagefind/pagefind-entry.json")
-      require "rake"
-      load File.expand_path("../../Rakefile", __dir__)
-      Rake::Task["search:build_index"].invoke
-    end
-  end
-
+RSpec.describe "search index", :search, type: :request do
   let(:pagefind_entry) { JSON.parse(File.read("public/pagefind/pagefind-entry.json")) }
 
   describe "pagefind index files" do
@@ -25,14 +16,14 @@ RSpec.describe "search index", type: :request do
       response = get "/pagefind/pagefind.js"
 
       expect(response.status).to eq(200)
-      expect(response.headers["Content-Type"]).to include("application/javascript")
+      expect(response.headers["Content-Type"]).to include("text/javascript")
     end
 
     it "serves the pagefind UI files" do
       response = get "/pagefind/pagefind-ui.js"
 
       expect(response.status).to eq(200)
-      expect(response.headers["Content-Type"]).to include("application/javascript")
+      expect(response.headers["Content-Type"]).to include("text/javascript")
     end
 
     it "serves the pagefind UI CSS" do

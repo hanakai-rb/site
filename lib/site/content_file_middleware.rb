@@ -41,7 +41,7 @@ module Site
 
     def initialize(app)
       @app = app
-      @file_server = Rack::File.new(Dir.pwd)
+      @file_server = Rack::Files.new(Dir.pwd)
     end
 
     def call(env)

@@ -5,7 +5,7 @@ require "rubocop/rake_task"
 require "sitemap_generator/tasks"
 
 # Load custom rake tasks
-Dir["lib/tasks/**/*.rake"].each { |task| load task }
+Rake.add_rakelib "lib/tasks"
 
 RuboCop::RakeTask.new
 
