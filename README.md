@@ -4,11 +4,14 @@ This is the upcoming [Hanakai](https://hanakai.org) website. It’s still a work
 
 ## Organizing development
 
-We track our development entirely using [issues on this repo](https://github.com/hanakai-rb/site/issues). Orgnize your issues according to these main issue labels: [area-backend][backend-label], [area-design][design-label] and [area-content][content-label].
+We track our development entirely using [issues on this repo](https://github.com/hanakai-rb/site/issues). Orgnize your issues according to these main issue labels: [area/backend][backend-label], [area/design][design-label] and [area/content][content-label].
 
-[backend-label]: https://github.com/hanakai-rb/site/issues?q=state%3Aopen%20label%3Aarea-backend
-[design-label]: https://github.com/hanakai-rb/site/issues?q=state%3Aopen%20label%3Aarea-content
-[content-label]: https://github.com/hanakai-rb/site/issues?q=state%3Aopen%20label%3Aarea-design
+For the site’s initial launch, we’re tracking our work [in this project board][launch-project].
+
+[launch-project]: https://github.com/orgs/hanakai-rb/projects/2/views/1
+[backend-label]: https://github.com/hanakai-rb/site/issues?q=state%3Aopen%20label%3Aarea%2Fbackend
+[design-label]: https://github.com/hanakai-rb/site/issues?q=state%3Aopen%20label%3Aarea%2Fcontent
+[content-label]: https://github.com/hanakai-rb/site/issues?q=state%3Aopen%20label%3Aarea%2Fdesign
 
 ## Setup
 
