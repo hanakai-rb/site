@@ -4,7 +4,7 @@ title: Assets
 
 ## hanami assets compile
 
-Compiles the app’s [assets](//guide/actions/overview) into bundles for use in production:
+Compiles the app’s [assets](//guide/actions) into bundles for use in production:
 
 ```shell
 $ bundle exec hanami assets compile

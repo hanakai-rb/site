@@ -91,10 +91,10 @@ The `response` object inherits from [Rack::Response](https://www.rubydoc.info/ge
 
 By default, the response status is `200`. Setting the response status via `response.status` is useful when setting statuses like `200 OK`, `201 Created` and `404 Not Found`.
 
-You may use the canonical symbolic name for a status instead of the integer, as defined in`Hanami::Http::Status::SYMBOLS`. See [Status Codes](//page/status-codes/) for the complete list.
+You may use the canonical symbolic name for a status instead of the integer, as defined in`Hanami::Http::Status::SYMBOLS`. See [Status Codes](//page/status-codes) for the complete list.
 
-In situations where you want an action to halt, for example to return a `401 Unauthorized` response, use the action’s `halt` method. To return a redirect, use `response.redirect_to("/path")`. See [Control flow](//page/control-flow/) for details.
+In situations where you want an action to halt, for example to return a `401 Unauthorized` response, use the action’s `halt` method. To return a redirect, use `response.redirect_to("/path")`. See [Control flow](//page/control-flow) for details.
 
 ### Response format
 
-The value set using `response.format` can either be a format name (`:json`) or a content type string (`"application/json"`). Consult [Formats and media types](//page/formats-and-media-types/) for more information about setting response formats.
+The value set using `response.format` can either be a format name (`:json`) or a content type string (`"application/json"`). Consult [Formats and media types](//page/formats-and-media-types) for more information about setting response formats.

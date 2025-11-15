@@ -54,7 +54,7 @@ tag.p("<em>safe content</em>".html_safe)
 # => <p><em>safe content</em></p>
 ```
 
-When used inside [view templates](/v2.3/views/templates-and-partials), all given as a block will be concatenated and used as the tag’s contents.
+When used inside [view templates](//guide/views/templates-and-partials), all given as a block will be concatenated and used as the tag's contents.
 
 ```ruby
 <%= tag.div(id: "el") do %>

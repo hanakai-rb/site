@@ -45,7 +45,7 @@ To migrate to the beginning, provide `--target=0`.
 
 By default, migrating will also generate a structure dump file (such a `config/db/structure.sql`). To skip this, provide the `--no-dump` flag.
 
-For more on migrations, see the [migrations guide](/v2.3/database/migrations/).
+For more on migrations, see the [migrations guide](//page/database/migrations).
 
 ## hanami db rollback
 

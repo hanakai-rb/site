@@ -22,7 +22,7 @@ end
 
 Parameters for a request come from a number of sources:
 
-- [path variables](//guide/routing/overview/) as specified in the route that has matched the request (e.g. `/books/:id`)
+- [path variables](//guide/routing) as specified in the route that has matched the request (e.g. `/books/:id`)
 - the request’s query string (e.g. `/books?page=2&per_page=10`)
 - the request’s body (for example the JSON-formatted body of a `POST` request with an `application/json` content type).
 

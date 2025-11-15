@@ -24,4 +24,4 @@ module Bookshelf
 end
 ```
 
-From here, you can use these dependencies within your [exposures](/v2.3/views/input-and-exposures/).
+From here, you can use these dependencies within your [exposures](//page/input-and-exposures).

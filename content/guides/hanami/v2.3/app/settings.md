@@ -136,7 +136,7 @@ end
 
 ## Constraints
 
-To enforce additional contraints on settings, you can use a [constraint](//doc/dry-types/constraints/) in your constructor type.
+To enforce additional contraints on settings, you can use a [constraint](//doc/dry-types/constraints) in your constructor type.
 
 Here, the value of the `session_secret` must be at least 32 characters, while the value of the `from_email` setting must satisfy the EMAIL_FORMAT regular expression:
 
