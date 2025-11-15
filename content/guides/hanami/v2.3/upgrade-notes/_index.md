@@ -16,14 +16,18 @@ These notes cover an upgrade from 2.2 to 2.3.
 
 Since Hanami 2.3 allows Rack version 3 for the first time, you should specify your desired Rack version in your Gemfile to avoid an inadvertent upgrade. A safe approach would be to fix to Rack 2 for your initial Hanami upgrade, then upgrade to Rack 3 later.
 
-    # Add this (or similar) to your Gemfile
-    gem "rack" "~> 2.2"
+```ruby
+# Add this (or similar) to your Gemfile
+gem "rack" "~> 2.2"
+```
 
 ## Disable Foreman's own env parsing
 
 Update your `bin/dev` to start `foreman` like so:
 
-    exec foreman start -f Procfile.dev --env=/dev/null "$@"
+```ruby
+exec foreman start -f Procfile.dev --env=/dev/null "$@"
+```
 
 We don't need Foreman to parse the env, since Hanami does this on its own via the dotenv gem.
 
@@ -39,31 +43,33 @@ Run `bundle binstubs hanami-cli rake` to generate `bin/hanami` and `bin/rake` bi
 
 We now generate a `bin/setup` script to make it easy to run prepare your app for development. If you haven't already created your own version of this, feel free to use ours:
 
-    #!/usr/bin/env bash
-    set -euo pipefail
-    IFS=$'\n\t'
+```shell
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
-    # This script is a way to set up and keep your development environment updated
-    # automatically. It is meant to be idempotent so that you can run it at any
-    # time to get the same result. Add any new necessary setup steps to this file
-    # as your application evolves.
+# This script is a way to set up and keep your development environment updated
+# automatically. It is meant to be idempotent so that you can run it at any
+# time to get the same result. Add any new necessary setup steps to this file
+# as your application evolves.
 
-    announce() {
-      local bold='\033[1m'
-      local reset='\033[0m'
-      printf "${bold}${1}${reset}\n"
-    }
+announce() {
+  local bold='\033[1m'
+  local reset='\033[0m'
+  printf "${bold}${1}${reset}\n"
+}
 
-    announce "Running bundle install..."
-    bundle check || bundle install
+announce "Running bundle install..."
+bundle check || bundle install
 
-    announce "\nRunning npm install..."
-    npm install
+announce "\nRunning npm install..."
+npm install
 
-    announce "\nPreparing the database..."
-    hanami db prepare
+announce "\nPreparing the database..."
+hanami db prepare
 
-    announce "\nð¸ Setup complete!"
+announce "\n¸ Setup complete!"
+```
 
 Remember to `chmod +x bin/setup` after creating this file.
 
@@ -71,9 +77,11 @@ Remember to `chmod +x bin/setup` after creating this file.
 
 Add the following to your `.gitignore`:
 
-    public/*
-    !public/404.html
-    !public/500.html
+```ruby
+public/*
+!public/404.html
+!public/500.html
+```
 
 If your `public/404.html` and `public/500.html` error pages are not committed to your Git repo, add them. If you need to grab a copy, download [404.html](https://github.com/hanami/hanami-cli/blob/96d3ace9a4faa7cc9de55ca9a49e24998496775f/lib/hanami/cli/generators/gem/app/404.html), [500.html](https://github.com/hanami/hanami-cli/blob/96d3ace9a4faa7cc9de55ca9a49e24998496775f/lib/hanami/cli/generators/gem/app/500.html), or pull them from a new app created with `hanami new`.
 
@@ -81,82 +89,91 @@ If your `public/404.html` and `public/500.html` error pages are not committed to
 
 Add this option to the `guard "puma"` line in your `Guardfile`:
 
-    environment: ENV.fetch("HANAMI_ENV", "development")
+```ruby
+environment: ENV.fetch("HANAMI_ENV", "development")
+```
 
 A complete version of `Guardfile` should look like this:
 
-    # frozen_string_literal: true
-
-    group :server do
-      guard "puma", port: ENV.fetch("HANAMI_PORT", 2300), environment: ENV.fetch("HANAMI_ENV", "development") do
-        # Edit the following regular expression for your needs.
-        # See: https://guides.hanamirb.org/app/code-reloading/
-        watch(%r{^(app|config|lib|slices)([\/][^\/]+)*.(rb|erb|haml|slim)$}i)
-      end
-    end
+```ruby
+# frozen_string_literal: true
+group :server do
+  guard "puma", port: ENV.fetch("HANAMI_PORT", 2300), environment: ENV.fetch("HANAMI_ENV", "development") do
+    # Edit the following regular expression for your needs.
+    # See: https://guides.hanamirb.org/app/code-reloading/
+    watch(%r{^(app|config|lib|slices)([\/][^\/]+)*.(rb|erb|haml|slim)$}i)
+  end
+end
+```
 
 ## Update Rakefile to load tasks from `lib/tasks/`
 
 Add the following to the end of your `Rakefile`:
 
-    # Add your custom rake tasks to the lib/tasks directory
-    Rake.add_rakelib "lib/tasks"
+```ruby
+# Add your custom rake tasks to the lib/tasks directory
+Rake.add_rakelib "lib/tasks"
+```
 
 ## Update the stock assets config
 
 If your `config/assets.js` is still the default, you can update it to include more helpful comments:
 
-    import * as assets from "hanami-assets";
-
-    // Assets are managed by esbuild (https://esbuild.github.io), and can be
-    // customized below.
+```js
+import * as assets from "hanami-assets";
+// Assets are managed by esbuild (https://esbuild.github.io), and can be
+// customized below.
+//
+// Learn more at https://guides.hanamirb.org/assets/customization/.
+await assets.run({
+  esbuildOptionsFn: (args, esbuildOptions) => {
+    // Customize your `esbuildOptions` here.
     //
-    // Learn more at https://guides.hanamirb.org/assets/customization/.
-
-    await assets.run({
-      esbuildOptionsFn: (args, esbuildOptions) => {
-        // Customize your `esbuildOptions` here.
-        //
-        // Use the `args.watch` boolean as a condition to apply diffierent options
-        // when running `hanami assets watch` vs `hanami assets compile`.
-
-        return esbuildOptions;
-      },
-    });
+    // Use the `args.watch` boolean as a condition to apply diffierent options
+    // when running `hanami assets watch` vs `hanami assets compile`.
+    return esbuildOptions;
+  },
+});
+```
 
 ## Default to strict types
 
 Update your `lib/[your_app]/types.rb` to default to strict types. Pass the `default: :strict` option to `Dry.Types`. A new complete `types.rb` looks like this:
 
-    # frozen_string_literal: true
+```ruby
+# frozen_string_literal: true
 
-    require "dry/types"
+require "dry/types"
 
-    module MyApp
-      Types = Dry.Types(default: :strict)
+module MyApp
+  Types = Dry.Types(default: :strict)
 
-      module Types
-        # Define your custom types here
-      end
-    end
+  module Types
+    # Define your custom types here
+  end
+end
+```
 
 ## Adjust name for request testing shared context
 
 Update your `spec/support/requests.rb` to rename `shared_context "Rack::Test"` to `"with Rack::Test"`. This will avoid offenses raised by rubocop-rspec. A new complete `spec/support/requests.rb` looks like this:
 
-    # frozen_string_literal: true
+```ruby
+# frozen_string_literal: true
 
-    require "rack/test"
+require "rack/test"
 
-    RSpec.shared_context "with Rack::Test" do
-      # Define the app for Rack::Test requests
-      let(:app) { Hanami.app }
-    end
+RSpec.shared_context "with Rack::Test" do
+  # Define the app for Rack::Test requests
+  let(:app) { Hanami.app }
+end
 
-    RSpec.configure do |config|
-      config.include Rack::Test::Methods, type: :request
-      config.include_context "with Rack::Test", type: :request
-    end
+RSpec.configure do |config|
+  config.include Rack::Test::Methods, type: :request
+  config.include_context "with Rack::Test", type: :request
+end
+
+```
 
 ## Create default view context classes
 
@@ -164,15 +181,15 @@ We now generate default view context classes in new apps and slices. These files
 
 If you want these, add `views/context.rb` files in your `app/` and any slices. A new complete app-level view context looks like this:
 
-    # auto_register: false
-    # frozen_string_literal: true
+```ruby
+# auto_register: false
+# frozen_string_literal: true
 
-    module FreshApp
-      module Views
-        class Context < Hanami::View::Context
-          # Define your view context here. See https://guides.hanamirb.org/views/context/ for details.
-        end
-      end
+module FreshApp
+  module Views
+    class Context < Hanami::View::Context
+      # Define your view context here. See https://guides.hanamirb.org/views/context/ for details.
     end
-
----
+  end
+end
+```

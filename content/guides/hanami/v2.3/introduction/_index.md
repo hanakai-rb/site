@@ -112,5 +112,5 @@ bookshelf/
 
 Now we're ready to build something with Hanami. Choose your path:
 
-- [Building a web app](//page/building-a-web-app/)
-- [Building an API](//page/building-an-api/)
+- [Building a web app](//page/building-a-web-app)
+- [Building an API](//page/building-an-api)

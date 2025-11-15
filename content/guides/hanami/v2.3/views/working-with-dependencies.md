@@ -6,20 +6,22 @@ Hanami views are designed to work with dependencies from across your app. Using 
 
 To include dependencies, use the Deps mixin:
 
-    # app/views/books/show.rb
+```ruby
+# app/views/books/show.rb
 
-    module Bookshelf
-      module Views
-        module Books
-          class Show < Bookshelf::View
-            include Deps["repos.book_repo"]
+module Bookshelf
+  module Views
+    module Books
+      class Show < Bookshelf::View
+        include Deps["repos.book_repo"]
 
-            expose :book do |id:|
-              book_repo.get!(id)
-            end
-          end
+        expose :book do |id:|
+          book_repo.get!(id)
         end
       end
     end
+  end
+end
+```
 
 From here, you can use these dependencies within your [exposures](/v2.3/views/input-and-exposures/).

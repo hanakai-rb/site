@@ -18,30 +18,32 @@ The logger configuration is namespaced as `config.logger` and you can access it 
 
 Here’s how you could set `:json` formatter for all environments:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    require "hanami"
-
-    module Bookshelf
-      class App < Hanami::App
-        # This would change formatter for all environments to `:json`
-        config.logger.formatter = :json
-      end
-    end
+require "hanami"
+module Bookshelf
+  class App < Hanami::App
+    # This would change formatter for all environments to `:json`
+    config.logger.formatter = :json
+  end
+end
+```
 
 You can fine-tune your logger on a per-environment basis using the convenient `environment` method:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    require "hanami"
-
-    module Bookshelf
-      class App < Hanami::App
-        environment(:development) do
-          config.logger.stream = root.join("log").join("development.log")
-        end
-      end
+require "hanami"
+module Bookshelf
+  class App < Hanami::App
+    environment(:development) do
+      config.logger.stream = root.join("log").join("development.log")
     end
+  end
+end
+```
 
 ### Log filters
 
@@ -53,47 +55,49 @@ In order to avoid having sensitive information leak to your log streams, Hanami 
 
 If you want to add more keys, you can simply do it like this:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    require "hanami"
-
-    module Bookshelf
-      class App < Hanami::App
-        config.logger.filters = config.logger.filters + ["token"]
-      end
-    end
+require "hanami"
+module Bookshelf
+  class App < Hanami::App
+    config.logger.filters = config.logger.filters + ["token"]
+  end
+end
+```
 
 ### Colorized output
 
 If you want colorized log levels in your output, you can do so via `colorize` option:
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    require "hanami"
-
-    module Bookshelf
-      class App < Hanami::App
-        environment(:development) do
-          config.logger.options[:colorize] = true
-        end
-      end
+require "hanami"
+module Bookshelf
+  class App < Hanami::App
+    environment(:development) do
+      config.logger.options[:colorize] = true
     end
+  end
+end
+```
 
 You can also customize text log template to use custom colors:
 
-    require "hanami"
-
-    module Bookshelf
-      class App < Hanami::App
-        environment(:development) do
-          config.logger.options[:colorize] = true
-
-          config.logger.template = <<~TMPL
-            [<blue>%<progname>s</blue>] [%<severity>s] [<green>%<time>s</green>] %<message>s %<payload>s
-          TMPL
-        end
-      end
+```ruby
+require "hanami"
+module Bookshelf
+  class App < Hanami::App
+    environment(:development) do
+      config.logger.options[:colorize] = true
+      config.logger.template = <<~TMPL
+        [<blue>%<progname>s</blue>] [%<severity>s] [<green>%<time>s</green>] %<message>s %<payload>s
+      TMPL
     end
+  end
+end
+```
 
 ### Customizing logging destinations
 
@@ -101,14 +105,15 @@ You may want to handle certain type of log entries in a special way. One example
 
 Here’s what you could add to your `spec_helper.rb` to have any exception that’s being logged while tests are running go to `log/exceptions.log` file:
 
-    # spec/spec_helper.rb
+```ruby
+# spec/spec_helper.rb
 
-    Hanami.logger.add_backend(
-      stream: Hanami.app.root.join("log").join("exceptions.log"), log_if: :exception?
-    )
-
-    begin
-      raise "Oh noez"
-    rescue => e
-      Hanami.logger.error(e)
-    end
+Hanami.logger.add_backend(
+  stream: Hanami.app.root.join("log").join("exceptions.log"), log_if: :exception?
+)
+begin
+  raise "Oh noez"
+rescue => e
+  Hanami.logger.error(e)
+end
+```

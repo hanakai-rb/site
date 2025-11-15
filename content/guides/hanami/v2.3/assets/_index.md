@@ -208,7 +208,7 @@ bookshelf[development]> app["assets"]["app.js"].url
 # => "/assets/app.js"
 ```
 
-You can include this `"assets"` component as a dependency of any class to access your assets wherever you need across your app. See [Injecting dependencies via `Deps`](//guide/app/container-and-components/#injecting-dependencies-via-deps) to learn more.
+You can include this `"assets"` component as a dependency of any class to access your assets wherever you need across your app. See [Injecting dependencies via `Deps`](//guide/app/container-and-components#injecting-dependencies-via-deps) to learn more.
 
 ### View helpers
 

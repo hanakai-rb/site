@@ -12,13 +12,17 @@ Hanami provides a range of standard helpers for common aspects of writing views.
 
 For the examples below, we’ll be using the standard `format_number` helper, which takes a number and turns it into a human-friendly string representation:
 
-    format_number(1234) # => "1,234"
+```ruby
+format_number(1234) # => "1,234"
+```
 
 ## Helpers in templates
 
 You can call helpers directly by their method names in your templates:
 
-    <p><%= format_number(1234) %></p>
+```erb
+<p><%= format_number(1234) %></p>
+```
 
 Helper methods will take priority over your view’s [exposures](/v2.3/views/exposures/). Be mindful of this when naming your exposures and writing your own helper methods.
 
@@ -26,10 +30,12 @@ Helper methods will take priority over your view’s [exposures](/v2.3/views/exp
 
 Helpers in [parts](/v2.3/views/parts/) are available on a `helpers` object within the part:
 
-    def word_count
-      # Presuming a `body_text` method on the value wrapped by the part
-      helpers.format_number(body_text.split)
-    end
+```ruby
+def word_count
+  # Presuming a `body_text` method on the value wrapped by the part
+  helpers.format_number(body_text.split)
+end
+```
 
 Making the helpers available via `helpers` avoids potential naming collisions, since parts can wrap all kinds of different values, each with their own range of different method names.
 
@@ -37,57 +43,67 @@ Making the helpers available via `helpers` avoids potential naming collisions, s
 
 Like templates, helpers in [scopes](/v2.3/views/scopes/) are available directly as methods:
 
-    def post_word_count
-      # Presuming a `post` local
-      format_number(post.body_text.split)
-    end
+```ruby
+def post_word_count
+  # Presuming a `post` local
+  format_number(post.body_text.split)
+end
+```
 
 ## Writing your own helpers
 
 When you generate a new Hanami app, you’ll find a helpers module generated in `app/views/helpers.rb`:
 
-    module MyApp
-      module Views
-        module Helpers
-          # Add your view helpers here
-        end
-      end
+```ruby
+module MyApp
+  module Views
+    module Helpers
+      # Add your view helpers here
     end
+  end
+end
+```
 
 Any methods you write inside this module will become available as helpers in all the places outlined above.
 
 If you’d like to further organize your helpers, you can create nested modules and include them explicitly in this helpers module. For example:
 
-    module MyApp
-      module Views
-        module Helpers
-          # Defined in app/views/helpers/formatting_helper.rb
-          include FormattingHelper
-        end
-      end
+```ruby
+module MyApp
+  module Views
+    module Helpers
+      # Defined in app/views/helpers/formatting_helper.rb
+      include FormattingHelper
     end
+  end
+end
+```
 
 This same structure applies within slices as well as the app. When you generate a new slice, you’ll find a corresponding helpers module generated in the slice:
 
-    module MySlice
-      module Views
-        module Helpers
-          # Add your view helpers here
-        end
-      end
+```ruby
+module MySlice
+  module Views
+    module Helpers
+      # Add your view helpers here
     end
+  end
+end
+```
 
 The methods in this module will become available as helpers in the views within the slice.
 
 To make app-level view helpers available within slices, include the app’s helpers module:
 
-    module MySlice
-      module Views
-        module Helpers
-          include MyApp::Views::Helpers
-        end
-      end
+```ruby
+module MySlice
+  module Views
+    module Helpers
+      include MyApp::Views::Helpers
     end
+  end
+end
+```
 
 ## Using the view context within helpers
 
@@ -95,13 +111,16 @@ When writing your own helpers, you can access the [view context](/v2.3/views/con
 
 The context includes useful app facilities like the inflector:
 
-    def my_helper
-      _context.inflector.pluralize("greeting")
-    end
+```ruby
+def my_helper
+  _context.inflector.pluralize("greeting")
+end
+```
 
 For views [rendered within an action](/v2.3/actions/rendering-views/), the context also provides the current request:
 
-    def current_path?(path)
-      path == _context.request.fullpath
-    end
-
+```ruby
+def current_path?(path)
+  path == _context.request.fullpath
+end
+```

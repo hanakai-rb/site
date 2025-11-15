@@ -10,41 +10,47 @@ You can use a custom scope to add your own behavior around a template and its pa
 
 Scopes are kept in the `Views::Scopes` namespace within your app or slice. For example:
 
-    # app/views/scopes/media_player.rb
+```ruby
+# app/views/scopes/media_player.rb
+# auto_register: false
 
-    # auto_register: false
-
-    module Bookshelf
-      module Views
-        module Scopes
-          class MediaPlayer < Bookshelf::Views::Scope
-          end
-        end
+module Bookshelf
+  module Views
+    module Scopes
+      class MediaPlayer < Bookshelf::Views::Scope
       end
     end
+  end
+end
+```
 
 It’s recommended to define a base scope for the other scopes in the app or slice to inherit:
 
-    # app/views/scope.rb
+```ruby
+# app/views/scope.rb
+# auto_register: false
 
-    # auto_register: false
-
-    module Bookshelf
-      module Views
-        class Scope < Hanami::View::Scope
-        end
-      end
+module Bookshelf
+  module Views
+    class Scope < Hanami::View::Scope
     end
+  end
+end
+```
 
 ## Building scopes
 
 Build a scope by using the `#scope` method in a template, a part, or another scope object:
 
-    scope(:media_player)
+```ruby
+scope(:media_player)
+```
 
 You can also provide locals to the scope:
 
-    scope(:media_player, item: audio_file)
+```ruby
+scope(:media_player, item: audio_file)
+```
 
 When you build a scope, the associated class will be looked up based on the scope’s name.
 
@@ -56,17 +62,21 @@ If you have no scope class matching an the scope’s name, then a generic `Hanam
 
 You can render a partial via a scope with the standard `#render` method:
 
-    scope(:media_player, item: audio_file).render("media/audio_player")
+```ruby
+scope(:media_player, item: audio_file).render("media/audio_player")
+```
 
 The rendered partial will have access to all the scope’s methods, as well as its locals.
 
 You can also render partials from methods within your scope class:
 
-    class MediaPlayer < Bookshelf::Views::Scope
-      def render_player
-        render("media/audio_player")
-      end
-    end
+```ruby
+class MediaPlayer < Bookshelf::Views::Scope
+  def render_player
+    render("media/audio_player")
+  end
+end
+```
 
 ## Accessing locals
 
@@ -74,25 +84,31 @@ Within a scope class, or any partial rendered via that scope, you can access the
 
 For example, from a template:
 
-    <!-- Given an `item:` local passed to the scope -->
-    <%= item.title %>
+```erb
+<!-- Given an `item:` local passed to the scope -->
+<%= item.title %>
+```
 
 Or within a scope class:
 
-    class MediaPlayer < Bookshelf::Views::Scope
-      def display_title
-        # `item` is a local
-        "#{item.title} (#{item.duration})"
-      end
-    end
+```ruby
+class MediaPlayer < Bookshelf::Views::Scope
+  def display_title
+    # `item` is a local
+    "#{item.title} (#{item.duration})"
+  end
+end
+```
 
 You can also access a full hash of locals via `#locals` (or `#_locals` as an alias, in case there is a local itself called `locals`). This is useful for providing default values for locals that may not be provided when the scope is built:
 
-    class MediaPlayer < Bookshelf::Views::Scope
-      def show_artwork?
-        locals.fetch(:show_artwork, true)
-      end
-    end
+```ruby
+class MediaPlayer < Bookshelf::Views::Scope
+  def show_artwork?
+    locals.fetch(:show_artwork, true)
+  end
+end
+```
 
 ## Accessing the context
 
@@ -102,12 +118,14 @@ Scopes also delegate missing methods to the context object (provided there is no
 
 For example:
 
-    class MediaPlayer < Bookshelf::Views::Scope
-      def item_url
-        # `item` is a local, and `routes` is a method on the context
-        routes.path(:item, item.id)
-      end
-    end
+```ruby
+class MediaPlayer < Bookshelf::Views::Scope
+  def item_url
+    # `item` is a local, and `routes` is a method on the context
+    routes.path(:item, item.id)
+  end
+end
+```
 
 ## Memoizing methods
 

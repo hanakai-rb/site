@@ -24,15 +24,17 @@ Views also provide special first-class support for [Haml](https://haml.info) and
 
 Where a template engine requires their own gem, be sure to install this yourself, as well as require it in your base view class:
 
-    # app/view.rb
+```ruby
+# app/view.rb
 
-    # Use Slim for ".html.slim" templates
-    require "slim"
+# Use Slim for ".html.slim" templates
+require "slim"
 
-    module Bookshelf
-      class View < Hanami::View
-      end
-    end
+module Bookshelf
+  class View < Hanami::View
+  end
+end
+```
 
 ## Layouts
 
@@ -40,13 +42,15 @@ Each view’s template is rendered within a layout. Layouts are kept within the 
 
 Every layout should `yield` at the appropriate location to include the content from the template. For example:
 
-    # app/templates/layouts/app.html.erb
+```erb
+# app/templates/layouts/app.html.erb
 
-    <html>
-      <body>
-        <%= yield %>
-      </body>
-    </html>
+<html>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+```
 
 ## HTML safety
 
@@ -58,13 +62,17 @@ HTML safety checks are made by calling `string.html_safe?`.
 
 When writing your own [helpers](/v2.3/views/helpers/) or other code providing strings to templates, you can make a string as HTML safe by calling `.html_safe` on the string:
 
-    def my_helper
-      "<p>This is safe</p>".html_safe
-    end
+```ruby
+def my_helper
+  "<p>This is safe</p>".html_safe
+end
+```
 
 You may choose to skip the auto-escaping of non-HTML safe strings by using particular template tags. In ERB:
 
-    <%== "<p>Non-safe strings will not be auto-escaped</p>" %>
+```erb
+<%== "<p>Non-safe strings will not be auto-escaped</p>" %>
+```
 
 Similar tags also exist for Haml and Slim. Use these tags with caution. This is **not recommended** for strings coming from untrusted user input.
 
@@ -83,13 +91,17 @@ You may choose to provide custom scopes for templates and partials. To learn mor
 
 You can render a partial from your template using the `render` method:
 
-    <%= render "path/to/my_partial" %>
+```erb
+<%= render "path/to/my_partial" %>
+```
 
 Partials are looked up within the templates directory, with the partial’s file name expected to be prefixed by an underscore. For the example above, the partial template is expected to be at `templates/path/to/_my_partial.html.slim`.
 
 You can provide explicit locals to a partial via keyword arguments:
 
-    <%= render "path/to/my_partial", my_locals: "go here" %>
+```erb
+<%= render "path/to/my_partial", my_locals: "go here" %>
+```
 
 When you provide explicit locals to a partial, only those locals will be available to the partial. When you provide no locals at all, then the partial will have access to the calling template’s own set of locals.
 

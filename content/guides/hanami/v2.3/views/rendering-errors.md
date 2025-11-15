@@ -14,13 +14,14 @@ You can enable or disable these error views using the `config.render_errors` app
 
 To configure which error views show for which exceptions, use the `config.render_error_responses` setting. This is a hash that maps string representations of Ruby exception classes to the symbolized form (downcased, underscored) of [Rack’s list of HTTP error names](https://github.com/rack/rack/blob/f6c583adb0e863e524bacedaf594602964e01078/lib/rack/utils.rb#L469-L538). These names are then mapped to the equivalent status codes and used to locate the HTML files in `public/`.
 
-    # config/app.rb
+```ruby
+# config/app.rb
 
-    module Bookshelf
-      class App < Hanami::App
-        config.render_error_responses.merge!(
-          "ROM::TupleCountMismatchError" => :not_found
-        )
-      end
-    end
-
+module Bookshelf
+  class App < Hanami::App
+    config.render_error_responses.merge!(
+      "ROM::TupleCountMismatchError" => :not_found
+    )
+  end
+end
+```

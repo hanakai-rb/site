@@ -164,4 +164,4 @@ irb(main)> Hanami.app.keys
  "rack.monitor"]
 ```
 
-You can read more about components and containers in more detail in the [container and components guide](//page/container-and-components/). Providers are covered in the [providers guide](//page/providers/).
+You can read more about components and containers in more detail in the [container and components guide](//page/container-and-components). Providers are covered in the [providers guide](//page/providers).

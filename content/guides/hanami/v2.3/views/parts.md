@@ -12,31 +12,33 @@ This means you can move much of your view logic out of templates and into parts.
 
 Parts are kept in the `Views::Parts` namespace within your app or slice. For example:
 
-    # app/views/parts/book.rb
+```ruby
+# app/views/parts/book.rb
+# auto_register: false
 
-    # auto_register: false
-
-    module Bookshelf
-      module Views
-        module Parts
-          class Book < Bookshelf::Views::Part
-          end
-        end
+module Bookshelf
+  module Views
+    module Parts
+      class Book < Bookshelf::Views::Part
       end
     end
+  end
+end
+```
 
 It’s recommended to define a base part for the other parts in the app or slice to inherit:
 
-    # app/views/part.rb
+```ruby
+# app/views/part.rb
+# auto_register: false
 
-    # auto_register: false
-
-    module Bookshelf
-      module Views
-        class Part < Hanami::View::Part
-        end
-      end
+module Bookshelf
+  module Views
+    class Part < Hanami::View::Part
     end
+  end
+end
+```
 
 ## Associating parts with exposures
 
@@ -54,14 +56,18 @@ If you have no part class matching an exposure’s name, then a generic `Hanami:
 
 You can specify a part name used to decorate any given exposure. To do this, use the `as:` option:
 
-    # Will decorate the current_user with `Views::Parts::User`
-    expose :current_user, as: :user do
-      # ...
-    end
+```ruby
+# Will decorate the current_user with `Views::Parts::User`
+expose :current_user, as: :user do
+  # ...
+end
+```
 
 You can also provide a concrete part class to `as:`
 
-    expose :current_user, as: Parts::User
+```ruby
+expose :current_user, as: Parts::User
+```
 
 For exposures returning arrays:
 
@@ -77,67 +83,87 @@ When using a part, you can call any methods that belong to the decorated value, 
 
 For example, from a template:
 
-    <!-- All the book methods are callable directly on the part -->
-    <p><%= book.title %></p>
+```erb
+<!-- All the book methods are callable directly on the part -->
+<p><%= book.title %></p>
+```
 
 This also applies when defining methods in your own part classes:
 
-    class Book < Bookshelf::Views::Part
-      # `title` and `publication_date` are methods on the decorated book
-      def display_name
-        "#{title} (#{publication_date})"
-      end
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  # `title` and `publication_date` are methods on the decorated book
+  def display_name
+    "#{title} (#{publication_date})"
+  end
+end
+```
 
 In the case of naming collisions, or when overriding a method from the value, you can access the value directly via `#value` (or `#_value` as an alias, in case the decorated value itself responding to `#value`):
 
-    class Book < Bookshelf::Views::Part
-      def title
-        value.title.upcase
-      end
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  def title
+    value.title.upcase
+  end
+end
+```
 
 ## String conversion
 
 When output directly to a template, a part will use its value’s `#to_s` (which you can also override in your own part classes):
 
-    <p><%= book %></p>
+```erb
+<p><%= book %></p>
+```
 
 ## Rendering partials
 
 To return complex markup from part methods, you can use the `#render` method to render a partial, with the part object included in that partial’s own locals:
 
-    class Book < Bookshelf::Views::Part
-      def info_box
-        render("books/info_box")
-      end
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  def info_box
+    render("books/info_box")
+  end
+end
+```
 
-    <%= book.info_box %>
+```erb
+<%= book.info_box %>
+```
 
 This will render a `books/_info_box` partial template with the part available as `book` within the partial.
 
 You can also render such partials explicitly within templates:
 
-    <%= book.render("books/info_box") %>
+```erb
+<%= book.render("books/info_box") %>
+```
 
 To make the part available by another local name within the partial’s scope, us the `as:` option:
 
-    render("books/info_box", as: :item)
+```ruby
+render("books/info_box", as: :item)
+```
 
 You can also provide additional locals for the partial:
 
-    render("books/info_box", title_label: "Book info")
+```ruby
+render("books/info_box", title_label: "Book info")
+```
 
 ## Accessing helpers
 
 You can access [helpers](/v2.3/views/helpers) on a `helpers` object within the part:
 
-    class Book < Bookshelf::Views::Part
-      def cover_url
-        value.cover_url || helpers.asset_url("book-cover-default.png")
-      end
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  def cover_url
+    value.cover_url || helpers.asset_url("book-cover-default.png")
+  end
+end
+```
 
 Making the helpers available via `helpers` avoids potential naming collisions, since parts can wrap all kinds of different values, each with their own range of different method names.
 
@@ -145,41 +171,51 @@ Making the helpers available via `helpers` avoids potential naming collisions, s
 
 You can access the [context](/v2.3/views/context/) for the view’s current rendering using the `#context` method (or `#_context` as an alias, in case the decorated value responds to `#context`):
 
-    class Book < Bookshelf::Views::Part
-      def path
-        context.routes.path(:book, id)
-      end
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  def path
+    context.routes.path(:book, id)
+  end
+end
+```
 
 ## Decorating part attributes
 
 The value decorated by your part may have its own attributes that you also want decorated. To do this, declare these attribute `decorate` in your part class:
 
-    class Book < Bookshelf::Views::Part
-      # Returns the author as a Views::Parts::Author
-      decorate :author
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  # Returns the author as a Views::Parts::Author
+  decorate :author
+end
+```
 
 You can pass the same `as:` option to `decorate` as you do to exposures:
 
-    # Returns the author as a Views::Parts::Person
-    decorate :author, as: :person
+```ruby
+# Returns the author as a Views::Parts::Person
+decorate :author, as: :person
+```
 
 ## Memoizing methods
 
 A part object lives for the entirety of a single view rendering, so you can memoize expensive operations to ensure they only run once. `decorate` has a secondary function of memoizing:
 
-    class Book < Bookshelf::Views::Part
-      # Returns the author as a Views::Parts::Author
-      decorate :author
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  # Returns the author as a Views::Parts::Author
+  decorate :author
+end
+```
 
 ## Building scopes
 
 To build [custom scopes](/v2.3/views/scopes/) from within a part, use the `#scope` method (or `#_scope` as an alias, in case the decorated value responds to `#_scope`):
 
-    class Book < Bookshelf::Views::Part
-      def info_box
-        scope(:info_box, size: :large).render
-      end
-    end
+```ruby
+class Book < Bookshelf::Views::Part
+  def info_box
+    scope(:info_box, size: :large).render
+  end
+end
+```

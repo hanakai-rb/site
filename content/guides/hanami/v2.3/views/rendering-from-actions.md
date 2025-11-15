@@ -10,18 +10,20 @@ By convention, Hanami actions will automatically provide an action’s correspon
 
 For example, this `Pages::Contact` action will render a `Pages::Contact` view:
 
-    # app/actions/pages/contact.rb
+```ruby
+# app/actions/pages/contact.rb
 
-    module Bookshelf
-      module Actions
-        module Pages
-          class Contact < Bookshelf::Action
-            def handle(request, response)
-            end
-          end
+module Bookshelf
+  module Actions
+    module Pages
+      class Contact < Bookshelf::Action
+        def handle(request, response)
         end
       end
     end
+  end
+end
+```
 
 When automatically rendering a view, the request’s params hash will be passed directly to the view as its [input](/v2.3/views/input-and-exposures/).
 
@@ -29,19 +31,21 @@ When automatically rendering a view, the request’s params hash will be passed 
 
 In many cases, you’ll want to exercise greater control over the input you pass to your view. To do this, pass your input (along with the view itself) to `response.render`:
 
-    # app/actions/pages/contact.rb
+```ruby
+# app/actions/pages/contact.rb
 
-    module Bookshelf
-      module Actions
-        module Pages
-          class Contact < Bookshelf::Action
-            def handle(request, response)
-              response.render(view, page: params[:page])
-            end
-          end
+module Bookshelf
+  module Actions
+    module Pages
+      class Contact < Bookshelf::Action
+        def handle(request, response)
+          response.render(view, page: params[:page])
         end
       end
     end
+  end
+end
+```
 
 ## Explicit view dependencies
 
@@ -49,45 +53,49 @@ Should you choose, you can make the connection between the action and the view e
 
 To do this, use the Deps mixin to provide your own depencency named `view`.
 
-    # app/actions/pages/contact.rb
+```ruby
+# app/actions/pages/contact.rb
 
-    module Bookshelf
-      module Actions
-        module Pages
-          class Contact < Bookshelf::Action
-            include Deps[view: "views.pages.contact"]
+module Bookshelf
+  module Actions
+    module Pages
+      class Contact < Bookshelf::Action
+        include Deps[view: "views.pages.contact"]
 
-            def handle(request, response)
-            end
-          end
+        def handle(request, response)
         end
       end
     end
+  end
+end
+```
 
 Using this approach, you can also choose to render one of several views based on certain conditions.
 
-    # app/actions/home/show.rb
+```ruby
+# app/actions/home/show.rb
 
-    module Bookshelf
-      module Actions
-        module Home
-          class Show < Bookshelf::Action
-            include Deps[
-              view: "views.pages.contact",
-              alternative_view: "views.pages.alternative_contact",
-            ]
+module Bookshelf
+  module Actions
+    module Home
+      class Show < Bookshelf::Action
+        include Deps[
+          view: "views.pages.contact",
+          alternative_view: "views.pages.alternative_contact",
+        ]
 
-            def handle(request, response)
-              if some_condition
-                response.render(alternative_view)
-              else
-                response.render(view)
-              end
-            end
+        def handle(request, response)
+          if some_condition
+            response.render(alternative_view)
+          else
+            response.render(view)
           end
         end
       end
     end
+  end
+end
+```
 
 ## RESTful view dependencies
 
@@ -111,6 +119,8 @@ Views rendered from actions make the action’s current request available in the
 
 To disable automatic rendering from actions, define an `#auto_render?(response)` method in the action that returns false:
 
-    def auto_render?(response)
-      false
-    end
+```ruby
+def auto_render?(response)
+  false
+end
+```
