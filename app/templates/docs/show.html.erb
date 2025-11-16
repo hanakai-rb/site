@@ -33,7 +33,13 @@
 
   <%# Content %>
   <%= main.slot :content do %>
-    <%= render "doc_pages/breadcrumbs", breadcrumbs:, org: %>
+    <div class="flex flex-col">
+      <% if version != latest_version %>
+        <%= render "doc_pages/version_warning", version:, latest_version_url: "/docs/#{doc.slug}/#{latest_version}" %>
+      <% end %>
+
+      <%= render "doc_pages/breadcrumbs", breadcrumbs:, org: %>
+    </div>
 
     <header
       data-gem="<%= doc.title %>"
