@@ -154,12 +154,9 @@ task
 # {:id=>1, :user_id=>1, :title=>"Task One"}
 ```
 
-^INFO
-
-#### Association name
-
-Notice that `associate` method can accept a rom struct and it will try to infer association name from it. If this fails because you have an aliased association then pass association name explicitly as the second argument, ie: `associate(user, :author)`.
-^
+> [!NOTE]
+> #### Association name
+> Notice that `associate` method can accept a rom struct and it will try to infer association name from it. If this fails because you have an aliased association then pass association name explicitly as the second argument, ie: `associate(user, :author)`.
 
 <!-- TODO restore when we have API docs again
 ## Learn more
