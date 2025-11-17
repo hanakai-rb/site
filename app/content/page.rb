@@ -13,7 +13,7 @@ module Site
       attribute :content, Types::Strict::String
 
       class Heading < Site::Struct
-        attribute :text, Types::Strict::String
+        attribute :text, Types::Strict::String.constructor(->(str) { str.html_safe })
         attribute :href, Types::Strict::String
         attribute :level, Types::Strict::Integer
       end
