@@ -196,7 +196,6 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       activateElements.forEach((el) => el.removeEventListener("click", onActivateClick));
       deactivateElements.forEach((el) => el.removeEventListener("click", onDeactivateClick));
       window.removeEventListener("keydown", onKeyDown, { capture: true });
-      window.removeEventListener("unload", saveTermCache);
       pagefindInstance.destroy();
       focusTrap.deactivate();
     },
