@@ -1,47 +1,5 @@
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-hairline.woff2") format("woff2");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-hairlineitalic.woff2") format("woff2");
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-thin.woff2") format("woff2");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-thinitalic.woff2") format("woff2");
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-lightitalic.woff2") format("woff2");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
   src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -93,20 +51,6 @@
   font-family: "Faire Sprig Sans";
   src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-blackitalic.woff2") format("woff2");
   font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-super.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-superitalic.woff2") format("woff2");
-  font-weight: 900;
   font-style: italic;
   font-display: swap;
 }
