@@ -21,7 +21,7 @@ Let’s make sure you’re all caught up. So far, we have:
 
 There’s a lot of words across those posts. So today I want to share something different, something _visual_. Behold, cuteness!
 
-![A preview of our new logos](/blog/2025/07/24/the-look-of-things-to-come/new-logos-preview.png "A preview of our new logos")
+![A preview of our new logos](/blog/assets/2025-07-24-the-look-of-things-to-come/new-logos-preview.png "A preview of our new logos")
 
 Here you have your very own preview of the new faces we’re creating for Hanami, Dry and Rom.
 

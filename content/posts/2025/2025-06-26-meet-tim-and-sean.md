@@ -11,7 +11,7 @@ excerpt: >
 
 It’s week 4 of our [sponsorship drive](/blog/2025/06/03/become-a-hanami-dry-and-rom-patron)! This week is your chance to get to know the people you’ll be supporting:
 
-![Sean and Tim at RubyConf 2024](/blog/2025/06/26/meet-tim-and-sean/sean-and-tim.jpeg "Sean and Tim at RubyConf 2024")
+![Sean and Tim at RubyConf 2024](/blog/assets/2025-06-26-meet-tim-and-sean/sean-and-tim.jpeg "Sean and Tim at RubyConf 2024")
 
 That’s Sean on the left, me on the right. Now let’s get into it!
 

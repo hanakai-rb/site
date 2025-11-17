@@ -11,7 +11,7 @@ RSpec.describe "static content files", type: :request do
   end
 
   it "serves static files within the blog post" do
-    response = get "/blog/2025/06/26/meet-tim-and-sean/sean-and-tim.jpeg"
+    response = get "/blog/assets/2025-06-26-meet-tim-and-sean/sean-and-tim.jpeg"
 
     expect(response.status).to eq(200)
     expect(response.headers["Content-Type"]).to eq("image/jpeg")

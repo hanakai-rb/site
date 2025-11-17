@@ -27,7 +27,7 @@ We had a couple of Hanami events at the conference. The first was part of Baltic
 
 We even had a familiar face stop by for a chat!
 
-![Matz joins the Hanami table at Baltic Ruby](/blog/2025/06/20/field-report-from-riga-and-the-rooftop/oss-expo.jpeg "Matz joins the Hanami table at Baltic Ruby")
+![Matz joins the Hanami table at Baltic Ruby](/blog/assets/2025-06-20-field-report-from-riga-and-the-rooftop/oss-expo.jpeg "Matz joins the Hanami table at Baltic Ruby")
 
 While not technically part of the OSS expo, during the conference we also found some help from friend-of-the-framework [Charles Nutter](https://www.headius.com)! Charles reviewed the hanami/hanami test suite and helped identify [how we can get to green on JRuby](https://github.com/hanami/hanami/pull/1524). Thank you Charles for your help! I think Hanami on [JRuby](https://www.jruby.org) could make for a formidable combo of performance and code clarity, and I’m excited to make this part of our standard offering.
 
