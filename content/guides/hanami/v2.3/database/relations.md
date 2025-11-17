@@ -141,7 +141,7 @@ These relationships are called **associations** and they are defined within a `s
 
 ### One-to-Many
 
-{{% one-to-many %}}
+![One-to-many](//file/otm.svg)
 
 One-to-many associations are established with `has_many`.
 
@@ -163,7 +163,7 @@ end
 
 ### Many-to-One
 
-{{% many-to-one %}}
+![Many-to-one](//file/mto.svg)
 
 Many-to-one associations are established with `belongs_to`. They reference the other table in singular form.
 
@@ -193,7 +193,7 @@ end
 
 ### Many-to-Many
 
-{{% many-to-many %}}
+![Many-to-many](//file/mtm.svg)
 
 Many-to-many associations are established with `has_many` with the `through:` option.
 
