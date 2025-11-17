@@ -11,7 +11,7 @@
         data-depth="<%= depth %>"
         href="<%= heading.href %>"
       >
-        <%= heading.text %>
+        <%= raw heading.text %>
       </a>
       <% if child_headings.any? %>
         <%= render "doc_pages/toc_headings", headings: child_headings, testid: nil, depth: depth + 1 %>
