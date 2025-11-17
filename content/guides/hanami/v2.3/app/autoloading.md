@@ -1,6 +1,5 @@
 ---
 title: Autoloading
-order: 40
 ---
 
 Hanami uses the [Zeitwerk](https://github.com/fxn/zeitwerk) code loader to support autoloading.

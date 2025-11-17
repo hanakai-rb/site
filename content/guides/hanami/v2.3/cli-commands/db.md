@@ -1,6 +1,5 @@
 ---
 title: DB
-order: 80
 ---
 
 ## hanami db

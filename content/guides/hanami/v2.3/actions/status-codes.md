@@ -1,6 +1,5 @@
 ---
 title: Status Codes
-order: 45
 ---
 
 Status codes may be represented as a symbol instead of an integer for improved readability.

@@ -1,6 +1,5 @@
 ---
 title: Install
-order: 30
 ---
 
 ## hanami install

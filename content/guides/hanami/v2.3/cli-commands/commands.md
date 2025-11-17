@@ -1,6 +1,5 @@
 ---
 title: Commands
-order: 10
 ---
 
 Hanami provides a command line interface with helpful commands for generating a new application, starting a console, starting a development server, displaying routes and more.

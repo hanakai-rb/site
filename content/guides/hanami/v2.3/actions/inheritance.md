@@ -1,6 +1,5 @@
 ---
 title: Inheritance
-order: 120
 ---
 
 When you inherit from an action class, you also inherit much of its behavior. This includes:

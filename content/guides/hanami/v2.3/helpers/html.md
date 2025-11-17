@@ -1,6 +1,5 @@
 ---
 title: HTML
-order: 30
 ---
 
 This helper provides a range of methods for producing HTML.

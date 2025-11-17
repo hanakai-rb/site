@@ -1,6 +1,5 @@
 ---
 title: String escaping
-order: 20
 ---
 
 ## HTML escaping

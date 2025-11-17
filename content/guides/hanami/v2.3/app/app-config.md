@@ -1,6 +1,5 @@
 ---
 title: App config
-order: 70
 ---
 
 You can configure various aspects of your Hanami app using `config` in your app class.

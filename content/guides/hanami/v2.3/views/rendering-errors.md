@@ -1,6 +1,5 @@
 ---
 title: Rendering errors
-order: 90
 ---
 
 When running your app in production mode, error views will be rendered for any uncaught exceptions. This allows you to present a helpful error screen to your users while also hiding any technical details of the error.

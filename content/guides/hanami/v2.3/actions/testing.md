@@ -1,6 +1,5 @@
 ---
 title: Testing
-order: 140
 ---
 
 Hanami actions are designed to be easy to test via a range of techniques.

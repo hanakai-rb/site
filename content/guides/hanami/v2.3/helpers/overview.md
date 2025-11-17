@@ -1,6 +1,5 @@
 ---
 title: Overview
-order: 10
 ---
 
 Hanami provides a range of standard helpers for you to use in your views.

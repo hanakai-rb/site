@@ -1,6 +1,5 @@
 ---
 title: Slices
-order: 900
 ---
 
 In addition to the `app` directory, Hanami also supports organising your application code into **slices**.

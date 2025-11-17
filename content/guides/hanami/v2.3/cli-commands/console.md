@@ -1,6 +1,5 @@
 ---
 title: Console
-order: 40
 ---
 
 ## hanami console

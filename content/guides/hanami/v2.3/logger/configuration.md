@@ -1,6 +1,5 @@
 ---
 title: Configuration
-order: 10
 ---
 
 Hanami provides a built-in logger that is used by default as a general-purpose logger and, if you're building a web application, a Rack request logger too.

@@ -1,6 +1,5 @@
 ---
 title: Sessions
-order: 90
 ---
 
 Sessions are disabled by default. To enable sessions, add a config like the following to your app:

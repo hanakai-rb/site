@@ -1,6 +1,5 @@
 ---
 title: Formats and media types
-order: 70
 ---
 
 Hanami maps [over 50 of the most common media types][built-in-formats] to simple **format** names for you to use when configuring your actions.

@@ -1,6 +1,5 @@
 ---
 title: Dev
-order: 60
 ---
 
 ## hanami dev

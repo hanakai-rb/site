@@ -1,6 +1,5 @@
 ---
 title: Overview
-order: 10
 ---
 
 Most web apps require various assets (JavaScript, CSS, images, fonts and so on) to go along with their HTML. Hanami provides built-in asset management using [esbuild](https://esbuild.github.io/), an extremely fast bundler for the web.

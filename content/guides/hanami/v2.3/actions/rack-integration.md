@@ -1,6 +1,5 @@
 ---
 title: Rack integration
-order: 60
 ---
 
 ## Rack environment

@@ -1,6 +1,5 @@
 ---
 title: Settings
-order: 38
 ---
 
 You can define your own settings for your app through a `Settings` class, defined in `config/settings.rb`.

@@ -1,6 +1,5 @@
 ---
 title: Number formatting
-order: 50
 ---
 
 Hanami offers a helpful way to present numbers via `#format_number` helper method. It returns a formatted string for the given number.

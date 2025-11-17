@@ -1,6 +1,5 @@
 ---
 title: Context
-order: 60
 aliases:
   - "/views/context"
 ---

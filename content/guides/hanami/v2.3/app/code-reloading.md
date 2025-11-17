@@ -1,6 +1,5 @@
 ---
 title: Code reloading
-order: 90
 ---
 
 Hanami offers fast code reloading in development via the [hanami-reloader](https://github.com/hanami/reloader) gem.

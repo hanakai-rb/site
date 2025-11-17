@@ -1,6 +1,5 @@
 ---
 title: Relations
-order: 40
 ---
 
 Relations own the responsibility of querying your database. They encode what data exists in the table, how to coerce SQL types into Ruby types and vice-versa, and how this table relates to others.

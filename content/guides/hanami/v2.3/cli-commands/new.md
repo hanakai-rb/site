@@ -1,6 +1,5 @@
 ---
 title: New
-order: 20
 ---
 
 ## hanami new

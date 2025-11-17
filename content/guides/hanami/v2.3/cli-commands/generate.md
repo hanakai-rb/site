@@ -1,6 +1,5 @@
 ---
 title: Generate
-order: 70
 ---
 
 ## hanami generate

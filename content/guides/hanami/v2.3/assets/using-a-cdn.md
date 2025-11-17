@@ -1,6 +1,5 @@
 ---
 title: Using a CDN
-order: 20
 ---
 
 ## Content delivery network (CDN)

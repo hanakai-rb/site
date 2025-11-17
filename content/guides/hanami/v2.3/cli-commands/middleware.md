@@ -1,6 +1,5 @@
 ---
 title: Middleware
-order: 100
 ---
 
 ## hanami middleware

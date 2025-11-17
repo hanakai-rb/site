@@ -1,6 +1,5 @@
 ---
 title: Environments
-order: 60
 ---
 
 Hanami supports different environments based on a `HANAMI_ENV` environment variable.

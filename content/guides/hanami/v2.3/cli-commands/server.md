@@ -1,6 +1,5 @@
 ---
 title: Server
-order: 50
 ---
 
 ## hanami server

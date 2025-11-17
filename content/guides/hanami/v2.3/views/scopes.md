@@ -1,6 +1,5 @@
 ---
 title: Scopes
-order: 80
 ---
 
 A scope is the object that determines the methods available to use from within a template. The [standard scope](/v2.3/views/templates-and-partials/) provides access to locals, helpers, the context, partial rendering, as well as the building of _custom scopes_.

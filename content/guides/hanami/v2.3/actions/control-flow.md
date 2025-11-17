@@ -1,6 +1,5 @@
 ---
 title: Control flow
-order: 110
 ---
 
 Actions support control flow through callbacks, halting and redirects.

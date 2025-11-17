@@ -1,6 +1,5 @@
 ---
 title: Booting
-order: 10
 ---
 
 Hanami applications support a **prepared** state and a **booted** state.

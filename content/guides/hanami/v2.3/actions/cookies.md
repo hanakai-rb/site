@@ -1,6 +1,5 @@
 ---
 title: Cookies
-order: 80
 ---
 
 Actions can set [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) on outgoing requests via the `response` object.

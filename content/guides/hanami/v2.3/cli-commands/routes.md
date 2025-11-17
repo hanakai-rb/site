@@ -1,6 +1,5 @@
 ---
 title: Routes
-order: 90
 ---
 
 ## hanami routes

@@ -1,6 +1,5 @@
 ---
 title: "Getting Started"
-order: 10
 aliases:
   - "/getting-started"
   - "/introduction/getting-started"

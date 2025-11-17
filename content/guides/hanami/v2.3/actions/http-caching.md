@@ -1,6 +1,5 @@
 ---
 title: HTTP Caching
-order: 120
 ---
 
 Actions provide several features to help you make use of [HTTP caching][mdn-http-caching].

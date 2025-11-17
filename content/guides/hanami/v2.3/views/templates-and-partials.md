@@ -1,6 +1,5 @@
 ---
 title: Templates and partials
-order: 40
 ---
 
 Every view has a template, which is given the values from the view's [exposures](/v2.3/views/input-and-exposures) and then used to render the view's output.

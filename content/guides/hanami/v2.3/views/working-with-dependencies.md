@@ -1,6 +1,5 @@
 ---
 title: Working with dependencies
-order: 10
 ---
 
 Hanami views are designed to work with dependencies from across your app. Using dependencies is how your view can retrieve the values it needs to include in its template.
