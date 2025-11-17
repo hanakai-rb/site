@@ -15,10 +15,12 @@ declare global {
       showEmptyFilters?: boolean;
       showImages?: boolean;
       subResults?: boolean;
+      openFilters: string[];
       processResult: (result: any) => typeof result;
     });
     destroy: () => void;
     triggerSearch: (term: string) => void;
+    triggerFilters: (filters: Record<string, string>) => void;
   }
 }
 
@@ -40,6 +42,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   let active = false;
   let releaseScroll: (() => void) | null = null;
   let pagefindInstance: PagefindUI;
+  let pagefindUiForm: HTMLFormElement | null = null;
   let pagefindUiSearchInput: HTMLInputElement | null = null;
   const focusTrap = createFocusTrap(contextNode, { escapeDeactivates: false });
 
@@ -58,6 +61,8 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     // by Pagefind’s indexing process.
     await Promise.all([loadCSS("/pagefind/pagefind-ui.css"), loadScript("/pagefind/pagefind-ui.js")]);
 
+    const cachedState = retrieveSearchStateCache();
+
     // Initialise Pagefind UI. See https://pagefind.app/docs/ui/ for details.
     pagefindInstance = new PagefindUI({
       autofocus: false, // We manage this manually
@@ -67,15 +72,18 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       showImages: false,
       subResults: true,
       showEmptyFilters: false,
+      openFilters: cachedState ? [...Object.keys(cachedState.filters)] : [],
       processResult: (result) => {
         result.url = result.url.replace(/\.html$/, "");
         return result;
       },
     });
+    pagefindUiForm = pagefindUiElement.querySelector("form.pagefind-ui__form");
     pagefindUiSearchInput = pagefindUiElement.querySelector("input.pagefind-ui__search-input");
-    const cachedTerm = retrieveTermCache();
-    if (cachedTerm) {
-      pagefindInstance.triggerSearch(cachedTerm);
+    if (cachedState) {
+      const { filters, search } = cachedState;
+      pagefindInstance.triggerFilters(filters);
+      pagefindInstance.triggerSearch(search);
     }
     initialised = true;
   };
@@ -123,19 +131,22 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     active = false;
   };
 
-  const saveTermCache = () => {
-    const value = pagefindUiSearchInput?.value;
-    if (value && value !== "") {
-      window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ value, timestamp: Date.now() }));
-    }
+  const saveSearchStateCache = () => {
+    const search = pagefindUiSearchInput?.value;
+    const filters = pagefindUiForm ? Object.fromEntries(new FormData(pagefindUiForm)) : {};
+    window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({ filters, search, timestamp: Date.now() }));
   };
 
-  const retrieveTermCache = () => {
+  const retrieveSearchStateCache = () => {
     try {
       const data = window.localStorage.getItem(LOCALSTORAGE_KEY);
-      const { value, timestamp } = JSON.parse(data!) as { value: string; timestamp: number };
-      if (value && Date.now() - timestamp < EXPIRY_MS) {
-        return value;
+      const { timestamp, ...rest } = JSON.parse(data!) as {
+        filters: Record<string, string>;
+        search: string;
+        timestamp: number;
+      };
+      if (Date.now() - timestamp < EXPIRY_MS) {
+        return rest;
       }
     } catch {
       // Do nothing
@@ -148,7 +159,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   };
 
   const onDeactivateClick = async () => {
-    saveTermCache();
+    saveSearchStateCache();
     await deactivate();
   };
 
@@ -177,7 +188,7 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   deactivateElements.forEach((el) => el.addEventListener("click", onDeactivateClick));
   // Capture is required to ensure activeElement is correct when we check the handler
   window.addEventListener("keydown", onKeyDown, { capture: true });
-  window.addEventListener("unload", saveTermCache);
+  window.addEventListener("unload", saveSearchStateCache);
 
   return {
     destroy: () => {
@@ -185,7 +196,6 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       activateElements.forEach((el) => el.removeEventListener("click", onActivateClick));
       deactivateElements.forEach((el) => el.removeEventListener("click", onDeactivateClick));
       window.removeEventListener("keydown", onKeyDown, { capture: true });
-      window.removeEventListener("unload", saveTermCache);
       pagefindInstance.destroy();
       focusTrap.deactivate();
     },
