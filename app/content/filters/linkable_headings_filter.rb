@@ -1,6 +1,8 @@
 # auto_register: false
 # frozen_string_literal: true
 
+require "cgi"
+
 module Site
   module Content
     module Filters
@@ -52,7 +54,9 @@ module Site
         def handle_text_chunk(text)
           # Concat text rather than assigning it, since a header may contain multiple text
           # chunks, e.g. a "Keyword arguments (`kwargs`)" markdown header contains 3 text chunks.
-          result[:headings].last[:text].concat(text.to_s)
+          #
+          # Unescape HTML entities since the text will be escaped again when rendered in ERB
+          result[:headings].last[:text].concat(CGI.unescapeHTML(text.to_s))
         end
 
         private
