@@ -80,5 +80,9 @@
     </header>
 
     <div class="content" <%= "data-pagefind-body" if version == latest_version %>><%= page.content_html %></div>
+
+    <%= render "doc_pages/next_prev_links",
+        prev_item: { label: "Getting started", url: "/guides" },
+        next_item: { label: "Building an API", url: "/guides" } %>
   <% end %>
 <% end %>
