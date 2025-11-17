@@ -44,6 +44,14 @@ module Site
         pattern: %r{^/blog/(?<year>\d{4})/(?<month>\d{2})/(?<day>\d{2})/(?<slug>[^/]+)/(?<path>.+)},
         mapper: ->(m) {
           "content/posts/#{m[:year]}/#{m[:year]}-#{m[:month]}-#{m[:day]}-#{m[:slug]}/#{m[:path]}"
+        },
+        path_to_url: ->(path) {
+          pattern = %r{^/posts/(?<year>\d{4})/\d{4}-(?<month>\d{2})-(?<day>\d{2})-(?<slug>[^/]+)/(?<path>.+)}
+          if (m = path.match(pattern))
+            "/blog/#{m[:year]}/#{m[:month]}/#{m[:day]}/#{m[:slug]}/#{m[:path]}"
+          else
+            path
+          end
         }
       }
     ].freeze

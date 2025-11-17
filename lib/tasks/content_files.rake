@@ -19,11 +19,16 @@ namespace :content do
       rel_path = Pathname(file).relative_path_from(content_dir).to_s
       url_path = "/#{rel_path}"
 
-      handler = Site::ContentFileMiddleware::PATH_HANDLERS.find { |h| url_path.match?(h[:pattern]) }
+      handler = Site::ContentFileMiddleware::PATH_HANDLERS.find do |handler|
+        path = handler.key?(:path_to_url) ? handler[:path_to_url].call(url_path) : url_path
+        path.match?(handler[:pattern])
+      end
+
       next unless handler
 
       # Convert to a path for locating the file
-      content_path = handler[:mapper].call(url_path.match(handler[:pattern]))
+      path = handler.key?(:path_to_url) ? handler[:path_to_url].call(url_path) : url_path
+      content_path = handler[:mapper].call(path.match(handler[:pattern]))
       dest_file = content_path.sub("content/", "build/")
 
       # Copy the file
