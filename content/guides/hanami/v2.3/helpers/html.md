@@ -41,7 +41,7 @@ You can also build custom tags.
 tag.custom_tag("hello") # => <custom-tag>hello</custom-tag>
 ```
 
-The tag attributes and contents are automatically [HTML escaped](/v2.3/helpers/string-escaping), unless marked as HTML safe.
+The tag attributes and contents are automatically [HTML escaped](//page/string-escaping), unless marked as HTML safe.
 
 ```ruby
 tag.p("<script>alert()</script>")
@@ -54,7 +54,7 @@ tag.p("<em>safe content</em>".html_safe)
 # => <p><em>safe content</em></p>
 ```
 
-When used inside [view templates](/v2.3/views/templates-and-partials), all given as a block will be concatenated and used as the tag's contents.
+When used inside [view templates](//guide/views/templates-and-partials), all given as a block will be concatenated and used as the tag's contents.
 
 ```sql
 <%= tag.div(id: "el") do %>
