@@ -53,7 +53,7 @@
     <div class="content" <%= "data-pagefind-body" if version == latest_version %>><%= page.content_html %></div>
 
     <%= render "doc_pages/next_prev_links",
-        prev_item: { label: "Getting started", url: "/guides" },
-        next_item: { label: "Building an API this one is long", url: "/guides" } %>
+        prev_item: previous_page ? { label: previous_page.title, url: previous_page.url_path } : nil,
+        next_item: next_page ? {label: next_page.title, url: next_page.url_path } : nil %>
   <% end %>
 <% end %>

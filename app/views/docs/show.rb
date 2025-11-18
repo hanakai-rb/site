@@ -28,6 +28,26 @@ module Site
           doc_repo.versions_for(slug:)
         end
 
+        expose :next_page, decorate: false do |doc, path:|
+          paths = doc.pages.paths
+          current_page_path_index = paths.index(path)
+          next_path = paths[current_page_path_index + 1]
+
+          if next_path
+            doc.pages[next_path]
+          end
+        end
+
+        expose :previous_page, decorate: false do |doc, path:|
+          paths = doc.pages.paths
+          current_page_path_index = paths.index(path)
+          previous_path = (current_page_path_index > 0) ? paths[current_page_path_index - 1] : nil
+
+          if previous_path
+            doc.pages[previous_path]
+          end
+        end
+
         # TODO: Move this and add ancestors to chain
         Breadcrumb = Data.define(:label, :url, :root)
         expose :breadcrumbs do |doc, org|

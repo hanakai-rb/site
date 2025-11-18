@@ -100,4 +100,34 @@ RSpec.feature "Docs / Doc pages" do
       expect(page).to have_link "dry-monads", href: "/docs/dry-monads"
     end
   end
+
+  it "renders next nav link to next page in the same doc" do
+    visit "/docs/dry-auto_inject/v1.1/how-does-it-work"
+    expect(page).to have_selector '[aria-label="Go to next guide"]', text: "Injection strategies"
+  end
+
+  it "does not render next nav link on the last page of the guides" do
+    visit "/docs/dry-auto_inject/v1.1/injection-strategies"
+    expect(page).not_to have_selector '[aria-label="Go to next guide"]'
+  end
+
+  it "renders previous nav link to previous page in the same doc" do
+    visit "/docs/dry-auto_inject/v1.1/injection-strategies"
+    expect(page).to have_selector '[aria-label="Go to previous guide"]', text: "How does it work?"
+  end
+
+  it "does not render previous nav link on the first page of the doc" do
+    visit "/docs/dry-auto_inject/v1.1"
+    expect(page).not_to have_selector '[aria-label="Go to previous guide"]'
+  end
+
+  it "renders nav links pointing to the same version of docs" do
+    visit "/docs/dry-types/v1.7/default-values"
+    expect(page).to have_link
+    next_link = page.find('[aria-label="Go to next guide"]')
+    expect(next_link[:href]).to eq("/docs/dry-types/v1.7/fallbacks")
+
+    previous_link = page.find('[aria-label="Go to previous guide"]')
+    expect(previous_link[:href]).to eq("/docs/dry-types/v1.7/optional-values")
+  end
 end
