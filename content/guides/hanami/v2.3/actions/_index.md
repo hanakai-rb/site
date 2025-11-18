@@ -6,7 +6,7 @@ pages:
   - request-and-response
   - status-codes
   - rack-integration
-  - formats-and-mime-types
+  - formats-and-media-types
   - cookies
   - content-security-policy
   - sessions
