@@ -47,7 +47,7 @@ module Bookshelf
 end
 ```
 
-For more details about Content Security Policy configuration, including nonce support, custom directives, and security best practices, see [Content Security Policy](/v2.3/actions/content-security-policy).
+For more details about Content Security Policy configuration, including nonce support, custom directives, and security best practices, see [Content Security Policy](//guide/actions/content-security-policy).
 
 ## Subresource integrity
 
