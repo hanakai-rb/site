@@ -2,9 +2,9 @@
 title: Parts
 ---
 
-All values returned from your [exposures](/v2.3/views/input-and-exposures) are decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
+All values returned from your [exposures](//page/input-and-exposures) are decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
 
-Parts are fully integrated into the view rendering environment, which means that anything you can do from a template, you can also do from a part. This includes accessing the [context](/v2.3/views/context) as well as [rendering partials](/v2.3/views/templates-and-partials/) and building [scopes](/v2.3/views/scopes).
+Parts are fully integrated into the view rendering environment, which means that anything you can do from a template, you can also do from a part. This includes accessing the [context](//page/context) as well as [rendering partials](//page/templates-and-partials) and building [scopes](//page/scopes).
 
 This means you can move much of your view logic out of templates and into parts. This makes your templates simpler and easier to follow, and puts your view logic into a place where it can be reused and refactored using typical object oriented approaches, as well as tested in isolation.
 
@@ -157,7 +157,7 @@ render("books/info_box", title_label: "Book info")
 
 ## Accessing helpers
 
-You can access [helpers](/v2.3/views/helpers) on a `helpers` object within the part:
+You can access [helpers](//page/helpers) on a `helpers` object within the part:
 
 ```ruby
 class Book < Bookshelf::Views::Part
@@ -171,7 +171,7 @@ Making the helpers available via `helpers` avoids potential naming collisions, s
 
 ## Accessing the context
 
-You can access the [context](/v2.3/views/context/) for the view's current rendering using the `#context` method (or `#_context` as an alias, in case the decorated value responds to `#context`):
+You can access the [context](//page/context) for the view's current rendering using the `#context` method (or `#_context` as an alias, in case the decorated value responds to `#context`):
 
 ```ruby
 class Book < Bookshelf::Views::Part
@@ -212,7 +212,7 @@ end
 
 ## Building scopes
 
-To build [custom scopes](/v2.3/views/scopes/) from within a part, use the `#scope` method (or `#_scope` as an alias, in case the decorated value responds to `#_scope`):
+To build [custom scopes](//page/scopes) from within a part, use the `#scope` method (or `#_scope` as an alias, in case the decorated value responds to `#_scope`):
 
 ```ruby
 class Book < Bookshelf::Views::Part

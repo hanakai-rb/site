@@ -2,13 +2,13 @@
 title: Helpers
 ---
 
-While Hanami views help you keep your view logic close to its associated values via [parts](/v2.3/views/parts/), sometimes you need behavior that works with all kinds of values, in all parts of your views. For this, you can use helpers.
+While Hanami views help you keep your view logic close to its associated values via [parts](//page/parts), sometimes you need behavior that works with all kinds of values, in all parts of your views. For this, you can use helpers.
 
-Helpers are small, stateless, general purpose methods that are available in [templates](/v2.3/views/templates/), [parts](/v2.3/views/parts/) and [scopes](/v2.3/views/scopes/). Hanami provides a range of standard helpers, and you can also define your own.
+Helpers are small, stateless, general purpose methods that are available in [templates](//page/templates), [parts](//page/parts) and [scopes](//page/scopes). Hanami provides a range of standard helpers, and you can also define your own.
 
 ## Standard helpers
 
-Hanami provides a range of standard helpers for common aspects of writing views. See [Helpers](/v2.3/helpers/overview/) for an overview of these helpers.
+Hanami provides a range of standard helpers for common aspects of writing views. See [Helpers](//guide/helpers) for an overview of these helpers.
 
 For the examples below, we'll be using the standard `format_number` helper, which takes a number and turns it into a human-friendly string representation:
 
@@ -24,11 +24,11 @@ You can call helpers directly by their method names in your templates:
 <p><%= format_number(1234) %></p>
 ```
 
-Helper methods will take priority over your view's [exposures](/v2.3/views/exposures/). Be mindful of this when naming your exposures and writing your own helper methods.
+Helper methods will take priority over your view's [exposures](//page/exposures). Be mindful of this when naming your exposures and writing your own helper methods.
 
 ## Helpers in parts
 
-Helpers in [parts](/v2.3/views/parts/) are available on a `helpers` object within the part:
+Helpers in [parts](//page/parts) are available on a `helpers` object within the part:
 
 ```ruby
 def word_count
@@ -41,7 +41,7 @@ Making the helpers available via `helpers` avoids potential naming collisions, s
 
 ## Helpers in scopes
 
-Like templates, helpers in [scopes](/v2.3/views/scopes/) are available directly as methods:
+Like templates, helpers in [scopes](//page/scopes) are available directly as methods:
 
 ```ruby
 def post_word_count
@@ -107,7 +107,7 @@ end
 
 ## Using the view context within helpers
 
-When writing your own helpers, you can access the [view context](/v2.3/views/context/) via `_context`.
+When writing your own helpers, you can access the [view context](//page/context) via `_context`.
 
 The context includes useful app facilities like the inflector:
 
@@ -117,7 +117,7 @@ def my_helper
 end
 ```
 
-For views [rendered within an action](/v2.3/actions/rendering-views/), the context also provides the current request:
+For views [rendered within an action](//guide/actions/rendering-views), the context also provides the current request:
 
 ```ruby
 def current_path?(path)

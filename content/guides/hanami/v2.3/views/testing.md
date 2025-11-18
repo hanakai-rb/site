@@ -79,7 +79,7 @@ Views return from `#call` an instance of `Hanami::View::Rendered`. To get a plai
 
 ## Testing exposures
 
-To test a view's [exposures](/v2.3/views/input-and-exposures/) directly, you can access them on the `Hanami::View::Rendered` object returned after calling your view.
+To test a view's [exposures](//page/input-and-exposures) directly, you can access them on the `Hanami::View::Rendered` object returned after calling your view.
 
 ```ruby
 describe "exposures" do
