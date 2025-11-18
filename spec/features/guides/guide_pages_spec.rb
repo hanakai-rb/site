@@ -99,4 +99,44 @@ RSpec.feature "Guides / Guide pages" do
       expect(page).to have_link "Actions guide", href: "/guides/hanami/v2.2/actions"
     end
   end
+
+  it "renders next nav link to next page in the same guide" do
+    visit "/guides/hanami/v2.2/getting-started"
+    expect(page).to have_selector '[aria-label="Go to next guide"]', text: "Building a web app"
+  end
+
+  it "renders next link to next nav guide when no more pages in current" do
+    visit "/guides/hanami/v2.2/getting-started/building-an-api"
+    expect(page).to have_selector '[aria-label="Go to next guide"]', text: "Command line"
+  end
+
+  it "does not render next nav link on the last page of the guides" do
+    visit "/guides/hanami/v2.2/faq"
+    expect(page).not_to have_selector '[aria-label="Go to next guide"]'
+  end
+
+  it "renders previous nav link to previous page in the same guide" do
+    visit "/guides/hanami/v2.2/getting-started/building-an-api"
+    expect(page).to have_selector '[aria-label="Go to previous guide"]', text: "Building a web app"
+  end
+
+  it "renders previous nav link to last page of a previous guide" do
+    visit "/guides/hanami/v2.2/command-line"
+    expect(page).to have_selector '[aria-label="Go to previous guide"]', text: "Building an API"
+  end
+
+  it "does not render previous nav link on the first page of the guides" do
+    visit "/guides/hanami/v2.2/getting-started"
+    expect(page).not_to have_selector '[aria-label="Go to previous guide"]'
+  end
+
+  it "renders nav links pointing to the same version of guides" do
+    visit "/guides/hanami/v2.0/app/settings"
+    expect(page).to have_link
+    next_link = page.find('[aria-label="Go to next guide"]')
+    expect(next_link[:href]).to eq("/guides/hanami/v2.0/app/autoloading")
+
+    previous_link = page.find('[aria-label="Go to previous guide"]')
+    expect(previous_link[:href]).to eq("/guides/hanami/v2.0/app/providers")
+  end
 end

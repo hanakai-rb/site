@@ -39,6 +39,14 @@ module Site
           .pluck(:org, :version)
           .each_with_object({}) { |guide, hsh| (hsh[guide[0]] ||= []) << guide[1] }
       end
+
+      def next_guide(guide)
+        guides.where(org: guide.org, version: guide.version).where { position > guide.position }.order { position }.limit(1).one
+      end
+
+      def previous_guide(guide)
+        guides.where(org: guide.org, version: guide.version).where { position < guide.position }.order { position.desc }.limit(1).one
+      end
     end
   end
 end

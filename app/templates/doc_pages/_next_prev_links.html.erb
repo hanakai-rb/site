@@ -8,6 +8,7 @@
           hover:decoration-(--hk-color-text-link-underline)
         "
         href="<%= prev_item[:url] %>"
+        aria-label="Go to previous guide"
       >
         <%= render "svgs/icons/arrow_left", width: 16, height: 16, class_name: "fill-current mt-2" %>
         <%= prev_item[:label] %>
@@ -20,6 +21,7 @@
           hover:decoration-(--hk-color-text-link-underline) text-right
         "
         href="<%= next_item[:url] %>"
+        aria-label="Go to next guide"
       >
         <%= next_item[:label] %>
         <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current mt-2" %>
