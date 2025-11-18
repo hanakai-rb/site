@@ -234,9 +234,8 @@ module Bookshelf
 end
 ```
 
-<p class="notice">
-  Because settings can be accessed at this early point in the app's boot process, it's important to ensure that the `Settings` class remains self contained, with no dependencies to other code within your app.
-</p>
+> [!NOTE]
+> Because settings can be accessed at this early point in the app's boot process, it's important to ensure that the `Settings` class remains self contained, with no dependencies to other code within your app.
 
 ## Adding custom methods
 
@@ -322,6 +321,5 @@ Exactly which `.env` files to create and manage is up to you. But we recommend t
 
 We do not recommend using dotenv in production environments.
 
-<p class="notice">
-  Hanami will only use the dotenv gem if it is included in your Gemfile. Applications generated using "hanami new" include the gem in development and test by default.
-</p>
+> [!NOTE]
+> Hanami will only use the dotenv gem if it is included in your Gemfile. Applications generated using "hanami new" include the gem in development and test by default.

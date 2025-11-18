@@ -18,9 +18,8 @@ module Bookshelf
 end
 ```
 
-<p class="convention">
-  Alternately, if there were located in a Main slice it would be in <strong>slices/main/relations</strong>
-</p>
+> [!TIP]
+> Alternately, if there were located in a Main slice it would be in **slices/main/relations**
 
 All registered relations for the slice are available under the **relations** namespace. For instance, if we have `books`, `authors`, `publishers`, and `languages` as relations, we can expect the following keys:
 
@@ -258,10 +257,8 @@ module Bookshelf
 end
 ```
 
-<p class="convention">
-In addition to the relation name in Repositories, the alias is also used by auto-mapping when you combine relations
-together. More on combines later.
-</p>
+> [!TIP]
+> In addition to the relation name in Repositories, the alias is also used by auto-mapping when you combine relations together. More on combines later.
 
 This is also useful for building multiple relation classes against the same table, if you have radically different
 use-cases and want to separate them.
@@ -296,10 +293,8 @@ you.
 
 SQL query building is a _gigantic_ topic, so this will only scratch the suface of what is possible.
 
-<p class="notice">
-  ROM Relations are built on top of <a href="http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html">Sequel
-  Datasets</a>. Inspect the generated SQL of a relation by calling <code>.dataset.sql</code> on it.
-</p>
+> [!NOTE]
+> ROM Relations are built on top of [Sequel Datasets](http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html). Inspect the generated SQL of a relation by calling `.dataset.sql` on it.
 
 ### Dual Syntactic Conventions
 
@@ -326,10 +321,8 @@ books.where { date_part('year', publication_date) > 2020 }
 An approach wedded to Hash syntax may just give up here, and require you to write SQL as a string instead, but we can
 achieve much more with ROM's expression syntax.
 
-<p class="notice">
-  Proc-based queries leverage <a href="https://sequel.jeremyevans.net/rdoc/classes/Sequel/SQL/VirtualRow.html">Sequel
-  VirtualRows</a> to support more complex expressions involving functions and operators.
-</p>
+> [!NOTE]
+> Proc-based queries leverage [Sequel VirtualRows](https://sequel.jeremyevans.net/rdoc/classes/Sequel/SQL/VirtualRow.html) to support more complex expressions involving functions and operators.
 
 ### Negative Restrictions
 
@@ -518,11 +511,8 @@ or simply:
 books.fetch(1)
 ```
 
-<p class="notice">
-  Query-building is terminated by <strong>one</strong> for single records, and
-  <strong>to_a</strong> for multiple. You can also use <strong>each</strong>
-  with a relation directly.
-</p>
+> [!NOTE]
+> Query-building is terminated by **one** for single records, and **to_a** for multiple. You can also use **each** with a relation directly.
 
 Since scopes are just methods, adding your own is this simple:
 

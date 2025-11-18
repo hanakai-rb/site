@@ -62,15 +62,12 @@ When configuring sessions, the first argument of the configuration is the adapte
 Specifying `:cookie`, as above, will use `Rack::Session::Cookie` for the session storage.
 
 
-<p class="convention">
-The name of the session adapter is the underscored version of the class name under <code>Rack::Session</code> namespace.
-Example: <code>:cookie</code> for <code>Rack::Session::Cookie</code>.
-</p>
+> [!TIP]
+> The name of the session adapter is the underscored version of the class name under `Rack::Session` namespace. Example: `:cookie` for `Rack::Session::Cookie`.
 
 To use a different adapter, for example `:redis`, add the `redis-rack` gem and specify the adapter as `:redis`.
 
-<p class="convention">
-Custom storage technologies can be loaded via <code>require "rack/session/#{ adapter_name }"</code>.
-</p>
+> [!TIP]
+> Custom storage technologies can be loaded via `require "rack/session/#{ adapter_name }"`.
 
 The second argument passed to `sessions` is a hash of options to be passed to the chosen adapter.

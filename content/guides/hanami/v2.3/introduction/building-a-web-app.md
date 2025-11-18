@@ -612,9 +612,8 @@ And add a dummy secret to your `.env`:
 SESSION_SECRET=__local_dev_secret_only_______________________________64_chars__
 ```
 
-<p class="notice">
-  See <a href="//guide/app/settings#using-dotenv-to-manage-environment-variables">Using dotenv to manage environment variables</a> for recommendations on handling these files.
-</p>
+> [!NOTE]
+> See [Using dotenv to manage environment variables](//guide/app/settings#using-dotenv-to-manage-environment-variables) for recommendations on handling these files.
 
 Next we can update the app layout to show the flash messages, if there are any:
 

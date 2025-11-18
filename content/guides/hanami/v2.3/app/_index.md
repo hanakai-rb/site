@@ -28,9 +28,8 @@ This process makes the Ruby source files in `app/` autoloadable and makes your c
 
 This approach keeps load time to a minimum. As such, it’s the default mode in the Hanami console and when running tests.
 
-<p class="notice">
-  A prepared application will do everything a booted one can, it will just lazily load only the components it needs to perform a particular task on demand.
-</p>
+> [!NOTE]
+> A prepared application will do everything a booted one can, it will just lazily load only the components it needs to perform a particular task on demand.
 
 ## Hanami.boot
 

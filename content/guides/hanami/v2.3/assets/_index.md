@@ -46,9 +46,8 @@ A new Hanami app gives you the following structure for your assets:
 - `public/assets/assets.json` is the **assets manifest**, a file that allows Hanami to find your compiled assets in production.
 - `public/assets/*` are your compiled assets.
 
-<p class="notice">
-  For brevity, we're only showing assets-specific files on this page.
-</p>
+> [!NOTE]
+> For brevity, we're only showing assets-specific files on this page.
 
 ### Slices
 
@@ -105,9 +104,8 @@ import "../css/app.css";
 
 It imports the default stylesheet, so it can be included in the bundle. You should include the rest of your app's JavsScript code in this file, or import it from other files.
 
-<p class="notice">
-  Only the JavaScript files and stylesheets referenced by an entry point will be included in the final bundle.
-</p>
+> [!NOTE]
+> Only the JavaScript files and stylesheets referenced by an entry point will be included in the final bundle.
 
 ### Multiple entry points
 
@@ -117,9 +115,8 @@ This approach also means that changes in one part of your assets won't result in
 
 To create a new entry point, create any directory under `js/` and put a file named `app.js` in it. This file will be your new entry point.
 
-<p class="notice">
-  Hanami uses files named <code>app.js</code> as entry points. Other JavaScript extensions are also supported, including <code>.mjs</code>, <code>.ts</code>, <code>.mts</code>, <code>.tsx</code>, <code>.jsx</code>.
-</p>
+> [!NOTE]
+> Hanami uses files named `app.js` as entry points. Other JavaScript extensions are also supported, including `.mjs`, `.ts`, `.mts`, `.tsx`, `.jsx`.
 
 For example, to crete an entry point for a "sign in" page, create an `app/assets/js/signin/app.js` file. In this entry point, you can import a matching stylesheet and a related JavaScript function:
 

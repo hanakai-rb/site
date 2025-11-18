@@ -73,9 +73,8 @@ RSpec.describe Views::Profile::Show do
 end
 ```
 
-<p class="notice">
-Views return from `#call` an instance of `Hanami::View::Rendered`. To get a plain string, use `#to_s`.
-</p>
+> [!NOTE]
+> Views return from `#call` an instance of `Hanami::View::Rendered`. To get a plain string, use `#to_s`.
 
 ## Testing exposures
 

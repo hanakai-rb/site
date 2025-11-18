@@ -155,9 +155,8 @@ module Bookshelf
 end
 ```
 
-<p class="warning">
-Use test doubles only when the side effects are difficult to handle in a test environment. Remember to <strong>mock only your own interfaces</strong> and <strong>always use verified doubles</strong>.
-</p>
+> [!WARNING]
+> Use test doubles only when the side effects are difficult to handle in a test environment. Remember to **mock only your own interfaces** and **always use verified doubles**.
 
 ## Testing requests
 
@@ -179,10 +178,8 @@ RSpec.describe "Root", type: :request do
 end
 ```
 
-<p class="notice">
-In many cases, you can rely on request tests and skip low-level action testing. Action tests only make sense when action logic becomes complex and you need to exercise many scenarios.
-</p>
+> [!NOTE]
+> In many cases, you can rely on request tests and skip low-level action testing. Action tests only make sense when action logic becomes complex and you need to exercise many scenarios.
 
-<p class="notice">
-Avoid test doubles when writing request tests, since we want to verify that the whole stack is behaving as expected.
-</p>
+> [!NOTE]
+> Avoid test doubles when writing request tests, since we want to verify that the whole stack is behaving as expected.

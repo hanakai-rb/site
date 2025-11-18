@@ -47,6 +47,5 @@ In case you want to disable temporarly, start the server with the `--no-code-rel
 $ bundle exec hanami server --no-code-reloading
 ```
 
-<p class="notice">
-  Disabling code reloading is essential to debug application code with debuggin Ruby gems like <code>byebug</code>, <code>debug</code>, or <code>pry</code>.
-</p>
+> [!NOTE]
+> Disabling code reloading is essential to debug application code with debuggin Ruby gems like `byebug`, `debug`, or `pry`.
