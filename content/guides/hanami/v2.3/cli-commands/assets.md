@@ -4,7 +4,7 @@ title: Assets
 
 ## hanami assets compile
 
-Compiles the app's [assets](/v2.3/actions/overview) into bundles for use in production:
+Compiles the app's [assets](//guide/actions/overview) into bundles for use in production:
 
 ```shell
 $ bundle exec hanami assets compile
@@ -19,7 +19,7 @@ $ bundle exec hanami assets compile
 
 ## hanami assets watch
 
-Watches for changes to your assets and compiles the relevant files immediately. This is a long-running command, and is run by [hanami dev](/v2.3/commands/dev) by default.
+Watches for changes to your assets and compiles the relevant files immediately. This is a long-running command, and is run by [hanami dev](//page/dev) by default.
 
 ```shell
 $ bundle exec hanami assets watch

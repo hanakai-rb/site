@@ -26,7 +26,7 @@ If your app has slices, pass `--slice=SLICE` to specify where to generate the fi
 
 ### hanami generate action
 
-Generates an [action](/v2.3/actions/overview):
+Generates an [action](//guide/actions/overview):
 
 ```shell
 $ bundle exec hanami generate action books.show
@@ -40,7 +40,7 @@ $ bundle exec hanami generate action --help
 
 ### hanami generate component
 
-Generates a [component](/v2.3/app/container-and-components/):
+Generates a [component](//guide/app/container-and-components):
 
 ```shell
 $ bundle exec hanami generate component isbn_decode
@@ -54,7 +54,7 @@ $ bundle exec hanami generate component --help
 
 ### hanami generate migration
 
-Generates a [migration](/v2.3/database/migrations/):
+Generates a [migration](//guide/database/migrations):
 
 ```shell
 $ bundle exec hanami generate migration create_posts
@@ -68,7 +68,7 @@ $ bundle exec hanami generate migration --help
 
 ### hanami generate operation
 
-Generates an [operation](/v2.3/operations/overview/):
+Generates an [operation](//guide/operations/overview):
 
 ```shell
 $ bundle exec hanami generate operation books.add
@@ -82,7 +82,7 @@ $ bundle exec hanami generate operation --help
 
 ### hanami generate part
 
-Generates a view [part](/v2.3/views/parts/):
+Generates a view [part](//guide/views/parts):
 
 ```shell
 $ bundle exec hanami generate part book
@@ -96,7 +96,7 @@ $ bundle exec hanami generate part --help
 
 ### hanami generate relation
 
-Generates a [relation](/v2.3/database/relations/):
+Generates a [relation](//guide/database/relations):
 
 ```shell
 $ bundle exec hanami generate relation books
@@ -110,7 +110,7 @@ $ bundle exec hanami generate relation --help
 
 ### hanami generate repo
 
-Generates a [repo](/v2.3/database/overview/#repositories):
+Generates a [repo](//guide/database/overview#repositories):
 
 ```shell
 $ bundle exec hanami generate repo books
@@ -124,7 +124,7 @@ $ bundle exec hanami generate repo --help
 
 ### hanami generate slice
 
-Generates a [slice](/v2.3/app/slices/):
+Generates a [slice](//guide/app/slices):
 
 ```shell
 $ bundle exec hanami generate slice admin
@@ -138,7 +138,7 @@ $ bundle exec hanami generate slice --help
 
 ### hanami generate struct
 
-Generates a [struct](/v2.3/database/overview/#structs):
+Generates a [struct](//guide/database/overview#structs):
 
 ```shell
 $ bundle exec hanami generate struct book
@@ -152,7 +152,7 @@ $ bundle exec hanami generate struct --help
 
 ### hanami generate view
 
-Generates a [view](/v2.3/views/overview/):
+Generates a [view](//guide/views/overview):
 
 ```shell
 $ bundle exec hanami generate view books.create
