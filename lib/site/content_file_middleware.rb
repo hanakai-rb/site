@@ -5,7 +5,7 @@ require "digest"
 module Site
   # Serves certain static files (such as images) from `content/`
   #
-  # Understands our `/guides` and `/docs` URL structure to find the static files for each.
+  # Understands our `/guides`, `/docs` and `/blog` URL structure to find the static files for each.
   #
   # This allows for images to be placed alongside their markdown content, to make them easier to
   # reference and manage.
@@ -15,6 +15,9 @@ module Site
   #
   # For docs, a file requested at /guides/dry-types/v1.0/overview.png will be served
   # from the same file within the docs's content dir.
+  #
+  # For posts, a file requested at /blog/2025/06/07/field-trip/photo.jpeg will be served
+  # from the file at `posts/2025/2025-06-07-field-trip/photo.jpeg` within the content dir.`
   #
   # Sets content-based ETag headers on the returned image.
   class ContentFileMiddleware
@@ -35,6 +38,12 @@ module Site
           org = "#{org}-rb" unless org == "hanami"
 
           "content/docs/#{org}/#{m[:slug]}/#{m[:version]}/#{m[:path]}"
+        }
+      },
+      {
+        pattern: %r{^/blog/assets/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})-(?<slug>[^/]+)/(?<path>.+)},
+        mapper: ->(m) {
+          "content/posts/assets/#{m[:year]}-#{m[:month]}-#{m[:day]}-#{m[:slug]}/#{m[:path]}"
         }
       }
     ].freeze

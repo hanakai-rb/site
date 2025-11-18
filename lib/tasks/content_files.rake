@@ -17,14 +17,14 @@ namespace :content do
 
       # Build a path known to handlers/mappers in content file middlware
       rel_path = Pathname(file).relative_path_from(content_dir).to_s
-      url_path = "/#{rel_path}"
+      url_path = rel_path.start_with?("posts") ? "/#{rel_path.sub("posts", "blog")}" : "/#{rel_path}"
 
       handler = Site::ContentFileMiddleware::PATH_HANDLERS.find { |h| url_path.match?(h[:pattern]) }
       next unless handler
 
       # Convert to a path for locating the file
       content_path = handler[:mapper].call(url_path.match(handler[:pattern]))
-      dest_file = content_path.sub("content/", "build/")
+      dest_file = content_path.sub("content/", "build/").sub("build/posts/", "build/blog/")
 
       # Copy the file
       FileUtils.mkdir_p(File.dirname(dest_file))
