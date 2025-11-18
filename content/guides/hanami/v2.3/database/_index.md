@@ -52,7 +52,7 @@ end
 `ROM::SQL` provides a wide array of data types for SQL engines, but you can provide your own based on dry-types. In this
 example, `Types::Email` would be user-defined.
 
-For more on Schemas, see [the relations guide]({{% ref "relations.md#schema" %}}).
+For more on Schemas, see [the relations guide](//page/relations#schema).
 
 ## Associations
 
@@ -69,7 +69,7 @@ class Users < Hanami::DB::Relation
 end
 ```
 
-For more on associations, see [the relations guide]({{% ref "relations.md#associations" %}}).
+For more on associations, see [the relations guide](//page/relations#associations).
 
 ## Datasets
 
@@ -89,7 +89,7 @@ The dataset can be thought of as the default state of the query; adding query co
 
 The output of Dataset queries are plain Ruby hashes, which are consumed by a Repository (and automatically converted to Structs there).
 
-For more on Datasets, see [the relations guide]({{% ref "relations.md#dataset" %}}).
+For more on Datasets, see [the relations guide](//page/relations#dataset).
 
 ## Repositories
 

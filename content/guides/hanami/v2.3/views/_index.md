@@ -103,7 +103,7 @@ end
 
 Requests for the root will now render a home page:
 
-<p><img src="/v2.3/views/welcome-to-bookshelf.png" alt="Welcome to Bookshelf" class="img-responsive"></p>
+![Welcome to Bookshelf](//file/welcome-to-bookshelf.png)
 
 ### Understanding views
 
