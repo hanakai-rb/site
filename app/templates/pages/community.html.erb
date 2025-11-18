@@ -3,6 +3,7 @@
 <div class="lg:mt-8 lg:mb-14">
   <header class="mb-12">
     <h1 class="text-4xl font-extrabold mb-4">Community</h1>
+
     <p class="text-lg text-gray-600">
       Meet the people building and maintaining Hanami, Dry, and ROM.
     </p>
@@ -12,6 +13,7 @@
     <% if core_members.any? %>
       <section>
         <h2 class="text-3xl font-bold mb-6 text-gray-900">Core Team</h2>
+
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
           data-testid="core-team"
@@ -31,6 +33,7 @@
                   src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=130"
                   width="80"
                 >
+
                 <div class="flex-1 min-w-0">
                   <h3 class="text-xl font-semibold text-gray-900 mb-1">
                     <%= member.name %>
@@ -50,6 +53,7 @@
                         clip-rule="evenodd"
                       />
                     </svg>
+
                     <%= member.location %>
                   </p>
                 </div>
@@ -101,6 +105,7 @@
                         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
                       />
                     </svg>
+
                     <%= member.url %>
                   </a>
                 <% end %>
@@ -114,6 +119,7 @@
     <% if maintainers.any? %>
       <section class="mt-16">
         <h2 class="text-3xl font-bold mb-6 text-gray-900">Maintainers</h2>
+
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           data-testid="maintainers-team"
@@ -131,6 +137,7 @@
                   alt="<%= member.name %>"
                   class="avatar w-20 h-20 rounded-full border-2 border-gray-200"
                 >
+
                 <div class="flex-1 min-w-0">
                   <h3 class="text-xl font-semibold text-gray-900 mb-1">
                     <%= member.name %>
@@ -150,6 +157,7 @@
                         clip-rule="evenodd"
                       />
                     </svg>
+
                     <%= member.location %>
                   </p>
                 </div>

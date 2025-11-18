@@ -15,6 +15,7 @@
               >
                 <%= guide_for_nav.title %>
               </div>
+
               <%= render "doc_pages/pages_nav", pages: guide_for_nav.pages.nested, depth: 0, testid: 'pages-nav', current_page_url: nil %>
             </li>
           <% end %>
@@ -28,6 +29,7 @@
       <h1 class="text-4xl font-extrabold mb-4">
         <%= org_name(org_slug) %> guides
       </h1>
+
       <div class="flex items-center gap-4">
         <span class="text-2xl font-semibold text-gray-700"><%= version %></span>
       </div>
@@ -49,6 +51,7 @@
           <h3 class="text-xl font-semibold mb-2 text-gray-900">
             <%= guide.title %>
           </h3>
+
           <div class="text-sm text-primary font-medium">
             View guide →
           </div>

@@ -7,6 +7,7 @@
         <li class="mb-8 theme-hanami-light">
           <div class="flex items-center gap-2 pb-2 mb-4">
             <%= render "svgs/hanami_logo", width: 24, height: 24 %>
+
             <span
               class="
                 font-mono uppercase text-sm font-semibold text-hanami-500
@@ -16,6 +17,7 @@
               <a href="#hanami">Hanami</a>
             </span>
           </div>
+
           <ol>
             <% docs.fetch("hanami", []).each do |doc| %>
               <li>
@@ -37,6 +39,7 @@
         <li class="mb-8 theme-dry-light">
           <div class="flex items-center gap-2 pb-2 mb-4">
             <%= render "svgs/dry_logo", width: 24, height: 24 %>
+
             <span
               class="
                 font-mono uppercase text-sm font-semibold text-dry-500
@@ -46,6 +49,7 @@
               <a href="#dry">Dry</a>
             </span>
           </div>
+
           <ol>
             <% docs.fetch("dry", []).each do |doc| %>
               <li>
@@ -67,6 +71,7 @@
         <li class="mb-8 theme-rom-light">
           <div class="flex items-center gap-2 pb-2 mb-4">
             <%= render "svgs/rom_logo", width: 24, height: 24 %>
+
             <span
               class="
                 font-mono uppercase text-sm font-semibold text-rom-500
@@ -76,6 +81,7 @@
               <a href="#rom">ROM</a>
             </span>
           </div>
+
           <ol>
             <% docs.fetch("rom", []).each do |doc| %>
               <li>
@@ -100,6 +106,7 @@
   <%= main.slot :content do %>
     <header class="mb-12">
       <h1 class="text-4xl font-extrabold mb-4">Docs</h1>
+
       <p class="text-lg text-gray-600">
         Comprehensive documentation for Hanami, Dry, and ROM libraries.
       </p>
@@ -109,6 +116,7 @@
       <section id="hanami" class="theme-hanami-light">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/hanami_logo", width: 32, height: 32 %>
+
           <h2 class="text-3xl font-bold text-hanami-500">Hanami</h2>
         </div>
 
@@ -128,6 +136,7 @@
               <h3 class="text-xl font-semibold mb-2 text-gray-900">
                 <%= doc.title %>
               </h3>
+
               <div class="text-sm text-hanami-500 font-medium">
                 View documentation →
               </div>
@@ -139,6 +148,7 @@
       <section id="dry" class="theme-dry-light">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/dry_logo", width: 32, height: 32 %>
+
           <h2 class="text-3xl font-bold text-dry-500">Dry</h2>
         </div>
 
@@ -158,6 +168,7 @@
               <h3 class="text-xl font-semibold mb-2 text-gray-900">
                 <%= doc.title %>
               </h3>
+
               <div class="text-sm text-dry-500 font-medium">
                 View documentation →
               </div>
@@ -169,6 +180,7 @@
       <section id="rom" class="theme-rom-light">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/rom_logo", width: 32, height: 32 %>
+
           <h2 class="text-3xl font-bold text-rom-500">ROM</h2>
         </div>
 
@@ -188,6 +200,7 @@
               <h3 class="text-xl font-semibold mb-2 text-gray-900">
                 <%= doc.title %>
               </h3>
+
               <div class="text-sm text-rom-500 font-medium">
                 View documentation →
               </div>

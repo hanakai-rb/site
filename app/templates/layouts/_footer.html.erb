@@ -1,5 +1,6 @@
 <footer class="bg-sky-500 text-primary-reversed pb-8">
   <div class="bg-white rounded-b-2xl h-4"></div>
+
   <div
     class="
       pl-[calc(env(safe-area-inset-left)-var(--spacing)*4)]
@@ -8,16 +9,22 @@
   >
     <div class="px-4 lg:px-6 py-6 flex flex-col md:flex-row gap-6">
       <a href="/"><%= render "svgs/hanakai_logo", height: 32, width: 32 %></a>
+
       <nav class="flex-1">
         <ul>
           <% nav_items.each do |nav_item| %>
             <li class="text-lg md:float-left md:w-48 mb-3.5">
-              <a class="font-bold" href="<%= nav_item.url %>"><%= nav_item.label %></a>
+              <a class="font-bold" href="<%= nav_item.url %>">
+                <%= nav_item.label %>
+              </a>
+
               <% if nav_item.children.any? %>
                 <ul>
                   <% nav_item.children.each do |child_nav_item| %>
                     <li>
-                      <a href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
+                      <a href="<%= child_nav_item.url %>">
+                        <%= child_nav_item.label %>
+                      </a>
                     </li>
                   <% end %>
                 </ul>

@@ -5,6 +5,7 @@
     <h1 class="lg:hidden text-2xl font-semibold mb-1">
       Blog
     </h1>
+
     <p class="lg:text-lg text-md text-neutral-500 text-balance">
       The latest updates from the Hanami, Dry, and Rom projects.
     </p>
@@ -18,8 +19,10 @@
           class="theme-<%= post.org || "hanakai" %>-light"
         >
           <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-5", height: 14, stroke_width: 2 %>
+
           <div class="flex gap-6">
             <%= render "svgs/#{post.org || "hanakai"}_logo", width: 30, height: 30, class_name: "shrink-0" %>
+
             <div class="mt-2 flex flex-col lg:gap-3 gap-2">
               <time
                 class="
@@ -52,6 +55,7 @@
     </ol>
     <div>
       <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-8", height: 14, stroke_width: 2 %>
+
       <nav
         class="flex items-center gap-4 justify-center"
         aria-label="More results"

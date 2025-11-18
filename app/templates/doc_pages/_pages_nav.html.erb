@@ -2,9 +2,11 @@
   <% pages.each do |(page, child_pages)| %>
     <% depths = ["pl-4", "pl-6", "pl-8", "pl-10"] %>
     <% selected = page.url_path == current_page_url %>
+
     <li>
       <% inactive_link_classes = "border-slate-100 text-neutral hover:text-gray-800 hover:border-slate-300 transition-color duration-100 pr-2"
     selected_link_classes = "b-primary font-bold" %>
+
       <a
         class="inline-block py-1 <%= depths[depth] %> border-l-2 <%= selected ? selected_link_classes : inactive_link_classes %>"
         <%= 'aria-current=page' if selected %>
@@ -12,6 +14,7 @@
       >
         <%= page.title %>
       </a>
+
       <% if child_pages.any? %>
         <%= render "doc_pages/pages_nav", pages: child_pages, depth: depth + 1, testid: nil, current_page_url: current_page_url %>
       <% end %>
