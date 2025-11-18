@@ -65,7 +65,7 @@ module Bookshelf
 end
 ```
 
-Operations can work with dependencies from across your app. To include dependencies, use the [Deps mixin](/v2.3/app/container-and-components/#injecting-dependencies-via-deps).
+Operations can work with dependencies from across your app. To include dependencies, use the [Deps mixin](//guide/app/container-and-components#injecting-dependencies-via-deps).
 
 For example:
 
@@ -107,7 +107,7 @@ def call(attrs)
 end
 ```
 
-By default, `transaction` uses your "default" [gateway](/v2.3/database/configuration/#gateway-configuration). To use a different one, specify gateway: followed by the desired gateway name.
+By default, `transaction` uses your "default" [gateway](//guide/database/configuration#gateway-configuration). To use a different one, specify gateway: followed by the desired gateway name.
 
 ```ruby
 transaction(gateway: :other) do
@@ -117,7 +117,7 @@ end
 
 ## Working with operations
 
-Typically, operations will be called from places like [actions](/v2.3/actions/overview/). Such an arrangement allows you to keep your business logic well contained, and your actions focused on HTTP responsibilities only.
+Typically, operations will be called from places like [actions](//guide/actions). Such an arrangement allows you to keep your business logic well contained, and your actions focused on HTTP responsibilities only.
 
 After calling an operation, you will receive either a `Success` or a `Failure`. You can pattern match on this result to handle each situation.
 
