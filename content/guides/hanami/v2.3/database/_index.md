@@ -8,7 +8,6 @@ pages:
 
 Hanami’s persistence layer is based on the [Ruby Object Mapper (ROM)](https://rom-rb.org/) project. ROM may be a radically different approach to persistence than what you're familiar with, but don’t let that scare you. ROM is designed to provide clear separation of responsibilities. The hardest part is shifting your perspective to think in a new paradigm.
 
-<blockquote cite="https://rom-rb.org/learn/" class="quote">
 Above all else ROM favors:
 
 - **Explicitness** over "magic" whenever possible
@@ -16,8 +15,6 @@ Above all else ROM favors:
 - **Flexibility** in your domain layer's design
 
 [ROM: Principles & Design](https://rom-rb.org/learn/#principles-amp-design)
-
-</blockquote>
 
 While traditional Object-Relational Mapping comes from a strictly Object-Oriented approach, ROM combines the best parts of Functional Programming and OOP that play to Ruby’s inherent strengths as a language. Instead of homogenizing all datastores into a lowest-common-denominator API, ROM embraces the diversity of storage engines and the powerful features they can provide.
 
