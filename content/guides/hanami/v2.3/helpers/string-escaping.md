@@ -40,6 +40,7 @@ raw(user.name).html_safe?
 Use this method when including URLs from untrusted user input in your view content.
 
 The default permitted schemes are:
+
 - `http`
 - `https`
 - `mailto`

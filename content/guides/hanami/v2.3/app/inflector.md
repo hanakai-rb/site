@@ -27,7 +27,6 @@ end
 
 A common reason for customization is to configure inflections to support desired class names and other constants. For example, the `WNBA` acronym above supports constants like `Games::WNBA` instead of `Games::Wnba`. See the [autoloading guide](//page/autoloading) for more detail.
 
-
 ## Using the inflector in a component
 
 Like `"settings"` and `"logger"`, the inflector is available in your app and slice containers as an `"inflector"` component.

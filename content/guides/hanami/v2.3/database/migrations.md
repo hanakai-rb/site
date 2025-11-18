@@ -17,7 +17,7 @@ config/db/migrate
 
 ## Direction
 
-Migration files are bi-directional, they define schema changes *forward* and *backward*, or `up` and `down` in Sequel’s syntax. This is important, in case your migration changes cause a problem you will want to roll them back as quickly as possible, and requiring a fresh migration to do this may take too much time.
+Migration files are bi-directional, they define schema changes _forward_ and _backward_, or `up` and `down` in Sequel’s syntax. This is important, in case your migration changes cause a problem you will want to roll them back as quickly as possible, and requiring a fresh migration to do this may take too much time.
 
 ```ruby
 ROM::SQL.migration do
@@ -70,7 +70,7 @@ ROM::SQL.migration do
     end
   end
 
-  down do 
+  down do
     alter_table :users do
       drop_index :email, concurrently: true
     end

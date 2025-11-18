@@ -13,7 +13,7 @@ await assets.run({
     // compile vs watch.
 
     return esbuildOptions;
-  }
+  },
 });
 ```
 
@@ -31,7 +31,7 @@ await assets.run({
     }
 
     return esbuildOptions;
-  }
+  },
 });
 ```
 

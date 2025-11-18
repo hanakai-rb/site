@@ -30,9 +30,10 @@ The primary point of configuration for your database connection is the DATABASE_
 
 You can set this in your `.env` file using the dotenv gem (which is only loaded for `development` and `test` environments).
 
-Note that the value you set is the **development** database URL, and the *test* database URL is **automatically derived** from it, ending with `_test`.
+Note that the value you set is the **development** database URL, and the _test_ database URL is **automatically derived** from it, ending with `_test`.
 
 For example:
+
 ```
 DATABASE_URL=sqlite://config/db/development.sqlite
 DATABASE_URL=postgres://localhost/bookshelf_development

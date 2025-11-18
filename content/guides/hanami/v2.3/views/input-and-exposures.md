@@ -13,7 +13,7 @@ Imagine the following ERB template for showing a book, located at `app/templates
 <p><%= book.description %></p>
 ```
 
-To render, this template requires a book object. A view can provide that book object to the template using an __exposure__.
+To render, this template requires a book object. A view can provide that book object to the template using an **exposure**.
 
 ## Exposures
 
@@ -49,9 +49,10 @@ $ curl http://localhost:2300/books/1
   </body>
 </html>
 ```
+
 ## View input
 
-To render a specific book from a data store, the view needs to know what book to render. A specific id or a slug can be passed to the view as __view input__.
+To render a specific book from a data store, the view needs to know what book to render. A specific id or a slug can be passed to the view as **view input**.
 
 For example, assuming the books show action services a route like `GET /books/:id`, the requested book id can be passed from the action below to view as an argument to the view:
 
@@ -72,7 +73,6 @@ end
 ```
 
 Within the view, inputs are available as keyword arguments to exposure blocks:
-
 
 ```ruby
 # app/views/books/show.rb
@@ -134,7 +134,6 @@ end
 ## Specifying input defaults
 
 For optional input data, you can provide a default values (either `nil` or something more meaningful). A books index view might have defaults for page and per_page:
-
 
 ```ruby
 # app/views/books/index.rb
@@ -238,7 +237,6 @@ end
 ## Layout exposures
 
 Exposure values are made available only to the template by default. To make an exposure also available to the [layout](//page/templates-and-partials), use the `layout: true` option:
-
 
 ```ruby
 expose :recommended_books, layout: true do

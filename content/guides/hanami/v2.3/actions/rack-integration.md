@@ -51,7 +51,6 @@ module Bookshelf
 end
 ```
 
-
 ```shell
 $ bundle exec hanami middleware
 
@@ -60,7 +59,6 @@ $ bundle exec hanami middleware
 ```
 
 Middleware will be included in the stack in the order in which it's added.
-
 
 ```ruby
 # config/app.rb
@@ -94,7 +92,6 @@ module Bookshelf
   end
 end
 ```
-
 
 ```shell
 $  bundle exec hanami middleware
@@ -148,6 +145,7 @@ module Bookshelf
   end
 end
 ```
+
 ```shell
 $ bundle exec hanami middleware
 

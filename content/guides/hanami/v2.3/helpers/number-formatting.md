@@ -15,11 +15,12 @@ Here is how you can use it in templates:
 <span><%= format_number(1_000_000) %></span>
 <span><%= format_number(1_000_000.10) %></span>
 ```
+
 This will render the number in the nice, readable form:
 
 ```html
-  <span>1,000,000</span>
-  <span>1,000,000.00</span>
+<span>1,000,000</span>
+<span>1,000,000.00</span>
 ```
 
 [In parts](//guide/views/parts), you can access your helpers via the `helpers` object.

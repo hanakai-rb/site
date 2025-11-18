@@ -8,7 +8,6 @@ This means that you do not need to require the classes and modules you write bef
 
 For example, the `Bookshelf::Entities::Book` class defined in the file `app/entities/book.rb` can be used in another class by simply using the constant `Bookshelf::Entities::Book`.
 
-
 ```ruby
 # app/entities/book.rb
 
@@ -45,13 +44,12 @@ When namespacing classes and modules in your `app/` directory, use a top-level m
 Assuming an app created via `hanami new bookshelf` (which would have a top-level module `Bookshelf`), this means abiding by the following structure:
 
 | Filename                       | Expected class or module             |
-|--------------------------------|--------------------------------------|
+| ------------------------------ | ------------------------------------ |
 | app/entities/book.rb           | Bookshelf::Entities::Book            |
 | app/entities/author.rb         | Bookshelf::Entities::Author          |
 | app/actions/books/create.rb    | Bookshelf::Actions::Books::Create    |
 | app/books/operations/create.rb | Bookshelf::Books::Operations::Create |
 | app/book_binder.rb             | Bookshelf::BookBinder                |
-
 
 None of the above classes or modules need a require statement before use.
 
@@ -79,7 +77,6 @@ end
 Code placed in `lib/bookshelf` (i.e. `lib/<app_name>`) does not need to be required.
 
 This `SlackNotifier` class from `lib/bookshelf` for instance can be used in app components without a require statement:
-
 
 ```ruby
 # lib/bookshelf/slack_notifier.rb
@@ -120,19 +117,18 @@ Hanami.app.register_provider :redis do
 end
 ```
 
-
-| Constant location               | Usage                                      |
-|---------------------------------|--------------------------------------------|
-| lib/bookshelf/slack_notifier.rb | Bookshelf::SlackNotifier                   |
-| lib/custom_redis/client.rb          | require "custom_redis/client"<br /><br />  CustomRedis::Client |
+| Constant location               | Usage                                                         |
+| ------------------------------- | ------------------------------------------------------------- |
+| lib/bookshelf/slack_notifier.rb | Bookshelf::SlackNotifier                                      |
+| lib/custom_redis/client.rb      | require "custom_redis/client"<br /><br /> CustomRedis::Client |
 
 ## Autoloading in the config directory
 
 The config directory is a particular case because some of the code is hit too early in the boot process for Zeitwerk to provide autoloading. Most notably, you have to explicitly `require` in:
 
-* `config/app.rb`
-* `config/routes.rb`
-* `config/settings.rb`
+- `config/app.rb`
+- `config/routes.rb`
+- `config/settings.rb`
 
 ## Requiring gems
 
@@ -155,7 +151,6 @@ module Bookshelf
   end
 end
 ```
-
 
 ## Inflections
 

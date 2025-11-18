@@ -2,7 +2,7 @@
 title: Usage
 ---
 
-Hanami logger is compatible with the stdlib `Logger` but it supports structured logging by default. This means that you are encouraged to log *data*, which we refer to as *payloads* rather than plain text messages. This approach makes it much easier to process and understand your logs when running your system on production.
+Hanami logger is compatible with the stdlib `Logger` but it supports structured logging by default. This means that you are encouraged to log _data_, which we refer to as _payloads_ rather than plain text messages. This approach makes it much easier to process and understand your logs when running your system on production.
 
 In non-production environments, structured logs are turned into easy read text log entries, but the underlying log entries are represented as struct-like objects, even if you pass a text message to your logger.
 
@@ -32,14 +32,14 @@ The following logging methods are available:
 
 ### Logging data
 
-In addition to plain text logging, you can log arbitrary data by passing a log entry *payload* to a log method:
+In addition to plain text logging, you can log arbitrary data by passing a log entry _payload_ to a log method:
 
 ```ruby
 bookshelf[development]> app["logger"].info "Hello World", component: "admin"
 # [bookshelf] [INFO] [2022-11-20 13:50:43 +0100] Hello World component="admin"
 ```
 
-The text message argument *is not mandatory*, which means that you can only provide the *payload*:
+The text message argument _is not mandatory_, which means that you can only provide the _payload_:
 
 ```ruby
 bookshelf[development]> app["logger"].info text: "Hello World", component: "admin"

@@ -50,7 +50,7 @@ For example, given an exposure named `:book`, the `Views::Parts::Book` class wil
 
 For an exposure that returns an array, the exposure's name will be singularized and each element in the array will be decorated with the relevant part. Then the array itself will be decorated by a matching part.
 
-For example, given an exposure named `:books`, `Views::Part::Book` will be used to decorate each value in the array, and  then `Views::Part::Books` will be used to decorate the whole array.
+For example, given an exposure named `:books`, `Views::Part::Book` will be used to decorate each value in the array, and then `Views::Part::Books` will be used to decorate the whole array.
 
 If you have no part class matching an exposure's name, then a generic `Hanami::View::Part` will be used.
 

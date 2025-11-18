@@ -128,7 +128,6 @@ end
 
 We've injected the `user_repo` dependency with an RSpec test double. This would replace the default `"user_repo"` component for the following action.
 
-
 ```ruby
 # app/actions/books/create.rb
 

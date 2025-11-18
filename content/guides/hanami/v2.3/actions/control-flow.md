@@ -207,7 +207,6 @@ If you have given the route you wish to redirect to a name, you can also use the
 get "/sign-in", to: "sign_in", as: :sign_in
 ```
 
-
 ```ruby
 # Within your action
 response.redirect_to routes.path(:sign_in)

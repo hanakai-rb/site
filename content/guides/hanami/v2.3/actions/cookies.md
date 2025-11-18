@@ -38,12 +38,11 @@ end
 
 You can set one or more of the following options for cookies issued by actions using the action cookies config on your app.
 
-  * `:domain` - `String` (`nil` by default), the domain
-  * `:path` - `String` (`nil` by default), a relative URL
-  * `:max_age` - `Integer` (`nil` by default), cookie duration expressed in seconds
-  * `:secure` - `Boolean` (`true` by default if using SSL), restrict cookies to secure connections
-  * `:httponly` - `Boolean` (`true` by default), restrict JavaScript access to cookies
-
+- `:domain` - `String` (`nil` by default), the domain
+- `:path` - `String` (`nil` by default), a relative URL
+- `:max_age` - `Integer` (`nil` by default), cookie duration expressed in seconds
+- `:secure` - `Boolean` (`true` by default if using SSL), restrict cookies to secure connections
+- `:httponly` - `Boolean` (`true` by default), restrict JavaScript access to cookies
 
 ```ruby
 # config/app.rb

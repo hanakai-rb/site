@@ -357,7 +357,6 @@ You may find the `HANAMI_SLICES` environment variable more convenient since it w
 
 ## Slice routing
 
-
 By generating an action for a slice, the code generator will add the new corresponding route to `config/routes.rb`.
 
 If you need per slice Rack Middleware, you can add within the slice block:

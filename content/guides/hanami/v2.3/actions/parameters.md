@@ -194,22 +194,14 @@ For an empty `POST` request with an empty address object, this action would rend
 
 ```json
 {
-    "errors": {
-        "email": [
-            "is missing"
-        ],
-        "password": [
-            "is missing"
-        ],
-        "address": {
-            "street": [
-                "is missing"
-            ],
-            "country": [
-                "is missing"
-            ]
-        }
+  "errors": {
+    "email": ["is missing"],
+    "password": ["is missing"],
+    "address": {
+      "street": ["is missing"],
+      "country": ["is missing"]
     }
+  }
 }
 ```
 

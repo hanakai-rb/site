@@ -29,6 +29,7 @@ module Bookshelf
   end
 end
 ```
+
 ## Using sessions
 
 With sessions enabled, actions can set and read values from the session using the `response` and `request` objects.
@@ -60,7 +61,6 @@ end
 When configuring sessions, the first argument of the configuration is the adapter to use for session storage.
 
 Specifying `:cookie`, as above, will use `Rack::Session::Cookie` for the session storage.
-
 
 > [!TIP]
 > The name of the session adapter is the underscored version of the class name under `Rack::Session` namespace. Example: `:cookie` for `Rack::Session::Cookie`.

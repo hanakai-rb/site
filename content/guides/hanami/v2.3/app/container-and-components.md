@@ -62,7 +62,7 @@ module Bookshelf
 end
 ```
 
-When our application boots, Hanami will automatically register these classes as components in its __app container__, each under a __key__ based on their Ruby class name.
+When our application boots, Hanami will automatically register these classes as components in its **app container**, each under a **key** based on their Ruby class name.
 
 This means that an instance of the `Bookshelf::Operations::SendWelcomeEmail` class is available in the container under the key `"operations.send_welcome_email"`, while an instance of `Bookshelf::Renderers::WelcomeEmail` is available under the key `"renderers.welcome_email"`.
 
@@ -83,7 +83,7 @@ bookshelf[development]> Hanami.app.keys
  "rack.monitor",
  "operations.send_welcome_email",
  "renderers.welcome_email"]
- ```
+```
 
 To fetch our welcome email send operation from the container, we can ask for it by its `"operations.send_welcome_email"` key:
 
@@ -102,7 +102,7 @@ bookshelf[development]> Hanami.app["renderers.welcome_email"].render_html(name: 
 => "<p>Welcome to Bookshelf Ada!</p>"
 ```
 
-Most of the time however, you won't work with components directly through the container via `Hanami.app`. Instead, you'll work with components through the convenient __dependency injection__ system that having your components in a container supports. Let's see how that works!
+Most of the time however, you won't work with components directly through the container via `Hanami.app`. Instead, you'll work with components through the convenient **dependency injection** system that having your components in a container supports. Let's see how that works!
 
 ## Dependency injection
 
@@ -385,11 +385,10 @@ end
 
 Code that you place in other directories under `lib` needs to be explicitly required before use.
 
-| Constant location               | Usage                                      |
-|---------------------------------|--------------------------------------------|
-| lib/bookshelf/slack_notifier.rb | Bookshelf::SlackNotifier                   |
-| lib/my_redis/client.rb          | require "my_redis/client"<br /><br />  MyRedis::Client |
-
+| Constant location               | Usage                                                 |
+| ------------------------------- | ----------------------------------------------------- |
+| lib/bookshelf/slack_notifier.rb | Bookshelf::SlackNotifier                              |
+| lib/my_redis/client.rb          | require "my_redis/client"<br /><br /> MyRedis::Client |
 
 ## Container component loading
 

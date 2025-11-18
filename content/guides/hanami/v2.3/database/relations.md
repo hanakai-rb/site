@@ -71,7 +71,6 @@ books.by_pk(id).one
 # => { id: 1, title: "Hanami", status: :released }
 ```
 
-
 The Types namespace available to Relations comes from `ROM::SQL::Types` and is built from [dry-types](https://dry-rb.org/gems/dry-types/).
 
 Normally, dry-types model a single type with optional coercion logic. However, SQL introduces a two-fold coercion due to the difference between SQL and Ruby types. When these types diverge, the first type argument is the SQL type to be written, and you pass a `read:` argument with the Ruby type.
@@ -99,8 +98,8 @@ Let’s go over what that is doing step-by-step.
 
 1. `Types.define(JWT::JWK::Set)` establishes a Nominal Type wrapper for the `JWT::JWK::Set` object
 2. The input constructor prepares the data to be sent to the DB:
-    - Export the JWKS from a class instance to a Hash structure
-    - Convert the hash to a `Types::PG::JSONB` so it will be correctly typed as jsonb data
+   - Export the JWKS from a class instance to a Hash structure
+   - Convert the hash to a `Types::PG::JSONB` so it will be correctly typed as jsonb data
 3. The output constructor take the JSONB data from the DB and hydrates the `JWT::JWK::Set` class with it
 
 Constructing this by hand would look like this:

@@ -22,7 +22,6 @@ These "app settings" are unrelated to ["app configs"](//page/app-config), which 
 
 Each app setting is read from an environment variable matching its name. For example, the Redis URL and Sentry DSN settings below are sourced from the `REDIS_URL` and `SENTRY_DSN` environment variables respectively.
 
-
 ```ruby
 # config/settings.rb
 
@@ -311,13 +310,13 @@ This means a variable in `.env.development.local` will override a variable decla
 
 Exactly which `.env` files to create and manage is up to you. But we recommend the following as a reasonable set up for development and test environments in shared projects:
 
-| Filename               | Environment | Checked into git | Purpose                                           |
-|------------------------|-------------|------------------|---------------------------------------------------|
-| .env.development.local | development | no               | Local overrides of development-specific settings. |
-| .env.development       | development | yes              | Shared development-specific settings.             |
-| .env.test.local        | test        | no               | Local overrides of test-specific settings. |
-| .env.test              | test        | yes              | Shared test-specific settings.             |
-| .env                   | development and test | yes     | Shared settings applicable in test and development. |
+| Filename               | Environment          | Checked into git | Purpose                                             |
+| ---------------------- | -------------------- | ---------------- | --------------------------------------------------- |
+| .env.development.local | development          | no               | Local overrides of development-specific settings.   |
+| .env.development       | development          | yes              | Shared development-specific settings.               |
+| .env.test.local        | test                 | no               | Local overrides of test-specific settings.          |
+| .env.test              | test                 | yes              | Shared test-specific settings.                      |
+| .env                   | development and test | yes              | Shared settings applicable in test and development. |
 
 We do not recommend using dotenv in production environments.
 

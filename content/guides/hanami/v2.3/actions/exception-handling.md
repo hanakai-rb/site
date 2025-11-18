@@ -51,11 +51,9 @@ module Bookshelf
 end
 ```
 
-
 ## Custom method handlers
 
 To do more with an exception than simply rendering a particular status code, call a method by providing a symbol with the method's name:
-
 
 ```ruby
 module Bookshelf
