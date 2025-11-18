@@ -151,7 +151,7 @@ module Bookshelf
 end
 ```
 
-<p><img src="/v2.3/actions/404-response.png" alt="Hanami 404 response" class="img-responsive"></p>
+![Hanami 404 response](//file/404-response.png)
 
 As with `Response#status=`, you may use a symbolic status name instead of an integer.
 
@@ -159,7 +159,7 @@ As with `Response#status=`, you may use a symbolic status name instead of an int
 halt :not_found
 ```
 
-See [Status Codes](/v2.3/actions/status-codes/) for the complete list.
+See [Status Codes](//page/status-codes) for the complete list.
 
 ## Redirects
 
@@ -213,4 +213,4 @@ get "/sign-in", to: "sign_in", as: :sign_in
 response.redirect_to routes.path(:sign_in)
 ```
 
-See the [Routing guide](/v2.3/routing/overview/) for more information on named routes.
+See the [Routing guide](//guide/routing/overview) for more information on named routes.
