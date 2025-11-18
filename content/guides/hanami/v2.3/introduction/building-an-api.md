@@ -1,5 +1,5 @@
 ---
-title: "Building an API"
+title: Building an API
 ---
 
 Now that we've [created our app](/v2.3/introduction/getting-started/), let's turn it into an API.
