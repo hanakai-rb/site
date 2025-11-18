@@ -143,8 +143,8 @@ bookshelf[development]> API::Slice["queries.countries.show"].call("UA")
 
 Since every slice is part of the larger app, a number of standard app components are automatically imported into each slice. These include:
 
-- `"settings"` — the app’s [settings object](/v2.3/app/settings/)
-- `"inflector"` — the app’s [inflector](/v2.3/app/inflector/)
+- `"settings"` — the app’s [settings object](//page/settings)
+- `"inflector"` — the app’s [inflector](//page/inflector)
 - `"logger"` — the app’s logger
 - `"routes"` — the app’s routes helper
 
@@ -325,7 +325,7 @@ end
 
 Slice settings are loaded from environment variables just like the app settings, so take care to ensure you have no naming clashes between your slice and app settings.
 
-See the [settings guide](/v2.3/app/settings/) for more information on settings.
+See the [settings guide](//page/settings) for more information on settings.
 
 ## Slice loading
 

@@ -18,7 +18,7 @@ end
 
 Using this class, you can specify what settings exist within your application, what types and defaults they have, and whether or not they are required for your application to boot.
 
-These "app settings" are unrelated to ["app configs"](/v2.3/app/app-config/), which configure framework behaviours. App settings are your own to define and use.
+These "app settings" are unrelated to ["app configs"](//page/app-config), which configure framework behaviours. App settings are your own to define and use.
 
 Each app setting is read from an environment variable matching its name. For example, the Redis URL and Sentry DSN settings below are sourced from the `REDIS_URL` and `SENTRY_DSN` environment variables respectively.
 
@@ -194,7 +194,7 @@ module Bookshelf
 end
 ```
 
-For more information on components and the Deps mixin, see the [architecture guide](/v2.3/app/container-and-components/).
+For more information on components and the Deps mixin, see the [architecture guide](//page/container-and-components).
 
 ### Accessing settings within providers
 
@@ -214,7 +214,7 @@ Hanami.app.register_provider :redis do
 end
 ```
 
-See the guides for [providers](/v2.3/app/providers/) and [containers](/v2.3/app/container-and-components/) for more information.
+See the guides for [providers](//page/providers) and [containers](//page/container-and-components) for more information.
 
 ### Accessing settings within your app class
 
