@@ -19,8 +19,7 @@ Here is how you can use it in templates:
 This will render the number in the nice, readable form:
 
 ```html
-<span>1,000,000</span>
-<span>1,000,000.00</span>
+<span>1,000,000</span> <span>1,000,000.00</span>
 ```
 
 [In parts](//guide/views/parts), you can access your helpers via the `helpers` object.
