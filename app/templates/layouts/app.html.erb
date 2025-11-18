@@ -26,6 +26,7 @@
     <%= raw content_for(:meta) %>
     <%= javascript_tag "app", async: true, type: "module" %>
   </head>
+
   <body
     class="font-sans text-neutral bg-white flex flex-col min-h-dvh"
     data-defo-foresight="<%= { elementSelector: "a[href^='/']" }.to_json %>"

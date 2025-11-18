@@ -19,6 +19,7 @@
             <%= nav_item.label %>
             <%= render "svgs/icons/caret_down", height: 12, width: 12, class_name: "fill-current" %>
           </a>
+
           <ul
             class="
               group-hover:flex hidden
@@ -28,7 +29,9 @@
           >
             <% nav_item.children.each_with_index do |child_nav_item, index| %>
               <li>
-                <a class="block" href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
+                <a class="block" href="<%= child_nav_item.url %>">
+                  <%= child_nav_item.label %>
+                </a>
               </li>
             <% end %>
           </ul>

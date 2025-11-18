@@ -2,6 +2,7 @@
   <% headings.each do |(heading, child_headings)| %>
     <li>
       <% depths = ["pl-4", "pl-6", "pl-8", "pl-10"] %>
+
       <a
         class="
           inline-block py-1 pr-2 <%= depths[depth] %> border-l-2 border-slate-100 text-neutral
@@ -13,6 +14,7 @@
       >
         <%= heading.text %>
       </a>
+
       <% if child_headings.any? %>
         <%= render "doc_pages/toc_headings", headings: child_headings, testid: nil, depth: depth + 1 %>
       <% end %>

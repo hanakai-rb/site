@@ -8,9 +8,12 @@
   <ol class="flex gap-2 items-center">
     <% breadcrumbs.each do |breadcrumb| %>
       <% list_classes = "lg:hidden" if breadcrumb.root %>
+
       <li class="<%= list_classes %>">
         <% if breadcrumb.url %>
-          <a class="hover:underline" href="<%= breadcrumb.url %>"><%= breadcrumb.label %></a>
+          <a class="hover:underline" href="<%= breadcrumb.url %>">
+            <%= breadcrumb.label %>
+          </a>
         <% else %>
           <%= breadcrumb.label %>
         <% end %>
@@ -23,5 +26,6 @@
       <% end %>
     <% end %>
   </ol>
+
   <%= render "svgs/#{org}_logo", width: 28, height: 28, class_name: "lg:hidden -mt-0.5" %>
 </nav>

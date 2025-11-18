@@ -13,11 +13,13 @@
       }.to_json %>"
   >
     <%= version %>
+
     <%= render "svgs/icons/caret_down",
       class_name: "fill-current transition-colors duration-150",
       width: 14,
       height: 14 %>
   </button>
+
   <div
     id="<%= id %>-popover"
     class="
@@ -37,11 +39,13 @@
         "transition-colors duration-150 flex items-center gap-2 justify-between"
       active_classes = "bg-primary-reversed text-primary px-2 py-1 rounded-md"
       inactive_classes = "text-white px-2 py-1 hover:underline" %>
+
       <a
         class="<%= base_classes %> <%= active ? active_classes : inactive_classes %>"
         href="<%= "#{path_prefix}/#{other_version}" %>"
       >
         <%= other_version %>
+
         <% if active %>
           <%= render "svgs/icons/check", class_name: "fill-current", width: 16, height: 16 %>
         <% end %>

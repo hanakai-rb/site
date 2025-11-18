@@ -25,6 +25,7 @@
       >
         Menu
         <%= render "svgs/icons/caret_down", width: 16, height: 16, class_name: "fill-current -mt-0.5 [.active_&]:hidden" %>
+        
         <%= render "svgs/icons/x", width: 16, height: 16, class_name: "fill-current -mt-0.5 hidden [.active_&]:block" %>
       </button>
     <% end %>
@@ -39,6 +40,7 @@
       >
         On this page
         <%= render "svgs/icons/caret_down", width: 16, height: 16, class_name: "fill-current -mt-0.5 [.active_&]:hidden" %>
+        
         <%= render "svgs/icons/x", width: 16, height: 16, class_name: "fill-current -mt-0.5 hidden [.active_&]:block" %>
       </button>
     <% end %>
@@ -50,6 +52,7 @@
     Note: [calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)] is a magic
     number to avoid the dropdowns touch the address bar area on Safari on iOS 26.
   %>
+
   <div
     id="<%= id_prefix %>-nav-container"
     class="
@@ -89,8 +92,10 @@
                         other_versions: other_versions,
                         path_prefix: path_prefix,
                         anchor: "right" %>
+
               <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
             </div>
+
             <div class="order-1 flex-1 mt-1.5"><%= render_slot :nav %></div>
           </div>
         </div>
