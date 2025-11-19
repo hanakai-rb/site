@@ -3,8 +3,6 @@
 module Site
   module Content
     class GenerateRedirects
-      include Deps["repos.doc_repo"]
-
       def call
         redirects = []
 
@@ -14,10 +12,6 @@ module Site
             .push("/guides/#{org}/*  /guides/#{org}/#{version}/:splat")
         end
 
-        doc_repo.latest_by_org.values.flatten.each do |doc|
-          redirects
-            .push("/docs/#{doc.slug}    /docs/#{doc.slug}/#{doc.version}")
-            .push("/docs/#{doc.slug}/*  /docs/#{doc.slug}/#{doc.version}/:splat")
         end
 
         redirects.join("\n")

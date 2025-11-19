@@ -66,7 +66,7 @@ RSpec.describe "search index", :search, type: :request do
 
     let(:fragments) { load_all_fragments }
 
-    it "includes guides and docs" do
+    it "includes guides" do
       guide_urls = fragments.map { |f| f["url"] }
         .select { |url| url =~ %r{/guides/(hanami|rom|dry)/} }
 

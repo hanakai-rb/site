@@ -14,11 +14,6 @@ module Site
     get "/guides/:org/:slug", to: "guides.redirect"
     get "/guides/:org/:slug/*path", to: "guides.redirect"
 
-    get "/docs", to: "docs.index"
-    get "/docs/:slug/:version", to: "docs.show", **VERSION_OPTS
-    get "/docs/:slug/:version/*path", to: "docs.show", **VERSION_OPTS
-    get "/docs/:slug", to: "docs.redirect"
-    get "/docs/:slug/*path", to: "docs.redirect"
 
     get "/blog", to: "blog.index", as: :blog
     get "/blog/page/:page", to: "blog.index"
