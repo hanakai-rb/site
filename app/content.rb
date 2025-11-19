@@ -3,7 +3,7 @@
 module Site
   module Content
     DEFAULT_GUIDE_VERSIONS = {
-      "dry" => "v1.0",
+      "dry" => nil,
       "hanami" => "v2.2",
       "rom" => "v5.0"
     }.freeze

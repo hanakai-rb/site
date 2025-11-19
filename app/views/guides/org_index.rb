@@ -10,8 +10,8 @@ module Site
           guide_repo.all_for(org:, version:)
         end
 
-        expose :versions, decorate: false do |org:|
-          guide_repo.versions_for(org:)
+        expose :org_versions, decorate: false do |org:|
+          guide_repo.org_versions(org:)
         end
 
         expose :org_slug, decorate: false do |org:|

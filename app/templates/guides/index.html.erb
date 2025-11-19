@@ -160,16 +160,6 @@
           <%= render "svgs/dry_logo", width: 32, height: 32 %>
 
           <h2 class="text-3xl font-bold text-dry-500">Dry</h2>
-
-          <div data-testid="dry-versions">
-            <%= render "doc_pages/version_select",
-                      id: "dry-version-select",
-                      testid: nil,
-                      version: versions.fetch("dry").first,
-                      other_versions: versions.fetch("dry"),
-                      path_prefix: "/guides/dry",
-                      anchor: "left" %>
-          </div>
         </div>
 
         <div

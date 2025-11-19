@@ -15,25 +15,64 @@ module Site
         guides.where(org:, version:).to_a
       end
 
-      def latest_version(org:)
-        Content::DEFAULT_GUIDE_VERSIONS.fetch(org)
+      # Returns the latest version of each guide for an org without an org-level version.
+      #
+      # This finds all guides within the org, picking the latest version for each self-versioned
+      # guide.
+      def latest_for(org:)
+        self_versioned = guides
+          .where(org:, version_scope: "self")
+          .to_a
+          .group_by(&:slug)
+          .map { |_slug, versions| versions.max_by(&:version) }
+
+        unversioned = guides.where(org:, version_scope: "none").to_a
+
+        (self_versioned + unversioned).sort_by(&:position)
       end
 
-      def versions_for(org:)
-        guides.where(org:).group(:version).order(guides[:version].desc).pluck(:version)
+      def with_latest_version(org:, slug:)
+        guides
+          .where(org:, slug:)
+          .where { version.not nil }
+          .order { guides[:version].desc }
+          .limit(1).one
+      end
+
+      def org_versions(org:)
+        guides
+          .where(org:, version_scope: "org")
+          .group(:version)
+          .order(guides[:version].desc)
+          .pluck(:version)
+      end
+
+      def guide_versions(org:, slug:)
+        guides
+          .where(org:, slug:, version_scope: "self")
+          .group(:version)
+          .order(guides[:version].desc)
+          .pluck(:version)
       end
 
       def latest_by_org
         Content::DEFAULT_GUIDE_VERSIONS.to_h { |org, version|
-          [
-            org,
-            guides.where(org:, version:).order(guides[:position].asc).to_a
-          ]
+          org_guides =
+            if version.nil?
+              # For unversioned orgs, include both unversioned guides, as well as the latest version
+              # of any self-versioned guides.
+              guides.where(org:).order(guides[:position].asc).to_a.uniq(&:slug)
+            else
+              guides.where(org:, version:).order(guides[:position].asc).to_a
+            end
+
+          [org, org_guides]
         }
       end
 
       def versions_by_org
         guides
+          .where(version_scope: "org")
           .group(:org, :version)
           .order(guides[:version].desc)
           .pluck(:org, :version)
