@@ -1,5 +1,6 @@
 <div class="mt-10">
   <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-7", height: 14, stroke_width: 2 %>
+
   <nav class="flex gap-4 font-medium text-lg">
     <% if prev_item %>
       <a
@@ -14,6 +15,7 @@
         <%= prev_item[:label] %>
       </a>
     <% end %>
+
     <% if next_item %>
       <a
         class="
