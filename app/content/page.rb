@@ -135,11 +135,13 @@ module Site
         "/guides" + path
       end
 
+      # TODO: convert all actual //doc URLs to //guide URLs
+      #
       # Transforms //doc/doc-slug/page-slug into a versionless path for the doc.
       #
       # Visitors to that link will then be redirected to the latest version of the doc.
       def doc_path(path)
-        "/docs" + path
+        "/guides" + path
       end
     end
   end

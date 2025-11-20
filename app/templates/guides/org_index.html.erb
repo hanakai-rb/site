@@ -2,7 +2,7 @@
 
 <%= render_with_slots "doc_pages/main" do |main| %>
   <%= main.slot :navigation do %>
-    <%= render_with_slots "doc_pages/pages_nav_desktop", org: org_slug, version:, other_versions: versions, path_prefix: "/guides/#{org_slug}" do |pages_nav_desktop| %>
+    <%= render_with_slots "doc_pages/pages_nav_desktop", org: org_slug, version:, org_versions:, path_prefix: "/guides/#{org_slug}" do |pages_nav_desktop| %>
       <%= pages_nav_desktop.slot :nav do %>
         <ol data-testid="guides-list">
           <% guides.each do |guide_for_nav| %>
