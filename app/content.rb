@@ -3,14 +3,13 @@
 module Site
   module Content
     DEFAULT_GUIDE_VERSIONS = {
-      "dry" => "v1.0",
+      "dry" => nil,
       "hanami" => "v2.2",
       "rom" => "v5.0"
     }.freeze
 
     CONTENT_PATH = App.root.join("content").freeze
     POSTS_PATH = CONTENT_PATH.join("posts").freeze
-    DOCS_PATH = CONTENT_PATH.join("docs").freeze
     GUIDES_PATH = CONTENT_PATH.join("guides").freeze
     TEAM_MEMBERS_PATH = CONTENT_PATH.join("team_members").freeze
 

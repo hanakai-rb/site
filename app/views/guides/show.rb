@@ -16,7 +16,15 @@ module Site
           end
         end
 
-        expose :guide do |org:, version:, slug:|
+        expose :org, decorate: false
+
+        expose :org_version, decorate: false
+
+        expose :version, decorate: false do |org_version: nil, guide_version: nil|
+          org_version || guide_version
+        end
+
+        expose :guide do |version, org:, slug:|
           guide_repo.find(org:, version:, slug:)
         end
 
@@ -24,20 +32,24 @@ module Site
           guide.pages[path]
         end
 
-        expose :org, decorate: false
-
-        expose :version, decorate: false
-
-        expose :latest_version, decorate: false do |org:|
-          guide_repo.latest_version(org:)
+        expose :org_guides do |org:, org_version: nil, guide_version: nil|
+          if org_version
+            guide_repo.all_for(org:, version: org_version)
+          else
+            guide_repo.latest_for(org:)
+          end
         end
 
-        expose :other_versions, decorate: false do |org:|
-          guide_repo.versions_for(org:)
+        expose :org_versions, decorate: false do |org:|
+          guide_repo.org_versions(org:)
         end
 
-        expose :org_guides do |org:, version:|
-          guide_repo.all_for(org:, version:)
+        expose :guide_versions, decorate: false do |org:, slug:|
+          guide_repo.guide_versions(org:, slug:)
+        end
+
+        expose :latest_version, decorate: false do |org_versions, guide_versions|
+          (org_versions + guide_versions).max
         end
 
         expose :next_nav_item, decorate: false do |guide, path:|

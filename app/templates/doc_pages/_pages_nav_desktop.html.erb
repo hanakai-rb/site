@@ -13,13 +13,16 @@
     >
       <%= render "svgs/#{org}_logo", width: 24, height: 24 %>
 
-      <%= render "doc_pages/version_select",
+      <!-- TODO FOR MAX: Make this feel nicer when there's no org version -->
+      <% if version %>
+        <%= render "doc_pages/version_select",
               id: "version-select-desktop",
               testid: "version-select",
               version: version,
-              other_versions: other_versions,
+              other_versions: org_versions,
               path_prefix: path_prefix,
               anchor: "left" %>
+      <% end %>
     </div>
 
     <div class="bg-gradient-to-b from-white to-transparent h-4 pointer-events-none"></div>

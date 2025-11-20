@@ -10,12 +10,30 @@ module Site
         )
       end
 
+      def org_versioned?
+        version_scope == "org"
+      end
+
+      def self_versioned?
+        version_scope == "self"
+      end
+
+      def unversioned?
+        version_scope == "none"
+      end
+
       def url_path
         "/#{relative_content_path}"
       end
 
       def content_path
-        Content::GUIDES_PATH.join(org, version, slug)
+        if org_versioned?
+          Content::GUIDES_PATH.join(org, version, slug)
+        elsif self_versioned?
+          Content::GUIDES_PATH.join(org, slug, version)
+        else
+          Content::GUIDES_PATH.join(org, slug)
+        end
       end
 
       def relative_content_path

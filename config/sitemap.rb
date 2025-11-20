@@ -31,17 +31,6 @@ SitemapGenerator::Sitemap.create do
     end
   end
 
-  # Docs
-  add "/docs"
-
-  app["repos.doc_repo"].all.each do |doc|
-    add doc.url_path
-
-    doc.pages.all.each do |page|
-      add page.url_path
-    end
-  end
-
   # Blog
   add "/blog"
 
