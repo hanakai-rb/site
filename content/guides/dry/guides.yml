@@ -1,8 +1,6 @@
 guides:
-  - slug: getting-started
-    title: Getting started
-  - slug: faq
-    title: FAQ
+  - slug: introduction
+    title: Introduction
   - slug: dry-auto_inject
     title: Dry Auto Inject
   - slug: dry-equalizer
