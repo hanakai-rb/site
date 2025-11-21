@@ -32,11 +32,6 @@ module Site
         to_url: ->(m) { "/guides/#{m[:org]}/#{m[:version]}/#{m[:path]}" }
       ),
       Source.new(
-        directory: "content/docs",
-        pattern: %r{^/(?<org>[^/]+)/(?<slug>[^/]+)/(?<version>v\d+\.\d+)/(?<path>.+)},
-        to_url: ->(m) { "/docs/#{m[:slug]}/#{m[:version]}/#{m[:path]}" }
-      ),
-      Source.new(
         directory: "content/posts/assets",
         pattern: %r{^/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})-(?<slug>[^/]+)/(?<path>.+)},
         to_url: ->(m) { "/blog/assets/#{m[:year]}-#{m[:month]}-#{m[:day]}-#{m[:slug]}/#{m[:path]}" }
