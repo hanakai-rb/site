@@ -14,17 +14,13 @@
         <ul>
           <% nav_items.each do |nav_item| %>
             <li class="text-lg md:float-left md:w-48 mb-3.5">
-              <a class="font-bold" href="<%= nav_item.url %>">
-                <%= nav_item.label %>
-              </a>
+              <a class="font-bold" href="<%= nav_item.url %>"><%= nav_item.label %></a>
 
               <% if nav_item.children.any? %>
                 <ul>
                   <% nav_item.children.each do |child_nav_item| %>
                     <li>
-                      <a href="<%= child_nav_item.url %>">
-                        <%= child_nav_item.label %>
-                      </a>
+                      <a href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
                     </li>
                   <% end %>
                 </ul>
