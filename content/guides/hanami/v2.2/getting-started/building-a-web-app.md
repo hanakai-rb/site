@@ -1009,7 +1009,7 @@ module Bookshelf
 end
 ```
 
-And add a dummy secret to your `.env`:
+And add a placeholder secret to your `.env`:
 
 ```
 SESSION_SECRET=__local_development_secret_only__

@@ -180,7 +180,7 @@ What you need to do, is to specify the CDN URL to the application and then the h
 ## Release Date
 
 All these features can be used with Lotus full stack applications starting from `v0.6.0`, that will be released on **Jan 12th, 2016**.
-If you can't wait, try it with [master branch](https://github.com/lotus/lotus) and let us to know!
+If you can't wait, try it with [main branch](https://github.com/lotus/lotus) and let us to know!
 
 <div style="display: inline">
 
