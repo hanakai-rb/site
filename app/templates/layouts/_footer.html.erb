@@ -14,13 +14,17 @@
         <ul>
           <% nav_items.each do |nav_item| %>
             <li class="text-lg md:float-left md:w-48 mb-3.5">
-              <a class="font-bold" href="<%= nav_item.url %>"><%= nav_item.label %></a>
+              <a class="font-bold" href="<%= nav_item.url %>">
+                <%= nav_item.label %>
+              </a>
 
               <% if nav_item.children.any? %>
                 <ul>
                   <% nav_item.children.each do |child_nav_item| %>
                     <li>
-                      <a href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
+                      <a href="<%= child_nav_item.url %>">
+                        <%= child_nav_item.label %>
+                      </a>
                     </li>
                   <% end %>
                 </ul>
@@ -32,7 +36,10 @@
 
       <div class="flex flex-row gap-4 items-center self-start md:pr-4">
         <p>Supported by</p>
-        <a href="https://sidekiq.org"><%= render "svgs/sponsors/sidekiq_logo_horizontal", height: 41, width: 140 %></a>
+
+        <a href="https://sidekiq.org">
+          <%= render "svgs/sponsors/sidekiq_logo_horizontal", height: 41, width: 140 %>
+        </a>
       </div>
     </div>
   </div>
