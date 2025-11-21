@@ -11,7 +11,9 @@
 
       <li class="<%= list_classes %>">
         <% if breadcrumb.url %>
-          <a class="hover:underline" href="<%= breadcrumb.url %>"><%= breadcrumb.label %></a>
+          <a class="hover:underline" href="<%= breadcrumb.url %>">
+            <%= breadcrumb.label %>
+          </a>
         <% else %>
           <%= breadcrumb.label %>
         <% end %>

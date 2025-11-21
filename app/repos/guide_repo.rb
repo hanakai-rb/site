@@ -78,6 +78,43 @@ module Site
           .pluck(:org, :version)
           .each_with_object({}) { |guide, hsh| (hsh[guide[0]] ||= []) << guide[1] }
       end
+
+      def next_guide(guide)
+        next_prev_guide_base_query(guide)
+          .where { position > guide.position }
+          .order { position }
+          .limit(1)
+          .one
+      end
+
+      def previous_guide(guide)
+        next_prev_guide_base_query(guide)
+          .where { position < guide.position }
+          .order { position.desc }
+          .limit(1)
+          .one
+      end
+
+      private
+
+      def next_prev_guide_base_query(guide)
+        if guide.version_scope == "org"
+          guides.where(org: guide.org, version: guide.version)
+        else
+          guides.dataset
+            .with(:latest_versions, latest_version_query)
+            .join(:latest_versions, slug: :slug)
+            .where(org: guide.org)
+            .then { guides.new(it) }
+        end
+      end
+
+      def latest_version_query
+        guides.dataset
+          .select(:slug)
+          .select_append { max(version).as(:version) }
+          .group(guides[:slug])
+      end
     end
   end
 end

@@ -1,0 +1,33 @@
+<div class="mt-10">
+  <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-7", height: 14, stroke_width: 2 %>
+
+  <nav class="flex gap-4 font-medium text-lg">
+    <% if prev_item %>
+      <a
+        class="
+          mr-auto flex max-w-[50%] gap-2 text-link hover:decoration-[3px] hover:underline
+          hover:decoration-(--hk-color-text-link-underline)
+        "
+        href="<%= prev_item[:url] %>"
+        aria-label="Go to previous guide"
+      >
+        <%= render "svgs/icons/arrow_left", width: 16, height: 16, class_name: "fill-current mt-2" %>
+        <%= prev_item[:label] %>
+      </a>
+    <% end %>
+
+    <% if next_item %>
+      <a
+        class="
+          ml-auto flex max-w-[50%] gap-2 text-link hover:decoration-[3px] hover:underline
+          hover:decoration-(--hk-color-text-link-underline) text-right
+        "
+        href="<%= next_item[:url] %>"
+        aria-label="Go to next guide"
+      >
+        <%= next_item[:label] %>
+        <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current mt-2" %>
+      </a>
+    <% end %>
+  </nav>
+</div>
