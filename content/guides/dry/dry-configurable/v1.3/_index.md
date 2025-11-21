@@ -1,5 +1,5 @@
 ---
-title: Introduction &amp; Usage
+title: Introduction & Usage
 pages:
   - testing
 ---
