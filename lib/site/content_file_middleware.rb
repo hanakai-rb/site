@@ -23,38 +23,33 @@ module Site
   class ContentFileMiddleware
     ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg].freeze
 
-    PATH_HANDLERS = [
-      {
-        pattern: %r{^/guides/(?<org>[^/]+)/(?<version>v\d+\.\d+)/(?<path>.+)},
-        mapper: ->(m) { "content/guides/#{m[:org]}/#{m[:version]}/#{m[:path]}" }
-      },
-      {
-        pattern: %r{^/docs/(?<slug>[^/]+)/(?<version>v\d+\.\d+)/(?<path>.+)},
-        mapper: ->(m) {
-          # For docs, we don't currently put the org in the URL, so infer the org from the gem name.
-          #
-          # We can adjust or remove this later.
-          org = m[:slug].split("-").first
-          org = "#{org}-rb" unless org == "hanami"
+    Source = Data.define(:directory, :pattern, :to_url)
 
-          "content/docs/#{org}/#{m[:slug]}/#{m[:version]}/#{m[:path]}"
-        }
-      },
-      {
-        pattern: %r{^/blog/assets/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})-(?<slug>[^/]+)/(?<path>.+)},
-        mapper: ->(m) {
-          "content/posts/assets/#{m[:year]}-#{m[:month]}-#{m[:day]}-#{m[:slug]}/#{m[:path]}"
-        }
-      }
-    ].freeze
+    SOURCES = [
+      Source.new(
+        directory: "content/guides",
+        pattern: %r{^/(?<org>[^/]+)/(?<version>v\d+\.\d+)/(?<path>.+)},
+        to_url: ->(m) { "/guides/#{m[:org]}/#{m[:version]}/#{m[:path]}" }
+      ),
+      Source.new(
+        directory: "content/posts/assets",
+        pattern: %r{^/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})-(?<slug>[^/]+)/(?<path>.+)},
+        to_url: ->(m) { "/blog/assets/#{m[:year]}-#{m[:month]}-#{m[:day]}-#{m[:slug]}/#{m[:path]}" }
+      )
+    ]
 
     def initialize(app)
       @app = app
       @file_server = Rack::Files.new(Dir.pwd)
+      @assets = {}
     end
 
     def call(env)
       path_info = env["PATH_INFO"]
+
+      return @app.call(env) unless file_type_allowed?(path_info)
+
+      hydrate_if_needed
 
       return @app.call(env) unless serve_file?(path_info)
 
@@ -62,24 +57,37 @@ module Site
       serve_file(env, content_path) if content_path
     end
 
+    def paths_map
+      hydrate_if_needed
+      @assets.invert
+    end
+
     private
 
+    def hydrate_if_needed
+      return unless @assets.empty?
+
+      SOURCES.each do |source|
+        Dir.glob(File.join(source.directory, "**/*.{#{ALLOWED_FILE_EXTENSIONS.join(",")}}")).each do |file|
+          path = file.sub(source.directory, "")
+          if (match = path.match(source.pattern))
+            url = source.to_url.call(match)
+            @assets[url] = File.join(source.directory, path)
+          end
+        end
+      end
+    end
+
     def serve_file?(path)
-      file_type_allowed?(path) && path_handler(path)
+      @assets.key?(path.to_s)
     end
 
     def file_type_allowed?(path)
       ALLOWED_FILE_EXTENSIONS.include?(File.extname(path).downcase[1..])
     end
 
-    def path_handler(path)
-      PATH_HANDLERS.find { |handler| path.match?(handler[:pattern]) }
-    end
-
     def map_to_content_path(path)
-      return unless (handler = path_handler(path))
-
-      handler[:mapper].call(path.match(handler[:pattern]))
+      @assets[path.to_s]
     end
 
     def serve_file(env, content_path)
