@@ -29,9 +29,7 @@
           >
             <% nav_item.children.each_with_index do |child_nav_item, index| %>
               <li>
-                <a class="block" href="<%= child_nav_item.url %>">
-                  <%= child_nav_item.label %>
-                </a>
+                <a class="block" href="<%= child_nav_item.url %>"><%= child_nav_item.label %></a>
               </li>
             <% end %>
           </ul>
