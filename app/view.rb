@@ -19,7 +19,6 @@ module Site
       path = context.request.path
       [
         NavItem.new(label: "Guides", url: "/guides", selected: path.start_with?("/guides"), children: []),
-        NavItem.new(label: "Docs", url: "/docs", selected: path.start_with?("/docs"), children: []),
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: []),
         NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
@@ -35,11 +34,6 @@ module Site
           NavItem.new(label: "Dry", url: "/guides#dry", selected: false, children: []),
           NavItem.new(label: "Rom", url: "/guides#rom", selected: false, children: [])
         ]),
-        NavItem.new(label: "Docs", url: "/docs", selected: path.start_with?("/docs"), children: [
-          NavItem.new(label: "Hanami", url: "/docs#hanami", selected: false, children: []),
-          NavItem.new(label: "Dry", url: "/docs#dry", selected: false, children: []),
-          NavItem.new(label: "Rom", url: "/docs#rom", selected: false, children: [])
-        ]),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: [
           NavItem.new(label: "Code repository", url: "https://github.com/hanami", selected: false, children: []),
           NavItem.new(label: "Discussion forum", url: "https://discourse.hanamirb.org/", selected: false, children: []),
@@ -54,29 +48,10 @@ module Site
     expose :theme, layout: true, decorate: false do |context:, org: nil, slug: nil|
       orgs = %w[hanami dry rom]
 
-      detected = nil
-
       # If org was provided explicitly (e.g. from guides actions), trust it
-      if org && orgs.include?(org)
-        detected = org
-      end
+      next org if org && orgs.include?(org)
 
-      path = context.request.path
-
-      # Infer org from /docs/:slug pattern
-      if detected.nil?
-        slug ||= path[/\A\/docs\/([^\/]+)/, 1]
-        if slug
-          if orgs.include?(slug)
-            detected = slug
-          else
-            prefix = slug.split(/[-_]/).first
-            detected = prefix if orgs.include?(prefix)
-          end
-        end
-      end
-
-      detected || "hanakai"
+      "hanakai"
     end
   end
 end

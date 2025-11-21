@@ -84,17 +84,20 @@
       >
         <div class="px-4 pt-3">
           <div class="flex">
-            <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
-              <%= render "doc_pages/version_select",
-                        id: "version-select-mobile",
-                        testid: nil,
-                        version: version,
-                        other_versions: other_versions,
-                        path_prefix: path_prefix,
-                        anchor: "right" %>
+            <!-- TODO FOR MAX: Make this feel nicer when there's no org version -->
+            <% if version %>
+              <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
+                <%= render "doc_pages/version_select",
+                          id: "version-select-mobile",
+                          testid: nil,
+                          version: version,
+                          other_versions: org_versions,
+                          path_prefix: path_prefix,
+                          anchor: "right" %>
 
-              <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
-            </div>
+                <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
+              </div>
+            <% end %>
 
             <div class="order-1 flex-1 mt-1.5"><%= render_slot :nav %></div>
           </div>

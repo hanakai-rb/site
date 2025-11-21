@@ -33,7 +33,6 @@ module Site
         start :db
 
         # Load content into the database
-        self["content.loaders.gems_docs"].call
         self["content.loaders.guides"].call
         self["content.loaders.posts"].call
         self["content.loaders.team_members"].call
