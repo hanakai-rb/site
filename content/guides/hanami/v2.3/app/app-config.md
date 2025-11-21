@@ -67,7 +67,7 @@ Sets an array of paths (relative to the root of the app or any slice) to be excl
 
 ### `base_url`
 
-Sets the base URL for the app's web server. This is used when building URLs for named routes. Defaults to `"http://0.0.0.0:2300"`. See the [routes guide](//guide/routing/overview) for more detail.
+Sets the base URL for the app's web server. This is used when building URLs for named routes. Defaults to `"http://0.0.0.0:2300"`. See the [routes guide](//guide/routing) for more detail.
 
 ### `middleware`
 
@@ -98,4 +98,4 @@ Sets the configuration to be used by all actions in the app.
 config.actions.format :json
 ```
 
-See the [actions guide](//guide/actions/overview) for more detail.
+See the [actions guide](//guide/actions) for more detail.

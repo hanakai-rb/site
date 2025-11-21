@@ -26,7 +26,7 @@ If your app has slices, pass `--slice=SLICE` to specify where to generate the fi
 
 ### hanami generate action
 
-Generates an [action](//guide/actions/overview):
+Generates an [action](//guide/actions):
 
 ```shell
 $ bundle exec hanami generate action books.show
@@ -68,7 +68,7 @@ $ bundle exec hanami generate migration --help
 
 ### hanami generate operation
 
-Generates an [operation](//guide/operations/overview):
+Generates an [operation](//guide/operations):
 
 ```shell
 $ bundle exec hanami generate operation books.add
@@ -110,7 +110,7 @@ $ bundle exec hanami generate relation --help
 
 ### hanami generate repo
 
-Generates a [repo](//guide/database/overview#repositories):
+Generates a [repo](//guide/database#repositories):
 
 ```shell
 $ bundle exec hanami generate repo books
@@ -138,7 +138,7 @@ $ bundle exec hanami generate slice --help
 
 ### hanami generate struct
 
-Generates a [struct](//guide/database/overview#structs):
+Generates a [struct](//guide/database#structs):
 
 ```shell
 $ bundle exec hanami generate struct book
@@ -152,7 +152,7 @@ $ bundle exec hanami generate struct --help
 
 ### hanami generate view
 
-Generates a [view](//guide/views/overview):
+Generates a [view](//guide/views):
 
 ```shell
 $ bundle exec hanami generate view books.create
