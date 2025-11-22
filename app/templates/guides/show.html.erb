@@ -3,7 +3,7 @@
 <%= render_with_slots "doc_pages/main" do |main| %>
   <%# Navigation %>
   <%= main.slot :navigation do %>
-    <%= render_with_slots "doc_pages/pages_nav_desktop", org:, version: org_version, org_versions:, path_prefix: "/guides/#{org}" do |pages_nav_desktop| %>
+    <%= render_with_slots "doc_pages/pages_nav_desktop", org:, version: org_version, org_versions: do |pages_nav_desktop| %>
       <%= pages_nav_desktop.slot :nav do %>
         <ol data-testid="guides-list">
           <% org_guides.each do |guide_for_nav| %>
@@ -24,7 +24,7 @@
       <% end %>
     <% end %>
 
-    <%= render_with_slots "doc_pages/pages_nav_mobile", org:, version: org_version, org_versions:, path_prefix: "/guides/#{org}" do |pages_nav_mobile| %>
+    <%= render_with_slots "doc_pages/pages_nav_mobile", org:, version: org_version, org_versions: do |pages_nav_mobile| %>
       <%= pages_nav_mobile.slot :nav do %>
         <ol>
           <% org_guides.each do |guide_for_nav| %>
@@ -65,11 +65,9 @@
   <%= main.slot :content do %>
     <div class="flex flex-col">
       <% if version != latest_version %>
-        <%# TODO: This will need to be smarter for self-versioned guides %>
-        <%= render "doc_pages/version_warning", version:, latest_version_url: "/guides/#{org}/#{latest_version}" %>
+        <%= render "doc_pages/version_warning", version:, latest_version:, latest_version_url: "#{path_prefix}/#{latest_version}" %>
       <% end %>
-
-      <%= render "doc_pages/breadcrumbs", breadcrumbs:, org:, version: org_version, org_versions:, path_prefix: "/guides/#{org}" %>
+      <%= render "doc_pages/breadcrumbs", breadcrumbs:, org:, version:, versions:, path_prefix: %>
     </div>
 
     <header
