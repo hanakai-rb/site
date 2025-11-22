@@ -67,7 +67,7 @@
         relative z-10 bg-neutral rounded-b-2xl
         collapse h-0 transition-all duration-300
         ease-[cubic-bezier(.58,-.25,.265,1.25)]
-        [.active_&]:h-auto [.active_&]:visible
+        in-[.active]:h-auto in-[.active]:visible
         overflow-y-scroll overscroll-contain
         max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
         scrolling-panel scrolling-panel--with-bottom-overlay
@@ -121,7 +121,7 @@
           relative z-10 bg-neutral rounded-b-2xl
           collapse h-0 transition-all duration-300
           ease-[cubic-bezier(.58,-.25,.265,1.25)]
-          [.active_&]:h-auto  [.active_&]:visible
+          in-[.active]:h-auto in-[.active]:visible
           overflow-y-scroll overscroll-contain
           max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
           scrolling-panel scrolling-panel--with-bottom-overlay
