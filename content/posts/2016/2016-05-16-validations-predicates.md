@@ -6,7 +6,7 @@ author: Luca Guidi
 image: true
 org: hanami
 excerpt: >
-  Hanami will introduce a new syntax for validations based on predicates. It features builtin and custom predicates, type safety, specific coercions for HTTP params, whitelisting, custom error messages with optional i18n support. This release will start a new alliance between Hanami and dry-rb.
+  Hanami will introduce a new syntax for validations based on predicates. It features builtin and custom predicates, type safety, specific coercions for HTTP params, allowlisting, custom error messages with optional i18n support. This release will start a new alliance between Hanami and dry-rb.
 ---
 
 For long time [Hanami::Validations](https://github.com/hanami/validations) had problems that we struggled to solve and new features were problematic to add.
@@ -52,7 +52,7 @@ result.messages.fetch(:name) # => ["must be filled"]
 
 When we check data, we expect only two outcomes: an input can be valid or not.
 No grey areas, nor fuzzy results.
-It’s white or black, 1 or 0, `true` or `false` and _boolean logic_ is the perfect tool to express these two states.
+It’s 1 or 0, `true` or `false` and _boolean logic_ is the perfect tool to express these two states.
 Indeed, a Ruby _boolean expression_ can only return `true` or `false`.
 
 To better recognise the pattern, let’s get back to the example above.
@@ -79,7 +79,7 @@ required(:name).filled(:str?, size?: 3..64)
 
 With this new syntax we give more control to developers: they can decide the order of execution of the validations.
 They can define [custom predicates](https://github.com/hanami/validations#custom-predicates) and [custom error messages](https://github.com/hanami/validations#messages), [opt in for internationalization (i18n)](https://github.com/hanami/validations#internationalization-i18n) with small effort.
-They can [dry code via macros](https://github.com/hanami/validations#macros), [reuse validators](https://github.com/hanami/validations#composition), [enforce types](https://github.com/hanami/validations#type-safety), [whitelist params](https://github.com/hanami/validations#whitelisting).
+They can [dry code via macros](https://github.com/hanami/validations#macros), [reuse validators](https://github.com/hanami/validations#composition), [enforce types](https://github.com/hanami/validations#type-safety), [allowlist params](https://github.com/hanami/validations#whitelisting).
 
 To summarize: we fixed old bugs, implemented features that developers asked for, increased internal code robustness and started a new alliance with **dry-rb** <3.
 
