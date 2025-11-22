@@ -67,7 +67,7 @@
         relative z-10 bg-neutral rounded-b-2xl
         collapse h-0 transition-all duration-300
         ease-[cubic-bezier(.58,-.25,.265,1.25)]
-        [.active_&]:h-auto [.active_&]:visible
+        in-[.active]:h-auto in-[.active]:visible
         overflow-y-scroll overscroll-contain
         max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
         scrolling-panel scrolling-panel--with-bottom-overlay
@@ -83,24 +83,7 @@
         "
       >
         <div class="px-4 pt-3">
-          <div class="flex">
-            <!-- TODO FOR MAX: Make this feel nicer when there's no org version -->
-            <% if version %>
-              <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
-                <%= render "doc_pages/version_select",
-                          id: "version-select-mobile",
-                          testid: nil,
-                          version: version,
-                          other_versions: org_versions,
-                          path_prefix: path_prefix,
-                          anchor: "right" %>
-
-                <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
-              </div>
-            <% end %>
-
-            <div class="order-1 flex-1 mt-1.5"><%= render_slot :nav %></div>
-          </div>
+          <div class="flex mt-1.5"><%= render_slot :nav %></div>
         </div>
       </div>
     </div>
@@ -121,7 +104,7 @@
           relative z-10 bg-neutral rounded-b-2xl
           collapse h-0 transition-all duration-300
           ease-[cubic-bezier(.58,-.25,.265,1.25)]
-          [.active_&]:h-auto  [.active_&]:visible
+          in-[.active]:h-auto in-[.active]:visible
           overflow-y-scroll overscroll-contain
           max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
           scrolling-panel scrolling-panel--with-bottom-overlay

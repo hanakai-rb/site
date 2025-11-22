@@ -48,8 +48,24 @@ module Site
           guide_repo.guide_versions(org:, slug:)
         end
 
-        expose :latest_version, decorate: false do |org_versions, guide_versions|
-          (org_versions + guide_versions).max
+        expose :versions, decorate: false do |org_versions, guide_versions|
+          if org_versions.any?
+            org_versions
+          else
+            guide_versions
+          end
+        end
+
+        expose :path_prefix, decorate: false do |guide, org, org_version|
+          if org_version
+            "/guides/#{org}"
+          else
+            "/guides/#{org}/#{guide.slug}"
+          end
+        end
+
+        expose :latest_version, decorate: false do |versions|
+          versions.max
         end
 
         expose :next_nav_item, decorate: false do |guide, path:|
