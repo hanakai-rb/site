@@ -67,6 +67,7 @@
       <% if version != latest_version %>
         <%= render "doc_pages/version_warning", version:, latest_version:, latest_version_url: "#{path_prefix}/#{latest_version}" %>
       <% end %>
+
       <%= render "doc_pages/breadcrumbs", breadcrumbs:, org:, version:, versions:, path_prefix: %>
     </div>
 
