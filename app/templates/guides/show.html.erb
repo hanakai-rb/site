@@ -69,7 +69,7 @@
         <%= render "doc_pages/version_warning", version:, latest_version_url: "/guides/#{org}/#{latest_version}" %>
       <% end %>
 
-      <%= render "doc_pages/breadcrumbs", breadcrumbs:, org: %>
+      <%= render "doc_pages/breadcrumbs", breadcrumbs:, org:, version: org_version, org_versions:, path_prefix: "/guides/#{org}" %>
     </div>
 
     <header

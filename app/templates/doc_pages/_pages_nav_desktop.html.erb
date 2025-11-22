@@ -7,25 +7,7 @@
   data-defo-ensure-active-nav-link-visible="<%= { id: "desktop-pages-nav" }.to_json %>"
 >
   <div class="sticky top-0">
-    <div
-      class="bg-white flex gap-2 pb-2 items-center"
-      data-testid="org-guide-versions"
-    >
-      <%= render "svgs/#{org}_logo", width: 24, height: 24 %>
-
-      <!-- TODO FOR MAX: Make this feel nicer when there's no org version -->
-      <% if version %>
-        <%= render "doc_pages/version_select",
-              id: "version-select-desktop",
-              testid: "version-select",
-              version: version,
-              other_versions: org_versions,
-              path_prefix: path_prefix,
-              anchor: "left" %>
-      <% end %>
-    </div>
-
-    <div class="bg-gradient-to-b from-white to-transparent h-4 pointer-events-none"></div>
+    <div class="bg-linear-to-b from-white to-transparent h-4 pointer-events-none"></div>
   </div>
 
   <%# TODO: Make simple yield? %>
