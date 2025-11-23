@@ -4,29 +4,64 @@
   <nav class="flex gap-4 font-medium text-lg">
     <% if prev_item %>
       <a
-        class="
-          mr-auto flex max-w-[50%] gap-2 text-link hover:decoration-[3px] hover:underline
-          hover:decoration-(--hk-color-text-link-underline)
-        "
-        href="<%= prev_item[:url] %>"
+        class="mr-auto flex max-w-[50%] gap-2 text-link items-end group"
+        href="<%= prev_item.path %>"
         aria-label="Go to previous guide"
       >
-        <%= render "svgs/icons/arrow_left", width: 16, height: 16, class_name: "fill-current mt-2" %>
-        <%= prev_item[:label] %>
+        <%= render "svgs/icons/arrow_left", width: 16, height: 16, class_name: "fill-current mb-1.5" %>
+
+        <p>
+          <span
+            class="
+              block font-mono text-xs font-semibold tracking-wider uppercase
+              text-primary mb-2
+            "
+          >
+            <%= prev_item.guide.title %>
+          </span>
+
+          <span
+            class="
+              group-hover:decoration-[3px] group-hover:underline
+              group-hover:decoration-(--hk-color-text-link-underline)
+            "
+          >
+            <%= prev_item.label %>
+          </span>
+        </p>
       </a>
     <% end %>
 
     <% if next_item %>
       <a
         class="
-          ml-auto flex max-w-[50%] gap-2 text-link hover:decoration-[3px] hover:underline
-          hover:decoration-(--hk-color-text-link-underline) text-right
+          ml-auto flex max-w-[50%] gap-2 text-link text-right items-end
+          group
         "
-        href="<%= next_item[:url] %>"
+        href="<%= next_item.path %>"
         aria-label="Go to next guide"
       >
-        <%= next_item[:label] %>
-        <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current mt-2" %>
+        <p>
+          <span
+            class="
+              block font-mono text-xs font-semibold tracking-wider uppercase
+              text-primary mb-2
+            "
+          >
+            <%= next_item.guide.title %>
+          </span>
+
+          <span
+            class="
+              group-hover:decoration-[3px] group-hover:underline
+              group-hover:decoration-(--hk-color-text-link-underline)
+            "
+          >
+            <%= next_item.label %>
+          </span>
+        </p>
+
+        <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current mb-1.5" %>
       </a>
     <% end %>
   </nav>
