@@ -2,7 +2,7 @@
 
 source "https://gem.coop"
 
-ruby "3.4.3"
+ruby "3.4.7"
 
 gem "hanami", "~> 2.3.0"
 gem "hanami-assets", "~> 2.3.0"
