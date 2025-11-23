@@ -27,7 +27,7 @@
     <% end %>
   </ol>
 
-  <div class="flex gap-2 order-2 sticky top-3 self-start items-center -mt-0.5">
+  <div class="flex gap-2 order-2 sticky top-3 self-start items-center">
     <% if version %>
       <%= render "doc_pages/version_select",
                             id: "version-select-mobile",
@@ -38,6 +38,6 @@
                             anchor: "right" %>
     <% end %>
 
-    <%= render "svgs/#{org}_logo", width: 28, height: 28 %>
+    <%= render "svgs/#{org}_logo", width: 28, height: 28, class_name: "lg:hidden" %>
   </div>
 </nav>

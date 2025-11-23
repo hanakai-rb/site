@@ -98,8 +98,7 @@ module Site
         Breadcrumb = Data.define(:label, :url, :root)
         expose :breadcrumbs do |guide, org:|
           [
-            Breadcrumb.new(label: "Guides", url: "/guides", root: true),
-            Breadcrumb.new(label: org.capitalize, url: "/guides##{org}", root: false),
+            Breadcrumb.new(label: org.capitalize, url: "/guides##{org}", root: true),
             Breadcrumb.new(label: guide.title, url: guide.url_path, root: false)
           ]
         end
