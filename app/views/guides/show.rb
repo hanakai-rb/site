@@ -32,9 +32,15 @@ module Site
           guide.pages[path]
         end
 
-        expose :org_guides do |org:, org_version: nil, guide_version: nil|
+        expose :org_guides do |guide, org:, org_version: nil, guide_version: nil|
           if org_version
             guide_repo.all_for(org:, version: org_version)
+          elsif guide_version
+            guide_repo.latest_for(org:).tap { |guides|
+              # Ensure the currently selected guide (which may have an older version) is the one
+              # that appears in the guides list.
+              guides[guide.position] = guide
+            }
           else
             guide_repo.latest_for(org:)
           end
