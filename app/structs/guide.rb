@@ -23,7 +23,13 @@ module Site
       end
 
       def url_path
-        "/#{relative_content_path}"
+        if org_versioned?
+          "/learn/#{org}/#{version}/#{slug}"
+        elsif self_versioned?
+          "/learn/#{org}/#{slug}/#{version}"
+        else
+          "/learn/#{org}/#{slug}"
+        end
       end
 
       def content_path

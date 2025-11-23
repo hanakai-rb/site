@@ -2,21 +2,21 @@
 
 RSpec.feature "Guides / Guide pages" do
   it "renders a guide index page" do
-    visit "/guides/hanami/v2.2/views"
+    visit "/learn/hanami/v2.2/views"
 
     expect(page).to have_selector "[aria-label=Breadcrumb] a", text: "Views"
     expect(page).to have_selector "main header h1", text: "Overview"
   end
 
   it "renders a guide page" do
-    visit "/guides/hanami/v2.2/views/context"
+    visit "/learn/hanami/v2.2/views/context"
 
     expect(page).to have_selector "[aria-label=Breadcrumb] a", text: "Views"
     expect(page).to have_selector "main header h1", text: "Context"
   end
 
   it "links to all the guide pages for an org" do
-    visit "/guides/hanami/v2.2/views"
+    visit "/learn/hanami/v2.2/views"
 
     within "[data-testid=guides-list]" do
       links = page.find_all("a")
@@ -28,12 +28,12 @@ RSpec.feature "Guides / Guide pages" do
         "Number formatting"
       )
 
-      expect(links[0][:href]).to eq "/guides/hanami/v2.2/getting-started"
+      expect(links[0][:href]).to eq "/learn/hanami/v2.2/getting-started"
     end
   end
 
   it "shows a table of contents for the current page" do
-    visit "/guides/hanami/v2.2/views/context"
+    visit "/learn/hanami/v2.2/views/context"
 
     within "[data-testid=headings-toc]" do
       expect(page).to have_selector "li:nth-child(1)", text: "Standard context"
@@ -50,7 +50,7 @@ RSpec.feature "Guides / Guide pages" do
   end
 
   it "shows a nested table of contents when there are headings of varying levels" do
-    visit "/guides/hanami/v2.2/getting-started"
+    visit "/learn/hanami/v2.2/getting-started"
 
     within "[data-testid=headings-toc]", match: :first do
       parent_item = page.find("li", text: "Creating a Hanami app")
@@ -67,7 +67,7 @@ RSpec.feature "Guides / Guide pages" do
   end
 
   it "links to the other guides, in correct order" do
-    visit "/guides/hanami/v2.2/views"
+    visit "/learn/hanami/v2.2/views"
 
     within "[data-testid=guides-list]" do
       all_guide_names = page.find_all("li a").map(&:text)
@@ -83,60 +83,60 @@ RSpec.feature "Guides / Guide pages" do
   end
 
   it "replaces //page URLs with URLs within the current guide and version" do
-    visit "/guides/hanami/v2.2/actions"
+    visit "/learn/hanami/v2.2/actions"
 
     within ".content" do
       # In the markdown, this is linked as "//page/parameters"
-      expect(page).to have_link "parameters", href: "/guides/hanami/v2.2/actions/parameters"
+      expect(page).to have_link "parameters", href: "/learn/hanami/v2.2/actions/parameters"
     end
   end
 
   it "transforms //guide links into links to a different guide within the current version" do
-    visit "/guides/hanami/v2.2/getting-started/building-a-web-app"
+    visit "/learn/hanami/v2.2/getting-started/building-a-web-app"
 
     within ".content" do
       # In the markdown, this is linked as "//guide/actions"
-      expect(page).to have_link "Actions guide", href: "/guides/hanami/v2.2/actions"
+      expect(page).to have_link "Actions guide", href: "/learn/hanami/v2.2/actions"
     end
   end
 
   it "renders next nav link to next page in the same guide" do
-    visit "/guides/hanami/v2.2/getting-started"
+    visit "/learn/hanami/v2.2/getting-started"
     expect(page).to have_selector '[aria-label="Go to next guide"]', text: "Building a web app"
   end
 
   it "renders next link to next nav guide when no more pages in current" do
-    visit "/guides/hanami/v2.2/getting-started/building-an-api"
+    visit "/learn/hanami/v2.2/getting-started/building-an-api"
     expect(page).to have_selector '[aria-label="Go to next guide"]', text: "Command line"
   end
 
   it "does not render next nav link on the last page of the guides" do
-    visit "/guides/hanami/v2.2/faq"
+    visit "/learn/hanami/v2.2/faq"
     expect(page).not_to have_selector '[aria-label="Go to next guide"]'
   end
 
   it "renders previous nav link to previous page in the same guide" do
-    visit "/guides/hanami/v2.2/getting-started/building-an-api"
+    visit "/learn/hanami/v2.2/getting-started/building-an-api"
     expect(page).to have_selector '[aria-label="Go to previous guide"]', text: "Building a web app"
   end
 
   it "renders previous nav link to last page of a previous guide" do
-    visit "/guides/hanami/v2.2/command-line"
+    visit "/learn/hanami/v2.2/command-line"
     expect(page).to have_selector '[aria-label="Go to previous guide"]', text: "Building an API"
   end
 
   it "does not render previous nav link on the first page of the guides" do
-    visit "/guides/hanami/v2.2/getting-started"
+    visit "/learn/hanami/v2.2/getting-started"
     expect(page).not_to have_selector '[aria-label="Go to previous guide"]'
   end
 
   it "renders nav links pointing to the same version of guides" do
-    visit "/guides/hanami/v2.0/app/settings"
+    visit "/learn/hanami/v2.0/app/settings"
     expect(page).to have_link
     next_link = page.find('[aria-label="Go to next guide"]')
-    expect(next_link[:href]).to eq("/guides/hanami/v2.0/app/autoloading")
+    expect(next_link[:href]).to eq("/learn/hanami/v2.0/app/autoloading")
 
     previous_link = page.find('[aria-label="Go to previous guide"]')
-    expect(previous_link[:href]).to eq("/guides/hanami/v2.0/app/providers")
+    expect(previous_link[:href]).to eq("/learn/hanami/v2.0/app/providers")
   end
 end

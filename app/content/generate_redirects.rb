@@ -12,8 +12,8 @@ module Site
           if version
             # Redirect org-versioned guides
             redirects
-              .push("/guides/#{org}   /guides/#{org}/#{version}")
-              .push("/guides/#{org}/* /guides/#{org}/#{version}/:splat")
+              .push("/learn/#{org}   /learn/#{org}/#{version}")
+              .push("/learn/#{org}/* /learn/#{org}/#{version}/:splat")
           end
 
           guide_repo.latest_for(org:).each do |guide|
@@ -21,8 +21,8 @@ module Site
 
             # Redirect self-versioned guides
             redirects
-              .push("/guides/#{org}/#{guide.slug}   /guides/#{org}/#{guide.slug}/#{guide.version}")
-              .push("/guides/#{org}/#{guide.slug}/* /guides/#{org}/#{guide.slug}/#{guide.version}/:splat")
+              .push("/learn/#{org}/#{guide.slug}   /learn/#{org}/#{guide.slug}/#{guide.version}")
+              .push("/learn/#{org}/#{guide.slug}/* /learn/#{org}/#{guide.slug}/#{guide.version}/:splat")
           end
         end
 

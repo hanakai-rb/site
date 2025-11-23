@@ -18,7 +18,7 @@ module Site
     expose :header_nav_items, layout: true do |context:|
       path = context.request.path
       [
-        NavItem.new(label: "Learn", url: "/guides", selected: path.start_with?("/guides"), children: []),
+        NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: []),
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: []),
         NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
@@ -29,10 +29,10 @@ module Site
     expose :footer_nav_items, layout: true do |context:|
       path = context.request.path
       [
-        NavItem.new(label: "Learn", url: "/guides", selected: path.start_with?("/guides"), children: [
-          NavItem.new(label: "Hanami", url: "/guides#hanami", selected: false, children: []),
-          NavItem.new(label: "Dry", url: "/guides#dry", selected: false, children: []),
-          NavItem.new(label: "Rom", url: "/guides#rom", selected: false, children: [])
+        NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: [
+          NavItem.new(label: "Hanami", url: "/learn#hanami", selected: false, children: []),
+          NavItem.new(label: "Dry", url: "/learn#dry", selected: false, children: []),
+          NavItem.new(label: "Rom", url: "/learn#rom", selected: false, children: [])
         ]),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: [
           NavItem.new(label: "Code repository", url: "https://github.com/hanami", selected: false, children: []),

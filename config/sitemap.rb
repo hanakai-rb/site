@@ -15,11 +15,12 @@ SitemapGenerator::Sitemap.create do
   add "/sponsor"
 
   # Guides
-  add "/guides"
+  add "/learn"
 
   app["repos.guide_repo"].versions_by_org.each do |org, versions|
+    # TODO: Update for self-versioned and versionless guides
     versions.each do |version|
-      add "/guides/#{org}/#{version}"
+      add "/learn/#{org}/#{version}"
     end
   end
 

@@ -58,9 +58,9 @@ module Site
 
         expose :path_prefix, decorate: false do |guide, org, org_version|
           if org_version
-            "/guides/#{org}"
+            "/learn/#{org}"
           else
-            "/guides/#{org}/#{guide.slug}"
+            "/learn/#{org}/#{guide.slug}"
           end
         end
 
@@ -99,7 +99,7 @@ module Site
         Breadcrumb = Data.define(:label, :url, :root)
         expose :breadcrumbs do |guide, org:|
           [
-            Breadcrumb.new(label: org.capitalize, url: "/guides##{org}", root: true),
+            Breadcrumb.new(label: org.capitalize, url: "/learn##{org}", root: true),
             Breadcrumb.new(label: guide.title, url: guide.url_path, root: false)
           ]
         end

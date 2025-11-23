@@ -2,8 +2,6 @@
 
 <ol data-testid="versions">
   <% versions.each do |version| %>
-    <li>
-      <a href="<%= "/guides/#{org_slug}/#{version}" %>"><%= version %></a>
-    </li>
+    <li><a href="<%= "/learn/#{org_slug}/#{version}" %>"><%= version %></a></li>
   <% end %>
 </ol>

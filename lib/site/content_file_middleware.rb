@@ -5,15 +5,15 @@ require "digest"
 module Site
   # Serves certain static files (such as images) from `content/`
   #
-  # Understands our `/guides`, `/docs` and `/blog` URL structure to find the static files for each.
+  # Understands our `/learn` and `/blog` URL structure to find the static files for each.
   #
   # This allows for images to be placed alongside their markdown content, to make them easier to
   # reference and manage.
   #
-  # For guides, a file requested at /guides/rom/v5.0/getting-started/overview.png will be served
+  # For guides, a file requested at /learn/rom/v5.0/getting-started/overview.png will be served
   # from the same file within the guide's content dir.
   #
-  # For docs, a file requested at /guides/dry-types/v1.0/overview.png will be served
+  # For docs, a file requested at /learn/dry-types/v1.0/overview.png will be served
   # from the same file within the docs's content dir.
   #
   # For posts, a file requested at /blog/2025/06/07/field-trip/photo.jpeg will be served
@@ -29,7 +29,7 @@ module Site
       Source.new(
         directory: "content/guides",
         pattern: %r{^/(?<org>[^/]+)/(?<version>v\d+\.\d+)/(?<path>.+)},
-        to_url: ->(m) { "/guides/#{m[:org]}/#{m[:version]}/#{m[:path]}" }
+        to_url: ->(m) { "/learn/#{m[:org]}/#{m[:version]}/#{m[:path]}" }
       ),
       Source.new(
         directory: "content/posts/assets",

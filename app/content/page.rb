@@ -113,13 +113,13 @@ module Site
       end
 
       # Transforms "//page/page-slug" into a path within the current guide and version, such as
-      # "/guides/hanami/v2.2/current-guide/page-slug".
+      # "/learn/hanami/v2.2/current-guide/page-slug".
       def page_path(path)
         url_base + path
       end
 
       # Transforms "//guide/guide-slug/page-slug" into a path within the current version, such as
-      # "/guides/hanami/v2.2/guide-slug/page-slug".
+      # "/learn/hanami/v2.2/guide-slug/page-slug".
       #
       # To link to the guide's index page, provide a guide slug only.
       def guide_path(path)
@@ -132,7 +132,7 @@ module Site
       #
       # Visitors to that link will then be redirected to the latest version of the guide.
       def org_guide_path(path)
-        "/guides" + path
+        "/learn" + path
       end
 
       # TODO: convert all actual //doc URLs to //guide URLs
@@ -141,7 +141,7 @@ module Site
       #
       # Visitors to that link will then be redirected to the latest version of the doc.
       def doc_path(path)
-        "/guides" + path
+        "/learn" + path
       end
     end
   end

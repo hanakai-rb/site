@@ -9,20 +9,20 @@ module Site
     root to: "pages.home"
 
     # Guides indexes
-    get "/guides", to: "guides.index"
-    get "/guides/:org/:version", to: "guides.org_index", **VERSION_OPTS
+    get "/learn", to: "guides.index", as: :learn_index
+    get "/learn/:org/:version", to: "guides.org_index", as: :learn_org_index, **VERSION_OPTS
 
     # Org-versioned guides
-    get "/guides/:org/:org_version/:slug", to: "guides.show", **VERSION_OPTS
-    get "/guides/:org/:org_version/:slug/*path", to: "guides.show", **VERSION_OPTS
+    get "/learn/:org/:org_version/:slug", to: "guides.show", **VERSION_OPTS
+    get "/learn/:org/:org_version/:slug/*path", to: "guides.show", **VERSION_OPTS
 
     # Self-versioned guides
-    get "/guides/:org/:slug/:guide_version", to: "guides.show", **VERSION_OPTS
-    get "/guides/:org/:slug/:guide_version/*path", to: "guides.show", **VERSION_OPTS
+    get "/learn/:org/:slug/:guide_version", to: "guides.show", **VERSION_OPTS
+    get "/learn/:org/:slug/:guide_version/*path", to: "guides.show", **VERSION_OPTS
 
     # Unversioned guides
-    get "/guides/:org/:slug", to: "guides.show"
-    get "/guides/:org/:slug/*path", to: "guides.show"
+    get "/learn/:org/:slug", to: "guides.show"
+    get "/learn/:org/:slug/*path", to: "guides.show"
 
     # Blog
     get "/blog", to: "blog.index", as: :blog
