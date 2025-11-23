@@ -455,5 +455,8 @@ DEPENDENCIES
   sqlite3
   standard
 
+RUBY VERSION
+   ruby 3.4.3p32
+
 BUNDLED WITH
    2.7.2

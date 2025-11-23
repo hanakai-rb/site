@@ -15,14 +15,16 @@ For the site’s initial launch, we’re tracking our work [in this project boar
 
 ## Setup
 
-Make sure you have Ruby and Node.js installed (see [.tool-versions](.tool-versions) for expected versions), then run:
+Make sure you have Ruby and Node.js installed. See [.tool-versions](.tool-versions) for expected versions. Feel free to use your own preferred version manager.
 
-```
-bin/setup
+Then, to set up the site:
+
+```shell
+$ bin/setup
 ```
 
 To see common commands for operating the site:
 
-```
-bin/setup help
+```shell
+$ bin/setup help
 ```
