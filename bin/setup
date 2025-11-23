@@ -24,10 +24,10 @@ def help
       bin/setup
         # Set up the app
 
-      bundle exec hanami dev
+      bin/hanami dev
         # Run the app locally
 
-      bundle exec rspec
+      bin/rspec
         # Run tests
 
       bin/setup help

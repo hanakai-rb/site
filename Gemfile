@@ -2,6 +2,8 @@
 
 source "https://gem.coop"
 
+ruby "3.4.3"
+
 gem "hanami", "~> 2.3.0"
 gem "hanami-assets", "~> 2.3.0"
 gem "hanami-controller", "~> 2.3.0"
