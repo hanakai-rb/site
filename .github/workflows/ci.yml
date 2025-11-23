@@ -105,9 +105,9 @@ jobs:
         id: deploy
         run: |
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            npx netlify-cli@latest deploy --prod --dir=build
+            npx netlify-cli@latest deploy --prod --dir=build --message="Production deploy @ ${{ github.sha }}"
           else
-            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json | jq -r '.deploy_url')
+            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${{ github.event.pull_request.title }} @ ${{ github.sha }}" | jq -r '.deploy_url')
             echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           fi
         env:
