@@ -6,7 +6,7 @@ RSpec.feature "Guides / Org index page" do
   it "renders the guides for an org at a specific version, with links to the other versions" do
     org = "hanami"
     version = "v2.0"
-    visit "/guides/#{org}/#{version}"
+    visit "/learn/#{org}/#{version}"
 
     expected_guides = guide_repo.all_for(org:, version:)
 

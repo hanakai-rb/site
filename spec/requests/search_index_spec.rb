@@ -68,13 +68,14 @@ RSpec.describe "search index", :search, type: :request do
 
     it "includes guides" do
       guide_urls = fragments.map { |f| f["url"] }
-        .select { |url| url =~ %r{/guides/(hanami|rom|dry)/} }
+        .select { |url| url =~ %r{/learn/(hanami|rom|dry)/} }
 
       expect(guide_urls.length).to be > 0
     end
 
     it "removes trailing slashes from indexed paths" do
       fragments.each do |fragment|
+        puts fragment["url"]
         expect(fragment["url"]).not_to end_with("/"),
           "Path should not end with /: #{fragment["url"]}"
       end
