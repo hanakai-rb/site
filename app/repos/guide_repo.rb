@@ -20,11 +20,12 @@ module Site
       # This finds all guides within the org, picking the latest version for each self-versioned
       # guide.
       def latest_for(org:)
-        self_versioned = guides
+        self_versioned_dataset = guides.dataset
+          .with(:latest_versions, latest_version_query)
+          .join(:latest_versions, slug: :slug)
           .where(org:, version_scope: "self")
-          .to_a
-          .group_by(&:slug)
-          .map { |_slug, versions| versions.max_by(&:version) }
+
+        self_versioned = guides.new(self_versioned_dataset).to_a
 
         unversioned = guides.where(org:, version_scope: "none").to_a
 
@@ -61,7 +62,15 @@ module Site
             if version.nil?
               # For unversioned orgs, include both unversioned guides, as well as the latest version
               # of any self-versioned guides.
-              guides.where(org:).order(guides[:position].asc).to_a.uniq(&:slug)
+              self_versioned_dataset = guides.dataset
+                .with(:latest_versions, latest_version_query)
+                .join(:latest_versions, slug: :slug)
+                .where(org:, version_scope: "self")
+              self_versioned = guides.new(self_versioned_dataset).to_a
+
+              unversioned = guides.where(org:, version_scope: "none").to_a
+
+              (self_versioned + unversioned).sort_by(&:position)
             else
               guides.where(org:, version:).order(guides[:position].asc).to_a
             end
