@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "30 4 * * *"
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   lint:
     name: Lint
@@ -71,6 +75,50 @@ jobs:
         run: |-
           bin/static-build
           bundle exec rake
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: build/
+          retention-days: 30
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [lint, test-js, build]
+    if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+
+    steps:
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: build/
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.15.0"
+
+      - name: Deploy to Netlify
+        id: deploy
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            npx netlify-cli@latest deploy --prod --dir=build
+          else
+            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json | jq -r '.deploy_url')
+            echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+          fi
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Add comment
+        if: github.event_name == 'pull_request' && steps.deploy.outputs.deploy_url
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: "❇️ **Deploy preview:** ${{ steps.deploy.outputs.deploy_url }}"
 
   workflow-keepalive:
     if: github.event_name == 'schedule'

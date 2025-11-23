@@ -1,8 +1,0 @@
-[build]
-  command = "bin/static-build"
-  publish = "build"
-
-  [build.environment]
-  # Netlify doesn’t recognise .tool-versions. This should be kept in sync with that file.
-  RUBY_VERSION = "3.4.3"
-  NODE_VERSION = "22.15.0"
