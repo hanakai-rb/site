@@ -85,4 +85,4 @@ Should collect a number of criticisms lobbed against ROM and attempt to answer t
 
 ## NEXT
 
-If you're coming from Rails a good place to start is our [**ROM Rails Comparison Guide**](//page/compared-to-active-record) otherwise checkout the [**Core Concepts**](//page/core-concepts) guide to get an overview of all the major parts in ROM.
+If you're coming from Rails a good place to start is our [**ROM Rails Comparison Guide**](//page/compared-to-activerecord) otherwise checkout the [**Core Concepts**](//page/core-concepts) guide to get an overview of all the major parts in ROM.

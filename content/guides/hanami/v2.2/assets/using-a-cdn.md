@@ -20,7 +20,7 @@ module Bookshelf
 end
 ```
 
-Once you have configured this `base_url`, all [assets helpers](v2.2/helpers/assets) will return absolute URLs prefixed by this base URL.
+Once you have configured this `base_url`, all [assets helpers](//guide/helpers/assets) will return absolute URLs prefixed by this base URL.
 
 ```ruby
 asset_url("app.js")
@@ -66,7 +66,7 @@ module Bookshelf
 end
 ```
 
-With this config, the `javascript_tag` and `stylesheet_tag` [assets helpers](v2.2/helpers/assets) will return tags with `integrity` and `crossorigin` attributes.
+With this config, the `javascript_tag` and `stylesheet_tag` [assets helpers](//guide/helpers/assets) will return tags with `integrity` and `crossorigin` attributes.
 
 ```html
 <script

@@ -62,7 +62,7 @@ Both `select` and `select_append` accept a block which exposes projection DSL. Y
 
 ### Projecting attributes
 
-Within the block you can refer to relation attributes by their names and use [api::rom-sql::SQL](Attribute) API for projections:
+Within the block you can refer to relation attributes by their names and use `[api::rom-sql::SQL](Attribute)` API for projections:
 
 ```ruby
 class Users < ROM::Relation[:sql]

@@ -95,6 +95,6 @@ Post.new(title: 'Hello World', body: 'some text')
 
 ## Future plans
 
-We'll continue growing dry-rb, improving the existing gems and adding new ones. Please try out our already released [gems](/gems) and let us know what you think.
+We'll continue growing dry-rb, improving the existing gems and adding new ones. Please try out our already released and let us know what you think.
 
 If you have any issues, do not hesitate to [talk to us](https://dry-rb.zulipchat.com) or report an issue on GitHub.
