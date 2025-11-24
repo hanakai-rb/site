@@ -26,4 +26,4 @@ Let's have a look at the details. For all the Hanami GitHub repositories:
 - They are named after SemVer `Major.Minor.x` (e.g. `1.3.x`).
 - **Use these branches for maintenance**
 
-ℹ️ CI status for `main` and _stable branches_ can be observed in the 🚦 [status](/status) page of our website.
+ℹ️ CI status for `main` and _stable branches_ can be observed in the 🚦 status page of our website.

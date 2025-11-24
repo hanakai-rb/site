@@ -426,4 +426,4 @@ The app's inflector. See the [inflector guide](//page/inflector) for more detail
 
 ### `"routes"`
 
-An object providing URL helpers for your named routes. See the [routing guide](//guide/routing/overview#named-routes) for more detail.
+An object providing URL helpers for your named routes. See the [routing guide](//guide/routing#named-routes) for more detail.

@@ -165,7 +165,7 @@ address = yield find_address(params[:address_id])
 Success(user.update(address_id: address.id))
 ```
 
-The result of this piece of code can be one of `Success(user)`, `Failure(:user_not_found)`, or `Failure(:address_not_found)`. This style of programming is called "Railway Oriented Programming" and you can check out [dry-transaction](/gems/dry-transaction) and watch a [nice video](https://fsharpforfunandprofit.com/rop/) on the subject. Also, see [dry-matcher](/gems/dry-matcher) for an example of how to use monads for controlling the flow of code with a result.
+The result of this piece of code can be one of `Success(user)`, `Failure(:user_not_found)`, or `Failure(:address_not_found)`. This style of programming is called "Railway Oriented Programming" and you can check out [dry-transaction](//doc/dry-transaction) and watch a [nice video](https://fsharpforfunandprofit.com/rop/) on the subject. Also, see [dry-matcher](//doc/dry-matcher) for an example of how to use monads for controlling the flow of code with a result.
 
 ## A word of warning
 
@@ -175,4 +175,4 @@ If you're interested in functional programming in general, consider learning oth
 
 ## Credits
 
-dry-monads is inspired by Josep M. Bach’s [Kleisli](https://github.com/txus/kleisli) gem and its usage by [dry-transaction](/gems/dry-transaction) and [dry-types](/gems/dry-types).
+dry-monads is inspired by Josep M. Bach’s [Kleisli](https://github.com/txus/kleisli) gem and its usage by [dry-transaction](//doc/dry-transaction) and [dry-types](//doc/dry-types).

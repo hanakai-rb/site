@@ -102,4 +102,4 @@ See the [app config guide](//page/app-config) for information on supported confi
 
 When deploying your application to production, set the `HANAMI_ENV` environment variable to `production`.
 
-In production, Hanami logs to standard out by default, using a structured JSON format with a log level of `:info` rather than `:debug`, which is used in development and test. See the [logger guide](//guide/logger/configuration) for more detail.
+In production, Hanami logs to standard out by default, using a structured JSON format with a log level of `:info` rather than `:debug`, which is used in development and test. See the [logger guide](//guide/logger) for more detail.

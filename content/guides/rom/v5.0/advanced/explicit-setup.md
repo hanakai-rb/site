@@ -156,7 +156,7 @@ class Posts < ROM::Relation[:http]
 end
 ```
 
-Relations can declare the specific [gateway](/5.0/learn/glossary#gateway) and [dataset](/5.0/learn/glossary#dataset) it takes data from, as well as the registered name of the relation. The following example sets the default options explicitly:
+Relations can declare the specific [gateway](//guide/getting-started/glossary#gateway) and [dataset](//guide/getting-started/glossary#dataset) it takes data from, as well as the registered name of the relation. The following example sets the default options explicitly:
 
 ```ruby
 class Users < ROM::Relation[:sql]

@@ -4,7 +4,7 @@ title: Helpers
 
 While Hanami views help you keep your view logic close to its associated values via [parts](//page/parts), sometimes you need behavior that works with all kinds of values, in all parts of your views. For this, you can use helpers.
 
-Helpers are small, stateless, general purpose methods that are available in [templates](//page/templates), [parts](//page/parts) and [scopes](//page/scopes). Hanami provides a range of standard helpers, and you can also define your own.
+Helpers are small, stateless, general purpose methods that are available in [templates](//page/templates-and-partials), [parts](//page/parts) and [scopes](//page/scopes). Hanami provides a range of standard helpers, and you can also define your own.
 
 ## Standard helpers
 
@@ -24,7 +24,7 @@ You can call helpers directly by their method names in your templates:
 <p><%= format_number(1234) %></p>
 ```
 
-Helper methods will take priority over your view's [exposures](//page/exposures). Be mindful of this when naming your exposures and writing your own helper methods.
+Helper methods will take priority over your view's [exposures](//page/input-and-exposures). Be mindful of this when naming your exposures and writing your own helper methods.
 
 ## Helpers in parts
 

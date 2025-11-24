@@ -19,7 +19,7 @@ You should consider dry-view if:
 
 - You want to develop views that will work in any kind of context (dry-view is standalone, it doesn’t require an HTTP request!).
 - You’re using a lightweight routing DSL like Roda or Sinatra and you want to keep your routes clean and easy to understand (dry-view handles the integration with your application’s objects, all you need to provide from your routes is the user input data).
-- Your application uses dependency injection as its preferred approach to make objects available to each other (dry-view fits perfectly with dry-web and [dry-system](/gems/dry-system)).
+- Your application uses dependency injection as its preferred approach to make objects available to each other (dry-view fits perfectly with dry-web and [dry-system](//doc/dry-system)).
 
 dry-view is built around pairings of functional view controllers and view templates. To get started, build a view controller:
 
