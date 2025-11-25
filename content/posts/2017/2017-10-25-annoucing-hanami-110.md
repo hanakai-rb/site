@@ -38,8 +38,6 @@ class BookRepository < Hanami::Repository
 end
 ```
 
-[Belongs To guide](/guides/1.1/associations/belongs-to)
-
 ### Has One
 
 ```ruby
@@ -74,8 +72,6 @@ class UserRepository < Hanami::Repository
 end
 ```
 
-[Has One guide](/guides/1.1/associations/has-one)
-
 ### Has Many Through
 
 ```ruby
@@ -94,8 +90,6 @@ class AuthorRepository < Hanami::Repository
   end
 end
 ```
-
-[Has Many Through guide](/guides/1.1/associations/has-many-through)
 
 ## Rewritten CLI
 
@@ -149,7 +143,7 @@ Entities by default infer their schema (set of attributes) from the correspondin
 For instance, if `people` table has `id`, `name`, `created_at`, and `updated_at` columns, then `Person` will have the same attributes.
 
 It may happen that you're not happy with this inferring, and you want to customize the schema.
-We call it this feature ["custom schema"](/guides/1.1/entities/custom-schema).
+We call it this feature "custom schema".
 
 It was introduced with Hanami 1.0 and this is how it works:
 
@@ -210,11 +204,9 @@ Person.new(id: "1", name: "Luca")
 # => TypeError: "1" (String) has invalid type for :id violates constraints (type?(Integer, "1") failed)
 ```
 
-[Entities Custom Schema guide](/guides/1.1/entities/custom-schema)
-
 ### Selectively boot apps
 
-With Hanami you can build your project by following the [Monolith-First](/guides/1.1/architecture/overview#monolith-first) principle.
+With Hanami you can build your project by following the Monolith-First principle.
 You add more and more code to the project, but growing it organically, by using several Hanami apps.
 
 There are cases of real world products using a **dozen of Hanami apps in the same project** (eg `web` for the frontend, `admin` for the administration, etc..)
@@ -301,8 +293,6 @@ end
 ```
 
 Note that `billing => address => number` wasn't filtered while `billing => credit_card => number` was filtered instead.
-
-[Logger filtering guide](/guides/1.1/projects/logging#filter-sensitive-informations)
 
 ### Minor Changes
 
@@ -403,7 +393,7 @@ gem install hanami
 hanami new bookshelf
 ```
 
-You may want to follow our great [_getting started guide_](/guides/1.1/getting-started).
+You may want to follow our great _getting started guide_.
 
 ## How to upgrade
 
@@ -415,8 +405,6 @@ gem "hanami-model", "~> 1.1"
 ```
 
 Then run `bundle update hanami hanami-model`.
-
-For a detailed explanation, check the [upgrade guide](/guides/1.1/upgrade-notes/v110).
 
 ## What's next?
 

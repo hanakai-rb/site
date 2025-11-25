@@ -11,7 +11,7 @@ dry-rb is here to help usher in a new phase of Ruby development. We value good e
 
 ## New gem releases
 
-Apart from the release of this website, we'd like to announce big releases of [dry-validation](/gems/dry-validation) and [dry-types](/gems/dry-types). Both gems went through major refactorings and come with many great new features, bug fixes and internal improvements.
+Apart from the release of this website, we'd like to announce big releases of [dry-validation](//doc/dry-validation) and [dry-types](//doc/dry-types). Both gems went through major refactorings and come with many great new features, bug fixes and internal improvements.
 
 ### dry-validation 0.7.0
 

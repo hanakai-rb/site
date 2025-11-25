@@ -37,7 +37,7 @@ UserSchema.(name: "Jane", role: { id: "admin", expires_on: "oops" }).errors.to_h
 # {role: {expires_on: ["must be a date"]}}
 ```
 
-[Refer to the documentation](/gems/dry-schema/1.5/advanced/composing-schemas) for more information.
+[Refer to the documentation](//doc/dry-schema/advanced/composing-schemas) for more information.
 
 ## Errors about unexpected keys
 
