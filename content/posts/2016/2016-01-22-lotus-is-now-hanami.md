@@ -71,4 +71,4 @@ We bumped the minor version because this is a breaking change.
 
 ### Upgrade Notes
 
-Please read the [upgrade notes for v0.7.0](/guides/upgrade-notes/v070) in our Guides.
+Please read the upgrade notes for v0.7.0 in our Guides.
