@@ -3,7 +3,7 @@
     <path d="M4,54L24,54L41.5,54Q51.5,54,51.5,44L51.5,32Q51.5,22,61.5,22L79,22L99,22L99,22L79,22L61.5,22Q51.5,22,51.5,32L51.5,44Q51.5,54,41.5,54L24,54L4,54ZM4,50L14,54L4,58M89,18L89,26" fill="none" stroke="#9B9CA4" stroke-width="1"/>
   </svg>
   <svg x="0" y="0">
-    <rect x="0" y="0" width="207.8000030517578" height="32" fill="#685D9F"/>
+    <rect x="0" y="0" width="207.8000030517578" height="32" fill="oklch(0.7193 0.18 10.67)"/>
     <text x="10" y="19.25" style="font-family: sans-serif; font-size: 13px; font-weight: bold; fill: rgb(255, 255, 255);">books</text>
   </svg>
   <svg x="0" y="32">
@@ -43,7 +43,7 @@
     <text x="170.66666984558105" y="19.25" style="font-family: sans-serif; font-size: 13px; fill: rgb(153, 153, 153);">date</text>
   </svg>
   <svg x="302.8000030517578" y="0">
-    <rect x="0" y="0" width="137.96666717529297" height="32" fill="#685D9F"/>
+    <rect x="0" y="0" width="137.96666717529297" height="32" fill="oklch(0.7193 0.18 10.67)"/>
     <text x="10" y="19.25" style="font-family: sans-serif; font-size: 13px; font-weight: bold; fill: rgb(255, 255, 255);">publishers</text>
   </svg>
   <svg x="302.8000030517578" y="32">
