@@ -1,5 +1,5 @@
 ---
-title: "Getting Started"
+title: Overview
 ---
 
 <p id="getting-started-lead" class="lead">

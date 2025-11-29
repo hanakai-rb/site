@@ -73,7 +73,7 @@ RSpec.feature "Guides / Guide pages" do
       all_guide_names = page.find_all("li a").map(&:text)
 
       expect(all_guide_names[0..4]).to eq [
-        "Getting Started",
+        "Overview",
         "Building a web app",
         "Building an API",
         "Commands",
