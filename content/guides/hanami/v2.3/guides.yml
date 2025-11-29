@@ -1,8 +1,8 @@
 guides:
-  - slug: introduction
-    title: Introduction
+  - slug: getting-started
+    title: Getting started
   - slug: cli-commands
-    title: CLI Commands
+    title: CLI commands
   - slug: app
     title: App
   - slug: database
