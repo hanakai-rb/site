@@ -1,4 +1,4 @@
-<% content_for :title, "#{org_name(org_slug)} #{version} Guides" %>
+<% content_for :title, "Learn #{org_name(org_slug)} #{version}" %>
 
 <%= render_with_slots "doc_pages/main" do |main| %>
   <%= main.slot :navigation do %>
