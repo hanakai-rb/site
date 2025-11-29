@@ -22,7 +22,7 @@ module Site
       def latest_for(org:)
         self_versioned_dataset = guides.dataset
           .with(:latest_versions, latest_version_query)
-          .join(:latest_versions, slug: :slug)
+          .join(:latest_versions, slug: :slug, version: :version)
           .where(org:, version_scope: "self")
 
         self_versioned = guides.new(self_versioned_dataset).to_a
@@ -60,17 +60,7 @@ module Site
         Content::DEFAULT_GUIDE_VERSIONS.to_h { |org, version|
           org_guides =
             if version.nil?
-              # For unversioned orgs, include both unversioned guides, as well as the latest version
-              # of any self-versioned guides.
-              self_versioned_dataset = guides.dataset
-                .with(:latest_versions, latest_version_query)
-                .join(:latest_versions, slug: :slug)
-                .where(org:, version_scope: "self")
-              self_versioned = guides.new(self_versioned_dataset).to_a
-
-              unversioned = guides.where(org:, version_scope: "none").to_a
-
-              (self_versioned + unversioned).sort_by(&:position)
+              latest_for(org:)
             else
               guides.where(org:, version:).order(guides[:position].asc).to_a
             end
@@ -112,7 +102,7 @@ module Site
         else
           guides.dataset
             .with(:latest_versions, latest_version_query)
-            .join(:latest_versions, slug: :slug)
+            .join(:latest_versions, slug: :slug, version: :version)
             .where(org: guide.org)
             .then { guides.new(it) }
         end
