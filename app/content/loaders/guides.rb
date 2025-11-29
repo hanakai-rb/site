@@ -7,7 +7,11 @@ module Site
     module Loaders
       # Loads guides from content/guides/ into the database.
       class Guides
-        GuideData = Data.define(:org, :slug, :title, :version, :version_scope)
+        GuideData = Data.define(:org, :slug, :title, :version, :version_scope, :deprecated) do
+          def initialize(deprecated: false, **attrs)
+            super
+          end
+        end
 
         GUIDES_YML = "guides.yml"
         GUIDES_KEY = :guides

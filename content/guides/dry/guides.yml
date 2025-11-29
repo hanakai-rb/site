@@ -3,18 +3,8 @@ guides:
     title: Getting started
   - slug: dry-auto_inject
     title: Dry Auto Inject
-  - slug: dry-equalizer
-    title: Dry Equalizer
   - slug: dry-cli
     title: Dry CLI
-  - slug: dry-container
-    title: Dry Container
-  - slug: dry-operation
-    title: Dry Operation
-  - slug: dry-types
-    title: Dry Types
-  - slug: dry-view
-    title: Dry View
   - slug: dry-configurable
     title: Dry Configurable
   - slug: dry-core
@@ -23,6 +13,8 @@ guides:
     title: Dry Effects
   - slug: dry-events
     title: Dry Events
+  - slug: dry-equalizer
+    title: Dry Equalizer
   - slug: dry-files
     title: Dry Files
   - slug: dry-inflector
@@ -35,6 +27,8 @@ guides:
     title: Dry Monads
   - slug: dry-monitor
     title: Dry Monitor
+  - slug: dry-operation
+    title: Dry Operation
   - slug: dry-rails
     title: Dry Rails
   - slug: dry-schema
@@ -43,5 +37,14 @@ guides:
     title: Dry Struct
   - slug: dry-system
     title: Dry System
+  - slug: dry-types
+    title: Dry Types
+  - slug: dry-container
+    title: Dry Container
+    deprecated: true
   - slug: dry-transaction
     title: Dry Transaction
+    deprecated: true
+  - slug: dry-view
+    title: Dry View
+    deprecated: true

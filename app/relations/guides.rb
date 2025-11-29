@@ -10,6 +10,7 @@ module Site
         attribute :position, Types::Nominal::Integer
         attribute :version, Types::Nominal::String.optional
         attribute :version_scope, Types::Nominal::String
+        attribute :deprecated, Types::Nominal::Bool
       end
     end
   end
