@@ -1,7 +1,5 @@
 ---
-title: Introduction
-pages:
-  - faq
+title: Overview
 ---
 
 _Guide coming soon._
