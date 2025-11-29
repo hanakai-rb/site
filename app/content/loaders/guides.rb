@@ -18,7 +18,12 @@ module Site
         def call(root: GUIDES_PATH)
           root.glob("*").select(&:directory?)
             .flat_map { |org_path| load_guides_for_org(org_path) }
-            .each_with_index { |guide, position| relation.insert(**guide.to_h, position:) }
+            .group_by { |guide| [guide.org, guide.slug] }
+            .each_with_index do |(org_slug, guide_versions), position|
+              guide_versions.each do |guide|
+                relation.insert(**guide.to_h, position:)
+              end
+            end
         end
 
         private
