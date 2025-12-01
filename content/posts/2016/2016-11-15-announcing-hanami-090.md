@@ -78,8 +78,6 @@ irb(main):001:0> book = BookRepository.new.create(title: "Hanami")
 => #<Book:0x007f95ccefb320 @attributes={:id=>1, :title=>"Hanami", :created_at=>2016-11-13 15:49:14 UTC, :updated_at=>2016-11-13 15:49:14 UTC}>
 ```
 
-Learn more about new [repositories](/guides/models/repositories), [entities](/guides/models/entities) usage.
-
 ### Entities Data Integrity
 
 When using a SQL database, an entity setups an **internal schema**, which is derived **automatically** from the table definition.
@@ -150,9 +148,7 @@ It enforces **data integrity** via exceptions:
 Book.new(created_at: "foo") # => ArgumentError
 ```
 
-If we use this feature, in combination with [database constraints](/guides/migrations/create-table#constraints) and validations, we can ensure a **strong** degree of **data integrity** for our projects.
-
-Learn more about Entities [custom schema](/guides/models/entities#custom-schema).
+If we use this feature, in combination with database constraints and validations, we can ensure a **strong** degree of **data integrity** for our projects.
 
 ### Associations (experimental)
 
@@ -209,8 +205,6 @@ found.books
   # => [#<Book:0x007f8a040a5970 @attributes={:id=>1, :author_id=>1, :title=>"The Count of Monte Cristo", :created_at=>2016-11-14 20:52:24 UTC, :updated_at=>2016-11-14 20:52:24 UTC}>]
 ```
 
-Learn more about [associations](/guides/models/associations).
-
 ### PostgreSQL Types
 
 `hanami-model` now supports natively most common PostgreSQL data types such as: `UUID`, `Array`, `JSON(B)`
@@ -238,8 +232,6 @@ ProjectFileRepository.new.create(name: "source.rb")
   # => #<ProjectFile:0x007ff29c4b9740 @attributes={:id=>"239f8e0f-d764-4a76-aaa7-7b59b5301c72", :name=>"source.rb"}>
 ```
 
-Learn more about [PostgreSQL data types](/guides/models/postgresql)
-
 ### Misc
 
 - Hanami is only compatible with Ruby (MRI) 2.3+
@@ -248,7 +240,7 @@ Learn more about [PostgreSQL data types](/guides/models/postgresql)
 
 ## Upgrade Notes
 
-Please have a look at the [upgrade notes for v0.9.0](/guides/upgrade-notes/v090).
+Please have a look at the upgrade notes for v0.9.0.
 
 ## Acknowledgements
 

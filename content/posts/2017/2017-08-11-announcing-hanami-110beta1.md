@@ -145,7 +145,7 @@ Entities by default infer their schema (set of attributes) from the correspondin
 For instance, if `people` table has `id`, `name`, `created_at`, and `updated_at` columns, then `Person` will have the same attributes.
 
 It may happen that you're not happy with this inferring, and you want to customize the schema.
-We call it this feature ["manual schema"](/guides/1.0/models/entities#manual-schema).
+We call it this feature "manual schema".
 
 It was introduced with Hanami 1.0 and this is how it works:
 
@@ -208,7 +208,7 @@ Person.new(id: "1", name: "Luca")
 
 ### Selectively boot apps
 
-With Hanami you can build your project by following the [Monolith-First](/guides/1.0/architecture/overview#monolith-first) principle.
+With Hanami you can build your project by following the Monolith-First principle.
 You add more and more code to the project, but growing it organically, by using several Hanami apps.
 
 There are cases of real world products using a **dozen of Hanami apps in the same project** (eg `web` for the frontend, `admin` for the administration, etc..)

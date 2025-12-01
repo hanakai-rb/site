@@ -110,7 +110,7 @@ Lotus is a modular web framework that can adapt to different scenarios: **from s
 
 We apply a great philosophy called [Monolith First](http://martinfowler.com/bliki/MonolithFirst.html).
 
-With our default architecture called [_Container_](/guides/architectures/container), we can host several Lotus and Rack based apps **within the same Ruby process**.
+With our default architecture called _Container_, we can host several Lotus and Rack based apps **within the same Ruby process**.
 This helps to have fast code iterations when we develop a new product, without worrying about how it will be deployed.
 **Microservices are too expensive at the beginning.**
 
@@ -120,7 +120,7 @@ Each application under `apps/` can be a customer facing UI, admin pane, HTTP API
 These modules use their own Ruby namespace, so they are ready to be extracted into separate deliverables at the later stages of our product.
 
 While the scenario depicted above helps to assemble large products, we sometimes have the need to add a small application to our existing environment.
-With today release we introduce **a new architecture** called: [_Application_](/guides/architectures/application).
+With today release we introduce **a new architecture** called: _Application_.
 
 ```shell
 % lotus new admin --arch=app
@@ -252,11 +252,11 @@ During the past months the most common request for new developers were about gui
 Lotus brings new ideas that need to be explained to people who never get exposed to it.
 
 We want to be beginner friendly.
-We wrote a new extensive [section](/guides) in our website to explain what's Lotus, what priciples it applies and [how to build the first application](/guides/getting-started).
+We wrote a new extensive section in our website to explain what's Lotus, what priciples it applies and how to build the first application.
 
 ## Conclusion
 
 Lotus can be considered today a good choice to build web applications with Ruby.
 We'll continue to deliver value and new features starting from tomorrow.
 
-[Happy hacking](/guides/getting-started).
+Happy hacking.

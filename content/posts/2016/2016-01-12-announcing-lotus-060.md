@@ -20,19 +20,19 @@ It ships with the last important set of features that we planned: assets.
 
 As of Lotus v0.6.0, we now have a full set of features for assets management, such as:
 
-- [Helpers](/guides/helpers/assets)
-- [Preprocessors](/guides/assets/preprocessors) ([Sass](http://sass-lang.com), [Less](http://lesscss.org), [ES6](http://es6-features.org), [JSX](https://jsx.github.io), [CoffeeScript](http://coffeescript.org), [Opal](http://opalrb.org), etc..)
-- [Compressors](/guides/assets/compressors) ([YUI](http://yui.github.io/yuicompressor), [UglifyJS2](http://lisperator.net/uglifyjs), [Google Closure Compiler](https://developers.google.com/closure/compiler), [Sass](http://sass-lang.com), etc..)
-- [Deployment](/guides/command-line/assets) (precompile, compress, checksum)
-- [Content Delivery Network](/guides/assets/content-delivery-network)
+- Helpers
+- Preprocessors ([Sass](http://sass-lang.com), [Less](http://lesscss.org), [ES6](http://es6-features.org), [JSX](https://jsx.github.io), [CoffeeScript](http://coffeescript.org), [Opal](http://opalrb.org), etc..)
+- Compressors ([YUI](http://yui.github.io/yuicompressor), [UglifyJS2](http://lisperator.net/uglifyjs), [Google Closure Compiler](https://developers.google.com/closure/compiler), [Sass](http://sass-lang.com), etc..)
+- Deployment (precompile, compress, checksum)
+- Content Delivery Network
 - [Heroku support](/blog/2015/12/29/introducing-assets)
-- [Third Party Gems](/guides/assets/overview) (eg. `bootstrap` gem will support soon Lotus out of the box)
-- A new [Rack middleware](/guides/assets/overview) to serve static assets
+- Third Party Gems (eg. `bootstrap` gem will support soon Lotus out of the box)
+- A new Rack middleware to serve static assets
 - Lazy precompilation + cache in development mode
 
 Thanks to [Leigh Halliday](https://github.com/leighhalliday), [Gonzalo Rodríguez-Baltanás Díaz](https://github.com/Nerian), [deepj](https://github.com/deepj), [Michael Deol](https://github.com/michaeldeol), [Benjamin Klotz](https://github.com/tak1n), [Kleber Correia](https://github.com/klebervirgilio) for their contributions and help.
 
-[Read the [guides](/guides/assets/overview) and the [announcement](/blog/2015/12/29/introducing-assets)]
+[Read the guides and the [announcement](/blog/2015/12/29/introducing-assets)]
 
 ### Custom Initializers
 
@@ -40,8 +40,6 @@ For each application under `apps/`, now we can **optionally** have a special dir
 Starting from `v0.6.0`, new projects and applications will be generated with that directory.
 
 Thanks to [Lucas Allan](https://github.com/lucasallan) for this new feature.
-
-[Read the [guides](/guides/projects/initializers)]
 
 ### Default Rake Tasks
 
@@ -63,7 +61,7 @@ task clear_users: :environment do
 end
 ```
 
-We can invoke these new taks with:
+We can invoke these new tasks with:
 
 ```shell
 bundle exec rake print_info
@@ -74,8 +72,6 @@ bundle exec rake print_info
 ```shell
 bundle exec rake clear_users
 ```
-
-[Read the [guides](/guides/projects/rake)]
 
 ### Destroy Command
 
@@ -122,7 +118,7 @@ At the same time we can provide minor perf improvements due to the lack of these
 
 There are several breaking changes due to assets features.
 
-**If you're upgrading from an earlier version, please make sure to read the detailed [upgrade guide](/guides/upgrade-notes/v060) that we prepared.**
+**If you're upgrading from an earlier version, please make sure to read the detailed upgrade guide that we prepared.**
 It will take a few minutes to get up and running again.
 
 ## What's Next?

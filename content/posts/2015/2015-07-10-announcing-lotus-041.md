@@ -16,7 +16,7 @@ Thanks to all our contributors who have reported and fixed issues.
 
 ### Container Architecture Routes
 
-[Thiago Felippe](https://github.com/theocodes) and [Alfonso Uceda](https://github.com/AlfonsoUceda) fixed duplicated route segments for applications mounted in [Lotus Container](/guides/architectures/container).
+[Thiago Felippe](https://github.com/theocodes) and [Alfonso Uceda](https://github.com/AlfonsoUceda) fixed duplicated route segments for applications mounted in Lotus Container.
 
 The following configuration was generating the `/admin` prefix twice: `/admin/admin/dashboard` instead of `/admin/dashboard`.
 
@@ -41,7 +41,7 @@ It now uses `createdb` when we do `lotus db create`.
 
 ### Session Secret
 
-[Alfonso Uceda](https://github.com/AlfonsoUceda) fixed generator for [application arch](/guides/architectures/application) to generate session secret
+[Alfonso Uceda](https://github.com/AlfonsoUceda) fixed generator for application arch to generate session secret
 
 ### Generators
 

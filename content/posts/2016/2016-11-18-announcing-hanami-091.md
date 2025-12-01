@@ -9,7 +9,7 @@ excerpt: >
   Security patch for JSON body parsers
 ---
 
-This is a security patch for [JSON body parsers](/guides/actions/parameters#body-parsers).
+This is a security patch for JSON body parsers.
 
 ## The Problem
 

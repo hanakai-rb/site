@@ -173,4 +173,4 @@ We're grateful for each person who contributed to this release. These lovely peo
 
 ## How To Update Your Project
 
-If you're upgrading you project from `v0.9`, please have a look at the related [upgrade guide article](/guides/upgrade-notes/v100beta1).
+If you're upgrading you project from `v0.9`, please have a look at the related upgrade guide article.

@@ -118,7 +118,7 @@ Along with [Alfonso Uceda](https://twitter.com/joshka20) (already a member), we'
 
 ## How To Get Started
 
-If you're new to Hanami, we prepared a [guide](/guides/getting-started) to build and deploy your very first project.
+If you're new to Hanami, we prepared a guide to build and deploy your very first project.
 
 ## How To Upgrade
 
@@ -131,7 +131,7 @@ gem 'hanami-model', '~> 1.0'
 
 Then run `bundle update hanami hanami-model`.
 
-If you're upgrading from `v0.9.x`, please check the [upgrade guide](/guides/upgrade-notes/v100) for `v1.0.0`.
+If you're upgrading from `v0.9.x`, please check the upgrade guide for `v1.0.0`.
 
 ## What's Next?
 
