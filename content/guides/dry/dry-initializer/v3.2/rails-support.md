@@ -96,4 +96,4 @@ end
 
 [Type constraints](//page/type-constraints) are checked before the coercion.
 
-When mixing `:type` and `:model` settings for the same param/option, you should use [sum types](//doc/dry-types/sum) that accept both model instances and their attributes.
+When mixing `:type` and `:model` settings for the same param/option, you should use [sum types](//org_guide/dry/dry-types/combining-types/sum) that accept both model instances and their attributes.

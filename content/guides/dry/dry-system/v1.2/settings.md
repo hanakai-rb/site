@@ -4,7 +4,7 @@ title: Settings
 
 ## Basic usage
 
-dry-system provides a `:settings` provider source that you can use to load settings and share them throughout your application. To use this provider source, create your own `:settings` provider using the provider source from `:dry_system`, then declare your settings inside `settings` block (using [dry-configurable’s](//doc/dry-configurable) `setting` API):
+dry-system provides a `:settings` provider source that you can use to load settings and share them throughout your application. To use this provider source, create your own `:settings` provider using the provider source from `:dry_system`, then declare your settings inside `settings` block (using [dry-configurable’s](//org_guide/dry/dry-configurable) `setting` API):
 
 ```ruby
 # system/providers/settings.rb:

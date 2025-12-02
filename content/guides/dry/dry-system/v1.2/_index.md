@@ -11,7 +11,7 @@ pages:
   - test-mode
 ---
 
-Object dependency management system based on [dry-container](//doc/dry-container) and [dry-auto_inject](//doc/dry-auto_inject) allowing you to configure reusable components in any environment, set up their load-paths, require needed files and instantiate objects automatically with the ability to have them injected as dependencies.
+Object dependency management system based on [dry-container](//org_guide/dry/dry-container) and [dry-auto_inject](//org_guide/dry/dry-auto_inject) allowing you to configure reusable components in any environment, set up their load-paths, require needed files and instantiate objects automatically with the ability to have them injected as dependencies.
 
 This library relies on very basic mechanisms provided by Ruby, specifically `require` and managing `$LOAD_PATH`. It doesn't use magic like automatic const resolution, it's pretty much the opposite and forces you to be explicit about dependencies in your applications.
 
@@ -38,7 +38,7 @@ You can use dry-system in a new application or add it to an existing application
 
 ### Rails support
 
-If you want to use dry-system with Rails, it's recommended to use [dry-rails](//doc/dry-rails) which sets up application container for you and provides additional features on top of it.
+If you want to use dry-system with Rails, it's recommended to use [dry-rails](//org_guide/dry/dry-rails) which sets up application container for you and provides additional features on top of it.
 
 ### Credits
 

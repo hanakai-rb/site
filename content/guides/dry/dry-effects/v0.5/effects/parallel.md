@@ -7,7 +7,7 @@ There are two effects for using parallelism:
 - `par` creates a unit of parallel execution;
 - `join` combines an array of units to the array of their results.
 
-`par`/`join` is almost identical to `defer`/`wait` from [`Defer`](//doc/dry-effects/effects/defer), the difference is in the semantics. `defer` is not supposed to be always awaited, it's usually fired-and-forgotten. On the contrary, `par` is meant to be `join`ed at some point.
+`par`/`join` is almost identical to `defer`/`wait` from [`Defer`](//org_guide/dry/dry-effects/effects/defer), the difference is in the semantics. `defer` is not supposed to be always awaited, it's usually fired-and-forgotten. On the contrary, `par` is meant to be `join`ed at some point.
 
 ```ruby
 class MakeRequests
@@ -20,4 +20,4 @@ class MakeRequests
 end
 ```
 
-Just as [`Defer`](//doc/dry-effects/effects/defer), `Parallel` uses `concurrent-ruby` under the hood.
+Just as [`Defer`](//org_guide/dry/dry-effects/effects/defer), `Parallel` uses `concurrent-ruby` under the hood.

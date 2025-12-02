@@ -2,7 +2,7 @@
 title: Error Handling
 ---
 
-When using dry-operation, errors are handled through the `Failure` type from [dry-monads](//doc/dry-monads). Each step in your operation should return either a `Success` or `Failure` result. When a step returns a `Failure`, the operation short-circuits, skipping the remaining steps and returning the failure immediately.
+When using dry-operation, errors are handled through the `Failure` type from [dry-monads](//org_guide/dry/dry-monads). Each step in your operation should return either a `Success` or `Failure` result. When a step returns a `Failure`, the operation short-circuits, skipping the remaining steps and returning the failure immediately.
 
 You'll usually handle the failure from the call site, where you can pattern match on the result to handle success and failure cases. However, sometimes it's useful to encapsulate some error handling logic within the operation itself.
 

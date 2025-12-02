@@ -76,7 +76,7 @@ The following callbacks are supported:
 
 ### Providing component configuration
 
-Provider sources can define their own settings using [dry-configurable’s](//doc/dry-configurable) `setting` API. These will be configured when the provider source is used by a provider. The other lifecycle steps in the provider souce can access the configured settings as `config`.
+Provider sources can define their own settings using [dry-configurable’s](//org_guide/dry/dry-configurable) `setting` API. These will be configured when the provider source is used by a provider. The other lifecycle steps in the provider souce can access the configured settings as `config`.
 
 For example, here’s an extended `:exception_notifier` provider source with settings:
 

@@ -39,7 +39,7 @@ class MyContext < Dry::View::Context
 end
 ```
 
-If your app uses [dry-system](//doc/dry-system) or [dry-auto_inject](//doc/dry-auto_inject), this is even less work. dry-auto_inject works out of the box with `Dry::View::Context`’s initializer:
+If your app uses [dry-system](//org_guide/dry/dry-system) or [dry-auto_inject](//org_guide/dry/dry-auto_inject), this is even less work. dry-auto_inject works out of the box with `Dry::View::Context`’s initializer:
 
 ```ruby
 # Require the auto-injector module for your app's container
