@@ -25,10 +25,20 @@ module Site
       private
 
       ContentPipeline = HTMLPipeline.new(
-        convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new,
+        convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new(
+          context: {
+            markdown: {
+              render: {unsafe: true},
+              plugins: {syntax_highlighter: {theme: ""}}
+            }
+          }
+        ),
         node_filters: [
+          Content::Filters::SanitizeHeadingAnchorsFilter.new,
           Content::Filters::LinkableHeadingsFilter.new
-        ]
+        ],
+        # Don't bother sanitizing content, we already trust what's in this repo.
+        sanitization_config: nil
       )
       private_constant :ContentPipeline
 
