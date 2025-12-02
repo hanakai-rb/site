@@ -5,7 +5,7 @@ author: Tim Riley
 org: dry
 ---
 
-We're thrilled to announce the release of [dry-transaction 0.10.0](//doc/dry-transaction), which offers a huge improvement in ease-of-use and flexibility around designing your application's business transactions.
+We're thrilled to announce the release of [dry-transaction 0.10.0](/learn/dry/dry-transaction), which offers a huge improvement in ease-of-use and flexibility around designing your application's business transactions.
 
 dry-transaction has been around for long enough now that it's really been put through its paces across many different apps and use cases. We'd begun to notice one big deficiency in its design: apart from defining the steps, we couldn't customize any other aspect of transaction behavior.
 

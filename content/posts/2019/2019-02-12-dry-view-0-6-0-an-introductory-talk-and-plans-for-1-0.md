@@ -5,7 +5,7 @@ author: Tim Riley
 org: dry
 ---
 
-Last month we released [dry-view](//doc/dry-view) 0.6.0, a very special release that made huge strides towards the system's overall completeness. With 0.6.0, dry-view should now offer _everything you need_ to write better organized views in Ruby.
+Last month we released [dry-view](/learn/dry/dry-view) 0.6.0, a very special release that made huge strides towards the system's overall completeness. With 0.6.0, dry-view should now offer _everything you need_ to write better organized views in Ruby.
 
 From here, our goal is to take dry-view to version 1.0. So please give this release a try! Your feedback at this point will help ensure 1.0 is as polished as possible.
 
@@ -13,7 +13,7 @@ If you're new to dry-view, or would like to see its new features presented in co
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VGWt1OLFzdU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-I'd also invite you to take another look at the [dry-view documentation](//doc/dry-view). This has been brought up to date and covers all the new features.
+I'd also invite you to take another look at the [dry-view documentation](/learn/dry/dry-view). This has been brought up to date and covers all the new features.
 
 And as for what’s changed with this release, here are the highlights:
 
@@ -29,7 +29,7 @@ And even with the previous name, we'd still end up calling these things "views" 
 
 ## Automatic part decoration
 
-[Parts](//doc/dry-view/parts) are a major reason to use dry-view: they offer an easy, integrated place for encapsulating view-specific behaviour alongside the data it relates to.
+[Parts](/learn/dry/dry-view/parts) are a major reason to use dry-view: they offer an easy, integrated place for encapsulating view-specific behaviour alongside the data it relates to.
 
 Until now, however, using a broad range of part classes involved specifying those classes by name, directly, for every exposure.
 
@@ -77,7 +77,7 @@ Along with this, parts can now be accessed via a new `Dry::View::Rendered` objec
 
 ## Customizable scopes!
 
-Until now, we’ve had exposures and parts to pass values to the template along with their view-specific behavior, and the context object to provide behavior common to all templates. But what about behavior that we want to provide to just a _single_ template or partial?For this, we now have [customizable scopes](//doc/dry-view/scopes).
+Until now, we’ve had exposures and parts to pass values to the template along with their view-specific behavior, and the context object to provide behavior common to all templates. But what about behavior that we want to provide to just a _single_ template or partial?For this, we now have [customizable scopes](/learn/dry/dry-view/scopes).
 
 Unlike parts, which decorate a single value, scopes have access to a template’s entire set of locals (as well as the context object, plus the methods to render partial or build other scopes). This gives you another logical place to provide some custom view behavior that can still access all the other features of the system.
 
@@ -128,7 +128,7 @@ Rendering a scope like this will look for a partial matching the scope’s own n
 
 ## Context object can decorate attributes
 
-[Context](//doc/dry-view/context) classes must now inherit from `Dry::View::Context`. This brings the ability for context classes to specify which of their attributes should be decorated with parts.
+[Context](/learn/dry/dry-view/context) classes must now inherit from `Dry::View::Context`. This brings the ability for context classes to specify which of their attributes should be decorated with parts.
 
 For example, for a context with an injected `assets` dependency, specifying `decorate :assets` would have the assets object wrapped in a matching part class (e.g. `Parts::Assets` if the view currently rendering has a `part_namespace` of `Parts`).
 
@@ -196,7 +196,7 @@ Makes sense, right? Turns out this isn’t possible with the other popular Ruby 
 
 ## Easier unit testing for Parts and Scopes
 
-Parts and scopes can now be more easily [unit tested](//doc/dry-view/testing).
+Parts and scopes can now be more easily [unit tested](/learn/dry/dry-view/testing).
 
 If you want to unit test the aspects of the class that don’t require a full rendering environment, you can now instantiate a Part with its value alone:
 
@@ -214,7 +214,7 @@ part_for_testing = Parts::Article.new(
 )
 ```
 
-For more detailed unit testing examples, see the [dry-view testing documentation](//doc/dry-view/testing).
+For more detailed unit testing examples, see the [dry-view testing documentation](/learn/dry/dry-view/testing).
 
 ## And more!
 

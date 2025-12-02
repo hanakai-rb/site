@@ -7,7 +7,7 @@ org: dry
 
 Say hello to **dry-view**, the newest member of the dry-rb family!
 
-We’re pleased to announce the release of dry-view 0.2.1 and share its [brand new documentation](//doc/dry-view).
+We’re pleased to announce the release of dry-view 0.2.1 and share its [brand new documentation](/learn/dry/dry-view).
 
 Keen followers of dry-rb will note that dry-view has been around for a little while now, living on quietly as an extension of solnic’s original rodakase experiment.
 
@@ -19,7 +19,7 @@ You should consider dry-view if:
 
 - You want to develop views that will work in any kind of context (dry-view is standalone, it doesn’t require an HTTP request!).
 - You’re using a lightweight routing DSL like Roda or Sinatra and you want to keep your routes clean and easy to understand (dry-view handles the integration with your application’s objects, all you need to provide from your routes is the user input data).
-- Your application uses dependency injection as its preferred approach to make objects available to each other (dry-view fits perfectly with dry-web and [dry-system](//doc/dry-system)).
+- Your application uses dependency injection as its preferred approach to make objects available to each other (dry-view fits perfectly with dry-web and [dry-system](/learn/dry/dry-system)).
 
 dry-view is built around pairings of functional view controllers and view templates. To get started, build a view controller:
 
@@ -94,4 +94,4 @@ module Main
 end
 ```
 
-Interested? [Head over to the documentation to learn more](//doc/dry-view). We think you’ll find it both powerful and flexible, but also fun and easy to use.
+Interested? [Head over to the documentation to learn more](/learn/dry/dry-view). We think you’ll find it both powerful and flexible, but also fun and easy to use.
