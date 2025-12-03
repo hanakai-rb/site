@@ -89,6 +89,7 @@ module Site
           }
         ),
         node_filters: [
+          Content::Filters::SanitizeHeadingAnchorsFilter.new,
           Content::Filters::LinkableHeadingsFilter.new,
           Content::Filters::InternalLinksFilter.new
         ],
