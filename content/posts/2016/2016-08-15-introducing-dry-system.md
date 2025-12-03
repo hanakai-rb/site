@@ -152,6 +152,6 @@ Now if you put `UserRepo` class definition in `lib/user_repo.rb`, it will be aut
 
 You can check out a full-blown web application called [Berg](https://github.com/icelab/berg), which is based on `dry-system`. If you want to see something really basic - check out a [standalone example app](https://github.com/dry-rb/dry-system/tree/main/examples/standalone) with a full setup using examples from this article.
 
-There’s also a [dedicated user documentation](/gems/dry-system) and [API documentation](https://rubydoc.info/gems/dry-system). You can already use `dry-system` via [dry-web-roda](https://github.com/dry-rb/dry-web-roda) and we’ll be working on support for Hanami and Rails soon too.
+There’s also a [dedicated user documentation](/learn/dry/dry-system) and [API documentation](https://rubydoc.info/gems/dry-system). You can already use `dry-system` via [dry-web-roda](https://github.com/dry-rb/dry-web-roda) and we’ll be working on support for Hanami and Rails soon too.
 
 As always, there’s a lot to improve and we’ll continue to work on it. This release is a major improvement in terms of internal APIs as well as public-facing features, so we have a good foundation for future improvements. If you try it out and find any issues, please [report them](https://github.com/dry-rb/dry-system/issues).

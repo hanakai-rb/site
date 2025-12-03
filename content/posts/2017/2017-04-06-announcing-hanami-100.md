@@ -33,7 +33,7 @@ A huge thank you goes to [all of the people who contributed](http://contributors
 Open Source doesn't mean just _"open code"_. Above all, it means an open decision process.
 Today marks a change in the governance of Hanami: we'll now have a diverse team to make decisions about the future of the project, together.
 
-I'm excited to announce an expansion of the [core team](/team), by adding marvellous new people I've met during these years:
+I'm excited to announce an expansion of the [core team](/community), by adding marvellous new people I've met during these years:
 
 <div class="container-fluid">
   <div class="row my-4">
@@ -118,7 +118,7 @@ Along with [Alfonso Uceda](https://twitter.com/joshka20) (already a member), we'
 
 ## How To Get Started
 
-If you're new to Hanami, we prepared a [guide](/guides/getting-started) to build and deploy your very first project.
+If you're new to Hanami, we prepared a guide to build and deploy your very first project.
 
 ## How To Upgrade
 
@@ -131,7 +131,7 @@ gem 'hanami-model', '~> 1.0'
 
 Then run `bundle update hanami hanami-model`.
 
-If you're upgrading from `v0.9.x`, please check the [upgrade guide](/guides/upgrade-notes/v100) for `v1.0.0`.
+If you're upgrading from `v0.9.x`, please check the upgrade guide for `v1.0.0`.
 
 ## What's Next?
 

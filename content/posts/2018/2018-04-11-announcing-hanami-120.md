@@ -193,7 +193,7 @@ gem install hanami
 hanami new bookshelf
 ```
 
-Then follow our [getting started guide](/guides/1.2/getting-started).
+Then follow our getting started guide.
 
 ## How to upgrade
 

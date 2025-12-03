@@ -21,7 +21,7 @@ class MyView < Dry::View
 end
 ```
 
-Or if your app uses [dry-system](//doc/dry-system) or [dry-auto_inject](//doc/dry-auto_inject), this is even less work:
+Or if your app uses [dry-system](//org_guide/dry/dry-system) or [dry-auto_inject](//org_guide/dry/dry-auto_inject), this is even less work:
 
 ```ruby
 # Require the auto-injector module for your app's container

@@ -31,7 +31,7 @@ end
 
 You can also define a transaction that relies upon operation objects in a container. Each operation must respond to `#call(input)`.
 
-The container will be checked for the operations using `#key?`, and the operations will be resolved from the container via `#[]`. For this example, we’ll use [dry-container](//doc/dry-container):
+The container will be checked for the operations using `#key?`, and the operations will be resolved from the container via `#[]`. For this example, we’ll use [dry-container](//org_guide/dry/dry-container):
 
 ```ruby
 require "dry/core"
@@ -71,7 +71,7 @@ class Container
 end
 ```
 
-n.b. this is a small, contrived container setup. In a real app, you should consider using [dry-system](//doc/dry-system) to make it easier to populate a container with your own objects.
+n.b. this is a small, contrived container setup. In a real app, you should consider using [dry-system](//org_guide/dry/dry-system) to make it easier to populate a container with your own objects.
 
 Once you have a container, you can pass it to your transaction mixin and refer to the registered operations.
 

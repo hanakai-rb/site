@@ -135,7 +135,7 @@ Types::Strict::String[10000]
 - Support for [hash type with type schemas](//page/hash-schemas)
 - Support for [array type with members](//page/array-with-member)
 - Support for arbitrary meta information
-- Support for typed struct objects via [dry-struct](//doc/dry-struct)
+- Support for typed struct objects via [dry-struct](//org_guide/dry/dry-struct)
 - Types are [categorized](//page/built-in-types), which is especially important for optimized and dedicated coercion logic
 - Types are composable and reusable objects
 - No const-missing magic and complicated const lookups
@@ -155,8 +155,8 @@ Types::Strict::String[10000]
 
 `dry-types` is often used as a low-level abstraction. The following gems use it already:
 
-- [dry-struct](//doc/dry-struct)
-- [dry-initializer](//doc/dry-initializer)
+- [dry-struct](//org_guide/dry/dry-struct)
+- [dry-initializer](//org_guide/dry/dry-initializer)
 - [Hanami](http://hanamirb.org)
 - [rom-rb](http://rom-rb.org)
 - [Trailblazer](http://trailblazer.to)

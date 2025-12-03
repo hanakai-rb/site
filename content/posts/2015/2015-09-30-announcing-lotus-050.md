@@ -56,8 +56,6 @@ Mailers::ForgotPassword.deliver
 
 [Lotus::Mailer](https://github.com/lotus/mailer) is built on top of the rock solid `mail` [gem](https://github.com/mikel/mail) by Mikel Lindsaar.
 
-[Read the guides](/guides/mailers/overview)
-
 ### Custom Data Mapper Coercions
 
 Lotus data mapper supports the most common Ruby data type such as `String`, `Integer`, or `DateTime`.
@@ -101,8 +99,6 @@ Lotus::Model.configure do
 end.load!
 ```
 
-[Read the guides](/guides/models/overview)
-
 ### Command / Query Separation
 
 When the powerful repositories API doesn't fit our needs, we can send raw command and queries to the database.
@@ -139,8 +135,6 @@ class BookRepository
   end
 end
 ```
-
-[Read the guides](/guides/models/repositories)
 
 ### Minor Changes
 

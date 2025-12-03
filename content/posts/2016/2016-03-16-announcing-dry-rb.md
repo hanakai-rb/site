@@ -11,7 +11,7 @@ dry-rb is here to help usher in a new phase of Ruby development. We value good e
 
 ## New gem releases
 
-Apart from the release of this website, we'd like to announce big releases of [dry-validation](/gems/dry-validation) and [dry-types](/gems/dry-types). Both gems went through major refactorings and come with many great new features, bug fixes and internal improvements.
+Apart from the release of this website, we'd like to announce big releases of [dry-validation](/learn/dry/dry-validation) and [dry-types](/learn/dry/dry-types). Both gems went through major refactorings and come with many great new features, bug fixes and internal improvements.
 
 ### dry-validation 0.7.0
 
@@ -95,6 +95,6 @@ Post.new(title: 'Hello World', body: 'some text')
 
 ## Future plans
 
-We'll continue growing dry-rb, improving the existing gems and adding new ones. Please try out our already released [gems](/gems) and let us know what you think.
+We'll continue growing dry-rb, improving the existing gems and adding new ones. Please try out our already released and let us know what you think.
 
 If you have any issues, do not hesitate to [talk to us](https://dry-rb.zulipchat.com) or report an issue on GitHub.

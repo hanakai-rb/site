@@ -8,7 +8,7 @@ pages:
 
 dry-auto_inject provides low-impact dependency injection and resolution support for your classes.
 
-It’s designed to work with a container that holds your application’s dependencies. It works well with [dry-container](//doc/dry-container), but supports any container that responds to the `#[]` interface.
+It’s designed to work with a container that holds your application’s dependencies. It works well with [dry-container](//org_guide/dry/dry-container), but supports any container that responds to the `#[]` interface.
 
 ### Why use dry-auto_inject?
 

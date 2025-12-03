@@ -114,7 +114,7 @@ The security problem described above doesn't concern only CDNs, but local files 
 Imagine we have a compromised file system and someone was able to replace our javascripts with evil files: we would be vulnerable to the same kind of attack.
 
 As a defense against this security problem, Hanami **enables Subresource Integrity by default in production.**
-When we [precompile assets](/guides/command-line/assets) at deploy time, Hanami calculates the checksum of all our assets and it adds a special HTML attribute `integrity` to our asset tags like `<script>`.
+When we precompile assets at deploy time, Hanami calculates the checksum of all our assets and it adds a special HTML attribute `integrity` to our asset tags like `<script>`.
 
 ```erb
 <%= javascript 'application' %>
@@ -146,7 +146,7 @@ Along with this improvement, we have now turned on two extra security HTTP heade
 
 ## Upgrade Notes
 
-Please have a look at the [upgrade notes for v0.8.0](/guides/upgrade-notes/v080).
+Please have a look at the upgrade notes for v0.8.0.
 
 ## Contributors
 

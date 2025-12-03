@@ -7,7 +7,7 @@ org: dry
 
 We're very happy to announce the release of dry-validation 1.0.0!
 
-This is a big release: it includes a rewritten schema DSL, released as [dry-schema](/gems/dry-schema), and a completely redesigned validation system. If you're interested to know the reasoning behind these changes, please refer to the "[Plans for dry-validation + dry-schema (a new gem!)](https://discourse.dry-rb.org/t/plans-for-dry-validation-dry-schema-a-new-gem/215)" post on our forum. Yes, it's from February 2017, this took a while, but it was totally worth the wait. Continue reading to see why.
+This is a big release: it includes a rewritten schema DSL, released as [dry-schema](/learn/dry/dry-schema), and a completely redesigned validation system. If you're interested to know the reasoning behind these changes, please refer to the "[Plans for dry-validation + dry-schema (a new gem!)](https://discourse.dry-rb.org/t/plans-for-dry-validation-dry-schema-a-new-gem/215)" post on our forum. Yes, it's from February 2017, this took a while, but it was totally worth the wait. Continue reading to see why.
 
 ## New-old schema DSL
 
@@ -44,7 +44,7 @@ end
 
 If you are familiar with the old version, your immediate reaction might be "oh that's more code, why not just define these checks in the schema?" That's a good question to ask! It's still possible to use all the known predicates so, technically speaking, you could perform these checks via the schema **but** it's not recommended. Starting with 1.0.0, we're moving to a new way of thinking about validations by splitting them into basic structural and type checks handled by schemas and domain validations handled by contracts and their rules. This is a good way of separating concerns to make your code cleaner, simpler and more reusable.
 
-If the amount of code you need to write is a concern, don't worry, because we have [a new macro system](/gems/dry-validation/1.0/macros) in place to DRY things up.
+If the amount of code you need to write is a concern, don't worry, because we have [a new macro system](/learn/dry/dry-validation/macros) in place to DRY things up.
 
 ## Improved messages
 

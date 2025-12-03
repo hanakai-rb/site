@@ -6,7 +6,7 @@ You can create constrained types that will use validation rules to check that th
 
 All types support the constraints API, but not all constraints are suitable for a particular primitive, it's up to you to set up constraints that make sense.
 
-Under the hood it uses [`dry-logic`](//doc/dry-logic) and all of its predicates are supported.
+Under the hood it uses [`dry-logic`](//org_guide/dry/dry-logic) and all of its predicates are supported.
 
 ```ruby
 string = Types::String.constrained(min_size: 3)

@@ -2,7 +2,7 @@
 title: JSON
 ---
 
-To validate JSON data structures, you can use `JSON` schemas. The difference between `Params` and `JSON` is coercion logic. Refer to [dry-types](//doc/dry-types/built-in-types) documentation for more information about supported JSON coercions.
+To validate JSON data structures, you can use `JSON` schemas. The difference between `Params` and `JSON` is coercion logic. Refer to [dry-types](//org_guide/dry/dry-types/built-in-types) documentation for more information about supported JSON coercions.
 
 ### Examples
 

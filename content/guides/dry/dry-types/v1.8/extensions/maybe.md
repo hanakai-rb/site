@@ -2,7 +2,7 @@
 title: Maybe
 ---
 
-The [dry-monads gem](//doc/dry-monads) provides an approach to handling optional values by returning a [`Maybe`](//doc/dry-monads) object from operations that can return `nil`.
+The [dry-monads gem](//org_guide/dry/dry-monads) provides an approach to handling optional values by returning a [`Maybe`](//org_guide/dry/dry-monads) object from operations that can return `nil`.
 
 `dry-types` has an extension that can return `Maybe`s from calls to types. That is, it wraps the return result in either:
 

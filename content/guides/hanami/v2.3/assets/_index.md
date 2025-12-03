@@ -76,9 +76,9 @@ You can use two CLI commands to compile your assets:
 - `hanami assets compile` will compile all your assets for production.
 - `hanami assets watch` will watch for changes to your assets and compile the relevant files immediately.
 
-The [`hanami dev` command](//guide/command-line/dev) will start `hanami assets watch` by defalt, giving you
+The [`hanami dev` command](//guide/cli-commands/dev) will start `hanami assets watch` by defalt, giving you
 
-See the [assets CLI guide](//guide/command-line/assets) for more detail.
+See the [assets CLI guide](//guide/cli-commands/assets) for more detail.
 
 ## Asset compilation
 

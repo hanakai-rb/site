@@ -60,7 +60,7 @@ loc1 == loc2
 
 ### Hash Schemas
 
-`Dry::Struct` out of the box uses [hash schemas](//doc/dry-types/hash-schemas) from `dry-types` for processing input hashes. `with_type_transform` and `with_key_transform` are exposed as `transform_types` and `transform_keys`:
+`Dry::Struct` out of the box uses [hash schemas](//org_guide/dry/dry-types/hash-schemas) from `dry-types` for processing input hashes. `with_type_transform` and `with_key_transform` are exposed as `transform_types` and `transform_keys`:
 
 ```ruby
 class User < Dry::Struct
@@ -89,7 +89,7 @@ end
 
 ### Validating data with dry-struct
 
-Please don't. Structs are meant to work with valid input, it cannot generate error messages good enough for displaying them for a user etc. Use [`dry-validation`](//doc/dry-validation) for validating incoming data and then pass its output to structs.
+Please don't. Structs are meant to work with valid input, it cannot generate error messages good enough for displaying them for a user etc. Use [`dry-validation`](//org_guide/dry/dry-validation) for validating incoming data and then pass its output to structs.
 
 ### Differences between dry-struct and virtus
 

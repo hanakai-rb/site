@@ -92,4 +92,4 @@ For more information see:
 
 - dry-system 0.9 [CHANGELOG](https://github.com/dry-rb/dry-system/blob/main/CHANGELOG.md#090---2018-01-02)
 - dry-monitor 0.1 [CHANGELOG](https://github.com/dry-rb/dry-monitor/blob/main/CHANGELOG.md)
-- dry-events 0.1 - this is a new gem which powers dry-monitor's notifications, checkout its [introduction documentation](/gems/dry-events)
+- dry-events 0.1 - this is a new gem which powers dry-monitor's notifications, checkout its [introduction documentation](/learn/dry/dry-events)

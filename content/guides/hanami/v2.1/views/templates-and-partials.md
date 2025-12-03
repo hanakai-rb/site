@@ -80,7 +80,7 @@ Similar tags also exist for Haml and Slim. Use these tags with caution. This is 
 
 Each template and partial is rendered within its own scope, which determines the variables and methods available for the template to use. These include:
 
-- Your template's locals: the values returned from its [exposures](//page/intput-and-exposures), wrapped by [parts](//page/parts)
+- Your template's locals: the values returned from its [exposures](//page/input-and-exposures), wrapped by [parts](//page/parts)
 - Your app or slice's [helpers](//page/helpers)
 - The public methods available on the view's [context](//page/context)
 - A `#render` method, for rendering partials

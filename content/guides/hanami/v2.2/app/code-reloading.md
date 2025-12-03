@@ -27,7 +27,7 @@ Hanami takes an "outside the framework" approach to code reloading. This has sev
 - Hanami internals are free from code reloading awareness.
 - if the hanami-reloader gem is not present (which is true in production), code reloading logic is eliminated.
 
-Thanks to [Zeitwerk](//page/autoloading) and [lazy loading](//page/booting), code reloading is also very fast.
+Thanks to [Zeitwerk](//page/autoloading) and [lazy loading](//page), code reloading is also very fast.
 
 ### Reloading in the console
 

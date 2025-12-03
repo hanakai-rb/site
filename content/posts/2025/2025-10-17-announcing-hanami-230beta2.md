@@ -24,7 +24,7 @@ $ bundle exec hanami run 'Hanami.app["repos.commit_repo"].all.count'
 
 ## Improved action formats config
 
-Our [previous approach](/guides/hanami/v2.2/actions/formats-and-mime-types) to action formats config (`config.formats` in action classes or `config.actions.formats` in app or slice classes) made it too hard to configure and use your own custom formats. We’ve now overhauled this config and made it much more flexible.
+Our [previous approach](//guides/hanami/v2.2/actions/formats-and-mime-types) to action formats config (`config.formats` in action classes or `config.actions.formats` in app or slice classes) made it too hard to configure and use your own custom formats. We’ve now overhauled this config and made it much more flexible.
 
 This is an important change and we’d love your help with testing. If you configure formats for your actions, please pull down this beta and give this a go!
 

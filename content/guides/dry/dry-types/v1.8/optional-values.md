@@ -30,4 +30,4 @@ optional_string[123]
 
 ### Handle optional values using Monads
 
-See [Maybe](//page/extensions/maybe) extension for another approach to handling optional values by returning a [_Monad_](//doc/dry-monads) object.
+See [Maybe](//page/extensions/maybe) extension for another approach to handling optional values by returning a [_Monad_](//org_guide/dry/dry-monads) object.

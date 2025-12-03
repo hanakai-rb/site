@@ -22,7 +22,7 @@ Use dry-view if:
 - You want to maintain a sensible separation of concerns between the layers of functionality within your app
 - You want to build and render views in any kind of context, not just when serving HTTP requests
 - You're using a lightweight routing DSL like Roda or Sinatra and you want to keep your routes clean and easy to understand (dry-view handles the integration with your application, so all you need to provide from routes is the user-provided input params)
-- Your application structure supports dependency injection as the preferred way to share behaviour between components (e.g. dry-view fits perfectly with [dry-system](//doc/dry-system), [dry-container](//doc/dry-container), and [dry-auto_inject](//doc/dry-auto_inject))
+- Your application structure supports dependency injection as the preferred way to share behaviour between components (e.g. dry-view fits perfectly with [dry-system](//org_guide/dry/dry-system), [dry-container](//org_guide/dry/dry-container), and [dry-auto_inject](//org_guide/dry/dry-auto_inject))
 
 ## Concepts
 

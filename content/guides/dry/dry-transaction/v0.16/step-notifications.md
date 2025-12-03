@@ -62,4 +62,4 @@ NOTIFICATIONS
 # => ["Started creation of jane@doe.com", "jane@doe.com created"]
 ```
 
-This pub/sub mechanism is provided by [dry-events](//doc/dry-events).
+This pub/sub mechanism is provided by [dry-events](//org_guide/dry/dry-events).

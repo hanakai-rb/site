@@ -212,4 +212,4 @@ get "/sign-in", to: "sign_in", as: :sign_in
 response.redirect_to routes.path(:sign_in)
 ```
 
-See the [Routing guide](//guide/routing/overview) for more information on named routes.
+See the [Routing guide](//guide/routing) for more information on named routes.
