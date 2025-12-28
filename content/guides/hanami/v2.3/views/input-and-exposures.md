@@ -206,6 +206,16 @@ module Bookshelf
 end
 ```
 
+## Accessing the context
+
+To access the [context object](//page/context) from an exposure, include a `context:` keyword parameter:
+
+```ruby
+expose :books do |context:|
+  book_repo.books_for_user(context.current_user)
+end
+```
+
 ## Private exposures
 
 You can create private exposures that are not passed to the template. This is helpful if you have an exposure that other exposures will depend on, but is not otherwise needed in the template.
@@ -213,24 +223,12 @@ You can create private exposures that are not passed to the template. This is he
 Here only the author's name is exposed:
 
 ```ruby
-# app/views/authors/show.rb
+private_expose :author do |author_id:|
+  author_repo.get!(author_id)
+end
 
-module Bookshelf
-  module Views
-    module Authors
-      class Show < Bookshelf::View
-        include Deps["repos.author_repo"]
-
-        private_expose :author do |author_id:|
-          author_repo.get!(author_id)
-        end
-
-        expose :author_name do |author|
-          author.name
-        end
-      end
-    end
-  end
+expose :author_name do |author|
+  author.name
 end
 ```
 
