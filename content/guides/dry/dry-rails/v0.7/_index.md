@@ -4,9 +4,8 @@ title: Introduction
 name: dry-rails
 ---
 
-^INFO
-Before dry-rails hits 1.0.0 it should be considered as beta software. Various usage patterns should emerge as more people try it out, so please do so and provide feedback!
-^
+> [!NOTE]
+> Before dry-rails hits 1.0.0 it should be considered as beta software. Various usage patterns should emerge as more people try it out, so please do so and provide feedback!
 
 `dry-rails` is the official dry-rb railtie for Ruby on Rails framework. It provides an application container using `dry-system` with additional features:
 
@@ -110,9 +109,8 @@ irb(main):007:0> MyApp::Container[:inflector].demodulize("MyApp::Container")
 => "Container"
 ```
 
-^INFO
-It is _recommended_ to inject the inflector via the import module, instead of referring to the global `ActiveSupport::Inflector` constant. Otherwise you'll lose the ability to easily switch inflectors when you have a need, which _can happen_. Your future-self will be grateful.
-^
+> [!NOTE]
+> It is _recommended_ to inject the inflector via the import module, instead of referring to the global `ActiveSupport::Inflector` constant. Otherwise you'll lose the ability to easily switch inflectors when you have a need, which _can happen_. Your future-self will be grateful.
 
 ## Safe Params
 
@@ -198,9 +196,8 @@ class UsersController < ApplicationController
 end
 ```
 
-^INFO
-The railtie will soon provide monadic operations too!
-^
+> [!NOTE]
+> The railtie will soon provide monadic operations too!
 
 ## Turning features on/off
 
