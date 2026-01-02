@@ -36,9 +36,8 @@ Main focus of this library is on:
 - Data **structure** validation
 - Value **types** validation
 
-^INFO
-`dry-schema` is used as the schema engine in [dry-validation](//org_guide/dry/dry-validation) which is the recommended solution for business domain validations
-^
+> [!NOTE]
+> `dry-schema` is used as the schema engine in [dry-validation](//org_guide/dry/dry-validation) which is the recommended solution for business domain validations
 
 ### Unique features
 

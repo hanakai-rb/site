@@ -2,9 +2,8 @@
 title: Processor steps
 ---
 
-^WARNING
-This feature is experimental. It should become stable in version 2.0.0.
-^
+> [!WARNING]
+> This feature is experimental. It should become stable in version 2.0.0.
 
 Schemas process the input using 4 steps:
 
