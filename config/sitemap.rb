@@ -13,6 +13,7 @@ SitemapGenerator::Sitemap.create do
   add "/community"
   add "/conduct"
   add "/sponsor"
+  add "/status"
 
   # Guides
   add "/learn"

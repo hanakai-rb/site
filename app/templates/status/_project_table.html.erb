@@ -1,0 +1,58 @@
+<table class="responsive-table border-collapse border border-gray-200 mt-8 <%= theme %> zebra-stripe-table">
+  <caption class="m-6 text-2xl"><%= caption %></caption>
+
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">Version</th>
+      <th scope="col">Build status</th>
+      <th scope="col">Issues</th>
+      <th scope="col">Pull requests</th>
+      <th scope="col">Documentation coverage</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% projects.each do |project| %>
+      <tr>
+        <td class="border border-gray-200 p-2">
+          <a href="<%= project.github_url %>"><%= project.label %></a>
+        </td>
+
+        <td class="border border-gray-200 p-2">
+          <a href="<%= project.version_badge_url %>">
+            <%= image_tag project.version_badge_image_url, alt: "#{project.label} on rubygems" %>
+          </a>
+        </td>
+
+        <td class="border border-gray-200 p-2">
+          <% if project.show_ci? %>
+            <a href="<%= project.ci_badge_url %>">
+              <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status" %>
+            </a>
+          <% end %>
+        </td>
+
+        <td class="border border-gray-200 p-2">
+          <a href="<%= project.issues_badge_url %>">
+            <%= image_tag project.issues_badge_image_url, alt: "#{project.label} issues" %>
+          </a>
+        </td>
+
+        <td class="border border-gray-200 p-2">
+          <a href="<%= project.prs_badge_url %>">
+            <%= image_tag project.prs_badge_image_url, alt: "#{project.label} pull requests" %>
+          </a>
+        </td>
+
+        <td class="border border-gray-200 p-2">
+          <% if project.show_doc_coverage? %>
+            <a href="<%= project.docs_coverage_badge_url %>">
+              <%= image_tag project.docs_coverage_badge_image_url, alt: "#{project.label} documentation coverage" %>
+            </a>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

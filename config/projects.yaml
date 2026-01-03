@@ -1,0 +1,89 @@
+---
+dry_projects:
+  - repo: dry-rb/dry-auto_inject
+  - repo: dry-rb/dry-cli
+  - repo: dry-rb/dry-configurable
+  - repo: dry-rb/dry-container
+  - repo: dry-rb/dry-core
+  - repo: dry-rb/dry-effects
+  - repo: dry-rb/dry-equalizer
+  - repo: dry-rb/dry-events
+  - repo: dry-rb/dry-files
+  - repo: dry-rb/dry-inflector
+  - repo: dry-rb/dry-initializer
+  - repo: dry-rb/dry-logger
+  - repo: dry-rb/dry-logic
+  - repo: dry-rb/dry-matcher
+  - repo: dry-rb/dry-monads
+  - repo: dry-rb/dry-monitor
+  - repo: dry-rb/dry-operation
+    show_doc_coverage: false
+  - repo: dry-rb/dry-rails
+  - repo: dry-rb/dry-schema
+  - repo: dry-rb/dry-struct
+  - repo: dry-rb/dry-system
+  - repo: dry-rb/dry-transaction
+  - repo: dry-rb/dry-transformer
+  - repo: dry-rb/dry-types
+  - repo: dry-rb/dry-validation
+  - repo: dry-rb/dry-view
+hanami_projects:
+  - repo: hanami/hanami
+  - repo: hanami/hanami-api
+    show_doc_coverage: false
+  - repo: hanami/hanami-assets
+    show_doc_coverage: false
+  - repo: hanami/hanami-cli
+    show_doc_coverage: false
+  - repo: hanami/hanami-controller
+    show_doc_coverage: false
+  - repo: hanami/hanami-db
+    show_doc_coverage: false
+  - repo: hanami/hanami-mailer
+    show_doc_coverage: false
+  - repo: hanami/hanami-router
+    show_doc_coverage: false
+  - repo: hanami/hanami-reloader
+    show_doc_coverage: false
+  - repo: hanami/hanami-rspec
+    show_doc_coverage: false
+  - repo: hanami/hanami-utils
+    show_doc_coverage: false
+  - repo: hanami/hanami-validations
+    show_doc_coverage: false
+  - repo: hanami/hanami-view
+    show_doc_coverage: false
+  - repo: hanami/hanami-webconsole
+    show_doc_coverage: false
+rom_projects:
+  - repo: rom-rb/rom
+  - repo: rom-rb/rom-cassandra
+    show_ci: false
+  - repo: rom-rb/rom-couchdb
+    show_ci: false
+  - repo: rom-rb/rom-csv
+    show_ci: false
+  - repo: rom-rb/rom-elasticsearch
+  - repo: rom-rb/rom-event_store
+    show_ci: false
+  - repo: rom-rb/rom-factory
+  - repo: rom-rb/rom-git
+    show_ci: false
+  - repo: rom-rb/rom-http
+  - repo: rom-rb/rom-influxdb
+    show_ci: false
+  - repo: rom-rb/rom-json
+    show_ci: false
+  - repo: rom-rb/rom-kafka
+    show_ci: false
+  - repo: rom-rb/rom-mongo
+    show_ci: false
+  - repo: rom-rb/rom-neo4j
+    show_ci: false
+  - repo: rom-rb/rom-rails
+  - repo: rom-rb/rom-rethinkdb
+    show_ci: false
+  - repo: rom-rb/rom-sql
+  - repo: rom-rb/rom-yaml
+    show_ci: false
+  - repo: rom-rb/rom-yesql
