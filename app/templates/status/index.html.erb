@@ -1,0 +1,21 @@
+<% content_for :title, "Status" %>
+
+<div class="lg:mt-8 lg:mb-14">
+  <h1 class="text-4xl font-extrabold mb-4">Hanakai gems</h1>
+
+  <p>
+    The Hanakai ecosystem consists of many gems across Hanami, DRY, and ROM.
+    This page lists all these gems along with their most recent version numbers
+    and build status.
+  </p>
+
+  <p>
+    If you want to participate and help us, this page can help you too. You can
+    easily find a project that needs your help based on Issues, Pull requests
+    and Documentation coverage columns.
+  </p>
+
+  <%= render "status/project_table", caption: "Hanami projects", projects: hanami_projects, theme: "theme-hanami-light" %>
+  <%= render "status/project_table", caption: "DRY projects", projects: dry_projects, theme: "theme-dry-light" %>
+  <%= render "status/project_table", caption: "ROM projects", projects: rom_projects, theme: "theme-rom-light" %>
+</div>
