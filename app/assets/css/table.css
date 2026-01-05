@@ -1,0 +1,32 @@
+@media (max-width: 640px) {
+  .responsive-table thead {
+    display: none;
+  }
+  .responsive-table tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.responsive-table td {
+  min-width: 100px;
+}
+
+.zebra-stripe-table caption {
+  color: var(--hk-color-b-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.zebra-stripe-table a {
+  color: var(--hk-color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--hk-color-text-link-underline);
+  font-weight: var(--font-weight-medium);
+}
+
+.zebra-stripe-table tbody tr:nth-child(odd) {
+  background-color: var(--hk-color-bg-accent);
+}
