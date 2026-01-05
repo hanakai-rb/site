@@ -8,7 +8,7 @@ pages:
 
 dry-auto_inject provides low-impact dependency injection and resolution support for your classes.
 
-It’s designed to work with a container that holds your application’s dependencies. It works well with [dry-container](//org_guide/dry/dry-container), but supports any container that responds to the `#[]` interface.
+It’s designed to work with a container that holds your application’s dependencies. It is already integrated with [dry-system's containers](/learn/dry/dry-system/v1.2/container), but supports any container that responds to the `#[]` interface.
 
 ### Why use dry-auto_inject?
 
@@ -19,16 +19,15 @@ By using a container and dry-auto_inject, this process becomes easy. You don’t
 ### Usage example
 
 ```ruby
-# Set up a container (using dry-container here)
+# Set up a custom container
 class MyContainer
-  extend Dry::Container::Mixin
-
-  register "users_repository" do
-    UsersRepository.new
-  end
-
-  register "operations.create_user" do
-    CreateUser.new
+  def self.[](name)
+    case name
+    when "users_repository"
+      UsersRepository.new
+    when "operations.create_user"
+      CreateUser.new
+    end
   end
 end
 
