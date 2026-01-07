@@ -11,6 +11,8 @@ module Site
         attribute :version, Types::Nominal::String.optional
         attribute :version_scope, Types::Nominal::String
         attribute :deprecated, Types::Nominal::Bool
+        attribute :banner, Types::Nominal::String.optional
+        attribute :banner_type, Types::Nominal::String.optional
       end
     end
   end

@@ -79,6 +79,14 @@
       <%= render "doc_pages/breadcrumbs", breadcrumbs:, org:, version:, versions:, path_prefix: %>
     </div>
 
+    <% if guide.banner %>
+      <div class="content">
+        <div class="markdown-alert markdown-alert-<%= guide.banner_type %>">
+          <%= guide.banner_content %>
+        </div>
+      </div>
+    <% end %>
+
     <header
       data-pagefind-filter="project[data-project]"
       data-pagefind-meta="project[data-project]"
