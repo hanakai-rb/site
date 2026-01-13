@@ -31,6 +31,7 @@ guides:
     title: Dry Operation
   - slug: dry-rails
     title: Dry Rails
+    banner: "Before dry-rails hits 1.0.0 it should be considered as beta software. Various usage patterns should emerge as more people try it out, so please do so and provide feedback!"
   - slug: dry-schema
     title: Dry Schema
   - slug: dry-struct
@@ -42,9 +43,15 @@ guides:
   - slug: dry-container
     title: Dry Container
     deprecated: true
+    banner: "dry-container is deprecated. Check out [dry-system's container](/learn/dry/dry-system/v1.2/container) instead."
+    banner_type: warning
   - slug: dry-transaction
     title: Dry Transaction
     deprecated: true
+    banner: "dry-transaction is deprecated and has been superseded by [dry-operation](/learn/dry/dry-operation/v1.2/overview)."
+    banner_type: warning
   - slug: dry-view
     title: Dry View
     deprecated: true
+    banner: "Development of dry-view has ceased. Please switch to [hanami-view](/learn/hanami/view/v1.2/overview) for a compatible replacement."
+    banner_type: warning
