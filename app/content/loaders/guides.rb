@@ -11,6 +11,10 @@ module Site
           def initialize(deprecated: false, banner: nil, banner_type: "note", **attrs)
             super
           end
+
+          def grouping_key
+            (version_scope == "org") ? [org, version, slug] : [org, slug]
+          end
         end
 
         GUIDES_YML = "guides.yml"
@@ -22,7 +26,7 @@ module Site
         def call(root: GUIDES_PATH)
           root.glob("*").select(&:directory?)
             .flat_map { |org_path| load_guides_for_org(org_path) }
-            .group_by { |guide| [guide.org, guide.slug] }
+            .group_by(&:grouping_key)
             .each_with_index do |(org_slug, guide_versions), position|
               guide_versions.each do |guide|
                 relation.insert(**guide.to_h, position:)
