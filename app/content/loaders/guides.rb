@@ -7,7 +7,7 @@ module Site
     module Loaders
       # Loads guides from content/guides/ into the database.
       class Guides
-        GuideData = Data.define(:org, :slug, :title, :version, :version_scope, :deprecated, :banner, :banner_type) do
+        GuideData = Data.define(:org, :slug, :version, :version_scope, :position, :title, :deprecated, :banner, :banner_type) do
           def initialize(deprecated: false, banner: nil, banner_type: "note", **attrs)
             super
           end
@@ -22,12 +22,7 @@ module Site
         def call(root: GUIDES_PATH)
           root.glob("*").select(&:directory?)
             .flat_map { |org_path| load_guides_for_org(org_path) }
-            .group_by { |guide| [guide.org, guide.slug] }
-            .each_with_index do |(org_slug, guide_versions), position|
-              guide_versions.each do |guide|
-                relation.insert(**guide.to_h, position:)
-              end
-            end
+            .each { |guide| relation.insert(**guide.to_h) }
         end
 
         private
@@ -49,8 +44,8 @@ module Site
             next [] unless guides_yml.file?
 
             version = version_dir.basename.to_s
-            parse_guides_yml(guides_yml).map do |guide_attrs|
-              GuideData.new(org:, version:, version_scope: "org", **guide_attrs)
+            parse_guides_yml(guides_yml).map.with_index do |guide_attrs, position|
+              GuideData.new(org:, version:, version_scope: "org", position:, **guide_attrs)
             end
           end
         end
@@ -59,19 +54,19 @@ module Site
           guides_yml = org_path.join(GUIDES_YML)
           return [] unless guides_yml.file?
 
-          parse_guides_yml(guides_yml).flat_map do |guide_attrs|
+          parse_guides_yml(guides_yml).flat_map.with_index do |guide_attrs, position|
             guide_path = org_path.join(guide_attrs.fetch(SLUG_KEY))
             next [] unless guide_path.directory?
 
             guide_version_dirs = guide_path.glob("v*").select(&:directory?)
 
             if guide_version_dirs.none?
-              next [GuideData.new(org:, version: nil, version_scope: "none", **guide_attrs)]
+              next [GuideData.new(org:, version: nil, version_scope: "none", position:, **guide_attrs)]
             end
 
             guide_version_dirs.map do |version_dir|
               version = version_dir.basename.to_s
-              GuideData.new(org:, version:, version_scope: "self", **guide_attrs)
+              GuideData.new(org:, version:, version_scope: "self", position:, **guide_attrs)
             end
           end
         end
