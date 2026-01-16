@@ -1,0 +1,32 @@
+---
+title: Result matcher
+---
+
+dry-matcher provides a ready-to-use `ResultMatcher` for working with Result or Try monads from [Dry Monads](//doc/dry/dry-monads) or any other compatible gems.
+
+```ruby
+require "dry/monads"
+require "dry/matcher/result_matcher"
+
+value = Dry::Monads::Success("success!")
+
+result = Dry::Matcher::ResultMatcher.(value) do |m|
+  m.success(Integer) do |i|
+    "Got int: #{i}"
+  end
+
+  m.success do |v|
+    "Yay: #{v}"
+  end
+
+  m.failure :not_found do |_err, reason|
+    "Nope: #{reason}"
+  end
+
+  m.failure do |v|
+    "Boo: #{v}"
+  end
+end
+
+result # => "Yay: success!"
+```

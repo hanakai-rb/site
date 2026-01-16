@@ -7,8 +7,8 @@ pages:
 
 Predicate logic and rule composition used by:
 
-- [dry-types](https://github.com/dry-rb/dry-types) for constrained types
-- [dry-validation](https://github.com/dry-rb/dry-validation) for composing validation rules
+- [Dry Types](//doc/dry/dry-types) for constrained types
+- [Dry Validation](//doc/dry/dry-validation) for composing validation rules
 - your project...?
 
 ## Synopsis

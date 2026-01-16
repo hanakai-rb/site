@@ -23,6 +23,10 @@ guides:
     title: Dry Initializer
   - slug: dry-logger
     title: Dry Logger
+  - slug: dry-logic
+    title: Dry Logic
+  - slug: dry-matcher
+    title: Dry Matcher
   - slug: dry-monads
     title: Dry Monads
   - slug: dry-monitor
@@ -38,8 +42,12 @@ guides:
     title: Dry Struct
   - slug: dry-system
     title: Dry System
+  - slug: dry-transformer
+    title: Dry Transformer
   - slug: dry-types
     title: Dry Types
+  - slug: dry-validation
+    title: Dry Validation
   - slug: dry-container
     title: Dry Container
     deprecated: true
