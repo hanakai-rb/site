@@ -42,6 +42,8 @@ guides:
     title: Dry Struct
   - slug: dry-system
     title: Dry System
+  - slug: dry-transformer
+    title: Dry Transformer
   - slug: dry-types
     title: Dry Types
   - slug: dry-validation
