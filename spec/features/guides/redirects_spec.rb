@@ -1,17 +1,37 @@
 # frozen_string_literal: true
 
 RSpec.feature "Guides / Redirects" do
-  it "redirects versionless (root) guide URLs to the default version" do
-    visit "/learn/hanami/getting-started"
+  describe "org-versioned guides" do
+    it "redirects versionless (root) guide URLs to that guide in the latest version" do
+      visit "/learn/hanami/getting-started"
 
-    redirected_path = URI(current_url).path
-    expect(redirected_path).to eq "/learn/hanami/v2.3/getting-started"
+      expect(URI(current_url).path).to eq "/learn/hanami/v2.3/getting-started"
+    end
+
+    it "redirects versionless (deep) guide URLs to that guide and path in the latest version" do
+      visit "/learn/hanami/getting-started/building-a-web-app"
+
+      expect(URI(current_url).path).to eq "/learn/hanami/v2.3/getting-started/building-a-web-app"
+    end
+
+    it "redirects version-only org guide URLs to the first guide of the latest version" do
+      visit "/learn/hanami/v2.3"
+
+      expect(URI(current_url).path).to eq "/learn/hanami/v2.3/getting-started"
+    end
   end
 
-  it "redirects versionless (deep) guide URLs to the default version" do
-    visit "/learn/hanami/getting-started/building-a-web-app"
+  describe "self-versioned guides" do
+    it "redirects versionless (root) guide URLs to the guide at the latest version" do
+      visit "/learn/dry/dry-types"
 
-    redirected_path = URI(current_url).path
-    expect(redirected_path).to eq "/learn/hanami/v2.3/getting-started/building-a-web-app"
+      expect(URI(current_url).path).to eq "/learn/dry/dry-types/v1.8"
+    end
+
+    it "redirects versionless (deep) guide URLs to that guide and path at the latest version" do
+      visit "/learn/dry/dry-types/default-values"
+
+      expect(URI(current_url).path).to eq "/learn/dry/dry-types/v1.8/default-values"
+    end
   end
 end

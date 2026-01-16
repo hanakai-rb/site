@@ -10,7 +10,6 @@ module Site
 
     # Guides indexes
     get "/learn", to: "guides.index", as: :learn_index
-    get "/learn/:org/:version", to: "guides.org_index", as: :learn_org_index, **VERSION_OPTS
 
     # Org-versioned guides
     get "/learn/:org/:org_version/:slug", to: "guides.show", **VERSION_OPTS
@@ -19,6 +18,12 @@ module Site
     # Self-versioned guides
     get "/learn/:org/:slug/:guide_version", to: "guides.show", **VERSION_OPTS
     get "/learn/:org/:slug/:guide_version/*path", to: "guides.show", **VERSION_OPTS
+
+    # Version redirects (development convenience only)
+    unless Hanami.env == :production
+      get "/learn/:org", to: "guides.version_redirects"
+      get "/learn/:org/:org_version", to: "guides.version_redirects", **VERSION_OPTS
+    end
 
     # Unversioned guides
     get "/learn/:org/:slug", to: "guides.show"
