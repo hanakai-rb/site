@@ -36,8 +36,10 @@ Parklife.application.configure do |config|
   # the live Hanami app.
   config.nested_index = false
 
-  # Allow the build to proceed after encountering a 404
-  config.on_404 = :warn
+  # Skip writing 404 responses as static files.
+  #
+  # For the moment, this allows us to use versionless URLs that we know will redirect in production.
+  config.on_404 = :skip
 end
 
 Parklife.application.routes do
