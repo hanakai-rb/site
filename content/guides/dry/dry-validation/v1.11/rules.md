@@ -66,19 +66,19 @@ contract.call(start_date: Date.today, end_date: Date.today - 1).errors.to_h
 
 ### Key path syntax
 
-You can define key dependencies for rules using a *key path* syntax. Here's a list of supported key paths:
+You can define key dependencies for rules using a _key path_ syntax. Here's a list of supported key paths:
 
 - Using a hash: `rule(address: :city) do ...`
-- The same, but using *dot notation*: `rule("address.city") do ...`
+- The same, but using _dot notation_: `rule("address.city") do ...`
 - Specifying multiple nested keys using a hash: `rule(address: [:city, :street]) do ...`
 
 ### Key failures
 
 The only responsibility of a rule is to set a failure message when the validation didn't pass. In the previous examples, we used `key.failure` to manually set messages. Use this if you want to set a failure message that should be accessible under a specific key.
 
-When you use `key.failure` without any specific key arguments, it uses *the first key specified with the rule*:
+When you use `key.failure` without any specific key arguments, it uses _the first key specified with the rule_:
 
-``` ruby
+```ruby
 rule(:start_date) do
   key.failure('oops')
   # ^ is the equivalent of
@@ -86,9 +86,9 @@ rule(:start_date) do
 end
 ```
 
-You *do not have to use keys matching those specified with the rule*. For example, this is perfectly fine:
+You _do not have to use keys matching those specified with the rule_. For example, this is perfectly fine:
 
-``` ruby
+```ruby
 rule(:start_date) do
   key(:event_errors).failure('oops')
 end
@@ -98,7 +98,7 @@ end
 
 Unlike key failures, base failures are not associated with a specific key, instead they are associated with the whole input. To set a base failure, use the `base` method, which has the same API as `key`. For example:
 
-``` ruby
+```ruby
 class EventContract < Dry::Validation::Contract
   option :today, default: Date.method(:today)
 
@@ -119,14 +119,14 @@ contract = EventContract.new
 
 Now when you try to apply this contract during a weekend, you'll get a base error:
 
-``` ruby
+```ruby
 contract.call(start_date: Date.today+1, end_date: Date.today+2).errors.to_h
 # => {nil=>["creating events is allowed only on weekdays"]}
 ```
 
 Notice that the hash representation of errors includes a `nil` key to indicate the base errors. There's also a specific API for finding all base errors, if you prefer that:
 
-``` ruby
+```ruby
 contract.call(start_date: Date.today+1, end_date: Date.today+2).errors.filter(:base?).map(&:to_s)
 # => ["creating events is allowed only on weekdays"]
 ```
@@ -137,7 +137,7 @@ contract.call(start_date: Date.today+1, end_date: Date.today+2).errors.filter(:b
 
 For convenience, you can use `value` method to easily access the value under rule's default key. This works with all key specifications, including nested keys, and specifying a path to multiple values.
 
-``` ruby
+```ruby
 rule(:start_date) do
   value
   # returns values[:start_date]
@@ -160,7 +160,7 @@ When you're not sure if the value is actually available, you can use `key?` meth
 
 A common use case is when your rules depend on optional keys, here's an example:
 
-``` ruby
+```ruby
 class NewUserContract < Dry::Validation::Contract
   params do
     required(:email).value(:string)
@@ -260,7 +260,7 @@ PersonContract.new.call(email: 'bar', name: 'foo').errors.to_h
 
 If you want to check if any base rule error has already occured, you can use `base_rule_error?`.
 
-``` ruby
+```ruby
 class EventContract < Dry::Validation::Contract
   option :today, default: Date.method(:today)
 
@@ -275,7 +275,7 @@ class EventContract < Dry::Validation::Contract
     end
   end
 
-  rule do 
+  rule do
     base.failure('base failure added after checking') if base_rule_error?
   end
 end
@@ -336,7 +336,7 @@ To check each element of an array you can simply use `Rule#each` shortcut. It wo
 
 Here's a simple example:
 
-``` ruby
+```ruby
 class NewUserContract < Dry::Validation::Contract
   params do
     required(:email).value(:string)

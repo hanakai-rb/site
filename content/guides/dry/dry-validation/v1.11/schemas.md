@@ -8,7 +8,7 @@ Schemas are a crucial part of `dry-validation`, they pre-process the data before
 
 To define a schema that does not perform coercion, use the `schema` method:
 
-``` ruby
+```ruby
 class NewUserContract < Dry::Validation::Contract
   schema do
     required(:email).value(:string)
@@ -19,7 +19,7 @@ end
 
 Now when a contract is applied, it will check the structure and types of the input:
 
-``` ruby
+```ruby
 contract = NewUserContract.new
 
 result = contract.call(unexpected: :reality, age: 21)
@@ -36,7 +36,7 @@ result.errors.to_h
 
 To define a schema suitable for validating HTTP parameters, use the `params` method:
 
-``` ruby
+```ruby
 class NewUserContract < Dry::Validation::Contract
   params do
     required(:email).value(:string)
@@ -47,7 +47,7 @@ end
 
 The major difference between `params` and the plain `schema` is that `params` will perform params-specific coercions before applying the contract's rules. For example, it will coerce strings into integers:
 
-``` ruby
+```ruby
 result = contract.call('email' => 'jane@doe.org', 'age' => '21')
 # => #<Dry::Validation::Result{:email=>"jane@doe.org", :age=>21} errors={}>
 
@@ -59,7 +59,7 @@ result.to_h
 
 You can also use `json` to define a schema suitable for validating JSON data:
 
-``` ruby
+```ruby
 class NewUserContract < Dry::Validation::Contract
   json do
     required(:email).value(:string)
@@ -70,7 +70,7 @@ end
 
 The coercion logic is different to `params`. For example, since JSON natively supports integers, it will not coerce them from strings:
 
-``` ruby
+```ruby
 result = contract.call('email' => 'jane@doe.org', 'age' => '21')
 # => #<Dry::Validation::Result{:email=>"jane@doe.org", :age=>"21"} errors={:age=>["must be an integer"]}>
 
@@ -85,7 +85,7 @@ result.to_h
 
 You can re-use an existing schema, or even multiple schemas, by simply passing them to schema definition method. All schema types support this feature.
 
-``` ruby
+```ruby
 require "dry/validation"
 
 AddressSchema = Dry::Schema.Params do
@@ -95,14 +95,14 @@ AddressSchema = Dry::Schema.Params do
 end
 
 ContactSchema = Dry::Schema.Params do
-  required(:email).value(:string) 
+  required(:email).value(:string)
   required(:mobile).value(:string)
 end
 
 class NewUserContract < Dry::Validation::Contract
   params(AddressSchema, ContactSchema) do
     required(:name).value(:string)
-    required(:age).value(:integer) 
+    required(:age).value(:integer)
   end
 end
 
@@ -116,7 +116,7 @@ contract.(name: "Jane", age: "31", email: "jane@doe.org", country: "foo")
 
 ### Using custom types
 
-When you define a schema using `params` or `json`, the coercion logic is handled by type objects that are resolved from the type specifications within  the schema. For example, when you use `params` and define the type to be an `:integer`, then the resolved type will be `Dry::Schema::Types::Params::Integer`. This is just a convenience to make schema definition more concise.
+When you define a schema using `params` or `json`, the coercion logic is handled by type objects that are resolved from the type specifications within the schema. For example, when you use `params` and define the type to be an `:integer`, then the resolved type will be `Dry::Schema::Types::Params::Integer`. This is just a convenience to make schema definition more concise.
 
 If you want to use **custom types**, you can **pass them explicitly** when defining your schema:
 

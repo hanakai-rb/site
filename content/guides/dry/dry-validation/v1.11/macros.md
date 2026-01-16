@@ -10,7 +10,7 @@ Macros are a simple way of streamlining rule definitions. Whenever you find your
 
 To define a global macro you can use `Dry::Validation.register_macro` API. Here's a simple example where we define a macro that checks format of a string:
 
-``` ruby
+```ruby
 Dry::Validation.register_macro(:email_format) do
   unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)
     key.failure('not a valid email format')
@@ -22,7 +22,7 @@ end
 
 Unlike global macros, contract macros are only available to the class and its descendants. To define a contract class macro you can use `Dry::Validation::Contract.register_macro`. Here's the same example like above but we'll define a class macro:
 
-``` ruby
+```ruby
 class ApplicationContract < Dry::Validation::Contract
   register_macro(:email_format) do
     unless /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(value)

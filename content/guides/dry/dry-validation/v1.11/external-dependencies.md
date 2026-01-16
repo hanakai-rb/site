@@ -24,7 +24,7 @@ end
 
 Now we can instantiate the contract and pass `address_validator` as a dependency:
 
-``` ruby
+```ruby
 new_user_contract = NewUserContract.new(address_validator: your_address_validator)
 
 new_user_contract.call(address: "Some Street 15/412")

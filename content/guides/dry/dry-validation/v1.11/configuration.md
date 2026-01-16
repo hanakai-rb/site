@@ -8,7 +8,7 @@ Contract classes can be configured using their `config` object. You'll usually w
 
 Use `Contract.config` to access configuration and set its values:
 
-``` ruby
+```ruby
 class ApplicationContract < Dry::Validation::Contract
   config.messages.default_locale = :pl
 end
@@ -16,7 +16,7 @@ end
 
 Now any class that inherits from `ApplicationContract` will have the same configuration:
 
-``` ruby
+```ruby
 class UserContract < ApplicationContract
 end
 
@@ -43,12 +43,12 @@ Let's say you want to configure a contract class to load messages from a custom 
 en:
   my_app:
     errors:
-      taken: 'is already taken'
+      taken: "is already taken"
 ```
 
 If you want your contract classes to use `my_app` as your own top-level namespace and pull in custom messages, use the following configuration:
 
-``` ruby
+```ruby
 class ApplicationContract < Dry::Validation::Contract
   config.messages.top_namespace = 'my_app'
   config.messages.load_paths << 'config/errors.yml'

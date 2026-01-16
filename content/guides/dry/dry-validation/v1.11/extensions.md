@@ -16,7 +16,7 @@ Dry::Validation.load_extensions(:monads)
 
 After loading the extension, you can leverage monad API:
 
-``` ruby
+```ruby
 class MyContract < Dry::Validation::Contract
   params do
     required(:name).filled(:string)
@@ -60,7 +60,7 @@ AgeContract.new.(age: 17).errors.first.text
 
 ### Hints
 
-The hints extension is implemented in [Dry Schema](//doc/dry/dry-schema/extensions/hints). This extension enables hints in Contracts.  
+The hints extension is implemented in [Dry Schema](//doc/dry/dry-schema/extensions/hints). This extension enables hints in Contracts.
 
 To enable the extension:
 

@@ -62,7 +62,7 @@ en:
     errors:
       rules:
         age:
-          invalid: 'must be greater than 18'
+          invalid: "must be greater than 18"
 ```
 
 Provided we [configure our contract to use a custom messages file](//page/configuration#example), we can now write this:
