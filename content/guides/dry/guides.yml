@@ -23,6 +23,8 @@ guides:
     title: Dry Initializer
   - slug: dry-logger
     title: Dry Logger
+  - slug: dry-logic
+    title: Dry Logic
   - slug: dry-monads
     title: Dry Monads
   - slug: dry-monitor
