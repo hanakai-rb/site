@@ -25,6 +25,8 @@ guides:
     title: Dry Logger
   - slug: dry-logic
     title: Dry Logic
+  - slug: dry-matcher
+    title: Dry Matcher
   - slug: dry-monads
     title: Dry Monads
   - slug: dry-monitor
