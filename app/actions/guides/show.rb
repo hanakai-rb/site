@@ -35,12 +35,12 @@ module Site
           version = params[:org_version] || params[:guide_version]
           return unless version.nil?
 
-          guide = guide_repo.with_latest_version(org: params[:org], slug: params[:slug])
-          return unless guide
+          # Look for a versioned copy of this guide. If it exists, we can redirect to the latest.
+          latest_guide = guide_repo.with_latest_version(org: params[:org], slug: params[:slug])
+          return unless latest_guide
 
-          redirect_url = guide.url_path
+          redirect_url = latest_guide.url_path
           redirect_url += "/#{params[:path]}" unless params[:path].to_s.empty?
-
           redirect_url
         end
       end
