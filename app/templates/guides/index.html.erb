@@ -123,8 +123,8 @@
             <%= render "doc_pages/version_select",
                       id: "hanami-version-select",
                       testid: nil,
-                      version: versions.fetch("hanami").first,
-                      other_versions: versions.fetch("hanami"),
+                      version: hanami_version_links.keys.first,
+                      version_links: hanami_version_links,
                       path_prefix: "/learn/hanami",
                       anchor: "left" %>
           </div>
@@ -197,9 +197,9 @@
             <%= render "doc_pages/version_select",
                       id: "rom-version-select",
                       testid: nil,
-                      version: versions.fetch("rom").first,
-                      other_versions: versions.fetch("rom"),
+                      version: rom_version_links.keys.first,
                       path_prefix: "/learn/rom",
+                      version_links: rom_version_links,
                       anchor: "left" %>
           </div>
         </div>

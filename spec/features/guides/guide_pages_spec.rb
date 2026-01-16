@@ -139,4 +139,33 @@ RSpec.feature "Guides / Guide pages" do
     previous_link = page.find('[aria-label="Go to previous guide"]')
     expect(previous_link[:href]).to eq("/learn/hanami/v2.0/app/providers")
   end
+
+  it "links to the same guide page in the version selector when switching versions" do
+    visit "/learn/hanami/v2.2/actions/parameters"
+
+    within "[aria-label=Breadcrumb]" do
+      find("button", text: "v2.2").click
+      expect(find("a", text: "v2.0")[:href]).to eq("/learn/hanami/v2.0/actions/parameters")
+    end
+  end
+
+  it "links to the guide index in version selector when guide exists but page doesn't" do
+    # The rendering-views page exists in v2.2 but not in v2.0
+    visit "/learn/hanami/v2.2/actions/rendering-views"
+
+    within "[aria-label=Breadcrumb]" do
+      find("button", text: "v2.2").click
+      expect(find("a", text: "v2.0")[:href]).to eq("/learn/hanami/v2.0/actions")
+    end
+  end
+
+  it "links to the first guide page in version selector when current guide doesn't exist in that version" do
+    # The database guide exists in v2.2 but not in v2.0
+    visit "/learn/hanami/v2.2/database"
+
+    within "[aria-label=Breadcrumb]" do
+      find("button", text: "v2.2").click
+      expect(find("a", text: "v2.0")[:href]).to eq("/learn/hanami/v2.0/getting-started")
+    end
+  end
 end

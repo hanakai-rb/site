@@ -1,5 +1,5 @@
 <div class="relative font-mono text-xs" data-testid="<%= testid %>">
-  <% if (other_versions - [version]).any? %>
+  <% if (version_links.keys - [version]).any? %>
     <button
       class="
         inline-flex gap-1 items-center bg-primary rounded-lg px-2 py-1 text-primary-reversed
@@ -31,7 +31,7 @@
         end %>
       "
     >
-      <% other_versions.each do |other_version| %>
+      <% version_links.each do |other_version, url| %>
         <% active = other_version === version
       base_classes =
         "transition-colors duration-150 flex items-center gap-2 justify-between"
@@ -40,7 +40,7 @@
 
         <a
           class="<%= base_classes %> <%= active ? active_classes : inactive_classes %>"
-          href="<%= "#{path_prefix}/#{other_version}" %>"
+          href="<%= url %>"
         >
           <%= other_version %>
 

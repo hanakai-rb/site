@@ -3,8 +3,12 @@
 module Site
   module Repos
     class GuideRepo < Site::DB::Repo
-      def find(org:, version:, slug:)
+      def get(org:, version:, slug:)
         guides.where(org:, version:, slug:).one!
+      end
+
+      def find_by(org:, version:, slug:)
+        guides.where(org:, version:, slug:).one
       end
 
       def all
