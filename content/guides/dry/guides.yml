@@ -40,6 +40,8 @@ guides:
     title: Dry System
   - slug: dry-types
     title: Dry Types
+  - slug: dry-validation
+    title: Dry Validation
   - slug: dry-container
     title: Dry Container
     deprecated: true
