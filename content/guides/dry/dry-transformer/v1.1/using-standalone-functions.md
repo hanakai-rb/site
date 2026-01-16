@@ -4,7 +4,7 @@ title: Using standalone functions
 
 You can use Dry Transformer and its function registry feature stand-alone, without the need to define transformation classes. To do so, simply define a module and extend it with the registry API:
 
-``` ruby
+```ruby
 require 'json'
 require 'dry/transformer/all'
 
