@@ -25,9 +25,6 @@ Parklife::Utils.class_eval do
   end
 end
 
-# Patch Parklife crawler to handle errors gracefully
-require "parklife/crawler"
-
 Parklife.application.configure do |config|
   config.app = Site::App
 
