@@ -2,6 +2,7 @@
 title: Introduction
 pages:
   - cache
+  - container
   - constants
   - classes:
       - class-attributes
@@ -16,6 +17,7 @@ pages:
 ## Features
 
 - [Cache](//page/cache) - allows you to cache call results that are solely determined by arguments.
+- [Container](//page/container)
 - [Class Attributes](//page/classes/class-attributes)
 - [Class Builder](//page/classes/class-builder)
 - [Constants](//page/constants) - a list of constants you can use to avoid memory allocations or identity checks.
