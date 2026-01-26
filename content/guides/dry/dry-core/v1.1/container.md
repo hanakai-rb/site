@@ -4,14 +4,6 @@ title: Container
 
 `Dry::Core::Container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//org_guide/dry/dry-auto_inject). It used to be a separate gem ([Dry Container](//org_guide/dry/dry_container)) and it powers containers in [Dry System](/learn/dry/dry-system/v1.2/container).
 
-## What are containers and dependency injection?
-
-At its most basic, dependency injection is a simple technique that makes it possible to implement patterns or principles of code design that rely on object composition, such as the [SOLID principles](https://en.wikipedia.org/wiki/SOLID). By being passed its dependencies instead of instantiating them itself, your code can be written to depend on abstractions, with implementations that can vary independently, potentially at runtime or for specific use-cases, such as injecting a double instead of an expensive web service call when running tests. A container offers two main improvements to basic dependency injection: it takes the work out of manually instantiating and composing trees of dependencies, and it makes it trivial to swap out one implementation of a dependency for another.
-
-Note that dependency _injection_, dependency _inversion_, and _inversion of control_ are related, but distinct, concepts that are often confused or conflated. [**Inversion of control**](https://en.wikipedia.org/wiki/Inversion_of_control) is an architectural pattern by which a low-level _system_ passes control to higher-level application code, as opposed to the classical pattern, where higher-level code calls directly into a lower-level dependency. **Dependency inversion** is a principle that encourages thoughtfully designing the interfaces that your classes depend on, instead of tightly coupling to an _external_ dependency's interface. This shouldn't imply that the external dependency itself changes in any way; instead it encourages the use of bridge, facade, or adapter classes to implement the interface that you designed using the third party dependency's public interface. **Dependency injection**, finally, is the practical technique of providing an object with its dependencies, instead of hard-coding them.
-
-`Dry::Core::Container` makes it much easier than with so-called "idiomatic" Ruby to make use of any one or all three of these, as desired.
-
 ### Brief Example
 
 ```ruby
@@ -25,6 +17,14 @@ parrot.call("Hello World")
 # Hello World
 # => nil
 ```
+
+## What are containers and dependency injection?
+
+At its most basic, dependency injection is a simple technique that makes it possible to implement patterns or principles of code design that rely on object composition, such as the [SOLID principles](https://en.wikipedia.org/wiki/SOLID). By being passed its dependencies instead of instantiating them itself, your code can be written to depend on abstractions, with implementations that can vary independently, potentially at runtime or for specific use-cases, such as injecting a double instead of an expensive web service call when running tests. A container offers two main improvements to basic dependency injection: it takes the work out of manually instantiating and composing trees of dependencies, and it makes it trivial to swap out one implementation of a dependency for another.
+
+Note that dependency _injection_, dependency _inversion_, and _inversion of control_ are related, but distinct, concepts that are often confused or conflated. [**Inversion of control**](https://en.wikipedia.org/wiki/Inversion_of_control) is an architectural pattern by which a low-level _system_ passes control to higher-level application code, as opposed to the classical pattern, where higher-level code calls directly into a lower-level dependency. **Dependency inversion** is a principle that encourages thoughtfully designing the interfaces that your classes depend on, instead of tightly coupling to an _external_ dependency's interface. This shouldn't imply that the external dependency itself changes in any way; instead it encourages the use of bridge, facade, or adapter classes to implement the interface that you designed using the third party dependency's public interface. **Dependency injection**, finally, is the practical technique of providing an object with its dependencies, instead of hard-coding them.
+
+`Dry::Core::Container` makes it much easier than with so-called "idiomatic" Ruby to make use of any one or all three of these, as desired.
 
 ### Detailed Example
 
@@ -100,7 +100,7 @@ end
 # => []
 ```
 
-### Mixin
+## Mixin
 
 You can also get container behaviour at both the class and instance level via the mixin:
 
@@ -197,9 +197,7 @@ end
 
 This allows you to customise the behaviour of `Dry::Core::Container`. For example, the default registry (`Dry::Core::Container::Registry`) will raise a `Dry::Core::Container::Error` exception if you try to register under a key that is already used. Should you want to just overwrite the existing value in that scenario, configuration allows you to do so.
 
-## Testing
-
-### Stub
+## Stubbing in tests
 
 To stub your containers call `#stub` method:
 
