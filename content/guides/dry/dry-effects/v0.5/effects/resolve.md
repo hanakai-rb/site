@@ -66,9 +66,9 @@ use ProviderMiddleware, user_repo: UserRepo.new
 run Application.new
 ```
 
-### Compatibility with `Dry::Core::Container`
+### Compatibility with `Dry::Core::Container` and Dry System
 
-Any object that responds to `.key?` and `.[]` can be used for providing dependencies. Thus, the default Resolve provider is compatible with Dry Core out of the box.
+Any object that responds to `.key?` and `.[]` can be used for providing dependencies. Thus, the default Resolve provider is compatible with `Dry::Core::Container` and Dry System out of the box.
 
 ```ruby
 def call(env)

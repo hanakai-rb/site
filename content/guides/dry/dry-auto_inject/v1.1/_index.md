@@ -8,7 +8,7 @@ pages:
 
 dry-auto_inject provides low-impact dependency injection and resolution support for your classes.
 
-It’s designed to work with a container that holds your application’s dependencies. It is already integrated with [`Dry::Core::Container`](/learn/dry/dry-core/v1.1/container), but supports any container that responds to the `#[]` interface.
+It’s designed to work with a container that holds your application’s dependencies. It works well with [`Dry::Core::Container`](//org_guide/dry/dry-core/container), but supports any container that responds to the `#[]` interface. [Dry System's containers](//org_guide/dry/dry-system/container) are already integrated with dry-auto_inject.
 
 ### Why use dry-auto_inject?
 
