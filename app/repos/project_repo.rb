@@ -7,21 +7,21 @@ module Site
       PROJECTS_PATH = App.root.join("config/projects.yaml")
 
       def dry_projects
-        dataset[:dry_projects].map { Structs::Project.new(it) }
+        dataset.select { it.org == :dry }
       end
 
       def hanami_projects
-        dataset[:hanami_projects].map { Structs::Project.new(it) }
+        dataset.select { it.org == :hanami }
       end
 
       def rom_projects
-        dataset[:rom_projects].map { Structs::Project.new(it) }
+        dataset.select { it.org == :rom }
       end
 
       private
 
       def dataset
-        @dataset ||= YAML.load_file(PROJECTS_PATH, symbolize_names: true)
+        @dataset ||= YAML.load_file(PROJECTS_PATH, symbolize_names: true).map { Structs::Project.new(repo: it) }
       end
     end
   end

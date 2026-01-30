@@ -5,14 +5,22 @@ module Site
     # This struct represents a Hanakai software project
     class Project < Dry::Struct
       attribute :repo, Types::String
-      attribute :show_doc_coverage, Types::Bool.default(true)
-      attribute :show_ci, Types::Bool.default(true)
-
-      alias_method :show_doc_coverage?, :show_doc_coverage
-      alias_method :show_ci?, :show_ci
 
       def label
         @label ||= repo.split("/").last
+      end
+
+      def org
+        @org ||= case repo.split("/").first
+        in "dry-rb"
+          :dry
+        in "hanami"
+          :hanami
+        in "rom-rb"
+          :rom
+        else
+          nil
+        end
       end
 
       def github_url
@@ -33,14 +41,6 @@ module Site
 
       def prs_badge_image_url
         "https://img.shields.io/github/issues-pr/#{repo}.svg"
-      end
-
-      def docs_coverage_badge_url
-        "https://inch-ci.org/github/#{repo}.svg"
-      end
-
-      def docs_coverage_badge_image_url
-        "https://inch-ci.org/github/#{repo}.svg"
       end
 
       def version_badge_url

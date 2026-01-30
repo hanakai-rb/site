@@ -21,7 +21,6 @@
   --hk-color-text-primary: var(--color-sky-500);
   --hk-color-text-secondary-reversed: var(--color-white);
   --hk-color-text-secondary: var(--color-hanakai-500);
-  --hk-color-bg-accent: var(--color-hanakai-50);
 }
 
 .theme-hanami-light {
@@ -33,7 +32,7 @@
   --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
-  --hk-color-b-primary: var(--color-hanami-600);
+  --hk-color-b-primary: var(--color-hanami-500);
   --hk-color-b-secondary-reversed: var(--color-white);
   --hk-color-b-secondary: var(--color-sky-500);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-500);
@@ -46,7 +45,6 @@
   --hk-color-text-primary: var(--color-hanami-500);
   --hk-color-text-secondary-reversed: var(--color-white);
   --hk-color-text-secondary: var(--color-sky-500);
-  --hk-color-bg-accent: var(--color-hanami-50);
 }
 
 .theme-dry-light {
@@ -58,7 +56,7 @@
   --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
-  --hk-color-b-primary: var(--color-dry-600);
+  --hk-color-b-primary: var(--color-dry-500);
   --hk-color-b-secondary-reversed: var(--color-white);
   --hk-color-b-secondary: var(--color-sky-500);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-500);
@@ -70,7 +68,6 @@
   --hk-color-text-primary: var(--color-dry-500);
   --hk-color-text-secondary-reversed: var(--color-white);
   --hk-color-text-secondary: var(--color-sky-500);
-  --hk-color-bg-accent: var(--color-dry-50);
 }
 
 .theme-rom-light {
@@ -82,7 +79,7 @@
   --hk-color-bg-secondary-subtle: oklch(from var(--color-sky-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
-  --hk-color-b-primary: var(--color-rom-600);
+  --hk-color-b-primary: var(--color-rom-500);
   --hk-color-b-secondary-reversed: var(--color-white);
   --hk-color-b-secondary: var(--color-sky-500);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-500);
@@ -94,7 +91,6 @@
   --hk-color-text-primary: var(--color-rom-500);
   --hk-color-text-secondary-reversed: var(--color-white);
   --hk-color-text-secondary: var(--color-sky-500);
-  --hk-color-bg-accent: var(--color-rom-50);
 }
 
 .bg-neutral {
