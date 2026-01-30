@@ -8,6 +8,16 @@ module Site
       def call
         redirects = []
 
+        legacy_redirects_file = Hanami.app.root.join("config", "legacy_redirects.txt")
+        if File.exist?(legacy_redirects_file)
+          legacy_content = File.read(legacy_redirects_file)
+          legacy_redirects = legacy_content.lines
+            .map(&:strip)
+            .reject { |line| line.empty? || line.start_with?("#") }
+
+          redirects.concat(legacy_redirects)
+        end
+
         # Redirect version-only URLs to the first guide at that version
         versioned_orgs = DEFAULT_GUIDE_VERSIONS.select { |_, version| version }.keys
         versioned_orgs.each do |org|
