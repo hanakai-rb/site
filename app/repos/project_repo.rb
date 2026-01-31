@@ -4,7 +4,7 @@ module Site
   module Repos
     # This repository provides data about Hanakai software projects
     class ProjectRepo
-      PROJECTS_PATH = App.root.join("config/projects.yaml")
+      PROJECTS_PATH = App.root.join("content/projects.yaml")
 
       def dry_projects
         dataset.select { it.org == :dry }
