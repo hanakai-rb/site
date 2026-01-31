@@ -21,7 +21,9 @@ module Site
       private
 
       def dataset
-        @dataset ||= YAML.load_file(PROJECTS_PATH, symbolize_names: true).map { Structs::Project.new(repo: it) }
+        @dataset ||= YAML
+          .load_file(PROJECTS_PATH, symbolize_names: true)
+          .map { Structs::Project.new(repo: it) }
       end
     end
   end
