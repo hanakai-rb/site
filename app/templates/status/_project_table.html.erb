@@ -6,8 +6,6 @@
       <th scope="col">Project</th>
       <th scope="col">Version</th>
       <th scope="col">Build status</th>
-      <th scope="col">Issues</th>
-      <th scope="col">Pull requests</th>
     </tr>
   </thead>
 
@@ -27,18 +25,6 @@
         <td>
           <a href="<%= project.ci_badge_url %>">
             <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status" %>
-          </a>
-        </td>
-
-        <td>
-          <a href="<%= project.issues_badge_url %>">
-            <%= image_tag project.issues_badge_image_url, alt: "#{project.label} issues" %>
-          </a>
-        </td>
-
-        <td>
-          <a href="<%= project.prs_badge_url %>">
-            <%= image_tag project.prs_badge_image_url, alt: "#{project.label} pull requests" %>
           </a>
         </td>
       </tr>
