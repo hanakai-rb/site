@@ -12,9 +12,7 @@
   <tbody>
     <% projects.each do |project| %>
       <tr>
-        <td>
-          <a href="<%= project.github_url %>"><%= project.label %></a>
-        </td>
+        <td><a href="<%= project.github_url %>"><%= project.label %></a></td>
 
         <td>
           <a href="<%= project.version_badge_url %>">
