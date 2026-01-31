@@ -5,6 +5,7 @@ module Site
     # This struct represents a Hanakai software project
     class Project < Dry::Struct
       attribute :repo, Types::String
+      attribute? :ci, Types::Bool.default(true)
 
       def label
         @label ||= repo.split("/").last
@@ -51,11 +52,17 @@ module Site
         "https://badge.fury.io/rb/#{label}.svg"
       end
 
+      def ci? = ci
+
       def ci_badge_url
+        return unless ci?
+
         "https://github.com/#{repo}/actions?query=workflow%3Aci+branch%3Amain"
       end
 
       def ci_badge_image_url
+        return unless ci?
+
         "https://github.com/#{repo}/actions/workflows/ci.yml/badge.svg"
       end
     end

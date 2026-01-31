@@ -23,9 +23,11 @@
         </td>
 
         <td>
-          <a href="<%= project.ci_badge_url %>">
-            <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status" %>
-          </a>
+          <% if project.ci? %>
+            <a href="<%= project.ci_badge_url %>">
+              <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status" %>
+            </a>
+          <% end %>
         </td>
       </tr>
     <% end %>

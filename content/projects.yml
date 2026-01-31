@@ -1,60 +1,72 @@
 ---
-- dry-rb/dry-auto_inject
-- dry-rb/dry-cli
-- dry-rb/dry-configurable
-- dry-rb/dry-container
-- dry-rb/dry-core
-- dry-rb/dry-effects
-- dry-rb/dry-equalizer
-- dry-rb/dry-events
-- dry-rb/dry-files
-- dry-rb/dry-inflector
-- dry-rb/dry-initializer
-- dry-rb/dry-logger
-- dry-rb/dry-logic
-- dry-rb/dry-matcher
-- dry-rb/dry-monads
-- dry-rb/dry-monitor
-- dry-rb/dry-operation
-- dry-rb/dry-rails
-- dry-rb/dry-schema
-- dry-rb/dry-struct
-- dry-rb/dry-system
-- dry-rb/dry-transaction
-- dry-rb/dry-transformer
-- dry-rb/dry-types
-- dry-rb/dry-validation
-- dry-rb/dry-view
-- hanami/hanami
-- hanami/hanami-api
-- hanami/hanami-assets
-- hanami/hanami-cli
-- hanami/hanami-controller
-- hanami/hanami-db
-- hanami/hanami-mailer
-- hanami/hanami-router
-- hanami/hanami-reloader
-- hanami/hanami-rspec
-- hanami/hanami-utils
-- hanami/hanami-validations
-- hanami/hanami-view
-- hanami/hanami-webconsole
-- rom-rb/rom
-- rom-rb/rom-cassandra
-- rom-rb/rom-couchdb
-- rom-rb/rom-csv
-- rom-rb/rom-elasticsearch
-- rom-rb/rom-event_store
-- rom-rb/rom-factory
-- rom-rb/rom-git
-- rom-rb/rom-http
-- rom-rb/rom-influxdb
-- rom-rb/rom-json
-- rom-rb/rom-kafka
-- rom-rb/rom-mongo
-- rom-rb/rom-neo4j
-- rom-rb/rom-rails
-- rom-rb/rom-rethinkdb
-- rom-rb/rom-sql
-- rom-rb/rom-yaml
-- rom-rb/rom-yesql
+- repo: dry-rb/dry-auto_inject
+- repo: dry-rb/dry-cli
+- repo: dry-rb/dry-configurable
+- repo: dry-rb/dry-container
+- repo: dry-rb/dry-core
+- repo: dry-rb/dry-effects
+- repo: dry-rb/dry-equalizer
+- repo: dry-rb/dry-events
+- repo: dry-rb/dry-files
+- repo: dry-rb/dry-inflector
+- repo: dry-rb/dry-initializer
+- repo: dry-rb/dry-logger
+- repo: dry-rb/dry-logic
+- repo: dry-rb/dry-matcher
+- repo: dry-rb/dry-monads
+- repo: dry-rb/dry-monitor
+- repo: dry-rb/dry-operation
+- repo: dry-rb/dry-rails
+- repo: dry-rb/dry-schema
+- repo: dry-rb/dry-struct
+- repo: dry-rb/dry-system
+- repo: dry-rb/dry-transaction
+- repo: dry-rb/dry-transformer
+- repo: dry-rb/dry-types
+- repo: dry-rb/dry-validation
+- repo: dry-rb/dry-view
+- repo: hanami/hanami
+- repo: hanami/hanami-api
+- repo: hanami/hanami-assets
+- repo: hanami/hanami-cli
+- repo: hanami/hanami-controller
+- repo: hanami/hanami-db
+- repo: hanami/hanami-mailer
+- repo: hanami/hanami-router
+- repo: hanami/hanami-reloader
+- repo: hanami/hanami-rspec
+- repo: hanami/hanami-utils
+- repo: hanami/hanami-validations
+- repo: hanami/hanami-view
+- repo: hanami/hanami-webconsole
+- repo: rom-rb/rom
+- repo: rom-rb/rom-cassandra
+  ci: false
+- repo: rom-rb/rom-couchdb
+  ci: false
+- repo: rom-rb/rom-csv
+  ci: false
+- repo: rom-rb/rom-elasticsearch
+- repo: rom-rb/rom-event_store
+  ci: false
+- repo: rom-rb/rom-factory
+- repo: rom-rb/rom-git
+  ci: false
+- repo: rom-rb/rom-http
+- repo: rom-rb/rom-influxdb
+  ci: false
+- repo: rom-rb/rom-json
+  ci: false
+- repo: rom-rb/rom-kafka
+  ci: false
+- repo: rom-rb/rom-mongo
+  ci: false
+- repo: rom-rb/rom-neo4j
+  ci: false
+- repo: rom-rb/rom-rails
+- repo: rom-rb/rom-rethinkdb
+  ci: false
+- repo: rom-rb/rom-sql
+- repo: rom-rb/rom-yaml
+  ci: false
+- repo: rom-rb/rom-yesql
