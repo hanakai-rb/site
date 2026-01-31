@@ -1,0 +1,33 @@
+<table>
+  <caption><%= caption %></caption>
+
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">Version</th>
+      <th scope="col">Build status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% projects.each do |project| %>
+      <tr>
+        <td><a href="<%= project.github_url %>"><%= project.label %></a></td>
+
+        <td>
+          <a href="<%= project.version_badge_url %>">
+            <%= image_tag project.version_badge_image_url, alt: "#{project.label} on rubygems" %>
+          </a>
+        </td>
+
+        <td>
+          <% if project.ci? %>
+            <a href="<%= project.ci_badge_url %>">
+              <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status" %>
+            </a>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

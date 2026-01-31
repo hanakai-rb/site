@@ -22,6 +22,7 @@ module Site
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: []),
         NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
+        NavItem.new(label: "Status", url: "/status", selected: path == "/status", children: []),
         NavItem.new(label: "Sponsor", url: "/sponsor", selected: path == "/sponsor", children: [])
       ]
     end
