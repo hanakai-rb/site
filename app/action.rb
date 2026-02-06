@@ -14,5 +14,7 @@ module Site
 
     handle_exception NotFoundError => 404
     handle_exception ROM::TupleCountMismatchError => 404
+
+    config.formats.accept :html
   end
 end
