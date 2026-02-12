@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/benpickles/parklife.git
-  revision: cf0b3e548a0730b2eab277478870d677d66c01d8
-  branch: build-object
+  revision: fe7f3d36663ffc5330023c30f694598eacc1b333
+  ref: fe7f3d3
   specs:
     parklife (0.8.1)
       nokogiri
