@@ -6,9 +6,9 @@ title: Basic usage
 
 You need only one thing before you can use dry-auto_inject: a container to hold your application’s dependencies. These are commonly known as “inversion of control” containers.
 
-In Dry ecosystem, you can use [`Dry::Core::Container`](/learn/dry/dry-core/v1.1/container), but any object that the container responds to the `#[]` interface. For example, `my_container["users_repository"]` should return the “users_repository” object registered with the container.
+In the Dry ecosystem, you can use [`Dry::Core::Container`](/learn/dry/dry-core/v1.1/container), but any object that the container responds to the `#[]` interface. For example, `my_container["users_repository"]` should return the “users_repository” object registered with the container.
 
-You may also check [Dry System's containers](//org_guide/dry/dry-system/container) which are already integrated with dry-auto_inject.
+You may also check [Dry System's containers](//org_guide/dry/dry-system/container), which are already integrated with dry-auto_inject.
 
 ### Creating an injector
 
