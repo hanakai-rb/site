@@ -10,9 +10,9 @@ This helps to implement complex nested logic.
 
 Arguments and options can be defined for parent both commands and child commands.
 
-^INFO
-If you call a command with an argument equal to the name of the subcommand, it will call the subcommand instead of the parent command.
-^
+> [!NOTE]
+> If you call a command with an argument equal to the name of the subcommand, it will call the subcommand instead of the parent command.
+
 ```ruby
 #!/usr/bin/env ruby
 require "bundler/setup"
@@ -83,4 +83,3 @@ $ foo account long
 $ foo account users
 # Information about account users.
 ```
-
