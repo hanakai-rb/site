@@ -54,4 +54,3 @@ $ foo greet
 ERROR: "foo greet" was called with no arguments
 Usage: "foo greet NAME"
 ```
-

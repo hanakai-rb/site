@@ -305,6 +305,7 @@ $ foo --version
 ### Subcommand aliases
 
 Work similarly to command aliases
+
 ```sh
 $ foo g config
 generated configuration for apps: []

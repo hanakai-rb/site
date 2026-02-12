@@ -42,4 +42,3 @@ ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]
 
 The user separates via `--` the arguments for `foo` and the command has to be run by the Docker container.
 In this specific case, `ruby:latest` corresponds to the `image` mandatory argument for `foo`, whereas `ruby -v` is the variadic argument that is passed to Docker via `args`.
-

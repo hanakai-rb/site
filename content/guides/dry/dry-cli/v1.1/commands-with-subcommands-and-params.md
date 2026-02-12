@@ -49,6 +49,7 @@ end
 
 Dry::CLI.new(Foo::CLI::Commands).call
 ```
+
 ```
 $ foo account -h
 Command:
@@ -69,6 +70,7 @@ Arguments:
 Options:
   --help, -h                        # Print this help
 ```
+
 ```sh
 $ foo account
 # Information about account in short format.
