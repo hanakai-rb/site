@@ -51,7 +51,7 @@ guides:
   - slug: dry-container
     title: Dry Container
     deprecated: true
-    banner: "dry-container is deprecated. Check out [dry-system's container](/learn/dry/dry-system/v1.2/container) instead."
+    banner: "dry-container is deprecated. Check out [`Dry::Core::Container`](/learn/dry/dry-core/v1.1/container) instead."
     banner_type: warning
   - slug: dry-transaction
     title: Dry Transaction
