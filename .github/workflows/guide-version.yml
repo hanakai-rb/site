@@ -1,0 +1,71 @@
+name: Guide version
+
+on:
+  workflow_dispatch:
+    inputs:
+      gem_name:
+        description: "Gem name (e.g., dry-operation)"
+        required: true
+        type: string
+      version:
+        description: "Released version (e.g., 1.1.0)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  create-version:
+    name: Create guide version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create version
+        run: |
+          # Inputs
+          GEM_NAME="${{ inputs.gem_name }}"
+          VERSION="${{ inputs.version }}"
+
+          # Extract minor version (e.g., 1.1.0 -> v1.1)
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          VERSION_DIR="v${MAJOR}.${MINOR}"
+
+          # Construct guide path
+          GUIDES_BASE_PATH="content/guides/dry"
+          GUIDE_PATH="${GUIDES_BASE_PATH}/${GEM_NAME}"
+
+          # Check if the guide exists for this gem
+          if [ ! -d "$GUIDE_PATH" ]; then
+            echo "No guide found for ${GEM_NAME} at ${GUIDE_PATH}"
+            exit 0
+          fi
+
+          # Check if this version already exists
+          if [ -d "${GUIDE_PATH}/${VERSION_DIR}" ]; then
+            echo "Guide version ${VERSION_DIR} already exists for ${GEM_NAME}"
+            exit 0
+          fi
+
+          # Find the most recent version and copy its contents
+          LATEST_VERSION=$(ls -d ${GUIDE_PATH}/v* 2>/dev/null | sort -V | tail -n 1 | xargs basename)
+          if [ -z "$LATEST_VERSION" ]; then
+            echo "No existing guide versions found"
+            exit 1
+          fi
+          cp -r "${GUIDE_PATH}/${LATEST_VERSION}" "${GUIDE_PATH}/${VERSION_DIR}"
+
+          # Commit and push the new guide version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${GUIDE_PATH}/${VERSION_DIR}"
+          git commit -m "Add ${VERSION_DIR} guide for ${GEM_NAME} (release ${VERSION})"
+          git push origin main
+
+          echo "Successfully created ${GEM_NAME} ${VERSION_DIR} guide"
