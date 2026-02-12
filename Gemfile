@@ -30,7 +30,7 @@ gem "debug" # Required by html-pipeline
 gem "builder"
 
 # Static site generation
-gem "parklife"
+gem "parklife", github: "benpickles/parklife", ref: "fe7f3d3" # for benpickles/parklife#136
 gem "sitemap_generator"
 
 group :development do

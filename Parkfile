@@ -2,29 +2,6 @@
 
 require "hanami/boot"
 
-# Patch Parklife so it doesn't consider URLs ending with e.g. "v2.0" as having an extname
-require "parklife/utils"
-Parklife::Utils.class_eval do
-  def build_path_for(path, index: true)
-    path = path.gsub(/^\/|\/$/, "")
-
-    # This `if` line is what we've modified. Previously it was:
-    #
-    # if File.extname(path).empty?
-    if (extname = File.extname(path)) && (extname.match?(/\.\d+$/) || extname.empty?)
-      if path.empty?
-        "index.html"
-      elsif index
-        File.join(path, "index.html")
-      else
-        "#{path}.html"
-      end
-    else
-      path
-    end
-  end
-end
-
 Parklife.application.configure do |config|
   config.app = Site::App
 
