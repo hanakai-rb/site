@@ -9,4 +9,12 @@ require "hanami/prepare"
 
 redirects = Hanami.app["content.generate_redirects"].call
 
+static_redirects_file = Hanami.app.root.join("config", "redirects.txt")
+if File.exist?(static_redirects_file)
+  static_content = File.read(static_redirects_file)
+  static_redirects = static_content.lines
+
+  redirects = redirects + "\n" + static_redirects.join("\n")
+end
+
 File.write(Hanami.app.root.join("build", "_redirects"), redirects)
