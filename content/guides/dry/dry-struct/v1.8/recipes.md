@@ -7,9 +7,7 @@ title: Recipes
 ```ruby
 require 'dry-struct'
 
-module Types
-  include Dry.Types()
-end
+Types = Dry.Types()
 
 class User < Dry::Struct
   transform_keys(&:to_sym)

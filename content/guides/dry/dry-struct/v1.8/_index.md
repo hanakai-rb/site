@@ -14,9 +14,7 @@ You can define struct objects which will have readers for specified attributes u
 ```ruby
 require 'dry-struct'
 
-module Types
-  include Dry.Types()
-end
+Types = Dry.Types()
 
 class User < Dry::Struct
   attribute :name, Types::String.optional

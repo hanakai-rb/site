@@ -170,9 +170,7 @@ You can add type constraints to values passed to `Failure`. This will raise an e
 ```ruby
 require 'dry-types'
 
-module Types
-  include Dry.Types()
-end
+Types = Dry.Types()
 
 class Operation
   Error = Types.Instance(RangeError)

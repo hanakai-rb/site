@@ -4,11 +4,13 @@ title: Optional values
 
 Types themselves have optional attributes you can apply to get further functionality.
 
-### Append `.optional` to a _Type_ to allow `nil`
+### Append `.optional` to a type to allow `nil`
 
 By default, nil values raise an error:
 
 ```ruby
+Types = Dry.Types()
+
 Types::Strict::String[nil]
 # => raises Dry::Types::ConstraintError
 ```
@@ -28,6 +30,6 @@ optional_string[123]
 
 `Types::String.optional` is just syntactic sugar for `Types::Strict::Nil | Types::Strict::String`.
 
-### Handle optional values using Monads
+### Handle optional values using monads
 
 See [Maybe](//page/extensions/maybe) extension for another approach to handling optional values by returning a [_Monad_](//org_guide/dry/dry-monads) object.
