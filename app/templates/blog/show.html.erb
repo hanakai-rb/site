@@ -49,16 +49,36 @@
   <% if post.nested_headings.length > 0 %>
     <div class="lg:hidden -mx-4 mb-4">
       <details>
-        <summary class="px-6 py-4 cursor-pointer font-mono text-xs font-semibold text-primary tracking-wider uppercase flex items-center justify-between">
+        <summary
+          class="
+            px-6 py-4 cursor-pointer font-mono text-xs font-semibold
+            text-primary tracking-wider uppercase flex items-center
+            justify-between
+          "
+        >
           <span>On this page</span>
-          <svg class="w-4 h-4 transition-transform [details[open]_&]:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+
+          <svg
+            class="w-4 h-4 transition-transform [details[open]_&]:rotate-180"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
           </svg>
         </summary>
-        <nav class="px-6 pb-4" data-defo-target-current="<%= { activeClassNames: ["font-bold", "b-primary"] }.to_json %>">
+
+        <nav
+          class="px-6 pb-4"
+          data-defo-target-current="<%= { activeClassNames: ["font-bold", "b-primary"] }.to_json %>"
+        >
           <%= render "doc_pages/toc_headings", headings: post.nested_headings, testid: nil, depth: 0 %>
         </nav>
       </details>
+
       <%= render "svgs/wiggle", class_name: "text-primary flex-1 mx-4", height: 14, stroke_width: 2 %>
     </div>
   <% end %>
@@ -66,9 +86,7 @@
   <div class="lg:max-w-[80%] mx-auto">
     <div class="lg:grid lg:grid-cols-13 lg:gap-8">
       <div class="lg:col-span-10">
-        <div class="content content--large">
-          <%= post.content_html %>
-        </div>
+        <div class="content content--large"><%= post.content_html %></div>
       </div>
 
       <% if post.nested_headings.length > 0 %>
