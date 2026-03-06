@@ -12,12 +12,6 @@ module Site
       attribute :front_matter, Types::Strict::Hash.constructor(->(hsh) { hsh.transform_keys(&:to_sym) })
       attribute :content, Types::Strict::String
 
-      class Heading < Site::Struct
-        attribute :text, Types::Strict::String.constructor(->(str) { str.html_safe })
-        attribute :href, Types::Strict::String
-        attribute :level, Types::Strict::Integer
-      end
-
       def title
         front_matter.fetch(:title)
       end

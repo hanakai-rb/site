@@ -22,6 +22,36 @@ module Site
         self[:excerpt] || "TODO"
       end
 
+      def headings
+        @headings ||= content_data.fetch(:headings).map { Content::Heading.new(**it) }
+      end
+
+      def nested_headings
+        @nested_headings ||= begin
+          root = []
+
+          # Track the most recent heading at each level
+          children_at_level = {0 => root}
+
+          headings.each do |heading|
+            # Find the closest parent level smaller then our current level
+            parent_level = children_at_level.keys.select { it < heading.level }.max || 0
+
+            # Create entry and add to parent's children
+            entry = [heading, []]
+            children_at_level[parent_level] << entry
+
+            # Track this heading's children for possible new entries
+            children_at_level[heading.level] = entry.last
+
+            # Remove all levels deeper than current; they can no longer be parents
+            children_at_level.reject! { |k, v| k > heading.level }
+          end
+
+          root
+        end
+      end
+
       private
 
       ContentPipeline = HTMLPipeline.new(
