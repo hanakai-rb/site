@@ -8,7 +8,13 @@
     hover:bg-primary hover:text-primary-reversed transition-colors
   "
 >
-  <% if slot? :prefix %><%= render_slot :prefix %><% end %>
+  <% if slot? :prefix %>
+    <%= render_slot :prefix %>
+  <% end %>
+
   <%= label %>
-  <% if slot? :suffix %><%= render_slot :suffix %><% end %>
+
+  <% if slot? :suffix %>
+    <%= render_slot :suffix %>
+  <% end %>
 </a>

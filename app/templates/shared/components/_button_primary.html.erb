@@ -8,7 +8,13 @@
     hover:opacity-90 transition-opacity
   "
 >
-  <% if slot? :prefix %><%= render_slot :prefix %><% end %>
+  <% if slot? :prefix %>
+    <%= render_slot :prefix %>
+  <% end %>
+
   <%= label %>
-  <% if slot? :suffix %><%= render_slot :suffix %><% end %>
+
+  <% if slot? :suffix %>
+    <%= render_slot :suffix %>
+  <% end %>
 </a>
