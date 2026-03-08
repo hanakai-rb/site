@@ -1,0 +1,14 @@
+<a
+  href="<%= href %>"
+  class="
+    inline-flex items-center gap-3
+    border-3 b-primary text-primary bg-transparent
+    rounded-xl px-4 py-2
+    font-bold text-lg
+    hover:bg-primary hover:text-primary-reversed transition-colors
+  "
+>
+  <% if slot? :prefix %><%= render_slot :prefix %><% end %>
+  <%= label %>
+  <% if slot? :suffix %><%= render_slot :suffix %><% end %>
+</a>

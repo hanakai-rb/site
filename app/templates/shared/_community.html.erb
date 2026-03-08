@@ -1,0 +1,47 @@
+<%# Community %>
+<section class="py-16 lg:py-20 -mx-4 lg:-mx-6 px-4 lg:px-6">
+  <div class="max-w-5xl mx-auto">
+    <header class="text-center mb-12">
+      <h2 class="text-4xl lg:text-5xl font-black tracking-tight mb-3">Built on community</h2>
+      <p class="text-xl lg:text-2xl tracking-tight">
+        For people who bring kindness, curiosity, and care
+      </p>
+    </header>
+
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+      <div class="flex-1 content">
+        <p>
+          The Hanakai community is a place where people of all backgrounds and experience
+          levels can feel respected, and can share and grow. A place for people to be proud
+          of, and feel safe within.</p>
+        <p><strong>We do not tolerate</strong> nazis, transphobes, racists, or any
+          kind of bigotry.
+          <a href="/conduct">
+            See our Code of Conduct for more.
+          </a>
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <%= render_with_slots "shared/components/button_primary", href: "https://discourse.hanamirb.org", label: "Discussion forum" do |btn| %>
+            <% btn.slot :suffix do %>
+              <%= render "svgs/icons/chat_text", width: 24, height: 24, class_name: "text-current" %>
+            <% end %>
+          <% end %>
+          <%= render_with_slots "shared/components/button_primary", href: "https://discord.hanamirb.org", label: "Discord" do |btn| %>
+            <% btn.slot :suffix do %>
+              <%= render "svgs/icons/discord_logo", width: 24, height: 24, class_name: "fill-current" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex-1 flex justify-center lg:justify-end">
+        <div class="flex gap-4 items-end">
+          <%= render "svgs/hanami_logo", width: 100, height: 97 %>
+          <%= render "svgs/hanakai_logo", width: 110, height: 110 %>
+          <%= render "svgs/dry_logo", width: 88, height: 88 %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
