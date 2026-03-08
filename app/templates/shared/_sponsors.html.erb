@@ -15,7 +15,11 @@
       <%# Sidekiq %>
       <a
         href="https://sidekiq.org"
-        class="flex items-center justify-center p-10 bg-white rounded-2xl border-3 border-rose-900 hover:opacity-90 transition-opacity min-h-64 shadow-lg"
+        class="
+          flex items-center justify-center p-10 bg-white rounded-2xl
+          border-3 border-rose-900 hover:opacity-90 transition-opacity
+          min-h-64 shadow-lg
+        "
       >
         <%= image_tag "sponsors/sidekiq-square.svg", alt: "Sidekiq", class: "max-w-full w-48" %>
       </a>
@@ -23,7 +27,10 @@
       <%# Community sponsor %>
       <a
         href="https://github.com/baweaver"
-        class="flex items-center justify-center p-6 bg-white rounded-2xl border-3 border-[#B1003E] hover:opacity-90 transition-opacity shadow-lg"
+        class="
+          flex items-center justify-center p-6 bg-white rounded-2xl border-3
+          border-[#B1003E] hover:opacity-90 transition-opacity shadow-lg
+        "
       >
         <%= image_tag "sponsors/lemur.png", alt: "Brandon Weaver", class: "max-w-full w-32" %>
       </a>
@@ -32,21 +39,33 @@
       <div class="flex flex-col gap-6">
         <a
           href="https://www.honeybadger.io"
-          class="flex-1 flex items-center justify-center px-6 py-4 bg-white rounded-2xl border-3 border-orange-500 hover:opacity-90 transition-opacity shadow-lg"
+          class="
+            flex-1 flex items-center justify-center px-6 py-4 bg-white
+            rounded-2xl border-3 border-orange-500 hover:opacity-90
+            transition-opacity shadow-lg
+          "
         >
           <%= image_tag "sponsors/honeybadger.png", alt: "Honeybadger", class: "max-h-14 w-auto" %>
         </a>
 
         <a
           href="https://www.fastruby.io"
-          class="flex-1 flex items-center justify-center px-6 py-4 bg-white rounded-2xl border-3 border-red-500 hover:opacity-90 transition-opacity shadow-lg"
+          class="
+            flex-1 flex items-center justify-center px-6 py-4 bg-white
+            rounded-2xl border-3 border-red-500 hover:opacity-90
+            transition-opacity shadow-lg
+          "
         >
           <%= image_tag "sponsors/fastruby.png", alt: "FastRuby.io", class: "max-h-16 w-auto" %>
         </a>
 
         <a
           href="https://www.appsignal.com"
-          class="flex-1 flex items-center justify-center px-6 py-4 bg-white rounded-2xl border-3 border-[#1B44DA] hover:opacity-90 transition-opacity shadow-lg"
+          class="
+            flex-1 flex items-center justify-center px-6 py-4 bg-white
+            rounded-2xl border-3 border-[#1B44DA] hover:opacity-90
+            transition-opacity shadow-lg
+          "
         >
           <%= image_tag "sponsors/appsignal.png", alt: "AppSignal", class: "max-h-12 w-auto" %>
         </a>
@@ -57,8 +76,10 @@
       <p class="text-2xl mb-3 text-balance">
         We’re also supported by our many community patrons.
       </p>
+
       <p class="text-2xl mb-8 text-balance">
-        Become a Hanakai sponsor or patron today, and help us build a diverse future for Ruby.
+        Become a Hanakai sponsor or patron today, and help us build a diverse
+        future for Ruby.
       </p>
 
       <%= render_with_slots "shared/components/button_primary", href: "/sponsor", label: "Support the Hanakai project" do |btn| %>
@@ -70,6 +91,6 @@
   </div>
 
   <div class="-mx-4 z-0 -mt-30 lg:-mt-44">
-  <%= render "svgs/footer_illustration" %>
+    <%= render "svgs/footer_illustration" %>
   </div>
 </section>
