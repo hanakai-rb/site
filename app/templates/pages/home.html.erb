@@ -1,10 +1,154 @@
-<h1>Hanakai</h1>
+<%# Hero %>
+<%= content_for :pre_main do %>
+  <div class="pt-4 lg:pt-8"><%= render "svgs/hero_illustration" %></div>
+<% end %>
 
-<p>This is the upcoming Hanakai website.</p>
+<section class="py-8 text-center">
+  <h1
+    class="
+      text-4xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl
+      mx-auto text-balance
+    "
+  >
+    Hanakai is the Ruby ecosystem you’ve been waiting for
+  </h1>
+</section>
 
-<p>
-  This will be the all-in-one home for everything to do with
-  <a href="https://hanamirb.org">Hanami</a>,
-  <a href="https://dry-rb.org">Dry</a> and
-  <a href="https://rom-rb.org">Rom</a>.
-</p>
+<%# Projects %>
+<section class="py-4">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <%# Hanami %>
+    <%= render_with_slots "pages/home/project_card",
+          theme: "theme-hanami-light",
+          name: "Hanami",
+          description: "A complete framework for building apps with structure and clarity.",
+          primary_href: "/docs/hanami/latest/getting-started",
+          primary_label: "Get building with Hanami",
+          docs_href: "/docs/hanami" do |card| %>
+      <%= card.slot :logo do %>
+        <%= render "svgs/hanami_logo", width: 56, height: 54 %>
+      <% end %>
+
+      <%= card.slot :features do %>
+        <li>
+          <h3 class="font-bold mb-0.5">Batteries included</h3>
+
+          <p class="leading-snug">
+            Everything you need to build a production-ready Ruby app — routing,
+            views, actions, and persistence — all working together out of the
+            box.
+          </p>
+        </li>
+
+        <li>
+          <h3 class="font-bold mb-0.5">Apps that grow with you</h3>
+
+          <p class="leading-snug">
+            Hanami’s modular slice architecture means you can start simple and
+            evolve your codebase without painful rewrites as your app grows.
+          </p>
+        </li>
+
+        <li>
+          <h3 class="font-bold mb-0.5">Built for speed</h3>
+
+          <p class="leading-snug">
+            Thoughtful defaults and minimal magic keep your app fast to boot,
+            easy to test, and a pleasure to maintain.
+          </p>
+        </li>
+      <% end %>
+    <% end %>
+
+    <%# Dry %>
+    <%= render_with_slots "pages/home/project_card",
+          theme: "theme-dry-light",
+          name: "Dry",
+          description: "Validation, types, functional patterns and more, for robust code in any Ruby app.",
+          primary_href: "/docs/dry",
+          primary_label: "Explore the Dry gems",
+          docs_href: "/docs/dry" do |card| %>
+      <%= card.slot :logo do %>
+        <%= render "svgs/dry_logo", width: 56, height: 56 %>
+      <% end %>
+
+      <%= card.slot :features do %>
+        <li>
+          <h3 class="font-bold mb-0.5">26 unique gems</h3>
+
+          <p class="leading-snug">
+            A focused collection of libraries covering validation, types,
+            monads, events, and more — each solving one problem and solving it
+            well.
+          </p>
+        </li>
+
+        <li>
+          <h3 class="font-bold mb-0.5">Millions of downloads</h3>
+
+          <p class="text-neutral-600 leading-snug">
+            Trusted by developers worldwide, Dry gems are used in production
+            applications of all sizes, from startups to large enterprises.
+          </p>
+        </li>
+
+        <li>
+          <h3 class="font-bold mb-0.5">Building blocks</h3>
+
+          <p class="text-neutral-600 leading-snug">
+            Use Dry gems standalone, combine them together, or use them as the
+            foundation of your Hanami app — they’re designed to compose.
+          </p>
+        </li>
+      <% end %>
+    <% end %>
+
+    <%# Rom %>
+    <%= render_with_slots "pages/home/project_card",
+          theme: "theme-rom-light",
+          name: "Rom",
+          description: "A powerful, flexible persistence toolkit that keeps your domain logic clean.",
+          primary_href: "/docs/rom",
+          primary_label: "Wrangle your data with Rom",
+          docs_href: "/docs/rom" do |card| %>
+      <%= card.slot :logo do %>
+        <%= render "svgs/rom_logo", width: 52, height: 56 %>
+      <% end %>
+
+      <%= card.slot :features do %>
+        <li>
+          <h3 class="font-bold mb-0.5">Full control over your data</h3>
+
+          <p class="text-neutral-600 leading-snug">
+            Rom gives you expressive, composable relations so you can write
+            exactly the queries you need without fighting your persistence
+            layer.
+          </p>
+        </li>
+
+        <li>
+          <h3 class="font-bold mb-0.5">Fast by design</h3>
+
+          <p class="text-neutral-600 leading-snug">
+            Rom's data pipeline architecture maps results directly to plain Ruby
+            objects, keeping your reads fast and your domain layer free from ORM
+            overhead.
+          </p>
+        </li>
+
+        <li>
+          <h3 class="font-bold mb-0.5">Proven in production</h3>
+
+          <p class="text-neutral-600 leading-snug">
+            Used in real-world apps at scale, Rom is a battle-tested foundation
+            for building data layers that stay maintainable as complexity grows.
+          </p>
+        </li>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<%= render "shared/community" %>
+
+<%= render "shared/sponsors" %>
