@@ -33,6 +33,10 @@
   >
     <%= render "header/base", nav_items: header_nav_items %>
 
+    <% if content_for(:pre_main) %>
+      <%= raw content_for(:pre_main) %>
+    <% end %>
+
     <div
       class="
         mx-auto flex w-full max-w-[1540px] flex-col mb-6 lg:mb-8 flex-1

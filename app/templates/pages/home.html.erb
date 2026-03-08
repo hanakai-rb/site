@@ -1,5 +1,11 @@
 <%# Hero %>
-<section class="py-16 text-center -mx-4 lg:-mx-6 px-4 lg:px-6">
+<%= content_for :pre_main do %>
+  <section class="-mx-4 lg:-mx-6 pt-8">
+    <%= render "svgs/hero_illustration" %>
+  </section>
+<% end %>
+
+<section class="py-8 text-center">
   <h1 class="text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
     Hanakai is the Ruby ecosystem you’ve been waiting for
   </h1>
