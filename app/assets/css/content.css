@@ -143,7 +143,7 @@
     margin-block-end: calc(var(--spacing) * 7);
 
     @supports not selector(::-webkit-scrollbar) {
-      scrollbar-color: oklch(from var(--hk-color-bg-secondary) calc(l + 0.3) calc(c - 0.1) h)
+      scrollbar-color: oklch(from var(--hk-color-b-secondary) calc(l + 0.3) calc(c - 0.1) h)
         var(--hk-color-neutral-subtle);
     }
 
@@ -159,7 +159,7 @@
     }
     &::-webkit-scrollbar-thumb {
       border-radius: var(--radius-md);
-      background-color: oklch(from var(--hk-color-bg-secondary) calc(l + 0.3) calc(c - 0.1) h);
+      background-color: oklch(from var(--hk-color-b-secondary) calc(l + 0.3) calc(c - 0.1) h);
     }
 
     code {
@@ -268,13 +268,13 @@
   }
 
   .markdown-alert-note {
-    border: 2px var(--color-sky-500) solid;
-    background-color: var(--color-sky-50);
+    border: 2px var(--color-rom-500) solid;
+    background-color: var(--color-rom-50);
     &:before {
       content: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%230063FF%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20d%3D%22M208%2C32H184V24a8%2C8%2C0%2C0%2C0-16%2C0v8H136V24a8%2C8%2C0%2C0%2C0-16%2C0v8H88V24a8%2C8%2C0%2C0%2C0-16%2C0v8H48a8%2C8%2C0%2C0%2C0-8%2C8V200a32%2C32%2C0%2C0%2C0%2C32%2C32H184a32%2C32%2C0%2C0%2C0%2C32-32V40A8%2C8%2C0%2C0%2C0%2C208%2C32ZM120%2C56a8%2C8%2C0%2C0%2C1%2C16%2C0v8a8%2C8%2C0%2C0%2C1-16%2C0ZM80%2C72a8%2C8%2C0%2C0%2C1-8-8V56a8%2C8%2C0%2C0%2C1%2C16%2C0v8A8%2C8%2C0%2C0%2C1%2C80%2C72Zm80%2C96H96a8%2C8%2C0%2C0%2C1%2C0-16h64a8%2C8%2C0%2C0%2C1%2C0%2C16Zm0-32H96a8%2C8%2C0%2C0%2C1%2C0-16h64a8%2C8%2C0%2C0%2C1%2C0%2C16Zm24-72a8%2C8%2C0%2C0%2C1-16%2C0V56a8%2C8%2C0%2C0%2C1%2C16%2C0Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E);
     }
     .markdown-alert-title {
-      color: var(--color-sky-500);
+      color: var(--color-rom-500);
     }
   }
 
@@ -307,7 +307,7 @@
       content: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%230063FF%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20d%3D%22M200%2C24H56A16%2C16%2C0%2C0%2C0%2C40%2C40V216a16%2C16%2C0%2C0%2C0%2C16%2C16H200a16%2C16%2C0%2C0%2C0%2C16-16V40A16%2C16%2C0%2C0%2C0%2C200%2C24ZM128%2C160a12%2C12%2C0%2C1%2C1-12%2C12A12%2C12%2C0%2C0%2C1%2C128%2C160Zm-8-24V80a8%2C8%2C0%2C0%2C1%2C16%2C0v56a8%2C8%2C0%2C0%2C1-16%2C0Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E);
     }
     .markdown-alert-title {
-      color: var(--color-sky-500);
+      color: var(--color-rom-500);
     }
   }
 

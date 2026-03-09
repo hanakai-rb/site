@@ -41,9 +41,9 @@
   </header>
 
   <div class="lg:max-w-[80%] lg:mb-6 mx-auto flex gap-2 items-center">
-    <%= render "svgs/wiggle", class_name: "text-primary flex-1", height: 14, stroke_width: 2 %>
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1", height: 14, stroke_width: 2 %>
     <%= render "svgs/#{org || "hanakai"}_logo", width: 30, height: 30 %>
-    <%= render "svgs/wiggle", class_name: "text-primary flex-1", height: 14, stroke_width: 2 %>
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1", height: 14, stroke_width: 2 %>
   </div>
 
   <% if post.nested_headings.length > 0 %>
