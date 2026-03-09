@@ -9,13 +9,13 @@
 
     <p>
       Rom separates your data access from your domain logic, giving you
-      expressive relations, composable repositories, and plain Ruby objects
-      all the way down.
+      expressive relations, composable repositories, and plain Ruby objects all
+      the way down.
     </p>
 
     <p>
-      No callbacks, no implicit magic — just a fast, explicit persistence
-      layer you can understand and control.
+      No callbacks, no implicit magic — just a fast, explicit persistence layer
+      you can understand and control.
     </p>
 
     <a href="#">
@@ -51,25 +51,11 @@
 
     <div class="flex-1 rounded-lg bg-secondary-subtle border border-blue-300">
       <div class="border-b border-b-blue-300 px-4 py-4">
-        <pre class="syntax-highlighting"><code>class Articles < ROM::Relation[:sql]
-  schema(:articles, infer: true)
-
-  def published
-    where(published: true).order { created_at.desc }
-  end
-end</code></pre>
+        <pre class="syntax-highlighting"><code>class Articles < ROM::Relation[:sql] schema(:articles, infer: true) def published where(published: true).order { created_at.desc } end end        </code></pre>
       </div>
 
       <div class="px-4 py-4">
-        <pre class="syntax-highlighting"><code>class ArticleRepo < MyApp::Repo
-  def latest
-    articles.published.limit(10).to_a
-  end
-
-  def find(id)
-    articles.published.by_pk(id).one!
-  end
-end</code></pre>
+        <pre class="syntax-highlighting"><code>class ArticleRepo < MyApp::Repo def latest articles.published.limit(10).to_a end def find(id) articles.published.by_pk(id).one! end end        </code></pre>
       </div>
     </div>
   </div>

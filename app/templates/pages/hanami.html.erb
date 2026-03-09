@@ -12,17 +12,24 @@
     <%= render "svgs/hanami_logo", width: 140, height: 134 %>
   </div>
 
-  <h1 class="text-5xl lg:text-7xl font-black tracking-tight leading-tight mb-6 text-primary">
+  <h1
+    class="
+      text-5xl lg:text-7xl font-black tracking-tight leading-tight mb-6
+      text-primary
+    "
+  >
     Ruby apps that grow with you
   </h1>
 
   <p class="text-xl lg:text-2xl text-balance mb-3">
-    Hanami is a Ruby framework that helps you keep your code organised and maintainable.
+    Hanami is a Ruby framework that helps you keep your code organised and
+    maintainable.
   </p>
 
   <p class="text-xl lg:text-2xl text-balance mb-8">
-    Separated concerns, explicit business logic, and modular architecture give you the
-    foundation to build apps that remain a pleasure to work on even as they grow large.
+    Separated concerns, explicit business logic, and modular architecture give
+    you the foundation to build apps that remain a pleasure to work on even as
+    they grow large.
   </p>
 
   <%= render_with_slots "shared/components/button_primary", href: "/learn/hanami/latest", label: "View docs" do |btn| %>
@@ -34,19 +41,23 @@
 
 <%# Feature tour %>
 <div class="flex flex-col gap-12 lg:gap-32 py-8 lg:py-16 max-w-6xl mx-auto w-full">
-
   <%= render_with_slots "pages/hanami/feature", title: "Database", reversed: false, code: database_code do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
-        Hanami gives you a dedicated database layer, so you have one place for all your queries. It keeps simple queries easy, while allowing you to build complex queries from all the same tools.
+        Hanami gives you a dedicated database layer, so you have one place for
+        all your queries. It keeps simple queries easy, while allowing you to
+        build complex queries from all the same tools.
       </p>
 
       <p class="text-xl mb-4">
-        Relations define your data access patterns, repos compose them for your business logic, and structs give you value objects you can use throughout your app.
+        Relations define your data access patterns, repos compose them for your
+        business logic, and structs give you value objects you can use
+        throughout your app.
       </p>
 
       <p class="text-xl mb-4">
-        This means that as your app grows, your database layer stays focused and maintainable.
+        This means that as your app grows, your database layer stays focused and
+        maintainable.
       </p>
 
       <%= render_with_slots "shared/components/button_secondary", href: "/learn/hanami/latest/database", label: "View database guide" do |btn| %>
@@ -55,18 +66,18 @@
         <% end %>
       <% end %>
     <% end %>
-
   <% end %>
 
   <%= render_with_slots "pages/hanami/feature", title: "Business logic you can follow", reversed: true, code: business_logic_code do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
-        Operations let you compose your workflows with explicit success and failure paths.
+        Operations let you compose your workflows with explicit success and
+        failure paths.
       </p>
 
       <p class="text-xl mb-6">
-        Each operation focuses on a single job, pulls in the dependencies it needs, and makes
-        your business logic obvious and testable.
+        Each operation focuses on a single job, pulls in the dependencies it
+        needs, and makes your business logic obvious and testable.
       </p>
 
       <%= render_with_slots "shared/components/button_secondary", href: "/learn/hanami/latest/operations", label: "Dive into operations" do |btn| %>
@@ -75,14 +86,14 @@
         <% end %>
       <% end %>
     <% end %>
-
   <% end %>
 
   <%= render_with_slots "pages/hanami/feature", title: "Routing that just works", reversed: false, code: routing_code do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
-        Hanami routes work like you expect, giving you a clear overview of your URLs.
-        You can use resource routes to keep your routes understandable as your app grows.
+        Hanami routes work like you expect, giving you a clear overview of your
+        URLs. You can use resource routes to keep your routes understandable as
+        your app grows.
       </p>
 
       <%= render_with_slots "shared/components/button_secondary", href: "/learn/hanami/latest/routing", label: "Find your way around routing" do |btn| %>
@@ -91,19 +102,19 @@
         <% end %>
       <% end %>
     <% end %>
-
   <% end %>
 
   <%= render_with_slots "pages/hanami/feature", title: "Actions keep HTTP in its place", reversed: true, code: actions_code do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
-        Hanami handles HTTP requests via actions. You have one action class per endpoint.
-        Inside, you can focus on HTTP only, using dependencies to call into your business logic.
+        Hanami handles HTTP requests via actions. You have one action class per
+        endpoint. Inside, you can focus on HTTP only, using dependencies to call
+        into your business logic.
       </p>
 
       <p class="text-xl mb-6">
-        Typical actions will render a view or call an operation, helping them stay lean
-        and easy to follow.
+        Typical actions will render a view or call an operation, helping them
+        stay lean and easy to follow.
       </p>
 
       <%= render_with_slots "shared/components/button_secondary", href: "/learn/hanami/latest/actions", label: "Learn about actions" do |btn| %>
@@ -112,19 +123,19 @@
         <% end %>
       <% end %>
     <% end %>
-
   <% end %>
 
   <%= render_with_slots "pages/hanami/feature", title: "Views that are easy to follow and test", reversed: false, code: views_code do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
-        Your views are also dedicated classes. Load your data, decorate it with view-specific
-        logic, and expose it to the template for rendering.
+        Your views are also dedicated classes. Load your data, decorate it with
+        view-specific logic, and expose it to the template for rendering.
       </p>
 
       <p class="text-xl mb-6">
-        Views are easy to render from actions, but because they're also regular objects,
-        you can test them directly, and use them wherever else you need.
+        Views are easy to render from actions, but because they're also regular
+        objects, you can test them directly, and use them wherever else you
+        need.
       </p>
 
       <%= render_with_slots "shared/components/button_secondary", href: "/learn/hanami/latest/views", label: "Explore views" do |btn| %>
@@ -133,9 +144,7 @@
         <% end %>
       <% end %>
     <% end %>
-
   <% end %>
-
 </div>
 
 <%# And more %>
@@ -150,18 +159,23 @@
 
   <ul class="text-left text-lg flex flex-col gap-4 mb-10">
     <li>
-      Hanami is <strong>designed for modularity</strong>. Using slices, you can create clear
-      boundaries between your subdomains or subsystems. Each slice is self-contained, and you
-      can decide if or how they depend on each other.
+      Hanami is <strong>designed for modularity</strong>. Using slices, you can
+      create clear boundaries between your subdomains or subsystems. Each slice
+      is self-contained, and you can decide if or how they depend on each
+      other.
     </li>
+
     <li>
-      You can <strong>choose how much framework you want</strong>. Remove or swap out whatever
-      you like, it's all there in your Gemfile. With Hanami, you can build full-stack web apps,
-      lean APIs, stream processors, or whatever shape of app you need.
+      You can <strong>choose how much framework you want</strong>. Remove or
+      swap out whatever you like, it's all there in your Gemfile. With Hanami,
+      you can build full-stack web apps, lean APIs, stream processors, or
+      whatever shape of app you need.
     </li>
+
     <li>
-      Your <strong>development interactions stay fast</strong>. Thanks to Hanami's smart code
-      loading, your console, tests, and app server load quickly no matter how big your app grows.
+      Your <strong>development interactions stay fast</strong>. Thanks to
+      Hanami's smart code loading, your console, tests, and app server load
+      quickly no matter how big your app grows.
     </li>
   </ul>
 

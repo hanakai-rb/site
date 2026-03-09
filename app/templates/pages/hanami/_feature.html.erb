@@ -1,22 +1,43 @@
 <% logo_rotation = rand(-15..15) %>
+
 <section class="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-0">
   <% if reversed %>
     <%# Code (left on desktop, top on mobile) %>
     <div class="flex-1 flex items-center">
-      <div class="flex-1 mt-10 bg-secondary-subtle border border-rom-100 rounded-lg shadow-xs overflow-hidden">
+      <div
+        class="
+          flex-1 mt-10 bg-secondary-subtle border border-rom-100 rounded-lg
+          shadow-xs overflow-hidden
+        "
+      >
         <div class="content content--panel content--panel--left">
           <%= raw Site::Content::Markdown.render(code) %>
         </div>
       </div>
     </div>
-
     <%# Bubble (right on desktop, bottom on mobile) %>
     <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative">
       <p class="text-xl font-bold text-primary pl-8 mb-4"><%= title %></p>
-      <div class="bg-white border-3 b-primary rounded-2xl p-8 shadow-lg lg:ml-[-0.75rem] relative">
+
+      <div
+        class="
+          bg-white border-3 b-primary rounded-2xl p-8 shadow-lg
+          lg:ml-[-0.75rem] relative
+        "
+      >
         <%= render_slot :description %>
-        <div class="absolute bottom-0 right-18 translate-y-1/2 w-5 h-5 rotate-45 bg-white border-b-3 border-r-3 b-primary rounded-br-md"></div>
-        <div class="absolute top-full right-10 mt-6" style="rotate: <%= logo_rotation %>deg">
+
+        <div
+          class="
+            absolute bottom-0 right-18 translate-y-1/2 w-5 h-5 rotate-45
+            bg-white border-b-3 border-r-3 b-primary rounded-br-md
+          "
+        ></div>
+
+        <div
+          class="absolute top-full right-10 mt-6"
+          style="rotate: <%= logo_rotation %>deg"
+        >
           <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
         </div>
       </div>
@@ -25,18 +46,38 @@
     <%# Bubble (left on desktop, top on mobile) %>
     <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative">
       <p class="text-xl font-bold text-primary pl-8 mb-4"><%= title %></p>
-      <div class="bg-white border-3 b-primary rounded-2xl p-8 shadow-lg lg:mr-[-0.75rem] relative">
+
+      <div
+        class="
+          bg-white border-3 b-primary rounded-2xl p-8 shadow-lg
+          lg:mr-[-0.75rem] relative
+        "
+      >
         <%= render_slot :description %>
-        <div class="absolute bottom-0 left-18 translate-y-1/2 w-5 h-5 rotate-45 bg-white border-b-3 border-r-3 b-primary rounded-br-md"></div>
-        <div class="absolute top-full left-10 mt-6" style="rotate: <%= logo_rotation %>deg">
+
+        <div
+          class="
+            absolute bottom-0 left-18 translate-y-1/2 w-5 h-5 rotate-45
+            bg-white border-b-3 border-r-3 b-primary rounded-br-md
+          "
+        ></div>
+
+        <div
+          class="absolute top-full left-10 mt-6"
+          style="rotate: <%= logo_rotation %>deg"
+        >
           <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
         </div>
       </div>
     </div>
-
     <%# Code (right on desktop, bottom on mobile) %>
     <div class="flex-1 flex items-center">
-      <div class="flex-1 mt-10 bg-secondary-subtle border border-rom-100 rounded-lg shadow-xs overflow-hidden">
+      <div
+        class="
+          flex-1 mt-10 bg-secondary-subtle border border-rom-100 rounded-lg
+          shadow-xs overflow-hidden
+        "
+      >
         <div class="content content--panel content--panel--right">
           <%= raw Site::Content::Markdown.render(code) %>
         </div>

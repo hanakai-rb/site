@@ -8,13 +8,13 @@
     <p>Focused Ruby libraries for better code.</p>
 
     <p>
-      Dry is a collection of 26 independent gems, each solving one problem
-      and solving it well — from validation and types to monads and events.
+      Dry is a collection of 26 independent gems, each solving one problem and
+      solving it well — from validation and types to monads and events.
     </p>
 
     <p>
-      Use them standalone, combine them together, or let them power your
-      Hanami app from the inside out.
+      Use them standalone, combine them together, or let them power your Hanami
+      app from the inside out.
     </p>
 
     <a href="#">
@@ -31,40 +31,30 @@
 
       <div class="">
         <p>
-          dry-validation gives you a <a href="#">schema-based validation layer</a>
-          with explicit rules, clear error messages, and no magic.
+          dry-validation gives you a
+          <a href="#">schema-based validation layer</a> with explicit rules,
+          clear error messages, and no magic.
         </p>
 
         <p>
-          Define your input contracts once and reuse them across your app —
-          in actions, services, or anywhere else you need to validate data.
+          Define your input contracts once and reuse them across your app — in
+          actions, services, or anywhere else you need to validate data.
         </p>
 
         <p>
-          Pair with dry-types for a type-safe foundation your whole codebase
-          can build on.
+          Pair with dry-types for a type-safe foundation your whole codebase can
+          build on.
         </p>
       </div>
     </div>
 
     <div class="flex-1 rounded-lg bg-secondary-subtle border border-blue-300">
       <div class="border-b border-b-blue-300 px-4 py-4">
-        <pre class="syntax-highlighting"><code>class NewUserContract < Dry::Validation::Contract
-  params do
-    required(:email).filled(:string)
-    required(:age).filled(:integer)
-  end
-
-  rule(:age) do
-    key.failure("must be at least 18") if value < 18
-  end
-end</code></pre>
+        <pre class="syntax-highlighting"><code>class NewUserContract < Dry::Validation::Contract params do required(:email).filled(:string) required(:age).filled(:integer) end rule(:age) do key.failure("must be at least 18") if value < 18 end end        </code></pre>
       </div>
 
       <div class="px-4 py-4">
-        <pre class="syntax-highlighting"><code>result = NewUserContract.new.call(email: "jane@example.com", age: 17)
-result.success? # => false
-result.errors.to_h # => { age: ["must be at least 18"] }</code></pre>
+        <pre class="syntax-highlighting"><code>result = NewUserContract.new.call(email: "jane@example.com", age: 17) result.success? # => false result.errors.to_h # => { age: ["must be at least 18"] }        </code></pre>
       </div>
     </div>
   </div>
