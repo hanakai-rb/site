@@ -18,7 +18,7 @@
           data-testid="blog-post"
           class="theme-<%= post.org || "hanakai" %>-light"
         >
-          <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-5", height: 14, stroke_width: 2 %>
+          <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1 mb-5", height: 14, stroke_width: 2 %>
 
           <div class="flex gap-6">
             <%= render "svgs/#{post.org || "hanakai"}_logo", width: 30, height: 30, class_name: "shrink-0" %>
@@ -54,7 +54,7 @@
       <% end %>
     </ol>
     <div>
-      <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-8", height: 14, stroke_width: 2 %>
+      <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1 mb-8", height: 14, stroke_width: 2 %>
 
       <nav
         class="flex items-center gap-4 justify-center"
@@ -90,7 +90,7 @@
   <% end %>
 
   <% if posts.none? %>
-    <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-5", height: 14, stroke_width: 2 %>
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1 mb-5", height: 14, stroke_width: 2 %>
     <p class="text-center text-2xl lg:my-20">
       No more posts.
       <a class="text-link underline" href="/blog">Back to the beginning?</a>
