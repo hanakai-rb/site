@@ -4,7 +4,7 @@ module Site
   module Views
     module Pages
       class Rom < Site::View
-        expose :org, decorate: false do
+        expose :theme, layout: true, decorate: false do
           "rom"
         end
       end

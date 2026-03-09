@@ -1,0 +1,37 @@
+<section class="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-0">
+  <% if reversed %>
+    <%# Code (left on desktop, top on mobile) %>
+    <div class="flex-[1.2] flex items-center">
+      <div class="flex-1 mt-8 bg-secondary-subtle border border-rom-100 rounded-lg shadow-xs overflow-hidden">
+        <div class="content content--panel content--panel--left">
+          <%= raw Site::Content::Markdown.render(code) %>
+        </div>
+      </div>
+    </div>
+
+    <%# Bubble (right on desktop, bottom on mobile) %>
+    <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative">
+      <p class="text-xl font-bold text-primary pl-8 mb-4"><%= title %></p>
+      <div class="bg-white border-3 b-primary rounded-2xl p-8 shadow-lg lg:ml-[-0.75rem]">
+        <%= render_slot :description %>
+      </div>
+    </div>
+  <% else %>
+    <%# Bubble (left on desktop, top on mobile) %>
+    <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative">
+      <p class="text-xl font-bold text-primary pl-8 mb-4"><%= title %></p>
+      <div class="bg-white border-3 b-primary rounded-2xl p-8 shadow-lg lg:mr-[-0.75rem]">
+        <%= render_slot :description %>
+      </div>
+    </div>
+
+    <%# Code (right on desktop, bottom on mobile) %>
+    <div class="flex-[1.2] flex items-center">
+      <div class="flex-1 mt-8 bg-secondary-subtle border border-rom-100 rounded-lg shadow-xs overflow-hidden">
+        <div class="content content--panel content--panel--right">
+          <%= raw Site::Content::Markdown.render(code) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>

@@ -4,7 +4,7 @@ module Site
   module Views
     module Pages
       class Dry < Site::View
-        expose :org, decorate: false do
+        expose :theme, layout: true, decorate: false do
           "dry"
         end
       end
