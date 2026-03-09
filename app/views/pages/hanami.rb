@@ -9,7 +9,7 @@ module Site
         end
 
         expose :database_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             # app/relations/articles.rb
             class Articles < Hanami::DB::Relation
@@ -50,7 +50,7 @@ module Site
         end
 
         expose :business_logic_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             # app/articles/update.rb
             class Update < MyApp::Operation
@@ -73,7 +73,7 @@ module Site
         end
 
         expose :routing_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             # config/routes.rb
             module MyApp
@@ -88,7 +88,7 @@ module Site
         end
 
         expose :actions_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             # app/actions/articles/update.rb
             class Update < MyApp::Action
@@ -113,7 +113,7 @@ module Site
         end
 
         expose :views_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             # app/views/articles/show.rb
             class Show < MyApp::View
