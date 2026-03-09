@@ -26,11 +26,17 @@
         height="<%= height %>"
         patternUnits="userSpaceOnUse"
       >
+        <% if defined?(fill_top) %>
+          <path
+            class="<%= fill_top %>"
+            d="M0,0 L<%= wavelength %>,0 L<%= wavelength %>,<%= center %> Q<%= three_quarter %>,<%= bottom %> <%= half %>,<%= center %> Q<%= quarter %>,<%= top %> 0,<%= center %> Z"
+            stroke="none"
+          />
+        <% end %>
         <path
           class="stroke-current"
           d="M0,<%= center %> Q<%= quarter %>,<%= top %> <%= half %>,<%= center %> Q<%= three_quarter %>,<%= bottom %> <%= wavelength %>,<%= center %>"
           fill="none"
-          stroke="#4a90e2"
           stroke-width="<%= stroke_width %>"
           stroke-linecap="round"
           vector-effect="non-scaling-stroke"
