@@ -1,0 +1,76 @@
+<% content_for :title, "Rom" %>
+
+<div class="">
+  <h1>Rom</h1>
+  <%= render "svgs/rom_logo", width: 110, height: 110 %>
+
+  <div class="">
+    <p>Persistence that stays out of your way.</p>
+
+    <p>
+      Rom separates your data access from your domain logic, giving you
+      expressive relations, composable repositories, and plain Ruby objects
+      all the way down.
+    </p>
+
+    <p>
+      No callbacks, no implicit magic — just a fast, explicit persistence
+      layer you can understand and control.
+    </p>
+
+    <a href="#">
+      Wrangle your data with Rom
+      <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current -mt-0.5" %>
+    </a>
+  </div>
+</div>
+
+<div class="flex flex-col lg:max-w-[80%] mx-auto">
+  <div class="flex items-center">
+    <div class="flex-1">
+      <h2>Relations that compose</h2>
+
+      <div class="">
+        <p>
+          Rom's <a href="#">relation layer</a> gives you a clean API for
+          building queries without leaking database concerns into your app.
+        </p>
+
+        <p>
+          Define scopes on relations, combine them in repositories, and map
+          results to plain structs — keeping your domain layer free from ORM
+          overhead.
+        </p>
+
+        <p>
+          As your queries grow in complexity, your code stays focused and
+          maintainable.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex-1 rounded-lg bg-secondary-subtle border border-blue-300">
+      <div class="border-b border-b-blue-300 px-4 py-4">
+        <pre class="syntax-highlighting"><code>class Articles < ROM::Relation[:sql]
+  schema(:articles, infer: true)
+
+  def published
+    where(published: true).order { created_at.desc }
+  end
+end</code></pre>
+      </div>
+
+      <div class="px-4 py-4">
+        <pre class="syntax-highlighting"><code>class ArticleRepo < MyApp::Repo
+  def latest
+    articles.published.limit(10).to_a
+  end
+
+  def find(id)
+    articles.published.by_pk(id).one!
+  end
+end</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

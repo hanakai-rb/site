@@ -35,6 +35,12 @@ module Site
     get "/blog/*permalink", to: "blog.show", as: :blog_post
     get "/feed.xml", to: "feed.index"
 
+    # Projects
+    redirect "/projects", to: "/"
+    get "/projects/hanami", to: "pages.hanami"
+    get "/projects/dry", to: "pages.dry"
+    get "/projects/rom", to: "pages.rom"
+
     # Special pages
     get "/community", to: "pages.community"
     get "/conduct", to: "pages.conduct"
