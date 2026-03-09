@@ -9,7 +9,7 @@ module Site
         end
 
         expose :database_code, decorate: false do
-          <<~MARKDOWN
+          <<~'MARKDOWN'
             ```ruby
             # app/relations/articles.rb
             class Articles < Hanami::DB::Relation
