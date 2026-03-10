@@ -38,7 +38,13 @@
           class="absolute top-full right-10 mt-6"
           style="rotate: <%= logo_rotation %>deg"
         >
-          <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
+          <% if logo == "dry" %>
+            <%= render "svgs/dry_logo", width: 80, height: 80, class_name: "block" %>
+          <% elsif logo == "rom" %>
+            <%= render "svgs/rom_logo", width: 72, height: 80, class_name: "block" %>
+          <% else %>
+            <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -66,7 +72,13 @@
           class="absolute top-full left-10 mt-6"
           style="rotate: <%= logo_rotation %>deg"
         >
-          <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
+          <% if logo == "dry" %>
+            <%= render "svgs/dry_logo", width: 80, height: 80, class_name: "block" %>
+          <% elsif logo == "rom" %>
+            <%= render "svgs/rom_logo", width: 72, height: 80, class_name: "block" %>
+          <% else %>
+            <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
+          <% end %>
         </div>
       </div>
     </div>
