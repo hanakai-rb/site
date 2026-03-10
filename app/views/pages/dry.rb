@@ -9,7 +9,7 @@ module Site
         end
 
         expose :validation_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class UserContract < Dry::Validation::Contract
               params do
@@ -24,7 +24,7 @@ module Site
         end
 
         expose :types_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             Types = Dry.Types(default: :strict)
 
@@ -44,7 +44,7 @@ module Site
         end
 
         expose :operations_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class CreateUser < Dry::Operation
               def call(input)
@@ -73,7 +73,7 @@ module Site
         end
 
         expose :logging_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             # From simple logging
             logger = Dry.Logger(:my_app)
@@ -91,7 +91,7 @@ module Site
         end
 
         expose :inflections_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             inflector = Dry::Inflector.new
 
@@ -110,7 +110,7 @@ module Site
         end
 
         expose :initializers_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class User
               extend Dry::Initializer
@@ -126,7 +126,7 @@ module Site
         end
 
         expose :configuration_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class CacheStore
               extend Dry::Configurable
@@ -149,7 +149,7 @@ module Site
         end
 
         expose :systems_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class App < Dry::System::Container
               configure do |config|

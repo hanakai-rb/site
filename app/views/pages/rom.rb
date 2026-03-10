@@ -9,7 +9,7 @@ module Site
         end
 
         expose :repositories_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class ArticleRepo < ROM::Repository
               struct_namespace MyApp::Structs
@@ -31,7 +31,7 @@ module Site
         end
 
         expose :queries_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class Articles < ROM::Relation[:sql]
               schema :articles, infer: true
@@ -61,7 +61,7 @@ module Site
         end
 
         expose :layers_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class CreateArticleChangeset < ROM::Changeset::Create
               map do |tuple|
@@ -83,7 +83,7 @@ module Site
         end
 
         expose :adapters_code, decorate: false do
-          <<~'MARKDOWN'
+          <<~MARKDOWN
             ```ruby
             class Organizations < ROM::Relation[:http]
               # Load GitHub orgs
