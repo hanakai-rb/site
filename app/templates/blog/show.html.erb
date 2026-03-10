@@ -46,7 +46,7 @@
     <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1", height: 14, stroke_width: 2 %>
   </div>
 
-  <% if post.nested_headings.length > 0 %>
+  <% if post.show_toc? && post.nested_headings.length > 0 %>
     <div class="lg:hidden -mx-4 mb-4">
       <details>
         <summary
@@ -89,7 +89,7 @@
         <div class="content content--large"><%= post.content_html %></div>
       </div>
 
-      <% if post.nested_headings.length > 0 %>
+      <% if post.show_toc? && post.nested_headings.length > 0 %>
         <aside
           class="
             lg:col-span-3 lg:self-start
