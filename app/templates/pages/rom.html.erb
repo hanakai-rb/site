@@ -1,0 +1,170 @@
+<% content_for :title, "Rom" %>
+
+<%= content_for :pre_main do %>
+  <div class="h-0 overflow-visible pt-4 lg:pt-8 pointer-events-none relative z-0">
+    <%= render "svgs/hero_illustration", show_logos: false %>
+  </div>
+<% end %>
+
+<%# Hero %>
+<section class="py-12 lg:py-16 text-center max-w-3xl mx-auto relative">
+  <div class="flex justify-center">
+    <%= render "svgs/rom_logo", width: 120, height: 134 %>
+  </div>
+
+  <h1 class="text-5xl lg:text-7xl font-black leading-tight text-primary mb-6 -mt-1">
+    <%= render "shared/names/rom" %>
+  </h1>
+
+  <h1
+    class="
+      text-5xl lg:text-7xl font-black tracking-tighter leading-none
+      text-balance mb-6
+    "
+  >
+    Data persistence, your way
+  </h1>
+
+  <p class="text-2xl text-balance mb-3">
+    Rom is a Ruby data mapping toolkit that gives you full control over how you
+    read and write your data.
+  </p>
+
+  <p class="text-2xl text-balance mb-8">
+    Compose the queries you need, work with records as plain old objects, and
+    enjoy the benefits that come from keeping persistence separate from your
+    domain logic.
+  </p>
+
+  <%= render_with_slots "shared/components/button_primary", href: "/learn/rom", label: "View the Rom docs" do |btn| %>
+    <% btn.slot :suffix do %>
+      <%= render "svgs/icons/book_open_text", width: 24, height: 24, class_name: "text-current" %>
+    <% end %>
+  <% end %>
+</section>
+
+<%# Feature tour %>
+<div class="flex flex-col gap-12 lg:gap-32 pb-8 lg:pb-16 max-w-6xl mx-auto w-full">
+  <%= render_with_slots "shared/components/project_feature", title: "Separate your logic with repositories", reversed: false, code: repositories_code, logo: "rom" do |f| %>
+    <%= f.slot :description do %>
+      <p class="text-xl mb-4">
+        Repositories handle data access. Structs hold your data. Your business
+        logic just works with plain Ruby objects.
+      </p>
+
+      <%= render_with_slots "shared/components/button_secondary", href: "/learn/rom/repositories", label: "View repositories guide" do |btn| %>
+        <% btn.slot :suffix do %>
+          <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render_with_slots "shared/components/project_feature", title: "Compose any kind of query", reversed: true, code: queries_code, logo: "rom" do |f| %>
+    <%= f.slot :description do %>
+      <p class="text-xl mb-6">
+        You can leverage the full power of your database through a composable
+        query API, from simple lookups to complex multi-table queries.
+      </p>
+
+      <%= render_with_slots "shared/components/button_secondary", href: "/learn/rom/relations", label: "View relations guide" do |btn| %>
+        <% btn.slot :suffix do %>
+          <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render_with_slots "shared/components/project_feature", title: "Organize persistence into clear layers", reversed: false, code: layers_code, logo: "rom" do |f| %>
+    <%= f.slot :description do %>
+      <p class="text-xl mb-4">
+        Relations read data, repositories compose queries, changesets prepare
+        changes, commands write to the database, transformers work on results,
+        and plugins enhance each step.
+      </p>
+
+      <p class="text-xl mb-6">
+        Every layer handles one job well, and you can use as many or as few as
+        you need.
+      </p>
+
+      <%= render_with_slots "shared/components/button_secondary", href: "/learn/rom/changesets", label: "View changesets guide" do |btn| %>
+        <% btn.slot :suffix do %>
+          <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render_with_slots "shared/components/project_feature", title: "Work with any data store", reversed: true, code: adapters_code, logo: "rom" do |f| %>
+    <%= f.slot :description do %>
+      <p class="text-xl mb-4">
+        Rom is more than just an SQL toolkit. Work with document databases,
+        search engines, HTTP APIs, local data files and more.
+      </p>
+
+      <p class="text-xl mb-6">
+        Combine results from multiple data stores, and switch adapters without
+        changing your domain logic.
+      </p>
+
+      <%= render_with_slots "shared/components/button_secondary", href: "/learn/rom/adapters", label: "View adapters guide" do |btn| %>
+        <% btn.slot :suffix do %>
+          <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%# And more %>
+<section class="py-12 lg:py-16 max-w-3xl mx-auto text-center w-full">
+  <h2 class="text-4xl lg:text-5xl font-black tracking-tighter mb-5">
+    …and more!
+  </h2>
+
+  <p class="text-2xl lg:text-3xl tracking-tight text-balance mb-8">
+    We’ve just scratched the surface with Rom. There’s a lot more to love:
+  </p>
+
+  <ul class="text-left text-xl lg:text-2xl flex flex-col gap-4 mb-10 list-disc pl-5">
+    <li>
+      <strong>Fast by design.</strong> Rom’s focus on simple data
+      transformations means less overhead and better performance than
+      traditional ORMs.
+    </li>
+
+    <li>
+      <strong>Clear and predictable.</strong> Know exactly which queries run
+      and when. You’ll never be surprised again by an N+1 lurking in the
+      corner.
+    </li>
+
+    <li>
+      <strong>Immutable by default.</strong> Results are plain data objects you
+      can pass around with confidence. No state changes, no unexpected
+      queries.
+    </li>
+
+    <li>
+      <strong>Framework agnostic.</strong> Use rom with Rails, Hanami, Roda, or
+      any kind of Ruby app. It’s a toolkit, not a framework.
+    </li>
+
+    <li>
+      <strong>Proven in production.</strong> Built on over a decade of
+      refinement and real-world use, Rom is a proven solution you can depend on
+      for the long-term.
+    </li>
+  </ul>
+
+  <%= render_with_slots "shared/components/button_primary", href: "/learn/rom", label: "Explore the Rom docs" do |btn| %>
+    <% btn.slot :suffix do %>
+      <%= render "svgs/icons/book_open_text", width: 24, height: 24, class_name: "text-current" %>
+    <% end %>
+  <% end %>
+</section>
+
+<%= render "shared/community" %>
+
+<%= render "shared/sponsors" %>

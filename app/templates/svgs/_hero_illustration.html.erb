@@ -402,33 +402,35 @@
       />
     </svg>
 
-    <%# Logo cluster — centered, fixed size regardless of viewport %>
-    <%# Logos — same viewBox and scaling as adornments, independent layer %>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1728 385"
-      preserveAspectRatio="xMidYMid meet"
-      class="absolute inset-0 w-full h-full"
-    >
-      <%# Hanakai (top center) %>
-      <g transform="translate(795, 27)">
-        <%= render "svgs/hanakai_logo", width: 150, height: 150 %>
-      </g>
+    <% unless defined?(show_logos) && show_logos == false %>
+      <%# Logo cluster — centered, fixed size regardless of viewport %>
+      <%# Logos — same viewBox and scaling as adornments, independent layer %>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1728 385"
+        preserveAspectRatio="xMidYMid meet"
+        class="absolute inset-0 w-full h-full"
+      >
+        <%# Hanakai (top center) %>
+        <g transform="translate(795, 27)">
+          <%= render "svgs/hanakai_logo", width: 150, height: 150 %>
+        </g>
 
-      <%# Hanami (bottom left) %>
-      <g transform="translate(634, 155)">
-        <%= render "svgs/hanami_logo", width: 150, height: 150 %>
-      </g>
+        <%# Hanami (bottom left) %>
+        <g transform="translate(634, 155)">
+          <%= render "svgs/hanami_logo", width: 150, height: 150 %>
+        </g>
 
-      <%# Dry (bottom center) %>
-      <g transform="translate(795, 214)">
-        <%= render "svgs/dry_logo", width: 150, height: 150 %>
-      </g>
+        <%# Dry (bottom center) %>
+        <g transform="translate(795, 214)">
+          <%= render "svgs/dry_logo", width: 150, height: 150 %>
+        </g>
 
-      <%# Rom (bottom right) %>
-      <g transform="translate(955, 168)">
-        <%= render "svgs/rom_logo", width: 150, height: 150 %>
-      </g>
-    </svg>
+        <%# Rom (bottom right) %>
+        <g transform="translate(955, 168)">
+          <%= render "svgs/rom_logo", width: 150, height: 150 %>
+        </g>
+      </svg>
+    <% end %>
   </div>
 </div>

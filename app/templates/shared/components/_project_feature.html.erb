@@ -1,0 +1,54 @@
+<% logo_rotation = rand(-15..15) %>
+
+<section class="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-0">
+  <%# Bubble (top on mobile, left/right on desktop) %>
+  <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative <%= 'lg:order-last' if reversed %>">
+    <p class="text-xl font-bold text-primary px-8 mb-4"><%= title %></p>
+
+    <div class="relative flex flex-col lg:block">
+      <div
+        class="
+          bg-white border-3 b-primary rounded-2xl p-8 shadow-lg relative
+          <%= reversed ? 'lg:ml-[-0.75rem]' : 'lg:mr-[-0.75rem]' %>
+        "
+      >
+        <%= render_slot :description %>
+
+        <div
+          class="
+            absolute bottom-0 translate-y-1/2 w-5 h-5 rotate-45
+            bg-white border-b-3 border-r-3 b-primary rounded-br-md
+            <%= reversed ? 'right-18' : 'left-18' %>
+          "
+        ></div>
+      </div>
+
+      <div
+        class="hidden lg:block lg:absolute lg:top-full <%= reversed ? 'lg:right-10' : 'lg:left-10' %>"
+        style="rotate: <%= logo_rotation %>deg"
+      >
+        <% if logo == "dry" %>
+          <%= render "svgs/dry_logo", width: 80, height: 80, class_name: "block" %>
+        <% elsif logo == "rom" %>
+          <%= render "svgs/rom_logo", width: 72, height: 80, class_name: "block" %>
+        <% else %>
+          <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%# Code (bottom on mobile, right/left on desktop) %>
+  <div class="flex-1 min-w-0 flex items-center <%= 'lg:order-first' if reversed %>">
+    <div
+      class="
+        flex-1 -mt-10 lg:mt-10 bg-secondary-subtle border border-rom-100 rounded-lg
+        shadow-xs overflow-hidden
+      "
+    >
+      <div class="content content--panel <%= reversed ? 'content--panel--left' : 'content--panel--right' %>">
+        <%= raw Site::Content::Markdown.render(code) %>
+      </div>
+    </div>
+  </div>
+</section>

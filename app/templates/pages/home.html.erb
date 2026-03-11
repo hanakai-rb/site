@@ -6,11 +6,12 @@
 <section class="py-8 text-center">
   <h1
     class="
-      text-4xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl
+      text-4xl lg:text-6xl font-black tracking-tighter leading-none max-w-4xl
       mx-auto text-balance
     "
   >
-    Hanakai is the Ruby ecosystem you’ve been waiting for
+    <%= render "shared/names/hanakai" %> is the Ruby ecosystem you’ve been
+    waiting for
   </h1>
 </section>
 
@@ -20,11 +21,11 @@
     <%# Hanami %>
     <%= render_with_slots "pages/home/project_card",
           theme: "theme-hanami-light",
-          name: "Hanami",
+          name: render("shared/names/hanami"),
           description: "A complete framework for building apps with structure and clarity.",
-          primary_href: "/docs/hanami/latest/getting-started",
+          primary_href: "/projects/hanami",
           primary_label: "Get building with Hanami",
-          docs_href: "/docs/hanami" do |card| %>
+          docs_href: "/learn/hanami" do |card| %>
       <%= card.slot :logo do %>
         <%= render "svgs/hanami_logo", width: 56, height: 54 %>
       <% end %>
@@ -63,11 +64,11 @@
     <%# Dry %>
     <%= render_with_slots "pages/home/project_card",
           theme: "theme-dry-light",
-          name: "Dry",
+          name: render("shared/names/dry"),
           description: "Validation, types, functional patterns and more, for robust code in any Ruby app.",
-          primary_href: "/docs/dry",
+          primary_href: "/projects/dry",
           primary_label: "Explore the Dry gems",
-          docs_href: "/docs/dry" do |card| %>
+          docs_href: "/learn/dry" do |card| %>
       <%= card.slot :logo do %>
         <%= render "svgs/dry_logo", width: 56, height: 56 %>
       <% end %>
@@ -106,11 +107,11 @@
     <%# Rom %>
     <%= render_with_slots "pages/home/project_card",
           theme: "theme-rom-light",
-          name: "Rom",
+          name: render("shared/names/rom"),
           description: "A powerful, flexible persistence toolkit that keeps your domain logic clean.",
-          primary_href: "/docs/rom",
+          primary_href: "/projects/rom",
           primary_label: "Wrangle your data with Rom",
-          docs_href: "/docs/rom" do |card| %>
+          docs_href: "/learn/rom" do |card| %>
       <%= card.slot :logo do %>
         <%= render "svgs/rom_logo", width: 52, height: 56 %>
       <% end %>
