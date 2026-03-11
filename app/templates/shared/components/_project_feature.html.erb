@@ -3,7 +3,7 @@
 <section class="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-0">
   <%# Bubble (top on mobile, left/right on desktop) %>
   <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative <%= 'lg:order-last' if reversed %>">
-    <p class="text-xl font-bold text-primary pl-8 mb-4"><%= title %></p>
+    <p class="text-xl font-bold text-primary px-8 mb-4"><%= title %></p>
 
     <div class="relative flex flex-col lg:block">
       <div
@@ -24,7 +24,7 @@
       </div>
 
       <div
-        class="mt-6 w-20 h-20 lg:absolute lg:top-full <%= reversed ? 'self-end mr-10 lg:self-auto lg:mr-0 lg:right-10' : 'ml-10 lg:ml-0 lg:left-10' %>"
+        class="hidden lg:block lg:absolute lg:top-full <%= reversed ? 'lg:right-10' : 'lg:left-10' %>"
         style="rotate: <%= logo_rotation %>deg"
       >
         <% if logo == "dry" %>
@@ -42,7 +42,7 @@
   <div class="flex-1 min-w-0 flex items-center <%= 'lg:order-first' if reversed %>">
     <div
       class="
-        flex-1 lg:mt-10 bg-secondary-subtle border border-rom-100 rounded-lg
+        flex-1 -mt-10 lg:mt-10 bg-secondary-subtle border border-rom-100 rounded-lg
         shadow-xs overflow-hidden
       "
     >
