@@ -167,4 +167,6 @@
 
 <%= render "shared/community" %>
 
-<%= render "shared/sponsors" %>
+<%= content_for :post_main do %>
+  <%= render "shared/sponsors" %>
+<% end %>
