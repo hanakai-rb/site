@@ -1,0 +1,31 @@
+<filter
+  id="<%= filter_id %>"
+  x="-5%"
+  y="-5%"
+  width="110%"
+  height="110%"
+>
+  <feTurbulence
+    type="turbulence"
+    baseFrequency="0.02"
+    numOctaves="2"
+    result="noise"
+    seed="1"
+  >
+    <animate
+      attributeName="seed"
+      values="1;4;7;2;8;3;6;1"
+      dur="0.8s"
+      repeatCount="indefinite"
+      calcMode="discrete"
+    />
+  </feTurbulence>
+
+  <feDisplacementMap
+    in="SourceGraphic"
+    in2="noise"
+    scale="3"
+    xChannelSelector="R"
+    yChannelSelector="G"
+  />
+</filter>

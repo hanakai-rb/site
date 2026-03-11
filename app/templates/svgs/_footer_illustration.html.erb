@@ -1,3 +1,4 @@
+<% squiggle_id = "squiggle-#{SecureRandom.hex(4)}" %>
 <div class="overflow-hidden flex justify-center">
   <div class="relative shrink-0 w-[max(100%,840px)] lg:w-[max(100%,1728px)]">
     <%# Empty SVG spacer — sets container height from viewBox in all browsers, including Safari %>
@@ -16,6 +17,9 @@
       aria-hidden="true"
       class="absolute inset-0 w-full h-full"
     >
+      <defs><%= render "svgs/squiggle_filter", filter_id: squiggle_id %></defs>
+
+      <g filter="url(#<%= squiggle_id %>)">
       <ellipse
         cx="3.35366"
         cy="12.5"
@@ -423,6 +427,7 @@
         d="M1141.16 246.949C1144.82 247.329 1150.23 255.877 1149.89 264.322C1149.55 272.766 1143.57 285.924 1139.6 285.764C1135.63 285.604 1131.71 274.29 1132.02 266.719C1132.32 259.148 1137.5 246.569 1141.16 246.949Z"
         fill="#2AAD56"
       />
+      </g>
     </svg>
   </div>
 </div>
