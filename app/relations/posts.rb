@@ -11,6 +11,7 @@ module Site
         attribute :org, Types::Nominal::String.optional
         attribute :excerpt, Types::Nominal::String.optional
         attribute :content, Types::Nominal::String
+        attribute :show_toc, Types::Nominal::Bool
 
         indexes do
           index :permalink, name: :unique_permalink, unique: true

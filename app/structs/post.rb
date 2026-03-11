@@ -22,6 +22,10 @@ module Site
         self[:excerpt] || "TODO"
       end
 
+      def show_toc?
+        self[:show_toc]
+      end
+
       def headings
         heading_collection.all
       end
