@@ -9,6 +9,12 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .squiggle-group {
+    filter: none;
+  }
+}
+
 button {
   touch-action: manipulation;
 }
