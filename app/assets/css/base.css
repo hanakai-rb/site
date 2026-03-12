@@ -15,6 +15,12 @@
   }
 }
 
+@variant max-sm {
+  .squiggle-group {
+    filter: none;
+  }
+}
+
 button {
   touch-action: manipulation;
 }
