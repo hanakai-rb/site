@@ -17,7 +17,7 @@
       aria-hidden="true"
       class="absolute inset-0 w-full h-full"
     >
-      <defs><%= render "svgs/squiggle_filter", filter_id: squiggle_id %></defs>
+      <defs><%= render "svgs/squiggle_filter", filter_id: squiggle_id, preset: :medium %></defs>
 
       <g filter="url(#<%= squiggle_id %>)">
       <ellipse
