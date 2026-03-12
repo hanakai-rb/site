@@ -8,6 +8,8 @@
 @theme {
   --font-sans:
     "Faire Sprig Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:
+    "Maple Mono NL", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --color-dry-50: oklch(96.79% 0.022 67.56);
   --color-dry-100: oklch(93.86% 0.044 68.35);
   --color-dry-200: oklch(87.83% 0.088 66.27);
