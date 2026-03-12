@@ -1,5 +1,4 @@
-<%
-  presets = {
+<% presets = {
     subtle: {
       base_frequency: 0.015,
       num_octaves: 2,
@@ -23,8 +22,8 @@
     }
   }
 
-  config = presets[preset&.to_sym || :medium]
-%>
+  config = presets[preset&.to_sym || :medium] %>
+
 <filter
   id="<%= filter_id %>"
   x="-5%"
@@ -32,7 +31,7 @@
   width="110%"
   height="110%"
 >
-  <feTurbulence
+  <feturbulence
     type="turbulence"
     baseFrequency="<%= config[:base_frequency] %>"
     numOctaves="<%= config[:num_octaves] %>"
@@ -45,14 +44,14 @@
       dur="<%= config[:dur] %>"
       repeatCount="indefinite"
       calcMode="discrete"
-    />
-  </feTurbulence>
+    ></animate>
+  </feturbulence>
 
-  <feDisplacementMap
+  <fedisplacementmap
     in="SourceGraphic"
     in2="noise"
     scale="<%= config[:scale] %>"
     xChannelSelector="R"
     yChannelSelector="G"
-  />
+  ></fedisplacementmap>
 </filter>
