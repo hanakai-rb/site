@@ -5,6 +5,10 @@ require "rack/rewrite"
 
 module Site
   class App < Hanami::App
+    config.inflections do |inflections|
+      inflections.acronym "AI"
+    end
+
     require "site/content_file_middleware"
     config.middleware.use Rack::Static, urls: ["/pagefind"], root: "public"
 

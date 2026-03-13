@@ -46,5 +46,6 @@ module Site
     get "/conduct", to: "pages.conduct"
     get "/sponsor", to: "pages.sponsor"
     get "/status", to: "status.index"
+    get "/ai-policy", to: "pages.ai_policy"
   end
 end
