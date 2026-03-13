@@ -14,6 +14,7 @@ SitemapGenerator::Sitemap.create do
   add "/conduct"
   add "/sponsor"
   add "/status"
+  add "/ai-policy"
 
   # Guides
   add "/learn"

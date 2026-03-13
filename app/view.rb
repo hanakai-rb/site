@@ -36,9 +36,10 @@ module Site
           NavItem.new(label: "Rom", url: "/learn#rom", selected: false, children: [])
         ]),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: [
-          NavItem.new(label: "Code repository", url: "https://github.com/hanami", selected: false, children: []),
+          NavItem.new(label: "Code repos", url: "https://github.com/hanakai", selected: false, children: []),
           NavItem.new(label: "Discussion forum", url: "https://discourse.hanamirb.org/", selected: false, children: []),
-          NavItem.new(label: "Chat room", url: "https://discord.gg/KFCxDmk3JQ", selected: false, children: [])
+          NavItem.new(label: "Chat room", url: "https://discord.gg/KFCxDmk3JQ", selected: false, children: []),
+          NavItem.new(label: "AI policy", url: "/ai-policy", selected: false, children: [])
         ]),
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
