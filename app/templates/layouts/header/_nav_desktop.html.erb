@@ -1,7 +1,111 @@
-<nav class="hidden md:flex flex-1 py-3">
-  <ul class="flex flex-1 gap-1">
+<nav class="hidden md:flex flex-1 py-2">
+  <ul class="flex flex-1 justify-center gap-2">
     <% nav_items.each do |nav_item| %>
-      <% if nav_item.children.length > 0 %>
+      <% if nav_item.url == "/projects" %>
+        <li>
+          <button
+            data-defo-toggle-class="<%= {
+              clickAway: true,
+              triggerToggleClassName: "open",
+              targetSelector: "#nav-projects-dropdown",
+              targetToggleClassName: "nav-dropdown-closed"
+            }.to_json %>"
+            class="
+              flex items-center sm:px-3 lg:px-4 py-2 gap-2 text-xl font-bold tracking-tighter tracking-tighter rounded-xl cursor-pointer
+              <%= "bg-primary text-primary-reversed" if nav_item.selected %>
+            "
+          >
+            Projects
+            <span class="
+              inline-block transition-transform duration-100
+              [.open_&]:rotate-180 translate-y-0.5
+            "><%= render "svgs/icons/caret_down", height: 12, width: 12, class_name: "fill-current", stroke_width: 20 %></span>
+          </button>
+
+          <div
+            id="nav-projects-dropdown"
+            class="
+              nav-dropdown-closed fixed top-[calc(var(--hk-nav-height)-var(--spacing)*3)]
+              left-1/2 -translate-x-1/2 z-50 max-w-4xl w-11/12
+            "
+          >
+            <div class="relative bg-white rounded-2xl p-3 shadow-2xl">
+              <div class="flex gap-2">
+                <%# Hanami %>
+                <% hanami, dry, rom = nav_item.children %>
+
+                <a
+                  href="/projects/hanami"
+                  class="
+                    theme-hanami-light
+                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-white
+                    border-3 transition-all w-52
+                    <%= hanami.selected ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
+                  "
+                >
+                  <div class="flex items-center gap-3">
+                    <%= render "svgs/hanami_logo", width: 41, height: 40 %>
+
+                    <div class="font-extrabold text-3xl text-primary leading-tight">
+                      <%= render "shared/names/hanami" %>
+                    </div>
+                  </div>
+
+                  <p class="text-lg text-neutral-600 leading-snug">
+                    Complete framework for building apps
+                  </p>
+                </a>
+
+                <%# Dry %>
+                <a
+                  href="/projects/dry"
+                  class="
+                    theme-dry-light
+                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-white
+                    border-3 transition-all w-52
+                    <%= dry.selected ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
+                  "
+                >
+                  <div class="flex items-center gap-3">
+                    <%= render "svgs/dry_logo", width: 40, height: 40 %>
+
+                    <div class="font-extrabold text-3xl text-primary leading-tight">
+                      <%= render "shared/names/dry" %>
+                    </div>
+                  </div>
+
+                  <p class="text-lg text-neutral-600 leading-snug">
+                    Validation, types, functional patterns and more
+                  </p>
+                </a>
+
+                <%# Rom %>
+                <a
+                  href="/projects/rom"
+                  class="
+                    theme-rom-light
+                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-white
+                    border-3 transition-all w-52
+                    <%= rom.selected ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
+                  "
+                >
+                  <div class="flex items-center gap-3">
+                    <%= render "svgs/rom_logo", width: 36, height: 40 %>
+
+                    <div class="font-extrabold text-3xl text-primary leading-tight">
+                      <%= render "shared/names/rom" %>
+                    </div>
+                  </div>
+
+                  <p class="text-lg text-neutral-600 leading-snug">
+                    Powerful and flexible persistence toolkit
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% elsif nav_item.children.length > 0 %>
         <li
           class="
             hover:bg-(--hk-color-bg-primary-reversed) hover:text-(--hk-color-text-primary)
@@ -11,7 +115,7 @@
         >
           <a
             class="
-              flex items-center sm:px-3 md:px-2 lg:px-3 py-2 leading-tight gap-2 text-lg font-bold
+              flex items-center sm:px-3 lg:px-4 py-2 gap-2 text-xl font-bold tracking-tighter
               <%= "bg-primary text-primary-reversed" if nav_item.selected %>
             "
             href="<%= nav_item.url %>"
@@ -40,8 +144,8 @@
         <li>
           <a
             class="
-              flex items-center sm:px-3 md:px-2.5 lg:px-3 py-2 leading-tight rounded-xl text-lg font-bold
-              <%= "bg-primary text-primary-reversed hover:shadow-md" if nav_item.selected %>
+              flex items-center sm:px-3 md:px-2.5 lg:px-4 py-2 rounded-xl text-xl font-bold tracking-tighter
+              <%= "bg-primary text-primary-reversed hover:shadow-md transition-all" if nav_item.selected %>
             "
             href="<%= nav_item.url %>"
           >
@@ -59,11 +163,12 @@
     class="
       search-activate-button
       flex items-center gap-3
-      bg-primary-reversed text-neutral-500 rounded-xl text-sm px-3
+      bg-(--hk-color-neutral-subtle) text-neutral-500 rounded-xl text-sm px-3
       cursor-pointer
       hover:text-neutral-800 hover:shadow-md
       after:tracking-tight
       after:content-['Ctrl_+_K'] [&.mac]:after:content-['⌘_+_K']
+      transition-all
     "
   >
     <%= render "svgs/icons/magnifying_glass", height: 16, width: 16, class_name: "fill-current" %>
