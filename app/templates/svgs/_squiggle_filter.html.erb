@@ -1,0 +1,57 @@
+<% presets = {
+    subtle: {
+      base_frequency: 0.015,
+      num_octaves: 2,
+      scale: 1.3,
+      seeds: "1;4;7;2;8;3;6;1",
+      dur: "0.8s"
+    },
+    medium: {
+      base_frequency: 0.015,
+      num_octaves: 2,
+      scale: 2.3,
+      seeds: "1;4;7;2;8;3;6;1",
+      dur: "0.8s"
+    },
+    intense: {
+      base_frequency: 0.015,
+      num_octaves: 3,
+      scale: 4,
+      seeds: "1;4;7;2;8;3;6;1",
+      dur: "0.8s"
+    }
+  }
+
+  config = presets[preset&.to_sym || :medium] %>
+
+<filter
+  id="<%= filter_id %>"
+  x="-5%"
+  y="-5%"
+  width="110%"
+  height="110%"
+>
+  <feturbulence
+    type="turbulence"
+    baseFrequency="<%= config[:base_frequency] %>"
+    numOctaves="<%= config[:num_octaves] %>"
+    result="noise"
+    seed="1"
+  >
+    <animate
+      attributeName="seed"
+      values="<%= config[:seeds] %>"
+      dur="<%= config[:dur] %>"
+      repeatCount="indefinite"
+      calcMode="discrete"
+    ></animate>
+  </feturbulence>
+
+  <fedisplacementmap
+    in="SourceGraphic"
+    in2="noise"
+    scale="<%= config[:scale] %>"
+    xChannelSelector="R"
+    yChannelSelector="G"
+  ></fedisplacementmap>
+</filter>
