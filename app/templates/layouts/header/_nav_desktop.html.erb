@@ -8,7 +8,7 @@
               clickAway: true,
               triggerToggleClassName: "open",
               targetSelector: "#nav-projects-dropdown",
-              targetToggleClassName: "hidden"
+              targetToggleClassName: "nav-dropdown-closed"
             }.to_json %>"
             class="
               flex items-center sm:px-3 lg:px-4 py-2 gap-2 text-xl font-bold tracking-tighter tracking-tighter rounded-xl cursor-pointer
@@ -25,7 +25,7 @@
           <div
             id="nav-projects-dropdown"
             class="
-              hidden fixed top-[calc(var(--hk-nav-height)-var(--spacing)*3)]
+              nav-dropdown-closed fixed top-[calc(var(--hk-nav-height)-var(--spacing)*3)]
               left-1/2 -translate-x-1/2 z-50 max-w-4xl w-11/12
             "
           >
