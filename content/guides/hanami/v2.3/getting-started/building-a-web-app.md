@@ -36,7 +36,7 @@ module Bookshelf
 end
 ```
 
-Hanami provides an action generator we can use to create this action. Running this command will create the home show action:
+Hanami provides an action generator we can use to create this action. Running this command will create the home index action:
 
 ```shell
 $ bin/hanami generate action home.index --skip-route --skip-tests
