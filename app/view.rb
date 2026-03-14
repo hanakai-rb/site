@@ -18,11 +18,10 @@ module Site
     expose :header_nav_items, layout: true do |context:|
       path = context.request.path
       [
+        NavItem.new(label: "Projects", url: "/projects", selected: path.start_with?("/projects"), children: []),
         NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: []),
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
         NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: []),
-        NavItem.new(label: "Conduct", url: "/conduct", selected: path == "/conduct", children: []),
-        NavItem.new(label: "Status", url: "/status", selected: path == "/status", children: []),
         NavItem.new(label: "Sponsor", url: "/sponsor", selected: path == "/sponsor", children: [])
       ]
     end
