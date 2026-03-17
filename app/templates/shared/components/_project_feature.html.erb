@@ -47,7 +47,7 @@
       "
     >
       <div class="content content--panel <%= reversed ? 'content--panel--left' : 'content--panel--right' %>">
-        <%= raw Site::Content::Markdown.render(code) %>
+        <%= raw Site::Content::Markdown.render(code) %> <%# herb:disable erb-no-unsafe-raw %>
       </div>
     </div>
   </div>

@@ -9,7 +9,9 @@
 
       <a
         class="inline-block py-1 <%= depths[depth] %> border-l-2 <%= selected ? selected_link_classes : inactive_link_classes %>"
-        <%= 'aria-current=page' if selected %>
+        <% if selected %>
+          aria-current="page"
+        <% end %>
         href="<%= page.url_path %>"
       >
         <%= page.title %>
