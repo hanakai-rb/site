@@ -32,7 +32,7 @@ jobs:
       - name: Formatting
         run: npm run lint:format
       - name: Herb linting
-        run: npm run lint:herb -- --github
+        run: npm run lint:herb
 
   test-js:
     name: Test (JS)
