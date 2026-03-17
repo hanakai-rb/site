@@ -23,8 +23,8 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@herb-tools/formatter": "^0.8.2",
-    "@herb-tools/linter": "^0.7.5",
+    "@herb-tools/formatter": "^0.9.4",
+    "@herb-tools/linter": "^0.9.4",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/lodash-es": "^4.17.12",
     "happy-dom": "^18.0.1",

@@ -13,6 +13,14 @@ module Site
           raise ArgumentError, "unknown org slug '#{org_slug}'"
         end
       end
+
+      def blog_page_path(page)
+        "/blog/page/#{page}"
+      end
+
+      def learn_path(org_slug, version)
+        "/learn/#{org_slug}/#{version}"
+      end
     end
   end
 end

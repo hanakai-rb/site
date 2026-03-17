@@ -64,9 +64,9 @@
               flex items-center px-3 md:px-2.5 py-2 leading-tight rounded-xl text-lg font-semibold
               hover:shadow-md
             "
-            href="<%= "/blog/page/#{page - 1}" %>"
+            href="<%= blog_page_path(page - 1) %>"
           >
-            <- Previous page
+            &lt;- Previous page
           </a>
         <% end %>
 
@@ -77,9 +77,9 @@
               flex items-center md:px-2.5 px-3 py-2 leading-tight rounded-xl text-lg font-semibold
               hover:shadow-md
             "
-            href="<%= "/blog/page/#{page + 1}" %>"
+            href="<%= blog_page_path(page + 1) %>"
           >
-            Next page ->
+            Next page -&gt;
           </a>
         <% end %>
       </nav>
