@@ -81,7 +81,7 @@
 
     <% if guide.banner %>
       <div class="content">
-        <div class="markdown-alert markdown-alert-<%= guide.banner_type %>">
+        <div class="markdown-alert markdown-alert-<%= guide.banner_type %>"> <%# herb:disable erb-no-interpolated-class-names %>
           <%= guide.banner_content %>
         </div>
       </div>
