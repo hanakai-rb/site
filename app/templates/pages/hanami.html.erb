@@ -40,7 +40,7 @@
 
 <%# Feature tour %>
 <div class="flex flex-col gap-12 lg:gap-32 pb-8 lg:pb-16 max-w-6xl mx-auto w-full">
-  <%= render_with_slots "shared/components/project_feature", title: "Database", reversed: false, code: database_code, logo: "hanami" do |f| %>
+  <%= render_with_slots "shared/components/project_feature", title: "A dedicated data layer", reversed: false, code: database_code, logo: "hanami" do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
         Hanami gives you a dedicated database layer, so you have one place for
@@ -67,7 +67,7 @@
     <% end %>
   <% end %>
 
-  <%= render_with_slots "shared/components/project_feature", title: "Business logic", reversed: true, code: business_logic_code, logo: "hanami" do |f| %>
+  <%= render_with_slots "shared/components/project_feature", title: "Clear and composable operations", reversed: true, code: business_logic_code, logo: "hanami" do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
         Operations let you compose your workflows with explicit success and
@@ -87,7 +87,7 @@
     <% end %>
   <% end %>
 
-  <%= render_with_slots "shared/components/project_feature", title: "Routes", reversed: false, code: routing_code, logo: "hanami" do |f| %>
+  <%= render_with_slots "shared/components/project_feature", title: "Fast and simple routes", reversed: false, code: routing_code, logo: "hanami" do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
         Hanami routes work like you expect, giving you a clear overview of your
@@ -103,7 +103,7 @@
     <% end %>
   <% end %>
 
-  <%= render_with_slots "shared/components/project_feature", title: "Actions", reversed: true, code: actions_code, logo: "hanami" do |f| %>
+  <%= render_with_slots "shared/components/project_feature", title: "An action for every endpoint", reversed: true, code: actions_code, logo: "hanami" do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
         Hanami handles HTTP requests via actions. You have one action class per
@@ -124,7 +124,7 @@
     <% end %>
   <% end %>
 
-  <%= render_with_slots "shared/components/project_feature", title: "Views", reversed: false, code: views_code, logo: "hanami" do |f| %>
+  <%= render_with_slots "shared/components/project_feature", title: "Views as real objects", reversed: false, code: views_code, logo: "hanami" do |f| %>
     <%= f.slot :description do %>
       <p class="text-xl mb-4">
         Your views are also dedicated classes. Load your data, decorate it with
