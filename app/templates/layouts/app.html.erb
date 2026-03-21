@@ -2,7 +2,7 @@
 
 <html
   lang="en"
-  class="lg:scroll-pt-[calc(var(--hk-nav-height)+var(--spacing)*7)] scroll-pt-[calc(var(--hk-nav-height)+var(--hk-mobile-page-nav-height)+var(--spacing)*4)] theme-<%= theme %>-light"
+  class="lg:scroll-pt-[calc(var(--hk-nav-height)+var(--spacing)*7)] scroll-pt-[calc(var(--hk-nav-height)+var(--hk-mobile-page-nav-height)+var(--spacing)*4)] theme-<%= theme %>"
 >
   <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
   </head>
 
   <body
-    class="font-sans text-neutral bg-white flex flex-col min-h-dvh"
+    class="font-sans text-neutral bg-neutral flex flex-col min-h-dvh"
     data-defo-foresight="<%= { elementSelector: "a[href^='/']" }.to_json %>"
   >
     <%= render "header/base", nav_items: header_nav_items %>

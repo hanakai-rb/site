@@ -4,7 +4,7 @@
   <header class="mb-12">
     <h1 class="text-4xl font-extrabold mb-4">Community</h1>
 
-    <p class="text-lg text-gray-600">
+    <p class="text-lg text-neutral-600 dark:text-neutral-400">
       Meet the people building and maintaining Hanami, Dry, and ROM.
     </p>
   </header>
@@ -12,7 +12,7 @@
   <div class="space-y-16">
     <% if core_members.any? %>
       <section>
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">Core Team</h2>
+        <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Core Team</h2>
 
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
@@ -21,27 +21,27 @@
           <% core_members.each do |member| %>
             <div
               class="
-                team-member bg-white border border-gray-200 rounded-lg p-6
+                team-member bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg p-6
                 shadow-sm hover:shadow-md transition-shadow duration-200
               "
             >
               <div class="flex items-start gap-4 mb-4">
                 <img
                   alt="<%= member.name %>"
-                  class="avatar w-20 h-20 rounded-full border-2 border-gray-200"
+                  class="avatar w-20 h-20 rounded-full border-2 border-neutral-200 dark:border-neutral-700"
                   height="80"
                   src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=130"
                   width="80"
                 >
 
                 <div class="flex-1 min-w-0">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-1">
+                  <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
                     <%= member.name %>
                   </h3>
 
-                  <p class="text-sm text-gray-600 mb-2"><%= member.status %></p>
+                  <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2"><%= member.status %></p>
 
-                  <p class="text-sm text-gray-500">
+                  <p class="text-sm text-neutral-500 dark:text-neutral-400">
                     <svg
                       class="inline w-4 h-4 mr-1"
                       fill="currentColor"
@@ -65,7 +65,7 @@
                   target="_blank"
                   rel="noopener"
                   class="
-                    text-gray-700 hover:text-gray-900 inline-flex
+                    text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex
                     items-center gap-2
                   "
                 >
@@ -88,7 +88,7 @@
                     target="_blank"
                     rel="noopener"
                     class="
-                      text-gray-700 hover:text-gray-900 inline-flex
+                      text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex
                       items-center gap-2
                     "
                   >
@@ -118,7 +118,7 @@
 
     <% if maintainers.any? %>
       <section class="mt-16">
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">Maintainers</h2>
+        <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Maintainers</h2>
 
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -127,7 +127,7 @@
           <% maintainers.each do |member| %>
             <div
               class="
-                team-member bg-white border border-gray-200 rounded-lg p-6
+                team-member bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg p-6
                 shadow-sm hover:shadow-md transition-shadow duration-200
               "
             >
@@ -135,17 +135,17 @@
                 <img
                   src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=130"
                   alt="<%= member.name %>"
-                  class="avatar w-20 h-20 rounded-full border-2 border-gray-200"
+                  class="avatar w-20 h-20 rounded-full border-2 border-neutral-200 dark:border-neutral-700"
                 >
 
                 <div class="flex-1 min-w-0">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-1">
+                  <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
                     <%= member.name %>
                   </h3>
 
-                  <p class="text-sm text-gray-600 mb-2"><%= member.status %></p>
+                  <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2"><%= member.status %></p>
 
-                  <p class="text-sm text-gray-500">
+                  <p class="text-sm text-neutral-500 dark:text-neutral-400">
                     <svg
                       class="inline w-4 h-4 mr-1"
                       fill="currentColor"
@@ -169,7 +169,7 @@
                   target="_blank"
                   rel="noopener"
                   class="
-                    text-gray-700 hover:text-gray-900 inline-flex
+                    text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex
                     items-center gap-2
                   "
                 >
@@ -192,7 +192,7 @@
                     target="_blank"
                     rel="noopener"
                     class="
-                      text-gray-700 hover:text-gray-900 inline-flex
+                      text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex
                       items-center gap-2
                     "
                   >

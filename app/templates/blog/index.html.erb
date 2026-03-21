@@ -6,7 +6,7 @@
       Blog
     </h1>
 
-    <p class="lg:text-lg text-md text-neutral-500 text-balance">
+    <p class="lg:text-lg text-md text-neutral-500 dark:text-neutral-400 text-balance">
       The latest updates from the Hanami, Dry, and Rom projects.
     </p>
   </header>
@@ -16,7 +16,7 @@
       <% posts.each do |post| %>
         <li
           data-testid="blog-post"
-          class="theme-<%= post.org || "hanakai" %>-light"
+          class="theme-<%= post.org || "hanakai" %>"
         >
           <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1 mb-5", height: 14, stroke_width: 2 %>
 

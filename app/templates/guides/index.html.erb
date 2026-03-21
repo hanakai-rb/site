@@ -5,13 +5,13 @@
     <header class="mb-12">
       <h1 class="text-4xl font-extrabold mb-4">Guides</h1>
 
-      <p class="text-lg text-gray-600">
+      <p class="text-lg text-neutral-600 dark:text-neutral-400">
         Learn how to use Hanami, Dry, and ROM with our comprehensive guides.
       </p>
     </header>
 
     <div class="space-y-16">
-      <section id="hanami" class="theme-hanami-light">
+      <section id="hanami" class="theme-hanami">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/hanami_logo", width: 32, height: 32 %>
 
@@ -36,12 +36,12 @@
             <a
               href="<%= guide.url_path %>"
               class="
-                block p-6 bg-white border border-gray-200 rounded-lg
+                block p-6 bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg
                 shadow-sm hover:shadow-md transition-shadow duration-200
                 hover:border-hanami-500
               "
             >
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900 dark:text-neutral-100">
                 <%= guide.title %>
               </h3>
 
@@ -53,7 +53,7 @@
         </div>
       </section>
 
-      <section id="dry" class="theme-dry-light">
+      <section id="dry" class="theme-dry">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/dry_logo", width: 32, height: 32 %>
 
@@ -68,12 +68,12 @@
             <a
               href="<%= guide.url_path %>"
               class="
-                block p-6 bg-white border border-gray-200 rounded-lg
+                block p-6 bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg
                 shadow-sm hover:shadow-md transition-shadow duration-200
                 hover:border-dry-500
               "
             >
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900 dark:text-neutral-100">
                 <%= guide.title %>
               </h3>
 
@@ -85,7 +85,7 @@
         </div>
       </section>
 
-      <section id="rom" class="theme-rom-light">
+      <section id="rom" class="theme-rom">
         <div class="flex items-center gap-3 mb-6">
           <%= render "svgs/rom_logo", width: 32, height: 32 %>
 
@@ -110,12 +110,12 @@
             <a
               href="<%= guide.url_path %>"
               class="
-                block p-6 bg-white border border-gray-200 rounded-lg
+                block p-6 bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg
                 shadow-sm hover:shadow-md transition-shadow duration-200
                 hover:border-rom-500
               "
             >
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">
+              <h3 class="text-xl font-semibold mb-2 text-neutral-900 dark:text-neutral-100">
                 <%= guide.title %>
               </h3>
 

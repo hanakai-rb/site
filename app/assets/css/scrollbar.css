@@ -5,7 +5,7 @@ html {
 
   &::-webkit-scrollbar {
     width: calc(var(--spacing) * 1.5);
-    background-color: #f5f5f5;
+    background-color: var(--hk-color-neutral-subtle);
   }
   &::-webkit-scrollbar-track {
     background-color: var(--hk-color-neutral-subtle);

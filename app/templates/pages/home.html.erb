@@ -24,7 +24,7 @@
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <%# Hanami %>
     <%= render_with_slots "pages/home/project_card",
-          theme: "theme-hanami-light",
+          theme: "theme-hanami",
           name: render("shared/names/hanami"),
           description: <<~DESC,
             A complete framework for building apps with structure and clarity.
@@ -69,7 +69,7 @@
 
     <%# Dry %>
     <%= render_with_slots "pages/home/project_card",
-          theme: "theme-dry-light",
+          theme: "theme-dry",
           name: render("shared/names/dry"),
           description: <<~DESC,
             Validation, types, functional patterns and more, for robust code in any Ruby app.
@@ -94,7 +94,7 @@
         <li>
           <h3 class="font-bold mb-0.5">Works everywhere</h3>
 
-          <p class="text-neutral-600 leading-snug">
+          <p class="text-neutral-600 dark:text-neutral-400 leading-snug">
             Dry gems make no framework assumptions. Use them in Hanami, Rails,
             or standalone, and combine them however you like.
           </p>
@@ -103,7 +103,7 @@
         <li>
           <h3 class="font-bold mb-0.5">Proven in production</h3>
 
-          <p class="text-neutral-600 leading-snug">
+          <p class="text-neutral-600 dark:text-neutral-400 leading-snug">
             Built on over a decade of refinement and real-world use, these are
             proven tools you can depend on for the long term.
           </p>
@@ -113,7 +113,7 @@
 
     <%# Rom %>
     <%= render_with_slots "pages/home/project_card",
-          theme: "theme-rom-light",
+          theme: "theme-rom",
           name: render("shared/names/rom"),
           description: <<~DESC,
             A powerful, flexible persistence toolkit that keeps your domain logic clean.
@@ -129,7 +129,7 @@
         <li>
           <h3 class="font-bold mb-0.5">Control your data</h3>
 
-          <p class="text-neutral-600 leading-snug">
+          <p class="text-neutral-600 dark:text-neutral-400 leading-snug">
             Write exactly the queries you need and keep your domain logic free
             from persistence concerns.
           </p>
@@ -138,7 +138,7 @@
         <li>
           <h3 class="font-bold mb-0.5">Plain, predictable data</h3>
 
-          <p class="text-neutral-600 leading-snug">
+          <p class="text-neutral-600 dark:text-neutral-400 leading-snug">
             Results are plain data objects with no mutable state and no way to
             trigger unexpected queries. Safe to pass around and easy to test.
           </p>
@@ -147,7 +147,7 @@
         <li>
           <h3 class="font-bold mb-0.5">Fast by design</h3>
 
-          <p class="text-neutral-600 leading-snug">
+          <p class="text-neutral-600 dark:text-neutral-400 leading-snug">
             Rom’s data mapping approach means less overhead and better
             performance than traditional ORMs.
           </p>

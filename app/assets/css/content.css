@@ -166,6 +166,7 @@
       background: transparent;
       border: none;
       padding: 0;
+      color: inherit;
     }
   }
 
@@ -244,7 +245,7 @@
 
   /* GitHub alerts */
   .markdown-alert {
-    border-color: #ccc;
+    border-color: var(--hk-color-neutral-subtle);
     border-radius: var(--radius-lg);
     border-style: solid;
     border-width: 2px;
@@ -322,6 +323,31 @@
     }
   }
 
+  @media (prefers-color-scheme: dark) {
+    /* Inline code: the light-mode formula darkens rom-500 for white backgrounds,
+       but in dark mode that makes text invisible. Lighten instead. */
+    code {
+      color: oklch(from var(--hk-color-text-secondary) calc(l + 0.15) c h);
+    }
+
+    .markdown-alert-note,
+    .markdown-alert-tip {
+      background-color: oklch(from var(--color-rom-950) l c h / 0.6);
+    }
+
+    .markdown-alert-warning {
+      background-color: oklch(from var(--color-dry-950) l c h / 0.6);
+    }
+
+    .markdown-alert-important {
+      background-color: oklch(from var(--color-hanakai-950) l c h / 0.6);
+    }
+
+    .markdown-alert-caution {
+      background-color: oklch(from var(--color-red-950) l c h / 0.6);
+    }
+  }
+
   /* Syntax highlighting */
   .syntax-highlighting {
     background-color: var(--hk-color-bg-secondary-subtle);
@@ -380,11 +406,14 @@
       color: var(--hk-color-text-secondary);
     }
 
-    /* Classes and types */
+    /* Classes, modules, and types */
     .entity.name.class,
+    .entity.name.module,
     .entity.name.type,
+    .entity.other.inherited-class,
     .support.class,
-    .support.type {
+    .support.type,
+    .support.other.namespace {
       color: var(--hk-color-text-primary);
       font-weight: 600;
     }
@@ -438,6 +467,21 @@
       color: var(--hk-color-text-secondary);
       background-color: var(--hk-color-neutral-subtle);
     }
+
+    /* Lighten secondary token colours in dark mode — rom-500 at L=0.56 is only
+       3.9:1 against the dark code block background, just below WCAG AA. */
+    @media (prefers-color-scheme: dark) {
+      .string,
+      .punctuation.definition.string,
+      .entity.name.function,
+      .support.function,
+      .constant,
+      .constant.other.symbol,
+      .markup.raw,
+      .markup.inline.raw {
+        color: oklch(from var(--hk-color-text-secondary) calc(l + 0.15) c h);
+      }
+    }
   }
 }
 
@@ -451,7 +495,7 @@
     padding: calc(var(--spacing) * 11) calc(var(--spacing) * 6) calc(var(--spacing) * 5);
 
     & + pre {
-      border-top: 1px solid var(--color-rom-100);
+      border-top: 1px solid var(--hk-color-neutral-subtle);
     }
   }
 }
