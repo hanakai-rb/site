@@ -1,19 +1,28 @@
 guides:
   - slug: getting-started
     title: Getting started
+    description: Introduction and comparison to traditional ORMs
   - slug: core-concepts
     title: Core concepts
+    description: Relations, schemas, mappers, and commands
   - slug: repositories
     title: Repositories
+    description: Public interface to the persistence layer
   - slug: changesets
     title: Changesets
+    description: Expressive data mutation and coercion
   - slug: sql
     title: SQL
+    description: SQL adapter with Sequel integration
   - slug: http
     title: HTTP
+    description: HTTP adapter for working with REST APIs
   - slug: factories
     title: Factories
+    description: Generating test data with factory definitions
   - slug: advanced
     title: Advanced
+    description: Explicit setup, custom adapters, and internals
   - slug: faq
     title: FAQ
+    description: Frequently asked questions

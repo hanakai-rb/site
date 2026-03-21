@@ -7,6 +7,7 @@ module Site
         attribute :org, Types::Nominal::String
         attribute :slug, Types::Nominal::String
         attribute :title, Types::Nominal::String
+        attribute :description, Types::Nominal::String.optional
         attribute :position, Types::Nominal::Integer
         attribute :version, Types::Nominal::String.optional
         attribute :version_scope, Types::Nominal::String

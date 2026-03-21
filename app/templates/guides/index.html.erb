@@ -1,146 +1,53 @@
 <% content_for :title, "Learn" %>
 
-<%= render_with_slots "doc_pages/main" do |main| %>
-  <%= main.slot :content do %>
-    <header class="mb-12">
-      <h1 class="text-4xl font-extrabold mb-4">Guides</h1>
+<div class="w-full lg:max-w-[80%] mx-auto">
+  <header class=" lg:pt-12 lg:pb-12 pt-5 mb-6 text-center">
+    <h1 class="lg:hidden text-2xl font-semibold mb-1">
+      Learn
+    </h1>
 
-      <p class="text-lg text-neutral-600 dark:text-neutral-400">
-        Learn how to use Hanami, Dry, and ROM with our comprehensive guides.
-      </p>
-    </header>
+    <p class="lg:text-lg text-md text-neutral-500 text-balance">
+      Comprehensive docs for Hanami, Dry, and Rom.
+    </p>
+  </header>
 
-    <div class="space-y-16">
-      <section id="hanami" class="theme-hanami">
-        <div class="flex items-center gap-3 mb-6">
-          <%= render "svgs/hanami_logo", width: 32, height: 32 %>
-
-          <h2 class="text-3xl font-bold text-hanami-500">Hanami</h2>
-
-          <div data-testid="hanami-versions">
-            <%= render "doc_pages/version_select",
-                      id: "hanami-version-select",
-                      testid: nil,
-                      version: hanami_version_links.keys.first,
-                      version_links: hanami_version_links,
-                      path_prefix: "/learn/hanami",
-                      anchor: "left" %>
-          </div>
-        </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
-          data-testid="hanami-guides"
-        >
-          <% guides.fetch("hanami").each do |guide| %>
-            <a
-              href="<%= guide.url_path %>"
-              class="
-                block p-6 bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg
-                shadow-sm hover:shadow-md transition-shadow duration-200
-                hover:border-hanami-500
-              "
-            >
-              <h3
-                class="
-                  text-xl font-semibold mb-2 text-neutral-900
-                  dark:text-neutral-100
-                "
-              >
-                <%= guide.title %>
-              </h3>
-
-              <div class="text-sm text-hanami-500 font-medium">
-                View guide →
-              </div>
-            </a>
-          <% end %>
-        </div>
-      </section>
-
-      <section id="dry" class="theme-dry">
-        <div class="flex items-center gap-3 mb-6">
-          <%= render "svgs/dry_logo", width: 32, height: 32 %>
-
-          <h2 class="text-3xl font-bold text-dry-500">Dry</h2>
-        </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
-          data-testid="dry-guides"
-        >
-          <% guides.fetch("dry").each do |guide| %>
-            <a
-              href="<%= guide.url_path %>"
-              class="
-                block p-6 bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg
-                shadow-sm hover:shadow-md transition-shadow duration-200
-                hover:border-dry-500
-              "
-            >
-              <h3
-                class="
-                  text-xl font-semibold mb-2 text-neutral-900
-                  dark:text-neutral-100
-                "
-              >
-                <%= guide.title %>
-              </h3>
-
-              <div class="text-sm text-dry-500 font-medium">
-                View guide →
-              </div>
-            </a>
-          <% end %>
-        </div>
-      </section>
-
-      <section id="rom" class="theme-rom">
-        <div class="flex items-center gap-3 mb-6">
-          <%= render "svgs/rom_logo", width: 32, height: 32 %>
-
-          <h2 class="text-3xl font-bold text-rom-500">ROM</h2>
-
-          <div data-testid="rom-versions">
-            <%= render "doc_pages/version_select",
-                      id: "rom-version-select",
-                      testid: nil,
-                      version: rom_version_links.keys.first,
-                      path_prefix: "/learn/rom",
-                      version_links: rom_version_links,
-                      anchor: "left" %>
-          </div>
-        </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
-          data-testid="rom-guides"
-        >
-          <% guides.fetch("rom").each do |guide| %>
-            <a
-              href="<%= guide.url_path %>"
-              class="
-                block p-6 bg-neutral border border-neutral-200 dark:border-neutral-700 rounded-lg
-                shadow-sm hover:shadow-md transition-shadow duration-200
-                hover:border-rom-500
-              "
-            >
-              <h3
-                class="
-                  text-xl font-semibold mb-2 text-neutral-900
-                  dark:text-neutral-100
-                "
-              >
-                <%= guide.title %>
-              </h3>
-
-              <div class="text-sm text-rom-500 font-medium">
-                View guide →
-              </div>
-            </a>
-          <% end %>
-        </div>
-      </section>
-    </div>
-  <% end %>
-<% end %>
+  <div class="space-y-16 mb-16">
+    <%= render "guides/guide_section",
+               id: "hanami",
+               name: "Hanami",
+               theme: "hanami",
+               description: "The web framework for Ruby.",
+               section_guides: guides.fetch("hanami"),
+               version_select: {
+                 id: "hanami-version-select",
+                 testid: nil,
+                 version: hanami_version_links.keys.first,
+                 version_links: hanami_version_links,
+                 path_prefix: "/learn/hanami",
+                 anchor: "left"
+               } %>
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
+    <%= render "guides/guide_section",
+               id: "dry",
+               name: "Dry",
+               theme: "dry",
+               description: "A collection of next-generation Ruby libraries.",
+               section_guides: guides.fetch("dry"),
+               version_select: nil %>
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
+    <%= render "guides/guide_section",
+               id: "rom",
+               name: "ROM",
+               theme: "rom",
+               description: "Ruby Object Mapper — persistence and mapping toolkit.",
+               section_guides: guides.fetch("rom"),
+               version_select: {
+                 id: "rom-version-select",
+                 testid: nil,
+                 version: rom_version_links.keys.first,
+                 version_links: rom_version_links,
+                 path_prefix: "/learn/rom",
+                 anchor: "left"
+               } %>
+  </div>
+</div>

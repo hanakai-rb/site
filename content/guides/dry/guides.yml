@@ -1,65 +1,92 @@
 guides:
   - slug: getting-started
     title: Getting started
+    description: Introduction to the dry-rb ecosystem
   - slug: dry-auto_inject
     title: Dry Auto Inject
+    description: Automatic dependency injection from a container
   - slug: dry-cli
     title: Dry CLI
+    description: Framework for building command line applications
   - slug: dry-configurable
     title: Dry Configurable
+    description: Thread-safe configuration mixin for classes
   - slug: dry-core
     title: Dry Core
+    description: Shared utilities and foundational tools
   - slug: dry-effects
     title: Dry Effects
+    description: Algebraic effects for managing side effects
   - slug: dry-events
     title: Dry Events
+    description: Publish-subscribe event system
   - slug: dry-equalizer
     title: Dry Equalizer
+    description: Equality and hash inspection helpers
   - slug: dry-files
     title: Dry Files
+    description: File system abstraction and utilities
   - slug: dry-inflector
     title: Dry Inflector
+    description: String inflection and transformation
   - slug: dry-initializer
     title: Dry Initializer
+    description: Params and options DSL for object initialization
   - slug: dry-logger
     title: Dry Logger
+    description: Structured logging with pluggable formatters
   - slug: dry-logic
     title: Dry Logic
+    description: Predicate logic and composable rule objects
   - slug: dry-matcher
     title: Dry Matcher
+    description: Pattern matching for result types
   - slug: dry-monads
     title: Dry Monads
+    description: Monads for expressive error handling
   - slug: dry-monitor
     title: Dry Monitor
+    description: Instrumentation and monitoring middleware
   - slug: dry-operation
     title: Dry Operation
+    description: Step-based business operation DSL
   - slug: dry-rails
     title: Dry Rails
+    description: Dry-rb integration for Rails applications
     banner: "Before dry-rails hits 1.0.0 it should be considered as beta software. Various usage patterns should emerge as more people try it out, so please do so and provide feedback!"
   - slug: dry-schema
     title: Dry Schema
+    description: Coercion and validation for data structures
   - slug: dry-struct
     title: Dry Struct
+    description: Typed, immutable value objects
   - slug: dry-system
     title: Dry System
+    description: Dependency container with auto-registration
   - slug: dry-transformer
     title: Dry Transformer
+    description: Functional data transformation pipelines
   - slug: dry-types
     title: Dry Types
+    description: Extensible type system with constraints
   - slug: dry-validation
     title: Dry Validation
+    description: Domain validation with rule-based contracts
   - slug: dry-container
     title: Dry Container
     deprecated: true
+    description: Simple inversion-of-control container
     banner: "dry-container is deprecated. Check out [`Dry::Core::Container`](/learn/dry/dry-core/v1.1/container) instead."
     banner_type: warning
   - slug: dry-transaction
     title: Dry Transaction
     deprecated: true
+    description: Business transaction DSL (superseded by dry-operation)
     banner: "dry-transaction is deprecated and has been superseded by [dry-operation](/learn/dry/dry-operation/v1.2/overview)."
     banner_type: warning
   - slug: dry-view
     title: Dry View
     deprecated: true
+    description: Functional view rendering system
     banner: "Development of dry-view has ceased. Please switch to [hanami-view](/learn/hanami/view/v1.2/overview) for a compatible replacement."
     banner_type: warning

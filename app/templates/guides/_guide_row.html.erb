@@ -1,0 +1,15 @@
+<a
+  href="<%= guide.url_path %>"
+  class="flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors group"
+>
+  <div class="flex items-baseline gap-3 min-w-0">
+    <span class="text-xl font-semibold shrink-0"><%= guide.title %></span>
+    <% if guide.description %>
+      <span class="flex-1 text-lg text-neutral-subtle truncate"><%= guide.description %></span>
+    <% end %>
+  </div>
+  <div class="flex items-center gap-3 shrink-0 ml-4">
+    <span class="text-sm text-neutral-subtle"><%= guide.pages.paths.length %> pages</span>
+    <%= render "svgs/icons/arrow_right", width: 16, height: 16, class_name: "fill-current" %>
+  </div>
+</a>

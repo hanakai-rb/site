@@ -7,8 +7,8 @@ module Site
     module Loaders
       # Loads guides from content/guides/ into the database.
       class Guides
-        GuideData = Data.define(:org, :slug, :version, :version_scope, :position, :title, :deprecated, :banner, :banner_type) do
-          def initialize(deprecated: false, banner: nil, banner_type: "note", **attrs)
+        GuideData = Data.define(:org, :slug, :version, :version_scope, :position, :title, :description, :deprecated, :banner, :banner_type) do
+          def initialize(deprecated: false, banner: nil, banner_type: "note", description: nil, **attrs)
             super
           end
         end
