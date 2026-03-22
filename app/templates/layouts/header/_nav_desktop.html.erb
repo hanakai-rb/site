@@ -1,4 +1,4 @@
-<nav class="hidden md:flex flex-1 py-2">
+<nav class="hidden md:flex flex-1 py-2 items-center gap-3">
   <ul class="flex flex-1 justify-center gap-2">
     <% nav_items.each do |nav_item| %>
       <% if nav_item.url == "/projects" %>
@@ -29,7 +29,13 @@
               left-1/2 -translate-x-1/2 z-50 max-w-4xl w-11/12
             "
           >
-            <div class="relative bg-white rounded-2xl p-3 shadow-2xl">
+            <div
+              class="
+                relative bg-neutral border-2 border-neutral-100
+                dark:border-neutral-800 rounded-2xl p-3 shadow-2xl
+                dark:shadow-neutral-900
+              "
+            >
               <div class="flex gap-2">
                 <%# Hanami %>
                 <% hanami, dry, rom = nav_item.children %>
@@ -37,8 +43,8 @@
                 <a
                   href="/projects/hanami"
                   class="
-                    theme-hanami-light
-                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-white
+                    theme-hanami
+                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-neutral
                     border-3 transition-all w-52
                     <%= hanami.selected ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
                   "
@@ -51,7 +57,7 @@
                     </div>
                   </div>
 
-                  <p class="text-lg text-neutral-600 leading-snug">
+                  <p class="text-lg text-neutral-600 dark:text-neutral-400 leading-snug">
                     Complete framework for building apps
                   </p>
                 </a>
@@ -60,8 +66,8 @@
                 <a
                   href="/projects/dry"
                   class="
-                    theme-dry-light
-                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-white
+                    theme-dry
+                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-neutral
                     border-3 transition-all w-52
                     <%= dry.selected ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
                   "
@@ -74,7 +80,7 @@
                     </div>
                   </div>
 
-                  <p class="text-lg text-neutral-600 leading-snug">
+                  <p class="text-lg text-neutral-600 dark:text-neutral-400 leading-snug">
                     Validation, types, functional patterns and more
                   </p>
                 </a>
@@ -83,8 +89,8 @@
                 <a
                   href="/projects/rom"
                   class="
-                    theme-rom-light
-                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-white
+                    theme-rom
+                    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-neutral
                     border-3 transition-all w-52
                     <%= rom.selected ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
                   "
@@ -97,7 +103,7 @@
                     </div>
                   </div>
 
-                  <p class="text-lg text-neutral-600 leading-snug">
+                  <p class="text-lg text-neutral-600 dark:text-neutral-400 leading-snug">
                     Powerful and flexible persistence toolkit
                   </p>
                 </a>
@@ -156,6 +162,8 @@
     <% end %>
   </ul>
 
+  <%= render "layouts/header/theme_switcher" %>
+
   <button
     aria-label="Search"
     aria-keyshortcuts="/ control+k meta+k"
@@ -163,9 +171,9 @@
     class="
       search-activate-button
       flex items-center gap-3
-      bg-(--hk-color-neutral-subtle) text-neutral-500 rounded-xl text-sm px-3
+      bg-(--hk-color-neutral-subtle) inset-shadow-sm text-neutral-500 dark:text-neutral-400 rounded-xl text-sm px-3 py-2
       cursor-pointer
-      hover:text-neutral-800 hover:shadow-md
+      hover:opacity-75
       after:tracking-tight
       after:content-['Ctrl_+_K'] [&.mac]:after:content-['⌘_+_K']
       transition-all

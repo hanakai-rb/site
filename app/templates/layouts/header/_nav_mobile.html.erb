@@ -1,7 +1,7 @@
 <div
   class="
     md:hidden flex justify-center collapse
-    h-0 overflow-hidden transition-all duration-250 ease-[cubic-bezier(.58,-.25,.265,1.25)] bg-white
+    h-0 overflow-hidden transition-all duration-250 ease-[cubic-bezier(.58,-.25,.265,1.25)] bg-neutral
   "
   id="nav-mobile"
 >
@@ -16,8 +16,8 @@
         <a
           href="/projects/hanami"
           class="
-            theme-hanami-light
-            flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-white
+            theme-hanami
+            flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
             border-3 <%= hanami.selected ? "b-primary" : "border-transparent" %>
           "
         >
@@ -31,8 +31,8 @@
         <a
           href="/projects/dry"
           class="
-            theme-dry-light
-            flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-white
+            theme-dry
+            flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
             border-3 <%= dry.selected ? "b-primary" : "border-transparent" %>
           "
         >
@@ -46,8 +46,8 @@
         <a
           href="/projects/rom"
           class="
-            theme-rom-light
-            flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-white
+            theme-rom
+            flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
             border-3 <%= rom.selected ? "b-primary" : "border-transparent" %>
           "
         >
@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <ul class="flex flex-col items-center">
+    <ul class="flex flex-col items-center mb-4">
       <% nav_items.each do |nav_item| %>
         <% next if nav_item.url == "/projects" %>
 
@@ -77,5 +77,7 @@
         </li>
       <% end %>
     </ul>
+
+    <%= render "layouts/header/theme_switcher" %>
   </nav>
 </div>

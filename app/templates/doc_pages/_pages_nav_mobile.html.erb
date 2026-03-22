@@ -72,7 +72,7 @@
         max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
         scrolling-panel scrolling-panel--with-bottom-overlay
         transition-discrete
-        shadow-2xl
+        shadow-2xl dark:shadow-neutral-900
       "
       data-defo-ensure-active-nav-link-visible="<%= { block: "start", id: "mobile-pages-nav", minThreshold: 400 }.to_json %>"
     >
@@ -108,7 +108,7 @@
           overflow-y-scroll overscroll-contain
           max-h-[calc(100dvh-var(--hk-nav-height)+var(--hk-mobile-page-nav-height)-130px)]
           scrolling-panel scrolling-panel--with-bottom-overlay
-          shadow-2xl
+          shadow-2xl dark:shadow-neutral-900
         "
         data-defo-ensure-active-nav-link-visible="<%= { id: "mobile-pages-nav", block: "start" }.to_json %>"
       >

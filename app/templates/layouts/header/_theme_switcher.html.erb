@@ -1,0 +1,26 @@
+<button
+  data-defo-theme-switcher
+  aria-label="Switch to dark mode"
+  aria-pressed="false"
+  class="
+    relative w-12 h-7 rounded-full bg-(--hk-color-neutral-subtle)
+    inset-shadow-sm cursor-pointer hover:opacity-75 transition-colors
+  "
+>
+  <span
+    class="
+      absolute top-0.5 left-0.5 size-6 rounded-full bg-white
+      dark:bg-neutral-700 translate-x-0 dark:translate-x-5
+      transition-transform duration-200 ease-in-out flex items-center
+      justify-center text-neutral-600 dark:text-white
+    "
+  >
+    <span class="flex dark:hidden">
+      <%= render "svgs/icons/sun", height: 14, width: 14, class_name: "fill-current" %>
+    </span>
+
+    <span class="hidden dark:flex">
+      <%= render "svgs/icons/moon", height: 14, width: 14, class_name: "fill-current" %>
+    </span>
+  </span>
+</button>

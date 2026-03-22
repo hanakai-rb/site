@@ -5,6 +5,11 @@
 @import "tailwindcss";
 @source "../../templates";
 
+/* Make the dark: variant respond to the .dark class set by the theme switcher,
+   in addition to (or instead of) the system preference media query. The JS view
+   adds/removes .dark on <html> based on localStorage or prefers-color-scheme. */
+@custom-variant dark (&:is(.dark, .dark *));
+
 @theme {
   --font-sans:
     "Faire Sprig Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

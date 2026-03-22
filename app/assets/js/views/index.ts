@@ -8,6 +8,7 @@ import { mobilePageNavViewFn } from "./mobile-page-nav";
 import { sizeToVarViewFn } from "./size-to-var";
 import { targetCurrentViewFn } from "./target-current";
 import { tocScrollViewFn } from "./toc-scroll";
+import { themeSwitcherViewFn } from "./theme-switcher";
 import { toggleClassViewFn } from "./toggle-class";
 import { pagefindSearchViewFn } from "./pagefind-search";
 
@@ -22,6 +23,7 @@ export const views: Views = {
   sizeToVar: sizeToVarViewFn,
   pagefindSearch: pagefindSearchViewFn,
   targetCurrent: targetCurrentViewFn,
+  themeSwitcher: themeSwitcherViewFn,
   tocScroll: breakpointFilter(tocScrollViewFn),
   toggleClass: toggleClassViewFn,
 };

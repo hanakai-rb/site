@@ -1,6 +1,6 @@
 <% content_for :title, post.title %>
 
-<article class="lg:pt-12 pt-5 theme-<%= org %>-light">
+<article class="lg:pt-12 pt-5 theme-<%= org %>">
   <header class="lg:max-w-200 mx-auto mb-6 text-center">
     <time
       class="
@@ -24,13 +24,16 @@
 
     <% if post.respond_to?(:author) && post.author && !post.author.to_s.strip.empty? %>
       <p
-        class="text-lg text-neutral-500 flex items-center justify-center gap-2"
+        class="
+          text-lg text-neutral-500 dark:text-neutral-400 flex items-center
+          justify-center gap-2
+        "
         data-testid="author"
       >
         <% if author_team_member %>
           <%= image_tag "https://avatars.githubusercontent.com/#{author_team_member.github_user}?size=80",
               alt: "Avatar for #{post.author}",
-              class: "avatar w-10 h-10 rounded-full border-2 border-gray-200",
+              class: "avatar w-10 h-10 rounded-full border-2 border-neutral-200 dark:border-neutral-700",
               height: 40,
               width: 40 %>
         <% end %>

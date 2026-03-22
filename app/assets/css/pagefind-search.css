@@ -5,6 +5,7 @@
   --pagefind-ui-background: var(--hk-color-bg-neutral);
   --pagefind-ui-border: var(--color-neutral-300);
   --pagefind-ui-tag: var(--color-neutral-300);
+  color-scheme: light dark;
   --pagefind-ui-border-width: 2px;
   --pagefind-ui-border-radius: var(--radius-md);
   --pagefind-ui-image-border-radius: var(--radius-md);
@@ -59,7 +60,7 @@
   }
 
   .pagefind-ui__result {
-    border-color: var(--color-neutral-200);
+    border-color: var(--hk-color-neutral-subtle);
     border-top-width: 1px;
     padding: calc(var(--spacing) * 3.5) 0 calc(var(--spacing) * 4);
     word-break: break-word;
@@ -104,8 +105,8 @@
   }
 
   .pagefind-ui__result-tag {
-    background-color: var(--color-neutral-100);
-    color: var(--color-neutral-500);
+    background-color: var(--hk-color-neutral-subtle);
+    color: var(--hk-color-neutral-subtle-reversed);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     padding: 2px 5px;
@@ -124,7 +125,7 @@
 
   .pagefind-ui__filter-block {
     border-bottom-width: 1px;
-    border-color: var(--color-neutral-200);
+    border-color: var(--hk-color-neutral-subtle);
     padding: 0;
     summary {
       font-size: var(--text-md);
@@ -165,6 +166,11 @@
     border-radius: 2px;
     padding: 1px 3px;
   }
+}
+
+html.dark .pagefind-ui {
+  --pagefind-ui-border: var(--color-neutral-700);
+  --pagefind-ui-tag: var(--color-neutral-700);
 }
 
 @variant lg {

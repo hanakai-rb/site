@@ -7,7 +7,7 @@
   data-defo-ensure-active-nav-link-visible="<%= { id: "desktop-pages-nav" }.to_json %>"
 >
   <div class="sticky top-0">
-    <div class="bg-white flex gap-2 pb-2 items-center mt-1">
+    <div class="bg-neutral flex gap-2 pb-2 items-center mt-1">
       <%= render "svgs/#{org}_logo", width: 32, height: 32 %>
 
       <p class="font-semibold text-primary text-2xl leading-tight">
@@ -15,7 +15,12 @@
       </p>
     </div>
 
-    <div class="bg-linear-to-b from-white to-transparent h-4 pointer-events-none"></div>
+    <div
+      class="
+        bg-linear-to-b from-(--hk-color-bg-neutral) to-transparent h-4
+        pointer-events-none
+      "
+    ></div>
   </div>
 
   <nav class="hidden lg:block"><%= render_slot :nav %></nav>
