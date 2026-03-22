@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <ul class="flex flex-col items-center">
+    <ul class="flex flex-col items-center mb-4">
       <% nav_items.each do |nav_item| %>
         <% next if nav_item.url == "/projects" %>
 
@@ -77,5 +77,6 @@
         </li>
       <% end %>
     </ul>
+    <%= render "layouts/header/theme_switcher" %>
   </nav>
 </div>
