@@ -168,11 +168,9 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .pagefind-ui {
-    --pagefind-ui-border: var(--color-neutral-700);
-    --pagefind-ui-tag: var(--color-neutral-700);
-  }
+html.dark .pagefind-ui {
+  --pagefind-ui-border: var(--color-neutral-700);
+  --pagefind-ui-tag: var(--color-neutral-700);
 }
 
 @variant lg {

@@ -304,7 +304,7 @@
     border: 2px var(--color-rom-500) solid;
     background-color: var(--color-rom-50);
     &:before {
-      content: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%232AAD56%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20d%3D%22M176%2C232a8%2C8%2C0%2C0%2C1-8%2C8H88a8%2C8%2C0%2C0%2C1%2C0-16h80A8%2C8%2C0%2C0%2C1%2C176%2C232Zm40-128a87.55%2C87.55%2C0%2C0%2C1-33.64%2C69.21A16.24%2C16.24%2C0%2C0%2C0%2C176%2C186v6a16%2C16%2C0%2C0%2C1-16%2C16H96a16%2C16%2C0%2C0%2C1-16-16v-6a16%2C16%2C0%2C0%2C0-6.23-12.66A87.59%2C87.59%2C0%2C0%2C1%2C40%2C104.49C39.74%2C56.83%2C78.26%2C17.14%2C125.88%2C16A88%2C88%2C0%2C0%2C1%2C216%2C104Zm-50.34%2C2.34a8%2C8%2C0%2C0%2C0-11.32%2C0L128%2C132.69l-26.34-26.35a8%2C8%2C0%2C0%2C0-11.32%2C11.32L120%2C147.31V184a8%2C8%2C0%2C0%2C0%2C16%2C0V147.31l29.66-29.65A8%2C8%2C0%2C0%2C0%2C165.66%2C106.34Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E);
+      content: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%230063FF%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20d%3D%22M176%2C232a8%2C8%2C0%2C0%2C1-8%2C8H88a8%2C8%2C0%2C0%2C1%2C0-16h80A8%2C8%2C0%2C0%2C1%2C176%2C232Zm40-128a87.55%2C87.55%2C0%2C0%2C1-33.64%2C69.21A16.24%2C16.24%2C0%2C0%2C0%2C176%2C186v6a16%2C16%2C0%2C0%2C1-16%2C16H96a16%2C16%2C0%2C0%2C1-16-16v-6a16%2C16%2C0%2C0%2C0-6.23-12.66A87.59%2C87.59%2C0%2C0%2C1%2C40%2C104.49C39.74%2C56.83%2C78.26%2C17.14%2C125.88%2C16A88%2C88%2C0%2C0%2C1%2C216%2C104Zm-50.34%2C2.34a8%2C8%2C0%2C0%2C0-11.32%2C0L128%2C132.69l-26.34-26.35a8%2C8%2C0%2C0%2C0-11.32%2C11.32L120%2C147.31V184a8%2C8%2C0%2C0%2C0%2C16%2C0V147.31l29.66-29.65A8%2C8%2C0%2C0%2C0%2C165.66%2C106.34Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E);
     }
     .markdown-alert-title {
       color: var(--color-rom-500);
@@ -333,7 +333,7 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
+  html.dark & {
     /* Inline code: the light-mode formula darkens rom-500 for white backgrounds,
        but in dark mode that makes text invisible. Lighten instead. */
     code {
@@ -480,7 +480,7 @@
 
     /* Lighten secondary token colours in dark mode — rom-500 at L=0.56 is only
        3.9:1 against the dark code block background, just below WCAG AA. */
-    @media (prefers-color-scheme: dark) {
+    html.dark & {
       .string,
       .punctuation.definition.string,
       .entity.name.function,
