@@ -162,6 +162,16 @@
       background-color: oklch(from var(--hk-color-b-secondary) calc(l + 0.3) calc(c - 0.1) h);
     }
 
+    html.dark & {
+      @supports not selector(::-webkit-scrollbar) {
+        scrollbar-color: oklch(from var(--hk-color-b-secondary) calc(l) calc(c - 0.1) h) var(--hk-color-neutral-subtle);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: oklch(from var(--hk-color-b-secondary) calc(l) calc(c - 0.1) h);
+      }
+    }
+
     code {
       background: transparent;
       border: none;
