@@ -24,7 +24,10 @@
 
     <% if post.respond_to?(:author) && post.author && !post.author.to_s.strip.empty? %>
       <p
-        class="text-lg text-neutral-500 dark:text-neutral-400 flex items-center justify-center gap-2"
+        class="
+          text-lg text-neutral-500 dark:text-neutral-400 flex items-center
+          justify-center gap-2
+        "
         data-testid="author"
       >
         <% if author_team_member %>

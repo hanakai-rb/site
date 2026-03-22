@@ -14,10 +14,7 @@
   <% if posts.any? %>
     <ol class="flex flex-col lg:gap-8 gap-6 lg:mb-10 mb-6">
       <% posts.each do |post| %>
-        <li
-          data-testid="blog-post"
-          class="theme-<%= post.org || "hanakai" %>"
-        >
+        <li data-testid="blog-post" class="theme-<%= post.org || "hanakai" %>">
           <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1 mb-5", height: 14, stroke_width: 2 %>
 
           <div class="flex gap-6">

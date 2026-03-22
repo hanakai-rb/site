@@ -12,7 +12,9 @@
   <div class="space-y-16">
     <% if core_members.any? %>
       <section>
-        <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Core Team</h2>
+        <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
+          Core Team
+        </h2>
 
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
@@ -28,18 +30,28 @@
               <div class="flex items-start gap-4 mb-4">
                 <img
                   alt="<%= member.name %>"
-                  class="avatar w-20 h-20 rounded-full border-2 border-neutral-200 dark:border-neutral-700"
+                  class="
+                    avatar w-20 h-20 rounded-full border-2
+                    border-neutral-200 dark:border-neutral-700
+                  "
                   height="80"
                   src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=130"
                   width="80"
                 >
 
                 <div class="flex-1 min-w-0">
-                  <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                  <h3
+                    class="
+                      text-xl font-semibold text-neutral-900
+                      dark:text-neutral-100 mb-1
+                    "
+                  >
                     <%= member.name %>
                   </h3>
 
-                  <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2"><%= member.status %></p>
+                  <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
+                    <%= member.status %>
+                  </p>
 
                   <p class="text-sm text-neutral-500 dark:text-neutral-400">
                     <svg
@@ -118,7 +130,9 @@
 
     <% if maintainers.any? %>
       <section class="mt-16">
-        <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Maintainers</h2>
+        <h2 class="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
+          Maintainers
+        </h2>
 
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -135,15 +149,25 @@
                 <img
                   src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=130"
                   alt="<%= member.name %>"
-                  class="avatar w-20 h-20 rounded-full border-2 border-neutral-200 dark:border-neutral-700"
+                  class="
+                    avatar w-20 h-20 rounded-full border-2
+                    border-neutral-200 dark:border-neutral-700
+                  "
                 >
 
                 <div class="flex-1 min-w-0">
-                  <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-1">
+                  <h3
+                    class="
+                      text-xl font-semibold text-neutral-900
+                      dark:text-neutral-100 mb-1
+                    "
+                  >
                     <%= member.name %>
                   </h3>
 
-                  <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2"><%= member.status %></p>
+                  <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
+                    <%= member.status %>
+                  </p>
 
                   <p class="text-sm text-neutral-500 dark:text-neutral-400">
                     <svg

@@ -5,9 +5,7 @@ const STORAGE_KEY = "hk-color-scheme";
 type ColorScheme = "dark" | "light";
 
 function getSystemScheme(): ColorScheme {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 function getEffectiveScheme(): ColorScheme {
@@ -21,10 +19,7 @@ function applyScheme(scheme: ColorScheme) {
 }
 
 function updateButton(node: HTMLElement, scheme: ColorScheme) {
-  node.setAttribute(
-    "aria-label",
-    scheme === "dark" ? "Switch to light mode" : "Switch to dark mode",
-  );
+  node.setAttribute("aria-label", scheme === "dark" ? "Switch to light mode" : "Switch to dark mode");
   node.setAttribute("aria-pressed", scheme === "dark" ? "true" : "false");
 }
 

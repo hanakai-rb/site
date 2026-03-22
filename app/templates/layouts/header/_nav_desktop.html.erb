@@ -29,7 +29,13 @@
               left-1/2 -translate-x-1/2 z-50 max-w-4xl w-11/12
             "
           >
-            <div class="relative bg-neutral border-2 border-neutral-100 dark:border-neutral-800 rounded-2xl p-3 shadow-2xl dark:shadow-neutral-900">
+            <div
+              class="
+                relative bg-neutral border-2 border-neutral-100
+                dark:border-neutral-800 rounded-2xl p-3 shadow-2xl
+                dark:shadow-neutral-900
+              "
+            >
               <div class="flex gap-2">
                 <%# Hanami %>
                 <% hanami, dry, rom = nav_item.children %>
@@ -167,7 +173,7 @@
       flex items-center gap-3
       bg-(--hk-color-neutral-subtle) inset-shadow-sm text-neutral-500 dark:text-neutral-400 rounded-xl text-sm px-3 py-2
       cursor-pointer
-      hover:text-neutral-800 dark:hover:text-neutral-200 hover:shadow-md
+      hover:opacity-75
       after:tracking-tight
       after:content-['Ctrl_+_K'] [&.mac]:after:content-['⌘_+_K']
       transition-all

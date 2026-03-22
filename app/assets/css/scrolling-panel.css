@@ -29,7 +29,11 @@
     bottom: 0;
     width: 100%;
     height: calc(var(--spacing) * 10);
-    background-image: linear-gradient(to top, var(--hk-color-bg-neutral), oklch(from var(--hk-color-bg-neutral) l c h / 0));
+    background-image: linear-gradient(
+      to top,
+      var(--hk-color-bg-neutral),
+      oklch(from var(--hk-color-bg-neutral) l c h / 0)
+    );
   }
 }
 
@@ -45,7 +49,11 @@
       bottom: 0;
       width: 100%;
       height: calc(var(--spacing) * 10);
-      background-image: linear-gradient(to top, var(--hk-color-bg-neutral), oklch(from var(--hk-color-bg-neutral) l c h / 0));
+      background-image: linear-gradient(
+        to top,
+        var(--hk-color-bg-neutral),
+        oklch(from var(--hk-color-bg-neutral) l c h / 0)
+      );
     }
   }
 }
