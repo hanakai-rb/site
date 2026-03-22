@@ -1,7 +1,7 @@
 <% content_for :title, "Learn" %>
 
 <div class="w-full lg:max-w-[80%] mx-auto">
-  <header class=" lg:pt-12 lg:pb-12 pt-5 mb-6 text-center">
+  <header class="lg:pt-12 lg:pb-12 pt-5 mb-6 text-center">
     <h1 class="lg:hidden text-2xl font-semibold mb-1">
       Learn
     </h1>
@@ -16,7 +16,7 @@
                id: "hanami",
                name: "Hanami",
                theme: "hanami",
-               description: "The web framework for Ruby.",
+               description: "A complete framework for building apps with structure and clarity.",
                section_guides: guides.fetch("hanami"),
                version_select: {
                  id: "hanami-version-select",
@@ -26,20 +26,24 @@
                  path_prefix: "/learn/hanami",
                  anchor: "left"
                } %>
+
     <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
+
     <%= render "guides/guide_section",
                id: "dry",
                name: "Dry",
                theme: "dry",
-               description: "A collection of next-generation Ruby libraries.",
+               description: "Validation, types, functional patterns and more, for robust code in any Ruby app.",
                section_guides: guides.fetch("dry"),
                version_select: nil %>
+
     <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
+
     <%= render "guides/guide_section",
                id: "rom",
                name: "ROM",
                theme: "rom",
-               description: "Ruby Object Mapper — persistence and mapping toolkit.",
+               description: "A powerful, flexible persistence toolkit that keeps your domain logic clean.",
                section_guides: guides.fetch("rom"),
                version_select: {
                  id: "rom-version-select",
