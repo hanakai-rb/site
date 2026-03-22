@@ -16,14 +16,8 @@ function getEffectiveScheme(): ColorScheme {
   return getSystemScheme();
 }
 
-function applyScheme(scheme: ColorScheme, isForced: boolean) {
-  const html = document.documentElement;
-  html.classList.toggle("dark", scheme === "dark");
-  if (isForced) {
-    html.dataset.colorScheme = scheme;
-  } else {
-    delete html.dataset.colorScheme;
-  }
+function applyScheme(scheme: ColorScheme) {
+  document.documentElement.classList.toggle("dark", scheme === "dark");
 }
 
 function updateButton(node: HTMLElement, scheme: ColorScheme) {
@@ -38,26 +32,24 @@ function updateButton(node: HTMLElement, scheme: ColorScheme) {
  * themeSwitcher
  *
  * Toggles between dark and light colour schemes. Reads the user's saved
- * preference from localStorage; falls back to prefers-color-scheme. Sets
- * data-color-scheme and the .dark class on <html> so both CSS custom
- * properties and Tailwind dark: utilities respond correctly.
+ * preference from localStorage; falls back to prefers-color-scheme. Toggles
+ * the .dark class on <html> so CSS custom properties and Tailwind dark:
+ * utilities respond correctly.
  *
  * @example
  * <button data-defo-theme-switcher />
  */
 export const themeSwitcherViewFn: ViewFn = (node: HTMLElement) => {
-  let stored = window.localStorage.getItem(STORAGE_KEY) as ColorScheme | null;
   let scheme = getEffectiveScheme();
 
   // Sync state that the inline FOUC-prevention script may have already set.
-  applyScheme(scheme, stored !== null);
+  applyScheme(scheme);
   updateButton(node, scheme);
 
   const handleClick = () => {
     scheme = scheme === "dark" ? "light" : "dark";
     window.localStorage.setItem(STORAGE_KEY, scheme);
-    stored = scheme;
-    applyScheme(scheme, true);
+    applyScheme(scheme);
     updateButton(node, scheme);
   };
 
@@ -66,7 +58,7 @@ export const themeSwitcherViewFn: ViewFn = (node: HTMLElement) => {
   const handleSystemChange = (e: MediaQueryListEvent) => {
     if (window.localStorage.getItem(STORAGE_KEY) === null) {
       scheme = e.matches ? "dark" : "light";
-      applyScheme(scheme, false);
+      applyScheme(scheme);
       updateButton(node, scheme);
     }
   };

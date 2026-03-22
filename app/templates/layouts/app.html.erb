@@ -23,6 +23,14 @@
 
     <%= favicon_tag %>
     <%= stylesheet_tag "app" %>
+    <script>
+      (function () {
+        var stored = localStorage.getItem("hk-color-scheme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var isDark = stored === "dark" || (!stored && prefersDark);
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
     <%= raw content_for(:meta) %>
     <%= javascript_tag "app", async: true, type: "module" %>
   </head>
