@@ -1,4 +1,4 @@
-<nav class="hidden md:flex flex-1 py-2">
+<nav class="hidden md:flex flex-1 py-2 items-center gap-3">
   <ul class="flex flex-1 justify-center gap-2">
     <% nav_items.each do |nav_item| %>
       <% if nav_item.url == "/projects" %>
@@ -157,13 +157,29 @@
   </ul>
 
   <button
+    data-defo-theme-switcher
+    aria-label="Switch to dark mode"
+    aria-pressed="false"
+    class="relative w-12 h-7 rounded-full bg-(--hk-color-neutral-subtle) inset-shadow-sm cursor-pointer hover:opacity-75 transition-colors"
+  >
+    <span class="absolute top-0.5 left-0.5 size-6 rounded-full bg-white dark:bg-neutral-700 translate-x-0 dark:translate-x-5 transition-transform duration-200 ease-in-out flex items-center justify-center text-neutral-600 dark:text-white">
+      <span class="flex dark:hidden">
+        <%= render "svgs/icons/sun", height: 14, width: 14, class_name: "fill-current" %>
+      </span>
+      <span class="hidden dark:flex">
+        <%= render "svgs/icons/moon", height: 14, width: 14, class_name: "fill-current" %>
+      </span>
+    </span>
+  </button>
+
+  <button
     aria-label="Search"
     aria-keyshortcuts="/ control+k meta+k"
     data-defo-is-mac="<%= { macClassName: 'mac'}.to_json %>"
     class="
       search-activate-button
       flex items-center gap-3
-      bg-(--hk-color-neutral-subtle) text-neutral-500 dark:text-neutral-400 rounded-xl text-sm px-3
+      bg-(--hk-color-neutral-subtle) inset-shadow-sm text-neutral-500 dark:text-neutral-400 rounded-xl text-sm px-3 py-2
       cursor-pointer
       hover:text-neutral-800 dark:hover:text-neutral-200 hover:shadow-md
       after:tracking-tight
