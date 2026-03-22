@@ -1,16 +1,16 @@
 <a
   href="<%= guide.url_path %>"
   class="
-    flex items-center justify-between px-5 py-4 transition-colors group
-    outline-transparent hover:outline-(--hk-color-b-primary) hover:outline-2
-    rounded-md
+    flex items-center justify-between lg:px-5 py-4 lg:transition-colors group
+    lg:outline-transparent lg:hover:outline-(--hk-color-b-primary) lg:hover:outline-2
+    lg:rounded-md
   "
 >
-  <div class="flex items-baseline gap-3 min-w-0">
+  <div class="flex flex-col lg:flex-row items-baseline lg:gap-3 min-w-0">
     <span class="text-xl font-semibold shrink-0"><%= guide.title %></span>
 
     <% if guide.description %>
-      <span class="flex-1 text-lg text-neutral-subtle truncate">
+      <span class="flex-1 text-lg text-neutral-subtle lg:truncate">
         <%= guide.description %>
       </span>
     <% end %>

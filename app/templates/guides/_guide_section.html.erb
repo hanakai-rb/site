@@ -1,8 +1,8 @@
-<section id="<%= id %>" class="theme-<%= theme %> flex">
+<section id="<%= id %>" class="theme-<%= theme %> flex flex-col lg:flex-row">
   <div
     class="
       lg:sticky lg:top-[calc(var(--hk-nav-height)+2rem)] lg:self-start mb-8
-      lg:mb-0 grow flex-4/12
+      lg:mb-0 grow lg:flex-4/12
     "
   >
     <div class="flex items-center gap-3 mb-2">
@@ -27,7 +27,7 @@
   </div>
 
   <div
-    class="grow flex-8/12 divide-y divide-neutral-100"
+    class="grow lg:flex-8/12 divide-y divide-(--hk-color-neutral-subtle)"
     data-testid="<%= id %>-guides"
   >
     <% section_guides.each do |guide| %>
