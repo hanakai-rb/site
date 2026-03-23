@@ -160,6 +160,10 @@ html.dark {
   color: var(--hk-color-text-neutral);
 }
 
+.text-neutral-subtle {
+  color: oklch(from var(--hk-color-text-neutral) 0.6 c h);
+}
+
 .text-link-underline {
   color: var(--hk-color-text-link-underline);
 }

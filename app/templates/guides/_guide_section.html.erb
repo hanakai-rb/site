@@ -1,0 +1,37 @@
+<section id="<%= id %>" class="theme-<%= theme %> flex flex-col lg:flex-row">
+  <div
+    class="
+      lg:sticky lg:top-[calc(var(--hk-nav-height)+2rem)] lg:self-start mb-8
+      lg:mb-0 grow lg:flex-4/12
+    "
+  >
+    <div class="flex items-center gap-3 mb-2">
+      <%= render "svgs/#{id}_logo", width: 50, height: 50 %>
+
+      <h2 class="text-4xl font-bold text-primary">
+        <%= render "shared/names/#{id}" %>
+      </h2>
+    </div>
+
+    <p class="text-xl mb-3"><%= description %></p>
+
+    <div class="flex gap-4 items-center mt-8">
+      <% if version_select %>
+        <div data-testid="<%= id %>-versions">
+          <%= render "doc_pages/version_select", **version_select %>
+        </div>
+      <% end %>
+
+      <p class="text-neutral-subtle"><%= section_guides.length %> guides</p>
+    </div>
+  </div>
+
+  <div
+    class="grow lg:flex-8/12 divide-y divide-(--hk-color-neutral-subtle)"
+    data-testid="<%= id %>-guides"
+  >
+    <% section_guides.each do |guide| %>
+      <%= render "guides/guide_row", guide: guide, theme: theme %>
+    <% end %>
+  </div>
+</section>

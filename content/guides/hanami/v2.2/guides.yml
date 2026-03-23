@@ -1,25 +1,37 @@
 guides:
   - slug: getting-started
     title: Getting started
+    description: Build your first Hanami app from scratch
   - slug: command-line
     title: Command line
+    description: Generators and CLI tools
   - slug: app
     title: App
+    description: Application container and booting
   - slug: database
     title: Database
+    description: Persistence with ROM and SQL
   - slug: routing
     title: Routing
+    description: Defining and inspecting URL routes
   - slug: actions
     title: Actions
+    description: Handling HTTP requests and responses
   - slug: operations
     title: Operations
+    description: Business logic with dry-operation
   - slug: views
     title: Views
+    description: Rendering templates and view objects
   - slug: helpers
     title: Helpers
+    description: Built-in and custom view helpers
   - slug: logger
     title: Logger
+    description: Structured logging configuration
   - slug: assets
     title: Assets
+    description: Compiling and serving static assets
   - slug: upgrade-notes
     title: Upgrade notes
+    description: Migrating from earlier versions

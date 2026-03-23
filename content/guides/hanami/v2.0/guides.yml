@@ -1,15 +1,22 @@
 guides:
   - slug: getting-started
     title: Getting started
+    description: Build your first Hanami app from scratch
   - slug: command-line
     title: Command line
+    description: Generators and CLI tools
   - slug: app
     title: App
+    description: Application container and booting
   - slug: routing
     title: Routing
+    description: Defining and inspecting URL routes
   - slug: actions
     title: Actions
+    description: Handling HTTP requests and responses
   - slug: logger
     title: Logger
+    description: Structured logging configuration
   - slug: views
     title: Views
+    description: Rendering templates and view objects
