@@ -1,5 +1,5 @@
-<% latest_version = version_links.keys.first
-  latest_version_url = version_links[latest_version] %>
+<% latest_listed_version_url = version_links[latest_listed_version] %>
+<% is_preview = Gem::Version.new(version.delete_prefix("v")) > Gem::Version.new(latest_listed_version.delete_prefix("v")) %>
 
 <div
   class="
@@ -12,11 +12,26 @@
 
   <div class="flex-1 lg:flex lg:flex-row">
     <p class="lg:flex-1 lg:block inline">
-      You’re viewing documentation for version <%= version %>.
+      <% if is_preview %>
+        You’re viewing a preview of guides for version
+        <%= version %>
+        .
+      <% else %>
+        You’re viewing guides for version
+        <%= version %>
+        .
+      <% end %>
     </p>
 
-    <a class="text-rom-500 dark:text-rom-400" href="<%= latest_version_url %>">
-      View latest ->
+    <a
+      class="text-rom-500 dark:text-rom-400"
+      href="<%= latest_listed_version_url %>"
+    >
+      <% if is_preview %>
+        View latest stable ->
+      <% else %>
+        View latest ->
+      <% end %>
     </a>
   </div>
 </div>

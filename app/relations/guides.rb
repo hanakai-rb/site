@@ -14,7 +14,10 @@ module Site
         attribute :deprecated, Types::Nominal::Bool
         attribute :banner, Types::Nominal::String.optional
         attribute :banner_type, Types::Nominal::String.optional
+        attribute :unlisted, Types::Nominal::Bool
       end
+
+      def listed = where(unlisted: false)
     end
   end
 end

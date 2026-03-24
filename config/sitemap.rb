@@ -19,14 +19,14 @@ SitemapGenerator::Sitemap.create do
   # Guides
   add "/learn"
 
-  app["repos.guide_repo"].versions_by_org.each do |org, versions|
+  app["repos.guide_repo"].listed_versions_by_org.each do |org, versions|
     # TODO: Update for self-versioned and versionless guides
     versions.each do |version|
       add "/learn/#{org}/#{version}"
     end
   end
 
-  app["repos.guide_repo"].all.each do |guide|
+  app["repos.guide_repo"].all.reject(&:unlisted).each do |guide|
     add guide.url_path
 
     guide.pages.all.each do |page|

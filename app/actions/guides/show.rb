@@ -36,7 +36,7 @@ module Site
           return unless version.nil?
 
           # Look for a versioned copy of this guide. If it exists, we can redirect to the latest.
-          latest_guide = guide_repo.with_latest_version(org: params[:org], slug: params[:slug])
+          latest_guide = guide_repo.with_latest_listed_version(org: params[:org], slug: params[:slug])
           return unless latest_guide
 
           redirect_url = latest_guide.url_path

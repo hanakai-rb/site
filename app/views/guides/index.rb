@@ -11,7 +11,7 @@ module Site
         end
 
         private_expose :versions do
-          guide_repo.versions_by_org
+          guide_repo.listed_versions_by_org
         end
 
         expose :hanami_version_links, decorate: false do |versions|
