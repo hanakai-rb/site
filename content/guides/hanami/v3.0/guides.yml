@@ -1,0 +1,6 @@
+unlisted: true
+
+guides:
+  - slug: getting-started
+    title: Getting started
+    description: Build your first Hanami app from scratch

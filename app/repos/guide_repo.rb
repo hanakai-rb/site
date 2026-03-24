@@ -36,16 +36,34 @@ module Site
         (self_versioned + unversioned).sort_by(&:position)
       end
 
-      def with_latest_version(org:, slug:)
-        guides
+      def with_latest_listed_version(org:, slug:)
+        listed_guides
           .where(org:, slug:)
           .where { version.not nil }
           .order { guides[:version].desc }
           .limit(1).one
       end
 
+      def latest_listed_org_version(org:)
+        listed_guides
+          .where(org:, version_scope: "org")
+          .order(guides[:version].desc)
+          .limit(1)
+          .pluck(:version)
+          .first
+      end
+
+      def latest_listed_guide_version(org:, slug:)
+        listed_guides
+          .where(org:, slug:, version_scope: "self")
+          .order(guides[:version].desc)
+          .limit(1)
+          .pluck(:version)
+          .first
+      end
+
       def org_versions(org:)
-        guides
+        listed_guides
           .where(org:, version_scope: "org")
           .group(:version)
           .order(guides[:version].desc)
@@ -53,7 +71,7 @@ module Site
       end
 
       def guide_versions(org:, slug:)
-        guides
+        listed_guides
           .where(org:, slug:, version_scope: "self")
           .group(:version)
           .order(guides[:version].desc)
@@ -73,8 +91,8 @@ module Site
         }
       end
 
-      def versions_by_org
-        guides
+      def listed_versions_by_org
+        listed_guides
           .where(version_scope: "org")
           .group(:org, :version)
           .order(guides[:version].desc)
@@ -99,6 +117,8 @@ module Site
       end
 
       private
+
+      def listed_guides = guides.listed
 
       def next_prev_guide_base_query(guide)
         if guide.version_scope == "org"

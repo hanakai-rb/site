@@ -48,8 +48,8 @@ module Site
           org_version || guide_version
         end
 
-        expose :latest_version, decorate: false do |versions|
-          versions.max
+        expose :latest_listed_version, decorate: false do |org:, slug:|
+          guide_repo.latest_listed_org_version(org:) || guide_repo.latest_listed_guide_version(org:, slug:)
         end
 
         private_expose :versions, decorate: false do |org:, slug:|
@@ -73,8 +73,10 @@ module Site
         #     # ...
         #     "v2.0" => "/learn/hanami/v2.0/getting-started"
         #   }
-        expose :version_links, decorate: false do |versions, org:, slug:, path:|
-          versions.to_h do |other_version|
+        expose :version_links, decorate: false do |versions, version, org:, slug:, path:|
+          versions_to_show = versions.include?(version) ? versions : [version, *versions]
+
+          versions_to_show.to_h do |other_version|
             other_guide = guide_repo.find_by(org:, version: other_version, slug:)
 
             # This guide exists for the other verison. Link to the same page at that version (if it

@@ -15,7 +15,7 @@ RSpec.feature "Guides / Index page" do
       end
     end
 
-    expected_versions = guide_repo.versions_by_org
+    expected_versions = guide_repo.listed_versions_by_org
     expected_versions.each do |org, versions|
       within "[data-testid=#{org}-versions]" do
         expect(page).to have_content versions.first

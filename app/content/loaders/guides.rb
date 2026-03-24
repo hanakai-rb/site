@@ -7,14 +7,16 @@ module Site
     module Loaders
       # Loads guides from content/guides/ into the database.
       class Guides
-        GuideData = Data.define(:org, :slug, :version, :version_scope, :position, :title, :description, :deprecated, :banner, :banner_type) do
-          def initialize(deprecated: false, banner: nil, banner_type: "note", description: nil, **attrs)
+        GuideData = Data.define(:org, :slug, :version, :version_scope, :position, :title, :description, :deprecated, :banner, :banner_type, :unlisted) do
+          def initialize(deprecated: false, banner: nil, banner_type: "note", description: nil, unlisted: false, **attrs)
             super
           end
         end
 
         GUIDES_YML = "guides.yml"
+        GUIDE_YML = "guide.yml"
         GUIDES_KEY = :guides
+        UNLISTED_KEY = :unlisted
         SLUG_KEY = :slug
 
         include Deps[relation: "relations.guides"]
@@ -43,9 +45,22 @@ module Site
             guides_yml = version_dir.join(GUIDES_YML)
             next [] unless guides_yml.file?
 
+            org_guides_attrs = read_yaml(guides_yml)
             version = version_dir.basename.to_s
-            parse_guides_yml(guides_yml).map.with_index do |guide_attrs, position|
-              GuideData.new(org:, version:, version_scope: "org", position:, **guide_attrs)
+            unlisted = org_guides_attrs[UNLISTED_KEY] || false
+
+            org_guides_attrs.fetch(GUIDES_KEY).filter_map.with_index do |guide_attrs, position|
+              guide_path = version_dir.join(guide_attrs.fetch(SLUG_KEY))
+              next unless guide_path.directory?
+
+              GuideData.new(
+                org:,
+                version:,
+                version_scope: "org",
+                position:,
+                unlisted:,
+                **guide_attrs
+              )
             end
           end
         end
@@ -54,27 +69,45 @@ module Site
           guides_yml = org_path.join(GUIDES_YML)
           return [] unless guides_yml.file?
 
-          parse_guides_yml(guides_yml).flat_map.with_index do |guide_attrs, position|
+          read_yaml(guides_yml).fetch(GUIDES_KEY).flat_map.with_index do |guide_attrs, position|
             guide_path = org_path.join(guide_attrs.fetch(SLUG_KEY))
             next [] unless guide_path.directory?
 
             guide_version_dirs = guide_path.glob("v*").select(&:directory?)
 
             if guide_version_dirs.none?
-              next [GuideData.new(org:, version: nil, version_scope: "none", position:, **guide_attrs)]
+              next [
+                GuideData.new(
+                  org:,
+                  version: nil,
+                  version_scope: "none",
+                  position:,
+                  **guide_attrs
+                )
+              ]
             end
 
             guide_version_dirs.map do |version_dir|
               version = version_dir.basename.to_s
-              GuideData.new(org:, version:, version_scope: "self", position:, **guide_attrs)
+
+              version_guide_yml = version_dir.join(GUIDE_YML)
+              version_guide_attrs = version_guide_yml.file? ? read_yaml(version_guide_yml) : {}
+              unlisted = version_guide_attrs[UNLISTED_KEY] || false
+
+              GuideData.new(
+                org:,
+                version:,
+                version_scope: "self",
+                position:,
+                unlisted:,
+                **guide_attrs
+              )
             end
           end
         end
 
-        def parse_guides_yml(guides_yml)
-          File.read(guides_yml)
-            .then { YAML.load(it, symbolize_names: true) }
-            .fetch(GUIDES_KEY)
+        def read_yaml(path)
+          File.read(path).then { YAML.load(it, symbolize_names: true) }
         end
       end
     end
