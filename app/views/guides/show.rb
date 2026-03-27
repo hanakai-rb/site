@@ -4,7 +4,7 @@ module Site
   module Views
     module Guides
       class Show < Site::View
-        include Deps["repos.guide_repo"]
+        include Deps["repos.guide_repo", "settings"]
 
         # Main guide exposures
 
@@ -50,6 +50,24 @@ module Site
 
         expose :latest_listed_version, decorate: false do |org:, slug:|
           guide_repo.latest_listed_org_version(org:) || guide_repo.latest_listed_guide_version(org:, slug:)
+        end
+
+        expose :canonical_url, decorate: false do |version, latest_listed_version, org:, slug:, path:|
+          next nil if version == latest_listed_version
+
+          latest_guide = guide_repo.find_by(org:, version: latest_listed_version, slug:)
+
+          next nil unless latest_guide
+
+          # Try to find the same page in the latest version
+          canonical_path = if latest_guide.pages.paths.include?(path)
+            latest_guide.pages[path].url_path
+          else
+            # Page doesn't exist in latest version, use guide root
+            latest_guide.url_path
+          end
+
+          "#{settings.site_url}#{canonical_path}"
         end
 
         private_expose :versions, decorate: false do |org:, slug:|
