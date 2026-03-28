@@ -1,307 +1,1067 @@
 <% content_for :title, "Become a Hanakai sponsor" %>
 
-<div class="lg:mt-8 lg:mb-14">
-  <header class="mb-12">
-    <h1 class="text-4xl font-extrabold mb-4">
-      Sponsor Hanakai. Help us build a diverse future for Ruby.
-    </h1>
-  </header>
+<%= content_for :pre_main do %>
+  <div class="h-0 overflow-visible pt-4 lg:pt-8 pointer-events-none relative z-0">
+    <%= render "svgs/hero_illustration", show_logos: false %>
+  </div>
+<% end %>
 
-  <div class="space-y-12">
-    <aside>
-      <p>
+<%# Hero %>
+<section class="py-12 lg:py-16 text-center max-w-3xl mx-auto">
+  <div class="flex justify-center mb-6">
+    <%= render "svgs/hanakai_logo", width: 134, height: 134 %>
+  </div>
+
+  <h1
+    class="
+      text-5xl lg:text-7xl font-black tracking-tighter leading-none mb-6
+      text-balance
+    "
+  >
+    Sponsor Hanakai
+  </h1>
+
+  <p class="text-2xl text-balance mb-8">
+    Help us build a diverse future for Ruby.
+  </p>
+
+  <div class="flex flex-wrap justify-center gap-3">
+    <%= render_with_slots "shared/components/button_primary",
+          href: "https://opencollective.com/hanami",
+          label: "Sponsor on Open Collective" do |btn| %>
+      <% btn.slot :suffix do %>
+        <%= render "svgs/icons/hand_heart", width: 24, height: 24, class_name: "text-current" %>
+      <% end %>
+    <% end %>
+
+    <%= render_with_slots "shared/components/button_primary",
+          href: "https://github.com/sponsors/hanami",
+          label: "Sponsor on GitHub" do |btn| %>
+      <% btn.slot :suffix do %>
+        <%= render "svgs/icons/hand_heart", width: 24, height: 24, class_name: "text-current" %>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<%# Tim's letter %>
+<section class="max-w-5xl mx-auto w-full pb-8 lg:pb-12">
+  <div
+    class="
+      relative bg-hanakai-50 dark:bg-neutral-950 border border-hanakai-200
+      rounded-lg dark:border-neutral-800 shadow-xl p-8 lg:p-12
+      lg:bg-[linear-gradient(to_right,transparent,var(--color-hanakai-100)_50%,transparent_50%)]
+      dark:lg:bg-[linear-gradient(to_right,transparent,var(--color-hanakai-900)_50%,transparent_50%)]
+    "
+    style="transform: rotate(-1deg)"
+  >
+    <%# Balanced columns %>
+    <div class="columns-1 lg:columns-2 gap-24 space-y-5">
+      <p class="text-lg">
         For more than a decade, Hanami, Dry and Rom have offered Ruby developers
         something different: tools built around clarity, flexibility, and a
-        genuine belief that there's more than one good way to build an app. This
-        year we've brought all three together under Hanakai, a unified project
-        with a shared community and future. We've delivered on this. Now comes
-        the part where we make it last.
+        genuine belief that there’s more than one good way to build an app.
       </p>
 
-      <p>
+      <p class="text-lg">
+        This year we’ve brought all three together under Hanakai, a unified
+        project with a shared community and future.
+      </p>
+
+      <p class="text-lg font-semibold">
+        Now comes the part where we make it last.
+      </p>
+
+      <p class="text-lg">
         Sustaining Hanakai means steady, ongoing work: releasing gems, improving
         your developer experience, and growing our community. This needs me to
         show up consistently, over the long run. And beyond that, we want more
         of our maintainers to get the recognition and compensation they deserve.
       </p>
 
-      <p>
+      <p class="text-lg mb-7">
         Ruby is a better place when there are real alternatives to reach for. If
-        you believe this — or if Dry, Rom or Hanami are already doing important
+        you believe this – or if Dry, Rom or Hanami are already doing important
         work somewhere in your stack — sponsorship is how you grow Hanakai and
-        Ruby's diversity along with it.
+        Ruby’s diversity along with it.
       </p>
 
-      <p>
-        — Tim Riley
-        <br>
-        Hanakai project lead
-      </p>
-    </aside>
+      <%# Signature %>
+      <div class="flex items-center gap-3 break-inside-avoid">
+        <img
+          src="https://avatars.githubusercontent.com/timriley?size=130"
+          alt="Tim Riley"
+          class="w-16 h-16 rounded-full shrink-0"
+          width="64"
+          height="64"
+        >
 
-    <section>
-      <h2 class="text-3xl font-bold mb-6">How we use your money</h2>
+        <div class="text-xl">
+          <p class="font-black tracking-tight">Tim Riley</p>
+          <p class="">Hanakai project lead</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <p class="mb-4">Every dollar goes directly to sustaining Hanakai:</p>
+<%# Milestone tracker %>
+<section class="py-12 lg:py-16 max-w-4xl mx-auto w-full">
+  <header class="text-center mb-12">
+    <h2 class="text-4xl lg:text-5xl font-black tracking-tighter mb-3">
+      How we use your money
+    </h2>
 
-      <ul class="space-y-2 mb-4">
-        <li>
-          <strong>Up to $30k/year</strong> funds one day a week of Tim's time,
-          as lead maintainer.
-        </li>
+    <p class="text-2xl">Every dollar goes directly to sustaining Hanakai.</p>
+  </header>
 
-        <li>
-          <strong>$30–40k/year</strong> builds a reserve for community and
-          promotional activities.
-        </li>
-
-        <li>
-          <strong>Beyond $40k/year</strong> pays additional Hanakai maintainers
-          for their ongoing work.
-        </li>
-      </ul>
-
-      <p>We are currently supported at $26k/year.</p>
-    </section>
-
-    <section>
-      <h2 class="text-3xl font-bold mb-6">How to sponsor us</h2>
-
-      <p>
-        You can sponsor us via
-        <a href="https://opencollective.com/hanami">Open Collective</a> or
-        <a href="https://github.com/sponsors/hanami">GitHub Sponsors</a>, as a
-        business or an individual.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="text-3xl font-bold mb-6">Become a business sponsor</h2>
-
-      <p class="mb-4">
-        As a Hanakai business sponsor, you'll receive several benefits:
-      </p>
-
-      <ul class="space-y-1 mb-4">
-        <li>Private chat with Hanakai maintainers</li>
-        <li>Priority attention on issues or requests</li>
-        <li>Your logo and link on our website</li>
-        <li>Shoutouts on social media and in release announcements</li>
-      </ul>
-
-      <p>
-        Most important of all, you'll be creating a healthy and diverse future
-        for Ruby.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="text-3xl font-bold mb-8">Business tiers</h2>
-
-      <div class="space-y-8">
-        <div>
-          <h3 class="text-2xl font-semibold mb-1">Platinum</h3>
-          <p class="font-medium mb-3">$12,000/year</p>
-
-          <ul class="space-y-1">
-            <li>Large logo on Hanakai home page</li>
-            <li>Logo in the footer of all Hanakai pages, including docs</li>
-            <li>Acknowledgement in major and minor release announcements</li>
-            <li>Access to private chat</li>
-            <li>Priority for issues &amp; requests</li>
-            <li>Twice-yearly call with Tim</li>
-          </ul>
+  <%# Desktop tracker %>
+  <div class="hidden lg:block relative mb-12">
+    <%# Marker bubble – sits above the track %>
+    <div class="relative mb-3 mx-8">
+      <div
+        class="absolute"
+        style="left: 29%; transform: translate(-50%, -24px)"
+      >
+        <div
+          class="
+            bg-hanakai-300 text-lg font-bold px-3 py-2 rounded-lg
+            whitespace-nowrap text-center dark:text-neutral-900
+          "
+        >
+          Currently $26k/year
         </div>
 
-        <div>
-          <h3 class="text-2xl font-semibold mb-1">Gold</h3>
-          <p class="font-medium mb-3">$6,000/year</p>
-
-          <ul class="space-y-1">
-            <li>Medium logo on Hanakai home page</li>
-            <li>Acknowledgement in major release announcements</li>
-            <li>Access to private chat</li>
-            <li>Priority for issues &amp; requests</li>
-            <li>Yearly call with Tim</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="text-2xl font-semibold mb-1">Silver</h3>
-          <p class="font-medium mb-3">$3,000/year</p>
-
-          <ul class="space-y-1">
-            <li>Small logo on Hanakai home page</li>
-            <li>Acknowledgement in major release announcements</li>
-            <li>Access to private chat</li>
-          </ul>
+        <div class="flex justify-center">
+          <div
+            class="
+              w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent
+              border-r-transparent border-hanakai-300
+            "
+          ></div>
         </div>
       </div>
 
-      <p class="mt-6">
-        Please <a href="mailto:sponsor@hanakai.org">reach out</a> if you want
-        to discuss any aspect of business sponsorship.
-      </p>
+      <div class="h-8"></div>
+    </div>
 
-      <p class="mt-4">
-        <a href="http://opencollective.com/hanami">Become a business sponsor</a>
-      </p>
-    </section>
+    <%# Track %>
+    <div class="relative h-3 bg-neutral-200 dark:bg-neutral-700 rounded-full mx-8 mb-6">
+      <%# Filled: $26k is 26/30 ≈ 87% of the first third ≈ 29% of total track %>
+      <div
+        class="absolute left-0 top-0 h-full bg-hanakai-300 rounded-full"
+        style="width: 29%"
+      ></div>
 
-    <section>
-      <h2 class="text-3xl font-bold mb-6">You're in good company</h2>
+      <%# Dot at current position %>
+      <div
+        class="
+          absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5
+          bg-hanakai-300 border-4 border-white dark:border-neutral-900
+          rounded-full shadow-md
+        "
+        style="left: 29%"
+      ></div>
 
-      <p class="mb-8">
-        Thank you to these amazing business sponsors! We'd love to see you join
-        them.
-      </p>
+      <%# Segment dividers %>
+      <div
+        class="
+          absolute top-1/2 -translate-y-1/2 w-0.5 h-5 bg-neutral-300
+          dark:bg-neutral-600
+        "
+        style="left: 33.33%"
+      ></div>
 
-      <div class="space-y-6 mb-10">
-        <div>
-          <h3 class="text-2xl font-semibold mb-3">Platinum</h3>
+      <div
+        class="
+          absolute top-1/2 -translate-y-1/2 w-0.5 h-5 bg-neutral-300
+          dark:bg-neutral-600
+        "
+        style="left: 66.66%"
+      ></div>
+    </div>
 
-          <ul>
-            <li>Sidekiq</li>
-          </ul>
-        </div>
+    <%# Labels %>
+    <div class="grid grid-cols-3 mt-5 mx-8 gap-4">
+      <div class="text-center">
+        <p class="font-bold text-xl">Up to $30k/year</p>
 
-        <div>
-          <h3 class="text-2xl font-semibold mb-3">Gold</h3>
-
-          <ul class="space-y-1">
-            <li>Honeybadger</li>
-            <li>FastRuby.io</li>
-            <li>AppSignal</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="text-2xl font-semibold mb-3">Silver</h3>
-
-          <ul>
-            <li>Brandon Weaver</li>
-          </ul>
-        </div>
+        <p class="mt-1">
+          Funds one day a week of Tim's time as lead maintainer
+        </p>
       </div>
 
-      <h3 class="text-2xl font-semibold mb-6">Hear from our sponsors</h3>
+      <div class="text-center">
+        <p class="font-bold text-xl">$30–40k/year</p>
 
-      <div class="space-y-8">
-        <blockquote>
-          <p>
-            Ruby has a problem: it's mostly a monoculture around Rails. Merb and
-            Sinatra provided valuable app framework options in the past, I
-            believe we need new options for the future.
+        <p class="mt-1">
+          Builds a reserve for community and promotional activities
+        </p>
+      </div>
+
+      <div class="text-center">
+        <p class="font-bold text-xl">Beyond $40k/year</p>
+
+        <p class="mt-1">
+          Pays additional Hanakai maintainers for their ongoing work
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%# Mobile stack %>
+  <div class="lg:hidden flex flex-col">
+    <div class="flex gap-4 items-start">
+      <div class="flex flex-col items-center shrink-0 mt-1">
+        <div
+          class="
+            w-4 h-4 rounded-full bg-hanakai-300 ring-4 ring-rose-100
+            dark:ring-rose-900
+          "
+        ></div>
+
+        <div class="w-0.5 flex-1 bg-neutral-200 dark:bg-neutral-700 mt-1 min-h-12"></div>
+      </div>
+
+      <div>
+        <p class="font-bold text-lg mb-0.5">
+          Up to $30k/year
+          <span class="text-sm font-normal">(currently here – $26k)</span>
+        </p>
+
+        <p class="text-base">
+          Funds one day a week of Tim’s time as lead maintainer.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-4 items-start">
+      <div class="flex flex-col items-center shrink-0 mt-1">
+        <div class="w-4 h-4 rounded-full bg-neutral-300 dark:bg-neutral-600"></div>
+        <div class="w-0.5 flex-1 bg-neutral-200 dark:bg-neutral-700 mt-1 min-h-12"></div>
+      </div>
+
+      <div>
+        <p class="font-bold text-lg mb-0.5">$30–40k/year</p>
+
+        <p class="text-base">
+          Builds a reserve for community and promotional activities.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-4 items-start">
+      <div class="shrink-0 mt-1">
+        <div class="w-4 h-4 rounded-full bg-neutral-300 dark:bg-neutral-600"></div>
+      </div>
+
+      <div>
+        <p class="font-bold text-lg mb-0.5">Beyond $40k/year</p>
+
+        <p class="text-base">
+          Pays additional Hanakai maintainers for their ongoing work.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p
+    class="
+      text-base text-neutral-500 dark:text-neutral-400 text-center mt-10
+      max-w-2xl mx-auto
+    "
+  >
+    We use
+    <a href="https://opencollective.com/hanami" class="
+      text-link underline decoration-(--hk-color-text-link-underline)
+      decoration-[3px] [text-decoration-skip-ink:none]
+      hover:text-(--hk-color-text-link-active)
+    ">Open Collective</a>,
+    a platform designed for open-source projects. All income and expenses are
+    publicly visible – you can see exactly where every dollar goes.
+  </p>
+</section>
+
+<%# Business sponsors %>
+<section class="py-12 lg:py-16 max-w-6xl mx-auto w-full">
+  <header class="text-center mb-10 max-w-3xl mx-auto">
+    <h2 class="text-4xl lg:text-5xl font-black tracking-tighter mb-5">
+      Become a business sponsor
+    </h2>
+
+    <p class="text-2xl text-balance">
+      As a Hanakai business sponsor, you’ll get private chat with maintainers,
+      priority attention on issues, your logo on our website, and shoutouts in
+      release announcements.
+    </p>
+  </header>
+
+  <%# Pricing cards %>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+    <%# Platinum %>
+    <div
+      class="
+        theme-hanami bg-neutral border-3 b-primary rounded-2xl shadow-lg
+        overflow-hidden flex flex-col
+      "
+    >
+      <div class="px-6 py-5">
+        <h3 class="text-3xl font-black tracking-tighter text-primary">
+          Platinum
+        </h3>
+
+        <p class="text-xl mt-1">$12,000/year</p>
+        <%= render "svgs/wiggle", height: 14, stroke_width: 2, class_name: "text-primary mt-4" %>
+      </div>
+
+      <div class="p-6 pt-0 flex flex-col flex-1">
+        <ul class="space-y-3 mb-8 flex-1">
+          <% [
+            "Large logo on Hanakai home page",
+            "Logo in the footer of all Hanakai pages, including docs",
+            "Acknowledgement in major and minor release announcements",
+            "Access to private chat",
+            "Priority for issues & requests",
+            "Twice-yearly call with Tim",
+          ].each do |benefit| %>
+            <li class="flex items-start gap-2">
+              <%= render "svgs/icons/check", width: 18, height: 18, class_name: "shrink-0 mt-0.5 text-primary fill-current" %>
+              <span><%= benefit %></span>
+            </li>
+          <% end %>
+        </ul>
+
+        <%= render_with_slots "shared/components/button_primary",
+              href: "https://opencollective.com/hanami",
+              label: "Become a sponsor",
+              class_name: "self-start" do |btn| %>
+          <% btn.slot :suffix do %>
+            <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Gold %>
+    <div
+      class="
+        theme-dry bg-neutral border-3 b-primary rounded-2xl shadow-lg
+        overflow-hidden flex flex-col
+      "
+    >
+      <div class="px-6 py-5">
+        <h3 class="text-3xl font-black tracking-tighter text-primary">Gold</h3>
+
+        <p class="text-xl mt-1">$6,000/year</p>
+        <%= render "svgs/wiggle", height: 14, stroke_width: 2, class_name: "text-primary mt-4" %>
+      </div>
+
+      <div class="p-6 pt-0 flex flex-col flex-1">
+        <ul class="space-y-3 mb-8 flex-1">
+          <% [
+            "Medium logo on Hanakai home page",
+            "Acknowledgement in major release announcements",
+            "Access to private chat",
+            "Priority for issues & requests",
+            "Yearly call with Tim",
+          ].each do |benefit| %>
+            <li class="flex items-start gap-2">
+              <%= render "svgs/icons/check", width: 18, height: 18, class_name: "shrink-0 mt-0.5 text-primary fill-current" %>
+              <span><%= benefit %></span>
+            </li>
+          <% end %>
+        </ul>
+
+        <%= render_with_slots "shared/components/button_primary",
+              href: "https://opencollective.com/hanami",
+              label: "Become a sponsor",
+              class_name: "self-start" do |btn| %>
+          <% btn.slot :suffix do %>
+            <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Silver %>
+    <div
+      class="
+        theme-rom bg-neutral border-3 b-primary rounded-2xl shadow-lg
+        overflow-hidden flex flex-col
+      "
+    >
+      <div class="px-6 py-5">
+        <h3 class="text-3xl font-black tracking-tighter text-primary">
+          Silver
+        </h3>
+
+        <p class="text-xl mt-1">$3,000/year</p>
+        <%= render "svgs/wiggle", height: 14, stroke_width: 2, class_name: "text-primary mt-4" %>
+      </div>
+
+      <div class="p-6 pt-0 flex flex-col flex-1">
+        <ul class="space-y-3 mb-8 flex-1">
+          <% [
+            "Small logo on Hanakai home page",
+            "Acknowledgement in major release announcements",
+            "Access to private chat",
+          ].each do |benefit| %>
+            <li class="flex items-start gap-2">
+              <%= render "svgs/icons/check", width: 18, height: 18, class_name: "shrink-0 mt-0.5 text-primary fill-current" %>
+              <span><%= benefit %></span>
+            </li>
+          <% end %>
+        </ul>
+
+        <%= render_with_slots "shared/components/button_primary",
+              href: "https://opencollective.com/hanami",
+              label: "Become a sponsor",
+              class_name: "self-start" do |btn| %>
+          <% btn.slot :suffix do %>
+            <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center text-xl">
+    Please
+    <a href="mailto:sponsor@hanakai.org" class="
+      text-link underline decoration-(--hk-color-text-link-underline)
+      decoration-[3px] [text-decoration-skip-ink:none]
+      hover:text-(--hk-color-text-link-active)
+    ">reach out</a>
+    if you want to discuss any aspect of business sponsorship.
+  </p>
+</section>
+
+<%# Current sponsors %>
+<section class="py-12 lg:py-16 max-w-6xl mx-auto w-full">
+  <header class="text-center mb-12">
+    <h2 class="text-4xl lg:text-5xl font-black tracking-tighter mb-5">
+      You’re in good company
+    </h2>
+
+    <p class="text-2xl lg:text-3xl tracking-tight text-balance">
+      Thanks to our amazing business sponsors! We’d love to see you join them.
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_2fr] gap-6 mb-12">
+    <%# Sidekiq – Platinum %>
+    <a
+      href="https://sidekiq.org"
+      class="
+        theme-hanami relative flex items-center justify-center p-10 bg-white
+        rounded-2xl border-3 b-primary hover:opacity-90 transition-opacity
+        min-h-64 shadow-lg
+      "
+    >
+      <span
+        class="
+          absolute top-2 left-2 bg-primary text-primary-reversed text-xs
+          font-bold uppercase px-2 py-1 rounded-xl
+        "
+      >
+        Platinum
+      </span>
+
+      <%= image_tag "sponsors/sidekiq-square.svg", alt: "Sidekiq", class: "max-w-full w-48" %>
+    </a>
+
+    <%# Brandon Weaver – Gold %>
+    <a
+      href="https://github.com/baweaver"
+      class="
+        theme-dry relative flex items-center justify-center p-6 bg-white
+        rounded-2xl border-3 b-primary hover:opacity-90 transition-opacity shadow-lg
+      "
+    >
+      <span
+        class="
+          absolute top-2 left-2 bg-primary text-primary-reversed text-xs
+          font-bold uppercase px-2 py-1 rounded-xl
+        "
+      >
+        Gold
+      </span>
+
+      <%= image_tag "sponsors/lemur.png", alt: "Brandon Weaver", class: "max-w-full w-32" %>
+    </a>
+
+    <%# Silver sponsors %>
+    <div class="theme-rom flex flex-col gap-6">
+      <a
+        href="https://www.honeybadger.io"
+        class="
+          relative flex-1 flex items-center justify-center px-6 py-4 bg-white
+          rounded-2xl border-3 b-primary hover:opacity-90 transition-opacity shadow-lg
+        "
+      >
+        <span
+          class="
+            absolute top-2 left-2 bg-primary text-primary-reversed text-xs
+            font-bold uppercase px-2 py-1 rounded-xl
+          "
+        >
+          Silver
+        </span>
+
+        <%= image_tag "sponsors/honeybadger.png", alt: "Honeybadger", class: "max-h-14 w-auto" %>
+      </a>
+
+      <a
+        href="https://www.fastruby.io"
+        class="
+          relative flex-1 flex items-center justify-center px-6 py-4 bg-white
+          rounded-2xl border-3 b-primary hover:opacity-90 transition-opacity shadow-lg
+        "
+      >
+        <span
+          class="
+            absolute top-2 left-2 bg-primary text-primary-reversed text-xs
+            font-bold uppercase px-2 py-1 rounded-xl
+          "
+        >
+          Silver
+        </span>
+
+        <%= image_tag "sponsors/fastruby.png", alt: "FastRuby.io", class: "max-h-16 w-auto" %>
+      </a>
+
+      <a
+        href="https://www.appsignal.com"
+        class="
+          relative flex-1 flex items-center justify-center px-6 py-4 bg-white
+          rounded-2xl border-3 b-primary hover:opacity-90 transition-opacity shadow-lg
+        "
+      >
+        <span
+          class="
+            absolute top-2 left-2 bg-primary text-primary-reversed text-xs
+            font-bold uppercase px-2 py-1 rounded-xl
+          "
+        >
+          Silver
+        </span>
+
+        <%= image_tag "sponsors/appsignal.png", alt: "AppSignal", class: "max-h-12 w-auto" %>
+      </a>
+    </div>
+  </div>
+</section>
+
+<%# Testimonials %>
+<section class="pb-12 lg:pb-16 max-w-6xl mx-auto w-full">
+  <h2 class="text-4xl lg:text-5xl font-black tracking-tighter mb-12 text-center">
+    Hear from our sponsors
+  </h2>
+
+  <div class="flex flex-col lg:flex-row gap-12 items-start">
+    <%# Left column %>
+    <div class="flex-1 flex flex-col">
+      <blockquote class="theme-hanami mb-10">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            "Ruby has a problem: it’s mostly a monoculture around Rails. Merb
+            and Sinatra provided valuable app framework options in the past. I
+            believe we need new options for the future."
           </p>
 
-          <p>
-            Mike Perham
-            <br>
-            Sidekiq
-          </p>
-        </blockquote>
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
 
-        <blockquote>
-          <p>
-            In Ruby diversity is our greatest strength, whether that be the
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Mike Perham</p>
+          <p class="opacity-60">Sidekiq</p>
+        </div>
+      </blockquote>
+
+      <blockquote class="theme-dry mb-10">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            "In Ruby diversity is our greatest strength, whether that be the
             people, the ideas, or the technologies we use. Ruby is not just one
             framework, nor is it just one person, it is a community of
-            passionate people pushing the boundaries of what's possible not just
+            passionate people pushing the boundaries of what’s possible not just
             as individuals, but as a collective. I am happy to continue to fund
-            efforts building upon that vision of the future.
+            efforts building upon that vision of the future."
           </p>
 
-          <p>Brandon Weaver</p>
-        </blockquote>
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
 
-        <blockquote>
-          <p>
-            Honeybadger has been monitoring Ruby apps since 2012, and we've
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Brandon Weaver</p>
+        </div>
+      </blockquote>
+
+      <blockquote class="theme-rom mb-10">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            "Honeybadger has been monitoring Ruby apps since 2012, and we’ve
             always believed in giving back to the open source community that
-            made our business possible. We're proud to sponsor a framework and
+            made our business possible. We’re proud to sponsor a framework and
             team that is working to make Ruby better for everyone. Hanami is
-            leading the way.
+            leading the way."
           </p>
 
-          <p>
-            Joshua Wood
-            <br>
-            Honeybadger
-          </p>
-        </blockquote>
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
 
-        <blockquote>
-          <p>
-            At FastRuby we believe in the value of diverse and inclusive
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Joshua Wood</p>
+          <p class="opacity-60">Honeybadger</p>
+        </div>
+      </blockquote>
+    </div>
+
+    <%# Right column – offset down to stagger %>
+    <div class="flex-1 flex flex-col lg:pt-16">
+      <blockquote class="theme-rom mb-10">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            "At FastRuby we believe in the value of diverse and inclusive
             communities. With our yearly contribution to Hanami we are investing
             in a framework that brings positive change to our beloved Ruby
             ecosystem. We envision a future where projects like Hanami, Roda,
-            Sinatra, Cuba, and Padrino push the boundaries of what's possible in
-            Ruby.
+            Sinatra, Cuba, and Padrino push the boundaries of what’s possible in
+            Ruby."
           </p>
 
-          <p>
-            Ernesto Tagwerker
-            <br>
-            FastRuby
-          </p>
-        </blockquote>
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
 
-        <blockquote>
-          <p>
-            At AppSignal, we believe in sustainable open-source software and are
-            happy to contribute to Hanami's development by enabling others to
-            continue the great work they do. In turn, this allows us to keep
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Ernesto Tagwerker</p>
+          <p class="opacity-60">FastRuby</p>
+        </div>
+      </blockquote>
+
+      <blockquote class="theme-rom">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            "At AppSignal, we believe in sustainable open-source software and
+            are happy to contribute to Hanami’s development by enabling others
+            to continue the great work they do. In turn, this allows us to keep
             providing APM services that smoothly integrate with Hanami.
-            Everybody wins.
+            Everybody wins."
           </p>
 
-          <p>
-            Roy Tomeij
-            <br>
-            AppSignal
-          </p>
-        </blockquote>
-      </div>
-    </section>
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
 
-    <section>
-      <h2 class="text-3xl font-bold mb-6">Become an individual sponsor</h2>
-
-      <p class="mb-4">
-        We welcome your support as Ruby community members! You can:
-      </p>
-
-      <ul class="space-y-2">
-        <li>
-          Become an individual sponsor. Support Hanakai through
-          <a href="https://opencollective.com/hanami">Open Collective</a> or
-          <a href="https://github.com/sponsors/hanami">GitHub Sponsors</a> at
-          whatever amount you choose.
-        </li>
-
-        <li>
-          Bring this pitch to the financial decision-makers at your workplace.
-        </li>
-
-        <li>
-          Share our work on social media. Big things are happening for Hanakai
-          and we want everyone to know.
-        </li>
-      </ul>
-    </section>
-
-    <aside>
-      <p>
-        Thank you for your support! It means the world to us.
-      </p>
-
-      <p>
-        If you have any questions, I'd love to hear from you. Please feel free
-        to contact me directly.
-      </p>
-
-      <p>— Tim</p>
-    </aside>
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Roy Tomeij</p>
+          <p class="opacity-60">AppSignal</p>
+        </div>
+      </blockquote>
+    </div>
   </div>
-</div>
+</section>
+
+<%# Individual sponsors %>
+<section class="py-12 lg:py-16 max-w-6xl mx-auto w-full">
+  <header class="text-center mb-10 max-w-3xl mx-auto">
+    <h2 class="text-4xl lg:text-5xl font-black tracking-tighter mb-5">
+      Become an individual sponsor
+    </h2>
+
+    <p class="text-2xl text-balance">
+      There are several ways to support Hanakai as a community member.
+    </p>
+  </header>
+
+  <div
+    class="
+      grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x
+      divide-(--hk-color-neutral-subtle) mb-10
+    "
+  >
+    <div
+      class="
+        py-8 lg:pt-0 lg:pb-4 lg:px-10 first:pt-0 first:lg:pl-0 last:pb-0
+        last:lg:pr-0 text-center
+      "
+    >
+      <%= render "svgs/icons/hand_heart", width: 32, height: 32, class_name: "mb-4 mx-auto" %>
+
+      <h3 class="text-xl font-bold mb-2">Sponsor directly</h3>
+
+      <p class="text-lg">
+        Support Hanakai through
+        <a href="https://opencollective.com/hanami" class="
+          text-link underline decoration-(--hk-color-text-link-underline)
+          decoration-[3px] [text-decoration-skip-ink:none]
+          hover:text-(--hk-color-text-link-active)
+        ">Open Collective</a>
+        or
+        <a href="https://github.com/sponsors/hanami" class="
+          text-link underline decoration-(--hk-color-text-link-underline)
+          decoration-[3px] [text-decoration-skip-ink:none]
+          hover:text-(--hk-color-text-link-active)
+        ">GitHub Sponsors</a>
+        at whatever amount you choose.
+      </p>
+    </div>
+
+    <div
+      class="
+        py-8 lg:pt-0 lg:pb-4 lg:px-10 first:pt-0 first:lg:pl-0 last:pb-0
+        last:lg:pr-0 text-center
+      "
+    >
+      <%= render "svgs/icons/notepad", width: 32, height: 32, class_name: "mb-4 mx-auto" %>
+
+      <h3 class="text-xl font-bold mb-2">Bring it to work</h3>
+
+      <p class="text-lg">
+        Share this pitch with the financial decision-makers at your workplace.
+        Every business sponsor matters.
+      </p>
+    </div>
+
+    <div
+      class="
+        py-8 lg:pt-0 lg:pb-4 lg:px-10 first:pt-0 first:lg:pl-0 last:pb-0
+        last:lg:pr-0 text-center
+      "
+    >
+      <%= render "svgs/icons/chat_text", width: 32, height: 32, class_name: "mb-4 mx-auto" %>
+
+      <h3 class="text-xl font-bold mb-2">Spread the word</h3>
+
+      <p class="text-lg">
+        Share our work on social media. Big things are happening for Hanakai and
+        we want everyone to know.
+      </p>
+    </div>
+  </div>
+
+  <%# Individual sponsor count + avatars %>
+  <div class="text-center mb-10 py-8">
+    <p class="text-2xl text-balance mb-6">
+      Thank you to our 19 individual sponsors
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-1">
+      <a href="https://github.com/wout" title="@wout">
+        <img
+          src="https://avatars.githubusercontent.com/u/107324?s=96&v=4"
+          alt="@wout"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <%# Private sponsor %>
+      <span
+        class="
+          w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900
+          bg-neutral-100 dark:bg-neutral-800 flex items-center
+          justify-center
+        "
+        title="Private sponsor"
+      >
+        <svg
+          aria-label="Private Sponsor"
+          role="img"
+          height="20"
+          viewBox="0 0 16 16"
+          width="20"
+          class="text-neutral-400 fill-current"
+        >
+          <path
+            d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"
+          ></path>
+        </svg>
+      </span>
+
+      <a href="https://github.com/caius" title="@caius">
+        <img
+          src="https://avatars.githubusercontent.com/u/696?s=96&v=4"
+          alt="@caius"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/CG3-Media" title="@CG3-Media">
+        <img
+          src="https://avatars.githubusercontent.com/u/188250871?s=96&v=4"
+          alt="@CG3-Media"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/afomera" title="@afomera">
+        <img
+          src="https://avatars.githubusercontent.com/u/1741179?s=96&v=4"
+          alt="@afomera"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/memoht" title="@memoht">
+        <img
+          src="https://avatars.githubusercontent.com/u/492691?s=96&v=4"
+          alt="@memoht"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/danhealy" title="@danhealy">
+        <img
+          src="https://avatars.githubusercontent.com/u/38642?s=96&v=4"
+          alt="@danhealy"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/bjeanes" title="@bjeanes">
+        <img
+          src="https://avatars.githubusercontent.com/u/2560?s=96&v=4"
+          alt="@bjeanes"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/aaronmallen" title="@aaronmallen">
+        <img
+          src="https://avatars.githubusercontent.com/u/931094?s=96&v=4"
+          alt="@aaronmallen"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/rosa" title="@rosa">
+        <img
+          src="https://avatars.githubusercontent.com/u/813033?s=96&v=4"
+          alt="@rosa"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/josephinehall" title="@josephinehall">
+        <img
+          src="https://avatars.githubusercontent.com/u/1491374?s=96&v=4"
+          alt="@josephinehall"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/tombruijn" title="@tombruijn">
+        <img
+          src="https://avatars.githubusercontent.com/u/282402?s=96&v=4"
+          alt="@tombruijn"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/whysthatso" title="@whysthatso">
+        <img
+          src="https://avatars.githubusercontent.com/u/1685114?s=96&v=4"
+          alt="@whysthatso"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/mathewdbutton" title="@mathewdbutton">
+        <img
+          src="https://avatars.githubusercontent.com/u/1100707?s=96&v=4"
+          alt="@mathewdbutton"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/hedselu" title="@hedselu">
+        <img
+          src="https://avatars.githubusercontent.com/u/13008532?s=96&v=4"
+          alt="@hedselu"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/jaredsmithse" title="@jaredsmithse">
+        <img
+          src="https://avatars.githubusercontent.com/u/2102795?s=96&v=4"
+          alt="@jaredsmithse"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/schlick" title="@schlick">
+        <img
+          src="https://avatars.githubusercontent.com/u/18456?s=96&v=4"
+          alt="@schlick"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a
+        href="https://github.com/practical-computer"
+        title="@practical-computer"
+      >
+        <img
+          src="https://avatars.githubusercontent.com/u/128624803?s=96&v=4"
+          alt="@practical-computer"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+
+      <a href="https://github.com/regedarek" title="@regedarek">
+        <img
+          src="https://avatars.githubusercontent.com/u/656326?s=96&v=4"
+          alt="@regedarek"
+          width="48"
+          height="48"
+          class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+        >
+      </a>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-3">
+    <%= render_with_slots "shared/components/button_primary",
+          href: "https://opencollective.com/hanami",
+          label: "Sponsor on Open Collective" do |btn| %>
+      <% btn.slot :suffix do %>
+        <%= render "svgs/icons/hand_heart", width: 24, height: 24, class_name: "text-current" %>
+      <% end %>
+    <% end %>
+
+    <%= render_with_slots "shared/components/button_primary",
+          href: "https://github.com/sponsors/hanami",
+          label: "Sponsor on GitHub" do |btn| %>
+      <% btn.slot :suffix do %>
+        <%= render "svgs/icons/hand_heart", width: 24, height: 24, class_name: "text-current" %>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<%# Closing %>
+<section class="max-w-3xl mx-auto w-full py-12 lg:py-16">
+  <div
+    class="
+      relative bg-hanakai-50 dark:bg-neutral-950 border border-hanakai-200
+      rounded-lg dark:border-neutral-800 shadow-xl p-8 lg:p-12
+    "
+    style="transform: rotate(1deg)"
+  >
+    <div class="space-y-5 max-w-2xl">
+      <p class="text-xl">
+        <strong class="font-bold">Thank you for your support</strong> – it
+        means the world to us!
+      </p>
+
+      <p class="text-xl">
+        If you have any questions, I’d love to hear from you. Please feel free
+        to
+        <a href="mailto:sponsor@hanakai.org" class="
+          text-link underline decoration-(--hk-color-text-link-underline)
+          decoration-[3px] [text-decoration-skip-ink:none]
+          hover:text-(--hk-color-text-link-active)
+        ">contact me directly</a>.
+      </p>
+
+      <div class="flex items-center gap-3 pt-2">
+        <img
+          src="https://avatars.githubusercontent.com/timriley?size=130"
+          alt="Tim Riley"
+          class="w-16 h-16 rounded-full shrink-0"
+          width="64"
+          height="64"
+        >
+
+        <div class="text-xl">
+          <p class="font-black tracking-tight">Tim Riley</p>
+          <p>Hanakai project lead</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
