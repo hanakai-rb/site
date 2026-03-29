@@ -79,7 +79,7 @@
   <%= main.slot :content do %>
     <div class="flex flex-col">
       <% if version != latest_listed_version %>
-        <%= render "doc_pages/version_warning", version:, version_links:, latest_listed_version: %>
+        <%= render "doc_pages/version_warning", version:, version_links:, latest_listed_version:, org: %>
       <% end %>
 
       <%= render "doc_pages/breadcrumbs", breadcrumbs:, org:, version:, version_links: %>
