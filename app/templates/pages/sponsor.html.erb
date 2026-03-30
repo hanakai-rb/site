@@ -584,7 +584,10 @@
 
         <div class="pl-10 text-xl">
           <p class="font-bold text-primary">Mike Perham</p>
-          <p class="opacity-60"><a href="https://sidekiq.org" class="hover:underline">Sidekiq</a></p>
+
+          <p class="opacity-60">
+            <a href="https://sidekiq.org" class="hover:underline">Sidekiq</a>
+          </p>
         </div>
       </blockquote>
 
@@ -613,7 +616,11 @@
         </div>
 
         <div class="pl-10 text-xl">
-          <p class="font-bold text-primary"><a href="https://github.com/baweaver" class="hover:underline">Brandon Weaver</a></p>
+          <p class="font-bold text-primary">
+            <a href="https://github.com/baweaver" class="hover:underline">
+              Brandon Weaver
+            </a>
+          </p>
         </div>
       </blockquote>
 
@@ -642,7 +649,12 @@
 
         <div class="pl-10 text-xl">
           <p class="font-bold text-primary">Joshua Wood</p>
-          <p class="opacity-60"><a href="https://www.honeybadger.io" class="hover:underline">Honeybadger</a></p>
+
+          <p class="opacity-60">
+            <a href="https://www.honeybadger.io" class="hover:underline">
+              Honeybadger
+            </a>
+          </p>
         </div>
       </blockquote>
     </div>
@@ -675,7 +687,12 @@
 
         <div class="pl-10 text-xl">
           <p class="font-bold text-primary">Ernesto Tagwerker</p>
-          <p class="opacity-60"><a href="https://www.fastruby.io" class="hover:underline">FastRuby</a></p>
+
+          <p class="opacity-60">
+            <a href="https://www.fastruby.io" class="hover:underline">
+              FastRuby
+            </a>
+          </p>
         </div>
       </blockquote>
 
@@ -704,7 +721,12 @@
 
         <div class="pl-10 text-xl">
           <p class="font-bold text-primary">Roy Tomeij</p>
-          <p class="opacity-60"><a href="https://www.appsignal.com" class="hover:underline">AppSignal</a></p>
+
+          <p class="opacity-60">
+            <a href="https://www.appsignal.com" class="hover:underline">
+              AppSignal
+            </a>
+          </p>
         </div>
       </blockquote>
     </div>
@@ -820,13 +842,19 @@
             </svg>
           </span>
         <% else %>
-          <a href="https://github.com/<%= sponsor[:login] %>" title="@<%= sponsor[:login] %>">
+          <a
+            href="https://github.com/<%= sponsor[:login] %>"
+            title="@<%= sponsor[:login] %>"
+          >
             <img
               src="https://avatars.githubusercontent.com/u/<%= sponsor[:avatar_id] %>?s=96&v=4"
               alt="@<%= sponsor[:login] %>"
               width="48"
               height="48"
-              class="w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900"
+              class="
+                w-12 h-12 rounded-full ring-2 ring-white
+                dark:ring-neutral-900
+              "
             >
           </a>
         <% end %>
