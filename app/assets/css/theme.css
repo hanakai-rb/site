@@ -73,7 +73,7 @@
     --hk-color-b-secondary-reversed: var(--color-neutral-950);
     --hk-color-neutral-subtle-reversed: var(--color-neutral-400);
     --hk-color-neutral-subtle: var(--color-neutral-800);
-    --hk-color-text-neutral: var(--color-neutral-50);
+    --hk-color-text-neutral: var(--color-neutral-100);
     --hk-color-text-link: var(--color-neutral-100);
   }
 }
@@ -93,7 +93,7 @@ html.dark {
   --hk-color-b-secondary-reversed: var(--color-neutral-950);
   --hk-color-neutral-subtle-reversed: var(--color-neutral-400);
   --hk-color-neutral-subtle: var(--color-neutral-800);
-  --hk-color-text-neutral: var(--color-neutral-50);
+  --hk-color-text-neutral: var(--color-neutral-100);
   --hk-color-text-link: var(--color-neutral-100);
 }
 
