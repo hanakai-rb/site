@@ -11,6 +11,7 @@ module Site
         convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new(
           context: {
             markdown: {
+              parse: {smart: true},
               render: {unsafe: true},
               plugins: {syntax_highlighter: {theme: ""}}
             }
