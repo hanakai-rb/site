@@ -33,6 +33,11 @@ module Site
     expose :footer_nav_items, layout: true do |context:|
       path = context.request.path
       [
+        NavItem.new(label: "Projects", url: nil, selected: false, children: [
+          NavItem.new(label: "Hanami", url: "/projects/hanami", selected: path.start_with?("/projects/hanami"), children: []),
+          NavItem.new(label: "Dry", url: "/projects/dry", selected: path.start_with?("/projects/dry"), children: []),
+          NavItem.new(label: "Rom", url: "/projects/rom", selected: path.start_with?("/projects/rom"), children: [])
+        ]),
         NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: [
           NavItem.new(label: "Hanami", url: "/learn#hanami", selected: false, children: []),
           NavItem.new(label: "Dry", url: "/learn#dry", selected: false, children: []),
