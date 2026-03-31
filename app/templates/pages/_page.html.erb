@@ -10,7 +10,7 @@
     </h1>
   </header>
 
-  <div class="lg:max-w-[80%] lg:mb-6 mx-auto flex gap-2 items-center">
+  <div class="lg:max-w-[80%] mx-auto flex gap-2 items-center">
     <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1", height: 14, stroke_width: 2 %>
     <%= render "svgs/hanakai_logo", width: 30, height: 30 %>
     <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1", height: 14, stroke_width: 2 %>
@@ -21,7 +21,7 @@
       <details>
         <summary
           class="
-            px-6 py-4 cursor-pointer font-mono text-xs font-semibold
+            lg:px-6 lg:pb-4 px-4 pt-1 pb-3 cursor-pointer font-mono text-xs font-semibold
             text-primary tracking-wider uppercase flex items-center
             justify-between
           "
@@ -48,14 +48,12 @@
           <%= render "doc_pages/toc_headings", headings: page.nested_headings, testid: nil, depth: 0 %>
         </nav>
       </details>
-
-      <%= render "svgs/wiggle", class_name: "text-primary flex-1 mx-4", height: 14, stroke_width: 2 %>
     </div>
   <% end %>
 
-  <div class="lg:max-w-[80%] mx-auto">
+  <div class="lg:max-w-[80%] mx-auto ">
     <div class="lg:grid lg:grid-cols-13 lg:gap-8">
-      <div class="lg:col-span-10">
+      <div class="lg:col-span-10 lg:pt-6">
         <div class="content content--large"><%= page.content_html %></div>
       </div>
 
