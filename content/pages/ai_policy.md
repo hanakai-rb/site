@@ -38,7 +38,7 @@ For our maintainers, we want to ensure your limited time and energy is spent rev
 
 If a maintainer judges that a contribution doesn't comply with this policy, they should paste the following:
 
-> This PR does not appear to comply with our policy on tool-generated content. Please explain why this PR is valuable enough to warrant our review. See our AI contribution policy for more: https://hanamirb.org/ai-policy
+> This PR does not appear to comply with our policy on tool-generated content. Please explain why this PR is valuable enough to warrant our review. See our AI contribution policy for more: https://hanakai.org/ai-policy
 
 As a contributor, you can make your change more valuable by inserting yourself in the process: review and understand the code, and explain it in your own words. Consider ways to reduce the size and complexity of your change, or ways to increase its usefulness to our community.
 
