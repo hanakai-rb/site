@@ -1,6 +1,8 @@
 # auto_register: false
 # frozen_string_literal: true
 
+require "nokogiri"
+
 module Site
   module Content
     module Filters
