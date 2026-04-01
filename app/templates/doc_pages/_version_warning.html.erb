@@ -1,32 +1,49 @@
 <% latest_listed_version_url = version_links[latest_listed_version] %>
 <% is_preview = Gem::Version.new(version.delete_prefix("v")) > Gem::Version.new(latest_listed_version.delete_prefix("v")) %>
 
+<% container_classes = {
+    "hanami" => "border-hanami-300 bg-hanami-50 dark:border-hanami-700 dark:bg-hanami-900",
+    "dry"    => "border-dry-300 bg-dry-50 dark:border-dry-700 dark:bg-dry-900",
+    "rom"    => "border-rom-300 bg-rom-50 dark:border-rom-700 dark:bg-rom-900",
+  }
+  icon_classes = {
+    "hanami" => "fill-hanami-500",
+    "dry"    => "fill-dry-500",
+    "rom"    => "fill-rom-500",
+  }
+  link_classes = {
+    "hanami" => "text-hanami-500 dark:text-hanami-400",
+    "dry"    => "text-dry-500 dark:text-dry-400",
+    "rom"    => "text-rom-500 dark:text-rom-400",
+  }
+
+  container_class = container_classes.fetch(org, container_classes["rom"])
+  icon_class      = icon_classes.fetch(org, icon_classes["rom"])
+  link_class      = link_classes.fetch(org, link_classes["rom"]) %>
+
 <div
   class="
     flex rounded-lg border-2 text-md p-2 pr-3 gap-2 mb-5
-    border-hanakai-300 bg-hanakai-50 dark:border-hanakai-700 dark:bg-hanakai-900
+    <%= container_class %>
     order-2 lg:order-0 lg:items-center
   "
 >
-  <%= render "svgs/icons/exclamation_mark", width: 20, height: 20, class_name: "fill-rom-500" %>
+  <%= render "svgs/icons/exclamation_mark", width: 20, height: 20, class_name: icon_class %>
 
   <div class="flex-1 lg:flex lg:flex-row">
     <p class="lg:flex-1 lg:block inline">
       <% if is_preview %>
-        You’re viewing a preview of guides for version
+        You're viewing a preview of guides for version
         <%= version %>
         .
       <% else %>
-        You’re viewing guides for version
+        You're viewing guides for version
         <%= version %>
         .
       <% end %>
     </p>
 
-    <a
-      class="text-rom-500 dark:text-rom-400"
-      href="<%= latest_listed_version_url %>"
-    >
+    <a class="<%= link_class %>" href="<%= latest_listed_version_url %>">
       <% if is_preview %>
         View latest stable ->
       <% else %>
