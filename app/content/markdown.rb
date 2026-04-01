@@ -3,6 +3,7 @@
 
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
+require_relative "filters/inline_attribute_list_filter"
 
 module Site
   module Content
@@ -23,7 +24,9 @@ module Site
       private_constant :Pipeline
 
       def self.render(str)
-        Pipeline.call(str).fetch(:output)
+        Filters::InlineAttributeListFilter.call(
+          Pipeline.call(str).fetch(:output)
+        )
       end
     end
   end
