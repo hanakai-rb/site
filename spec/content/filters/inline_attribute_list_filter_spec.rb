@@ -5,38 +5,38 @@ RSpec.describe Site::Content::Filters::InlineAttributeListFilter do
     described_class.call(html)
   end
 
-  it "adds a class to the preceding paragraph" do
-    html = "<p>Lead text.</p>\n<p>{:.lead}</p>"
-    expect(call(html)).to eq("<p class=\"lead\">Lead text.</p>\n")
+  it "adds a class to the paragraph" do
+    html = "<p>{:.lead} Lead text.</p>"
+    expect(call(html)).to eq("<p class=\"lead\">Lead text.</p>")
   end
 
-  it "adds a class to the preceding blockquote" do
-    html = "<blockquote><p>A quote.</p></blockquote>\n<p>{:.callout}</p>"
-    expect(call(html)).to eq("<blockquote class=\"callout\"><p>A quote.</p></blockquote>\n")
+  it "works when the paragraph contains inline markup after the annotation" do
+    html = "<p>{:.lead} <strong>Bold</strong> and normal text.</p>"
+    expect(call(html)).to eq("<p class=\"lead\"><strong>Bold</strong> and normal text.</p>")
   end
 
   it "adds multiple classes from dot-separated notation" do
-    html = "<p>Text.</p>\n<p>{:.lead.large}</p>"
-    expect(call(html)).to eq("<p class=\"lead large\">Text.</p>\n")
+    html = "<p>{:.lead.large} Text.</p>"
+    expect(call(html)).to eq("<p class=\"lead large\">Text.</p>")
   end
 
-  it "merges with existing classes on the target element" do
-    html = "<p class=\"existing\">Text.</p>\n<p>{:.lead}</p>"
-    expect(call(html)).to eq("<p class=\"existing lead\">Text.</p>\n")
-  end
-
-  it "silently strips the annotation when there is no preceding sibling" do
-    html = "<p>{:.lead}</p>\n<p>Normal.</p>"
-    expect(call(html)).to eq("\n<p>Normal.</p>")
+  it "merges with existing classes on the element" do
+    html = "<p class=\"existing\">{:.lead} Text.</p>"
+    expect(call(html)).to eq("<p class=\"existing lead\">Text.</p>")
   end
 
   it "ignores class names that do not match the safe pattern" do
-    html = "<p>Text.</p>\n<p>{:.valid.1invalid}</p>"
-    expect(call(html)).to eq("<p class=\"valid\">Text.</p>\n")
+    html = "<p>{:.valid.1invalid} Text.</p>"
+    expect(call(html)).to eq("<p class=\"valid\">Text.</p>")
   end
 
-  it "leaves unrelated paragraphs untouched" do
+  it "leaves paragraphs without an annotation untouched" do
     html = "<p>Normal.</p>\n<p>Also normal.</p>"
     expect(call(html)).to eq("<p>Normal.</p>\n<p>Also normal.</p>")
+  end
+
+  it "leaves non-paragraph elements untouched" do
+    html = "<blockquote><p>A quote.</p></blockquote>"
+    expect(call(html)).to eq("<blockquote><p>A quote.</p></blockquote>")
   end
 end
