@@ -13,16 +13,32 @@
       <nav class="flex-1">
         <ul>
           <% nav_items.each do |nav_item| %>
-            <li class="text-lg md:float-left md:w-48 mb-3.5">
-              <a class="font-bold" href="<%= nav_item.url %>">
-                <%= nav_item.label %>
-              </a>
+            <li class="text-lg md:float-left mr-16 mb-4">
+              <% if nav_item.url %>
+                <a
+                  class="
+                    font-bold block mb-2 hover:underline hover:decoration-(--hk-color-text-link-underline)
+                    hover:decoration-[3px] [text-decoration-skip-ink:none]
+                  "
+                  href="<%= nav_item.url %>"
+                >
+                  <%= nav_item.label %>
+                </a>
+              <% else %>
+                <span class="font-bold block mb-2"><%= nav_item.label %></span>
+              <% end %>
 
               <% if nav_item.children.any? %>
                 <ul>
                   <% nav_item.children.each do |child_nav_item| %>
-                    <li>
-                      <a href="<%= child_nav_item.url %>">
+                    <li class="text-base mb-0.5">
+                      <a
+                        class="
+                          hover:underline hover:decoration-(--hk-color-text-link-underline)
+                          hover:decoration-[3px] [text-decoration-skip-ink:none]
+                        "
+                        href="<%= child_nav_item.url %>"
+                      >
                         <%= child_nav_item.label %>
                       </a>
                     </li>

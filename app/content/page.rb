@@ -43,6 +43,7 @@ module Site
           context: {
             markdown: {
               extension: {alerts: true},
+              parse: {smart: true},
               render: {unsafe: true},
               plugins: {syntax_highlighter: {theme: ""}}
             }

@@ -120,6 +120,11 @@
     }
   }
 
+  blockquote {
+    padding-left: calc(var(--spacing) * 4);
+    border-left: 3px solid var(--color-neutral-200);
+  }
+
   code {
     border-radius: var(--radius-sm);
     border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.08) solid;
@@ -173,6 +178,10 @@
 
       code {
         color: oklch(from var(--hk-color-text-secondary) calc(l + 0.35) calc(c - 0.15) h);
+      }
+
+      blockquote {
+        border-color: var(--color-neutral-800);
       }
     }
 

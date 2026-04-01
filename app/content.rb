@@ -11,6 +11,7 @@ module Site
     CONTENT_PATH = App.root.join("content").freeze
     POSTS_PATH = CONTENT_PATH.join("posts").freeze
     GUIDES_PATH = CONTENT_PATH.join("guides").freeze
+    PAGES_PATH = CONTENT_PATH.join("pages").freeze
     TEAM_MEMBERS_PATH = CONTENT_PATH.join("team_members").freeze
 
     INDEX_PAGE_PATH = "_index"
