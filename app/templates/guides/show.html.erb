@@ -103,7 +103,14 @@
       </h1>
     </header>
 
-    <div class="content" <%= "data-pagefind-body" if version == latest_listed_version %>><%= page.content_html %></div>
+    <div
+      class="content"
+      <% if version == latest_listed_version %>
+        data-pagefind-body
+      <% end %>
+    >
+      <%= page.content_html %>
+    </div>
 
     <%= render "doc_pages/next_prev_links",
         prev_item: prev_nav_item ? prev_nav_item : nil,

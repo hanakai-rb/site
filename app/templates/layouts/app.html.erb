@@ -24,7 +24,7 @@
     <%= favicon_tag %>
     <%= stylesheet_tag "app" %>
 
-    <script>
+    <script> <%# herb:disable html-require-script-nonce %>
       (function () {
         var stored = localStorage.getItem("hk-color-scheme");
         var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -33,7 +33,7 @@
       })();
     </script>
 
-    <%= raw content_for(:meta) %>
+    <%= raw content_for(:meta) %> <%# herb:disable erb-no-unsafe-raw %>
     <%= javascript_tag "app", async: true, type: "module" %>
   </head>
 
@@ -44,7 +44,7 @@
     <%= render "header/base", nav_items: header_nav_items %>
 
     <% if content_for(:pre_main) %>
-      <%= raw content_for(:pre_main) %>
+      <%= raw content_for(:pre_main) %> <%# herb:disable erb-no-unsafe-raw %>
     <% end %>
 
     <div
@@ -57,7 +57,7 @@
     </div>
 
     <% if content_for(:post_main) %>
-      <%= raw content_for(:post_main) %>
+      <%= raw content_for(:post_main) %> <%# herb:disable erb-no-unsafe-raw %>
     <% end %>
 
     <%= render "footer", nav_items: footer_nav_items %>

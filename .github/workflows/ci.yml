@@ -32,7 +32,7 @@ jobs:
       - name: Formatting
         run: npm run lint:format
       - name: Herb linting
-        run: npm run lint:herb -- --github
+        run: npm run lint:herb
 
   test-js:
     name: Test (JS)
@@ -75,6 +75,9 @@ jobs:
         run: |-
           bin/static-build
           bundle exec rake
+
+      - name: Herb Analyze (Parse+Compile)
+        run: "bundle exec herb analyze"
 
       - name: Upload build
         uses: actions/upload-artifact@v4

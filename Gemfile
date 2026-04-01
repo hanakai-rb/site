@@ -36,6 +36,7 @@ gem "sitemap_generator"
 group :development do
   gem "hanami-webconsole", "~> 2.3.0"
   gem "listen", "~> 3.0"
+  gem "herb", "~> 0.9"
 end
 
 group :development, :test do
