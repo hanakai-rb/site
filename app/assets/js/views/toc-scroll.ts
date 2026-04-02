@@ -51,7 +51,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
     scale: 0,
   };
 
-  const activeClasses = ["font-bold", "b-primary"];
+  const activeClasses = ["font-bold", "b-primary", "tracking-tight"];
   const xOffset = 11;
   const xOffsetDepth = 0;
 
