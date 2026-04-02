@@ -6,6 +6,20 @@ require "nokogiri"
 module Site
   module Content
     module Filters
+      # Applies Kramdown-style inline attribute lists (IALs) to the preceding
+      # block element. An IAL is a paragraph containing only a class annotation
+      # placed directly after the target element in Markdown:
+      #
+      #   This paragraph will have the "lead" class.
+      #
+      #   {:.lead}
+      #
+      # Multiple classes are supported via dot-separated notation:
+      #
+      #   This paragraph will have "lead" and "large" classes.
+      #
+      #    {:.lead.large}
+      #
       module InlineAttributeListFilter
         ANNOTATION = /\A\{:\.([-\w]+(?:\.[-\w]+)*)\}\z/
         VALID_CLASS = /\A[a-zA-Z][a-zA-Z0-9_-]*\z/
