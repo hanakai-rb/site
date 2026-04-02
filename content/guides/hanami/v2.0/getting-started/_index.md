@@ -16,7 +16,7 @@ In this guide we'll set up our first Hanami project and build a simple web app. 
 
 Enjoy,
 Luca, Peter and Tim
-*Hanami core team*
+_Hanami core team_
 
 </div>
 

@@ -289,8 +289,7 @@ function createOnScrollFn({
 
     // When scrolled to the bottom, headings near the end of the page can’t reach the threshold
     // because there isn’t enough content below them. Select the last anchor directly.
-    const isAtBottom =
-      window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    const isAtBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
     if (isAtBottom) {
       onChangeAnchor(anchors[anchors.length - 1]);
       return;
