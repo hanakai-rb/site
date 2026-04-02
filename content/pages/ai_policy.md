@@ -26,7 +26,7 @@ We aspire to be a welcoming community that helps new contributors grow their exp
 
 ## Agents not allowed
 
-This policy disallows agents that take action in our spaces without human approval, such as the GitHub @claude agent. Similarly, automated review tools that publish comments without human review are not allowed.
+This policy disallows agents that take action in our spaces without human approval, such as the GitHub Copilot or Claude agents. Similarly, automated review tools that publish comments without human review are not allowed.
 
 We will not commit any material to our repos specifically in support of agent usage. If you wish to add documentation to make contributions easier, please write it for other humans.
 
