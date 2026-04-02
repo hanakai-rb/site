@@ -5,24 +5,23 @@ pages:
   - building-an-api
 ---
 
-<p id="getting-started-lead" class="lead">
-  Hello. If you're reading this page, it's likely you want to learn more about Hanami. This is great, and we're excited to have you here!
-  <br><br>
-  If you're looking for new ways to build maintainable, secure, faster and testable Ruby apps, you're in for a treat. <strong>Hanami is built for people like you.</strong>
-  <br><br>
-  Whether you're a total beginner or an experienced developer, <strong>this learning process may still be hard</strong>. Over time, we become used to certain things, and it can be painful to change. <strong>But without change, there is no challenge</strong> and without challenge, there is no growth.
-  <br><br>
-  In this guide we'll set up our first Hanami project and build a simple web app. We'll touch on all the major components of the Hanami framework, guided by tests at each stage.
-  <br><br>
-  <strong>If you feel alone or frustrated, don't give up, jump into our <a href="https://discourse.hanamirb.org">forum</a> and ask for help.</strong> We and the rest of our community are putting in our best efforts to make Hanami better every day.
-  <br><br>
-  Enjoy,<br>
-  Luca, Peter and Tim<br>
-  <em>Hanami core team</em>
-</p>
+<div class="intro">
 
-<br>
-<hr>
+Hello. If you're reading this page, it's likely you want to learn more about Hanami. This is great, and we're excited to have you here!
+
+If you're looking for new ways to build maintainable, secure, faster and testable Ruby apps, you're in for a treat. **Hanami is built for people like you.**
+
+Whether you're a total beginner or an experienced developer, **this learning process may still be hard**. Over time, we become used to certain things, and it can be painful to change. **But without change, there is no challenge** and without challenge, there is no growth.
+
+In this guide we'll set up our first Hanami project and build a simple web app. We'll touch on all the major components of the Hanami framework, guided by tests at each stage.
+
+**If you feel alone or frustrated, don't give up, jump into our <a href="https://discourse.hanamirb.org">forum</a> and ask for help.** We and the rest of our community are putting in our best efforts to make Hanami better every day.
+
+Enjoy,
+Luca, Peter and Tim
+_Hanami core team_
+
+</div>
 
 ## Getting started
 

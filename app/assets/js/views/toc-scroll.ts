@@ -51,7 +51,7 @@ export const tocScrollViewFn: ViewFn<Props> = (
     scale: 0,
   };
 
-  const activeClasses = ["font-bold", "b-primary"];
+  const activeClasses = ["font-bold", "b-primary", "tracking-tight"];
   const xOffset = 11;
   const xOffsetDepth = 0;
 
@@ -89,14 +89,42 @@ export const tocScrollViewFn: ViewFn<Props> = (
     });
   };
 
-  const onScroll = debounce(
-    createOnScrollFn({
-      anchors,
-      onChangeAnchor,
-    }),
-    20,
-    { maxWait: 150 },
-  );
+  const rawScrollFn = createOnScrollFn({ anchors, onChangeAnchor });
+
+  // Reverse map for click handling: link → anchor
+  const linkToAnchorMap = new Map<HTMLAnchorElement, HTMLElement>();
+  anchorToLinkMap.forEach(([link], anchor) => {
+    linkToAnchorMap.set(link, anchor);
+  });
+
+  // Suppresses position-based detection while a click-triggered scroll animation is running.
+  // Cleared 300ms after the last scroll event fires (i.e. once the animation has settled).
+  let clickScrollActive = false;
+  const onClickScrollEnd = debounce(() => {
+    clickScrollActive = false;
+  }, 300);
+
+  const scrollHandler = () => {
+    if (clickScrollActive) {
+      // Keep resetting the settle timer while scroll events are still firing
+      onClickScrollEnd();
+      return;
+    }
+    rawScrollFn();
+  };
+
+  const onScroll = debounce(scrollHandler, 20, { maxWait: 150 });
+
+  // On click, immediately highlight the target anchor and suppress scroll-based detection
+  // until the scroll animation settles.
+  const onLinkClick = (e: Event) => {
+    const anchor = linkToAnchorMap.get(e.currentTarget as HTMLAnchorElement);
+    if (anchor) {
+      onChangeAnchor(anchor);
+      clickScrollActive = true;
+    }
+  };
+  links.forEach((link) => link.addEventListener("click", onLinkClick));
 
   window.addEventListener("scroll", onScroll);
   // If we have a scroll reference element, also listen to its scroll events
@@ -104,13 +132,19 @@ export const tocScrollViewFn: ViewFn<Props> = (
     scrollReferenceEl.addEventListener("scroll", onScroll);
   }
 
+  // Run immediately so the correct anchor is highlighted on page load
+  rawScrollFn();
+
   return {
     destroy: () => {
       window.removeEventListener("scroll", onScroll);
       if (scrollReferenceEl) {
         scrollReferenceEl.removeEventListener("scroll", onScroll);
       }
-      links.forEach((node) => node.classList.remove(...activeClasses));
+      links.forEach((link) => {
+        link.removeEventListener("click", onLinkClick);
+        link.classList.remove(...activeClasses);
+      });
     },
   };
 };
@@ -253,12 +287,20 @@ function createOnScrollFn({
     // Wait for every item to be measured.
     await Promise.all(promises);
 
-    // Add the scroll offset (window or reference element) to the start of the yPosition array so
-    // we use it as an anchor to ensure we don’t always select the first item.
+    // When scrolled to the bottom, headings near the end of the page can’t reach the threshold
+    // because there isn’t enough content below them. Select the last anchor directly.
+    const isAtBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    if (isAtBottom) {
+      onChangeAnchor(anchors[anchors.length - 1]);
+      return;
+    }
+
+    // Prepend the (negative) scroll offset so that findClosestIndex doesn’t always select
+    // the first anchor when none have crossed the threshold yet (e.g. at the top of the page).
     const effectiveScrollOffset = window.scrollY * -1;
     yPositions.unshift(effectiveScrollOffset);
 
-    // Find the closest matching position (accounting for the fake value from the scroll position)
+    // Find the closest matching position (subtract 1 to account for the prepended scroll offset)
     const closestIndex = findClosestIndex(yPositions, viewportMarginThreshold) - 1;
     onChangeAnchor(anchors[closestIndex]);
   };
