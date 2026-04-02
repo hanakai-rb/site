@@ -127,7 +127,7 @@
 
   code {
     border-radius: var(--radius-sm);
-    border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.08) solid;
+    border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.2) solid;
     background-color: var(--hk-color-bg-secondary-subtle);
     color: oklch(from var(--hk-color-text-secondary) calc(l - 0.3) calc(c - 0.05) h);
     font-family: var(--font-mono);
@@ -137,7 +137,7 @@
 
   pre {
     border-radius: var(--radius-lg);
-    border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.08) solid;
+    border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.2) solid;
     background-color: var(--hk-color-bg-secondary-subtle);
     box-shadow: var(--shadow-xs);
     font-size: var(--text-sm);
@@ -505,6 +505,26 @@
         color: oklch(from var(--hk-color-text-secondary) calc(l + 0.15) c h);
       }
     }
+  }
+}
+
+.intro {
+  background-color: var(--hk-color-bg-secondary-subtle);
+  border: 1px solid oklch(from var(--hk-color-bg-secondary) l c h / 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: calc(var(--spacing) * 8) calc(var(--spacing) * 8) calc(var(--spacing) * 6);
+  margin-block-end: calc(var(--spacing) * 10);
+
+  html.dark & {
+    background-color: var(--color-hanakai-950);
+    border-color: var(--color-neutral-800);
+  }
+}
+
+@variant lg {
+  .intro {
+    padding: calc(var(--spacing) * 10) calc(var(--spacing) * 10) calc(var(--spacing) * 6);
   }
 }
 

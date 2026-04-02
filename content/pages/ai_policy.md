@@ -1,6 +1,10 @@
-{:.lead} **Hanami is here for humans.** We welcome your contributions, and you are welcome to use whatever tools you like, but we require all contributions to be **human-first**.
+<div class="intro">
 
-{:.lead} If you wish to use an AI tool for assistance, please respect the policy below.
+**Hanami is here for humans.** We welcome your contributions, and you are welcome to use whatever tools you like, but we require all contributions to be **human-first**.
+
+If you wish to use an AI tool for assistance, please respect the policy below.
+
+</div>
 
 ## Policy
 

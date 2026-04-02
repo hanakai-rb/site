@@ -7,7 +7,7 @@
   --hk-color-bg-primary-reversed: var(--color-white);
   --hk-color-bg-secondary-reversed: var(--color-white);
   --hk-color-bg-secondary: var(--color-hanakai-300);
-  --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-50) l c h / 0.4);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-hanakai-50) l c h / 0.4);
   --hk-color-b-neutral: var(--color-stone-50);
   --hk-color-b-primary-reversed: var(--color-white);
   --hk-color-b-secondary-reversed: var(--color-white);
@@ -41,6 +41,8 @@
   --hk-color-text-link-active: var(--color-hanami-500);
   --hk-color-text-primary-reversed: var(--color-white);
   --hk-color-text-primary: var(--color-hanami-500);
+  --hk-color-bg-secondary: var(--color-rom-400);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-50) l c h / 0.4);
 }
 
 .theme-dry {
@@ -48,6 +50,8 @@
   --hk-color-b-primary: var(--color-dry-500);
   --hk-color-text-primary-reversed: var(--color-white);
   --hk-color-text-primary: var(--color-dry-500);
+  --hk-color-bg-secondary: var(--color-rom-400);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-50) l c h / 0.4);
 }
 
 .theme-rom {
@@ -55,6 +59,8 @@
   --hk-color-b-primary: var(--color-rom-500);
   --hk-color-text-primary-reversed: var(--color-white);
   --hk-color-text-primary: var(--color-rom-500);
+  --hk-color-bg-secondary: var(--color-rom-400);
+  --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-50) l c h / 0.4);
 }
 
 /* ─── Dark structural overrides ──────────────────────────────────────────────
