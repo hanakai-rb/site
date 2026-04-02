@@ -7,25 +7,34 @@ module Site
   module Content
     module Filters
       module InlineAttributeListFilter
-        ANNOTATION_PREFIX = /\A\{:\.([-\w]+(?:\.[-\w]+)*)\}\s*/
+        ANNOTATION = /\A\{:\.([-\w]+(?:\.[-\w]+)*)\}\z/
         VALID_CLASS = /\A[a-zA-Z][a-zA-Z0-9_-]*\z/
 
         def self.call(html)
           doc = Nokogiri::HTML::DocumentFragment.parse(html)
 
           doc.css("p").each do |node|
-            first_child = node.children.first
-            next unless first_child&.text?
-
-            match = ANNOTATION_PREFIX.match(first_child.content)
+            text = node.text.strip
+            match = ANNOTATION.match(text)
             next unless match
+
+            # Must be only an annotation with no other content
+            next unless node.children.all?(&:text?)
 
             class_names = match[1].split(".").select { _1.match?(VALID_CLASS) }
             next unless class_names.any?
 
-            existing = node["class"].to_s.split
-            node["class"] = (existing + class_names).join(" ")
-            first_child.content = first_child.content.delete_prefix(match[0])
+            prev = node.previous_element
+            next unless prev
+
+            existing = prev["class"].to_s.split
+            prev["class"] = (existing + class_names).join(" ")
+
+            # Remove the whitespace text node between the two elements, if any
+            between = node.previous_sibling
+            between.remove if between&.text? && between.content.strip.empty?
+
+            node.remove
           end
 
           doc.to_html
