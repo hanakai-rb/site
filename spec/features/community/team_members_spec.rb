@@ -1,33 +1,35 @@
 # frozen_string_literal: true
 
-RSpec.feature "Team Members" do
-  it "displays core and maintainer teams" do
+RSpec.feature "Community page" do
+  it "displays the hero section with community links" do
     visit "/community"
 
-    expect(page).to have_selector "h2", text: "Core Team"
+    expect(page).to have_selector "h1", text: "Built on community"
+    expect(page).to have_link("discussion forum", href: "https://discourse.hanamirb.org")
+    expect(page).to have_link("Discord", href: "https://discord.com/invite/KFCxDmk3JQ")
+    expect(page).to have_link("GitHub", href: "https://github.com/hanami")
+    expect(page).to have_link("Code of Conduct", href: "/conduct")
+  end
 
-    within "[data-testid=core-team]" do
-      core_members = page.find_all(".team-member")
-      expect(core_members.length).to be >= 1
+  it "displays all team members in a unified list with core members first" do
+    visit "/community"
 
-      first_member = core_members.first
+    expect(page).to have_selector "h2", text: "Our team"
+
+    within "[data-testid=team-roster]" do
+      members = page.find_all(".team-member")
+      expect(members.length).to eq 17
+
+      # Core members appear first and have the "Core" pill
+      first_member = members.first
       expect(first_member).to have_selector "img.avatar"
-      expect(first_member).to have_selector "h3"
-      expect(first_member).to have_selector "p svg"
       expect(first_member).to have_link(href: %r{\Ahttps://github.com/})
-    end
+      expect(first_member).to have_selector ".core-pill", text: "Core"
 
-    expect(page).to have_selector "h2", text: "Maintainers"
-
-    within "[data-testid=maintainers-team]" do
-      maintainer_members = page.find_all(".team-member")
-      expect(maintainer_members.length).to be >= 1
-
-      first_member = maintainer_members.first
-      expect(first_member).to have_selector "img.avatar"
-      expect(first_member).to have_selector "h3"
-      expect(first_member).to have_selector "p svg"
-      expect(first_member).to have_link(href: %r{\Ahttps://github.com/})
+      # A non-core member should not have the pill
+      # Find a maintainer (they come after the 3 core members)
+      fourth_member = members[3]
+      expect(fourth_member).not_to have_selector ".core-pill"
     end
   end
 end
