@@ -63,71 +63,57 @@
     </p>
   </header>
 
-  <div
-    class="
-      grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x
-      divide-(--hk-color-neutral-subtle)
-    "
-  >
-    <div
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <a
+      href="https://discourse.hanamirb.org"
       class="
-        py-8 lg:pt-0 lg:pb-4 lg:px-8 first:pt-0 first:lg:pl-0 last:pb-0
-        last:lg:pr-0 text-center
+        theme-hanami group flex flex-col items-center text-center p-8 rounded-2xl
+        border-3 b-primary bg-(--hk-color-surface-raised)
+        shadow-sm hover:shadow-lg transition-shadow duration-200
       "
     >
-      <%= render "svgs/icons/chat_text", width: 32, height: 32, class_name: "mb-4 mx-auto" %>
+      <%= render "svgs/icons/chat_text", width: 32, height: 32, class_name: "mb-4 text-primary" %>
 
-      <h3 class="text-2xl tracking-tighter font-bold mb-2">Discussion forum</h3>
+      <span class="text-2xl tracking-tighter font-bold mb-2">Discussion forum</span>
 
-      <p class="text-xl">
-        Ask questions and share ideas on our
-        <a href="https://discourse.hanamirb.org" class="
-          text-link underline decoration-(--hk-color-text-link-underline)
-          decoration-[3px] [text-decoration-skip-ink:none]
-          hover:text-(--hk-color-text-link-active)
-        ">discussion forum</a>.
-      </p>
-    </div>
+      <span class="text-xl">
+        Ask questions, share ideas, and discuss all things Hanakai.
+      </span>
+    </a>
 
-    <div
+    <a
+      href="https://discord.com/invite/KFCxDmk3JQ"
       class="
-        py-8 lg:pt-0 lg:pb-4 lg:px-8 first:pt-0 first:lg:pl-0 last:pb-0
-        last:lg:pr-0 text-center
+        theme-dry group flex flex-col items-center text-center p-8 rounded-2xl
+        border-3 b-primary bg-(--hk-color-surface-raised)
+        shadow-sm hover:shadow-lg transition-shadow duration-200
       "
     >
-      <%= render "svgs/icons/discord_logo", width: 32, height: 32, class_name: "mb-4 mx-auto fill-current" %>
+      <%= render "svgs/icons/discord_logo", width: 32, height: 32, class_name: "mb-4 fill-current text-primary" %>
 
-      <h3 class="text-2xl tracking-tighter font-bold mb-2">Discord</h3>
+      <span class="text-2xl tracking-tighter font-bold mb-2">Discord</span>
 
-      <p class="text-xl">
-        Join the conversation and get help in real time on
-        <a href="https://discord.com/invite/KFCxDmk3JQ" class="
-          text-link underline decoration-(--hk-color-text-link-underline)
-          decoration-[3px] [text-decoration-skip-ink:none]
-          hover:text-(--hk-color-text-link-active)
-        ">Discord</a>.
-      </p>
-    </div>
+      <span class="text-xl">
+        Join the conversation and get help in real time.
+      </span>
+    </a>
 
-    <div
+    <a
+      href="https://github.com/hanami"
       class="
-        py-8 lg:pt-0 lg:pb-4 lg:px-8 first:pt-0 first:lg:pl-0 last:pb-0
-        last:lg:pr-0 text-center
+        theme-rom group flex flex-col items-center text-center p-8 rounded-2xl
+        border-3 b-primary bg-(--hk-color-surface-raised)
+        shadow-sm hover:shadow-lg transition-shadow duration-200
       "
     >
-      <%= render "svgs/icons/github_logo", width: 32, height: 32, class_name: "mb-4 mx-auto" %>
+      <%= render "svgs/icons/github_logo", width: 32, height: 32, class_name: "mb-4 text-primary" %>
 
-      <h3 class="text-2xl tracking-tighter font-bold mb-2">GitHub</h3>
+      <span class="text-2xl tracking-tighter font-bold mb-2">GitHub</span>
 
-      <p class="text-xl">
-        Browse the source, file issues, and contribute on
-        <a href="https://github.com/hanami" class="
-          text-link underline decoration-(--hk-color-text-link-underline)
-          decoration-[3px] [text-decoration-skip-ink:none]
-          hover:text-(--hk-color-text-link-active)
-        ">GitHub</a>.
-      </p>
-    </div>
+      <span class="text-xl">
+        Browse the source, file issues, and contribute changes.
+      </span>
+    </a>
   </div>
 </section>
 

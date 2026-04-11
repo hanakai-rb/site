@@ -5,7 +5,7 @@ RSpec.feature "Community page" do
     visit "/community"
 
     expect(page).to have_selector "h1", text: "Built on community"
-    expect(page).to have_link("discussion forum", href: "https://discourse.hanamirb.org")
+    expect(page).to have_link("Discussion forum", href: "https://discourse.hanamirb.org")
     expect(page).to have_link("Discord", href: "https://discord.com/invite/KFCxDmk3JQ")
     expect(page).to have_link("GitHub", href: "https://github.com/hanami")
     expect(page).to have_link("Code of Conduct", href: "/conduct")
