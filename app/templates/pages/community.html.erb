@@ -74,7 +74,9 @@
     >
       <%= render "svgs/icons/chat_text", width: 32, height: 32, class_name: "mb-4 text-primary" %>
 
-      <span class="text-2xl tracking-tighter font-bold mb-2">Discussion forum</span>
+      <span class="text-2xl tracking-tighter font-bold mb-2">
+        Discussion forum
+      </span>
 
       <span class="text-xl">
         Ask questions, share ideas, and discuss all things Hanakai.
@@ -139,13 +141,15 @@
   >
     <% team_members.each do |member| %>
       <div class="team-member flex flex-col items-center text-center mb-4">
-        <img
-          alt="<%= member.name %>"
-          class="avatar w-20 h-20 rounded-full mb-2"
-          height="80"
-          src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=128"
-          width="80"
-        >
+        <a href="https://github.com/<%= member.github_user %>">
+          <img
+            alt="<%= member.name %>"
+            class="avatar w-20 h-20 rounded-full mb-2 transition duration-200 hover:scale-105 hover:-rotate-2 hover:shadow-md"
+            height="80"
+            src="https://avatars.githubusercontent.com/<%= member.github_user %>?size=128"
+            width="80"
+          >
+        </a>
 
         <% if member.team == "core" %>
           <span
@@ -177,16 +181,21 @@
         >
           @<%= member.github_user %>
         </a>
+
+        <span class="text-sm text-neutral-500 dark:text-neutral-400">
+          <%= member.location %>
+
+          <% if member.active_since %>
+            <span class="inline-block px-[3px]">·</span>
+            Since
+            <%= member.active_since %>
+          <% end %>
+        </span>
       </div>
     <% end %>
   </div>
 
-  <p
-    class="
-      mt-10 text-xl text-neutral-600 dark:text-neutral-400 text-center
-      max-w-3xl mx-auto
-    "
-  >
+  <p class="mt-10 text-xl text-center max-w-3xl mx-auto">
     <strong>Want to get involved?</strong> Our team looks for your track record
     in the community. Be active in our community spaces, work on documentation,
     file and fix issues, and be proactive in helping others and sharing your
