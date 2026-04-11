@@ -12,11 +12,94 @@
     </header>
 
     <div class="flex flex-col lg:flex-row gap-5 lg:gap-16 items-center">
-      <div class="flex-1 flex justify-center lg:justify-end lg:order-2">
-        <%= image_tag "community-block.png", alt: "Photograph of cute people being cute" %>
+      <div class="lg:w-7/12 flex justify-center lg:justify-end lg:order-2">
+        <div class="relative w-full">
+          <%# Photo 1: hanakai tint, top-left %>
+          <div class="relative z-0 w-[65%] rounded-xl overflow-hidden shadow-lg">
+            <div class="relative">
+              <div
+                class="absolute inset-0 z-0"
+                style="background: oklch(from var(--color-hanami-400) calc(l + 0.09) calc(c + 0.1) h)"
+              ></div>
+
+              <img
+                src="<%= asset_url("community-1.png") %>"
+                alt="Hanakai community members"
+                class="
+                  community-slide block w-full grayscale relative z-10
+                  mix-blend-luminosity contrast-120
+                "
+              >
+
+              <img
+                src="<%= asset_url("community-3.png") %>"
+                alt="Hanakai community members"
+                class="
+                  community-slide absolute inset-0 w-full h-full
+                  object-cover grayscale z-10 mix-blend-luminosity
+                  contrast-120
+                "
+              >
+
+              <img
+                src="<%= asset_url("community-5.png") %>"
+                alt="Hanakai community members"
+                class="
+                  community-slide absolute inset-0 w-full h-full
+                  object-cover grayscale z-10 mix-blend-luminosity
+                  contrast-120
+                "
+              >
+            </div>
+          </div>
+
+          <%# Photo 2: rom tint, bottom-right, overlapping %>
+          <div
+            class="
+              relative z-10 w-[65%] ml-auto -mt-12 rounded-xl
+              overflow-hidden shadow-lg
+            "
+          >
+            <div class="relative">
+              <div
+                class="absolute inset-0 z-0"
+                style="background: oklch(from var(--color-rom-400) calc(l + 0.2) calc(c + 0.2) h)"
+              ></div>
+
+              <img
+                src="<%= asset_url("community-2.png") %>"
+                alt="Hanakai community members"
+                class="
+                  community-slide block w-full grayscale relative z-10
+                  mix-blend-luminosity contrast-120
+                "
+              >
+
+              <img
+                src="<%= asset_url("community-4.png") %>"
+                alt="Hanakai community members"
+                class="
+                  community-slide absolute inset-0 w-full h-full
+                  object-cover grayscale z-10 mix-blend-luminosity
+                  contrast-120
+                "
+              >
+
+              <img
+                src="<%= asset_url("community-6.png") %>"
+                alt="Hanakai community members"
+                class="
+                  community-slide absolute inset-0 w-full h-full
+                  object-cover grayscale z-10 mix-blend-luminosity
+                  contrast-120
+                "
+              >
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="flex-1 pb-8 lg:ml-7">
+      <div class="lg:w-5/12 pb-8 lg:ml-7">
         <p class="text-xl lg:text-2xl mb-3">
           The Hanakai community is a place where people of all backgrounds and
           experience levels can feel respected, and can share and grow. A place
