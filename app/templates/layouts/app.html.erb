@@ -21,7 +21,12 @@
       <% end %>
     </title>
 
-    <%= favicon_tag %>
+    <link
+      href="<%= asset_url("favicon.svg") %>"
+      rel="shortcut icon"
+      type="image/svg+xml"
+    >
+
     <%= stylesheet_tag "app" %>
 
     <script>
