@@ -72,6 +72,9 @@ linter:
     erb-no-interpolated-class-names:
       enabled: false
 
+    erb-prefer-image-tag-helper:
+      enabled: false
+
 formatter:
   enabled: true
   indentWidth: 2
