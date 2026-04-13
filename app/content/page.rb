@@ -3,6 +3,7 @@
 
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
+require_relative "filters/inline_attribute_list_filter"
 
 module Site
   module Content
@@ -29,7 +30,9 @@ module Site
       end
 
       def content_html
-        @content_html ||= content_data.fetch(:output).html_safe
+        @content_html ||= Filters::InlineAttributeListFilter.call(
+          content_data.fetch(:output)
+        ).html_safe
       end
 
       private
