@@ -20,7 +20,10 @@ function render(config: Parameters<typeof overflowClassViewFn>[1]) {
   return document.querySelector<HTMLElement>("[data-defo-overflow-class]")!;
 }
 
-function triggerResize(node: HTMLElement, { scrollWidth = 0, clientWidth = 0, scrollHeight = 0, clientHeight = 0 } = {}) {
+function triggerResize(
+  node: HTMLElement,
+  { scrollWidth = 0, clientWidth = 0, scrollHeight = 0, clientHeight = 0 } = {},
+) {
   Object.defineProperty(node, "scrollWidth", { value: scrollWidth, configurable: true });
   Object.defineProperty(node, "clientWidth", { value: clientWidth, configurable: true });
   Object.defineProperty(node, "scrollHeight", { value: scrollHeight, configurable: true });
