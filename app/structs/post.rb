@@ -55,7 +55,8 @@ module Site
         ),
         node_filters: [
           Content::Filters::SanitizeHeadingAnchorsFilter.new,
-          Content::Filters::LinkableHeadingsFilter.new
+          Content::Filters::LinkableHeadingsFilter.new,
+          Content::Filters::TableWrapperFilter.new
         ],
         # Don't bother sanitizing content, we already trust what's in this repo.
         sanitization_config: nil
