@@ -21,7 +21,12 @@
 
 <%# Projects %>
 <section class="py-4">
-  <div class="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-[repeat(6,auto)] gap-x-6 gap-y-6">
+  <div
+    class="
+      grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-[repeat(6,auto)] gap-x-6
+      gap-y-6
+    "
+  >
     <%# Hanami %>
     <%= render_with_slots "pages/home/project_card",
           theme: "theme-hanami",

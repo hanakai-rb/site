@@ -21,7 +21,7 @@ RSpec.describe Site::Content::Filters::TableWrapperFilter do
     MD
 
     expect(call(markdown)).to include('class="table-wrapper"')
-    expect(call(markdown)).to include('data-defo-overflow-class=')
+    expect(call(markdown)).to include("data-defo-overflow-class=")
     expect(call(markdown)).to include("</table></div>")
   end
 

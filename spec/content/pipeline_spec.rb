@@ -32,9 +32,11 @@ RSpec.describe Site::Content::Pipeline do
 
   it "passes context and result through to the underlying pipeline" do
     recorder = Class.new(HTMLPipeline::NodeFilter) do
-      SELECTOR = Selma::Selector.new(match_element: "p")
-      def selector = SELECTOR
-      def handle_element(_element)
+      selector = Selma::Selector.new(match_element: "p")
+
+      define_method(:selector) { selector }
+
+      define_method(:handle_element) do |_element|
         result[:seen] = true
       end
     end
