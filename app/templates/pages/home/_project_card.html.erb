@@ -1,13 +1,13 @@
-<div class="<%= theme %> flex flex-col border-3 b-primary rounded-2xl p-6 shadow-lg">
-  <div class="flex items-center gap-3 mb-3">
+<div class="<%= theme %> grid grid-rows-subgrid row-span-6 border-3 b-primary rounded-2xl p-6 shadow-lg">
+  <div class="flex items-center gap-3">
     <%= render_slot :logo %>
 
     <h2 class="text-4xl font-black tracking-tight text-primary"><%= name %></h2>
   </div>
 
-  <p class="text-xl leading-snug mb-6"><%= description %></p>
+  <p class="text-xl leading-snug"><%= description %></p>
 
-  <div class="mb-6">
+  <div>
     <%= render_with_slots "shared/components/button_primary", href: primary_href, label: primary_label do |btn| %>
       <% btn.slot :suffix do %>
         <%= render "svgs/icons/arrow_right", width: 20, height: 18, class_name: "fill-current" %>
@@ -15,11 +15,11 @@
     <% end %>
   </div>
 
-  <%= render "svgs/wiggle", height: 14, stroke_width: 2, class_name: "text-primary mb-6" %>
+  <%= render "svgs/wiggle", height: 14, stroke_width: 2, class_name: "text-primary" %>
 
-  <ul class="flex flex-col gap-5 flex-1"><%= render_slot :features %></ul>
+  <ul class="flex flex-col gap-5"><%= render_slot :features %></ul>
 
-  <div class="mt-6">
+  <div class="self-end">
     <%= render_with_slots "shared/components/button_secondary", href: docs_href, label: "View docs" do |btn| %>
       <% btn.slot :suffix do %>
         <%= render "svgs/icons/book_open_text", width: 24, height: 24, class_name: "text-current" %>
