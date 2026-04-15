@@ -2,6 +2,7 @@ import type { Views } from "@icelab/defo";
 
 import { breakpointFilter } from "~/utils/breakpoints";
 import { ensureActiveNavLinkVisibleViewFn } from "./ensure-active-nav-link-visible";
+import { overflowClassViewFn } from "./overflow-class";
 import { isMacViewFn } from "./is-mac";
 import { lazyLoadView } from "~/utils/lazy-load";
 import { mobilePageNavViewFn } from "./mobile-page-nav";
@@ -20,6 +21,7 @@ export const views: Views = {
     return foresightViewFn;
   }),
   mobilePageNav: breakpointFilter(mobilePageNavViewFn),
+  overflowClass: overflowClassViewFn,
   sizeToVar: sizeToVarViewFn,
   pagefindSearch: pagefindSearchViewFn,
   targetCurrent: targetCurrentViewFn,
