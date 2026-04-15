@@ -20,11 +20,13 @@ module Site
       #
       #    {:.lead.large}
       #
-      module InlineAttributeListFilter
+      # Used as a post-filter via Content::Pipeline's `post_filters:` option,
+      # since sibling-awareness makes it incompatible with streaming NodeFilters.
+      class InlineAttributeListFilter
         ANNOTATION = /\A\{:\.([-\w]+(?:\.[-\w]+)*)\}\z/
         VALID_CLASS = /\A[a-zA-Z][a-zA-Z0-9_-]*\z/
 
-        def self.call(html)
+        def call(html)
           doc = Nokogiri::HTML::DocumentFragment.parse(html)
 
           doc.css("p").each do |node|

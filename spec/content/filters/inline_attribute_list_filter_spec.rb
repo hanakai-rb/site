@@ -2,7 +2,7 @@
 
 RSpec.describe Site::Content::Filters::InlineAttributeListFilter do
   def call(html)
-    described_class.call(html)
+    described_class.new.call(html)
   end
 
   it "adds a class to the preceding paragraph" do

@@ -2,6 +2,7 @@
 
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
+require_relative "../content/pipeline"
 require_relative "../content/filters/inline_attribute_list_filter"
 
 module Site
@@ -16,9 +17,7 @@ module Site
       end
 
       def content_html
-        @content_html ||= Content::Filters::InlineAttributeListFilter.call(
-          content_data.fetch(:output)
-        ).html_safe
+        @content_html ||= content_data.fetch(:output).html_safe
       end
 
       def excerpt
@@ -43,23 +42,26 @@ module Site
         @heading_collection ||= Content::HeadingCollection.new(content_data.fetch(:headings))
       end
 
-      ContentPipeline = HTMLPipeline.new(
-        convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new(
-          context: {
-            markdown: {
-              parse: {smart: true},
-              render: {unsafe: true},
-              plugins: {syntax_highlighter: {theme: ""}}
+      ContentPipeline = Content::Pipeline.new(
+        HTMLPipeline.new(
+          convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new(
+            context: {
+              markdown: {
+                parse: {smart: true},
+                render: {unsafe: true},
+                plugins: {syntax_highlighter: {theme: ""}}
+              }
             }
-          }
+          ),
+          node_filters: [
+            Content::Filters::SanitizeHeadingAnchorsFilter.new,
+            Content::Filters::LinkableHeadingsFilter.new,
+            Content::Filters::TableWrapperFilter.new
+          ],
+          # Don't bother sanitizing content, we already trust what's in this repo.
+          sanitization_config: nil
         ),
-        node_filters: [
-          Content::Filters::SanitizeHeadingAnchorsFilter.new,
-          Content::Filters::LinkableHeadingsFilter.new,
-          Content::Filters::TableWrapperFilter.new
-        ],
-        # Don't bother sanitizing content, we already trust what's in this repo.
-        sanitization_config: nil
+        post_filters: [Content::Filters::InlineAttributeListFilter.new]
       )
       private_constant :ContentPipeline
 
