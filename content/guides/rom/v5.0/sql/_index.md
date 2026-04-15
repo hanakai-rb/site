@@ -108,10 +108,10 @@ Options below are available to all database drivers and can be used to configure
       is <strong>NOT</strong> provided to the ROM Configuration instance.</p>
       <p><strong>Available Options:</strong></p>
       <ul>
-        <li>:postgres</li>
-        <li>:sqlite</li>
-        <li>:oracle</li>
-        <li>:mysql</li>
+        <li><code>:postgres</code></li>
+        <li><code>:sqlite</code></li>
+        <li><code>:oracle</code></li>
+        <li><code>:mysql</code></li>
       </ul>
     </td>
 
@@ -182,7 +182,7 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
     <td><code>:search_path</code></td>
     <td>Sets the schema search path.</td>
     <td>String, Array&lt;String&gt;</td>
-    <td>['$user', 'public']</td>
+    <td><code>['$user', 'public']</code></td>
   </tr>
 
   <tr>
@@ -249,7 +249,7 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
       </ul>
     </td>
     <td>String</td>
-    <td>'disable'</td>
+    <td><code>'disable'</code></td>
 
   </tr>
 
@@ -338,7 +338,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
       The most common option being <code>'UTF8'</code>
     </td>
     <td>String</td>
-    <td>'UTF8'</td>
+    <td><code>'UTF8'</code></td>
   </tr>
 
   <tr>
@@ -401,13 +401,13 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
       For more information see <a href="https://github.com/brianmario/mysql2#flags-option-parsing">Flag Option Parsing</a>.</p>
       <p><strong>Available Options:</strong></p>
       <ul>
-        <li>'REMEMBER_OPTIONS'</li>
-        <li>'LONG_PASSWORD'</li>
-        <li>'LONG_FLAG'</li>
-        <li>'TRANSACTIONS'</li>
-        <li>'PROTOCOL_41'</li>
-        <li>'SECURE_CONNECTION'</li>
-        <li>'MULTI_STATEMENTS'</li>
+        <li><code>'REMEMBER_OPTIONS'</code></li>
+        <li><code>'LONG_PASSWORD'</code></li>
+        <li><code>'LONG_FLAG'</code></li>
+        <li><code>'TRANSACTIONS'</code></li>
+        <li><code>'PROTOCOL_41'</code></li>
+        <li><code>'SECURE_CONNECTION'</code></li>
+        <li><code>'MULTI_STATEMENTS'</code></li>
       </ul>
     </td>
     <td>String, Array&lt;String&gt;</td>
