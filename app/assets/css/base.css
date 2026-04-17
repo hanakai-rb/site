@@ -24,3 +24,7 @@
 button {
   touch-action: manipulation;
 }
+
+.font-mono.text-xs {
+  font-size: 0.8rem;
+}
