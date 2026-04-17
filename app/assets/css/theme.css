@@ -22,7 +22,7 @@
   /* hanakai accent defaults (overridden by the other .theme-* classes below) */
   --hk-color-bg-primary: var(--color-hanakai-300);
   --hk-color-b-primary: var(--color-hanakai-300);
-  --hk-color-text-link-active: var(--color-hanakai-300);
+  --hk-color-text-link-active: var(--color-hanakai-600);
   --hk-color-text-primary-reversed: var(--color-neutral-800);
   --hk-color-text-primary: var(--color-hanakai-600);
 }
@@ -30,7 +30,7 @@
 .theme-hanakai {
   --hk-color-bg-primary: var(--color-hanakai-300);
   --hk-color-b-primary: var(--color-hanakai-300);
-  --hk-color-text-link-active: var(--color-hanakai-300);
+  --hk-color-text-link-active: var(--color-hanakai-600);
   --hk-color-text-primary-reversed: var(--color-neutral-800);
   --hk-color-text-primary: var(--color-hanakai-600);
 }
@@ -81,6 +81,7 @@
     --hk-color-neutral-subtle: var(--color-neutral-800);
     --hk-color-text-neutral: var(--color-neutral-100);
     --hk-color-text-link: var(--color-neutral-100);
+    --hk-color-text-link-active: var(--color-hanakai-200);
   }
 }
 
@@ -101,6 +102,7 @@ html.dark {
   --hk-color-neutral-subtle: var(--color-neutral-800);
   --hk-color-text-neutral: var(--color-neutral-100);
   --hk-color-text-link: var(--color-neutral-100);
+  --hk-color-text-link-active: var(--color-hanakai-200);
 }
 
 /* ─── Forced light (system is dark, user chose light) ────────────────────────
@@ -119,6 +121,7 @@ html.dark {
     --hk-color-neutral-subtle: var(--color-neutral-100);
     --hk-color-text-neutral: var(--color-neutral-800);
     --hk-color-text-link: var(--color-neutral-900);
+    --hk-color-text-link-active: var(--color-hanakai-600);
   }
 }
 

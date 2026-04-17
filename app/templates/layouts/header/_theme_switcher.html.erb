@@ -11,15 +11,25 @@
     class="
       absolute top-0.5 left-0.5 size-6 rounded-full bg-white
       dark:bg-neutral-700 translate-x-0 dark:translate-x-5
-      transition-transform duration-200 ease-in-out flex items-center
-      justify-center text-neutral-600 dark:text-white
+      transition-transform duration-200 ease-in-out
+      text-neutral-600 dark:text-white
     "
   >
-    <span class="flex dark:hidden">
+    <span
+      class="
+        absolute inset-0 flex items-center justify-center
+        transition-opacity duration-200 ease-in-out dark:opacity-0
+      "
+    >
       <%= render "svgs/icons/sun", height: 14, width: 14, class_name: "fill-current" %>
     </span>
 
-    <span class="hidden dark:flex">
+    <span
+      class="
+        absolute inset-0 flex items-center justify-center opacity-0
+        transition-opacity duration-200 ease-in-out dark:opacity-100
+      "
+    >
       <%= render "svgs/icons/moon", height: 14, width: 14, class_name: "fill-current" %>
     </span>
   </span>

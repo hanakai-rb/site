@@ -205,11 +205,6 @@
     }
   }
 
-  table {
-    margin-block-start: calc(var(--spacing) * 4);
-    margin-block-end: calc(var(--spacing) * 6);
-  }
-
   thead {
     tr {
       border-bottom: 1px var(--hk-color-neutral-subtle) solid;
@@ -273,7 +268,7 @@
     border-style: solid;
     border-width: 2px;
     box-shadow: var(--shadow-xs);
-    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 4) calc(var(--spacing) * 4) calc(var(--spacing) * 12);
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 4) calc(var(--spacing) * 2) calc(var(--spacing) * 12);
     position: relative;
     margin-block-start: calc(var(--spacing) * 5);
     margin-block-end: calc(var(--spacing) * 7);
@@ -519,6 +514,37 @@
   html.dark & {
     background-color: var(--color-hanakai-950);
     border-color: var(--color-neutral-800);
+  }
+}
+
+.table-wrapper {
+  margin-block-start: calc(var(--spacing) * 4);
+  margin-block-end: calc(var(--spacing) * 6);
+  max-width: 100%;
+  width: 100%;
+}
+.table-wrapper--overflow-x {
+  overflow-x: scroll;
+  padding-bottom: calc(var(--spacing) * 2);
+
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: oklch(from var(--hk-color-b-secondary) calc(l + 0.3) calc(c - 0.1) h)
+      var(--hk-color-neutral-subtle);
+  }
+
+  &::-webkit-scrollbar {
+    height: calc(var(--spacing) * 1.5);
+    width: calc(var(--spacing) * 1.5);
+    background-color: var(--hk-color-neutral-subtle);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--hk-color-neutral-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: inset var(--shadow-xs);
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-md);
+    background-color: oklch(from var(--hk-color-b-secondary) calc(l + 0.3) calc(c - 0.1) h);
   }
 }
 

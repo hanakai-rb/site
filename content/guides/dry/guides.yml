@@ -82,7 +82,7 @@ guides:
     title: Dry Transaction
     deprecated: true
     description: Business transaction DSL (superseded by dry-operation)
-    banner: "dry-transaction is deprecated and has been superseded by [dry-operation](/learn/dry/dry-operation/v1.2/overview)."
+    banner: "dry-transaction is deprecated and has been superseded by [dry-operation](/learn/dry/dry-operation/v1.1/overview)."
     banner_type: warning
   - slug: dry-view
     title: Dry View

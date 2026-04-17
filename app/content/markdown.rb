@@ -3,30 +3,32 @@
 
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
+require_relative "pipeline"
 require_relative "filters/inline_attribute_list_filter"
 
 module Site
   module Content
     module Markdown
-      Pipeline = HTMLPipeline.new(
-        convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new(
-          context: {
-            markdown: {
-              parse: {smart: true},
-              render: {unsafe: true},
-              plugins: {syntax_highlighter: {theme: ""}}
+      Pipeline = Content::Pipeline.new(
+        HTMLPipeline.new(
+          convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new(
+            context: {
+              markdown: {
+                parse: {smart: true},
+                render: {unsafe: true},
+                plugins: {syntax_highlighter: {theme: ""}}
+              }
             }
-          }
+          ),
+          node_filters: [],
+          sanitization_config: nil
         ),
-        node_filters: [],
-        sanitization_config: nil
+        post_filters: [Filters::InlineAttributeListFilter.new]
       )
       private_constant :Pipeline
 
       def self.render(str)
-        Filters::InlineAttributeListFilter.call(
-          Pipeline.call(str).fetch(:output)
-        )
+        Pipeline.call(str).fetch(:output)
       end
     end
   end

@@ -82,43 +82,43 @@ Options below are available to all database drivers and can be used to configure
 
 <tbody>
   <tr>
-    <td>:database</td>
+    <td><code>:database</code></td>
     <td>String</td>
     <td>Name of the database to open after successful connection.</td>
   </tr>
 
   <tr>
-    <td>:user</td>
+    <td><code>:user</code></td>
     <td>String</td>
     <td>Name of the user account to use when logging in.</td>
   </tr>
 
   <tr>
-    <td>:password</td>
+    <td><code>:password</code></td>
     <td>String</td>
     <td>Password that matches the user account.</td>
   </tr>
 
   <tr>
-    <td>:adapter</td>
+    <td><code>:adapter</code></td>
     <td>Symbol</td>
     <td>
-      Sets the database driver which should be used when making a connection.
+      <p>Sets the database driver which should be used when making a connection.
       This option is only to be used in situations where a connection string
-      is <strong>NOT</strong> provided to the ROM Configuration instance.
-      <h5>Available Options:</h5>
+      is <strong>NOT</strong> provided to the ROM Configuration instance.</p>
+      <p><strong>Available Options:</strong></p>
       <ul>
-        <li>:postgres</li>
-        <li>:sqlite</li>
-        <li>:oracle</li>
-        <li>:mysql</li>
+        <li><code>:postgres</code></li>
+        <li><code>:sqlite</code></li>
+        <li><code>:oracle</code></li>
+        <li><code>:mysql</code></li>
       </ul>
     </td>
 
   </tr>
 
   <tr>
-    <td>:host</td>
+    <td><code>:host</code></td>
     <td>String</td>
     <td>
       Internet location of the database server. This option is <strong>required</strong>
@@ -127,13 +127,13 @@ Options below are available to all database drivers and can be used to configure
   </tr>
 
   <tr>
-    <td>:port</td>
+    <td><code>:port</code></td>
     <td>Integer</td>
     <td>Port number used during connection.</td>
   </tr>
 
   <tr>
-    <td>:max_connections</td>
+    <td><code>:max_connections</code></td>
     <td>Integer</td>
     <td>The maximum number of connections the connection pool will open (default 4).</td>
   </tr>
@@ -179,14 +179,14 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
 
 <tbody>
   <tr>
-    <td>:search_path</td>
+    <td><code>:search_path</code></td>
     <td>Sets the schema search path.</td>
     <td>String, Array&lt;String&gt;</td>
-    <td>['$user', 'public']</td>
+    <td><code>['$user', 'public']</code></td>
   </tr>
 
   <tr>
-    <td>:encoding</td>
+    <td><code>:encoding</code></td>
     <td>
       Sets the <i>client_encoding</i> option in Postgres. Available options are
       <code>'auto'</code> or any encoding in the Postgres supported
@@ -198,53 +198,48 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
   </tr>
 
   <tr>
-    <td>:connect_timeout</td>
+    <td><code>:connect_timeout</code></td>
     <td>Set the number of seconds to wait for a connection</td>
     <td>Integer</td>
     <td>20</td>
   </tr>
 
   <tr>
-    <td>:driver_options</td>
+    <td><code>:driver_options</code></td>
     <td>Symbolized keys hash of options that are passed to the <code>pg</code> gem</td>
     <td>Hash</td>
     <td></td>
   </tr>
 
   <tr>
-    <td>:sslmode</td>
+    <td><code>:sslmode</code></td>
     <td>
-      Determines the priority or whether or not an SSL TCP/IP connection is to
-      be made.
-      <h5>Available Options:</h5>
+      <p>Determines the priority or whether or not an SSL TCP/IP connection is to
+      be made.</p>
+      <p><strong>Available Options:</strong></p>
       <ul>
         <li>
           <code>'disable'</code>
           - Only try non-SSL Connections
         </li>
-
         <li>
           <code>'allow'</code>
           - first try a non-SSL connection; if that fails, try an SSL connection
         </li>
-
         <li>
           <code>'prefer'</code>
           - first try an SSL connection; if that fails, try a non SSL connection
         </li>
-
         <li>
           <code>'require'</code>
           - only try an SSL connection. If a root CA file is present, verify the
             certificate in the same way as if verify-ca was specified
         </li>
-
         <li>
           <code>'verify-ca'</code>
           - only try an SSL connection, and verify that the server certificate is
             issued by a trusted certificate authority (CA)
         </li>
-
         <li>
           <code>'verify-full'</code>
           - only try an SSL connection, verify that the server certificate is
@@ -254,30 +249,30 @@ config = ROM::Configuration.new(:sql, 'postgres://localhost/database_name', opts
       </ul>
     </td>
     <td>String</td>
-    <td>'disable'</td>
+    <td><code>'disable'</code></td>
 
   </tr>
 
   <tr>
-    <td>:sslrootcert</td>
+    <td><code>:sslrootcert</code></td>
     <td>Path to the root SSL certificate to use.</td>
     <td>String</td>
     <td></td>
   </tr>
 
   <tr>
-    <td>:use_iso_data_format</td>
+    <td><code>:use_iso_data_format</code></td>
     <td>When enabled, Sequel will ensure the ISO 8601 date format is used.</td>
     <td>Boolean</td>
     <td>true</td>
   </tr>
 
   <tr>
-    <td>:convert_infinite_timestamps</td>
+    <td><code>:convert_infinite_timestamps</code></td>
     <td>
-      Determines if infinite timestamps/dates will be converted. By default, an
-      error is raised and no conversion is done.
-      <h5>Available Options:</h5>
+      <p>Determines if infinite timestamps/dates will be converted. By default, an
+      error is raised and no conversion is done.</p>
+      <p><strong>Available Options:</strong></p>
       <ul>
         <li>
           <code>:nil</code>
@@ -335,7 +330,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
 <tbody>
 
   <tr>
-    <td>:encoding</td>
+    <td><code>:encoding</code></td>
     <td>
       Specify the encoding/character set to use for the connection. Available
       encodings can be found in the MySQL
@@ -343,11 +338,11 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
       The most common option being <code>'UTF8'</code>
     </td>
     <td>String</td>
-    <td>'UTF8'</td>
+    <td><code>'UTF8'</code></td>
   </tr>
 
   <tr>
-    <td>:write_timeout</td>
+    <td><code>:write_timeout</code></td>
     <td>
       Set the timeout in seconds when writing to the database.
     </td>
@@ -356,7 +351,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:read_timeout</td>
+    <td><code>:read_timeout</code></td>
     <td>
       Set the timeout in seconds when reading query results.
     </td>
@@ -365,7 +360,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:connect_timeout</td>
+    <td><code>:connect_timeout</code></td>
     <td>
       Set the timeout in seconds before a connection attempt is abandoned.
     </td>
@@ -379,12 +374,12 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
       When enabled the server will refuse connection if the
       account password is stored in old pre-MySQL 4.1 format.
     </td>
-    <td>:secure_auth</td>
+    <td><code>:secure_auth</code></td>
     <td>true</td>
   </tr>
 
   <tr>
-    <td>:sql_mode</td>
+    <td><code>:sql_mode</code></td>
     <td>
       Sets the sql_mode(s) for a given connection.
       eg: <code>[:no_zero_date, :pipes_as_concat]</code>
@@ -399,20 +394,20 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:flags</td>
+    <td><code>:flags</code></td>
     <td>
-      Flags added to an array are added to the Default flags, while flags with a
+      <p>Flags added to an array are added to the Default flags, while flags with a
       <code>-</code> (minus) prefix are removed from the default flags.
-      For more information see <a href="https://github.com/brianmario/mysql2#flags-option-parsing">Flag Option Parsing</a>.
-      <h5> Available Options:</h5>
+      For more information see <a href="https://github.com/brianmario/mysql2#flags-option-parsing">Flag Option Parsing</a>.</p>
+      <p><strong>Available Options:</strong></p>
       <ul>
-        <li>'REMEMBER_OPTIONS'</li>
-        <li>'LONG_PASSWORD'</li>
-        <li>'LONG_FLAG'</li>
-        <li>'TRANSACTIONS'</li>
-        <li>'PROTOCOL_41'</li>
-        <li>'SECURE_CONNECTION'</li>
-        <li>'MULTI_STATEMENTS'</li>
+        <li><code>'REMEMBER_OPTIONS'</code></li>
+        <li><code>'LONG_PASSWORD'</code></li>
+        <li><code>'LONG_FLAG'</code></li>
+        <li><code>'TRANSACTIONS'</code></li>
+        <li><code>'PROTOCOL_41'</code></li>
+        <li><code>'SECURE_CONNECTION'</code></li>
+        <li><code>'MULTI_STATEMENTS'</code></li>
       </ul>
     </td>
     <td>String, Array&lt;String&gt;</td>
@@ -420,7 +415,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:socket</td>
+    <td><code>:socket</code></td>
     <td>
       Used to specify a Unix socket file to connect to instead of a TCP host & port.
     </td>
@@ -429,11 +424,11 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:sslmode</td>
+    <td><code>:sslmode</code></td>
     <td>
-      Determines the priority or whether or not a SSL TCP/IP connection is to
-      be made.
-      <h5> Available Options:</h5>
+      <p>Determines the priority or whether or not a SSL TCP/IP connection is to
+      be made.</p>
+      <p><strong>Available Options:</strong></p>
       <ul>
         <li>
           <code>:disabled</code>
@@ -460,12 +455,12 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
       </ul>
     </td>
     <td>Symbol</td>
-    <td>:disabled</td>
+    <td><code>:disabled</code></td>
 
   </tr>
 
   <tr>
-    <td>:sslkey</td>
+    <td><code>:sslkey</code></td>
     <td>
       Path to the client key. eg: <code>'path/to/client-key.pem'</code>
     </td>
@@ -474,7 +469,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:sslcert</td>
+    <td><code>:sslcert</code></td>
     <td>
       Path to the client certificate. eg: <code>'path/to/client-cert.pem'</code>
     </td>
@@ -483,7 +478,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:sslca</td>
+    <td><code>:sslca</code></td>
     <td>
       Path to the CA certificate. eg: <code>'/path/to/ca-cert.pem'</code>
     </td>
@@ -492,7 +487,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:sslcapath</td>
+    <td><code>:sslcapath</code></td>
     <td>
       Path to the CA certificates. eg. <code>'path/to/cacerts'</code>
     </td>
@@ -501,7 +496,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:sslcipher</td>
+    <td><code>:sslcipher</code></td>
     <td>
       Supported ciphers can be found in the MySQL
       <a href="https://dev.mysql.com/doc/refman/5.7/en/encrypted-connection-protocols-ciphers.html">Encrypted Connection Protocols</a>
@@ -512,7 +507,7 @@ config = ROM::Configuration.new(:sql, 'mysql2://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:sslverify</td>
+    <td><code>:sslverify</code></td>
     <td>
       When set to <code>true</code>, the server is required to present a valid
       certificate.
@@ -570,7 +565,7 @@ config = ROM::Configuration.new(:sql, 'sqlite::memory', opts)
 
 <tbody>
   <tr>
-    <td>:database</td>
+    <td><code>:database</code></td>
     <td>
       Path to the SQLite database file.
     </td>
@@ -579,7 +574,7 @@ config = ROM::Configuration.new(:sql, 'sqlite::memory', opts)
   </tr>
 
   <tr>
-    <td>:host</td>
+    <td><code>:host</code></td>
     <td>
       This option is ignored.
     </td>
@@ -588,7 +583,7 @@ config = ROM::Configuration.new(:sql, 'sqlite::memory', opts)
   </tr>
 
   <tr>
-    <td>:port</td>
+    <td><code>:port</code></td>
     <td>
       This option is ignored.
     </td>
@@ -597,7 +592,7 @@ config = ROM::Configuration.new(:sql, 'sqlite::memory', opts)
   </tr>
 
   <tr>
-    <td>:readonly</td>
+    <td><code>:readonly</code></td>
     <td>
       Opens the database in read-only mode
     </td>
@@ -606,7 +601,7 @@ config = ROM::Configuration.new(:sql, 'sqlite::memory', opts)
   </tr>
 
   <tr>
-    <td>:timeout</td>
+    <td><code>:timeout</code></td>
     <td>
       Busy timeout in milliseconds
     </td>
@@ -649,7 +644,7 @@ config = ROM::Configuration.new(:sql, 'oracle://localhost/database_name', opts)
 <tbody>
 
   <tr>
-    <td>:autosequence</td>
+    <td><code>:autosequence</code></td>
     <td>
       When <code>true</code> Sequel's conventions will be used to guess the
       sequence to use for the dataset.
@@ -659,7 +654,7 @@ config = ROM::Configuration.new(:sql, 'oracle://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:prefetch_rows</td>
+    <td><code>:prefetch_rows</code></td>
     <td>
       Number of rows to prefetch. Larger numbers can be specified which
       may improve performance when retrieving large numbers of rows.
@@ -669,17 +664,17 @@ config = ROM::Configuration.new(:sql, 'oracle://localhost/database_name', opts)
   </tr>
 
   <tr>
-    <td>:privilege</td>
+    <td><code>:privilege</code></td>
     <td>
-      Oracle privilege level.
-      <h5>Available Options:</h5>
+      <p>Oracle privilege level.</p>
+      <p><strong>Available Options:</strong></p>
       <ul>
-        <li>:SYSDBA</li>
-        <li>:SYSOPER</li>
-        <li>:SYSASM</li>
-        <li>:SYSBACKUP</li>
-        <li>:SYSDG</li>
-        <li>:SYSKM</li>
+        <li><code>:SYSDBA</code></li>
+        <li><code>:SYSOPER</code></li>
+        <li><code>:SYSASM</code></li>
+        <li><code>:SYSBACKUP</code></li>
+        <li><code>:SYSDG</code></li>
+        <li><code>:SYSKM</code></li>
       </ul>
     </td>
     <td>String</td>
