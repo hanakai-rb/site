@@ -6,6 +6,7 @@ import { overflowClassViewFn } from "./overflow-class";
 import { isMacViewFn } from "./is-mac";
 import { lazyLoadView } from "~/utils/lazy-load";
 import { mobilePageNavViewFn } from "./mobile-page-nav";
+import { replaceWithTemplateViewFn } from "./replace-with-template";
 import { sizeToVarViewFn } from "./size-to-var";
 import { targetCurrentViewFn } from "./target-current";
 import { tocScrollViewFn } from "./toc-scroll";
@@ -22,6 +23,7 @@ export const views: Views = {
   }),
   mobilePageNav: breakpointFilter(mobilePageNavViewFn),
   overflowClass: overflowClassViewFn,
+  replaceWithTemplate: replaceWithTemplateViewFn,
   sizeToVar: sizeToVarViewFn,
   pagefindSearch: pagefindSearchViewFn,
   targetCurrent: targetCurrentViewFn,
