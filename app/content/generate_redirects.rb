@@ -30,6 +30,9 @@ module Site
           else
             # Redirect self-versioned guides
             guides = guide_repo.latest_for(org:)
+            first_guide = guides.min_by(&:position)
+
+            redirects.push("/learn/#{org}   #{first_guide.url_path}") if first_guide
 
             guides.select(&:self_versioned?).each do |guide|
               redirects
