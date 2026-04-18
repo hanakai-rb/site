@@ -1,0 +1,51 @@
+<%
+  # Adjust ID to trigger banner to be shown anew.
+  banner_id = "hanakai-merger-announcement"
+%>
+
+<div
+  data-defo-dismissible-banner="<%= { id: banner_id }.to_json %>"
+  class="bg-neutral text-primary-reversed px-3 pt-1"
+>
+  <div class="bg-primary rounded-xl relative">
+    <a
+      href="/blog"
+      class="
+        block text-center px-10 py-2.5
+        hover:brightness-95 dark:hover:brightness-110 transition
+      "
+    >
+      <strong class="font-semibold">Hanami</strong>,
+      <strong class="font-semibold">Dry</strong>, and
+      <strong class="font-semibold">Rom</strong> are joining as
+      <strong class="font-semibold">Hanakai</strong>.
+      <span class="underline [text-decoration-skip-ink:none]">Read the announcement</span>
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <button
+      type="button"
+      aria-label="Dismiss announcement"
+      class="
+        absolute right-2 top-1/2 -translate-y-1/2
+        flex items-center justify-center
+        w-7 h-7 rounded-md cursor-pointer
+        hover:bg-black/10 dark:hover:bg-white/10 transition
+      "
+    >
+      <%= render "svgs/icons/x", width: 16, height: 16, class_name: "fill-current" %>
+    </button>
+  </div>
+</div>
+
+<script> <%# herb:disable html-require-script-nonce %>
+  (function () {
+    try {
+      var el = document.currentScript.previousElementSibling;
+      var cfg = JSON.parse(el.getAttribute("data-defo-dismissible-banner"));
+      if (localStorage.getItem("hk-banner-dismissed:" + cfg.id) === "true") {
+        el.classList.add("hidden");
+      }
+    } catch (e) {}
+  })();
+</script>

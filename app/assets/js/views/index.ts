@@ -2,6 +2,7 @@ import type { Views } from "@icelab/defo";
 
 import { breakpointFilter } from "~/utils/breakpoints";
 import { copyCodeViewFn } from "./copy-code";
+import { dismissibleBannerViewFn } from "./dismissible-banner";
 import { ensureActiveNavLinkVisibleViewFn } from "./ensure-active-nav-link-visible";
 import { overflowClassViewFn } from "./overflow-class";
 import { isMacViewFn } from "./is-mac";
@@ -17,6 +18,7 @@ import { pagefindSearchViewFn } from "./pagefind-search";
 
 export const views: Views = {
   copyCode: copyCodeViewFn,
+  dismissibleBanner: dismissibleBannerViewFn,
   ensureActiveNavLinkVisible: ensureActiveNavLinkVisibleViewFn,
   isMac: isMacViewFn,
   foresight: lazyLoadView(async () => {
