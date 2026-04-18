@@ -259,17 +259,17 @@
   animation: anim-logo-blink calc(5s / var(--speed)) infinite;
 }
 
-.anim-logo--sun:hover .rays-inner {
+.anim-logo--sun:where(:hover, .is-tapped) .rays-inner {
   animation:
     anim-logo-wiggle var(--wiggle-dur) ease-in-out 1,
     anim-logo-sun-ray-burst var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) var(--wiggle-dur) 1;
 }
-.anim-logo--sun:hover .body {
+.anim-logo--sun:where(:hover, .is-tapped) .body {
   animation:
     anim-logo-wiggle var(--wiggle-dur) ease-in-out 1,
     anim-logo-pop var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) var(--wiggle-dur) 1;
 }
-.anim-logo--sun:hover .cheek {
+.anim-logo--sun:where(:hover, .is-tapped) .cheek {
   animation: anim-logo-cheek-pop calc(var(--burst-dur) + 0.2s) ease-out var(--wiggle-dur) 1;
 }
 
@@ -302,37 +302,37 @@
   opacity: 0;
 }
 
-.anim-logo--pink:hover .petals-inner,
-.anim-logo--pink:hover .face-inner {
+.anim-logo--pink:where(:hover, .is-tapped) .petals-inner,
+.anim-logo--pink:where(:hover, .is-tapped) .face-inner {
   animation:
     anim-logo-wiggle var(--wiggle-dur) ease-in-out 1,
     anim-logo-happy-bounce var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) var(--wiggle-dur) 1;
 }
-.anim-logo--pink:hover .valley-dots circle {
+.anim-logo--pink:where(:hover, .is-tapped) .valley-dots circle {
   animation: anim-logo-sparkle var(--burst-dur) ease-out var(--wiggle-dur) 1;
 }
-.anim-logo--pink:hover .valley-dots circle:nth-child(2) {
+.anim-logo--pink:where(:hover, .is-tapped) .valley-dots circle:nth-child(2) {
   animation-delay: calc(var(--wiggle-dur) + 0.05s);
 }
-.anim-logo--pink:hover .valley-dots circle:nth-child(3) {
+.anim-logo--pink:where(:hover, .is-tapped) .valley-dots circle:nth-child(3) {
   animation-delay: calc(var(--wiggle-dur) + 0.1s);
 }
-.anim-logo--pink:hover .valley-dots circle:nth-child(4) {
+.anim-logo--pink:where(:hover, .is-tapped) .valley-dots circle:nth-child(4) {
   animation-delay: calc(var(--wiggle-dur) + 0.15s);
 }
-.anim-logo--pink:hover .valley-dots circle:nth-child(5) {
+.anim-logo--pink:where(:hover, .is-tapped) .valley-dots circle:nth-child(5) {
   animation-delay: calc(var(--wiggle-dur) + 0.2s);
 }
-.anim-logo--pink:hover .sparkle {
+.anim-logo--pink:where(:hover, .is-tapped) .sparkle {
   animation: anim-logo-sparkle var(--burst-dur) ease-out var(--wiggle-dur) 1;
 }
-.anim-logo--pink:hover .sparkle.s2 {
+.anim-logo--pink:where(:hover, .is-tapped) .sparkle.s2 {
   animation-delay: calc(var(--wiggle-dur) + 0.06s);
 }
-.anim-logo--pink:hover .sparkle.s3 {
+.anim-logo--pink:where(:hover, .is-tapped) .sparkle.s3 {
   animation-delay: calc(var(--wiggle-dur) + 0.12s);
 }
-.anim-logo--pink:hover .sparkle.s4 {
+.anim-logo--pink:where(:hover, .is-tapped) .sparkle.s4 {
   animation-delay: calc(var(--wiggle-dur) + 0.18s);
 }
 
@@ -358,11 +358,11 @@
   animation: anim-logo-squint-breath calc(2.4s / var(--speed)) ease-in-out infinite;
 }
 
-.anim-logo--orange:hover .petals-inner,
-.anim-logo--orange:hover .face-inner {
+.anim-logo--orange:where(:hover, .is-tapped) .petals-inner,
+.anim-logo--orange:where(:hover, .is-tapped) .face-inner {
   animation: anim-logo-giggle-shake var(--burst-dur) cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
 }
-.anim-logo--orange:hover .petals-pulse {
+.anim-logo--orange:where(:hover, .is-tapped) .petals-pulse {
   animation: anim-logo-petal-expand var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) 1;
 }
 
@@ -392,20 +392,20 @@
   transform-box: fill-box;
 }
 
-.anim-logo--blue:hover .petals,
-.anim-logo--blue:hover .face {
+.anim-logo--blue:where(:hover, .is-tapped) .petals,
+.anim-logo--blue:where(:hover, .is-tapped) .face {
   --amp: calc(var(--amp-base) * 0.7);
   animation: anim-logo-bloom-pop var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) 1;
 }
-.anim-logo--blue:hover .petals-inner {
+.anim-logo--blue:where(:hover, .is-tapped) .petals-inner {
   animation: anim-logo-twirl var(--burst-dur) cubic-bezier(0.3, 0.1, 0.25, 1) 1;
   transform-origin: 91.396px 102.408px;
   transform-box: view-box;
 }
-.anim-logo--blue:hover .face-inner {
+.anim-logo--blue:where(:hover, .is-tapped) .face-inner {
   animation: anim-logo-squish var(--burst-dur) ease-out 1;
 }
-.anim-logo--blue:hover .pupils {
+.anim-logo--blue:where(:hover, .is-tapped) .pupils {
   animation: none;
 }
 

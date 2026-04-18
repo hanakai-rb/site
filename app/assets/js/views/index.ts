@@ -1,6 +1,7 @@
 import type { Views } from "@icelab/defo";
 
 import { breakpointFilter } from "~/utils/breakpoints";
+import { animLogoTapViewFn } from "./anim-logo-tap";
 import { copyCodeViewFn } from "./copy-code";
 import { dismissibleBannerViewFn } from "./dismissible-banner";
 import { ensureActiveNavLinkVisibleViewFn } from "./ensure-active-nav-link-visible";
@@ -17,6 +18,7 @@ import { toggleClassViewFn } from "./toggle-class";
 import { pagefindSearchViewFn } from "./pagefind-search";
 
 export const views: Views = {
+  animLogoTap: animLogoTapViewFn,
   copyCode: copyCodeViewFn,
   dismissibleBanner: dismissibleBannerViewFn,
   ensureActiveNavLinkVisible: ensureActiveNavLinkVisibleViewFn,
