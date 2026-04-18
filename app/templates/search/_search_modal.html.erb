@@ -11,6 +11,7 @@
   id="pagefind-overrides-hook"
   role="dialog"
   aria-label="Search"
+  inert
 >
   <div
     class="
@@ -28,9 +29,9 @@
       max-w-[calc(100%-var(--spacing)*4)] max-h-[calc(100%-var(--spacing)*4)]
       lg:max-h-[80vh] lg:max-w-[80vh]
       z-10
-      invisible opacity-0 starting:opacity-0 translate-y-3 starting:translate-y-4
-      transition-discrete transition-all duration-300 ease-in-out
-      [.active_&]:visible [.active_&]:opacity-100 [.active_&]:translate-y-0
+      opacity-0 translate-y-3
+      transition-all duration-300 ease-in-out
+      [.active_&]:opacity-100 [.active_&]:translate-y-0
     "
   >
     <button
