@@ -28,3 +28,8 @@ button {
 .font-mono.text-xs {
   font-size: 0.8rem;
 }
+
+.emoji-logo {
+  display: inline-block;
+  vertical-align: -0.1em;
+}
