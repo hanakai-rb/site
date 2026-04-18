@@ -1,6 +1,6 @@
 <ol data-testid="<%= testid %>" data-depth="<%= depth %>">
   <% pages.each do |(page, child_pages)| %>
-    <% depths = ["pl-4", "pl-6", "pl-8", "pl-10"] %>
+    <% depths = ["pl-4", "pl-7", "pl-10", "pl-13"] %>
     <% selected = page.url_path == current_page_url %>
 
     <li>
@@ -8,7 +8,7 @@
     selected_link_classes = "b-primary font-bold tracking-tight" %>
 
       <a
-        class="inline-block py-1 <%= depths[depth] %> border-l-2 <%= selected ? selected_link_classes : inactive_link_classes %>"
+        class="inline-block py-[5px] leading-tight <%= depths[depth] %> border-l-2 <%= selected ? selected_link_classes : inactive_link_classes %>"
         <% if selected %>
           aria-current="page"
         <% end %>
