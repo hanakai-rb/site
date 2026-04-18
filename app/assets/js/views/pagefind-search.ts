@@ -44,7 +44,12 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   let pagefindInstance: PagefindUI;
   let pagefindUiForm: HTMLFormElement | null = null;
   let pagefindUiSearchInput: HTMLInputElement | null = null;
-  const focusTrap = createFocusTrap(contextNode, { escapeDeactivates: false });
+  // We manage initial focus ourselves (synchronously, inside the click handler) so that iOS
+  // Safari sees the focus() call as part of the user gesture and raises the virtual keyboard.
+  const focusTrap = createFocusTrap(contextNode, {
+    escapeDeactivates: false,
+    initialFocus: false,
+  });
 
   const { activateElements, deactivateElements, pagefindUiElement } = findElements({
     contextNode,
@@ -57,6 +62,8 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     if (initialised) {
       return;
     }
+    // Flip the flag early so concurrent calls (e.g. eager pre-init + first click) don’t double up.
+    initialised = true;
     // Load the Pagefind UI assets dynamically. These are generated separately from our asset bundle
     // by Pagefind’s indexing process.
     await Promise.all([loadCSS("/pagefind/pagefind-ui.css"), loadScript("/pagefind/pagefind-ui.js")]);
@@ -85,43 +92,61 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       pagefindInstance.triggerFilters(filters);
       pagefindInstance.triggerSearch(search);
     }
-    initialised = true;
   };
 
-  const activate = async () => {
+  // iOS Safari only shows the virtual keyboard when focus() is called synchronously inside a user
+  // gesture, so we eagerly load Pagefind in the background. That way the input exists in the DOM
+  // by the time the user taps the search button and we can focus it without an async boundary.
+  const initialisePromise =
+    "requestIdleCallback" in window
+      ? new Promise<void>((resolve) => {
+          window.requestIdleCallback(() => initialise().then(resolve));
+        })
+      : initialise();
+
+  const focusSearchInput = () => {
+    if (!pagefindUiSearchInput) return;
+    // Insanity needed to stop iOS scrolling when we focus:
+    // https://gist.github.com/kiding/72721a0553fa93198ae2bb6eefaa3299
+    pagefindUiSearchInput.style.opacity = "0";
+    pagefindUiSearchInput.focus();
+    window.requestAnimationFrame(() => {
+      if (pagefindUiSearchInput) pagefindUiSearchInput.style.opacity = "1";
+    });
+    focusTrap.activate();
+  };
+
+  const activate = () => {
     if (active) {
       return;
     }
-    await initialise();
+    active = true;
+    // `inert` is on the dialog by default so it can’t be focused or clicked while hidden. Remove
+    // it before we focus, synchronously, so the input is focusable inside the click gesture.
+    contextNode.removeAttribute("inert");
     contextNode.classList.add(...activeClassNames);
-
-    // Insanity needed to stop iOS scrolling when we focus:
-    // https://gist.github.com/kiding/72721a0553fa93198ae2bb6eefaa3299
-    if (pagefindUiSearchInput) {
-      // This needs to be delayed because we’re transitioning the UI in using a discrete transition
-      // which means the focus doesn’t work immediately (we can remove the delay if we remove the
-      // transition).
-      window.setTimeout(() => {
-        focusTrap.activate();
-        pagefindUiSearchInput!.style.opacity = "0";
-        pagefindUiSearchInput?.focus();
-        window.setTimeout(() => {
-          pagefindUiSearchInput!.style.opacity = "1";
-        });
-      }, 100);
-    }
 
     if (!releaseScroll) {
       releaseScroll = preventScroll();
     }
-    active = true;
+
+    if (pagefindUiSearchInput) {
+      focusSearchInput();
+    } else {
+      // First interaction before eager init finished — focus once Pagefind is ready. iOS won’t
+      // raise the keyboard on this path (it’s outside the gesture) but subsequent taps will.
+      initialisePromise.then(() => {
+        if (active) focusSearchInput();
+      });
+    }
   };
 
-  const deactivate = async () => {
+  const deactivate = () => {
     if (!active) {
       return;
     }
     contextNode.classList.remove(...activeClassNames);
+    contextNode.setAttribute("inert", "");
 
     if (releaseScroll) {
       releaseScroll();
@@ -154,19 +179,19 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
     return undefined;
   };
 
-  const onActivateClick = async () => {
-    await activate();
+  const onActivateClick = () => {
+    activate();
   };
 
-  const onDeactivateClick = async () => {
+  const onDeactivateClick = () => {
     saveSearchStateCache();
-    await deactivate();
+    deactivate();
   };
 
-  const onKeyDown = async (e: KeyboardEvent) => {
+  const onKeyDown = (e: KeyboardEvent) => {
     // Activate on Ctrl/Cmd + K
     if (!active && e.metaKey && e.key === "k") {
-      await activate();
+      activate();
     }
     // Deactivate on Escape (unless we’re in the search input)
     if (active && e.key === "Escape") {
@@ -179,16 +204,24 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
         // Refocus because Pagefind loses focus here
         window.requestAnimationFrame(() => pagefindUiSearchInput?.focus());
       } else {
-        await deactivate();
+        deactivate();
       }
     }
+  };
+
+  // iOS Safari doesn’t fire `unload`, so rely on `pagehide` (which does) and `visibilitychange` on
+  // mobile backgrounding to make sure we actually persist the search state.
+  const onPageHide = () => saveSearchStateCache();
+  const onVisibilityChange = () => {
+    if (document.visibilityState === "hidden") saveSearchStateCache();
   };
 
   activateElements.forEach((el) => el.addEventListener("click", onActivateClick));
   deactivateElements.forEach((el) => el.addEventListener("click", onDeactivateClick));
   // Capture is required to ensure activeElement is correct when we check the handler
   window.addEventListener("keydown", onKeyDown, { capture: true });
-  window.addEventListener("unload", saveSearchStateCache);
+  window.addEventListener("pagehide", onPageHide);
+  document.addEventListener("visibilitychange", onVisibilityChange);
 
   return {
     destroy: () => {
@@ -196,7 +229,9 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
       activateElements.forEach((el) => el.removeEventListener("click", onActivateClick));
       deactivateElements.forEach((el) => el.removeEventListener("click", onDeactivateClick));
       window.removeEventListener("keydown", onKeyDown, { capture: true });
-      pagefindInstance.destroy();
+      window.removeEventListener("pagehide", onPageHide);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      pagefindInstance?.destroy();
       focusTrap.deactivate();
     },
   };
