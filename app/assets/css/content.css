@@ -46,6 +46,8 @@
   h4,
   h5 {
     display: flex;
+    align-items: center;
+    line-height: var(--leading-tight);
     gap: calc(var(--spacing));
     a[href^="#"] {
       order: 2;
