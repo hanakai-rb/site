@@ -339,7 +339,7 @@
 .anim-logo--orange .petals {
   transform-origin: 100.421px 100.427px;
   transform-box: view-box;
-  animation: anim-logo-spin calc(34s / var(--speed)) linear infinite;
+  animation: anim-logo-spin calc(120s / var(--speed)) linear infinite;
 }
 .anim-logo--orange .petals-inner {
   transform-origin: 100.421px 100.427px;
@@ -364,11 +364,6 @@
 }
 .anim-logo--orange:hover .petals-pulse {
   animation: anim-logo-petal-expand var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) 1;
-}
-.anim-logo--orange:hover .core-inner {
-  animation: anim-logo-squish var(--burst-dur) ease-out 1;
-  transform-origin: 101.787px 98.1346px;
-  transform-box: view-box;
 }
 
 .anim-logo--blue .petals {
