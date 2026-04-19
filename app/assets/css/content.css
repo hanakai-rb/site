@@ -566,7 +566,7 @@
 
 .pre-wrapper__button {
   border: 1px oklch(from var(--hk-color-bg-secondary) l c h / 0.2) solid;
-  background-color: oklch(from var(--hk-color-bg-secondary-subtle) calc(l + 0.1) c h);
+  background-color: oklch(from var(--hk-color-bg-secondary-subtle) calc(l + 0.1) c h / 1);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-xs);
   color: oklch(from var(--hk-color-text-secondary) calc(l - 0.3) calc(c - 0.05) h);
@@ -583,7 +583,7 @@
   }
 
   &:hover {
-    background-color: oklch(from var(--hk-color-bg-secondary-subtle) calc(l + 0.5) c h);
+    background-color: oklch(from var(--hk-color-bg-secondary-subtle) calc(l + 0.5) c h / 1);
     border-color: oklch(from var(--hk-color-bg-secondary) l c h / 0.3);
   }
 
