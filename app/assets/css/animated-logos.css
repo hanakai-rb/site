@@ -233,7 +233,7 @@
 .anim-logo--sun .rays {
   transform-origin: 108px 108px;
   transform-box: view-box;
-  animation: anim-logo-spin calc(18s / var(--speed)) linear infinite;
+  animation: anim-logo-spin calc(32s / var(--speed)) linear infinite;
 }
 .anim-logo--sun .rays-inner {
   transform-origin: 108px 108px;
@@ -260,17 +260,13 @@
 }
 
 .anim-logo--sun.is-tapped .rays-inner {
-  animation:
-    anim-logo-wiggle var(--wiggle-dur) ease-in-out 1,
-    anim-logo-sun-ray-burst var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) var(--wiggle-dur) 1;
+  animation: anim-logo-sun-ray-burst var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) 1;
 }
 .anim-logo--sun.is-tapped .body {
-  animation:
-    anim-logo-wiggle var(--wiggle-dur) ease-in-out 1,
-    anim-logo-pop var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) var(--wiggle-dur) 1;
+  animation: anim-logo-pop var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) 1;
 }
 .anim-logo--sun.is-tapped .cheek {
-  animation: anim-logo-cheek-pop calc(var(--burst-dur) + 0.2s) ease-out var(--wiggle-dur) 1;
+  animation: anim-logo-cheek-pop calc(var(--burst-dur) + 0.2s) ease-out 1;
 }
 
 .anim-logo--pink .petals {

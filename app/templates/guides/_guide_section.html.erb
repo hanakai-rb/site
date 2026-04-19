@@ -5,8 +5,8 @@
       lg:mb-0 grow lg:flex-4/12
     "
   >
-    <div class="flex items-center gap-3 mb-2">
-      <%= render "svgs/#{id}_logo", width: 50, height: 50 %>
+    <div class="hk-project-heading flex items-center gap-3 mb-2">
+      <%= render "svgs/#{id}_logo_animated", width: 50, height: 50, trigger_selector: ".hk-project-heading" %>
 
       <h2 class="text-4xl font-bold text-primary">
         <%= render "shared/names/#{id}" %>

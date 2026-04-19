@@ -28,13 +28,8 @@ const BURST_DURATION_MS = 1600;
  *   <h2>Hanakai</h2>
  * </a>
  */
-export const animLogoTapViewFn: ViewFn<Props> = (
-  node: HTMLElement,
-  { triggerSelector }: Props = {},
-) => {
-  const trigger: HTMLElement = triggerSelector
-    ? (node.closest<HTMLElement>(triggerSelector) ?? node)
-    : node;
+export const animLogoTapViewFn: ViewFn<Props> = (node: HTMLElement, { triggerSelector }: Props = {}) => {
+  const trigger: HTMLElement = triggerSelector ? (node.closest<HTMLElement>(triggerSelector) ?? node) : node;
   let timer: number | null = null;
 
   const clear = () => {
