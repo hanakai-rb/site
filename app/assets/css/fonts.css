@@ -28,56 +28,42 @@
 }
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-regular.woff2") format("woff2");
+  src: url("../fonts/faire-sprig-sans/faire-sprigsans-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-regularitalic.woff2") format("woff2");
+  src: url("../fonts/faire-sprig-sans/faire-sprigsans-regularitalic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-mediumitalic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-bold.woff2") format("woff2");
+  src: url("../fonts/faire-sprig-sans/faire-sprigsans-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-bolditalic.woff2") format("woff2");
+  src: url("../fonts/faire-sprig-sans/faire-sprigsans-bolditalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-black.woff2") format("woff2");
+  src: url("../fonts/faire-sprig-sans/faire-sprigsans-black.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Faire Sprig Sans";
-  src: url("../fonts/faire-sprig-sans/faire-sprigsans-trial-blackitalic.woff2") format("woff2");
+  src: url("../fonts/faire-sprig-sans/faire-sprigsans-blackitalic.woff2") format("woff2");
   font-weight: 800;
   font-style: italic;
   font-display: swap;

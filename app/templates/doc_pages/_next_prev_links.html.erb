@@ -1,7 +1,7 @@
 <div class="mt-10">
   <%= render "svgs/wiggle", class_name: "text-primary flex-1 mb-7", height: 14, stroke_width: 2 %>
 
-  <nav class="flex gap-4 font-medium text-lg">
+  <nav class="flex gap-4 text-lg">
     <% if prev_item %>
       <a
         class="mr-auto flex max-w-[50%] gap-2 text-link items-end group"
@@ -24,6 +24,7 @@
             class="
               group-hover:decoration-[3px] group-hover:underline
               group-hover:decoration-(--hk-color-text-link-underline)
+              font-bold
             "
           >
             <%= prev_item.label %>
@@ -55,6 +56,7 @@
             class="
               group-hover:decoration-[3px] group-hover:underline
               group-hover:decoration-(--hk-color-text-link-underline)
+              font-bold
             "
           >
             <%= next_item.label %>

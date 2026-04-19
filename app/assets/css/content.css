@@ -11,7 +11,7 @@
   h4,
   h5 {
     color: var(--hk-color-text-neutral);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-bold);
     letter-spacing: var(--tracking-tighter);
   }
 
@@ -218,7 +218,7 @@
 
     th {
       border-right: 1px var(--hk-color-neutral-subtle) solid;
-      font-weight: var(--font-weight-medium);
+      font-weight: var(--font-weight-bold);
       text-align: left;
       padding: calc(var(--spacing) * 2);
 
