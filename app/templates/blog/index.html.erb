@@ -18,7 +18,7 @@
           <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1 mb-5", height: 14, stroke_width: 2 %>
 
           <div class="flex gap-6">
-            <%= render "svgs/#{post.org || "hanakai"}_logo", width: 30, height: 30, class_name: "shrink-0" %>
+            <%= render "svgs/#{post.org || "hanakai"}_logo", width: 30, height: 30, class_name: "shrink-0", animated: false %>
 
             <div class="mt-2 flex flex-col lg:gap-3 gap-2">
               <time

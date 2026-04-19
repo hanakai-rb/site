@@ -38,7 +38,7 @@
           primary_label: "Get building with Hanami",
           docs_href: "/learn/hanami" do |card| %>
       <%= card.slot :logo do %>
-        <%= render "svgs/hanami_logo", width: 56, height: 54 %>
+        <%= render "svgs/hanami_logo_animated", width: 56, height: 54, trigger_selector: ".theme-hanami" %>
       <% end %>
 
       <%= card.slot :features do %>
@@ -83,7 +83,7 @@
           primary_label: "Dive into Dry",
           docs_href: "/learn/dry" do |card| %>
       <%= card.slot :logo do %>
-        <%= render "svgs/dry_logo", width: 56, height: 56 %>
+        <%= render "svgs/dry_logo_animated", width: 56, height: 56, trigger_selector: ".theme-dry" %>
       <% end %>
 
       <%= card.slot :features do %>
@@ -127,7 +127,7 @@
           primary_label: "Tame your data with Rom",
           docs_href: "/learn/rom" do |card| %>
       <%= card.slot :logo do %>
-        <%= render "svgs/rom_logo", width: 52, height: 56 %>
+        <%= render "svgs/rom_logo_animated", width: 52, height: 56, trigger_selector: ".theme-rom" %>
       <% end %>
 
       <%= card.slot :features do %>

@@ -1,0 +1,414 @@
+.anim-logo {
+  --speed: 1;
+  --amp-base: 0.8;
+  --amp: var(--amp-base);
+  --wiggle-dur: calc(0.32s / var(--speed));
+  --burst-dur: calc(0.9s / var(--speed));
+
+  overflow: visible;
+}
+
+@keyframes anim-logo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes anim-logo-twirl {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(calc(60deg * var(--amp)));
+  }
+}
+@keyframes anim-logo-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.96);
+  }
+}
+@keyframes anim-logo-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(-4px * var(--amp)));
+  }
+}
+@keyframes anim-logo-blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  96%,
+  98% {
+    transform: scaleY(0.05);
+  }
+}
+@keyframes anim-logo-wiggle {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(calc(-4deg * var(--amp)));
+  }
+  50% {
+    transform: rotate(calc(4deg * var(--amp)));
+  }
+  75% {
+    transform: rotate(calc(-3deg * var(--amp)));
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes anim-logo-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(calc(1 + 0.08 * var(--amp)));
+  }
+  70% {
+    transform: scale(calc(1 - 0.02 * var(--amp)));
+  }
+}
+@keyframes anim-logo-sun-ray-burst {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(calc(1 + 0.18 * var(--amp)));
+  }
+  60% {
+    transform: scale(calc(1 - 0.05 * var(--amp)));
+  }
+}
+@keyframes anim-logo-cheek-pop {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  40% {
+    transform: scale(calc(1 + 0.6 * var(--amp)));
+    opacity: 1;
+  }
+}
+@keyframes anim-logo-happy-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  20% {
+    transform: translateY(calc(-20px * var(--amp))) scale(calc(1 + 0.08 * var(--amp)), calc(1 - 0.08 * var(--amp)));
+  }
+  45% {
+    transform: translateY(calc(6px * var(--amp))) scale(calc(1 - 0.08 * var(--amp)), calc(1 + 0.08 * var(--amp)));
+  }
+  70% {
+    transform: translateY(calc(-6px * var(--amp))) scale(1.02, 0.98);
+  }
+}
+@keyframes anim-logo-sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(calc(1 * var(--amp)));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2) translate(var(--dx, 0), var(--dy, 0));
+  }
+}
+@keyframes anim-logo-giggle-shake {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  10% {
+    transform: translate(calc(-1.5px * var(--amp)), 0) rotate(calc(-1.5deg * var(--amp)));
+  }
+  20% {
+    transform: translate(calc(1.5px * var(--amp)), 0) rotate(calc(1.5deg * var(--amp)));
+  }
+  30% {
+    transform: translate(calc(-2px * var(--amp)), calc(-1px * var(--amp))) rotate(calc(-2deg * var(--amp)));
+  }
+  40% {
+    transform: translate(calc(2px * var(--amp)), calc(1px * var(--amp))) rotate(calc(2deg * var(--amp)));
+  }
+  55% {
+    transform: translate(calc(-1.5px * var(--amp)), 0) rotate(calc(-1.5deg * var(--amp)));
+  }
+  70% {
+    transform: translate(calc(1.5px * var(--amp)), 0) rotate(calc(1deg * var(--amp)));
+  }
+  85% {
+    transform: translate(calc(-0.5px * var(--amp)), 0) rotate(0);
+  }
+}
+@keyframes anim-logo-petal-expand {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(calc(1 + 0.08 * var(--amp)));
+  }
+  70% {
+    transform: scale(calc(1 - 0.015 * var(--amp)));
+  }
+}
+@keyframes anim-logo-bloom-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(calc(1 + 0.1 * var(--amp)));
+  }
+  60% {
+    transform: scale(calc(1 - 0.03 * var(--amp)));
+  }
+  80% {
+    transform: scale(calc(1 + 0.015 * var(--amp)));
+  }
+}
+@keyframes anim-logo-squish {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(calc(1 + 0.12 * var(--amp)), calc(1 - 0.12 * var(--amp)));
+  }
+  60% {
+    transform: scale(calc(1 - 0.06 * var(--amp)), calc(1 + 0.06 * var(--amp)));
+  }
+}
+@keyframes anim-logo-squint-breath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+@keyframes anim-logo-curious-look {
+  0%,
+  15% {
+    transform: translate(0, 0);
+  }
+  25%,
+  40% {
+    transform: translate(calc(3px * var(--amp)), calc(-2px * var(--amp)));
+  }
+  50%,
+  60% {
+    transform: translate(calc(-3px * var(--amp)), calc(-1px * var(--amp)));
+  }
+  70%,
+  80% {
+    transform: translate(calc(2px * var(--amp)), calc(2px * var(--amp)));
+  }
+  90%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.anim-logo--sun .rays {
+  transform-origin: 108px 108px;
+  transform-box: view-box;
+  animation: anim-logo-spin calc(32s / var(--speed)) linear infinite;
+}
+.anim-logo--sun .rays-inner {
+  transform-origin: 108px 108px;
+  transform-box: view-box;
+}
+.anim-logo--sun .body {
+  transform-origin: 108px 108px;
+  transform-box: view-box;
+  animation: anim-logo-breathe calc(3.6s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--sun .face {
+  transform-origin: 108px 108px;
+  transform-box: view-box;
+  animation: anim-logo-breathe calc(3.6s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--sun .cheek {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.anim-logo--sun .eye {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: anim-logo-blink calc(5s / var(--speed)) infinite;
+}
+
+.anim-logo--sun.is-tapped .rays-inner {
+  animation: anim-logo-sun-ray-burst var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) 1;
+}
+.anim-logo--sun.is-tapped .body {
+  animation: anim-logo-pop var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.2) 1;
+}
+.anim-logo--sun.is-tapped .cheek {
+  animation: anim-logo-cheek-pop calc(var(--burst-dur) + 0.2s) ease-out 1;
+}
+
+.anim-logo--pink .petals {
+  transform-origin: 100.5px 97px;
+  transform-box: view-box;
+  animation: anim-logo-bob calc(2.2s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--pink .face {
+  transform-origin: 100.5px 97px;
+  transform-box: view-box;
+  animation: anim-logo-bob calc(2.2s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--pink .petals-inner {
+  transform-origin: 100.5px 97px;
+  transform-box: view-box;
+}
+.anim-logo--pink .face-inner {
+  transform-origin: 100.5px 97px;
+  transform-box: view-box;
+}
+.anim-logo--pink .sparkle {
+  transform-origin: center;
+  transform-box: fill-box;
+  opacity: 0;
+}
+.anim-logo--pink .valley-dots circle {
+  transform-origin: center;
+  transform-box: fill-box;
+  opacity: 0;
+}
+
+.anim-logo--pink.is-tapped .petals-inner,
+.anim-logo--pink.is-tapped .face-inner {
+  animation:
+    anim-logo-wiggle var(--wiggle-dur) ease-in-out 1,
+    anim-logo-happy-bounce var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) var(--wiggle-dur) 1;
+}
+.anim-logo--pink.is-tapped .valley-dots circle {
+  animation: anim-logo-sparkle var(--burst-dur) ease-out var(--wiggle-dur) 1;
+}
+.anim-logo--pink.is-tapped .valley-dots circle:nth-child(2) {
+  animation-delay: calc(var(--wiggle-dur) + 0.05s);
+}
+.anim-logo--pink.is-tapped .valley-dots circle:nth-child(3) {
+  animation-delay: calc(var(--wiggle-dur) + 0.1s);
+}
+.anim-logo--pink.is-tapped .valley-dots circle:nth-child(4) {
+  animation-delay: calc(var(--wiggle-dur) + 0.15s);
+}
+.anim-logo--pink.is-tapped .valley-dots circle:nth-child(5) {
+  animation-delay: calc(var(--wiggle-dur) + 0.2s);
+}
+.anim-logo--pink.is-tapped .sparkle {
+  animation: anim-logo-sparkle var(--burst-dur) ease-out var(--wiggle-dur) 1;
+}
+.anim-logo--pink.is-tapped .sparkle.s2 {
+  animation-delay: calc(var(--wiggle-dur) + 0.06s);
+}
+.anim-logo--pink.is-tapped .sparkle.s3 {
+  animation-delay: calc(var(--wiggle-dur) + 0.12s);
+}
+.anim-logo--pink.is-tapped .sparkle.s4 {
+  animation-delay: calc(var(--wiggle-dur) + 0.18s);
+}
+
+.anim-logo--orange .petals {
+  transform-origin: 100.421px 100.427px;
+  transform-box: view-box;
+  animation: anim-logo-spin calc(120s / var(--speed)) linear infinite;
+}
+.anim-logo--orange .petals-inner {
+  transform-origin: 100.421px 100.427px;
+  transform-box: view-box;
+}
+.anim-logo--orange .petals-pulse {
+  transform-origin: 100.421px 100.427px;
+  transform-box: view-box;
+}
+.anim-logo--orange .face {
+  transform: translate(-1.366px, 2.297px);
+}
+.anim-logo--orange .core {
+  transform-origin: 101.787px 98.13px;
+  transform-box: view-box;
+  animation: anim-logo-squint-breath calc(2.4s / var(--speed)) ease-in-out infinite;
+}
+
+.anim-logo--orange.is-tapped .petals-inner,
+.anim-logo--orange.is-tapped .face-inner {
+  animation: anim-logo-giggle-shake var(--burst-dur) cubic-bezier(0.36, 0.07, 0.19, 0.97) 1;
+}
+.anim-logo--orange.is-tapped .petals-pulse {
+  animation: anim-logo-petal-expand var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) 1;
+}
+
+.anim-logo--blue .petals {
+  transform-origin: 91.396px 102.408px;
+  transform-box: view-box;
+  animation: anim-logo-bob calc(2.6s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--blue .petals-inner {
+  transform-origin: 91.396px 102.408px;
+  transform-box: view-box;
+}
+.anim-logo--blue .face {
+  transform-origin: 91.396px 102.408px;
+  transform-box: view-box;
+  animation: anim-logo-bob calc(2.6s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--blue .face-inner {
+  transform-origin: 91.396px 102.408px;
+  transform-box: view-box;
+}
+.anim-logo--blue .pupils {
+  animation: anim-logo-curious-look calc(4.5s / var(--speed)) ease-in-out infinite;
+}
+.anim-logo--blue .eye-dot {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.anim-logo--blue.is-tapped .petals,
+.anim-logo--blue.is-tapped .face {
+  --amp: calc(var(--amp-base) * 0.7);
+  animation: anim-logo-bloom-pop var(--burst-dur) cubic-bezier(0.2, 0.9, 0.3, 1.3) 1;
+}
+.anim-logo--blue.is-tapped .petals-inner {
+  animation: anim-logo-twirl var(--burst-dur) cubic-bezier(0.3, 0.1, 0.25, 1) 1;
+  transform-origin: 91.396px 102.408px;
+  transform-box: view-box;
+}
+.anim-logo--blue.is-tapped .face-inner {
+  animation: anim-logo-squish var(--burst-dur) ease-out 1;
+}
+.anim-logo--blue.is-tapped .pupils {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-logo,
+  .anim-logo *,
+  .anim-logo.is-tapped * {
+    animation: none !important;
+  }
+}

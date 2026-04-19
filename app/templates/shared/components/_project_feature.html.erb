@@ -5,7 +5,7 @@
   <div class="flex-1 lg:flex lg:flex-col lg:justify-center lg:z-10 lg:relative <%= 'lg:order-last' if reversed %>">
     <p class="text-xl font-bold text-primary px-8 mb-4"><%= title %></p>
 
-    <div class="relative flex flex-col lg:block">
+    <div class="pf-bubble relative flex flex-col lg:block">
       <div
         class="
           bg-neutral border-3 b-primary rounded-2xl p-8 shadow-lg relative
@@ -28,11 +28,11 @@
         style="rotate: <%= logo_rotation %>deg"
       >
         <% if logo == "dry" %>
-          <%= render "svgs/dry_logo", width: 80, height: 80, class_name: "block" %>
+          <%= render "svgs/dry_logo_animated", width: 80, height: 80, class_name: "block", trigger_selector: ".pf-bubble" %>
         <% elsif logo == "rom" %>
-          <%= render "svgs/rom_logo", width: 72, height: 80, class_name: "block" %>
+          <%= render "svgs/rom_logo_animated", width: 72, height: 80, class_name: "block", trigger_selector: ".pf-bubble" %>
         <% else %>
-          <%= render "svgs/hanami_logo", width: 80, height: 76, class_name: "block" %>
+          <%= render "svgs/hanami_logo_animated", width: 80, height: 76, class_name: "block", trigger_selector: ".pf-bubble" %>
         <% end %>
       </div>
     </div>
