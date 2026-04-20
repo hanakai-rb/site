@@ -1,6 +1,8 @@
 ---
-title: Value (deprecated)
+title: Deprecated Features
 ---
+
+## Value
 
 :warning: `Dry::Struct::Value` is deprecated in 1.2.0. Structs are already meant to be immutable, freezing them doesn't add any value (no pun intended) beyond a bad example of defensive programming.
 
@@ -21,4 +23,3 @@ loc2.frozen? # true
 loc1 == loc2
 # true
 ```
-

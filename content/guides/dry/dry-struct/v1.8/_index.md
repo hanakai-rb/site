@@ -3,11 +3,12 @@ title: Introduction
 pages:
   - nested-structs
   - recipes
-  - value
+  - extensions
+  - deprecated-features
   - virtus
 ---
 
-Dry Struct is a gem built on top of Dry Types which provides a DSL for defining typed struct classes. It allows building immutable data structures with type safety and coersions, making sure that the data is in the shape you want it to be.
+Dry Struct is a gem built on top of [Dry Types](//org_guide/dry/dry-types) which provides a DSL for defining typed struct classes. It allows building immutable data structures with type safety and coersions, making sure that the data is in the shape you want it to be.
 
 ### Basic Usage
 
@@ -67,4 +68,4 @@ end
 
 ### Validating data with Dry Struct
 
-Please don't. Structs are meant to work with valid input, it cannot generate error messages good enough for displaying them for a user etc. Use [`dry-validation`](//org_guide/dry/dry-validation) for validating incoming data and then pass its output to structs.
+Please don't. Structs are meant to work with valid input, it cannot generate error messages good enough for displaying them for a user etc. Use [Dry Validation](//org_guide/dry/dry-validation) for validating incoming data and then pass its output to structs.
