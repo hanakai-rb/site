@@ -1,0 +1,49 @@
+<% active_guides, deprecated_guides = guides.partition { !_1.deprecated } %>
+
+<ol data-testid="<%= testid %>">
+  <% active_guides.each do |guide| %>
+    <li class="mb-6">
+      <div
+        class="
+          font-mono uppercase text-xs font-semibold text-primary
+          tracking-wide mb-2
+        "
+      >
+        <%= guide.title %>
+      </div>
+
+      <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: "pages-nav", current_page_url: current_page_url %>
+    </li>
+  <% end %>
+
+  <% if deprecated_guides.any? %>
+    <li class="mt-8 mb-4 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+      <% deprecated_guides.each do |guide| %>
+        <div class="mb-6">
+          <div class="mb-2">
+            <span
+              class="
+                font-mono uppercase text-xs font-semibold text-primary
+                tracking-wide
+              "
+            >
+              <%= guide.title %>
+            </span>
+
+            <span
+              class="
+                bg-[oklch(from_var(--hk-color-text-primary)_1_calc(c*0.25)_h)]
+                text-[oklch(from_var(--hk-color-text-primary)_calc(l+0.1)_calc(c*0.8)_h)]
+                text-xs font-bold uppercase px-2 py-1 rounded-xl
+              "
+            >
+              Deprecated
+            </span>
+          </div>
+
+          <%= render "doc_pages/pages_nav", pages: guide.pages.nested, depth: 0, testid: "pages-nav", current_page_url: current_page_url %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ol>

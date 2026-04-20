@@ -76,17 +76,17 @@ guides:
     title: Dry Container
     deprecated: true
     description: Simple inversion-of-control container
-    banner: "dry-container is deprecated. Check out [`Dry::Core::Container`](/learn/dry/dry-core/v1.1/container) instead."
+    banner: "dry-container is deprecated. Check out [`Dry::Core::Container`](/learn/dry/dry-core/container) instead."
     banner_type: warning
   - slug: dry-transaction
     title: Dry Transaction
     deprecated: true
     description: Business transaction DSL (superseded by dry-operation)
-    banner: "dry-transaction is deprecated and has been superseded by [dry-operation](/learn/dry/dry-operation/v1.1/overview)."
+    banner: "dry-transaction is deprecated and has been superseded by [dry-operation](/learn/dry/dry-operation)."
     banner_type: warning
   - slug: dry-view
     title: Dry View
     deprecated: true
     description: Functional view rendering system
-    banner: "Development of dry-view has ceased. Please switch to [hanami-view](/learn/hanami/view/v1.2/overview) for a compatible replacement."
+    banner: "Development of dry-view has ceased. Please switch to [hanami-view](/learn/hanami/views) for a compatible replacement."
     banner_type: warning
