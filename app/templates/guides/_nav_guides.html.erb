@@ -1,6 +1,6 @@
 <% active_guides, deprecated_guides = guides.partition { !_1.deprecated } %>
 
-<ol <% if defined?(testid) && testid %> data-testid="<%= testid %>" <% end %>>
+<ol data-testid="<%= testid %>">
   <% active_guides.each do |guide| %>
     <li class="mb-6">
       <div
