@@ -44,7 +44,7 @@
                name: "ROM",
                theme: "rom",
                description: "A powerful, flexible persistence toolkit that keeps your domain logic clean.",
-               section_guides: guides.fetch("rom"),
+               section_guides: guides.fetch("rom").reject(&:deprecated),
                version_select: {
                  id: "rom-version-select",
                  testid: nil,
