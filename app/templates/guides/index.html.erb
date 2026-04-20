@@ -17,7 +17,7 @@
                name: "Hanami",
                theme: "hanami",
                description: "A complete framework for building apps with structure and clarity.",
-               section_guides: guides.fetch("hanami"),
+               section_guides: guides.fetch("hanami").reject(&:deprecated),
                version_select: {
                  id: "hanami-version-select",
                  testid: nil,
@@ -34,7 +34,7 @@
                name: "Dry",
                theme: "dry",
                description: "Validation, types, functional patterns and more, for robust code in any Ruby app.",
-               section_guides: guides.fetch("dry"),
+               section_guides: guides.fetch("dry").reject(&:deprecated),
                version_select: nil %>
 
     <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
