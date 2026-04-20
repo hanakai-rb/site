@@ -3,13 +3,15 @@ title: Introduction
 pages:
   - nested-structs
   - recipes
+  - value
+  - virtus
 ---
 
-`dry-struct` is a gem built on top of `dry-types` which provides virtus-like DSL for defining typed struct classes.
+Dry Struct is a gem built on top of Dry Types which provides a DSL for defining typed struct classes. It allows building immutable data structures with type safety and coersions, making sure that the data is in the shape you want it to be.
 
 ### Basic Usage
 
-You can define struct objects which will have readers for specified attributes using a simple dsl:
+You can define struct objects which will have readers for specified attributes using a simple DSL:
 
 ```ruby
 require 'dry-struct'
@@ -34,31 +36,9 @@ user.age # => 21
 
 <sub>Note: An `optional` type means that the value can be nil, not the key in the hash can be skipped.</sub>
 
-### Value
-
-:warning: `Dry::Struct::Value` is deprecated in 1.2.0. Structs are already meant to be immutable, freezing them doesn't add any value (no pun intended) beyond a bad example of defensive programming.
-
-You can define value objects which will behave like structs but will be _deeply frozen_:
-
-```ruby
-class Location < Dry::Struct::Value
-  attribute :lat, Types::Float
-  attribute :lng, Types::Float
-end
-
-loc1 = Location.new(lat: 1.23, lng: 4.56)
-loc2 = Location.new(lat: 1.23, lng: 4.56)
-
-loc1.frozen? # true
-loc2.frozen? # true
-
-loc1 == loc2
-# true
-```
-
 ### Hash Schemas
 
-`Dry::Struct` out of the box uses [hash schemas](//org_guide/dry/dry-types/hash-schemas) from `dry-types` for processing input hashes. `with_type_transform` and `with_key_transform` are exposed as `transform_types` and `transform_keys`:
+Dry Struct out of the box uses [hash schemas](//org_guide/dry/dry-types/hash-schemas) from Dry Types for processing input hashes. `with_type_transform` and `with_key_transform` are exposed as `transform_types` and `transform_keys`:
 
 ```ruby
 class User < Dry::Struct
@@ -85,16 +65,6 @@ class User < SymbolizeStruct
 end
 ```
 
-### Validating data with dry-struct
+### Validating data with Dry Struct
 
 Please don't. Structs are meant to work with valid input, it cannot generate error messages good enough for displaying them for a user etc. Use [`dry-validation`](//org_guide/dry/dry-validation) for validating incoming data and then pass its output to structs.
-
-### Differences between dry-struct and virtus
-
-`dry-struct` look somewhat similar to Virtus but there are few significant differences:
-
-- Structs don't provide attribute writers and are meant to be used as "data objects" exclusively
-- Handling of attribute values is provided by standalone type objects from `dry-types`, which gives you way more powerful features
-- Handling of attribute hashes is provided by standalone hash schemas from `dry-types`, which means there are different types of constructors in `dry-struct`
-- Structs are not designed as swiss-army knives, specific constructor types are used depending on the use case
-- Struct classes quack like `dry-types`, which means you can use them in hash schemas, as array members or sum them
