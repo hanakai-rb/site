@@ -6,10 +6,13 @@ export SITE_STATIC_BUILD=true
 export HANAMI_ENV=production
 
 # Clean previous build to avoid caching issues
-rm -rf build public/pagefind
+rm -rf build public/pagefind public/og
 
 # Compile frontend assets
 bundle exec hanami assets compile
+
+# Generate og:images (writes into public/og/, copied into build/ below)
+bundle exec rake og:generate
 
 # Generate sitemap
 #

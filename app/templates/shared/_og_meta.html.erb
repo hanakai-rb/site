@@ -1,0 +1,13 @@
+<%#
+  Open Graph + Twitter card meta tags. `title` may contain HTML entities; we
+  strip tags but keep entity-decoded text for share previews.
+%>
+<% og_title = title ? "#{title.to_s.gsub(/<[^>]+>/, "").gsub("&middot;", "·")} · Hanakai" : "Hanakai" %>
+
+<meta property="og:site_name" content="Hanakai">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= url %>">
+<meta property="og:title" content="<%= og_title %>">
+<meta property="og:image" content="<%= image %>">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="<%= image %>">
