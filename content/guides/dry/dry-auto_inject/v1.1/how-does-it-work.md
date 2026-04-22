@@ -2,7 +2,7 @@
 title: How does it work?
 ---
 
-dry-auto*inject enables \_constructor dependency injection* for your objects. It achieves this by defining two methods in the module that you include in your class.
+dry-auto_inject enables constructor dependency injection for your objects. It achieves this by defining two methods in the module that you include in your class.
 
 First, it defines `.new`, which resolves your dependencies from the container, if you haven't otherwise provided them as explicit arguments. It then passes these dependencies as arguments onto `#initialize`, as per Ruby’s usual behaviour.
 
