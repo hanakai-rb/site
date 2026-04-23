@@ -9,9 +9,7 @@ const FONT_FAMILY = "Faire Sprig Sans";
 const MONO_FAMILY = "Maple Mono";
 
 // Brand accent colour per org, used for the top border strip and the wiggle
-// underline. Matches the wordmark colours, except Hanakai keeps the bright
-// 300-shade yellow because its dark mustard wordmark colour reads as muddy
-// when used as a thin stroke.
+// underline.
 const ACCENTS = {
   hanakai: "#FFD33B",
   hanami: "#FF6C89",
@@ -28,7 +26,7 @@ const URL_LABEL = "hanakai.org";
 // Layout constants. The outer canvas takes the brand accent colour as a
 // border, the inner rounded box holds all content. Inner content width
 // (= WIGGLE_WIDTH) is derived so the squiggle lines up with the body padding.
-const CANVAS_W = 1200;
+const CANVAS_W = 1024;
 const OUTER_PAD = 16;
 const INNER_PAD_X = 60;
 const INNER_RADIUS = 24;
@@ -209,7 +207,7 @@ function brandRow(org) {
         "div",
         {
           fontFamily: MONO_FAMILY,
-          fontSize: 22,
+          fontSize: 26,
           fontWeight: 600,
           color: TEXT_MUTED,
           letterSpacing: "0.04em",
@@ -264,7 +262,7 @@ function postTemplate(data) {
             {
               marginTop: 28,
               fontSize: 28,
-              fontWeight: 700,
+              fontWeight: 500,
               color: TEXT_MUTED,
               display: "flex",
             },
@@ -312,7 +310,7 @@ function pageTemplate(data) {
 }
 
 function guideTemplate(data) {
-  const { version, guideTitle, pageTitle, isRoot, org } = data;
+  const { version, guideTitle, pageTitle, isRoot, org, description } = data;
   const headline = isRoot ? guideTitle : pageTitle;
   const size = titleSize(headline, 96);
   const eyebrow = isRoot ? null : guideTitle;
@@ -342,13 +340,27 @@ function guideTemplate(data) {
         },
         headline,
       ),
+      description
+        ? el(
+            "div",
+            {
+              marginTop: 20,
+              fontSize: 28,
+              fontWeight: 400,
+              lineHeight: 1.3,
+              color: TEXT_MUTED,
+              display: "flex",
+            },
+            description,
+          )
+        : null,
       version
         ? el(
             "div",
             {
               marginTop: 24,
               fontFamily: MONO_FAMILY,
-              fontSize: 24,
+              fontSize: 26,
               fontWeight: 600,
               color: TEXT_MUTED,
               display: "flex",

@@ -23,7 +23,7 @@ import { templates } from "./templates.mjs";
 const projectRoot = resolve(fileURLToPath(import.meta.url), "../../..");
 const outputRoot = join(projectRoot, "public", "og");
 
-const WIDTH = 1200;
+const WIDTH = 1024;
 const HEIGHT = 630;
 
 async function main() {

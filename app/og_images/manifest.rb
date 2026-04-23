@@ -5,10 +5,6 @@ require "json"
 module Site
   module OgImages
     # Builds the list of og:images to render at build time.
-    #
-    # The set is intentionally narrow for v1: every blog post, a curated set of
-    # high-traffic static pages, and a default fallback. Guide sub-pages aren't
-    # included — they fall back to the default image.
     class Manifest
       include Deps["repos.post_repo", "repos.guide_repo"]
 
@@ -21,7 +17,7 @@ module Site
           template: "page",
           data: {
             title: "Let your Ruby bloom",
-            subtitle: "Ruby tools that help you write clearer, more maintainable apps",
+            subtitle: "A family of Ruby tools that help you write clearer, more maintainable apps",
             org: "hanakai"
           }
         },
@@ -72,7 +68,7 @@ module Site
           output: "pages/dry.png",
           template: "page",
           data: {
-            title: "dry-rb",
+            title: "Dry",
             subtitle: "Validation, types, functional patterns and more, for robust code in any Ruby app",
             org: "dry"
           }
