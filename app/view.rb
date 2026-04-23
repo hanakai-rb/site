@@ -19,6 +19,16 @@ module Site
       "#{settings.site_url}#{entry.url_path}"
     end
 
+    expose :og_description, layout: true, decorate: false do |context:|
+      entry = og_image_manifest.for_url(context.request.path) || og_image_manifest.default_entry
+      entry.description
+    end
+
+    expose :og_type, layout: true, decorate: false do |context:|
+      entry = og_image_manifest.for_url(context.request.path)
+      (entry&.template == "post") ? "article" : "website"
+    end
+
     expose :canonical_page_url, layout: true, decorate: false do |context:|
       "#{settings.site_url}#{context.request.path}"
     end

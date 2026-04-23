@@ -171,7 +171,8 @@ module Site
             title: post.title,
             author: post.author,
             date: post.published_at&.strftime("%B %d, %Y"),
-            org: post.org
+            org: post.org,
+            excerpt: post[:excerpt]&.strip
           }.compact
         )
       end
@@ -201,7 +202,8 @@ module Site
             guideTitle: guide.title,
             pageTitle: page.title,
             isRoot: is_root,
-            org: guide.org
+            org: guide.org,
+            description: guide.description
           }.compact
         )
       end
