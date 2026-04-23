@@ -174,14 +174,14 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/hanami/v2.0/getting-started"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanamirb.org/learn/hanami/v2.3/getting-started")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v2.3/getting-started")
     end
 
     it "adds canonical URL to old org-versioned guide pages" do
       visit "/learn/hanami/v2.0/actions/parameters"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanamirb.org/learn/hanami/v2.3/actions/parameters")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v2.3/actions/parameters")
     end
 
     it "doesn't add canonical URL for latest org-versioned guides" do
@@ -194,7 +194,7 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/dry/dry-logger/v1.1"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanamirb.org/learn/dry/dry-logger/v1.2")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/dry/dry-logger/v1.2")
     end
 
     it "doesn't add canonical URL for latest self-versioned guides" do
@@ -207,7 +207,7 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/hanami/v2.1/getting-started"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to start_with("https://hanamirb.org/learn/hanami/v2.3/")
+      expect(canonical_tag[:href]).to start_with("https://hanakai.org/learn/hanami/v2.3/")
     end
   end
 end

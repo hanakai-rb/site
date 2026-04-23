@@ -10,7 +10,7 @@ module Site
     end
 
     require "site/content_file_middleware"
-    config.middleware.use Rack::Static, urls: ["/pagefind"], root: "public"
+    config.middleware.use Rack::Static, urls: ["/pagefind", "/og"], root: "public"
 
     config.middleware.use ContentFileMiddleware
     config.middleware.use Rack::Rewrite do

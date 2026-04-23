@@ -6,10 +6,13 @@ export SITE_STATIC_BUILD=true
 export HANAMI_ENV=production
 
 # Clean previous build to avoid caching issues
-rm -rf build public/pagefind
+rm -rf build public/pagefind public/og
 
 # Compile frontend assets
 bundle exec hanami assets compile
+
+# Generate og:images (writes into public/og/, copied into build/ below)
+bundle exec rake og:generate
 
 # Generate sitemap
 #
@@ -26,6 +29,13 @@ bundle exec rake content:copy_files
 # Copy all public resources to build/
 if [ -d public ]; then
   cp -R public/* build
+fi
+
+# Mirror the search index back into public/ so spec helpers (and future runs
+# of this script) find it without rebuilding.
+if [ -d build/pagefind ]; then
+  rm -rf public/pagefind
+  cp -R build/pagefind public/pagefind
 fi
 
 # List all files in the build (useful for debugging).

@@ -27,6 +27,8 @@
       type="image/svg+xml"
     >
 
+    <%= render "shared/og_meta", title: content_for(:title), url: canonical_page_url, image: og_image_url, description: og_description, type: og_type %>
+
     <%= stylesheet_tag "app" %>
 
     <script> <%# herb:disable html-require-script-nonce %>

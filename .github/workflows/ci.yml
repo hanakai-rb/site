@@ -71,10 +71,13 @@ jobs:
           cache: npm
       - run: npm ci
 
+      - name: Static build
+        env:
+          SITE_URL: ${{ github.event_name == 'pull_request' && format('https://pr-{0}--hanakai.netlify.app', github.event.number) || 'https://hanakai.org' }}
+        run: bin/static-build
+
       - name: Rake
-        run: |-
-          bin/static-build
-          bundle exec rake
+        run: bundle exec rake
 
       - name: Herb Analyze (Parse+Compile)
         run: "bundle exec herb analyze"

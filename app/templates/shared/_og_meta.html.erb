@@ -1,0 +1,32 @@
+<%#
+  Open Graph + Twitter card meta tags. `title` may contain HTML entities; we
+  strip tags but keep entity-decoded text for share previews.
+%>
+<% og_title = title ? title.to_s.gsub(/<[^>]+>/, "").gsub("&middot;", "·") : "Hanakai" %>
+
+<% if description && !description.empty? %>
+  <meta name="description" content="<%= description %>">
+<% end %>
+
+<meta property="og:site_name" content="Hanakai">
+<meta property="og:type" content="<%= type || "website" %>">
+<meta property="og:url" content="<%= url %>">
+<meta property="og:title" content="<%= og_title %>">
+
+<% if description && !description.empty? %>
+  <meta property="og:description" content="<%= description %>">
+<% end %>
+
+<meta property="og:image" content="<%= image %>">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="<%= og_title %>">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= og_title %>">
+
+<% if description && !description.empty? %>
+  <meta name="twitter:description" content="<%= description %>">
+<% end %>
+
+<meta name="twitter:image" content="<%= image %>">
