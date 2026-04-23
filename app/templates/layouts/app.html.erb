@@ -70,7 +70,7 @@
       <%= raw content_for(:post_main) %> <%# herb:disable erb-no-unsafe-raw %>
     <% end %>
 
-    <%= render "footer", nav_items: footer_nav_items %>
+    <%= render "footer/base" %>
     <%= render "search/search_modal" %>
   </body>
 </html>

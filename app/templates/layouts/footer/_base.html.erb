@@ -1,0 +1,24 @@
+<footer class="bg-neutral-900 text-white pb-8">
+  <div class="bg-neutral rounded-b-2xl h-4"></div>
+
+  <div
+    class="
+      pl-[calc(env(safe-area-inset-left)-var(--spacing)*4)]
+      pr-[calc(env(safe-area-inset-right)-var(--spacing)*4)]
+    "
+  >
+    <div class="pl-6 pr-4 lg:pl-8 lg:pr-6 lg:py-8 py-6 flex flex-col md:flex-row gap-6">
+      <a href="/"><%= render "svgs/hanakai_logo", height: 32, width: 32 %></a>
+
+      <%= render "layouts/footer/nav" %>
+
+      <div class="flex flex-row gap-4 items-center self-start md:pr-4">
+        <p>Supported by</p>
+
+        <a href="https://sidekiq.org">
+          <%= render "svgs/sponsors/sidekiq_logo_horizontal", height: 41, width: 140 %>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
