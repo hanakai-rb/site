@@ -5,6 +5,6 @@ module Site
     # Site URL (without trailing slash)
     setting :site_url,
       constructor: Types::String.optional.constructor(->(v) { v.sub(%r{/$}, "") }),
-      default: "https://hanamirb.org"
+      default: "https://pr-323--hanakai.netlify.app"
   end
 end
