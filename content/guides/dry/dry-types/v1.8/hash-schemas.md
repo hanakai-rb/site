@@ -100,7 +100,7 @@ user_hash[name: 'Jane', age: 21]
 
 ### Transforming input keys
 
-Keys are supposed to be symbols but you can attach a key tranformation to a schema, e.g. for converting strings into symbols:
+Keys are supposed to be symbols but you can attach a key transformation to a schema, e.g. for converting strings into symbols:
 
 ```ruby
 Types = Dry.Types()
