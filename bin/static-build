@@ -31,6 +31,13 @@ if [ -d public ]; then
   cp -R public/* build
 fi
 
+# Mirror the search index back into public/ so spec helpers (and future runs
+# of this script) find it without rebuilding.
+if [ -d build/pagefind ]; then
+  rm -rf public/pagefind
+  cp -R build/pagefind public/pagefind
+fi
+
 # List all files in the build (useful for debugging).
 echo
 find build -type f | sort
