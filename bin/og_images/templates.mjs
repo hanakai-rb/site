@@ -19,7 +19,7 @@ const ACCENTS = {
   rom: "#0063FF",
 };
 
-const INNER_BG = "#fafafa";
+const INNER_BG = "#fffff";
 const TEXT = "#1A1A1A";
 const TEXT_MUTED = "#393939";
 
