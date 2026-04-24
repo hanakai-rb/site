@@ -1,75 +1,19 @@
 <div class="md:hidden bg-neutral" id="nav-mobile">
   <div class="overflow-hidden flex justify-center min-h-0">
     <nav class="max-w-sm flex-1 pt-4 pb-6 px-2 text-center">
-      <%# Project cards %>
-      <% hanami, dry, rom = nav_items.find { |i| i.url == "/projects" }.children %>
-
       <div class="mb-4">
         <p class="px-3 py-2 text-lg font-bold">Projects</p>
 
         <div class="flex gap-2 justify-center">
-          <a
-            href="/hanami"
-            class="
-              theme-hanami
-              flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
-              border-3 <%= hanami.selected ? "b-primary" : "border-transparent" %>
-            "
-          >
-            <%= render "svgs/hanami_logo", width: 36, height: 35 %>
-
-            <div class="font-extrabold text-base text-primary leading-tight">
-              <%= render "shared/names/hanami" %>
-            </div>
-          </a>
-
-          <a
-            href="/dry"
-            class="
-              theme-dry
-              flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
-              border-3 <%= dry.selected ? "b-primary" : "border-transparent" %>
-            "
-          >
-            <%= render "svgs/dry_logo", width: 35, height: 35 %>
-
-            <div class="font-extrabold text-base text-primary leading-tight">
-              <%= render "shared/names/dry" %>
-            </div>
-          </a>
-
-          <a
-            href="/rom"
-            class="
-              theme-rom
-              flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
-              border-3 <%= rom.selected ? "b-primary" : "border-transparent" %>
-            "
-          >
-            <%= render "svgs/rom_logo", width: 31, height: 35 %>
-
-            <div class="font-extrabold text-base text-primary leading-tight">
-              <%= render "shared/names/rom" %>
-            </div>
-          </a>
+          <% nav_projects.each do |project| %>
+            <%= render "layouts/header/nav_project_card_mobile", project: project %>
+          <% end %>
         </div>
       </div>
 
       <ul class="flex flex-col items-center mb-4">
-        <% nav_items.each do |nav_item| %>
-          <% next if nav_item.url == "/projects" %>
-
-          <li>
-            <a
-              class="
-                flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg font-bold
-                <%= "bg-primary text-primary-reversed" if nav_item.selected %>
-              "
-              href="<%= nav_item.url %>"
-            >
-              <%= nav_item.label %>
-            </a>
-          </li>
+        <% nav_items.each do |item| %>
+          <%= render "layouts/header/nav_item_mobile", label: item.label, url: item.url %>
         <% end %>
       </ul>
 

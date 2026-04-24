@@ -1,0 +1,11 @@
+<li>
+  <a
+    class="
+      flex items-center sm:px-3 md:px-2.5 lg:px-4 py-2 rounded-xl text-xl font-bold tracking-tighter
+      <%= "bg-primary text-primary-reversed hover:shadow-md transition-all" if current_page?(url) %>
+    "
+    href="<%= url %>"
+  >
+    <%= label %>
+  </a>
+</li>

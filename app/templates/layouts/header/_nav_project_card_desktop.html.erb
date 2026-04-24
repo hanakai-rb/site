@@ -1,0 +1,21 @@
+<a
+  href="/<%= project.slug %>"
+  class="
+    theme-<%= project.slug %>
+    flex flex-1 flex-col gap-2 p-5 pb-6 rounded-xl bg-neutral
+    border-3 transition-all w-52
+    <%= current_page?("/#{project.slug}") ? "b-primary" : "border-transparent hover:border-(--hk-color-b-primary) hover:shadow-md transition-all" %>
+  "
+>
+  <div class="flex items-center gap-3">
+    <%= render "svgs/#{project.slug}_logo_animated", width: project.desktop_logo.width, height: project.desktop_logo.height, trigger_selector: ".theme-#{project.slug}" %>
+
+    <div class="font-extrabold text-3xl text-primary leading-tight">
+      <%= render "shared/names/#{project.slug}" %>
+    </div>
+  </div>
+
+  <p class="text-lg text-neutral-600 dark:text-neutral-400 leading-snug">
+    <%= project.description %>
+  </p>
+</a>

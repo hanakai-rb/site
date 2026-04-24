@@ -1,0 +1,11 @@
+<li>
+  <a
+    class="
+      flex items-center px-3 py-2 leading-tight rounded-xl gap-2 text-lg font-bold
+      <%= "bg-primary text-primary-reversed" if current_page?(url) %>
+    "
+    href="<%= url %>"
+  >
+    <%= label %>
+  </a>
+</li>

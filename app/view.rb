@@ -33,22 +33,6 @@ module Site
       "#{settings.site_url}#{context.request.path}"
     end
 
-    NavItem = Data.define(:label, :url, :selected, :children)
-    expose :header_nav_items, layout: true do |context:|
-      path = context.request.path
-      [
-        NavItem.new(label: "Projects", url: "/projects", selected: path.start_with?("/projects"), children: [
-          NavItem.new(label: "Hanami", url: "/hanami", selected: path.start_with?("/hanami"), children: []),
-          NavItem.new(label: "Dry", url: "/dry", selected: path.start_with?("/dry"), children: []),
-          NavItem.new(label: "Rom", url: "/rom", selected: path.start_with?("/rom"), children: [])
-        ]),
-        NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: []),
-        NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
-        NavItem.new(label: "Community", url: "/community", selected: path.start_with?("/community"), children: []),
-        NavItem.new(label: "Sponsor", url: "/sponsor", selected: path == "/sponsor", children: [])
-      ]
-    end
-
     expose :theme, layout: true, decorate: false do |context:, org: nil, slug: nil|
       orgs = %w[hanami dry rom]
 
