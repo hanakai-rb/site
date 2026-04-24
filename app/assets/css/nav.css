@@ -15,16 +15,66 @@
     opacity: 1;
     transform: none;
     transition:
-      opacity 200ms ease-out,
-      transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      opacity 180ms ease-out,
+      transform 200ms cubic-bezier(0.58, -0.25, 0.265, 1.25);
   }
 
   /* Exit: snap up and fade */
   #nav-projects-dropdown.nav-dropdown-closed > div {
     opacity: 0;
-    transform: translateY(-15px) scale(0.96);
+    transform: translateY(-25px) scale(0.96);
     transition:
       opacity 120ms ease-in,
-      transform 150ms ease-in;
+      transform 150ms cubic-bezier(0.58, -0.25, 0.265, 1.25);
+  }
+}
+
+/*
+ * Mobile nav and guide-page dropdowns share an animation pattern. The outer
+ * collapses via `grid-template-rows: 0fr → 1fr` (works cross-browser, including
+ * Safari, without the `interpolate-size` opt-in). Because fr-unit interpolation
+ * clamps at content height, the spring feel lives on the inner content's
+ * transform — translate + scale with the bouncy bezier give a proper drop-in
+ * bounce.
+ */
+
+#nav-mobile,
+.mobile-dropdown {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: collapse;
+}
+
+#nav-mobile.nav-mobile-open,
+.mobile-dropdown.active {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #nav-mobile,
+  .mobile-dropdown {
+    transition:
+      grid-template-rows 200ms ease-out,
+      visibility 200ms;
+  }
+
+  #nav-mobile > div > nav,
+  .mobile-dropdown__inner {
+    transform: translateY(-18px) scale(0.97);
+    transform-origin: top;
+    opacity: 0;
+    transition:
+      transform 160ms cubic-bezier(0.58, -0.25, 0.265, 1.25),
+      opacity 100ms ease-in;
+  }
+
+  #nav-mobile.nav-mobile-open > div > nav,
+  .mobile-dropdown.active .mobile-dropdown__inner {
+    transform: none;
+    opacity: 1;
+    transition:
+      transform 250ms cubic-bezier(0.58, -0.25, 0.265, 1.25),
+      opacity 160ms ease-out;
   }
 }
