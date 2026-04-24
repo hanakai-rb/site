@@ -36,7 +36,10 @@
         var stored = localStorage.getItem("hk-color-scheme");
         var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         var isDark = stored === "dark" || (!stored && prefersDark);
+        // Always set a class to resolve dark mode
         document.documentElement.classList.toggle("dark", isDark);
+        // Apply .mac class to appropriate browsers
+        document.documentElement.classList.toggle("mac", /\bmac/i.test(navigator.userAgent));
       })();
     </script>
 

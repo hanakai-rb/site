@@ -167,7 +167,6 @@
   <button
     aria-label="Search"
     aria-keyshortcuts="/ control+k meta+k"
-    data-defo-is-mac="<%= { macClassName: 'mac'}.to_json %>"
     class="
       search-activate-button
       flex items-center gap-3
@@ -175,7 +174,7 @@
       cursor-pointer
       hover:opacity-75
       after:tracking-tight
-      after:content-['Ctrl_+_K'] [&.mac]:after:content-['⌘_+_K']
+      after:content-['Ctrl_+_K'] [.mac_&]:after:content-['⌘_+_K']
       transition-all
     "
   >

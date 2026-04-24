@@ -6,7 +6,6 @@ import { copyCodeViewFn } from "./copy-code";
 import { dismissibleBannerViewFn } from "./dismissible-banner";
 import { ensureActiveNavLinkVisibleViewFn } from "./ensure-active-nav-link-visible";
 import { overflowClassViewFn } from "./overflow-class";
-import { isMacViewFn } from "./is-mac";
 import { lazyLoadView } from "~/utils/lazy-load";
 import { mobilePageNavViewFn } from "./mobile-page-nav";
 import { replaceWithTemplateViewFn } from "./replace-with-template";
@@ -22,7 +21,6 @@ export const views: Views = {
   copyCode: copyCodeViewFn,
   dismissibleBanner: dismissibleBannerViewFn,
   ensureActiveNavLinkVisible: ensureActiveNavLinkVisibleViewFn,
-  isMac: isMacViewFn,
   foresight: lazyLoadView(async () => {
     const { foresightViewFn } = await import("./foresight");
     return foresightViewFn;
