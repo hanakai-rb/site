@@ -1,7 +1,5 @@
-<% squiggle_id = "squiggle-#{SecureRandom.hex(4)}" %>
-
 <div class="overflow-hidden flex justify-center">
-  <div class="relative shrink-0 w-[max(100%,820px)] lg:w-[max(100%,1728px)]">
+  <div class="relative shrink-0 w-[max(100%,810px)] lg:w-[max(100%,1728px)]">
     <%# Empty SVG spacer — sets container height from viewBox in all browsers, including Safari %>
     <svg
       viewBox="0 0 1728 385"
@@ -18,193 +16,230 @@
       aria-hidden="true"
       class="absolute inset-0 w-full h-full"
     >
-      <defs>
-        <%= render "svgs/squiggle_filter", filter_id: squiggle_id, preset: :medium %>
-      </defs>
+      <g class="squiggle-stars">
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(-1 0 0 1 1323.85 170)"
+            fill="#FFD33B"
+          />
+        </g>
 
-      <g filter="url(#<%= squiggle_id %>)" class="squiggle-group">
-        <%# Stars %>
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(-1 0 0 1 1323.85 170)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 1308 179.146)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 1308 179.146)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(-1 0 0 1 1468.85 246)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(-1 0 0 1 1468.85 246)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 1453 255.146)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 1453 255.146)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(-1 0 0 1 1221.85 3)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(-1 0 0 1 1221.85 3)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 1206 12.1465)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 1206 12.1465)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="4.47182"
+            cy="16.6677"
+            rx="4.47182"
+            ry="16.6677"
+            transform="matrix(-0.998872 -0.0474846 -0.0474846 0.998872 1154.12 288.425)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="4.47182"
-          cy="16.6677"
-          rx="4.47182"
-          ry="16.6677"
-          transform="matrix(-0.998872 -0.0474846 -0.0474846 0.998872 1154.12 288.425)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="4.47182"
+            cy="16.6677"
+            rx="4.47182"
+            ry="16.6677"
+            transform="matrix(-0.0474845 0.998872 0.998872 0.0474845 1132.42 299.604)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="4.47182"
-          cy="16.6677"
-          rx="4.47182"
-          ry="16.6677"
-          transform="matrix(-0.0474845 0.998872 0.998872 0.0474845 1132.42 299.604)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(-1 0 0 1 578.854 89)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(-1 0 0 1 578.854 89)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 563 98.1465)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 563 98.1465)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(-1 0 0 1 177.854 233)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(-1 0 0 1 177.854 233)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="3.35366"
+            cy="12.5"
+            rx="3.35366"
+            ry="12.5"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 162 242.146)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="3.35366"
-          cy="12.5"
-          rx="3.35366"
-          ry="12.5"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 162 242.146)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="6.43902"
+            cy="24"
+            rx="6.43902"
+            ry="24"
+            transform="matrix(-1 0 0 1 501.439 202)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="6.43902"
-          cy="24"
-          rx="6.43902"
-          ry="24"
-          transform="matrix(-1 0 0 1 501.439 202)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="6.43902"
+            cy="24"
+            rx="6.43902"
+            ry="24"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 471 219.562)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="6.43902"
-          cy="24"
-          rx="6.43902"
-          ry="24"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 471 219.562)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="4.56098"
+            cy="17"
+            rx="4.56098"
+            ry="17"
+            transform="matrix(-1 0 0 1 1420.56 69)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="4.56098"
-          cy="17"
-          rx="4.56098"
-          ry="17"
-          transform="matrix(-1 0 0 1 1420.56 69)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="4.56098"
+            cy="17"
+            rx="4.56098"
+            ry="17"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 1399 81.4395)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="4.56098"
-          cy="17"
-          rx="4.56098"
-          ry="17"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 1399 81.4395)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="2.41463"
+            cy="9"
+            rx="2.41463"
+            ry="9"
+            transform="matrix(-1 0 0 1 286.414 28)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="2.41463"
-          cy="9"
-          rx="2.41463"
-          ry="9"
-          transform="matrix(-1 0 0 1 286.414 28)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="2.41463"
+            cy="9"
+            rx="2.41463"
+            ry="9"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 275 34.5854)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="2.41463"
-          cy="9"
-          rx="2.41463"
-          ry="9"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 275 34.5854)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="2.41463"
+            cy="9"
+            rx="2.41463"
+            ry="9"
+            transform="matrix(-1 0 0 1 669.414 13)"
+            fill="#FFD33B"
+          />
+        </g>
 
-        <ellipse
-          cx="2.41463"
-          cy="9"
-          rx="2.41463"
-          ry="9"
-          transform="matrix(-1 0 0 1 669.414 13)"
-          fill="#FFD33B"
-        />
+        <g class="squiggle-star">
+          <ellipse
+            cx="2.41463"
+            cy="9"
+            rx="2.41463"
+            ry="9"
+            transform="matrix(4.37114e-08 1 1 -4.37114e-08 658 19.5854)"
+            fill="#FFD33B"
+          />
+        </g>
+      </g>
 
-        <ellipse
-          cx="2.41463"
-          cy="9"
-          rx="2.41463"
-          ry="9"
-          transform="matrix(4.37114e-08 1 1 -4.37114e-08 658 19.5854)"
-          fill="#FFD33B"
-        />
-
-        <%# Small top-right leaf %>
+      <%# Small top-right leaf %>
+      <g class="squiggle-branch">
         <path
           d="M1106.48 41.8622C1102.01 38.8871 1089.99 49.0808 1084.33 57.5821C1078.67 66.0835 1073.89 81.1008 1078.36 84.0759C1082.82 87.0511 1095.42 75.978 1100.5 68.356C1105.58 60.7341 1110.94 44.8374 1106.48 41.8622Z"
           fill="#2AAD56"
@@ -217,8 +252,10 @@
           stroke-width="4"
           stroke-linecap="round"
         />
+      </g>
 
-        <%# Lower-left large branch %>
+      <%# Lower-left large branch %>
+      <g class="squiggle-branch">
         <path
           d="M399.203 339.17C388.004 332.151 351.627 319.319 317.487 323.149"
           fill="none"
@@ -251,8 +288,10 @@
           d="M312.081 352.316C309.316 349.219 311.292 337.971 317.993 331.183C324.693 324.394 339.687 317.96 342.875 321.107C346.064 324.254 340.739 336.674 334.732 342.761C328.724 348.848 314.845 355.413 312.081 352.316Z"
           fill="#2AAD56"
         />
+      </g>
 
-        <%# Upper-right large branch %>
+      <%# Upper-right large branch %>
+      <g class="squiggle-branch">
         <path
           d="M1227.6 141.627C1231.76 131.12 1250.32 103.856 1275.78 89.2038"
           fill="none"
@@ -285,8 +324,10 @@
           d="M1294.27 106.557C1294.61 103.023 1287.55 96.2767 1279.5 94.9938C1271.44 93.711 1257.86 96.8729 1257.25 100.656C1256.65 104.439 1266.61 110.297 1273.83 111.447C1281.05 112.598 1293.94 110.091 1294.27 106.557Z"
           fill="#2AAD56"
         />
+      </g>
 
-        <%# Left mid branch %>
+      <%# Left mid branch %>
+      <g class="squiggle-branch">
         <path
           d="M384.652 193.586C373.718 190.736 344.4 175.629 326.761 152.142"
           fill="none"
@@ -319,8 +360,10 @@
           d="M341.736 131.673C338.188 131.769 332.349 139.595 332.055 147.745C331.761 155.895 336.551 168.997 340.379 169.135C344.207 169.273 348.812 158.676 349.075 151.369C349.339 144.062 345.284 131.577 341.736 131.673Z"
           fill="#2AAD56"
         />
+      </g>
 
-        <%# Left tall stem %>
+      <%# Left tall stem %>
+      <g class="squiggle-branch">
         <path
           d="M502.33 151.935C494.201 143.506 462.769 95.0055 470.665 56.3729"
           fill="none"
@@ -363,8 +406,10 @@
           d="M505.358 83.3203C503.106 80.4114 492.989 80.3158 485.992 85.0562C478.995 89.7966 470.968 101.819 473.194 105.105C475.421 108.391 487.101 105.759 493.374 101.509C499.647 97.2593 507.609 86.2293 505.358 83.3203Z"
           fill="#2AAD56"
         />
+      </g>
 
-        <%# Lower-right large branch %>
+      <%# Lower-right large branch %>
+      <g class="squiggle-branch">
         <path
           d="M1281.44 307.686C1292.89 310.152 1350.67 311.302 1379.34 284.231"
           fill="none"
@@ -417,7 +462,7 @@
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1728 385"
         preserveAspectRatio="xMidYMid meet"
-        class="absolute inset-0 w-full h-full"
+        class="absolute inset-0 w-full h-full scale-[1.1] lg:scale-[1]"
       >
         <%# Hanakai (top center) %>
         <g transform="translate(795, 27)">

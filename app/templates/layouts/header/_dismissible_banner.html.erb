@@ -45,6 +45,10 @@
       var cfg = JSON.parse(el.getAttribute("data-defo-dismissible-banner"));
       if (localStorage.getItem("hk-banner-dismissed:" + cfg.id) === "true") {
         el.classList.add("hidden");
+        // Match the actual measured nav height (without the banner).
+        // Setting this synchronously avoids a sticky-position jump once
+        // size-to-var measures the real value.
+        document.documentElement.style.setProperty("--hk-nav-height", "51px");
       }
     } catch (e) {}
   })();

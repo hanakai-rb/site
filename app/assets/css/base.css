@@ -1,23 +1,18 @@
 :root {
-  --hk-nav-height: 69px;
-  interpolate-size: allow-keywords;
+  /*
+   * Initial guess for the site nav height (with the announcement banner shown).
+   * The dismissible-banner inline script overrides this to 51px when the
+   * banner has been dismissed. JS (size-to-var) then refines the value to the
+   * exact measurement once it runs. Setting a close-enough initial value
+   * prevents a visible jump in any sticky element that depends on it.
+   */
+  --hk-nav-height: 123px;
+  --hk-mobile-page-nav-height: 41px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .squiggle-group {
-    filter: none;
-  }
-}
-
-@variant max-sm {
-  .squiggle-group {
-    filter: none;
   }
 }
 

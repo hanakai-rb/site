@@ -99,18 +99,8 @@ function setup({
     }
   };
 
-  const onContainerClick = (e: MouseEvent) => {
-    // Find the closest anchor element to the click target
-    const anchor = e.target instanceof Element ? e.target.closest("a") : null;
-    // Only deactivate if the anchor is inside the container
-    if (anchor && containerEl.contains(anchor)) {
-      deactivate();
-    }
-  };
-
   // Bind events
   buttonEl.addEventListener("click", onButtonClick);
-  containerEl.addEventListener("click", onContainerClick);
   // On touch devices need to use touchstart to register touches for non-interactive elements
   const eventType = "ontouchstart" in window || navigator.maxTouchPoints > 0 ? "touchstart" : "click";
   window.addEventListener(eventType, onClickAwayContainer);
@@ -118,7 +108,6 @@ function setup({
   // Tear down
   return () => {
     buttonEl.removeEventListener("click", onButtonClick);
-    containerEl.removeEventListener("click", onContainerClick);
     window.removeEventListener(eventType, onClickAwayContainer);
   };
 }

@@ -1,0 +1,189 @@
+@media (prefers-reduced-motion: no-preference) {
+  .squiggle-branch,
+  .squiggle-star {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .squiggle-branch {
+    animation: squiggle-leaf-1 1.2s step-end infinite;
+  }
+
+  .squiggle-branch:nth-of-type(2n) {
+    animation-name: squiggle-leaf-2;
+    animation-duration: 1.05s;
+  }
+
+  .squiggle-branch:nth-of-type(3n) {
+    animation-name: squiggle-leaf-3;
+    animation-duration: 1.35s;
+  }
+
+  .squiggle-branch:nth-of-type(4n + 1) {
+    animation-name: squiggle-leaf-4;
+    animation-duration: 1.275s;
+  }
+
+  .squiggle-branch:nth-of-type(5n + 2) {
+    animation-delay: -0.45s;
+  }
+
+  .squiggle-branch:nth-of-type(7n + 3) {
+    animation-delay: -0.75s;
+  }
+
+  .squiggle-star {
+    animation: squiggle-star-1 1.2s step-end infinite;
+  }
+
+  .squiggle-star:nth-of-type(2n) {
+    animation-name: squiggle-star-2;
+    animation-duration: 1.05s;
+  }
+
+  .squiggle-star:nth-of-type(3n) {
+    animation-name: squiggle-star-3;
+    animation-duration: 1.35s;
+  }
+
+  .squiggle-star:nth-of-type(4n + 1) {
+    animation-name: squiggle-star-4;
+    animation-duration: 1.125s;
+  }
+
+  .squiggle-star:nth-of-type(5n + 2) {
+    animation-delay: -0.6s;
+  }
+
+  .squiggle-star:nth-of-type(7n + 3) {
+    animation-delay: -0.3s;
+  }
+}
+
+@variant max-sm {
+  .squiggle-branch,
+  .squiggle-star {
+    animation: none;
+  }
+}
+
+/*
+ * `step-end` timing snaps between keyframes instead of interpolating, mirroring
+ * the discrete `feTurbulence` seed cycling in the original SVG filter (~100ms
+ * frame holds at 0.8s cycles). 4 micro-frames per cycle with subtle
+ * translate / rotate / scale / skew shifts give a hand-drawn boil feel.
+ */
+
+@keyframes squiggle-leaf-1 {
+  0% {
+    transform: translate(0.1px, -0.12px) rotate(0.1deg) scale(1.005, 0.995) skew(0.1deg, -0.05deg);
+  }
+  25% {
+    transform: translate(-0.12px, 0.15px) rotate(-0.08deg) scale(0.995, 1.005) skew(-0.08deg, 0.1deg);
+  }
+  50% {
+    transform: translate(0.15px, 0.1px) rotate(0.08deg) scale(1.002, 1.002) skew(0.08deg, -0.08deg);
+  }
+  75% {
+    transform: translate(-0.1px, -0.12px) rotate(-0.1deg) scale(0.998, 1.005) skew(-0.1deg, 0.05deg);
+  }
+}
+
+@keyframes squiggle-leaf-2 {
+  0% {
+    transform: translate(-0.08px, 0.08px) rotate(-0.08deg) skew(-0.2deg, 0.15deg);
+  }
+  25% {
+    transform: translate(0.08px, -0.08px) rotate(0.08deg) skew(0.15deg, -0.2deg);
+  }
+  50% {
+    transform: translate(-0.05px, -0.08px) rotate(-0.05deg) skew(-0.15deg, 0.2deg);
+  }
+  75% {
+    transform: translate(0.08px, 0.08px) rotate(0.05deg) skew(0.2deg, -0.15deg);
+  }
+}
+
+@keyframes squiggle-leaf-3 {
+  0% {
+    transform: translate(0.12px, 0.1px) rotate(-0.08deg) scale(0.995, 1.005) skew(0.08deg, 0.08deg);
+  }
+  33% {
+    transform: translate(-0.1px, -0.12px) rotate(0.1deg) scale(1.005, 0.998) skew(-0.1deg, -0.05deg);
+  }
+  66% {
+    transform: translate(0.12px, -0.1px) rotate(-0.1deg) scale(0.998, 1.005) skew(0.1deg, -0.1deg);
+  }
+}
+
+@keyframes squiggle-leaf-4 {
+  0% {
+    transform: translate(-0.1px, 0.12px) rotate(0.1deg) scale(1.002, 0.995) skew(-0.08deg, 0.1deg);
+  }
+  20% {
+    transform: translate(0.12px, -0.1px) rotate(-0.08deg) scale(0.998, 1.005) skew(0.1deg, -0.08deg);
+  }
+  50% {
+    transform: translate(-0.12px, 0.1px) rotate(0.08deg) scale(1.005, 0.998) skew(-0.1deg, 0.05deg);
+  }
+  80% {
+    transform: translate(0.08px, 0.12px) rotate(-0.1deg) scale(0.995, 1.005) skew(0.08deg, -0.1deg);
+  }
+}
+
+@keyframes squiggle-star-1 {
+  0% {
+    transform: translate(0.3px, -0.25px) rotate(0.35deg) scale(1.025, 0.99) skew(0.3deg, -0.2deg);
+  }
+  25% {
+    transform: translate(-0.25px, 0.3px) rotate(-0.3deg) scale(0.985, 1.025) skew(-0.25deg, 0.3deg);
+  }
+  50% {
+    transform: translate(0.3px, 0.25px) rotate(0.3deg) scale(1.015, 1.015) skew(0.2deg, -0.25deg);
+  }
+  75% {
+    transform: translate(-0.3px, -0.25px) rotate(-0.35deg) scale(0.99, 1.02) skew(-0.3deg, 0.2deg);
+  }
+}
+
+@keyframes squiggle-star-2 {
+  0% {
+    transform: translate(-0.3px, 0.25px) rotate(-0.35deg) scale(1.02, 1.03) skew(-0.3deg, 0.25deg);
+  }
+  25% {
+    transform: translate(0.25px, -0.3px) rotate(0.35deg) scale(0.985, 0.98) skew(0.25deg, -0.3deg);
+  }
+  50% {
+    transform: translate(-0.25px, -0.25px) rotate(-0.3deg) scale(1.03, 1.015) skew(-0.2deg, 0.3deg);
+  }
+  75% {
+    transform: translate(0.3px, 0.25px) rotate(0.3deg) scale(0.98, 0.99) skew(0.3deg, -0.25deg);
+  }
+}
+
+@keyframes squiggle-star-3 {
+  0% {
+    transform: translate(0.25px, 0.3px) rotate(-0.35deg) scale(0.99, 1.025) skew(0.3deg, 0.25deg);
+  }
+  33% {
+    transform: translate(-0.3px, -0.25px) rotate(0.3deg) scale(1.025, 0.985) skew(-0.25deg, -0.2deg);
+  }
+  66% {
+    transform: translate(0.3px, -0.3px) rotate(-0.35deg) scale(0.995, 1.025) skew(0.3deg, -0.3deg);
+  }
+}
+
+@keyframes squiggle-star-4 {
+  0% {
+    transform: translate(-0.25px, 0.3px) rotate(0.35deg) scale(1.025, 0.99) skew(-0.2deg, 0.3deg);
+  }
+  20% {
+    transform: translate(0.3px, -0.25px) rotate(-0.3deg) scale(0.985, 1.025) skew(0.3deg, -0.25deg);
+  }
+  50% {
+    transform: translate(-0.3px, 0.25px) rotate(0.3deg) scale(1.03, 0.99) skew(-0.3deg, 0.2deg);
+  }
+  80% {
+    transform: translate(0.25px, 0.3px) rotate(-0.35deg) scale(0.99, 1.03) skew(0.25deg, -0.3deg);
+  }
+}
