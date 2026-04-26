@@ -102,8 +102,9 @@ function setup({
   const onContainerClick = (e: MouseEvent) => {
     const anchor = e.target instanceof Element ? e.target.closest("a") : null;
     if (!anchor || !containerEl.contains(anchor)) return;
-    // Only deactivate for links to an anchor
-    if (anchor.href.startsWith("#")) {
+    // Only deactivate for links to an anchor on the current page
+    const href = anchor.getAttribute("href");
+    if (href?.startsWith("#")) {
       deactivate();
     }
   };
