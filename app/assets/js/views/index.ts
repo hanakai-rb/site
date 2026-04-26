@@ -14,7 +14,6 @@ import { targetCurrentViewFn } from "./target-current";
 import { tocScrollViewFn } from "./toc-scroll";
 import { themeSwitcherViewFn } from "./theme-switcher";
 import { toggleClassViewFn } from "./toggle-class";
-import { pagefindSearchViewFn } from "./pagefind-search";
 
 export const views: Views = {
   animLogoTap: animLogoTapViewFn,
@@ -29,7 +28,10 @@ export const views: Views = {
   overflowClass: overflowClassViewFn,
   replaceWithTemplate: replaceWithTemplateViewFn,
   sizeToVar: sizeToVarViewFn,
-  pagefindSearch: pagefindSearchViewFn,
+  pagefindSearch: lazyLoadView(async () => {
+    const { pagefindSearchViewFn } = await import("./pagefind-search");
+    return pagefindSearchViewFn;
+  }),
   targetCurrent: targetCurrentViewFn,
   themeSwitcher: themeSwitcherViewFn,
   tocScroll: breakpointFilter(tocScrollViewFn),
