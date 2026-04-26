@@ -6,8 +6,9 @@
       <a
         class="mr-auto flex max-w-[50%] gap-2 text-link items-end group"
         href="<%= prev_item.path %>"
-        aria-label="Go to previous guide"
       >
+        <span class="sr-only">Previous guide:</span>
+
         <%= render "svgs/icons/arrow_left", width: 16, height: 16, class_name: "fill-current mb-1.5" %>
 
         <p>
@@ -40,8 +41,9 @@
           group
         "
         href="<%= next_item.path %>"
-        aria-label="Go to next guide"
       >
+        <span class="sr-only">Next guide:</span>
+
         <p>
           <span
             class="
