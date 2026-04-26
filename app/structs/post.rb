@@ -57,6 +57,7 @@ module Site
           node_filters: [
             Content::Filters::SanitizeHeadingAnchorsFilter.new,
             Content::Filters::LinkableHeadingsFilter.new,
+            Content::Filters::ImageDimensionsFilter.new,
             Content::Filters::TableWrapperFilter.new,
             Content::Filters::PreWrapperFilter.new
           ],
@@ -71,7 +72,10 @@ module Site
       private_constant :ContentPipeline
 
       def content_data
-        @content_data ||= ContentPipeline.call(content_md)
+        @content_data ||= ContentPipeline.call(
+          content_md,
+          context: {image_paths: Site::ContentFileMiddleware.url_to_path}
+        )
       end
     end
   end
