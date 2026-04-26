@@ -64,7 +64,8 @@ module Site
           url_base: base_url_path,
           url_path: (path == INDEX_PAGE_PATH) ? base_url_path : File.join(base_url_path, path),
           front_matter: parsed_file.front_matter,
-          content: parsed_file.content
+          content: parsed_file.content,
+          source_dir: root.to_s
         )
       end
 

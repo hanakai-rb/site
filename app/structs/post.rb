@@ -50,6 +50,10 @@ module Site
               markdown: {
                 parse: {smart: true},
                 render: {unsafe: true},
+                # Disable tagfilter so embed snippets (Bluesky, Mastodon, etc.)
+                # render their <script>/<iframe> tags raw. Post content is
+                # author-controlled, so the safety net isn't needed.
+                extension: {tagfilter: false},
                 plugins: {syntax_highlighter: {theme: ""}}
               }
             }
@@ -57,6 +61,7 @@ module Site
           node_filters: [
             Content::Filters::SanitizeHeadingAnchorsFilter.new,
             Content::Filters::LinkableHeadingsFilter.new,
+            Content::Filters::ImageDimensionsFilter.new,
             Content::Filters::TableWrapperFilter.new,
             Content::Filters::PreWrapperFilter.new
           ],
@@ -71,7 +76,10 @@ module Site
       private_constant :ContentPipeline
 
       def content_data
-        @content_data ||= ContentPipeline.call(content_md)
+        @content_data ||= ContentPipeline.call(
+          content_md,
+          context: {image_paths: Site::ContentFileMiddleware.url_to_path}
+        )
       end
     end
   end

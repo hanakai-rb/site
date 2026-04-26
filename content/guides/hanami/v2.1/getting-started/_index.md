@@ -170,7 +170,7 @@ $ open http://localhost:2300
 
 You should see the Hanami welcome screen. We're delighted to have you here!
 
-![Hanami welcome screen](//file/hanami-welcome.png)
+![Hanami welcome screen](//file/hanami-welcome.webp)
 
 ## Building a Hanami app
 

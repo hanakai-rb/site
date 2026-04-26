@@ -68,3 +68,17 @@
   font-style: italic;
   font-display: swap;
 }
+
+/* Metric-matched fallback to prevent layout shift while the webfont loads.
+   Wraps Arial (universally available) and overrides its line metrics to match
+   Faire Sprig Sans Regular's. When the real font loads, paragraphs don't
+   reflow. Values computed from the woff2's OS/2 + head tables against Arial's
+   reference metrics (unitsPerEm 2048, xAvgCharWidth 904). */
+@font-face {
+  font-family: "Faire Sprig Sans Fallback";
+  src: local("Arial");
+  size-adjust: 132.09%;
+  ascent-override: 74.95%;
+  descent-override: 19.68%;
+  line-gap-override: 0%;
+}

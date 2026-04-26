@@ -151,7 +151,7 @@ module Bookshelf
 end
 ```
 
-![Hanami 404 response](//file/404-response.png)
+![Hanami 404 response](//file/404-response.webp)
 
 As with `Response#status=`, you may use a symbolic status name instead of an integer.
 

@@ -145,7 +145,7 @@ $ open http://localhost:2300
 
 You should see "Hello from Hanami".
 
-![Hello from Hanami](//file/hello-from-hanami.png")
+![Hello from Hanami](//file/hello-from-hanami.webp")
 
 ## Adding our first functionality
 

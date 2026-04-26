@@ -14,6 +14,7 @@ module Site
       attribute :url_path, Types::Strict::String
       attribute :front_matter, Types::Strict::Hash.constructor(->(hsh) { hsh.transform_keys(&:to_sym) })
       attribute :content, Types::Strict::String
+      attribute :source_dir, Types::Strict::String.optional.default(nil)
 
       def title
         front_matter.fetch(:title)
@@ -56,6 +57,7 @@ module Site
           node_filters: [
             Content::Filters::SanitizeHeadingAnchorsFilter.new,
             Content::Filters::LinkableHeadingsFilter.new,
+            Content::Filters::ImageDimensionsFilter.new,
             Content::Filters::InternalLinksFilter.new,
             Content::Filters::TableWrapperFilter.new,
             Content::Filters::PreWrapperFilter.new
@@ -74,6 +76,7 @@ module Site
         @content_data ||= ContentPipeline.call(
           content_md,
           context: {
+            source_dir: source_dir,
             internal_links: {
               page: method(:page_path),
               file: method(:page_path),

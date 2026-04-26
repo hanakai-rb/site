@@ -126,6 +126,7 @@ GEM
       zeitwerk (~> 2.6)
     erb (6.0.1)
     erubi (1.13.1)
+    fastimage (2.4.1)
     ffi (1.17.3-aarch64-linux-gnu)
     ffi (1.17.3-aarch64-linux-musl)
     ffi (1.17.3-arm-linux-gnu)
@@ -454,6 +455,7 @@ DEPENDENCIES
   dotenv
   dry-operation
   dry-types (~> 1.7)
+  fastimage
   front_matter_parser
   hanami (~> 2.3.0)
   hanami-assets (~> 2.3.0)

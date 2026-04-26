@@ -21,7 +21,7 @@ module Site
   #
   # Sets content-based ETag headers on the returned image.
   class ContentFileMiddleware
-    ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg].freeze
+    ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg webp].freeze
 
     Source = Data.define(:directory, :pattern, :to_url)
 
@@ -60,6 +60,19 @@ module Site
     def paths_map
       hydrate_if_needed
       @assets.invert
+    end
+
+    # URL -> on-disk file path. Counterpart to `paths_map`. Used by markdown
+    # filters that need to resolve image src URLs back to the file on disk.
+    def url_to_path
+      hydrate_if_needed
+      @assets
+    end
+
+    # Memoized URL -> path lookup, built from a single shared instance so the
+    # asset directories are scanned once per process.
+    def self.url_to_path
+      @url_to_path ||= new(nil).url_to_path
     end
 
     private

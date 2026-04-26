@@ -21,6 +21,7 @@ gem "sqlite3"
 
 # Markdown content handling
 gem "commonmarker"
+gem "fastimage"
 gem "front_matter_parser"
 gem "html-pipeline"
 gem "amazing_print" # Required by html-pipeline

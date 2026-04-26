@@ -103,7 +103,7 @@ end
 
 Requests for the root will now render a home page:
 
-![Welcome to Bookshelf](//file/welcome-to-bookshelf.png)
+![Welcome to Bookshelf](//file/welcome-to-bookshelf.webp)
 
 ### Understanding views
 
