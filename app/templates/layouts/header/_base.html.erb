@@ -40,7 +40,13 @@
 
   <%= render "header/nav_mobile", nav_items: nav_items %>
 
-  <div class="mx-4 h-[7px]">
-    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] flex-1", height: 14, stroke_width: 2, fill_top: "fill-(--hk-color-bg-neutral)" %>
+  <div class="relative h-[7px]">
+    <div class="absolute inset-x-0 top-0 h-[14px]">
+      <%= render "svgs/wiggle", class_name: "", height: 14, stroke_width: 0, fill_top: "fill-(--hk-color-bg-neutral)" %>
+    </div>
+
+    <div class="absolute inset-x-0 top-0 h-[14px] [clip-path:inset(0_1rem)]">
+      <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)]", height: 14, stroke_width: 2 %>
+    </div>
   </div>
 </header>
