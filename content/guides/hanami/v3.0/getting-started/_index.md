@@ -197,7 +197,7 @@ You should see the Hanami welcome screen. We're delighted to have you here!
 
 <!-- TODO: update this screenshot for 2.3 -->
 
-![Hanami welcome screen](//file/hanami-welcome.png)
+![Hanami welcome screen](//file/hanami-welcome.webp)
 
 ## Building a Hanami app
 

@@ -29,7 +29,7 @@ end
 
 In the above action, when `StandardError` is raised in the `#handle` method, a basic `500 Internal Server Error` will be returned.
 
-![Default error response](//file/default-error-response.png")
+![Default error response](//file/default-error-response.webp")
 
 ## Using string class names
 

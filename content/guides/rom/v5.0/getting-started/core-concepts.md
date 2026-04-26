@@ -8,7 +8,7 @@ ROM fundamentally is a series of abstractions built on one another to create a v
 
 The following diagram shows an overview of the ROM architecture and provides an outline of how data flows within a ROM based data access layer. Further down is a basic explanation of each component.
 
-![ROM design overview](images/rom-overview.jpg)
+![ROM design overview](images/rom-overview.webp)
 
 ## Data flow
 

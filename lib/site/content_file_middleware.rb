@@ -21,7 +21,7 @@ module Site
   #
   # Sets content-based ETag headers on the returned image.
   class ContentFileMiddleware
-    ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg].freeze
+    ALLOWED_FILE_EXTENSIONS = %w[png jpg jpeg gif svg webp].freeze
 
     Source = Data.define(:directory, :pattern, :to_url)
 

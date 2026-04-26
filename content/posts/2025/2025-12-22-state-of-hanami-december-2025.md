@@ -85,8 +85,8 @@ Once again, we took ourselves to some conferences!
 - Tim was lucky enough to reprise his talk at both [XO Ruby San Diego](https://www.xoruby.com/event/san-diego/) and [thoughtbot Open Summit](https://thoughtbot.com/blog/announcing-the-thoughtbot-open-summit-2025-full-schedule). Thanks to XO organiser [Jim Remsik](https://ruby.social/@jremsikjr), the San Diego talk was streamed to the internet, and the Open Summit was a native online event. We saw a good-sized group come together for each one, and I’m really glad I could share Hanami in such an open way. Thank you to Jim and thoughtbot for making these happen!
 
 <div style="display: flex; gap: 1rem;">
-<img src="/blog/assets/2025-12-22-state-of-hanami-december-2025/sean-at-rocky-mountain-ruby.jpeg" alt="Sean on stage at Rocky Mountain Ruby" style="flex: 1; max-width: calc(50% - 0.5rem);">
-<img src="/blog/assets/2025-12-22-state-of-hanami-december-2025/tim-at-baltic-ruby.jpeg" alt="Matz joins the Hanami table at Baltic Ruby" style="flex: 1; max-width: calc(50% - 0.5rem);">
+<img src="/blog/assets/2025-12-22-state-of-hanami-december-2025/sean-at-rocky-mountain-ruby.webp" alt="Sean on stage at Rocky Mountain Ruby" style="flex: 1; max-width: calc(50% - 0.5rem);">
+<img src="/blog/assets/2025-12-22-state-of-hanami-december-2025/tim-at-baltic-ruby.webp" alt="Matz joins the Hanami table at Baltic Ruby" style="flex: 1; max-width: calc(50% - 0.5rem);">
 </div>
 
 ## We launched our sponsorship program
