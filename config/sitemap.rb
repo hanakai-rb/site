@@ -20,6 +20,7 @@ SitemapGenerator::Sitemap.create do
   add "/sponsor"
   add "/status"
   add "/ai-policy"
+  add "/colophon"
 
   # Guides
   add "/learn"
