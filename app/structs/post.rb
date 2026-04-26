@@ -50,6 +50,10 @@ module Site
               markdown: {
                 parse: {smart: true},
                 render: {unsafe: true},
+                # Disable tagfilter so embed snippets (Bluesky, Mastodon, etc.)
+                # render their <script>/<iframe> tags raw. Post content is
+                # author-controlled, so the safety net isn't needed.
+                extension: {tagfilter: false},
                 plugins: {syntax_highlighter: {theme: ""}}
               }
             }
