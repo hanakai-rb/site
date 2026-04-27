@@ -38,9 +38,9 @@ module Site
       path = context.request.path
       [
         NavItem.new(label: "Projects", url: "/projects", selected: path.start_with?("/projects"), children: [
-          NavItem.new(label: "Hanami", url: "/projects/hanami", selected: path.start_with?("/projects/hanami"), children: []),
-          NavItem.new(label: "Dry", url: "/projects/dry", selected: path.start_with?("/projects/dry"), children: []),
-          NavItem.new(label: "Rom", url: "/projects/rom", selected: path.start_with?("/projects/rom"), children: [])
+          NavItem.new(label: "Hanami", url: "/hanami", selected: path.start_with?("/hanami"), children: []),
+          NavItem.new(label: "Dry", url: "/dry", selected: path.start_with?("/dry"), children: []),
+          NavItem.new(label: "Rom", url: "/rom", selected: path.start_with?("/rom"), children: [])
         ]),
         NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: []),
         NavItem.new(label: "Blog", url: "/blog", selected: path.start_with?("/blog"), children: []),
@@ -53,9 +53,9 @@ module Site
       path = context.request.path
       [
         NavItem.new(label: "Projects", url: nil, selected: false, children: [
-          NavItem.new(label: "Hanami", url: "/projects/hanami", selected: path.start_with?("/projects/hanami"), children: []),
-          NavItem.new(label: "Dry", url: "/projects/dry", selected: path.start_with?("/projects/dry"), children: []),
-          NavItem.new(label: "Rom", url: "/projects/rom", selected: path.start_with?("/projects/rom"), children: []),
+          NavItem.new(label: "Hanami", url: "/hanami", selected: path.start_with?("/hanami"), children: []),
+          NavItem.new(label: "Dry", url: "/dry", selected: path.start_with?("/dry"), children: []),
+          NavItem.new(label: "Rom", url: "/rom", selected: path.start_with?("/rom"), children: []),
           NavItem.new(label: "Status", url: "/status", selected: path.start_with?("/status"), children: [])
         ]),
         NavItem.new(label: "Learn", url: "/learn", selected: path.start_with?("/learn"), children: [

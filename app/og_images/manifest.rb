@@ -54,7 +54,7 @@ module Site
           data: {title: "AI contribution policy", org: "hanakai"}
         },
         {
-          path: "/projects/hanami",
+          path: "/hanami",
           output: "pages/hanami.png",
           template: "page",
           data: {
@@ -64,7 +64,7 @@ module Site
           }
         },
         {
-          path: "/projects/dry",
+          path: "/dry",
           output: "pages/dry.png",
           template: "page",
           data: {
@@ -74,7 +74,7 @@ module Site
           }
         },
         {
-          path: "/projects/rom",
+          path: "/rom",
           output: "pages/rom.png",
           template: "page",
           data: {
