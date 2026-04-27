@@ -1,0 +1,7 @@
+/blog             https://hanakai.org/blog
+/blog/*           https://hanakai.org/blog/:splat
+/community        https://hanakai.org/community
+/status           https://hanakai.org/status
+/ai-policy        https://hanakai.org/ai-policy
+/getting-started  https://hanakai.org/learn/hanami/getting-started
+/*                https://hanakai.org/hanami

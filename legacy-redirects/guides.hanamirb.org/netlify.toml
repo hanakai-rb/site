@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+
+  # Skip the build unless this directory changed; otherwise every commit to the
+  # shared repo would rebuild this redirect site for no reason.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
