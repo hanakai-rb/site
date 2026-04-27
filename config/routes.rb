@@ -36,10 +36,9 @@ module Site
     get "/feed.xml", to: "feed.index"
 
     # Projects
-    redirect "/projects", to: "/"
-    get "/projects/hanami", to: "pages.hanami"
-    get "/projects/dry", to: "pages.dry"
-    get "/projects/rom", to: "pages.rom"
+    get "/hanami", to: "pages.hanami"
+    get "/dry", to: "pages.dry"
+    get "/rom", to: "pages.rom"
 
     # Special pages
     get "/community", to: "pages.community"
