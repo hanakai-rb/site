@@ -22,7 +22,7 @@ module Site
       end
 
       def excerpt
-        self[:excerpt] || "TODO"
+        self[:excerpt]
       end
 
       def show_toc?
