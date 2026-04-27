@@ -12,8 +12,7 @@ Each subdirectory holds:
 
 Each `legacy-directs/` subdirectory has its own Netlify site, configured like so:
 
-1. Connected to this repo, production branch `main`.
-2. **Base directory** matching the respective `legacy-redirects/` subdirectory. Netlify uses this to
-   find the per-site `netlify.toml`.
-3. **Build command** and **publish directory** left empty.
-4. Custom domain configured.
+- Connected to this repo, production branch `main`.
+- **Base directory** matching the respective `legacy-redirects/` subdirectory.
+- **Build command** and **Publish directory** left blank.
+- **Build & deploy > Branches and deploy contexts > Preview builds** set to "None".
