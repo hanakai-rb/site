@@ -2,9 +2,9 @@
   <ul>
     <%= render_with_slots "layouts/footer/nav_group", label: "Projects" do |g| %>
       <% g.slot :items do %>
-        <%= render "layouts/footer/nav_item", label: "Hanami", url: "/projects/hanami" %>
-        <%= render "layouts/footer/nav_item", label: "Dry", url: "/projects/dry" %>
-        <%= render "layouts/footer/nav_item", label: "Rom", url: "/projects/rom" %>
+        <%= render "layouts/footer/nav_item", label: "Hanami", url: "/hanami" %>
+        <%= render "layouts/footer/nav_item", label: "Dry", url: "/dry" %>
+        <%= render "layouts/footer/nav_item", label: "Rom", url: "/rom" %>
         <%= render "layouts/footer/nav_item", label: "Status", url: "/status", class_name: "mt-3" %>
       <% end %>
     <% end %>
@@ -19,9 +19,14 @@
 
     <%= render_with_slots "layouts/footer/nav_group", label: "Community", url: "/community" do |g| %>
       <% g.slot :items do %>
-        <%= render "layouts/footer/nav_item", label: "Code repos", url: "https://github.com/hanakai-rb" %>
-        <%= render "layouts/footer/nav_item", label: "Discussion forum", url: "https://discourse.hanamirb.org/" %>
-        <%= render "layouts/footer/nav_item", label: "Chat room", url: "https://discord.gg/KFCxDmk3JQ" %>
+        <%= render "layouts/footer/nav_item", label: "Code repos", url: "https://github.com/hanakai-rb", target: "_blank" %>
+        <%= render "layouts/footer/nav_item", label: "Discussion forum", url: "https://discourse.hanamirb.org/", target: "_blank" %>
+        <%= render "layouts/footer/nav_item", label: "Chat room", url: "https://discord.gg/KFCxDmk3JQ", target: "_blank" %>
+
+        <%= render "layouts/footer/nav_item", label: "Mastodon", url: "https://ruby.social/@hanami", target: "_blank", class_name: "mt-3" %>
+        <%= render "layouts/footer/nav_item", label: "Bluesky", url: "https://bsky.app/profile/hanakai.org", target: "_blank" %>
+        <%= render "layouts/footer/nav_item", label: "Newsletter", url: "https://buttondown.com/hanakai", target: "_blank" %>
+
         <%= render "layouts/footer/nav_item", label: "Code of conduct", url: "/conduct", class_name: "mt-3" %>
         <%= render "layouts/footer/nav_item", label: "AI policy", url: "/ai-policy" %>
       <% end %>
