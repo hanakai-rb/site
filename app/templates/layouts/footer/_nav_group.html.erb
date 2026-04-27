@@ -1,0 +1,21 @@
+<li class="text-lg md:float-left mr-16 mb-4">
+  <% if defined?(url) && url %>
+    <a
+      class="
+        font-bold block mb-2 hover:underline hover:decoration-(--hk-color-text-link-underline)
+        hover:decoration-[3px] [text-decoration-skip-ink:none]
+      "
+      href="<%= url %>"
+    >
+      <%= label %>
+    </a>
+  <% else %>
+    <span class="font-bold block mb-2"><%= label %></span>
+  <% end %>
+
+  <% if slot?(:items) %>
+    <ul>
+      <%= render_slot :items %>
+    </ul>
+  <% end %>
+</li>

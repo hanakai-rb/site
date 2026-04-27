@@ -33,12 +33,12 @@
       </a>
     </div>
 
-    <%= render "header/nav_desktop", nav_items: nav_items %>
+    <%= scope(:top_nav).render "header/nav_desktop" %>
 
     <%= render "header/nav_mobile_buttons" %>
   </div>
 
-  <%= render "header/nav_mobile", nav_items: nav_items %>
+  <%= scope(:top_nav).render "header/nav_mobile" %>
 
   <div class="relative h-[7px]">
     <div class="absolute inset-x-0 top-0 h-[14px]">

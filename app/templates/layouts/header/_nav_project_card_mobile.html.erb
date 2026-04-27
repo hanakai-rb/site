@@ -1,0 +1,14 @@
+<a
+  href="/<%= project.slug %>"
+  class="
+    theme-<%= project.slug %>
+    flex min-w-24 flex-col items-center gap-2 p-3 rounded-xl bg-neutral
+    border-3 <%= current_page?("/#{project.slug}") ? "b-primary" : "border-transparent" %>
+  "
+>
+  <%= render "svgs/#{project.slug}_logo", width: project.mobile_logo.width, height: project.mobile_logo.height %>
+
+  <div class="font-extrabold text-base text-primary leading-tight">
+    <%= render "shared/names/#{project.slug}" %>
+  </div>
+</a>
