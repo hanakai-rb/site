@@ -5,6 +5,10 @@
       hover:decoration-[3px] [text-decoration-skip-ink:none]
     "
     href="<%= url %>"
+    <% if defined?(target) && target == "_blank" %>
+      target="_blank"
+      rel="noopener"
+    <% end %>
   >
     <%= label %>
   </a>
