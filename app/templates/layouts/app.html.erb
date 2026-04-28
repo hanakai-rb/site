@@ -84,6 +84,23 @@
     <%= render "footer/base" %>
     <%= render "search/search_modal" %>
 
+    <%#
+      Run replaceWithTemplate synchronously before first paint to avoid a FOUC.
+      The body of the function below is a literal copy of replaceWithTemplateViewFn
+      in app/assets/js/views/replace-with-template.ts, which is loaded async and
+      would otherwise run after the page has painted. Keep the two in sync.
+    %>
+
+    <script>
+      document.querySelectorAll("[data-defo-replace-with-template]").forEach((node) => {
+        const template = Array.from(node.children).find((c) => c instanceof HTMLTemplateElement);
+        if (!(template instanceof HTMLTemplateElement)) return;
+        const replacement = template.content.firstElementChild;
+        if (!replacement) return;
+        node.replaceChildren(replacement.cloneNode(true));
+      });
+    </script>
+
     <% if tinylytics_site_id %>
       <script
         defer
