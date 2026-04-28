@@ -9,15 +9,57 @@
           targetToggleClassName: "nav-dropdown-closed"
         }.to_json %>"
         class="
-          flex items-center sm:px-3 lg:px-4 py-2 gap-2 text-xl font-bold tracking-tighter tracking-tighter rounded-xl cursor-pointer
-          <%= "bg-primary text-primary-reversed" if current_page?("/projects") %>
+          nav-item-desktop relative flex items-center sm:px-3 lg:px-4 py-2 gap-2 text-xl font-bold tracking-tighter tracking-tighter rounded-xl cursor-pointer
+          <%= "is-active text-primary-reversed" if current_page?("/projects") %>
         "
       >
-        Projects
-        <span class="
-          inline-block transition-transform duration-100
-          [.open_&]:rotate-180 translate-y-0.5
-        "><%= render "svgs/icons/caret_down", height: 12, width: 12, class_name: "fill-current", stroke_width: 20 %></span>
+        <span class="nav-item-desktop__bg" aria-hidden="true"></span>
+
+        <span
+          class="nav-item-desktop__label"
+          style="view-transition-name: nav-label-projects"
+        >
+          Projects
+        </span>
+
+        <span
+          class="
+            relative inline-block transition-transform duration-100
+            [.open_&]:rotate-180 translate-y-0.5
+          "
+        >
+          <%= render "svgs/icons/caret_down", height: 12, width: 12, class_name: "fill-current", stroke_width: 20 %>
+        </span>
+
+        <span
+          class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s1"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s2"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s3"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s4"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s5"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s6"
+          aria-hidden="true"
+        ></span>
       </button>
 
       <div
@@ -43,8 +85,11 @@
       </div>
     </li>
 
-    <% nav_items.each do |item| %>
-      <%= render "layouts/header/nav_item_desktop", label: item.label, url: item.url %>
+    <% nav_items.each_with_index do |item, idx| %>
+      <%= render "layouts/header/nav_item_desktop",
+                 label: item.label,
+                 url: item.url,
+                 index: idx %>
     <% end %>
   </ul>
 

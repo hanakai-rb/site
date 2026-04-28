@@ -1,3 +1,193 @@
+/*
+ * Desktop nav item sparkle. Mirrors the Hanami logo's tap burst — dots scatter
+ * around the perimeter, pop in, then drift outward as they fade. Each dot has
+ * its own size, position, drift vector, delay, and duration so the burst feels
+ * organic rather than mechanical.
+ */
+.nav-item-desktop {
+  --sparkle-color: var(--hk-color-bg-primary);
+}
+
+.nav-item-desktop.is-active {
+  --sparkle-color: var(--hk-color-text-primary-reversed);
+}
+
+.nav-item-desktop__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.nav-item-desktop.is-active .nav-item-desktop__bg {
+  background: var(--hk-color-bg-primary);
+}
+
+.nav-item-desktop__label {
+  position: relative;
+  display: inline-block;
+  transform-origin: center;
+}
+
+/*
+ * Cross-document view transitions: only the active nav pill morphs between
+ * pages. Root crossfade is suppressed so the rest of the page swaps instantly
+ * and only the colored pill slides from old item to new. Labels are also
+ * captured (unique stable names per item) so they sit above the bg snapshot
+ * in the VT top layer — without that, the moving bg snapshot draws over text.
+ *
+ * Whole feature is gated on no-preference so reduced-motion users get an
+ * instant state swap with no animation.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  .nav-item-desktop.is-active .nav-item-desktop__bg {
+    view-transition-name: nav-active-item;
+  }
+
+  .nav-item-desktop__label {
+    view-transition-class: nav-label;
+  }
+
+  ::view-transition-group(nav-active-item) {
+    z-index: 0;
+    animation-duration: 240ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /*
+   * UA default `block-size: auto` preserves the snapshot's aspect ratio, so
+   * the narrower item balloons vertically as it stretches toward the wider
+   * item's width. Pin to 100% so height tracks the group bounds.
+   */
+  ::view-transition-old(nav-active-item),
+  ::view-transition-new(nav-active-item) {
+    block-size: 100%;
+  }
+
+  ::view-transition-group(.nav-label) {
+    z-index: 1;
+    animation-duration: 280ms;
+  }
+}
+
+.nav-item-desktop__sparkle {
+  position: absolute;
+  width: var(--size, 4px);
+  height: var(--size, 4px);
+  border-radius: 9999px;
+  background: var(--sparkle-color);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+.nav-item-desktop__sparkle--s1 {
+  top: -1px;
+  left: 18%;
+  --size: 4px;
+  --dx: -2px;
+  --dy: -8px;
+  --dur: 720ms;
+  --delay: 0ms;
+}
+.nav-item-desktop__sparkle--s2 {
+  top: 3px;
+  right: 8%;
+  --size: 5px;
+  --dx: 7px;
+  --dy: -6px;
+  --dur: 760ms;
+  --delay: 90ms;
+}
+.nav-item-desktop__sparkle--s3 {
+  top: 38%;
+  right: -3px;
+  --size: 3px;
+  --dx: 8px;
+  --dy: 1px;
+  --dur: 660ms;
+  --delay: 40ms;
+}
+.nav-item-desktop__sparkle--s4 {
+  bottom: -1px;
+  right: 28%;
+  --size: 4px;
+  --dx: 3px;
+  --dy: 8px;
+  --dur: 740ms;
+  --delay: 170ms;
+}
+.nav-item-desktop__sparkle--s5 {
+  bottom: 4px;
+  left: 12%;
+  --size: 5px;
+  --dx: -7px;
+  --dy: 6px;
+  --dur: 700ms;
+  --delay: 30ms;
+}
+.nav-item-desktop__sparkle--s6 {
+  top: 32%;
+  left: -2px;
+  --size: 3px;
+  --dx: -8px;
+  --dy: -1px;
+  --dur: 780ms;
+  --delay: 130ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-item-desktop:hover .nav-item-desktop__label,
+  .nav-item-desktop:focus-visible .nav-item-desktop__label {
+    animation: nav-item-wiggle 420ms ease-in-out 1;
+  }
+
+  .nav-item-desktop:hover .nav-item-desktop__sparkle,
+  .nav-item-desktop:focus-visible .nav-item-desktop__sparkle {
+    animation: nav-item-sparkle var(--dur, 720ms) ease-out var(--delay, 0ms) 1;
+  }
+}
+
+@keyframes nav-item-wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+  75% {
+    transform: rotate(-0.75deg);
+  }
+}
+
+@keyframes nav-item-sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2) translate(var(--dx, 0), var(--dy, 0));
+  }
+}
+
 /* Always hide when closed */
 #nav-projects-dropdown.nav-dropdown-closed {
   visibility: hidden;
