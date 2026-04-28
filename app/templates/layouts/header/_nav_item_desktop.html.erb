@@ -1,11 +1,48 @@
 <li>
   <a
     class="
-      flex items-center sm:px-3 md:px-2.5 lg:px-4 py-2 rounded-xl text-xl font-bold tracking-tighter
-      <%= "bg-primary text-primary-reversed hover:shadow-md transition-all" if current_page?(url) %>
+      nav-item-desktop relative flex items-center sm:px-3 md:px-2.5 lg:px-4 py-2 rounded-xl text-xl font-bold tracking-tighter
+      <%= "is-active text-primary-reversed" if current_page?(url) %>
     "
     href="<%= url %>"
   >
-    <%= label %>
+    <span class="nav-item-desktop__bg" aria-hidden="true"></span>
+
+    <span
+      class="nav-item-desktop__label"
+      style="view-transition-name: nav-label-<%= index %>"
+    >
+      <%= label %>
+    </span>
+
+    <span
+      class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s1"
+      aria-hidden="true"
+    ></span>
+
+    <span
+      class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s2"
+      aria-hidden="true"
+    ></span>
+
+    <span
+      class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s3"
+      aria-hidden="true"
+    ></span>
+
+    <span
+      class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s4"
+      aria-hidden="true"
+    ></span>
+
+    <span
+      class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s5"
+      aria-hidden="true"
+    ></span>
+
+    <span
+      class="nav-item-desktop__sparkle nav-item-desktop__sparkle--s6"
+      aria-hidden="true"
+    ></span>
   </a>
 </li>
