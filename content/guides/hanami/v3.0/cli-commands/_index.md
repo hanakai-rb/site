@@ -46,6 +46,7 @@ Commands:
   hanami install                              # Install Hanami third-party plugins
   hanami middleware                           # Print app Rack middleware stack
   hanami routes                               # Print app routes
+  hanami run CODE_OR_PATH                     # Run code in the context of the application
   hanami server                               # Start Hanami app server
   hanami version                              # Print Hanami app version
 ```
