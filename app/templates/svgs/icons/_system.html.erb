@@ -1,0 +1,3 @@
+<% base_class = defined?(class_name) ? class_name : "" %>
+<%= render "svgs/icons/mobile", height: height, width: width, class_name: "#{base_class} md:hidden" %>
+<%= render "svgs/icons/desktop", height: height, width: width, class_name: "#{base_class} hidden md:block" %>

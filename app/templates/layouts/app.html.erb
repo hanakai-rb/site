@@ -40,6 +40,8 @@
         var isDark = stored === "dark" || (!stored && prefersDark);
         // Always set a class to resolve dark mode
         document.documentElement.classList.toggle("dark", isDark);
+        // Position the theme switcher indicator before first paint to avoid flicker.
+        document.documentElement.dataset.themePref = stored === "light" || stored === "dark" ? stored : "system";
         // Apply .mac class to appropriate browsers
         document.documentElement.classList.toggle("mac", /\bmac/i.test(navigator.userAgent));
       })();

@@ -83,6 +83,13 @@
     --hk-color-text-link: var(--color-neutral-100);
     --hk-color-text-link-active: var(--color-hanakai-200);
   }
+
+  .theme-hanakai,
+  .theme-hanami,
+  .theme-dry,
+  .theme-rom {
+    --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-950) l c h / 0.4);
+  }
 }
 
 /* ─── Forced dark (JS sets .dark on <html>) ──────────────────────────────────
@@ -103,6 +110,17 @@ html.dark {
   --hk-color-text-neutral: var(--color-neutral-100);
   --hk-color-text-link: var(--color-neutral-100);
   --hk-color-text-link-active: var(--color-hanakai-200);
+
+  /* Theme classes nested below the root (e.g. blog posts apply theme-<org>
+     directly on <article>) re-declare the light-mode subtle background, which
+     would otherwise shadow html.dark for descendants. Re-apply the dark value
+     wherever a theme class appears. */
+  .theme-hanakai,
+  .theme-hanami,
+  .theme-dry,
+  .theme-rom {
+    --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-950) l c h / 0.4);
+  }
 }
 
 /* ─── Forced light (system is dark, user chose light) ────────────────────────
