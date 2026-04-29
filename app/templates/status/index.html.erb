@@ -1,21 +1,35 @@
 <% content_for :title, "Status" %>
 
-<div>
-  <h1>Hanakai gems</h1>
+<div class="w-full lg:max-w-[80%] mx-auto">
+  <header class="lg:pt-12 lg:pb-12 pt-5 mb-6 text-center">
+    <h1 class="text-3xl lg:text-4xl font-black mb-4 tracking-tighter">
+      Hanakai gems
+    </h1>
 
-  <p>
-    The Hanakai ecosystem consists of many gems across Hanami, Dry, and Rom.
-    This page lists all these gems along with their most recent version numbers
-    and build status.
-  </p>
+    <p
+      class="
+        lg:text-lg text-md text-neutral-500 text-balance mb-3 max-w-3xl
+        mx-auto
+      "
+    >
+      Version and build status for every gem across Hanami, Dry, and Rom.
+    </p>
 
-  <p>
-    If you want to participate and help us, this page can help you too. You can
-    easily find a project that needs your help based on Issues, Pull requests
-    and Documentation coverage columns.
-  </p>
+    <p class="lg:text-lg text-md text-neutral-500 text-balance max-w-3xl mx-auto">
+      Looking for somewhere to contribute? Jump to a repo’s issues – we’d love
+      your help.
+    </p>
+  </header>
 
-  <%= render "status/project_table", caption: "Hanami projects", projects: hanami_projects %>
-  <%= render "status/project_table", caption: "DRY projects", projects: dry_projects %>
-  <%= render "status/project_table", caption: "ROM projects", projects: rom_projects %>
+  <div class="space-y-16 mb-16">
+    <%= render "status/project_section", id: "hanami", projects: hanami_projects %>
+
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
+
+    <%= render "status/project_section", id: "dry", projects: dry_projects %>
+
+    <%= render "svgs/wiggle", class_name: "text-[var(--hk-color-b-primary)] mb-14", height: 14, stroke_width: 2 %>
+
+    <%= render "status/project_section", id: "rom", projects: rom_projects %>
+  </div>
 </div>

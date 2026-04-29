@@ -1,0 +1,20 @@
+<section id="<%= id %>" class="theme-<%= id %> flex flex-col lg:flex-row">
+  <div
+    class="
+      lg:sticky lg:top-[calc(var(--hk-nav-height)+2rem)] lg:self-start mb-4
+      lg:mb-0 grow lg:flex-3/12
+    "
+  >
+    <div class="hk-project-heading flex items-center gap-3 mb-2">
+      <%= render "svgs/#{id}_logo_animated", width: 50, height: 50, trigger_selector: ".hk-project-heading" %>
+
+      <h2 class="text-4xl font-bold text-primary">
+        <%= render "shared/names/#{id}" %>
+      </h2>
+    </div>
+  </div>
+
+  <div class="grow lg:flex-9/12">
+    <%= render "status/project_table", projects: projects, id: id %>
+  </div>
+</section>
