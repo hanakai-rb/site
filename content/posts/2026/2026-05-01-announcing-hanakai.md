@@ -51,6 +51,6 @@ Our new garden is open, and we'd love for you to join us:
 
 - Chat with us on [Discord](https://discord.gg/KFCxDmk3JQ)
 - Start a thread on [our forum](https://discourse.hanamirb.org)
-- Follow along on [Mastodon](https://ruby.social/@hanami) or [Bluesky](https://bsky.app/profile/hanamirb.org)
+- Follow along on [Mastodon](https://ruby.social/@hanakai) or [Bluesky](https://bsky.app/profile/hanakai.org)
 
 Of all our projects, our community is by far our most important. With Hanakai, it’s stronger than ever, and ready to welcome you in. Here's to many seasons ahead! 🌸
