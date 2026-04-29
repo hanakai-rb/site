@@ -1,29 +1,114 @@
-<table>
-  <caption><%= caption %></caption>
+<table class="w-full">
+  <caption class="sr-only"><%= id.upcase %> projects</caption>
 
-  <thead>
-    <tr>
-      <th scope="col">Project</th>
-      <th scope="col">Version</th>
-      <th scope="col">Build status</th>
+  <thead class="hidden lg:table-header-group">
+    <tr class="border-b border-(--hk-color-neutral-subtle)">
+      <th
+        scope="col"
+        class="
+          w-full border-r border-(--hk-color-neutral-subtle) py-0.5
+          text-left pr-3
+        "
+      >
+        Project
+      </th>
+
+      <th
+        scope="col"
+        class="
+          border-r border-(--hk-color-neutral-subtle) text-left py-0.5 px-3
+          whitespace-nowrap
+        "
+      >
+        Version
+      </th>
+
+      <th
+        scope="col"
+        class="
+          border-(--hk-color-neutral-subtle) text-left py-0.5 pl-3
+          whitespace-nowrap
+        "
+      >
+        Build status
+      </th>
     </tr>
   </thead>
 
   <tbody>
     <% projects.each do |project| %>
-      <tr>
-        <td><a href="<%= project.github_url %>"><%= project.label %></a></td>
+      <tr
+        class="
+          flex flex-wrap items-center gap-x-3 pt-2 pb-4
+          lg:table-row lg:py-0
+          not-last:border-b border-(--hk-color-neutral-subtle)
+        "
+      >
+        <td
+          class="
+            block w-full mb-2 text-left lg:table-cell lg:align-middle
+            lg:w-auto lg:mb-0 lg:py-0.5 lg:pr-3 lg:border-r
+            border-(--hk-color-neutral-subtle)
+          "
+        >
+          <div class="flex items-center justify-between gap-3">
+            <a
+              class="
+                font-mono text-link hover:underline hover:decoration-[3px]
+                hover:decoration-(--hk-color-text-link-underline)
+                [text-decoration-skip-ink:none]
+              "
+              href="<%= project.github_url %>"
+            >
+              <%= project.label %>
+            </a>
 
-        <td>
-          <a href="<%= project.version_badge_url %>">
-            <%= image_tag project.version_badge_image_url, alt: "#{project.label} on rubygems" %>
+            <div class="flex items-center gap-1 shrink-0">
+              <a
+                class="
+                  flex rounded-lg p-1 lg:p-2 text-neutral transition-colors
+                  lg:hover:bg-(--hk-color-bg-primary) lg:hover:text-white!
+                "
+                href="<%= project.github_url %>"
+                aria-label="<%= project.label %> on GitHub"
+              >
+                <%= render "svgs/icons/github_logo", width: 24, height: 24, class_name: "fill-none" %>
+              </a>
+
+              <a
+                class="
+                  flex rounded-lg p-1 lg:p-2 text-neutral transition-colors
+                  lg:hover:bg-(--hk-color-bg-primary) lg:hover:text-white!
+                "
+                href="<%= project.issues_badge_url %>"
+                aria-label="<%= project.label %> issues"
+              >
+                <%= render "svgs/icons/bug", width: 24, height: 24, class_name: "fill-current" %>
+              </a>
+            </div>
+          </div>
+        </td>
+
+        <td
+          class="
+            lg:table-cell lg:align-middle lg:py-1 lg:px-3 lg:border-r
+            border-(--hk-color-neutral-subtle)
+          "
+        >
+          <a class="flex" href="<%= project.version_badge_url %>">
+            <%= image_tag project.version_badge_image_url, alt: "#{project.label} on rubygems", class: "max-w-none" %>
           </a>
         </td>
 
-        <td>
+        <td
+          class="
+            lg:table-cell lg:align-middle lg:py-0.5 lg:pl-3
+            border-(--hk-color-neutral-subtle)
+          "
+        >
           <% if project.ci? %>
-            <a href="<%= project.ci_badge_url %>">
-              <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status" %>
+            <a class="flex" href="<%= project.ci_badge_url %>">
+              <%= image_tag project.ci_badge_image_url, alt: "#{project.label} CI status", class: "max-w-none" %>
             </a>
           <% end %>
         </td>
