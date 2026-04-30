@@ -3,6 +3,7 @@ build/
 db/*.sqlite
 log/*
 node_modules/
+vendor/
 public/*
 !public/404.html
 !public/500.html
