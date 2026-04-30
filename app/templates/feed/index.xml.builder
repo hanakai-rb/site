@@ -4,9 +4,9 @@ xml.instruct!
 
 xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
   xml.title "Hanakai"
-  xml.subtitle "Let your Ruby bloom. Home of the Hanami framework, Dry gems, and Rom persistence toolkit, Ruby gems to help you create software that is well-architected, maintainable and a pleasure to work on."
-  xml.link "href" => "https://hamamirb.org/feed.xml", "rel" => "self", "type" => "application/atom+xml"
-  xml.link "href" => "https://hamamirb.org/", "rel" => "alternate", "type" => "text/html"
+  xml.subtitle "Let your Ruby bloom. Hanakai is a family of Ruby tools that help you write clearer, more maintainable apps."
+  xml.link "href" => "https://hanakai.org/feed.xml", "rel" => "self", "type" => "application/atom+xml"
+  xml.link "href" => "https://hanakai.org/", "rel" => "alternate", "type" => "text/html"
   xml.id "#{site_url}/feed.xml"
   xml.updated (posts.first&.published_at || Time.now).iso8601
 
