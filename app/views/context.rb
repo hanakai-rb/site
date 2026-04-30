@@ -6,9 +6,8 @@ module Site
     class Context < Hanami::View::Context
       include Deps[_settings: "settings"]
 
-      def site_url
-        _settings.site_url
-      end
+      def site_url = _settings.site_url
+      def tinylytics_site_id = _settings.tinylytics_site_id
     end
   end
 end

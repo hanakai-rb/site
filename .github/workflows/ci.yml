@@ -74,6 +74,7 @@ jobs:
       - name: Static build
         env:
           SITE_URL: ${{ github.event_name == 'pull_request' && format('https://pr-{0}--hanakai.netlify.app', github.event.number) || 'https://hanakai.org' }}
+          TINYLYTICS_SITE_ID: o3yxA7q1wR3rjNYiCd84
         run: bin/static-build
 
       - name: Rake

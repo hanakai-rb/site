@@ -40,7 +40,7 @@
 
     <%= stylesheet_tag "app" %>
 
-    <script> <%# herb:disable html-require-script-nonce %>
+    <script>
       (function () {
         var stored = localStorage.getItem("hk-color-scheme");
         var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -83,5 +83,12 @@
 
     <%= render "footer/base" %>
     <%= render "search/search_modal" %>
+
+    <% if tinylytics_site_id %>
+      <script
+        defer
+        src="https://tinylytics.app/embed/<%= tinylytics_site_id %>.js"
+      ></script>
+    <% end %>
   </body>
 </html>
