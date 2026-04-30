@@ -24,6 +24,8 @@ Parklife.application.routes do
   # get '/hidden/pages', crawl: true
   # get '/feed.atom'
 
+  get "/feed.xml"
+
   # Unlisted guides are not linked from anywhere on the site, so they won't be
   # discovered by the root crawl above. Enumerate their pages explicitly.
   Site::App["repos.guide_repo"].all.select(&:unlisted).each do |guide|
