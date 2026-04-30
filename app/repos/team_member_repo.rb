@@ -8,13 +8,18 @@ module Site
       end
 
       def all_ordered
-        core = team_members.where(team: "core").to_a.sort_by(&:name)
-        maintainers = team_members.where(team: "maintainers").to_a.sort_by(&:name)
-        core + maintainers
+        sort_members(team_members.where(team: "core").to_a) +
+          sort_members(team_members.where(team: "maintainers").to_a)
       end
 
       def find_by_name(name)
         team_members.where(name:).first
+      end
+
+      private
+
+      def sort_members(members)
+        members.sort_by { |m| [m.active_since || Float::INFINITY, m.name] }
       end
     end
   end
