@@ -6,5 +6,7 @@ module Site
     setting :site_url,
       constructor: Types::String.optional.constructor(->(v) { v.sub(%r{/$}, "") }),
       default: "https://hanakai.org"
+
+    setting :tinylytics_site_id
   end
 end

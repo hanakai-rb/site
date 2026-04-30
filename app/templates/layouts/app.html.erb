@@ -83,5 +83,12 @@
 
     <%= render "footer/base" %>
     <%= render "search/search_modal" %>
+
+    <% if tinylytics_site_id %>
+      <script <%# herb:disable html-require-script-nonce %>
+        defer
+        src="https://tinylytics.app/embed/<%= tinylytics_site_id %>.js"
+      ></script>
+    <% end %>
   </body>
 </html>
