@@ -4,7 +4,11 @@
 module Site
   module Views
     class Context < Hanami::View::Context
-      # Define your view context here. See https://guides.hanamirb.org/views/context/ for details.
+      include Deps[_settings: "settings"]
+
+      def site_url
+        _settings.site_url
+      end
     end
   end
 end
