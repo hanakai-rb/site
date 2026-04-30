@@ -1,6 +1,6 @@
 <nav class="flex-1">
   <ul>
-    <%= render_with_slots "layouts/footer/nav_group", label: "Projects" do |g| %>
+    <%= render_with_slots "layouts/footer/nav_group", label: "Hanakai", url: "/" do |g| %>
       <% g.slot :items do %>
         <%= render "layouts/footer/nav_item", label: "Hanami", url: "/hanami" %>
         <%= render "layouts/footer/nav_item", label: "Dry", url: "/dry" %>
