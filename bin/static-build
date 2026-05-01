@@ -14,9 +14,7 @@ bundle exec hanami assets compile
 # Generate og:images (writes into public/og/, copied into build/ below)
 bundle exec rake og:generate
 
-# Generate sitemap
-#
-# TODO: after launch, use `rake sitemap:refresh`, to ping search engines.
+# Generate sitemap.
 bundle exec rake sitemap:create
 
 # Build with Parklife - and forward arguments sent to this script.
