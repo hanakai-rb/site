@@ -21,7 +21,7 @@ Dry is also the foundation Hanami is built on — if you use Hanami, you're alre
 
 ## See Dry in action
 
-Want to see what Dry code actually looks like? The [Dry overview](/dry) tours the headline gems with side-by-side code examples.
+Want to see what Dry code actually looks like? The [Dry overview](/dry) tours the headline gems with code examples.
 
 ## Where to start
 
