@@ -25,7 +25,7 @@ The complete source is on GitHub at [hanakai-rb/site](https://github.com/hanakai
 
 ## Typography
 
-- Headings and body text are set in [Faire Sprig Sans](https://faire.world/typefaces/faire-sprig-sans), a friendly humanist sans by Faire. It's warm and a little bit quirky, which suits us well.
+- Headings and body text are set in [Faire Sprig Sans](https://www.fairetype.com/fonts/sprig-sans), a friendly humanist sans by Faire. It's warm and a little bit quirky, which suits us well.
 - Code and other monospaced text is set in [Maple Mono](https://github.com/subframe7536/maple-font), an open source typeface by Subframe. It's friendly and playful, just like us. Code is fun!
 
 ## Privacy
