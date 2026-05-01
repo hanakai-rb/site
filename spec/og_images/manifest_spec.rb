@@ -20,7 +20,8 @@ RSpec.describe Site::OgImages::Manifest do
     end
 
     it "carries title, author, date, and org for posts" do
-      post_entry = manifest.all.find { |e| e.template == "post" }
+      # Not every post specifies an org; find one that does.
+      post_entry = manifest.all.find { |e| e.template == "post" && e.data.key?(:org) }
       expect(post_entry.data).to include(:title, :author, :date, :org)
     end
 
