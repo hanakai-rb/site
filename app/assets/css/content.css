@@ -682,18 +682,25 @@
     h4,
     h5 {
       position: relative;
-      a[href^="#"]:before {
-        padding-inline-end: calc(var(--spacing) * 2.5);
-        opacity: 0;
+      a[href^="#"] {
         position: absolute;
         left: calc(var(--spacing) * -5.5);
-        margin-top: calc(var(--spacing) * 2.5);
+        top: 0;
+        height: 1lh;
+        display: flex;
+        align-items: center;
+        margin-inline-start: 0;
+        opacity: 0;
         transition-duration: 75ms;
         transition-property: opacity;
         transition-timing-function: linear;
       }
+      a[href^="#"]:before {
+        margin-block-start: 0;
+        padding-inline-end: calc(var(--spacing) * 2.5);
+      }
       &:hover {
-        a[href^="#"]:before {
+        a[href^="#"] {
           opacity: 1;
         }
       }
