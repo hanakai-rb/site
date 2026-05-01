@@ -8,11 +8,20 @@ This guide is your map of the ecosystem. Each gem has its own guide — follow a
 
 ## What Dry is about
 
-- **Focused.** Each gem does one thing well. Use what you need, skip what you don't.
-- **Framework-agnostic.** Dry gems work equally well in plain Ruby, in a Hanami app, or alongside Rails.
-- **Explicit over magic.** Clear, obvious code over implicit behaviour.
+Dry gems are:
 
-Dry is also the foundation on which Hanami is built — if you use Hanami, you're already using Dry.
+- **Focused.** Each gem has a clear purpose, and does it well.
+- **Composable.** Each gem handles a different concern, so they combine cleanly.
+- **Framework-agnostic.** Works in plain Ruby, Hanami, or Rails.
+- **Explicit over magic.** Clear code, no surprises.
+- **Functional.** Data-oriented, with immutable values and explicit transformations.
+- **Testable.** Small, focused pieces with explicit inputs make for straightforward tests.
+
+Dry is also the foundation Hanami is built on — if you use Hanami, you're already using Dry, and are in a great position to use more of these gems.
+
+## See Dry in action
+
+Want to see what Dry code actually looks like? The [Dry overview](/dry) tours the headline gems with side-by-side code examples.
 
 ## Where to start
 
