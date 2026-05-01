@@ -2,18 +2,28 @@
 title: Overview
 ---
 
-Welcome to Dry! This is a family of 20+ small, focused Ruby gems that help you write clear, flexible, and maintainable code. From business logic to everyday utilities, these gems work great together or standalone in any kind of app.
+Welcome to Dry! This is a family of 20+ focused Ruby gems that help you write clear, flexible, and maintainable code. From business logic to everyday utilities, these gems work great together or standalone in any kind of app.
 
 This guide is your map of the ecosystem. Each gem has its own guide — follow any link for a full introduction and reference.
 
 ## What Dry is about
 
-- **Small and focused.** Each gem does one thing well. Use what you need, skip what you don't.
-- **Framework-agnostic.** Dry works equally well in plain Ruby, in a Hanami app, or alongside Rails.
+- **Focused.** Each gem does one thing well. Use what you need, skip what you don't.
+- **Framework-agnostic.** Dry gems work equally well in plain Ruby, in a Hanami app, or alongside Rails.
 - **Explicit over magic.** Clear, obvious code over implicit behaviour.
-- **Proven in production.** Built on more than a decade of real-world use and refinement.
 
 Dry is also the foundation on which Hanami is built — if you use Hanami, you're already using Dry.
+
+## Where to start
+
+Pick a path that fits what you're building:
+
+- **Building a full app, with Hanami, Rails, or anything else.** Start with [Dry Validation](//doc/dry/dry-validation) for inputs and [Dry Operation](//doc/dry/dry-operation) for organising processes, with [Dry Types](//doc/dry/dry-types) and [Dry Struct](//doc/dry/dry-struct) to model your domain. [Hanami](/learn/hanami) ships with these wired up and ready to use; for Rails, [Dry Rails](//doc/dry/dry-rails) is the easiest way in.
+- **Writing a CLI.** [Dry CLI](//doc/dry/dry-cli) is a self-contained framework for building rich command line apps — argument parsing, subcommands, help text, and full Ruby underneath.
+- **Authoring a gem.** [Dry Core](//doc/dry/dry-core), [Dry Initializer](//doc/dry/dry-initializer), and [Dry Configurable](//doc/dry/dry-configurable) cover the everyday needs of library code. [Dry Logger](//doc/dry/dry-logger) gives you structured logging without forcing it on your users.
+- **Exploring functional Ruby.** [Dry Monads](//doc/dry/dry-monads) and [Dry Effects](//doc/dry/dry-effects) bring monadic composition and algebraic effects to Ruby in idiomatic ways.
+
+Or read on for the full map of the ecosystem.
 
 ## Validation and data
 
@@ -60,18 +70,10 @@ Structure apps around clear boundaries, loosely coupled components, and explicit
 
 ## Legacy gems
 
-Three Dry gems remain here for reference but are no longer recommended for new projects.
+These remain for reference but are no longer recommended for new projects.
 
 - **[Dry Container](//doc/dry/dry-container)** — now [part of Dry Core](//doc/dry/dry-core).
 - **[Dry Equalizer](//doc/dry/dry-equalizer)** — now [part of Dry Core](//doc/dry-core/equalizer).
 - **[Dry Matcher](//doc/dry/dry-matcher)** — superseded by [Dry Monads pattern matching](//doc/dry-monads/pattern-matching)
 - **[Dry Transaction](//doc/dry/dry-transaction)** — superseded by [Dry Operation](//doc/dry/dry-operation).
 - **[Dry View](//doc/dry/dry-view)** — renamed to [Hanami View](//doc/hanami/views).
-
-## Where to next
-
-New to Dry? Start with whichever gem solves a problem you have right now. If you're validating input, try [Dry Validation](//doc/dry/dry-validation). If you're organising business logic, try [Dry Operation](//doc/dry/dry-operation). If you're modelling your domain, try [Dry Types](//doc/dry/dry-types) and [Dry Struct](//doc/dry/dry-struct).
-
-Want to see Dry gems already wired together in a full app? Check out [Hanami](/learn/hanami) — it's built on Dry from the ground up, with everything set up and ready to use.
-
-Otherwise, use the sidebar to jump straight into any gem's guide.
