@@ -23,9 +23,11 @@ Pick a path that fits what you're building:
 - **Authoring a gem.** [Dry Core](//doc/dry/dry-core), [Dry Initializer](//doc/dry/dry-initializer), and [Dry Configurable](//doc/dry/dry-configurable) cover the everyday needs of library code. [Dry Logger](//doc/dry/dry-logger) gives you structured logging without forcing it on your users.
 - **Exploring functional Ruby.** [Dry Monads](//doc/dry/dry-monads) and [Dry Effects](//doc/dry/dry-effects) bring monadic composition and algebraic effects to Ruby in idiomatic ways.
 
-Or read on for the full map of the ecosystem.
+## The gems
 
-## Validation and data
+Read on for the full map of the ecosystem, grouped by what each gem helps you do.
+
+### Validation and data
 
 Describe the shape of your data, transform untrusted input into trusted values, and build typed objects you can rely on.
 
@@ -36,7 +38,7 @@ Describe the shape of your data, transform untrusted input into trusted values, 
 - **[Dry Initializer](//doc/dry/dry-initializer)** — a params and options DSL for object initialization.
 - **[Dry Logic](//doc/dry/dry-logic)** — predicate logic and composable rule objects.
 
-## Business logic and control flow
+### Business logic and control flow
 
 Write explicit, testable business logic with clear paths for success and failure.
 
@@ -44,7 +46,7 @@ Write explicit, testable business logic with clear paths for success and failure
 - **[Dry Monads](//doc/dry/dry-monads)** — monads for expressive error handling and composition.
 - **[Dry Effects](//doc/dry/dry-effects)** — algebraic effects for managing side effects.
 
-## Everyday utilities
+### Everyday utilities
 
 Practical, standalone helpers for both libraries and apps.
 
@@ -55,7 +57,7 @@ Practical, standalone helpers for both libraries and apps.
 - **[Dry CLI](//doc/dry/dry-cli)** — a framework for building command line applications.
 - **[Dry Files](//doc/dry/dry-files)** — a file system abstraction and utilities.
 
-## Architecture and composition
+### Architecture and composition
 
 Structure apps around clear boundaries, loosely coupled components, and explicit dependencies.
 
@@ -64,11 +66,11 @@ Structure apps around clear boundaries, loosely coupled components, and explicit
 - **[Dry Events](//doc/dry/dry-events)** — a publish-subscribe event system.
 - **[Dry Monitor](//doc/dry/dry-monitor)** — instrumentation and monitoring middleware.
 
-## Framework integration
+### Framework integration
 
 - **[Dry Rails](//doc/dry/dry-rails)** — a Dry-rb integration for Rails applications.
 
-## Legacy gems
+### Legacy gems
 
 These remain for reference but are no longer recommended for new projects.
 
