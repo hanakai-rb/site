@@ -1,16 +1,14 @@
 ---
 title: Welcome to Hanakai
-date: 2026-05-01 12:00:00 UTC
-tags: announcements
+date: 2026-05-01 02:00:00 UTC
 author: Tim Riley
-image: true
 excerpt: >
   It’s time to bring the family together.
 ---
 
-If you've followed Hanami for a while, you'll know we're rather fond of flowers. Today our garden has grown: Hanami, Dry, and Rom — three projects that have lived alongside each other across a decade and billions of downloads — are finally coming together as one. Welcome to Hanakai!
+If you've followed Hanami for a while, you'll know we're rather fond of flowers. Today our garden has grown: [Hanami](/hanami), [Dry](/dry), and [Rom](/rom) — three projects that have lived alongside each other across a decade and billions of downloads — are finally coming together as one. Welcome to Hanakai! :hanakai:
 
-With Hanakai, we're building a single shared community around the gems you know and love. The gems will carry on, now cared for by a unified team. And with our beautiful new website, now you can discover our vision for Ruby more easily than ever.
+With Hanakai, we're building a single shared community around the gems you know and love. The gems will carry on, now cared for by a bigger, unified team. And with our beautiful new website, now you can discover our vision for Ruby more easily than ever.
 
 Loosely translated from the Japanese 花会, Hanakai means "flower fellowship", sharing its first character 花 with Hanami, "flower viewing". With this name, we carry forward Hanami's spirit of nature and community. From today, our blossoms bloom together, and we invite you to join us!
 
@@ -18,7 +16,7 @@ Loosely translated from the Japanese 花会, Hanakai means "flower fellowship", 
 
 To go with our new name, we're unveiling our new look. This is a brand that truly reflects who we are as a community: friendly, humane, and a little bit fun!
 
-<!-- TODO: image of the logos -->
+![Hanakai logos](/blog/assets/2026-05-01-welcome-to-hanakai/hanakai-logos.png)
 
 Our logos share a common spirit, while letting each project preserve its own identity. That's how we want Hanakai to feel — for everyone.
 
@@ -28,7 +26,7 @@ A huge thank you to [Aaron Moodie](https://github.com/aaronmoodie) for bringing 
 
 You're reading this on our brand new website, now at [hanakai.org](https://hanakai.org). Here we've brought everything together: [project](/) and [community](/community) info, our [blog posts](/blog), and [guides](/learn) for every aspect of using our gems. Our refined typography and rebuilt search function make finding what you need a pleasure.
 
-Fittingly, this site is a Hanami app! It's [fully open source](https://github.com/hanakai-rb/site), so you can check it out to see how we build Hanakai with Hanakai. Our guides [live together](https://github.com/hanakai-rb/site/tree/main/content/guides) as Markdown files inside this repo, ready for your contributions!
+Fittingly, this site is a Hanami app! It's [fully open source](https://github.com/hanakai-rb/site), so you can check it out to see how we build Hanakai with Hanakai. All our guides [now live together](https://github.com/hanakai-rb/site/tree/main/content/guides) as Markdown files inside this repo, ready for your contributions!
 
 Another huge thank you goes to [Max Wheeler](https://github.com/makenosound) — every pixel of this site is Max's work. He designed and built the entire frontend, and has been a thoughtful, generous collaborator the whole way through. It brings me so much joy just to click around and see everything fitting so well together. Thank you, Max, we couldn't have done it without you.
 
@@ -41,7 +39,7 @@ Bringing Hanakai to you is a momentous shift for our corner of the Ruby world, a
 But we haven't stopped moving — there's plenty to look forward to:
 
 - A new release of [Dry Operation](/learn/dry/dry-operation) with a slew of niceties.
-- A feature-packed Hanami release. Keep an eye out for a release candidate soon!
+- A feature-packed [Hanami](/hanami) release. Keep an eye out for a release candidate soon!
 - New "Hanami for Rails developers" guides.
 - Our [sponsorship](/sponsor) drive for 2026. Your support has brought us this far — help us take the next steps!
 
@@ -49,8 +47,9 @@ But we haven't stopped moving — there's plenty to look forward to:
 
 Our new garden is open, and we'd love for you to join us:
 
-- Chat with us on [Discord](https://discord.gg/KFCxDmk3JQ)
-- Start a thread on [our forum](https://discourse.hanamirb.org)
-- Follow along on [Mastodon](https://ruby.social/@hanakai) or [Bluesky](https://bsky.app/profile/hanakai.org)
+- Chat with us on [Discord](https://discord.gg/KFCxDmk3JQ).
+- Start a thread on [our forum](https://discourse.hanamirb.org).
+- Subscribe to [our newsletter](https://buttondown.com/hanakai#subscribe-form) to stay up to date with our announcements.
+- Follow along on [Mastodon](https://ruby.social/@hanakai) or [Bluesky](https://bsky.app/profile/hanakai.org).
 
 Of all our projects, our community is by far our most important. With Hanakai, it’s stronger than ever, and ready to welcome you in. Here's to many seasons ahead! 🌸

@@ -22,7 +22,7 @@ module Site
               title: front_matter.fetch(:title),
               published_at: Time.parse(front_matter.fetch(:date)),
               author: front_matter.fetch(:author),
-              org: front_matter.fetch(:org),
+              org: front_matter[:org],
               excerpt: front_matter[:excerpt],
               content: parsed_file.content,
               show_toc: front_matter.fetch(:show_toc, true)
