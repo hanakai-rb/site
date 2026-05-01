@@ -71,6 +71,13 @@ jobs:
           cache: npm
       - run: npm ci
 
+      - name: Restore og:image cache
+        uses: actions/cache@v4
+        with:
+          path: tmp/og_images/cache
+          key: og-cache-${{ hashFiles('bin/og_images/**', 'app/assets/fonts/**/*.woff2', 'package-lock.json') }}
+          restore-keys: og-cache-
+
       - name: Static build
         env:
           SITE_URL: ${{ github.event_name == 'pull_request' && format('https://pr-{0}--hanakai.netlify.app', github.event.number) || 'https://hanakai.org' }}
