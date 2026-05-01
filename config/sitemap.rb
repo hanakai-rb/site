@@ -9,6 +9,11 @@ app = Hanami.app
 SitemapGenerator::Sitemap.default_host = app["settings"].site_url
 
 SitemapGenerator::Sitemap.create do
+  # Projects
+  add "/hanami"
+  add "/dry"
+  add "/rom"
+
   # Pages
   add "/community"
   add "/conduct"
@@ -19,14 +24,24 @@ SitemapGenerator::Sitemap.create do
   # Guides
   add "/learn"
 
-  app["repos.guide_repo"].listed_versions_by_org.each do |org, versions|
-    # TODO: Update for self-versioned and versionless guides
+  guide_repo = app["repos.guide_repo"]
+  listed_guides = guide_repo.all.reject(&:unlisted)
+
+  # Org-versioned guide version indexes (e.g. /learn/hanami/v2.3)
+  guide_repo.listed_versions_by_org.each do |org, versions|
     versions.each do |version|
       add "/learn/#{org}/#{version}"
     end
   end
 
-  app["repos.guide_repo"].all.reject(&:unlisted).each do |guide|
+  # Self-versioned guide indexes (e.g. /learn/dry/dry-types)
+  listed_guides.select(&:self_versioned?).map { |g| [g.org, g.slug] }.uniq.each do |org, slug|
+    add "/learn/#{org}/#{slug}"
+  end
+
+  # Unversioned guide URLs (e.g. /learn/dry/getting-started) are the canonical guide URL itself,
+  # added by the loop below.
+  listed_guides.each do |guide|
     add guide.url_path
 
     guide.pages.all.each do |page|
