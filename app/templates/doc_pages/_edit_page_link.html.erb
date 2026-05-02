@@ -1,0 +1,15 @@
+<% if edit_url %>
+  <p class="text-sm pt-4">
+    <a
+      class="
+        inline-flex items-center gap-2 text-link
+        hover:decoration-[3px] hover:underline
+        hover:decoration-(--hk-color-text-link-underline)
+      "
+      href="<%= edit_url %>"
+    >
+      <%= render "svgs/icons/notepad", width: 16, height: 16, class_name: "fill-current" %>
+      Edit this page
+    </a>
+  </p>
+<% end %>

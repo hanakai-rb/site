@@ -15,6 +15,24 @@ RSpec.feature "Guides / Guide pages" do
     expect(page).to have_selector "main header h1", text: "Context"
   end
 
+  it "renders an edit-on-GitHub link for the guide index page" do
+    visit "/learn/hanami/v2.2/views"
+
+    expect(page).to have_link(
+      "Edit this page",
+      href: "https://github.com/hanakai-rb/site/edit/main/content/guides/hanami/v2.2/views/_index.md"
+    )
+  end
+
+  it "renders an edit-on-GitHub link for a guide page" do
+    visit "/learn/hanami/v2.2/views/context"
+
+    expect(page).to have_link(
+      "Edit this page",
+      href: "https://github.com/hanakai-rb/site/edit/main/content/guides/hanami/v2.2/views/context.md"
+    )
+  end
+
   it "links to all the guide pages for an org" do
     visit "/learn/hanami/v2.2/views"
 

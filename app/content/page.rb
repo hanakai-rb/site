@@ -15,6 +15,14 @@ module Site
       attribute :front_matter, Types::Strict::Hash.constructor(->(hsh) { hsh.transform_keys(&:to_sym) })
       attribute :content, Types::Strict::String
       attribute :source_dir, Types::Strict::String.optional.default(nil)
+      attribute :source_file_path, Types::Strict::String.optional.default(nil)
+
+      def edit_url
+        return unless source_file_path
+
+        relative_path = Pathname(source_file_path).relative_path_from(Site::App.root)
+        "#{PAGE_EDIT_URL_BASE}/#{relative_path}"
+      end
 
       def title
         front_matter.fetch(:title)

@@ -17,6 +17,8 @@ module Site
     INDEX_PAGE_PATH = "_index"
     PAGES_FRONTMATTER_KEY = :pages
 
+    PAGE_EDIT_URL_BASE = "https://github.com/hanakai-rb/site/edit/main"
+
     class NotFoundError < StandardError
       attr_reader :path
 
