@@ -153,7 +153,7 @@ For the entire list of changes, please have a look at our [CHANGELOG](https://gi
 - `hanami-mailer-1.2.0.beta1`
 - `hanami-helpers-1.2.0.beta1`
 - `hanami-view-1.2.0.beta1`
-- `hamami-controller-1.2.0.beta1`
+- `hanami-controller-1.2.0.beta1`
 - `hanami-router-1.2.0.beta1`
 - `hanami-validations-1.2.0.beta1`
 - `hanami-utils-1.2.0.beta1`

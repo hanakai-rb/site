@@ -83,7 +83,7 @@ end
 - `hanami-mailer-1.1.0.beta2`
 - `hanami-helpers-1.1.0.beta2`
 - `hanami-view-1.1.0.beta2`
-- `hamami-controller-1.1.0.beta2`
+- `hanami-controller-1.1.0.beta2`
 - `hanami-router-1.1.0.beta2`
 - `hanami-validations-1.1.0.beta2`
 - `hanami-utils-1.1.0.beta2`

@@ -36,7 +36,7 @@ Today we're happy to announce `v1.3.1` 🙌.
 - `hanami-mailer-1.3.1`
 - `hanami-helpers-1.3.1`
 - `hanami-view-1.3.1`
-- `hamami-controller-1.3.1`
+- `hanami-controller-1.3.1`
 - `hanami-router-1.3.1`
 - `hanami-validations-1.3.1`
 - `hanami-utils-1.3.1`

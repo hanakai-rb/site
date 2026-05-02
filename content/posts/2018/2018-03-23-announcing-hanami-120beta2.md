@@ -32,7 +32,7 @@ Today we're happy to announce `v1.2.0.beta2` release 🙌 , with the stable rele
 - `hanami-mailer-1.2.0.beta2`
 - `hanami-helpers-1.2.0.beta2`
 - `hanami-view-1.2.0.beta2`
-- `hamami-controller-1.2.0.beta2`
+- `hanami-controller-1.2.0.beta2`
 - `hanami-router-1.2.0.beta2`
 - `hanami-validations-1.2.0.beta2`
 - `hanami-utils-1.2.0.beta2`

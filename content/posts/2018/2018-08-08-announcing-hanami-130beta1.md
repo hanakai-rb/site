@@ -136,7 +136,7 @@ We deprecated `Hanami::Action#parsed_body`, and it will be removed in future rel
 - `hanami-mailer-1.3.0.beta1`
 - `hanami-helpers-1.3.0.beta1`
 - `hanami-view-1.3.0.beta1`
-- `hamami-controller-1.3.0.beta1`
+- `hanami-controller-1.3.0.beta1`
 - `hanami-router-1.3.0.beta1`
 - `hanami-validations-1.3.0.beta1`
 - `hanami-utils-1.3.0.beta1`

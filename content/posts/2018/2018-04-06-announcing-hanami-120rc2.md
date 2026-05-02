@@ -34,7 +34,7 @@ Today we're happy to announce `v1.2.0.rc2` release 🙌 , with the stable releas
 - `hanami-mailer-1.2.0.rc2`
 - `hanami-helpers-1.2.0.rc2`
 - `hanami-view-1.2.0.rc2`
-- `hamami-controller-1.2.0.rc2`
+- `hanami-controller-1.2.0.rc2`
 - `hanami-router-1.2.0.rc2`
 - `hanami-validations-1.2.0.rc2`
 - `hanami-utils-1.2.0.rc2`

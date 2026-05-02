@@ -26,7 +26,7 @@ I quickly fixed the problem and released a new version: `v1.1.0.beta3`.
 - `hanami-mailer-1.1.0.beta3`
 - `hanami-helpers-1.1.0.beta3`
 - `hanami-view-1.1.0.beta3`
-- `hamami-controller-1.1.0.beta3`
+- `hanami-controller-1.1.0.beta3`
 - `hanami-router-1.1.0.beta3`
 - `hanami-validations-1.1.0.beta3`
 - `hanami-utils-1.1.0.beta3`

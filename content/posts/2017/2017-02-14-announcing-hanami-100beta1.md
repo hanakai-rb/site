@@ -127,7 +127,7 @@ For the entire list of changes, please have a look at our [CHANGELOG](https://gi
 
 - `hanami-1.0.0.beta1`
 - `hanami-model-1.0.0.beta1`
-- `hamami-controller-1.0.0.beta1`
+- `hanami-controller-1.0.0.beta1`
 - `hanami-assets-1.0.0.beta1`
 - `hanami-mailer-1.0.0.beta1`
 - `hanami-helpers-1.0.0.beta1`

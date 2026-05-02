@@ -258,7 +258,7 @@ PersonContract.new.call(email: 'bar', name: 'foo').errors.to_h
 # {name: ['name rule error'], email: ['email rule error']}
 ```
 
-If you want to check if any base rule error has already occured, you can use `base_rule_error?`.
+If you want to check if any base rule error has already occurred, you can use `base_rule_error?`.
 
 ```ruby
 class EventContract < Dry::Validation::Contract

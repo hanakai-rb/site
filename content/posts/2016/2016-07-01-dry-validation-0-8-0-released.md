@@ -86,7 +86,7 @@ end
 
 ## Customizable hints
 
-In addition to a number of bug fixes, we've added support for defining a seperate message for hints and error messages. This allows you to customize messages when a value didn’t pass basic checks and you want to display additional messages that are different than errors:
+In addition to a number of bug fixes, we've added support for defining a separate message for hints and error messages. This allows you to customize messages when a value didn’t pass basic checks and you want to display additional messages that are different than errors:
 
 To make use of this feature you need to tweak your `errors.yml` as follows:
 
