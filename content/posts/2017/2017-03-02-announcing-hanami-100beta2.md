@@ -30,7 +30,7 @@ excerpt: >
 
 - `hanami-1.0.0.beta2`
 - `hanami-model-1.0.0.beta2`
-- `hamami-controller-1.0.0.beta2`
+- `hanami-controller-1.0.0.beta2`
 - `hanami-router-1.0.0.beta2`
 - `hanami-utils-1.0.0.beta2`
 

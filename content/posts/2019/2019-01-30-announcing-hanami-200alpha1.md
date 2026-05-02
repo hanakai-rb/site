@@ -212,7 +212,7 @@ We'll re-add all the usual CLI commands from 1.3, as soon we'll implement the re
 
 - `hanami-2.0.0.alpha1`
 - `hanami-cli-1.0.0.alpha1`
-- `hamami-controller-2.0.0.alpha1`
+- `hanami-controller-2.0.0.alpha1`
 - `hanami-router-2.0.0.alpha1`
 - `hanami-utils-2.0.0.alpha1`
 - `hanami-reloader-1.0.0.alpha1`

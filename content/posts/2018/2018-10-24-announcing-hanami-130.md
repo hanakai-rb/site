@@ -145,7 +145,7 @@ We deprecated `Hanami::Action#parsed_request_body`, and it will be removed in fu
 - `hanami-mailer-1.3.0`
 - `hanami-helpers-1.3.0`
 - `hanami-view-1.3.0`
-- `hamami-controller-1.3.0`
+- `hanami-controller-1.3.0`
 - `hanami-router-1.3.0`
 - `hanami-validations-1.3.0`
 - `hanami-utils-1.3.0`
