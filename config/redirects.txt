@@ -1,3 +1,6 @@
 # Static redirects go here.
 #
 # See https://docs.netlify.com/manage/routing/redirects/overview/ for file format.
+
+# Fix historical blog post slug typo
+blog/2017/2017-10-25-annoucing-hanami-110.md blog/2017/2017-10-25-announcing-hanami-110.md
