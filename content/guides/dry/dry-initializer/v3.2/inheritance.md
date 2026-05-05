@@ -21,21 +21,23 @@ employee = Employee.new('John', 'supercargo')
 employee.name     # => 'John'
 employee.position # => 'supercargo'
 
-employee = Employee.new # => fails because type
+employee = Employee.new # => fails with 'wrong number of arguments (given 0, expected 2+)'
 ```
 
 You can override params and options.
-Such overriding leaves initial order of params (positional arguments) unchanged:
+Overriding leaves the initial order of positional params unchanged:
 
 ```ruby
 class Employee < User
-  param :position, optional: true
-  param :name,     default:  proc { 'Unknown' }
+  # Caution! defining :position before :name does not change the order of positional params
+  param :position, default: proc { 'Manager' }
+  param :name,     default: proc { 'Jerry' }
 end
 
-user = User.new         # => Boom! because User#name is required
-employee = Employee.new # passes because who cares on employee's name
+# Employee initializer still expects :name as the first positional argument
+employee = Employee.new('John', 'supercargo')
+employee.name     # => 'John'
+employee.position # => 'supercargo'
 
-employee.name
-# => 'Unknown' because it is the name that positioned first like in User
+user = User.new # => Boom! because User#name is still required
 ```
