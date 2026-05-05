@@ -25,7 +25,7 @@ employee = Employee.new # => fails with 'wrong number of arguments (given 0, exp
 ```
 
 You can override params and options.
-Overriding leaves the initial order of positional params unchanged:
+Overriding leaves the initial order of params (positional arguments) unchanged:
 
 ```ruby
 class Employee < User
@@ -35,9 +35,9 @@ class Employee < User
 end
 
 # Employee initializer still expects :name as the first positional argument
-employee = Employee.new('John', 'supercargo')
+employee = Employee.new('John')
 employee.name     # => 'John'
-employee.position # => 'supercargo'
+employee.position # => 'Manager'
 
 user = User.new # => Boom! because User#name is still required
 ```
