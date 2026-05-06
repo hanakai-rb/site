@@ -4,6 +4,15 @@ title: Recipes
 
 ### Symbolize input keys
 
+By default, Dry Struct expects input keys to be symbols. If you try to pass a hash with string keys, it will raise an exception.
+
+```ruby
+User.new('name' => 'Jane')
+#=> [User.new] :name is missing in Hash input (Dry::Struct::Error)
+```
+
+However, you can opt in for a more permissive behavior, where noth kinds of keys are accepted.
+
 ```ruby
 require 'dry-struct'
 
@@ -95,7 +104,7 @@ User.new(name: 'Jane', age: nil)
 
 ### Creating a custom struct class
 
-You can combine examples from this page to create a custom-purposed base struct class and the reuse it your application or gem
+If you want all of your struct to share some of the modified behavior menioned above, you can create a custom-purposed base struct class and the reuse it your application or gem
 
 ```ruby
 class MyStruct < Dry::Struct
@@ -116,9 +125,16 @@ class MyStruct < Dry::Struct
     end
   end
 end
+
+class User < MyStruct
+  attribute :name, Types::String.default("John Doe")
+end
+
+User.new('name' => nil)
+#=> #<User name="John Doe">
 ```
 
-### Set default value for a nested hash
+### Set default value for a nested struct
 
 ```ruby
 class Foo < Dry::Struct
@@ -157,7 +173,7 @@ end
 User.new(name: 'Quispe', city: 'La Paz', country: 'Bolivia')
 ```
 
-Composition can happen within a nested attribute:
+Composition can happen within a nested attribute too:
 
 ```ruby
 class User < Dry::Struct
