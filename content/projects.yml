@@ -26,12 +26,14 @@
 - repo: dry-rb/dry-validation
 - repo: dry-rb/dry-view
 - repo: hanami/hanami
+- repo: hanami/hanami-action
 - repo: hanami/hanami-assets
 - repo: hanami/hanami-cli
-- repo: hanami/hanami-controller
 - repo: hanami/hanami-db
-- repo: hanami/hanami-router
+- repo: hanami/hanami-mailer
+- repo: hanami/hanami-minitest
 - repo: hanami/hanami-reloader
+- repo: hanami/hanami-router
 - repo: hanami/hanami-rspec
 - repo: hanami/hanami-utils
 - repo: hanami/hanami-validations
