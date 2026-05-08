@@ -15,7 +15,7 @@ Whether you're a total beginner or an experienced developer, **this learning pro
 
 In this guide we'll set up our first Hanami project and build a simple web app. We'll touch on all the major components of the Hanami framework, guided by tests at each stage.
 
-**If you feel alone or frustrated, don't give up, jump into our <a href="https://discourse.hanamirb.org">forum</a> and ask for help.** We and the rest of our community are putting in our best efforts to make Hanami better every day.
+**If you feel alone or frustrated, don't give up, jump into our <a href="https://discourse.hanakai.org">forum</a> and ask for help.** We and the rest of our community are putting in our best efforts to make Hanami better every day.
 
 Enjoy,
 Luca, Peter and Tim

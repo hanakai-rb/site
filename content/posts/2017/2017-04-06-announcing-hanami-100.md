@@ -136,7 +136,7 @@ If you're upgrading from `v0.9.x`, please check the upgrade guide for `v1.0.0`.
 ## What's Next?
 
 We're already shaping the future of the project and what goes in the next version (`v1.1.0`).
-If you care about Hanami and want to share your ideas, please join [our conversation](https://discourse.hanamirb.org/t/hanami-2-0-ideas/306).
+If you care about Hanami and want to share your ideas, please join [our conversation](https://discourse.hanakai.org/t/hanami-2-0-ideas/306).
 
 **But for today, thank you all for this amazing journey.**
 

@@ -51,7 +51,7 @@ We took Hanami out into the world:
 - In April, I ran [Ruby in Common](https://rubyincommon.org) in Sydney, an experimental unconf for experimentally-minded Rubyists, and introduced Hanami as part of the proceedings.
 - In July, I spoke [at RedDotRubyConf](https://www.rubyvideo.dev/talks/livin-la-vida-hanami-red-dot-ruby-conference-2024) in Singapore.
 - In November, Sean gave an introductory workshop at [RubyConf](https://rubyconf.org) in Chicago. Sean will soon bring these teaching to you in the comfort of your own home: [sign up here](http://learnhanami.com)!
-- Also at RubyConf, I [represented Hanami](https://discourse.hanamirb.org/t/hanami-hack-day-at-rubyconf-2024/1051/2) at the hack day, [helping four new people](https://ruby.social/@hanami/113482901185245079) make their first contributions!
+- Also at RubyConf, I [represented Hanami](https://discourse.hanakai.org/t/hanami-hack-day-at-rubyconf-2024/1051/2) at the hack day, [helping four new people](https://ruby.social/@hanami/113482901185245079) make their first contributions!
 
 ## Plans for 2025
 
@@ -73,6 +73,6 @@ I’m very proud of what we’ve built together this year, and incredibly excite
 
 We’d love you to join us! We encourage you to try Hanami for your apps, contribute some code or writing, or even financially support our project.
 
-To get in touch with us, come [say hi on our forum](https://discourse.hanamirb.org) — here you join us for chat as well as long-form discussions.
+To get in touch with us, come [say hi on our forum](https://discourse.hanakai.org) — here you join us for chat as well as long-form discussions.
 
 You can also keep up by [subscribing to our blog](https://hanamirb.org) or following us on [Mastodon](https://ruby.social/@hanami) or [Bluesky](https://bsky.app/profile/hanamirb.org). You’ll be the first to know as we make each new step in 2025.

@@ -67,4 +67,4 @@ Establishing our sponsorship was [one of our most important goals for 2025](/blo
 
 With sponsorships in place, I can’t wait to bring you all of the above!
 
-Exciting stuff is on the way. If you want to help out or follow along, come say hi in [chat](https://discord.gg/KFCxDmk3JQ) or [our forum](https://discourse.hanamirb.org)!
+Exciting stuff is on the way. If you want to help out or follow along, come say hi in [chat](https://discord.gg/KFCxDmk3JQ) or [our forum](https://discourse.hanakai.org)!

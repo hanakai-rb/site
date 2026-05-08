@@ -48,7 +48,7 @@ But we haven't stopped moving — there's plenty to look forward to:
 Our new garden is open, and we'd love for you to join us:
 
 - Chat with us on [Discord](https://discord.gg/KFCxDmk3JQ).
-- Start a thread on [our forum](https://discourse.hanamirb.org).
+- Start a thread on [our forum](https://discourse.hanakai.org).
 - Subscribe to [our newsletter](https://buttondown.com/hanakai#subscribe-form) to stay up to date with our announcements.
 - Follow along on [Mastodon](https://ruby.social/@hanakai) or [Bluesky](https://bsky.app/profile/hanakai.org).
 

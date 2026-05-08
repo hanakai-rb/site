@@ -10,7 +10,7 @@ excerpt: >
 
 Good news, chat! We now have [a Hanami Discord](https://discord.gg/KFCxDmk3JQ), where you can join us to chat all things Hanami, dry-rb and ROM. [We’d love to see you there!](https://discord.gg/KFCxDmk3JQ)
 
-Discord isn’t the only place you can join our community. Our [venerable forum](https://discourse.hanamirb.org) remains our crown jewel, a growing treasure trove of learnings and experiences. We’d love to see you there too.
+Discord isn’t the only place you can join our community. Our [venerable forum](https://discourse.hanakai.org) remains our crown jewel, a growing treasure trove of learnings and experiences. We’d love to see you there too.
 
 In both our chat and forum, we care about building a friendly, inclusive and helpful community. We welcome people of all backgrounds, genders and experience levels, and respect you all equally. We do not tolerate nazis, transphobes, racists, or any kind of bigotry. See our [code of conduct](https://hanamirb.org/community/#code-of-conduct) for more.
 

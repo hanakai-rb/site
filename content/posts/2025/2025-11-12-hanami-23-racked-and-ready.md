@@ -85,7 +85,7 @@ $ bin/hanami dev
 $ open http://localhost:2300
 ```
 
-We’d love to hear how you go! Come join our [Discord](https://discord.gg/KFCxDmk3JQ) or [forum](https://discourse.hanamirb.org) and share your experience with our lovely community.
+We’d love to hear how you go! Come join our [Discord](https://discord.gg/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org) and share your experience with our lovely community.
 
 And if you’re a certified legend already rocking a Hanami app, make sure to check out the [upgrade notes](https://guides.hanamirb.org/v2.3/upgrade-notes/v2.3/) for 2.3.
 
