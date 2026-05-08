@@ -5,7 +5,6 @@
 - repo: dry-rb/dry-container
 - repo: dry-rb/dry-core
 - repo: dry-rb/dry-effects
-- repo: dry-rb/dry-equalizer
 - repo: dry-rb/dry-events
 - repo: dry-rb/dry-files
 - repo: dry-rb/dry-inflector
@@ -26,12 +25,14 @@
 - repo: dry-rb/dry-validation
 - repo: dry-rb/dry-view
 - repo: hanami/hanami
+- repo: hanami/hanami-action
 - repo: hanami/hanami-assets
 - repo: hanami/hanami-cli
-- repo: hanami/hanami-controller
 - repo: hanami/hanami-db
-- repo: hanami/hanami-router
+- repo: hanami/hanami-mailer
+- repo: hanami/hanami-minitest
 - repo: hanami/hanami-reloader
+- repo: hanami/hanami-router
 - repo: hanami/hanami-rspec
 - repo: hanami/hanami-utils
 - repo: hanami/hanami-validations
