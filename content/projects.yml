@@ -5,7 +5,6 @@
 - repo: dry-rb/dry-container
 - repo: dry-rb/dry-core
 - repo: dry-rb/dry-effects
-- repo: dry-rb/dry-equalizer
 - repo: dry-rb/dry-events
 - repo: dry-rb/dry-files
 - repo: dry-rb/dry-inflector
