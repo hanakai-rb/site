@@ -32,10 +32,12 @@ class CreateUser < Dry::Operation
 end
 ```
 
-The `#on_failure` method can optionally accept a second argument that indicates which method encountered the failure, allowing you more granular control over error handling:
+The `#on_failure` method can optionally accept a second argument: the name of the wrapped method that encountered the failure. This is the method dry-operation prepended around (`:call` by default), not the inner `#step` whose result was a `Failure`. This can be useful when you've configured additional wrapped methods with [`.operate_on`](//page/configuration) and want to handle their failures differently:
 
 ```ruby
 class CreateUser < Dry::Operation
+  operate_on :call, :update
+
   def initialize(logger:)
     @logger = logger
   end
@@ -47,17 +49,22 @@ class CreateUser < Dry::Operation
     user
   end
 
+  def update(user, input)
+    attrs = step validate(input)
+    step persist_changes(user, attrs)
+  end
+
   private
 
-  def on_failure(failure, step_name)
-    case step_name
-    when :validate
-      logger.error("Validation failed: #{failure}")
-    when :persist
-      logger.error("Persistence failed: #{failure}")
-    when :notify
-      logger.error("Notification failed: #{failure}")
+  def on_failure(failure, method_name)
+    case method_name
+    when :call
+      logger.error("Create failed: #{failure}")
+    when :update
+      logger.error("Update failed: #{failure}")
     end
   end
 end
 ```
+
+To identify which inner step failed, inspect the `failure` value itself — for example, by returning distinguishing values from each step (`Failure[:validate, errors]`, `Failure[:persist, error]`, etc.).
