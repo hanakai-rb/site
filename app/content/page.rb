@@ -6,6 +6,7 @@ require "html_pipeline/convert_filter/markdown_filter"
 require_relative "pipeline"
 require_relative "filters/emoji_logo_filter"
 require_relative "filters/inline_attribute_list_filter"
+require_relative "filters/namespace_constant_filter"
 
 module Site
   module Content
@@ -67,7 +68,8 @@ module Site
         ),
         post_filters: [
           Filters::EmojiLogoFilter.new,
-          Filters::InlineAttributeListFilter.new
+          Filters::InlineAttributeListFilter.new,
+          Filters::NamespaceConstantFilter.new
         ]
       )
       private_constant :ContentPipeline
