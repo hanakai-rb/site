@@ -38,8 +38,8 @@
 /gems/dry-files/:version/*          https://hanakai.org/learn/dry/dry-files/:splat
 /gems/dry-auto_inject               https://hanakai.org/learn/dry/dry-auto_inject
 /gems/dry-auto_inject/:version/*    https://hanakai.org/learn/dry/dry-auto_inject/:splat
-/gems/dry-equalizer                 https://hanakai.org/learn/dry/dry-equalizer
-/gems/dry-equalizer/:version/*      https://hanakai.org/learn/dry/dry-equalizer/:splat
+/gems/dry-equalizer                 https://hanakai.org/learn/dry/dry-core/equalizer
+/gems/dry-equalizer/:version/*      https://hanakai.org/learn/dry/dry-core/equalizer
 /gems/dry-events                    https://hanakai.org/learn/dry/dry-events
 /gems/dry-events/:version/*         https://hanakai.org/learn/dry/dry-events/:splat
 /gems/dry-inflector                 https://hanakai.org/learn/dry/dry-inflector
