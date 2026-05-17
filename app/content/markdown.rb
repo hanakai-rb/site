@@ -4,7 +4,7 @@
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
 require_relative "pipeline"
-require_relative "post_filters"
+require_relative "output_filters"
 
 module Site
   module Content
@@ -23,7 +23,7 @@ module Site
           node_filters: [],
           sanitization_config: nil
         ),
-        post_filters: POST_FILTERS
+        output_filters: DEFAULT_OUTPUT_FILTERS
       )
       private_constant :Pipeline
 

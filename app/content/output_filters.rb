@@ -7,10 +7,10 @@ require_relative "filters/namespace_constant_filter"
 
 module Site
   module Content
-    # Post-filters applied to every rendered Markdown document. Shared so the
+    # Output filters applied to every rendered Markdown document. Shared so the
     # chain stays consistent across the inline-snippet, page, and blog-post
     # pipelines, which each build their own HTMLPipeline.
-    POST_FILTERS = [
+    DEFAULT_OUTPUT_FILTERS = [
       Filters::EmojiLogoFilter.new,
       Filters::InlineAttributeListFilter.new,
       Filters::NamespaceConstantFilter.new

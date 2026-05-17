@@ -3,7 +3,7 @@
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
 require_relative "../content/pipeline"
-require_relative "../content/post_filters"
+require_relative "../content/output_filters"
 
 module Site
   module Structs
@@ -67,7 +67,7 @@ module Site
           # Don't bother sanitizing content, we already trust what's in this repo.
           sanitization_config: nil
         ),
-        post_filters: Content::POST_FILTERS
+        output_filters: Content::DEFAULT_OUTPUT_FILTERS
       )
       private_constant :ContentPipeline
 

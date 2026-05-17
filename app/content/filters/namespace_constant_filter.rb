@@ -13,7 +13,7 @@ module Site
       # constants. This filter wraps any bare constant directly following a `::`
       # scope-resolution operator in the same span the other segments receive.
       #
-      # Used as a post-filter via Content::Pipeline's `post_filters:` option.
+      # Used as an output filter via Content::Pipeline's `output_filters:` option.
       class NamespaceConstantFilter
         ACCESSOR = %r{<span class="[^"]*\baccessor\b[^"]*">::</span>}
         NAMESPACED_CONSTANT = /(#{ACCESSOR})([A-Z][A-Za-z0-9_]*)/o

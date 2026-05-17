@@ -11,20 +11,20 @@ RSpec.describe Site::Content::Pipeline do
     )
   end
 
-  it "applies post_filters to the output after the pipeline runs" do
+  it "applies output_filters to the output after the pipeline runs" do
     upcaser = ->(html) { html.upcase }
 
-    pipeline = described_class.new(base_pipeline, post_filters: [upcaser])
+    pipeline = described_class.new(base_pipeline, output_filters: [upcaser])
     result = pipeline.call("hello")
 
     expect(result.fetch(:output).to_s).to eq("<P>HELLO</P>")
   end
 
-  it "applies multiple post_filters in order" do
+  it "applies multiple output_filters in order" do
     append_a = ->(html) { html + "A" }
     append_b = ->(html) { html + "B" }
 
-    pipeline = described_class.new(base_pipeline, post_filters: [append_a, append_b])
+    pipeline = described_class.new(base_pipeline, output_filters: [append_a, append_b])
     result = pipeline.call("x")
 
     expect(result.fetch(:output).to_s).to end_with("AB")
@@ -52,7 +52,7 @@ RSpec.describe Site::Content::Pipeline do
     expect(result[:seen]).to be true
   end
 
-  it "works with no post_filters" do
+  it "works with no output_filters" do
     pipeline = described_class.new(base_pipeline)
     result = pipeline.call("hello")
 

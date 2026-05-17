@@ -20,7 +20,7 @@ module Site
       #
       #    {:.lead.large}
       #
-      # Used as a post-filter via Content::Pipeline's `post_filters:` option,
+      # Used as an output filter via Content::Pipeline's `output_filters:` option,
       # since sibling-awareness makes it incompatible with streaming NodeFilters.
       class InlineAttributeListFilter
         ANNOTATION = /\A\{:\.([-\w]+(?:\.[-\w]+)*)\}\z/
