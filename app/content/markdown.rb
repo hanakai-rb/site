@@ -8,6 +8,9 @@ require_relative "output_filters"
 
 module Site
   module Content
+    # General-purpose Markdown-string renderer, used for ad-hoc content such as
+    # code snippets in templates. Full content files go through `Page`/`Post`
+    # instead, which add their own node filters.
     module Markdown
       Pipeline = Content::Pipeline.new(
         HTMLPipeline.new(
