@@ -4,9 +4,7 @@
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
 require_relative "pipeline"
-require_relative "filters/emoji_logo_filter"
-require_relative "filters/inline_attribute_list_filter"
-require_relative "filters/namespace_constant_filter"
+require_relative "post_filters"
 
 module Site
   module Content
@@ -25,11 +23,7 @@ module Site
           node_filters: [],
           sanitization_config: nil
         ),
-        post_filters: [
-          Filters::EmojiLogoFilter.new,
-          Filters::InlineAttributeListFilter.new,
-          Filters::NamespaceConstantFilter.new
-        ]
+        post_filters: POST_FILTERS
       )
       private_constant :Pipeline
 

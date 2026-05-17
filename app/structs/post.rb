@@ -3,8 +3,7 @@
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
 require_relative "../content/pipeline"
-require_relative "../content/filters/emoji_logo_filter"
-require_relative "../content/filters/inline_attribute_list_filter"
+require_relative "../content/post_filters"
 
 module Site
   module Structs
@@ -68,10 +67,7 @@ module Site
           # Don't bother sanitizing content, we already trust what's in this repo.
           sanitization_config: nil
         ),
-        post_filters: [
-          Content::Filters::EmojiLogoFilter.new,
-          Content::Filters::InlineAttributeListFilter.new
-        ]
+        post_filters: Content::POST_FILTERS
       )
       private_constant :ContentPipeline
 
