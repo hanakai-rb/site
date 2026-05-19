@@ -4,11 +4,13 @@
 require "html_pipeline"
 require "html_pipeline/convert_filter/markdown_filter"
 require_relative "pipeline"
-require_relative "filters/emoji_logo_filter"
-require_relative "filters/inline_attribute_list_filter"
+require_relative "output_filters"
 
 module Site
   module Content
+    # General-purpose Markdown-string renderer, used for ad-hoc content such as
+    # code snippets in templates. Full content files go through `Page`/`Post`
+    # instead, which add their own node filters.
     module Markdown
       Pipeline = Content::Pipeline.new(
         HTMLPipeline.new(
@@ -24,10 +26,7 @@ module Site
           node_filters: [],
           sanitization_config: nil
         ),
-        post_filters: [
-          Filters::EmojiLogoFilter.new,
-          Filters::InlineAttributeListFilter.new
-        ]
+        output_filters: DEFAULT_OUTPUT_FILTERS
       )
       private_constant :Pipeline
 
