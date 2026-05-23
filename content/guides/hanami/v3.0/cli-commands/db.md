@@ -82,7 +82,7 @@ This command operates idempotently, so you can run it at any stage of your devel
 
 Loads and executes the seeds files for your app and slices. These are located at `config/db/seeds.rb`.
 
-These seed files should create the database records required to run the app. The code in these files be idempotent so that it can be executed at any time.
+These seed files should create the database records required to run the app. The code in these files should be idempotent so that it can be executed at any time.
 
 ## hanami db structure dump
 
