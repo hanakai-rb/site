@@ -191,6 +191,8 @@ export const pagefindSearchViewFn: ViewFn<Props> = (
   const onKeyDown = (e: KeyboardEvent) => {
     // Activate on Ctrl/Cmd + K
     if (!active && e.metaKey && e.key === "k") {
+      // prevent Firefox focusing on address bar
+      e.preventDefault();
       activate();
     }
     // Deactivate on Escape (unless we’re in the search input)
