@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   lint:
@@ -19,9 +18,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         name: Setup Node
         with:
           node-version: 22
@@ -40,9 +41,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         name: Setup Node
         with:
           node-version: 22
@@ -56,15 +59,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
         with:
           ruby-version: "3.4.7"
           bundler-cache: true
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         name: Setup Node
         with:
           node-version: "22.15.0"
@@ -72,7 +77,7 @@ jobs:
       - run: npm ci
 
       - name: Restore og:image cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: tmp/og_images/cache
           key: og-cache-${{ hashFiles('bin/og_images/**', 'app/assets/fonts/**/*.woff2', 'package-lock.json') }}
@@ -91,7 +96,7 @@ jobs:
         run: "bundle exec herb analyze"
 
       - name: Upload build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: build-files
           path: build/
@@ -102,35 +107,39 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint, test-js, build]
     if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Download build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: build-files
           path: build/
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22.15.0"
 
       - name: Deploy to Netlify
         id: deploy
         run: |
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+          if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
             npx netlify-cli@latest deploy --prod --dir=build --message="Production deploy @ ${{ github.sha }}"
           else
-            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${{ github.event.pull_request.title }} @ ${{ github.sha }}" | jq -r '.deploy_url')
+            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${GITHUB_EVENT_PULL_REQUEST_TITLE} @ ${{ github.sha }}" | jq -r '.deploy_url')
             echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          GITHUB_EVENT_PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
 
       - name: Add comment
         if: github.event_name == 'pull_request' && steps.deploy.outputs.deploy_url
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@773744901bac0e8cbb5a0dc842800d45e9b2b405 # v2.9.4
         with:
           message: "❇️ **Deploy preview:** ${{ steps.deploy.outputs.deploy_url }}"
 
@@ -140,4 +149,4 @@ jobs:
     permissions:
       actions: write
     steps:
-      - uses: liskin/gh-workflow-keepalive@v1
+      - uses: liskin/gh-workflow-keepalive@f72ff1a1336129f29bf0166c0fd0ca6cf1bcb38c # v1.2.1
