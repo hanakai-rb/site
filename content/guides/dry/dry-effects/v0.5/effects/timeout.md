@@ -32,11 +32,11 @@ class WithTimeout
   end
 
   def call(env)
-    with_timeout(10.0) { @app.(env) }
+    with_timeout(10.0) { @app.call(env) }
   rescue Net::OpenTimeout, Net::ReadTimeout, Net::WriteTimeout
     [504, {}, ["Gateway Timeout"]]
   end
 end
 ```
 
-The code above guarantees all requests made with `MakeRequest` during `@app.(env)` will finish within 10 seconds. If `@app` doesn't spend much time somewhere else, it gives a reasonably reliable hard limit on request processing.
+The code above guarantees all requests made with `MakeRequest` during `@app.call(env)` will finish within 10 seconds. If `@app` doesn't spend much time somewhere else, it gives a reasonably reliable hard limit on request processing.

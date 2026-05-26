@@ -49,10 +49,10 @@ Previously it was only possible to append a constructor function. This was too l
 ```ruby
 to_int = Types::Coercible::Integer
 inc = to_int.append { |x| x + 2 }
-inc.("1") # => "1" -> 1 -> 3
+inc.call("1") # => "1" -> 1 -> 3
 
 inc = to_int.prepend { |x| x + "2" }
-inc.("1") # => "1" -> "12" -> 12
+inc.call("1") # => "1" -> "12" -> 12
 ```
 
 This feature should be very useful in places like rom-rb's schemas or dry-schema, where you may want to pre-process data and then re-use existing coercion logic.

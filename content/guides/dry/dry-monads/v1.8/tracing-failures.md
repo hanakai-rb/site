@@ -23,8 +23,8 @@ end
 require 'create_user'
 
 create_user = CreateUser.new
-create_user.()       # => Failure(:no_luck)
-create_user.().trace # => .../create_user.rb:8:in `call'
+create_user.call()       # => Failure(:no_luck)
+create_user.call().trace # => .../create_user.rb:8:in `call'
 ```
 
 Note that the trace stores only one line of the stack so it shouldn't ever be a performance issue.

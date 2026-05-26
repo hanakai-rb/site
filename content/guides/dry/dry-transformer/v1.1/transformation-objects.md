@@ -20,7 +20,7 @@ end
 
 mapper = MyMapper.new
 
-mapper.(
+mapper.call(
   [
     { 'user_name' => 'Jane',
       'city' => 'NYC',

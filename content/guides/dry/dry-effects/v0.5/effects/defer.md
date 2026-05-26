@@ -19,7 +19,7 @@ class CreateUser
 
   def call(values)
     user = user_repo.create(values)
-    defer { send_invitation.(user) }
+    defer { send_invitation.call(user) }
     user
   end
 end
@@ -47,7 +47,7 @@ class HandleDefer
 
   def call(env)
     # defer tasks in @app will be run on the same thread
-    with_defer { @app.(env) }
+    with_defer { @app.call(env) }
   end
 end
 ```
@@ -56,7 +56,7 @@ The executor can be passed directly to `with_defer`:
 
 ```ruby
 def call(env)
-  with_defer(executor: :fast) { @app.(env) }
+  with_defer(executor: :fast) { @app.call(env) }
 end
 ```
 
@@ -85,7 +85,7 @@ class HandleDefer
   end
 
   def call(env)
-    with_defer(executor: executor) { @app.(env) }
+    with_defer(executor: executor) { @app.call(env) }
   end
 
   def executor
@@ -103,7 +103,7 @@ class CreateUser
   def call(values)
     user_repo.transaction do
       user = user_repo.create(values)
-      defer { send_invitation.(user) }
+      defer { send_invitation.call(user) }
       user_account = account_repo.create(user)
       user
     end
@@ -116,13 +116,13 @@ There is no guarantee `send_invitation` will be run _after_ the transaction fini
 `later` captures the block but doesn't run it:
 
 ```ruby
-later { send_invitation.(user) }
+later { send_invitation.call(user) }
 ```
 
 The invitaition will be sent when `with_defer` exits:
 
 ```ruby
-with_defer { @app.(env) }
+with_defer { @app.call(env) }
 ```
 
 It usually happens outside of any transaction so that anomalies don't occur.

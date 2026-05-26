@@ -28,7 +28,7 @@ UserSchema = Dry::Validation.Form do
   key(:age).required(Types::Age)
 end
 
-UserSchema.(name: 'Jane', age: 17).messages
+UserSchema.call(name: 'Jane', age: 17).messages
 # { age: ["must be greater than 18"] }
 ```
 
@@ -61,7 +61,7 @@ UserImport = Dry::Validation.Schema do
   key(:email).required(Types::DataImport::StrippedString)
 end
 
-UserSchema.(name: '   Jane  ', email: 'jane@doe.org  ').to_h
+UserSchema.call(name: '   Jane  ', email: 'jane@doe.org  ').to_h
 # { name: "Jane", email: "jane@doe.org" }
 ```
 
@@ -70,7 +70,7 @@ This is a clean way of encapsulating custom coercion or sanitization logic. Noti
 dry-validation infers both validation rules and value constructors from your types, notice that `Types::DataImport::StrippedString` is a strict string, which means a proper validation rule is set too:
 
 ```ruby
-UserSchema.(name: '   Jane  ', email: nil).messages
+UserSchema.call(name: '   Jane  ', email: nil).messages
 # { email: ["must be filled", "must be String"] }
 ```
 
@@ -102,15 +102,15 @@ CommandSchema = Dry::Validation.Schema do
   end
 end
 
-CommandSchema.(command: 'Oops').messages.inspect
+CommandSchema.call(command: 'Oops').messages.inspect
 # { command: ["must be one of: Create, Update"], args: ["is missing"] }
 
-CommandSchema.(
+CommandSchema.call(
   command: 'Create', args: { name: 'Jane', email: nil }
 ).messages
 # { args: { email: ["must be filled"] } }
 
-CommandSchema.(
+CommandSchema.call(
   command: 'Update', args: { id: 1, data: { name: nil, email: 'jane@doe.org' } }
 ).messages
 # { data: { name: ["must be filled"] } }
@@ -127,13 +127,13 @@ UserSchema = Dry::Validation.Form do
   key(:age).required(:number?, :int?)
 end
 
-UserSchema.(age: '1').to_h
+UserSchema.call(age: '1').to_h
 # { age: 1 }
 
-UserSchema.(age: 'one').messages
+UserSchema.call(age: 'one').messages
 # { age: ["must be a number"] }
 
-UserSchema.(age: '1.5').messages
+UserSchema.call(age: '1.5').messages
 # { age: ["must be an integer"] }
 ```
 

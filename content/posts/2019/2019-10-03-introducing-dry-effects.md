@@ -52,7 +52,7 @@ class WithCurrentTime
   end
 
   def call(env)
-    with_current_time { @app.(env) }
+    with_current_time { @app.call(env) }
   end
 end
 ```
@@ -66,7 +66,7 @@ subject(:create_subscription) { CreateSubscription.new }
 
 example "creating subscription on New Year's Eve" do
   with_current_time(proc { Time.new(2019, 12, 31, 12) }) do
-    create_subscription.(...)
+    create_subscription.call(...)
   end
 end
 ```
@@ -124,7 +124,7 @@ let(:user_repo) { double(:user_repo, create: ...) }
 
 example 'creating a user' do
   provide(user_repo: user_repo) do
-    create_user.(...)
+    create_user.call(...)
   end
 end
 ```

@@ -62,7 +62,7 @@ schema = Dry::Schema.Params do
   end
 end
 
-schema.(address: nil).success? # true
+schema.call(address: nil).success? # true
 ```
 
 ### Nested `Array`

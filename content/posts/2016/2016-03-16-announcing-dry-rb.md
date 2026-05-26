@@ -47,7 +47,7 @@ UserSchema = Dry::Validation.Schema do
   end
 end
 
-UserSchema.(
+UserSchema.call(
   email: 'jane@doe.org',
   age: 21,
   address: {

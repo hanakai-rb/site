@@ -83,7 +83,7 @@ UserSchema = Dry::Schema.Params do
   end
 end
 
-UserSchema.(
+UserSchema.call(
   name: 'Jane',
   email: 'jane@doe.org',
   address: { street: 'Street 1', city: 'NYC', zipcode: '1234' }

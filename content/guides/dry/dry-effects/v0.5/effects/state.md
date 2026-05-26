@@ -47,7 +47,7 @@ Now it's simple to count calls by gluing two pieces:
 count_calls = CountCalls.new
 heavy_lifting = HeavyLifting.new
 
-count_calls.() { 1000.times { heavy_lifting.() }; :done }
+count_calls.call() { 1000.times { heavy_lifting.call() }; :done }
 # Counter: 1000
 # => :done
 ```
@@ -153,7 +153,7 @@ RSpec.describe AddingSomeMiddleware do
   subject(:middleware) { described_class.new(app) }
 
   it 'adds SOME_KEY to env' do
-    captured_env, _ = middleware.({})
+    captured_env, _ = middleware.call({})
 
     expect(captured_env).to have_key('SOME_KEY')
   end

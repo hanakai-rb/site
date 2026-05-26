@@ -108,7 +108,7 @@ end
 
 contract = NewUserContract.new
 
-contract.(name: "Jane", age: "31", email: "jane@doe.org", country: "foo")
+contract.call(name: "Jane", age: "31", email: "jane@doe.org", country: "foo")
 # => #<Dry::Validation::Result{:name=>"Jane", :age=>31, :email=>"jane@doe.org",
 #   :country=>"foo"} errors={:zipcode=>["is missing"], :street=>["is missing"],
 #   :mobile=>["is missing"]}>

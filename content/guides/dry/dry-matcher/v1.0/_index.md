@@ -44,7 +44,7 @@ Then use these cases as part of an API to match on results:
 ```ruby
 my_success = [:ok, "success!"]
 
-result = matcher.(my_success) do |m|
+result = matcher.call(my_success) do |m|
   m.success do |v|
     "Yay: #{v}"
   end
@@ -67,7 +67,7 @@ Cases are executed in order. The first match wins and halts subsequent matching.
 ```ruby
 my_failure = [:err, :not_found, "missing!"]
 
-result = matcher.(my_failure) do |m|
+result = matcher.call(my_failure) do |m|
   m.success do |v|
     "Yay: #{v}"
   end

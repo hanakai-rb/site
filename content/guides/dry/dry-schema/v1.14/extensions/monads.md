@@ -21,7 +21,7 @@ schema.call(name: 'Jane').to_monad # => Dry::Monads::Success(#<Dry::Schema::Resu
 
 schema.call(name: '').to_monad     # => Dry::Monads::Failure(#<Dry::Schema::Result{:name=>""} errors={:name=>["must be filled"]}>)
 
-schema.(name: "")
+schema.call(name: "")
   .to_monad
   .fmap { |r| puts "passed: #{r.to_h.inspect}" }
   .or   { |r| puts "failed: #{r.errors.to_h.inspect}" }
@@ -45,7 +45,7 @@ class Example
   Schema = Dry::Schema.Params { required(:name).filled(:string, size?: 2..4) }
 
   def call(input)
-    case schema.(input).to_monad
+    case schema.call(input).to_monad
     in Success(name:)
       "Hello #{name}" # name is captured from result
     in Failure(name:)
@@ -56,6 +56,6 @@ end
 
 run = Example.new
 
-run.('name' => 'Jane')   # => "Hello Jane"
-run.('name' => 'Albert') # => "Albert is not a valid name"
+run.call('name' => 'Jane')   # => "Hello Jane"
+run.call('name' => 'Albert') # => "Albert is not a valid name"
 ```

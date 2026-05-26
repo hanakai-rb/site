@@ -21,7 +21,7 @@ has_min_age = Operations::Key.new(min_18, name: [:user, :age])
 # Thanks to the composable structure of the library we can use multiple Rules and Operations to create custom logic
 user_rule = user_present & has_min_age
 
-user_rule.(user: { age: 19 }).success?
+user_rule.call(user: { age: 19 }).success?
 # => true
 ```
 
@@ -52,12 +52,12 @@ end
 
 all_6 = all?(6)
 
-all_6.([7,8,9]).success?
+all_6.call([7,8,9]).success?
 # => true
 
-all_6.([6,7,8,9]).success?
+all_6.call([6,7,8,9]).success?
 # => false
 
-all_6.([1,2,3,4]).success?
+all_6.call([1,2,3,4]).success?
 # => false
 ```

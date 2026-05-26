@@ -77,6 +77,6 @@ require 'dry/effects'
 with_cache = Object.new.extend(Dry::Effects::Handler.Cache(:my_app, as: :call))
 
 RSpec.configure do |config|
-  config.around(:each) { with_cache.(&ex) }
+  config.around(:each) { with_cache.call(&ex) }
 end
 ```
