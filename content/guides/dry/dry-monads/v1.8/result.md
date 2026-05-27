@@ -50,7 +50,7 @@ class AssociateUser
   end
 end
 
-AssociateUser.new.(user_id: 1, address_id: 2)
+AssociateUser.new.call(user_id: 1, address_id: 2)
 ```
 
 ### `fmap`

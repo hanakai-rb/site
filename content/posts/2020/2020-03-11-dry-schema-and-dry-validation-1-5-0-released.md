@@ -27,13 +27,13 @@ UserSchema = Dry::Schema.JSON do
   required(:role).hash(RoleSchema & ExpirableSchema)
 end
 
-UserSchema.(name: "Jane", role: { id: "admin", expires_on: "2020-05-01" }).errors.to_h
+UserSchema.call(name: "Jane", role: { id: "admin", expires_on: "2020-05-01" }).errors.to_h
 # {}
 
-UserSchema.(name: "Jane", role: { id: "", expires_on: "2020-05-01" }).errors.to_h
+UserSchema.call(name: "Jane", role: { id: "", expires_on: "2020-05-01" }).errors.to_h
 # {role: {id: ["must be filled"]}}
 
-UserSchema.(name: "Jane", role: { id: "admin", expires_on: "oops" }).errors.to_h
+UserSchema.call(name: "Jane", role: { id: "admin", expires_on: "oops" }).errors.to_h
 # {role: {expires_on: ["must be a date"]}}
 ```
 
@@ -67,7 +67,7 @@ input = {
   roles: [{ name: 'admin' }, { name: 'editor', foo: 'unexpected' }]
 }
 
-UserSchema.(input).errors.to_h
+UserSchema.call(input).errors.to_h
 # {
 #  :foo=>["is not allowed"],
 #  :address=>{:bar=>["is not allowed"]},

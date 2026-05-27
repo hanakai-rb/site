@@ -180,7 +180,7 @@ Here's a simple usage example how you could access an operation powered by dry-m
 ```ruby
 class UsersController < ApplicationController
   def create
-    resolve("users.create").(safe_params[:user]) do |m|
+    resolve("users.create").call(safe_params[:user]) do |m|
       m.success do |user|
         render json: user
       end

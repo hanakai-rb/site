@@ -42,10 +42,10 @@ end
 run = RunDivision.new
 divide = Divide.new
 
-app = -> a, b { run.() { divide.(a, b) } }
+app = -> a, b { run.call() { divide.call(a, b) } }
 
-app.(10, 2) # => 5
-app.(1, 0) # => :error
+app.call(10, 2) # => 5
+app.call(1, 0) # => :error
 ```
 
 The handler returns a flag indicating whether there was an interruption. `false` means the block was run without interruption, `true` stands for the code was interrupted at some point.
@@ -79,8 +79,8 @@ end
 caller = Caller.new
 callee = Callee.new
 
-caller.() { callee.() } # => :foo
-caller.() { } # => :bar
+caller.call() { callee.call() } # => :foo
+caller.call() { } # => :bar
 ```
 
 ### Composition

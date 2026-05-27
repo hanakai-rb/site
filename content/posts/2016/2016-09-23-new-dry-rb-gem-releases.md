@@ -28,10 +28,10 @@ UserSchema = Dry::Validation.Form do
   required(:age).filled(:int?, gt?: 18)
 end
 
-UserSchema.(login: '', age: 17).errors
+UserSchema.call(login: '', age: 17).errors
 # {:login=>["must be filled"], :age=>["must be greater than 18"]}
 
-UserSchema.(login: '', age: 17).hints
+UserSchema.call(login: '', age: 17).hints
 # {:login=>["length must be within 3 - 64"], :age=>[]}
 ```
 
@@ -44,7 +44,7 @@ PostSchema = Dry::Validation.Form do
   required(:tags).filled { array? | str? }
 end
 
-PostSchema.(tags: 123).errors
+PostSchema.call(tags: 123).errors
 # {:tags=>["must be an array or must be a string"]}
 ```
 
@@ -73,7 +73,7 @@ end
 
 schema = UserSchema.with(ids: [1, 2, 3])
 
-schema.(id: 4).errors
+schema.call(id: 4).errors
 # {:valid_id=>["id is not valid"]}
 ```
 
@@ -89,11 +89,11 @@ UserSchema = Dry::Validation.Form do
   required(:age).filled(:int?, gt?: 18)
 end
 
-result = UserSchema.(login: '', age: 17).to_either
+result = UserSchema.call(login: '', age: 17).to_either
 result.fmap { |data| data[:login] }.or { 'oops' }.value
 # "oops"
 
-result = UserSchema.(login: 'jane', age: 19).to_either
+result = UserSchema.call(login: 'jane', age: 19).to_either
 result.fmap { |data| data[:login] }.or { 'oops' }.value
 # "jane"
 ```
@@ -169,11 +169,11 @@ Last but not least - the new version of dry-logic is not just few times faster, 
 age_rule = Dry::Logic.Rule { |v| !v.nil? }.then(
   Dry::Logic.Rule { |v| v.is_a?(Integer) }.and(Dry::Logic.Rule { |v| v > 18 }))
 
-age_rule.(nil).success?
+age_rule.call(nil).success?
 # true
-age_rule.(19).success?
+age_rule.call(19).success?
 # true
-age_rule.('19').success?
+age_rule.call('19').success?
 # false
 ```
 

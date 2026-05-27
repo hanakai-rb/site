@@ -95,7 +95,7 @@ end
 After calling an operation, you will receive either a `Success` or a `Failure`. You can pattern match on this result to handle each situation:
 
 ```ruby
-case CreateUser.new.(input)
+case CreateUser.new.call(input)
 in Success[user]
   puts "User #{user.name} created successfully"
 in Failure[:invalid_input, errors]

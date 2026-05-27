@@ -17,6 +17,6 @@ Dry::Types.define_builder(:or) { |type, value| type.fallback(value) }
 
 source_type = Dry::Types['integer']
 type = source_type.or(0)
-type.(10) # => 10
-type.(:invalid) # => 0
+type.call(10) # => 10
+type.call(:invalid) # => 0
 ```

@@ -7,9 +7,9 @@ Fallback value will be returned when invalid input is provided:
 ```ruby
 type = Dry::Types['integer'].fallback(100)
 
-type.(99) # => 99
-type.('99') # => 100
-type.(:invalid) # => 100
+type.call(99) # => 99
+type.call('99') # => 100
+type.call(:invalid) # => 100
 ```
 
 Block syntax:
@@ -18,9 +18,9 @@ Block syntax:
 cnt = 0
 type = Dry::Types['integer'].fallback { cnt += 1 }
 
-type.(99) # => 99
-type.('99') # => 1
-type.(:invalid) # => 2
+type.call(99) # => 99
+type.call('99') # => 1
+type.call(:invalid) # => 2
 ```
 
 Fallbacks are different from default values because the latter are triggered on _missing_ input rather than invalid. They can be combined:
@@ -29,6 +29,6 @@ Fallbacks are different from default values because the latter are triggered on 
 schema = Dry::Types['hash'].schema(
   size: Dry::Types['integer'].fallback(50).default(100)
 )
-schema.({}) # => { size: 100 }
-schema.({ size: 'invalid' }) # => { size: 50 }
+schema.call({}) # => { size: 100 }
+schema.call({ size: 'invalid' }) # => { size: 50 }
 ```

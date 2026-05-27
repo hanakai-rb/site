@@ -34,7 +34,7 @@ class CounterMiddleware
   def call(env)
     # Calling `with_counter` makes the value available anywhere in `@app.call`
     counter, response = with_counter(0) do
-      @app.(env)
+      @app.call(env)
     end
 
     # Once processing is complete, the result value
@@ -70,7 +70,7 @@ RSpec.describe CreatePost do
   subject(:create_post) { described_class.new }
 
   it 'updates the counter' do
-    counter, post = with_counter(0) { create_post.(post_values) }
+    counter, post = with_counter(0) { create_post.call(post_values) }
 
     expect(counter).to be(1)
   end
@@ -80,7 +80,7 @@ end
 Any introduced effect must have a handler. If no handler found you'll see an error:
 
 ```ruby
-CreatePost.new.({})
+CreatePost.new.call({})
 # => Dry::Effects::Errors::MissingStateError (Value of +counter+ is not set, you need to provide value with an effect handler)
 ```
 
@@ -105,7 +105,7 @@ class TestNewFeatureMiddleware
 
   def call(env)
     without_feature, with_feature = test_feature do
-      @app.(env)
+      @app.call(env)
     end
 
     if with_feature != without_feature
@@ -170,13 +170,13 @@ class Context
   def call(name)
     test_excitement do
       with_greetings_given(0) do
-        @greeting.(name)
+        @greeting.call(name)
       end
     end
   end
 end
 
-Context.new.('Alice')
+Context.new.call('Alice')
 # => [[1, "1. Hello Alice"], [1, "1. Hello Alice!"]]
 ```
 
@@ -188,13 +188,13 @@ class Context
   def call(name)
     with_greetings_given(0) do
       test_excitement do
-        @greeting.(name)
+        @greeting.call(name)
       end
     end
   end
 end
 
-Context.new.('Alice')
+Context.new.call('Alice')
 # => [2, ["1. Hello Alice", "2. Hello Alice!"]]
 ```
 

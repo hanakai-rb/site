@@ -17,7 +17,7 @@ class EnvironmentMiddleware
   end
 
   def call(env)
-    with_env { @app.(env) }
+    with_env { @app.call(env) }
   end
 end
 ```
@@ -97,7 +97,7 @@ RSpec.describe SendRequest do
   around { with_env('THIRD_PARTY' => endpoint, &ex) }
 
   it 'sends a request to a fake server' do
-    send_request.(...)
+    send_request.call(...)
   end
 end
 ```
@@ -135,7 +135,7 @@ overriding = OverridingContext.new
 providing = ProvidingContext.new
 app = Application.new
 
-overriding.() { providing.() { app.() } }
+overriding.call() { providing.call() { app.call() } }
 # prints 200, coming from overriding context
 ```
 

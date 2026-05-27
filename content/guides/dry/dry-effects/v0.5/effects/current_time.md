@@ -19,7 +19,7 @@ class CurrentTimeMiddleware
   def call(env)
     # It will use Time.now internally once and set it fixed
     with_current_time do
-      @app.(env)
+      @app.call(env)
     end
   end
 end
@@ -162,7 +162,7 @@ class CurrentTimeMiddleware
 
   def call(env)
     with_current_time(overridable: ENV['RACK_ENV'].eql?('test')) do
-      @app.(env)
+      @app.call(env)
     end
   end
 end
