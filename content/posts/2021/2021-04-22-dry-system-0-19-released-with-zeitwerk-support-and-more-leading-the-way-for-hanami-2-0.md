@@ -32,7 +32,7 @@ loader.push_dir MyApp::Container.config.root.join("lib").realpath
 loader.setup
 ```
 
-Unlike the default loader, the new `Dry::System::Loader::Autoloading` does not `require` files itself when loading components. Instead, it references their class constants directly, allowing the missing constant resolution to trigger the autoloading behaviour of [Zeitwerk][zw] and other autoloaders. This is all that's required to bring Zeitwerk and dry-system together! Combined with dry-system's [auto-injector](https://dry-rb.org/gems/dry-system/0.17/auto-import/), you now have the best of both worlds: the convenience of auto-loading classes combined with all the loose-coupling benefits of injected dependencies.
+Unlike the default loader, the new `Dry::System::Loader::Autoloading` does not `require` files itself when loading components. Instead, it references their class constants directly, allowing the missing constant resolution to trigger the autoloading behaviour of [Zeitwerk][zw] and other autoloaders. This is all that's required to bring Zeitwerk and dry-system together! Combined with dry-system's [auto-injector](https://hanakai.org/learn/dry/dry-system/dependency-auto-injection), you now have the best of both worlds: the convenience of auto-loading classes combined with all the loose-coupling benefits of injected dependencies.
 
 The new `component_dirs` setting also allows multiple component dirs to be added (these are where dry-system looks when loading a container's components) and configured independently:
 

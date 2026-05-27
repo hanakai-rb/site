@@ -148,7 +148,7 @@ Hanami.application.settings do
 end
 ```
 
-An optional type object can be provided as a second argument, to coerce and/or type check the setting values. This works well with [dry-types](https://dry-rb.org/gems/dry-types) type objects.
+An optional type object can be provided as a second argument, to coerce and/or type check the setting values. This works well with [dry-types](https://hanakai.org/learn/dry/dry-types) type objects.
 
 Settings are read from `.env*` files using [dotenv](https://github.com/bkeepers/dotenv).
 
@@ -240,7 +240,7 @@ Actions are still callable and Rack-compatible, and continue to offer the same r
 
 ## Brand new view layer
 
-Hanami 2.0 will sport an entirely new view layer, with [dry-view](https://dry-rb.org/gems/dry-view) joining the Hanami family as the new hanami-view. With years of development behind it, it offers a sophisticated set of abstractions for designing well-factored views.
+Hanami 2.0 will sport an entirely new view layer, with [dry-view](https://hanakai.org/learn/dry/dry-view) joining the Hanami family as the new hanami-view. With years of development behind it, it offers a sophisticated set of abstractions for designing well-factored views.
 
 A view in Hanami 2.0 is a standalone, callable class that can declare dependencies to interact with the rest of the application (are you catching the theme here?). It can access parameters and then prepare named exposures to make available to its corresponding template.
 
@@ -370,7 +370,7 @@ There’s so much more to this release than we’ve been able to share in this b
 
 ## What’s next?
 
-While we’ve covered so much ground since the last alpha, there are still many rough edges to smooth over, as well as a few big pieces to put in place, such as an application CLI with generators, first-class integration with [rom-rb](https://rom-rb.org) for a persistence layer, front-end assets integration, and a standard collection of view helpers.
+While we’ve covered so much ground since the last alpha, there are still many rough edges to smooth over, as well as a few big pieces to put in place, such as an application CLI with generators, first-class integration with [rom-rb](https://hanakai.org/rom) for a persistence layer, front-end assets integration, and a standard collection of view helpers.
 
 If you’d like to follow along, we’re tracking the remaining work in our public [Hanami 2.0 trello board](https://trello.com/b/lFifnBti/hanami-20).
 

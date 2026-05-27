@@ -5,7 +5,7 @@ author: Tim Riley
 org: dry
 ---
 
-[dry-transaction](http://dry-rb.org/gems/dry-transaction) is dry-rb's answer to modelling complex business transactions in your applications. With dry-transaction, you can arrange multiple processing operations into a linear pipeline, with the output of each step becoming the input of the next. dry-transaction also elevates error handling to a first-class concern. Any error will halt the flow of operations, and you have powerful APIs for matching and acting on errors.
+[dry-transaction](https://hanakai.org/learn/dry/dry-transaction) is dry-rb's answer to modelling complex business transactions in your applications. With dry-transaction, you can arrange multiple processing operations into a linear pipeline, with the output of each step becoming the input of the next. dry-transaction also elevates error handling to a first-class concern. Any error will halt the flow of operations, and you have powerful APIs for matching and acting on errors.
 
 dry-transaction 0.6.0 is out today, and it brings a powerful new feature to your application's business transactions: support for defining your own custom step adapters. This allows you to encode powerful application-specific behaviours into steps that can be invoked with just a single word inside your transaction definitions.
 
@@ -63,4 +63,4 @@ end
 
 And there we have it! With the new infrastructure in place, we could change just two words in our transaction and have long-running jobs pushed into the background queue, while keeping everything just as easy to understand in a single glance.
 
-You can [read more about custom step adapters](http://dry-rb.org/gems/dry-transaction/0.13/custom-step-adapters/) in the [dry-transaction documentation](http://dry-rb.org/gems/dry-transaction/) and get started using them with the 0.6.0 release now available on RubyGems. Enjoy!
+You can [read more about custom step adapters](https://hanakai.org/learn/dry/dry-transaction/custom-step-adapters/) in the [dry-transaction documentation](https://hanakai.org/learn/dry/dry-transaction/) and get started using them with the 0.6.0 release now available on RubyGems. Enjoy!

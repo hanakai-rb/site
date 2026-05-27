@@ -6,7 +6,7 @@ title: Overview
 
 Operations organize business logic in Hanami apps. They are the foundation of your app’s "service layer".
 
-Operations are built using [dry-operation](https://dry-rb.org/gems/dry-operation/1.0/).
+Operations are built using [dry-operation](https://hanakai.org/learn/dry/dry-operation/).
 
 With operations, you can model your logic as a linear flow of steps, each returning a `Success` or `Failure`. If all steps of an operation succeed, the operation completes and returns its final value as a success. If any step returns a failure, execution short circuits and returns that failure immediately.
 
@@ -89,7 +89,7 @@ module Bookshelf
 end
 ```
 
-To learn more about operations, see [the dry-operation documentation](https://dry-rb.org/gems/dry-operation/1.0/).
+To learn more about operations, see [the dry-operation documentation](https://hanakai.org/learn/dry/dry-operation/).
 
 ## Database transactions
 
@@ -142,4 +142,4 @@ end
 
 This pattern matching allows you to handle different types of failures in a clear and explicit manner.
 
-Operations' `Success` and `Failure` results come from dry-monads. To learn more about working with results, see the [dry-monads result documentation](https://dry-rb.org/gems/dry-monads/1.6/result/).
+Operations' `Success` and `Failure` results come from dry-monads. To learn more about working with results, see the [dry-monads result documentation](https://hanakai.org/learn/dry/dry-monads/result/).

@@ -152,5 +152,5 @@ Dry Types is often used as a low-level abstraction. The following gems use it al
 - [dry-struct](//org_guide/dry/dry-struct)
 - [dry-initializer](//org_guide/dry/dry-initializer)
 - [Hanami](http://hanamirb.org)
-- [rom-rb](http://rom-rb.org)
+- [rom-rb](https://hanakai.org/rom)
 - [Trailblazer](http://trailblazer.to)

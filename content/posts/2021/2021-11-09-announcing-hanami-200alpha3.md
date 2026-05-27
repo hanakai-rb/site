@@ -69,7 +69,7 @@ module MyApp
 end
 ```
 
-The benefit these living within a class is that it gives us a place to hang all sorts of regular Ruby code to enhance the settings loading and delivery. For instance, it’s now possible to define an inline types module with [dry-types](https://dry-rb.org/gems/dry-types), to provide an expressive types library for validating and coercing your settings:
+The benefit these living within a class is that it gives us a place to hang all sorts of regular Ruby code to enhance the settings loading and delivery. For instance, it’s now possible to define an inline types module with [dry-types](https://hanakai.org/learn/dry/dry-types), to provide an expressive types library for validating and coercing your settings:
 
 ```ruby
 require "dry/types"
@@ -84,7 +84,7 @@ module MyApp
 end
 ```
 
-And since the settings are based on [dry-configurable](https://dry-rb.org/gems/dry-configurable), you can now easily provide default values, too:
+And since the settings are based on [dry-configurable](https://hanakai.org/learn/dry/dry-configurable), you can now easily provide default values, too:
 
 ```ruby
 setting :my_bool, constructor: Types::Params::Bool, default: false
@@ -139,7 +139,7 @@ We have a assortment of small quality of life improvements to actions for this r
 
 ## Framework settings ported to dry-configurable
 
-This is a mostly internal change, but the framework settings defined in `Hanami::Configuration` and exposed as `Hanami.application.config` are now largely provided by [dry-configurable](https://dry-rb.org/gems/dry-configurable), which will has made them significantly easier to maintain, and will provide us with some better building blocks for more extensible settings in future.
+This is a mostly internal change, but the framework settings defined in `Hanami::Configuration` and exposed as `Hanami.application.config` are now largely provided by [dry-configurable](https://hanakai.org/learn/dry/dry-configurable), which will has made them significantly easier to maintain, and will provide us with some better building blocks for more extensible settings in future.
 
 ## What’s included?
 
