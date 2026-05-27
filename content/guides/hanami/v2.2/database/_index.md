@@ -15,7 +15,7 @@ Above all else ROM favors:
 - **Speed**, because performance is a _feature_
 - **Flexibility** in your domain layer's design
 
-[ROM: Principles & Design](https://hanakai.org/learn/rom/v5.0/getting-started#principles--design)
+[ROM: Principles & Design](https://hanakai.org/learn/rom/v5.0/getting-started#principles-and-design)
 
 </blockquote>
 

@@ -14,7 +14,7 @@ Above all else ROM favors:
 - **Speed**, because performance is a _feature_
 - **Flexibility** in your domain layer's design
 
-[ROM: Principles & Design](https://hanakai.org/learn/rom/v5.0/getting-started#principles--design)
+[ROM: Principles & Design](https://hanakai.org/learn/rom/v5.0/getting-started#principles-and-design)
 
 While traditional Object-Relational Mapping comes from a strictly Object-Oriented approach, ROM combines the best parts of Functional Programming and OOP that play to Ruby’s inherent strengths as a language. Instead of homogenizing all datastores into a lowest-common-denominator API, ROM embraces the diversity of storage engines and the powerful features they can provide.
 
