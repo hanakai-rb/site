@@ -869,7 +869,7 @@ In the action, we can now delete the existing book, set a flash message and redi
 module Bookshelf
   module Actions
     module Books
-      class Delete < Bookshelf::Action
+      class Destroy < Bookshelf::Action
         include Deps["repos.book_repo"]
 
         params do
