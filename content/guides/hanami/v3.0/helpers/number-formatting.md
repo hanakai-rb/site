@@ -33,7 +33,7 @@ module Bookshelf
   module Views
     module Books
       class Index < Bookshelf::View
-        expose :books do
+        expose :books, decorate: true do
           [
             Book.new(title: "Hanami")
             Book.new(title: "Hanami 2")

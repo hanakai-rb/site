@@ -242,10 +242,22 @@ expose :recommended_books, layout: true do
 end
 ```
 
-## Undecorated exposures
+## Decorating exposures
 
-By default, exposures are decorated by a [part](//page/parts). To opt out of part decoration use the `decorate: false` option. This may be helpful when you are exposing a "primitive" object that requires no extra behaviour, like a number or a string.
+Normally exposures are passed to templates "as is". However, Hanami offers a possibility to optionally decorate them using [parts](//page/parts). This is useful if you want to add additional behaviour to otherwise a primitive value, such as a number or a string.
+
+In order to decorate the exposure, you either pass `decorate: true` to is or you can use new class-level `decorate` method for it.
 
 ```ruby
-expose :page_number, decorate: false
+expose :book, decorate: true do |id:|
+  book_repo.get(id)
+end
+
+decorate :author do |book|
+  book.author
+end
+decorate :genre, :publisher
 ```
+
+> [!WARNING]
+> This behaviour changed in Hanami 3.0. Previously exposures were decorated by default. If you want to bring back the old way, set `config.decorate_exposures = true` in your view class.

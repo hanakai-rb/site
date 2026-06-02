@@ -2,7 +2,7 @@
 title: Parts
 ---
 
-All values returned from your [exposures](//page/input-and-exposures) are decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
+Values returned from your [exposures](//page/input-and-exposures) can be optionally decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
 
 Parts are fully integrated into the view rendering environment, which means that anything you can do from a template, you can also do from a part. This includes accessing the [context](//page/context) as well as [rendering partials](//page/templates-and-partials) and building [scopes](//page/scopes).
 
@@ -60,7 +60,7 @@ You can specify a part name used to decorate any given exposure. To do this, use
 
 ```ruby
 # Will decorate the current_user with `Views::Parts::User`
-expose :current_user, as: :user do
+decorate :current_user, as: :user do
   # ...
 end
 ```
@@ -68,14 +68,14 @@ end
 You can also provide a concrete part class to `as:`
 
 ```ruby
-expose :current_user, as: Parts::User
+decorate :current_user, as: Parts::User
 ```
 
 For exposures returning arrays:
 
-- `expose :books, as: :item` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::Items` to decorate the array itself
-- `expose :books, as: [:item_collection]` will look up `Views::Parts::Book` to decorate the array elements, and `Views::Parts::ItemCollection` for decorating the array itself
-- `expose :books, as: [:item_collection, :item]` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::ItemCollection` for decorating the array itself
+- `decorate :books, as: :item` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::Items` to decorate the array itself
+- `decorate :books, as: [:item_collection]` will look up `Views::Parts::Book` to decorate the array elements, and `Views::Parts::ItemCollection` for decorating the array itself
+- `decorate :books, as: [:item_collection, :item]` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::ItemCollection` for decorating the array itself
 
 For all the `as:` structures above, you may also provide concrete part classes instead of symbolic names.
 
