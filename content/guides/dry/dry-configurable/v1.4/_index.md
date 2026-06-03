@@ -1,6 +1,7 @@
 ---
 title: Introduction & Usage
 pages:
+  - to-data
   - testing
 ---
 
@@ -27,7 +28,9 @@ class App
   setting :adapter
   # Construct values
   setting :path, default: 'test', constructor: proc { |value| Pathname(value) }
-  # Passing the reader option as true will create attr_reader method for the class
+  # Passing the reader option as true will create attr_reader method for the class.
+  # Note: this defines the method on the class itself; see the "Converting config to Data"
+  # guide for #to_data, an alternative that keeps accessors on a separate Data object.
   setting :pool, default: 5, reader: true
   # Passing the reader attributes works with nested configuration
   setting :uploader, reader: true do
@@ -129,3 +132,30 @@ end
 client1.adapter # => :grpc
 client2.adapter # => :http
 ```
+
+#### Finalizing
+
+Once you're done configuring, call `finalize!` to lock the config against further changes. This is typically done at boot, after the application has read its settings from the environment, files, etc.
+
+```ruby
+App.configure do |config|
+  config.adapter = :grpc
+  config.pool = 5
+end
+
+App.config.finalize!
+
+App.config.adapter = :http
+# => raises Dry::Configurable::FrozenConfigError
+```
+
+`finalize!` freezes the config itself but leaves the values it holds mutable. Pass `freeze_values: true` to also freeze each value:
+
+```ruby
+App.config.finalize!(freeze_values: true)
+
+App.config.tags << "new"
+# => raises FrozenError
+```
+
+Finalizing is also a prerequisite for [`#to_data`](//page/to-data), which returns a frozen `Data` snapshot of the resolved values.
