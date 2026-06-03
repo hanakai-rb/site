@@ -45,8 +45,6 @@ class Renderer
 end
 ```
 
-If you cannot hold the `Data` on an instance, memoize it by the config's `object_id` so you reuse the same `Data` across calls for the same config.
-
 ### Comparison with `reader: true`
 
 The `reader: true` option on `setting` is another way to avoid the `method_missing` cost: it defines `attr_reader`-style methods directly on the configured object.
