@@ -21,7 +21,7 @@ module Profile
 
     expose :current_user
 
-    expose :user, decorate: true do |id:|
+    decorate :user do |id:|
       user_repo.by_id(id)
     end
   end
