@@ -216,6 +216,29 @@ expose :books do |context:|
 end
 ```
 
+## Decorating exposures
+
+Normally exposures are passed to templates "as is". However, you can optionally decorate them with [parts](//page/parts). Parts let you attach view-specific logic (such as formatting, presentation helpers, and markup) directly to the object it concerns, rather than scattering it across templates. This logic can then be reused across views and tested independently.
+
+To decorate an exposure, either use the `decorate` method, or pass `decorate: true` to `expose`.
+
+```ruby
+decorate :book do |id:|
+  book_repo.get(id)
+end
+
+# Equivalent to the above
+expose :book, decorate: true do |id:|
+  book_repo.get(id)
+end
+
+# Decorate values passed through directly
+decorate :genre, :publisher
+```
+
+> [!WARNING]
+> Before Hanami 3.0, all exposures were decorated by default. To restore the earlier behavior, set `config.decorate_exposures = true` in your view class.
+
 ## Private exposures
 
 You can create private exposures that are not passed to the template. This is helpful if you have an exposure that other exposures will depend on, but is not otherwise needed in the template.
@@ -241,23 +264,3 @@ expose :recommended_books, layout: true do
   book_repo.recommended_listing
 end
 ```
-
-## Decorating exposures
-
-Normally exposures are passed to templates "as is". However, Hanami offers a possibility to optionally decorate them using [parts](//page/parts). This is useful if you want to add additional behaviour to otherwise a primitive value, such as a number or a string.
-
-In order to decorate the exposure, you either pass `decorate: true` to is or you can use new class-level `decorate` method for it.
-
-```ruby
-expose :book, decorate: true do |id:|
-  book_repo.get(id)
-end
-
-decorate :author do |book|
-  book.author
-end
-decorate :genre, :publisher
-```
-
-> [!WARNING]
-> This behaviour changed in Hanami 3.0. Previously exposures were decorated by default. If you want to bring back the old way, set `config.decorate_exposures = true` in your view class.
