@@ -2,7 +2,7 @@
 title: Parts
 ---
 
-Values returned from your [exposures](//page/input-and-exposures) can be optionally decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
+All values returned from your [exposures](//page/input-and-exposures) are decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
 
 Parts are fully integrated into the view rendering environment, which means that anything you can do from a template, you can also do from a part. This includes accessing the [context](//page/context) as well as [rendering partials](//page/templates-and-partials) and building [scopes](//page/scopes).
 
@@ -31,8 +31,6 @@ end
 Now the template reads cleanly, and `display_name` can be reused across every template showing a book, as well as tested on its own.
 
 Unlike a [helper](//page/helpers), a part is bound to the object it decorates, so its logic lives with the data it concerns rather than as a free-floating function that must be passed its arguments.
-
-Parts are opt-in, so reach for them when an exposure has behavior worth giving a home.
 
 ## Defining part classes
 

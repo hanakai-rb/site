@@ -2,7 +2,7 @@
 title: Parts
 ---
 
-Values returned from your [exposures](//page/input-and-exposures) can be optionally decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
+All values returned from your [exposures](//page/input-and-exposures) are decorated by parts, which provide a home for view-specific behavior alongside your app's domain objects.
 
 Parts are fully integrated into the view rendering environment, which means that anything you can do from a template, you can also do from a part. This includes accessing the [context](//page/context) as well as [rendering partials](//page/templates-and-partials) and building [scopes](//page/scopes).
 
