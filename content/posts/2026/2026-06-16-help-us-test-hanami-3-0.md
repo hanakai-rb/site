@@ -1,7 +1,6 @@
 ---
 title: Help us test the Hanami 3.0 release candidate
-# Temporarily set to the past, so we can preview this
-date: 2026-06-14 12:00:00 UTC
+date: 2026-06-16 13:00:00 UTC
 tags: announcements
 author: Tim Riley
 org: hanami
@@ -43,7 +42,7 @@ Hanami ensures that structured and tagged logging is available even if you confi
 
 ### Other changes
 
-Here are few more changes are worth flagging, especially if you're upgrading an existing app:
+Here are a few more changes worth flagging, especially if you're upgrading an existing app:
 
 - The actions gem is renamed from hanami-controller to hanami-action.
 - The hanami-validations gem is retired. Hanami Action now checks for dry-validation directly.
