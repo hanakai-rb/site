@@ -27,6 +27,9 @@ guides:
   - slug: helpers
     title: Helpers
     description: Built-in and custom view helpers
+  - slug: i18n
+    title: Internationalization
+    description: Translating and localizing your app's content
   - slug: logger
     title: Logger
     description: Structured logging configuration
