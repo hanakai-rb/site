@@ -3,6 +3,7 @@
 
 require_relative "filters/emoji_logo_filter"
 require_relative "filters/inline_attribute_list_filter"
+require_relative "filters/move_heading_anchors_filter"
 require_relative "filters/namespace_constant_filter"
 
 module Site
@@ -13,6 +14,7 @@ module Site
     DEFAULT_OUTPUT_FILTERS = [
       Filters::EmojiLogoFilter.new,
       Filters::InlineAttributeListFilter.new,
+      Filters::MoveHeadingAnchorsFilter.new,
       Filters::NamespaceConstantFilter.new
     ].freeze
   end
