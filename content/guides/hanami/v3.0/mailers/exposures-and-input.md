@@ -95,7 +95,7 @@ class InvoiceMailer < Bookshelf::Mailer
   from "billing@bookshelf.test"
   to { |email:| email }
   subject { |full_name| "Invoice for #{full_name}" }
-  
+
   private_expose :full_name do |first_name:, last_name:|
     "#{first_name} #{last_name}"
   end
