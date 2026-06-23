@@ -58,12 +58,21 @@ Hanami.app.register_provider(:mailers, namespace: true) do
   start do
     require "hanami/mailer"
 
-    register "delivery_method", MyApp::PostmarkDelivery.new(
-      api_token: target["settings"].postmark_api_token
-    )
+    delivery_method =
+      if Hanami.env == :test
+        Hanami::Mailer::Delivery::Test.new
+      else
+        Bookshelf::CustomDeliveryMethod.new(
+          api_token: slice["settings"].delivery_method_token
+        )
+      end
+
+    register "delivery_method", delivery_method
   end
 end
 ```
+
+When you register your own provider, it replaces Hanami's own, so you must take care of enabling the [test delivery method](#test-delivery) during tests, as above.
 
 ### Overriding per delivery
 
