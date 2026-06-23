@@ -10,7 +10,7 @@ excerpt: >
   Database automapping, data integrity for entities, experimental associations, native PostgreSQL types.
 ---
 
-We rewrote `hanami-model` from scratch with an engine based on <a href="http://rom-rb.org">ROM</a>.
+We rewrote `hanami-model` from scratch with an engine based on <a href="https://hanakai.org/rom">ROM</a>.
 
 The result is impressive: it's faster and more robust.
 

@@ -15,7 +15,7 @@ Even simple cases like _blank values_ management became an issue.
 
 We tried to fix these problems, but over the time we realized that we hit the limit of that syntax, which led to lack of flexibility for us and for developers themselves.
 
-At the same time [dry-rb](http://dry-rb.org) folks released a new, stronger validations gem: `dry-validation`.
+At the same time [dry-rb](https://hanakai.org/dry) folks released a new, stronger validations gem: `dry-validation`.
 It changes, for the good, the way we express validation rules.
 So we took the decision to radically change our syntax and to adopt `dry-validation` as a validations backend for us.
 

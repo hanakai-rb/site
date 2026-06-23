@@ -2,7 +2,7 @@
 title: Inflector
 ---
 
-Hanami includes an inflector that supports the pluralization, singularization and humanization of English words, as well as other transformations. This inflector is a [Dry::Inflector](https://dry-rb.org/gems/dry-inflector) instance.
+Hanami includes an inflector that supports the pluralization, singularization and humanization of English words, as well as other transformations. This inflector is a [Dry::Inflector](https://hanakai.org/learn/dry/dry-inflector) instance.
 
 Hanami uses the inflector internally for a variety of purposes, but it's also available to use in your own code via the `"inflector"` component.
 

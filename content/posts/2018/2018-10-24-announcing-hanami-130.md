@@ -54,7 +54,7 @@ From 2.0 these two classes will be turned into modules.
 ### Inflector 🔠
 
 We deprecated `Hanami::Utils::Inflector`, `Hanami::Utils::String.pluralize`, and `.singularize`.
-From future versions, Hanami will use [`dry-inflector`](http://dry-rb.org/gems/dry-inflector/).
+From future versions, Hanami will use [`dry-inflector`](https://hanakai.org/learn/dry/dry-inflector/).
 
 ### Body parsers 📃
 
@@ -177,7 +177,7 @@ You may see patch versions to be released for bug fixes or deprecations.
 
 **From now on, our focus will be for 2.0!**
 
-We'll deeply integrate Hanami, [ROM](https://rom-rb.org/), & [DRY](https://dry-rb.org/). ❤️
+We'll deeply integrate Hanami, [ROM](https://hanakai.org/rom/), & [DRY](https://hanakai.org/dry/). ❤️
 If you're interested, keep an eye on the `unstable` branches of our [GitHub repositories](https://github.com/hanami).
 
 Happy coding! 🌸

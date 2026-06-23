@@ -66,7 +66,7 @@ When using Hanami in development, **your app will boot and reload instantly** th
 
 This release is **a triumph of indie development.** Our small team of volunteer developers have put years of effort towards this release, and we’ve pulled it off!
 
-We’ve also joined forces with the [dry-rb](https://dry-rb.org/) team. Together we’ve rebuilt Hanami on top of and around the dry-rb libraries. If you’ve ever had an interest in dry-rb, Hanami 2.0 gives you a curated experience and your easiest possible onramp.
+We’ve also joined forces with the [dry-rb](https://hanakai.org/dry/) team. Together we’ve rebuilt Hanami on top of and around the dry-rb libraries. If you’ve ever had an interest in dry-rb, Hanami 2.0 gives you a curated experience and your easiest possible onramp.
 
 Hanami 2.0 marks a **major moment for Ruby ecosystem diversity.** With this release we’re providing a distinct and compelling new vision for Ruby apps. With the backing of a compassionate and dedicated core team, you can feel confident Hanami will be here for the long run.
 

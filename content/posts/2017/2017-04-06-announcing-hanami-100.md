@@ -22,7 +22,7 @@ Since then, it's been amazing journey. I have learned a lot about Ruby, Open Sou
 The community aspect of this experience is key to me. Software is made by people for people.
 It's political. Hanami is a consequence of my vision: I, **we**, want to include people, keep them motivated to work on Open Source, and have fun together.
 
-This goes beyond Hanami. Alongside with other projects like [ROM](http://rom-rb.org/), [dry-rb](http://dry-rb.org/), and [Trailblazer](http://trailblazer.to/) we're influencing how modern web applications are written with Ruby.
+This goes beyond Hanami. Alongside with other projects like [ROM](https://hanakai.org/rom/), [dry-rb](https://hanakai.org/dry/), and [Trailblazer](http://trailblazer.to/) we're influencing how modern web applications are written with Ruby.
 
 **After 1392 days, 6205 commits, made by 295 people, we're proud to announce Hanami 1.0.0! 🌸**
 

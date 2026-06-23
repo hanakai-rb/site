@@ -90,7 +90,7 @@ This way you can learn Hanami 2 by building apps (hint: this would be great for 
 
 ### Hanami 2.1
 
-For this release, things will look complete from a full stack web framework perspective. Hanami apps will support views, helpers, assets, and persistence (based on [rom-rb](https://rom-rb.org)).
+For this release, things will look complete from a full stack web framework perspective. Hanami apps will support views, helpers, assets, and persistence (based on [rom-rb](https://hanakai.org/rom)).
 
 ## What’s included?
 
