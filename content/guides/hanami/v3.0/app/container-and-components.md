@@ -12,51 +12,44 @@ Hanami is designed to make it easy to create applications that are systems of we
 
 Let's take a look at how this works in practice!
 
-Imagine we want our Bookshelf application to send welcome emails to new users. Assuming that we're already handling user sign ups, our task is now to create an operation for sending the welcome email. We're going to use an external mail delivery service, while sending email in both html and plain text.
+Imagine we want our Bookshelf application to add new books to its catalog. Our task is to create an operation that saves a book to the database, generating a URL slug from its title along the way so we can build tidy links like `/books/the-pragmatic-programmer`.
 
-To achieve this, we first add two new components to our application: a _send welcome email operation_, and a _welcome email renderer_.
+To achieve this, we first add two new components to our application: an _add book operation_, and a _slugifier_ for turning a title into a slug.
 
 On the file system, this looks like:
 
 ```shell
 app
-├── operations
-│   └── send_welcome_email.rb
-└── renderers
-    └── welcome_email.rb
+├── books
+│   └── create.rb
+└── slugifier.rb
 ```
 
-Sketching out a send welcome email operation component:
+Sketching out an add book operation component:
 
 ```ruby
-# app/operations/send_welcome_email.rb
+# app/books/create.rb
 
 module Bookshelf
-  module Operations
-    class SendWelcomeEmail
-      def call(name:, email_address:)
-        # Send a welcome email to the user here...
+  module Books
+    class Create
+      def call(title:, author:)
+        # Add the book to the catalog here...
       end
     end
   end
 end
 ```
 
-And a welcome email renderer component:
+And a slugifier component:
 
 ```ruby
-# app/renderers/welcome_email.rb
+# app/slugifier.rb
 
 module Bookshelf
-  module Renderers
-    class WelcomeEmail
-      def render_html(name:)
-        "<p>Welcome to Bookshelf #{name}!</p>"
-      end
-
-      def render_text(name:)
-        "Welcome to Bookshelf #{name}!"
-      end
+  class Slugifier
+    def call(title)
+      title.downcase.gsub(/\s+/, "-")
     end
   end
 end
@@ -64,7 +57,7 @@ end
 
 When our application boots, Hanami will automatically register these classes as components in its **app container**, each under a **key** based on their Ruby class name.
 
-This means that an instance of the `Bookshelf::Operations::SendWelcomeEmail` class is available in the container under the key `"operations.send_welcome_email"`, while an instance of `Bookshelf::Renderers::WelcomeEmail` is available under the key `"renderers.welcome_email"`.
+This means that an instance of the `Bookshelf::Books::Create` class is available in the container under the key `"books.create"`, while an instance of `Bookshelf::Slugifier` is available under the key `"slugifier"`.
 
 We can see this in the Hanami console if we boot our application and ask what keys are registered with the app container:
 
@@ -75,31 +68,31 @@ bookshelf[development]> Hanami.app.boot
 => Bookshelf::App
 
 bookshelf[development]> Hanami.app.keys
-=> ["notifications",
- "settings",
- "routes",
- "inflector",
- "logger",
- "rack.monitor",
- "operations.send_welcome_email",
- "renderers.welcome_email"]
+=> [
+  # ...standard components omitted...
+  "books.create",
+  "repos.book_repo",
+  "slugifier"
+]
 ```
 
-To fetch our welcome email send operation from the container, we can ask for it by its `"operations.send_welcome_email"` key:
+Alongside our two new components, you'll also notice a `"repos.book_repo"` component: a book repository for persistence, like the one from the [database guide](//guide/database). We'll put it to use shortly.
+
+To fetch our add book operation from the container, we can ask for it by its `"books.create"` key:
 
 ```ruby
-bookshelf[development]> Hanami.app["operations.send_welcome_email"]
-=> #<Bookshelf::Operations::SendWelcomeEmail:0x00000001055dadd0>
+bookshelf[development]> Hanami.app["books.create"]
+=> #<Bookshelf::Books::Create:0x00000001055dadd0>
 ```
 
-Similarly we can fetch and call the renderer via the `"renderers.welcome_email"` key:
+Similarly we can fetch and call the slugifier via the `"slugifier"` key:
 
 ```ruby
-bookshelf[development]> Hanami.app["renderers.welcome_email"]
-=> #<Bookshelf::Renderers::WelcomeEmail:0x000000010577afc8>
+bookshelf[development]> Hanami.app["slugifier"]
+=> #<Bookshelf::Slugifier:0x000000010577afc8>
 
-bookshelf[development]> Hanami.app["renderers.welcome_email"].render_html(name: "Ada")
-=> "<p>Welcome to Bookshelf Ada!</p>"
+bookshelf[development]> Hanami.app["slugifier"].call("The Pragmatic Programmer")
+=> "the-pragmatic-programmer"
 ```
 
 Most of the time however, you won't work with components directly through the container via `Hanami.app`. Instead, you'll work with components through the convenient **dependency injection** system that having your components in a container supports. Let's see how that works!
@@ -108,26 +101,23 @@ Most of the time however, you won't work with components directly through the co
 
 Dependency injection is a software pattern where, rather than a component knowing how to instantiate its dependencies, those dependencies are instead provided to it. This means the dependencies can be abstract rather than hard coded, making the component more flexible, reusable and easier to test.
 
-To illustrate, here's an example of a send welcome email operation which **doesn't** use dependency injection:
+To illustrate, here's an example of an add book operation which **doesn't** use dependency injection:
 
 ```ruby
-# app/operations/send_welcome_email.rb
-
-require "acme_email/client"
+# app/books/create.rb
 
 module Bookshelf
-  module Operations
-    class SendWelcomeEmail
-      def call(name:, email_address:)
-        email_client = AcmeEmail::Client.new
+  module Books
+    class Create
+      def call(title:, author:)
+        book_repo = Repos::BookRepo.new
 
-        email_renderer = Renderers::WelcomeEmail.new
+        slugifier = Slugifier.new
 
-        email_client.deliver(
-          to: email_address,
-          subject: "Welcome!",
-          text_body: email_renderer.render_text(name: name),
-          html_body: email_renderer.render_html(name: name)
+        book_repo.create(
+          title: title,
+          author: author,
+          slug: slugifier.call(title)
         )
       end
     end
@@ -137,33 +127,30 @@ end
 
 This component has two dependencies, each of which is a "hard coded" reference to a concrete Ruby class:
 
-- `AcmeEmail::Client`, used to send an email via the third party Acme Email service.
-- `Renderers::WelcomeEmail`, used to render text and html versions of the welcome email.
+- `Repos::BookRepo`, used to persist the book to the database.
+- `Slugifier`, used to generate the book's URL slug.
 
-To make this send welcome email operation more resuable and easier to test, we could instead _inject_ its dependencies when we initialize it:
+To make this add book operation more reusable and easier to test, we could instead _inject_ its dependencies when we initialize it:
 
 ```ruby
-# app/operations/send_welcome_email.rb
-
-require "acme_email/client"
+# app/books/create.rb
 
 module Bookshelf
-  module Operations
-    class SendWelcomeEmail
-      attr_reader :email_client
-      attr_reader :email_renderer
+  module Books
+    class Create
+      attr_reader :book_repo
+      attr_reader :slugifier
 
-      def initialize(email_client:, email_renderer:)
-        @email_client = email_client
-        @email_renderer = email_renderer
+      def initialize(book_repo:, slugifier:)
+        @book_repo = book_repo
+        @slugifier = slugifier
       end
 
-      def call(name:, email_address:)
-        email_client.deliver(
-          to: email_address,
-          subject: "Welcome!",
-          text_body: email_renderer.render_text(name: name),
-          html_body: email_renderer.render_html(name: name)
+      def call(title:, author:)
+        book_repo.create(
+          title: title,
+          author: author,
+          slug: slugifier.call(title)
         )
       end
     end
@@ -171,27 +158,26 @@ module Bookshelf
 end
 ```
 
-As a result of injection, this component no longer has rigid dependencies - it's able to use any email client and email renderer it's provided.
+As a result of injection, this component no longer has rigid dependencies - it's able to use any book repository and slugifier it's provided.
 
 Hanami makes this style of dependency injection simple through its `Deps` mixin. Built into the component management system, and invoked through the use of `include Deps["key"]`, the `Deps` mixin allows a component to use any other component in its container as a dependency, while removing the need for any attr_reader or initializer boilerplate:
 
 ```ruby
-# app/operations/send_welcome_email.rb
+# app/books/create.rb
 
 module Bookshelf
-  module Operations
-    class SendWelcomeEmail
+  module Books
+    class Create
       include Deps[
-        "email_client",
-        "renderers.welcome_email"
+        "repos.book_repo",
+        "slugifier"
       ]
 
-      def call(name:, email_address:)
-        email_client.deliver(
-          to: email_address,
-          subject: "Welcome!",
-          text_body: welcome_email.render_text(name: name),
-          html_body: welcome_email.render_html(name: name)
+      def call(title:, author:)
+        book_repo.create(
+          title: title,
+          author: author,
+          slug: slugifier.call(title)
         )
       end
     end
@@ -207,31 +193,31 @@ i.e. this code:
 
 ```ruby
 include Deps[
-  "email_client",
-  "renderers.welcome_email"
+  "repos.book_repo",
+  "slugifier"
 ]
 ```
 
-makes the `"email_client"` component from the container available via an `#email_client` method, and the `"renderers.welcome_email"` component available via `#welcome_email`.
+makes the `"repos.book_repo"` component from the container available via a `#book_repo` method, and the `"slugifier"` component available via `#slugifier`.
 
-By default, dependencies are made available under a method named after the last segment of their key. So `include Deps["renderers.welcome_email"]` allows us to call `#welcome_email` anywhere in our `SendWelcomeEmail` class access the welcome email renderer.
+By default, dependencies are made available under a method named after the last segment of their key. So `include Deps["repos.book_repo"]` allows us to call `#book_repo` anywhere in our `Create` class to access the book repository.
 
-We can see `Deps` in action in the console if we instantiate an instance of our send welcome email operation:
+We can see `Deps` in action in the console if we instantiate an instance of our add book operation:
 
 ```ruby
-bookshelf[development]> Bookshelf::Operations::SendWelcomeEmail.new
-=> #<Bookshelf::Operations::SendWelcomeEmail:0x0000000112a93090
- @email_client=#<AcmeEmail::Client:0x0000000112aa82d8>,
- @welcome_email=#<Bookshelf::Renderers::WelcomeEmail:0x0000000112a931d0>>
+bookshelf[development]> Bookshelf::Books::Create.new
+=> #<Bookshelf::Books::Create:0x0000000112a93090
+ @book_repo=#<Bookshelf::Repos::BookRepo:0x0000000112aa82d8>,
+ @slugifier=#<Bookshelf::Slugifier:0x0000000112a931d0>>
 ```
 
 We can choose to provide different dependencies during initialization:
 
 ```ruby
-bookshelf[development]> Bookshelf::Operations::SendWelcomeEmail.new(email_client: "another client")
-=> #<Bookshelf::Operations::SendWelcomeEmail:0x0000000112aba8c0
- @email_client="another client",
- @welcome_email=#<Bookshelf::Renderers::WelcomeEmail:0x0000000112aba9b0>>
+bookshelf[development]> Bookshelf::Books::Create.new(slugifier: ->(title) { title.downcase })
+=> #<Bookshelf::Books::Create:0x0000000112aba8c0
+ @book_repo=#<Bookshelf::Repos::BookRepo:0x0000000112aba9b0>,
+ @slugifier=#<Proc:0x0000000112abac90 (lambda)>>
 ```
 
 This behaviour is particularly useful when testing, as you can substitute one or more components to test behaviour.
@@ -239,57 +225,54 @@ This behaviour is particularly useful when testing, as you can substitute one or
 In this unit test, we substitute each of the operation's dependencies in order to unit test its behaviour:
 
 ```ruby
-# spec/unit/operations/send_welcome_email_spec.rb
+# spec/unit/books/create_spec.rb
 
-RSpec.describe Bookshelf::Operations::SendWelcomeEmail, "#call" do
-  subject(:send_welcome_email) {
-    described_class.new(email_client: email_client, welcome_email: welcome_email)
+RSpec.describe Bookshelf::Books::Create, "#call" do
+  subject(:create) {
+    described_class.new(book_repo: book_repo, slugifier: slugifier)
   }
 
-  let(:email_client) { double(:email_client) }
-  let(:welcome_email) { double(:welcome_email) }
+  let(:book_repo) { double(:book_repo) }
+  let(:slugifier) { double(:slugifier) }
 
   before do
-    allow(welcome_email).to receive(:render_text).and_return("Welcome to Bookshelf Ada!")
-    allow(welcome_email).to receive(:render_html).and_return("<p>Welcome to Bookshelf Ada!</p>")
+    allow(slugifier).to receive(:call).and_return("the-pragmatic-programmer")
   end
 
-  it "sends a welcome email" do
-    expect(email_client).to receive(:deliver).with(
-      to: "ada@example.com",
-      subject: "Welcome!",
-      text_body: "Welcome to Bookshelf Ada!",
-      html_body: "<p>Welcome to Bookshelf Ada!</p>"
+  it "saves the book with a slug" do
+    expect(book_repo).to receive(:create).with(
+      title: "The Pragmatic Programmer",
+      author: "Hunt and Thomas",
+      slug: "the-pragmatic-programmer"
     )
 
-    send_welcome_email.call(name: "Ada!", email_address: "ada@example.com")
+    create.call(title: "The Pragmatic Programmer", author: "Hunt and Thomas")
   end
 end
 ```
 
-Exactly which dependency to stub using RSpec mocks is up to you - if a depenency is left out of the constructor within the spec, then the real dependency is resolved from the container. This means that every test can decide exactly which dependencies to replace.
+Exactly which dependency to stub using RSpec mocks is up to you - if a dependency is left out of the constructor within the spec, then the real dependency is resolved from the container. This means that every test can decide exactly which dependencies to replace.
 
 ## Renaming dependencies
 
 Sometimes you want to use a dependency under another name, either because two dependencies end with the same suffix, or just because it makes things clearer in a different context.
 
-This can be done by using the `Deps` mixin like so:
+For example, inside our `Books::Create` operation the `book_` prefix on `#book_repo` is redundant - we already know we're working with books. We can shorten it to `#repo` by using the `Deps` mixin like so:
 
-```ruby title="app/operations/send_welcome_email.rb"
+```ruby title="app/books/create.rb"
 module Bookshelf
-  module Operations
-    class SendWelcomeEmail
+  module Books
+    class Create
       include Deps[
-        "email_client",
-        email_renderer: "renderers.welcome_email"
+        "slugifier",
+        repo: "repos.book_repo"
       ]
 
-      def call(name:, email_address:)
-        email_client.deliver(
-          to: email_address,
-          subject: "Welcome!",
-          text_body: email_renderer.render_text(name: name),
-          html_body: email_renderer.render_html(name: name)
+      def call(title:, author:)
+        repo.create(
+          title: title,
+          author: author,
+          slug: slugifier.call(title)
         )
       end
     end
@@ -297,19 +280,97 @@ module Bookshelf
 end
 ```
 
-Above, the welcome email renderer is now available via the `#email_renderer` method, rather than via `#welcome_email`. When testing, the renderer can now be substituted by providing `email_renderer` to the constructor:
+Above, the book repository is now available via the `#repo` method, rather than via `#book_repo`. When testing, it can now be substituted by providing `repo` to the constructor:
 
 ```ruby
-subject(:send_welcome_email) {
-  described_class.new(email_client: mock_email_client, email_renderer: mock_email_renderer)
+subject(:create) {
+  described_class.new(repo: mock_repo, slugifier: mock_slugifier)
 }
 ```
+
+## Memoization
+
+By default, every component auto-registered in your container is memoized: it is instantiated only once, and the same instance is returned on every subsequent resolution, whether you resolve it from the container directly or inject it via `Deps`.
+
+We can see this in the console:
+
+```ruby
+c1 = Hanami.app["books.create"]
+c2 = Hanami.app["books.create"]
+c1.equal?(c2) # => true
+```
+
+Memoization is what makes Hanami containers efficient. Since components are typically stateless objects that are safe to share, instantiating each just once avoids redundant work as your app goes about its job, rather than rebuilding components every time they're resolved as dependencies.
+
+> [!NOTE]
+> A **stateless** object holds no data that changes from one use to the next. Our `Slugifier` is a good example: it remembers nothing between calls, taking a title as its argument and returning a fresh slug each time. An object like this behaves identically however many times, and from wherever, it's used, which is what makes a single shared instance safe.
+
+> [!NOTE]
+> In the test environment, components are **not** memoized. This allows you to stub a component in one test without that stubbed instance leaking into others.
+
+### Opting out of memoization
+
+Occasionally a component is not safe or sensible to memoize, and instead needs a fresh instance every time it's resolved.
+
+To opt a single component out of memoization, add a `# memoize: false` magic comment at the top of its source file:
+
+```ruby
+# memoize: false
+
+module Bookshelf
+  module Workers
+    class Mailer
+      # ...
+    end
+  end
+end
+```
+
+This component will now be instantiated anew on every resolution, while all your other components remain memoized.
+
+To opt out groups of components, use the `no_memoize` setting in your app config. It accepts an array of key prefixes:
+
+```ruby
+# config/app.rb
+
+require "hanami"
+
+module Bookshelf
+  class App < Hanami::App
+    config.no_memoize = ["workers", "jobs"]
+  end
+end
+```
+
+With this configuration, any component whose key begins with `"workers"` or `"jobs"` (such as `"workers.mailer"` or `"jobs.import"`) will not be memoized. Every other component continues to be memoized.
+
+For full control, you can instead provide a proc. It receives the component and should return `true` for any component that should _not_ be memoized:
+
+```ruby
+config.no_memoize = ->(component) {
+  component.key.start_with?("workers")
+}
+```
+
+Like other configuration, `no_memoize` can be set per slice. A slice inherits the app's setting unless it defines its own:
+
+```ruby
+# config/slices/admin.rb
+
+module Admin
+  class Slice < Hanami::Slice
+    config.no_memoize = ["jobs"]
+  end
+end
+```
+
+A `# memoize: false` (or `# memoize: true`) magic comment on an individual component always takes precedence over the `no_memoize` setting.
 
 ## Opting out of the container
 
 Sometimes it doesn’t make sense for something to be put in the container. For example, Hanami provides a base action class at `app/action.rb` from which all actions inherit. This type of class will never be used as a dependency by anything, and so registering it in the container doesn’t make sense.
 
-For once-off exclusions like this Hanami supports a magic comment: `# auto_register: false`
+For once-off exclusions like this Hanami supports a magic comment, much like the `# memoize: false` comment we saw above: `# auto_register: false`
 
 ```ruby
 # auto_register: false
@@ -354,25 +415,24 @@ end
 ```
 
 ```ruby
-# app/operations/send_welcome_email.rb
+# app/books/create.rb
 
 module Bookshelf
-  module Operations
-    class SendWelcomeEmail
+  module Books
+    class Create
       include Deps[
-        "email_client",
-        "renderers.welcome_email"
+        "repos.book_repo",
+        "slugifier"
       ]
 
-      def call(name:, email_address:)
-        email_client.deliver(
-          to: email_address,
-          subject: "Welcome!",
-          text_body: welcome_email.render_text(name: name),
-          html_body: welcome_email.render_html(name: name)
+      def call(title:, author:)
+        book_repo.create(
+          title: title,
+          author: author,
+          slug: slugifier.call(title)
         )
 
-        SlackNotifier.notify("Welcome email sent to #{email_address}")
+        SlackNotifier.notify("Added #{title} to the catalog")
       end
     end
   end
