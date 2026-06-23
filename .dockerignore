@@ -1,0 +1,9 @@
+**/.env*.local
+**/build
+**/db/*.sqlite
+**/log/*
+**/node_modules
+**/spec/examples.txt
+**/app/assets/builds
+**/tmp
+fly.toml
