@@ -95,6 +95,10 @@ end
 
 More on [Sequel Extensions](http://sequel.jeremyevans.net/rdoc/files/doc/extensions_rdoc.html)
 
+## Query logging
+
+Hanami logs every SQL query your app runs. Query logging has its own log level, `config.db.log_level` (defaulting to `:debug`), which is separate from the rest of your app's logging. For the full details — including the separate log level, SQL syntax highlighting, and customizing the highlighting theme — see [Database logging](//guide/logger/database-logging) in the logger guide.
+
 ## Slice Configuration
 
 As Slices are designed to provide modular isolation of business domains, it’s likely that database isolation will also be desirable in some cases.

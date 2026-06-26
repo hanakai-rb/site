@@ -1,126 +1,47 @@
 ---
-title: Configuration
+title: Overview
 pages:
   - usage
+  - configuration
+  - database-logging
 ---
 
-Hanami provides a built-in logger that is used by default as a general-purpose logger and, if you're building a web application, a Rack request logger too.
+Hanami provides a built-in, general-purpose logger for your app, powered by [Dry Logger](//org_guide/dry/dry-logger). If you're building a web application, it also logs your HTTP requests, and if your app has a database, it logs your SQL queries.
 
-You can tweak its configuration in your `App` class, but typically, the defaults should serve you well. Hanami sets up its logger differently depending on the environments:
+The logger supports structured logging by default, so you can log _data_ rather than plain text messages. This makes your logs much easier to process and understand when running your system in production.
 
-- In `development` environment logger logs to `$stdout` in `:debug` mode
-- In `test` environment logger logs to `logs/test.log` in `:debug` mode
-- In `production` environment logger logs to `$stdout` in `:info` mode using `:json` formatter
-
-### Changing default config
-
-The logger configuration is namespaced as `config.logger` and you can access it in your `App` class. If you change these settings, they will be set _for all environments by default_.
-
-Here's how you could set `:json` formatter for all environments:
+You can access the logger anywhere in your app as the `"logger"` component:
 
 ```ruby
-# config/app.rb
+app["logger"].info "Hello World"
+# [bookshelf] [INFO] [2022-11-20 13:47:13 +0100] Hello World
 
-require "hanami"
-
-module Bookshelf
-  class App < Hanami::App
-    # This would change formatter for all environments to `:json`
-    config.logger.formatter = :json
-  end
-end
+app["logger"].info "Order placed", order_id: 123, customer: "alice"
+# [bookshelf] [INFO] [2022-11-20 13:47:13 +0100] Order placed order_id=123 customer="alice"
 ```
 
-You can fine-tune your logger on a per-environment basis using the convenient `environment` method:
+In your app's own classes, you'll usually inject it as a dependency with [`Deps`](//guide/app/container-and-components#injecting-dependencies-via-deps):
 
 ```ruby
-# config/app.rb
-
-require "hanami"
-
 module Bookshelf
-  class App < Hanami::App
-    environment(:development) do
-      config.logger.stream = root.join("log").join("development.log")
+  class PlaceOrder
+    include Deps["logger"]
+
+    def call(order)
+      logger.info "Order placed", order_id: order.id
     end
   end
 end
 ```
 
-### Log filters
+Hanami sets up its logger differently depending on the environment:
 
-In order to avoid having sensitive information leak to your log streams, Hanami configures log filtering to filter out the following keys:
+- In `development`, the logger logs to `$stdout` in `:debug` mode.
+- In `test`, the logger logs to `log/test.log` in `:debug` mode.
+- In `production`, the logger logs to `$stdout` in `:info` mode using the `:json` formatter.
 
-- `_csrf`
-- `password`
-- `password_confirmation`
+## Learn more
 
-If you want to add more keys, you can simply do it like this:
-
-```ruby
-# config/app.rb
-
-require "hanami"
-
-module Bookshelf
-  class App < Hanami::App
-    config.logger.filters = config.logger.filters + ["token"]
-  end
-end
-```
-
-### Colorized output
-
-If you want colorized log levels in your output, you can do so via `colorize` option:
-
-```ruby
-# config/app.rb
-
-require "hanami"
-
-module Bookshelf
-  class App < Hanami::App
-    environment(:development) do
-      config.logger.options[:colorize] = true
-    end
-  end
-end
-```
-
-You can also customize text log template to use custom colors:
-
-```ruby
-require "hanami"
-
-module Bookshelf
-  class App < Hanami::App
-    environment(:development) do
-      config.logger.options[:colorize] = true
-
-      config.logger.template = <<~TMPL
-        [<blue>%<progname>s</blue>] [%<severity>s] [<green>%<time>s</green>] %<message>s %<payload>s
-      TMPL
-    end
-  end
-end
-```
-
-### Customizing logging destinations
-
-You may want to handle certain type of log entries in a special way. One example of this could be logging unexpected crashes to a special file to be able to see them more easily when running tests. You can achieve this by adding a dedicated logging backend.
-
-Here's what you could add to your `spec_helper.rb` to have any exception that's being logged while tests are running go to `log/exceptions.log` file:
-
-```ruby
-# spec/spec_helper.rb
-
-Hanami.logger.add_backend(
-  stream: Hanami.app.root.join("log").join("exceptions.log"), log_if: :exception?
-)
-
-begin
-  raise "Oh noez"
-rescue => e
-  Hanami.logger.error(e)
-end
-```
+- [Usage](//guide/logger/usage): logging messages and data, tagged logging, and logging exceptions.
+- [Configuration](//guide/logger/configuration): changing the level, formatter and stream, filtering sensitive data, colorized output, and custom destinations.
+- [Database logging](//guide/logger/database-logging): SQL query logging and syntax highlighting.
