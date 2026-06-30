@@ -9,7 +9,7 @@ excerpt: >
   New mailers, i18n, and Minitest. Your apps faster by default. Our most complete Hanami yet!
 ---
 
-From the very beginning we set out to make Hanami a different kind of Ruby framework: clear, modular, and built to grow. Today it comes into full bloom. We're thrilled to share **Hanami 3.0** with you! 
+From the very beginning we set out to make Hanami a different kind of Ruby framework: clear, modular, and built to grow. Today it comes into full bloom. We're thrilled to share **Hanami 3.0** with you!
 
 This release rounds out the framework with three big new features: **mailers**, **internationalization**, and **Minitest**. On top of that, your apps are now **faster by default**, and your developer experience is sharper, from your logs all the way to your assets.
 
