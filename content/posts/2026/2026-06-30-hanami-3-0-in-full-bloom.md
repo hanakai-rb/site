@@ -129,11 +129,11 @@ A big thank you to Ryan Davis and all the contributors for their work on Minites
 
 ## Faster by default
 
-Hanami 3.0 is significantly faster, and you can enjoy the benefits right from the get-go. In a small test app, the same request runs **2.9x faster over HTTP** while allocating a fraction of the memory.
+Hanami 3.0 is significantly faster, and you can enjoy the benefits right from the get-go. In a small test app, the same request runs **nearly 3x faster over HTTP** while allocating a fraction of the memory.
 
 Hanami now **memoizes your components by default**. This means that each component in your app's containers is resolved just once and then reused, rather than built fresh every time it's needed.
 
-This is the change you'll really feel. We took a small app whose action resolves a graph of nine components and renders a view, then measured the same request on 2.3 and 3.0. In 3.0, there were **14x fewer allocations per request** and **2.9x the throughput over HTTP** (and **closer to 8x throughput** when measured in-process, where the server isn't the bottleneck). Tail latency dropped sharply too: p99 reduced from 89ms to 4ms as the per-request allocation churn and GC pauses went away.
+This is the change you'll really feel. We took a small app whose action resolves a graph of nine components and renders a view, then measured the same request on 2.3 and 3.0. In 3.0, there were **14x fewer allocations per request** and **nearly 3x the throughput over HTTP** (and **closer to 9x throughput** when measured in-process, where the server isn't the bottleneck). Tail latency dropped sharply too: p99 reduced from 89ms to 4ms as the per-request allocation churn and GC pauses went away.
 
 We also focused on improving performance across the hottest parts of the framework:
 
@@ -142,7 +142,7 @@ We also focused on improving performance across the hottest parts of the framewo
 
 The best part of all this? It's a free lunch! Upgrade to 3.0 and your apps simply run faster, on less memory, all without any changes to your code.
 
-A special thank you to [Sean Collins](https://github.com/cllns) for driving much of our performance work for 3.0. We love you 2.9x more than before.
+A special thank you to [Sean Collins](https://github.com/cllns) for driving much of our performance work for 3.0. We love you nearly 3x more than before!
 
 ## Clearer, more useful logs
 
