@@ -213,7 +213,7 @@ We've landed plenty of smaller refinements in 3.0 too:
 - New `hanami generate provider` and `hanami generate mailer` generators.
 - A `--force` option across all generators, to overwrite existing files instead of stopping.
 - A `--name` option for `hanami new`, to set the app namespace separately from the directory path: `hanami new my_bookshelf --name=bookshelf`.
-- `--gem-source=gem.coop` for `hanami new` installs gems from our gem.coop namespaces.
+- `--gem-source=gem.coop` for `hanami new` installs gems [from](https://gem.coop/@hanami) [our](https://gem.coop/@dry) gem.coop namespaces.
 - Generated apps require Puma 7.1 and drop app preloading boilerplate from `config/puma.rb`.
 - A `--template-engine` option for `hanami new` and `hanami generate` creates templates for the given engine (`erb`, `haml`, or `slim`). Set a project-wide default with `config.default_template_engine` in your app class.
 - Explicit redirect helpers in the router: `permanent_redirect` (301) and `temporary_redirect` (302), with plain `redirect` now requiring an explicit `code:` argument for clarity.
