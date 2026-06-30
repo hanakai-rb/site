@@ -1,6 +1,6 @@
 ---
 title: "Hanami 3.0: In full bloom"
-date: 2026-06-30 10:00:00 UTC
+date: 2026-06-30 23:30:00 UTC
 tags: announcements
 author: Tim Riley
 image: true
@@ -107,7 +107,7 @@ localize(Time.new(2026, 5, 22, 9, 5), format: :short)
 
 Like every aspect of Hanami, i18n is designed to work out of the box with minimal setup, but there are plenty of settings if you need something custom. Check out the [i18n guide][i18n-guide] for the full picture.
 
-You can't spell "internationalization" without the i18n gem, which does all the heavy lifting for this new feature. So a big `en-AU` "cheers, mates" to the [i18n maintainers][i18n-maintainers] — thank you for helping Rubyists the world over!
+You can't spell _internationalization_ without the i18n gem, which does all the heavy lifting for this new feature. So a big `en-AU` "cheers, mates" to the [i18n maintainers][i18n-maintainers] — thank you for helping Rubyists the world over!
 
 [i18n-gem]: https://github.com/ruby-i18n/i18n
 [i18n-guide]: /learn/hanami/v3.0/i18n
@@ -129,11 +129,11 @@ A big thank you to Ryan Davis and all the contributors for their work on Minites
 
 ## Faster by default
 
-Hanami 3.0 is significantly faster, and you can enjoy the benefits right from the get-go. In a small test app, the same request runs **nearly 3x faster over HTTP** while allocating a fraction of the memory.
+Hanami 3.0 is significantly faster, and you can enjoy the benefits right from the get-go. In a test app, the same request runs **nearly 3x faster over HTTP** while allocating a fraction of the memory.
 
 Hanami now **memoizes your components by default**. This means that each component in your app's containers is resolved just once and then reused, rather than built fresh every time it's needed.
 
-This is the change you'll really feel. We took a small app whose action resolves a graph of nine components and renders a view, then measured the same request on 2.3 and 3.0. In 3.0, there were **14x fewer allocations per request** and **nearly 3x the throughput over HTTP** (and **closer to 9x throughput** when measured in-process, where the server isn't the bottleneck). Tail latency dropped sharply too: p99 reduced from 89ms to 4ms as the per-request allocation churn and GC pauses went away.
+This is the change you'll really feel. We took an app whose action resolves a graph of nine components and renders a view, then measured the same request on 2.3 and 3.0. In 3.0, there were **14x fewer allocations per request** and **nearly 3x the throughput over HTTP** (and **closer to 9x throughput** when measured in-process, where the server isn't the bottleneck). Tail latency dropped sharply too: p99 reduced from 89ms to 4ms as the per-request allocation churn and GC pauses went away.
 
 We also focused on improving performance across the hottest parts of the framework:
 
@@ -150,7 +150,7 @@ We've given logs some love for 3.0, across both day-to-day development and produ
 
 In development, logs are now colorized by default. SQL statements are formatted to match your request logs, and they're also syntax highlighted when the rouge gem is bundled.
 
-<!-- TODO: screenshot here -->
+![Hanami logs](/blog/assets/2026-06-30-hanami-3-0-in-full-bloom/logs.webp)
 
 SQL statements now log at the `:debug` level rather than `:info`, for quieter production logs, and you can tune this with `config.db.log_level`.
 
@@ -189,9 +189,11 @@ Learn more in our [formats and media types][formats-guide] guide.
 
 ## Simpler views with undecorated exposures
 
-View exposures are now undecorated by default. Your templates receive exactly what you expose, with no decoration unless you ask for it. This is a more predictable default, and avoids extra work when decoration isn't strictly required.
+[View exposures][exposures-guide] are now undecorated by default. Your templates receive exactly what you expose, with no decoration unless you ask for it. This is a more predictable default, and avoids extra work when decoration isn't strictly required.
 
 When you do want to decorate, the new `.decorate` method makes those exposures stand out in your code. You can also bring back the old behaviour across a view with `config.decorate_exposures = true`.
+
+[exposures-guide]: /learn/hanami/v3.0/views/input-and-exposures
 
 ## A cleaner foundation
 
@@ -204,7 +206,7 @@ Hanami 3.0 also requires Ruby 3.3 or newer.
 
 The result is fewer moving parts, clearer names for the gems we use, and a more approachable Hanami overall.
 
-## And more!
+## And much more!
 
 We've landed plenty of smaller refinements in 3.0 too:
 
@@ -222,7 +224,9 @@ We've landed plenty of smaller refinements in 3.0 too:
 - Various fixes: multipart uploads to the router, URL generation with array variables, duplicate routes on `generate action`, and more.
 - A beautiful new welcome screen, matching our Hanakai visuals. (Thank you [Max](https://github.com/makenosound)!)
 
-<!-- TODO WELCOME SCREENSHOT -->
+![Welcome screen in light mode](/blog/assets/2026-06-30-hanami-3-0-in-full-bloom/hanami-3-welcome-light.webp)
+
+![Welcome screen in dark mode](/blog/assets/2026-06-30-hanami-3-0-in-full-bloom/hanami-3-welcome-dark.webp)
 
 ## Try it out
 
@@ -264,7 +268,7 @@ Thank you to everyone who contributed to this release:
 - [Wout](https://github.com/wout)
 - [Yi Sangwon](https://github.com/yosangwon)
 
-## Thank you to our sponsors! 🌸
+## Thank you to our sponsors!
 
 This release is another huge step forward for Hanami, and there's no way we could have done this without the support of our [sponsors](/sponsor). Thank you, from the bottom of my heart!
 
@@ -276,4 +280,4 @@ Thank you to our business sponsors:
 
 And thank you to all the individuals supporting Hanakai through [GitHub Sponsors](https://github.com/sponsors/hanami) and [Open Collective](https://opencollective.com/hanami). Your encouragement means the world!
 
-Hanami is in full bloom today, but a garden is never finished, and there's plenty more we want to grow. Your support is what makes that possible. We'd love for you to [become a sponsor](/sponsor).
+Hanami is in full bloom today, but a garden is never finished, and there's plenty more we want to grow. Your support is what makes that possible. We'd love for you to [become a sponsor](/sponsor). :hanami:
