@@ -184,18 +184,18 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/hanami/v2.0/getting-started"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v2.3/getting-started")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v3.0/getting-started")
     end
 
     it "adds canonical URL to old org-versioned guide pages" do
       visit "/learn/hanami/v2.0/actions/parameters"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v2.3/actions/parameters")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v3.0/actions/parameters")
     end
 
     it "doesn't add canonical URL for latest org-versioned guides" do
-      visit "/learn/hanami/v2.3/getting-started"
+      visit "/learn/hanami/v3.0/getting-started"
 
       expect(page).not_to have_selector('link[rel="canonical"]', visible: false)
     end
@@ -217,7 +217,7 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/hanami/v2.1/getting-started"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to start_with("https://hanakai.org/learn/hanami/v2.3/")
+      expect(canonical_tag[:href]).to start_with("https://hanakai.org/learn/hanami/v3.0/")
     end
   end
 end

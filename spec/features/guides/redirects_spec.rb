@@ -5,19 +5,19 @@ RSpec.feature "Guides / Redirects" do
     it "redirects versionless (root) guide URLs to that guide in the latest version" do
       visit "/learn/hanami/getting-started"
 
-      expect(URI(current_url).path).to eq "/learn/hanami/v2.3/getting-started"
+      expect(URI(current_url).path).to eq "/learn/hanami/v3.0/getting-started"
     end
 
     it "redirects versionless (deep) guide URLs to that guide and path in the latest version" do
       visit "/learn/hanami/getting-started/building-a-web-app"
 
-      expect(URI(current_url).path).to eq "/learn/hanami/v2.3/getting-started/building-a-web-app"
+      expect(URI(current_url).path).to eq "/learn/hanami/v3.0/getting-started/building-a-web-app"
     end
 
     it "redirects version-only org guide URLs to the first guide of the latest version" do
-      visit "/learn/hanami/v2.3"
+      visit "/learn/hanami/v3.0"
 
-      expect(URI(current_url).path).to eq "/learn/hanami/v2.3/getting-started"
+      expect(URI(current_url).path).to eq "/learn/hanami/v3.0/getting-started"
     end
   end
 
