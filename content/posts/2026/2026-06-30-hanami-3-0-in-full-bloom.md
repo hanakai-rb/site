@@ -6,12 +6,12 @@ author: Tim Riley
 image: true
 org: hanami
 excerpt: >
-  Mailers, i18n, and Minitest, now built in. Faster by default, and polished throughout.
+  New mailers, i18n, and Minitest. Your apps faster by default. Our most complete Hanami yet!
 ---
 
-From the start, we set out to make Hanami a different kind of Ruby framework: clear, modular, and built to grow. Today it comes into full bloom.
+From the very beginning we set out to make Hanami a different kind of Ruby framework: clear, modular, and built to grow. Today it comes into full bloom. We're thrilled to share **Hanami 3.0** with you! 
 
-We're thrilled to share **Hanami 3.0** with you! It rounds out the framework with three big new features: **mailers**, **internationalization**, and **Minitest**. On top of that, your apps are now **faster by default**, and your developer experience is sharper throughout, from your logs to your asset watcher to the foundations underneath.
+This release rounds out the framework with three big new features: **mailers**, **internationalization**, and **Minitest**. On top of that, your apps are now **faster by default**, and your developer experience is sharper, from your logs all the way to your assets.
 
 ## First-class mailers
 
@@ -169,6 +169,10 @@ Read our [revamped logger guide][logger-guide] to learn more.
 
 `hanami assets watch` now keeps pace with more of your work: it picks up newly added and removed entry points, and reacts to changes in static assets like images and fonts. In earlier versions, each of these meant restarting the watcher. Now it just keeps up, so you can stay in the flow!
 
+We also published a [spec][assets-spec] covering how any asset bundler can plug cleanly into Hanami. Our own bundler is based on esbuild, but we don't want you to feel locked in! We'd love to see you bring your favorite bundler to Hanami.
+
+[assets-spec]: https://github.com/hanami/hanami-assets/blob/main/SPEC.md
+
 ## Body parsing comes to Hanami Action
 
 Hanami's request body parsing has moved out of middleware and into Hanami Action, where it's now driven by your `formats` config. Your actions parse exactly the formats you accept, and you can configure this right alongside the rest of your content negotiation.
@@ -219,3 +223,57 @@ We've landed plenty of smaller refinements in 3.0 too:
 - A beautiful new welcome screen, matching our Hanakai visuals. (Thank you [Max](https://github.com/makenosound)!)
 
 <!-- TODO WELCOME SCREENSHOT -->
+
+## Try it out
+
+You're only a few commands away from a new Hanami 3.0 app:
+
+```shell
+$ gem install hanami
+$ hanami new my_app
+$ cd my_app
+$ bin/hanami dev
+$ open http://localhost:2300
+```
+
+We'd love to hear how you go! Come say hi in our [forum](https://discourse.hanakai.org) or our [chat](https://discord.gg/KFCxDmk3JQ). Our community is super friendly and always willing to help you on your Hanami journey.
+
+## Upgrading from 2.3
+
+Already on 2.3? Our [3.0 upgrade notes](/learn/hanami/v3.0/upgrade-notes) walk you through every step.
+
+## Thank you to our contributors!
+
+Thank you to everyone who contributed to this release:
+
+- [Aaron Allen](https://github.com/aaronmallen)
+- [Adam Lassek](https://github.com/adamlassek)
+- [Carolyn Cole](https://github.com/carolyncole)
+- [Edouard](https://github.com/inouire)
+- [Jane Sandberg](https://github.com/sandbergja)
+- [Joshua Young](https://github.com/joshuay03)
+- [Konstantin Haase](https://github.com/rkh)
+- [Kyle Plump](https://github.com/kyleplump)
+- [Matthew Stanton](https://github.com/StantonMatt)
+- [Max Wheeler](https://github.com/makenosound)
+- [Paweł Świątkowski](https://github.com/katafrakt)
+- [Philip Arndt](https://github.com/parndt)
+- [Ramón Valles](https://github.com/rvmtz)
+- [Sean Collins](https://github.com/cllns)
+- [Tim Riley](https://github.com/timriley)
+- [Wout](https://github.com/wout)
+- [Yi Sangwon](https://github.com/yosangwon)
+
+## Thank you to our sponsors! 🌸
+
+This release is another huge step forward for Hanami, and there's no way we could have done this without the support of our [sponsors](/sponsor). Thank you, from the bottom of my heart!
+
+Thank you to our business sponsors:
+
+- **[Sidekiq](https://sidekiq.org)**, our Platinum sponsor.
+- **[Brandon Weaver](https://github.com/baweaver)**, our Gold sponsor.
+- **[Honeybadger](https://www.honeybadger.io)**, **[FastRuby.io](https://www.fastruby.io)**, **[AppSignal](https://www.appsignal.com)** and **[SerpApi](https://serpapi.com)**, our Silver sponsors.
+
+And thank you to all the individuals supporting Hanakai through [GitHub Sponsors](https://github.com/sponsors/hanami) and [Open Collective](https://opencollective.com/hanami). Your encouragement means the world!
+
+Hanami is in full bloom today, but a garden is never finished, and there's plenty more we want to grow. Your support is what makes that possible. We'd love for you to [become a sponsor](/sponsor).
