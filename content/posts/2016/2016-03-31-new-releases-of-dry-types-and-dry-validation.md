@@ -5,7 +5,7 @@ author: Peter Solnica
 org: dry
 ---
 
-What a busy week! New versions of [dry-types](http://dry-rb.org/gems/dry-types) and [dry-validation](http://dry-rb.org/gems/dry-types) have been released and there are really exciting new features awaiting for you. We're also very excited to see [Trailblazer](http://trailblazer.to) adopting some dry-rb libraries - Reform will soon support latest dry-validation, and Disposable has already replaced Virtus with dry-types for its coercion functionality.
+What a busy week! New versions of [dry-types](https://hanakai.org/learn/dry/dry-types) and [dry-validation](https://hanakai.org/learn/dry/dry-types) have been released and there are really exciting new features awaiting for you. We're also very excited to see [Trailblazer](http://trailblazer.to) adopting some dry-rb libraries - Reform will soon support latest dry-validation, and Disposable has already replaced Virtus with dry-types for its coercion functionality.
 
 ## New dry-validation features
 

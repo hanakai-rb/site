@@ -21,7 +21,7 @@ In November we [released Hanami 2.3](https://hanakai.org/blog/2025/11/12/hanami-
 
 ## Our ecosystem came together
 
-Our maintainers this year have been taking care of [Dry](https://dry-rb.org) and [Rom](https://rom-rb.org) in addition to Hanami. We’ve been working towards bringing these projects together under a single banner. As part of this, we’ve chosen a new overall project name, and have been developing a new website and unified branding. Together, these will reintroduce us to the Ruby world and give our users an easier time learning our tools. We plan to launch these in February, but in the meantime, you can check out the [source code](https://github.com/hanakai-rb/site) and the [in-progress](https://hanakai.org) live site (our guides are already [looking particularly fine](https://hanakai.org/learn/hanami/v2.3/getting-started)).
+Our maintainers this year have been taking care of [Dry](https://hanakai.org/dry) and [Rom](https://hanakai.org/rom) in addition to Hanami. We’ve been working towards bringing these projects together under a single banner. As part of this, we’ve chosen a new overall project name, and have been developing a new website and unified branding. Together, these will reintroduce us to the Ruby world and give our users an easier time learning our tools. We plan to launch these in February, but in the meantime, you can check out the [source code](https://github.com/hanakai-rb/site) and the [in-progress](https://hanakai.org) live site (our guides are already [looking particularly fine](https://hanakai.org/learn/hanami/v2.3/getting-started)).
 
 ## Our team grew again
 

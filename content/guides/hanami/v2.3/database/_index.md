@@ -6,7 +6,7 @@ pages:
   - relations
 ---
 
-Hanami’s persistence layer is based on the [Ruby Object Mapper (ROM)](https://rom-rb.org/) project. ROM may be a radically different approach to persistence than what you're familiar with, but don’t let that scare you. ROM is designed to provide clear separation of responsibilities. The hardest part is shifting your perspective to think in a new paradigm.
+Hanami’s persistence layer is based on the [Ruby Object Mapper (ROM)](https://hanakai.org/rom/) project. ROM may be a radically different approach to persistence than what you're familiar with, but don’t let that scare you. ROM is designed to provide clear separation of responsibilities. The hardest part is shifting your perspective to think in a new paradigm.
 
 Above all else ROM favors:
 
@@ -14,7 +14,7 @@ Above all else ROM favors:
 - **Speed**, because performance is a _feature_
 - **Flexibility** in your domain layer's design
 
-[ROM: Principles & Design](https://rom-rb.org/learn/#principles-amp-design)
+[ROM: Principles & Design](https://hanakai.org/learn/rom/v5.0/getting-started#principles-and-design)
 
 While traditional Object-Relational Mapping comes from a strictly Object-Oriented approach, ROM combines the best parts of Functional Programming and OOP that play to Ruby’s inherent strengths as a language. Instead of homogenizing all datastores into a lowest-common-denominator API, ROM embraces the diversity of storage engines and the powerful features they can provide.
 
@@ -112,7 +112,7 @@ end
 
 If the rest of your business logic treats the identity as an opaque string, then you’re done. The encapsulation afforded by Repository restricts the knowledge of the persistence layer from where it does not belong.
 
-For more on Repositories, see [ROM: Repositories](https://rom-rb.org/learn/repository/5.2/)
+For more on Repositories, see [ROM: Repositories](https://hanakai.org/learn/rom/repositories)
 
 ## Structs
 

@@ -205,9 +205,9 @@ For an empty `POST` request with an empty address object, this action would rend
 }
 ```
 
-Action validations use the [dry-validation](https://dry-rb.org/gems/dry-validation/) gem, which provides a powerful DSL for defining schemas.
+Action validations use the [dry-validation](https://hanakai.org/learn/dry/dry-validation/) gem, which provides a powerful DSL for defining schemas.
 
-Consult the [dry-validation](https://dry-rb.org/gems/dry-validation/) and [dry-schema](https://dry-rb.org/gems/dry-schema/) gems for further documentation.
+Consult the [dry-validation](https://hanakai.org/learn/dry/dry-validation/) and [dry-schema](https://hanakai.org/learn/dry/dry-schema/) gems for further documentation.
 
 ## Using concrete classes
 
