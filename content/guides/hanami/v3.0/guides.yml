@@ -38,6 +38,9 @@ guides:
   - slug: assets
     title: Assets
     description: Compiling and serving static assets
+  - slug: for-rails-developers
+    title: For Rails developers
+    description: Learn Hanami from a Rails perspective
   - slug: upgrade-notes
     title: Upgrade notes
     description: Migrating from earlier versions
