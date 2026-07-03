@@ -323,7 +323,7 @@ Now refresh [http://localhost:2300/books](http://localhost:2300/books) in your b
 
 ## Using request parameters
 
-Of course, returning _every_ book in the database when a visitor makes a request to `/books` is not going to be a good strategy for very long. Luckily, relations offer pagination support. Let's add pagination with a default page size of 5:
+Of course, returning _every_ book in the database when a visitor makes a request to `/books` is not going to be a good strategy for very long. Luckily, relations offer pagination support. Let's add pagination with a default page size of 2:
 
 ```ruby
 # app/relations/books.rb
