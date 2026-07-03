@@ -617,9 +617,7 @@ module Bookshelf
 end
 ```
 
-<p class="convention">
-  Accessing relations directly from app components like views and actions is not a commonly recommended pattern. Instead, a <a href="https://rom-rb.org/5.0/learn/repositories/quick-start/">ROM repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
-</p>
+Accessing relations directly from app components like views and actions is not a commonly recommended pattern. Instead, a [ROM repository](//org_guide/rom/repositories/quick-start) should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
 
 Then we can update our template to include the author:
 

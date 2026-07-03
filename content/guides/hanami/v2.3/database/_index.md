@@ -14,7 +14,7 @@ Above all else ROM favors:
 - **Speed**, because performance is a _feature_
 - **Flexibility** in your domain layer's design
 
-[ROM: Principles & Design](https://rom-rb.org/learn/#principles-amp-design)
+[ROM: Principles & Design](//org_guide/rom#principles--design)
 
 While traditional Object-Relational Mapping comes from a strictly Object-Oriented approach, ROM combines the best parts of Functional Programming and OOP that play to Ruby’s inherent strengths as a language. Instead of homogenizing all datastores into a lowest-common-denominator API, ROM embraces the diversity of storage engines and the powerful features they can provide.
 
@@ -112,7 +112,7 @@ end
 
 If the rest of your business logic treats the identity as an opaque string, then you’re done. The encapsulation afforded by Repository restricts the knowledge of the persistence layer from where it does not belong.
 
-For more on Repositories, see [ROM: Repositories](https://rom-rb.org/learn/repository/5.2/)
+For more on Repositories, see [ROM: Repositories](//org_guide/rom/repositories)
 
 ## Structs
 
