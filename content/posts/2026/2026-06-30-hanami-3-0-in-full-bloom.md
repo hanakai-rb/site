@@ -129,20 +129,22 @@ A big thank you to Ryan Davis and all the contributors for their work on Minites
 
 ## Faster by default
 
-Hanami 3.0 is significantly faster, and you can enjoy the benefits right from the get-go. In a test app, the same request runs **nearly 3x faster over HTTP** while allocating a fraction of the memory.
+Hanami 3.0 is significantly faster, and you can enjoy the benefits right from the get-go. In a [test app][3.0-bench], the same request runs **around 3.7x faster over HTTP** while allocating a fraction of the memory.
 
 Hanami now **memoizes your components by default**. This means that each component in your app's containers is resolved just once and then reused, rather than built fresh every time it's needed.
 
-This is the change you'll really feel. We took an app whose action resolves a graph of nine components and renders a view, then measured the same request on 2.3 and 3.0. In 3.0, there were **14x fewer allocations per request** and **nearly 3x the throughput over HTTP** (and **closer to 9x throughput** when measured in-process, where the server isn't the bottleneck). Tail latency dropped sharply too: p99 reduced from 89ms to 4ms as the per-request allocation churn and GC pauses went away.
+This is the change you'll really feel. We took an app whose action resolves a graph of nine components and renders a view, then measured the same request on 2.3 and 3.0. In 3.0, there were **14x fewer allocations per request** and **around 3.7x the throughput over HTTP** (and **closer to 9x throughput** when measured in-process, where the server isn't the bottleneck). Tail latency dropped too: p99 reduced from 20ms to 4ms as the per-request allocation churn and GC pauses went away.
 
 We also focused on improving performance across the hottest parts of the framework:
 
-- Hanami Action snapshots each action's config up front rather than recomputing it per-request, and overall allocates far less per request. A minimal action drops from **88 allocations to 17** — that's **80% fewer** — and runs around **3.7x faster** in isolation.
-- Hanami View gets the same config snapshot treatment, and also no longer decorates exposures by default. A minimal render drops from **100 allocations to 42** and runs around **2.9x faster**.
+- Hanami Action snapshots each action's config up front rather than recomputing it per-request, and overall allocates far less per request. A minimal action drops from **88 allocations to 14** — that's **84% fewer** — and runs around **4.5x faster** in isolation.
+- Hanami View gets the same config snapshot treatment, and also no longer decorates exposures by default. A minimal render drops from **88 allocations to 39** and runs around **2.9x faster**.
 
 The best part of all this? It's a free lunch! Upgrade to 3.0 and your apps simply run faster, on less memory, all without any changes to your code.
 
-A special thank you to [Sean Collins](https://github.com/cllns) for driving much of our performance work for 3.0. We love you nearly 3x more than before!
+A special thank you to [Sean Collins](https://github.com/cllns) for driving much of our performance work for 3.0. We love you 3.7x more than before!
+
+[3.0-bench]: https://github.com/timriley/hanami-3.0-bench
 
 ## Clearer, more useful logs
 
