@@ -4,7 +4,7 @@ title: Generate
 
 ## hanami generate
 
-Hanami 2.3 provides a few generators:
+Hanami 3.0 provides a few generators:
 
 ```shell
 $ bin/hanami generate --help
@@ -12,9 +12,11 @@ $ bin/hanami generate --help
 Commands:
   hanami generate action NAME
   hanami generate component NAME
+  hanami generate mailer NAME
   hanami generate migration NAME
   hanami generate operation NAME
   hanami generate part NAME
+  hanami generate provider NAME
   hanami generate relation NAME
   hanami generate repo NAME
   hanami generate slice NAME
@@ -50,6 +52,20 @@ Use the `--help` option to access all accepted options:
 
 ```shell
 $ bundle exec hanami generate component --help
+```
+
+### hanami generate mailer
+
+Generates a [mailer](//guide/mailers):
+
+```shell
+$ bundle exec hanami generate mailer welcome
+```
+
+Use the `--help` option to access all accepted options:
+
+```shell
+$ bundle exec hanami generate mailer --help
 ```
 
 ### hanami generate migration
@@ -92,6 +108,20 @@ Use the `--help` option to access all accepted options:
 
 ```shell
 $ bundle exec hanami generate part --help
+```
+
+### hanami generate provider
+
+Generates a [provider](//guide/app/providers):
+
+```shell
+$ bundle exec hanami generate provider payment_client
+```
+
+Use the `--help` option to access all accepted options:
+
+```shell
+$ bundle exec hanami generate provider --help
 ```
 
 ### hanami generate relation
