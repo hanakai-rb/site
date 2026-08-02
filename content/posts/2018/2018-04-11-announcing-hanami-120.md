@@ -210,7 +210,7 @@ For a detailed explanation, check the [upgrade guide](http://hanamirb.org/guides
 
 ## What's next?
 
-**We're gonna join our forces with [ROM](http://rom-rb.org/) & [dry-rb](http://dry-rb.org/) teams to work together on Hanami 2.0, ROM 5.0, and dry 1.0! 🎉**
+**We're gonna join our forces with [ROM](https://hanakai.org/rom/) & [dry-rb](https://hanakai.org/dry/) teams to work together on Hanami 2.0, ROM 5.0, and dry 1.0! 🎉**
 
 We'll work to improve the integration between our three projects, to offer a rock solid, unified set of solutions for the Ruby ecosystem. 💎❤️
 

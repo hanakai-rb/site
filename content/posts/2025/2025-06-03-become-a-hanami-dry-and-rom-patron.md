@@ -9,7 +9,7 @@ excerpt: >
   Help us build a diverse future for Ruby.
 ---
 
-Dear #rubyfriends — today we announce the beginning of a new era for [Hanami](https://hanamirb.org), [Dry](https://dry-rb.org) and [Rom](https://rom-rb.org). We are establishing paid, ongoing maintenance for the very first time.
+Dear #rubyfriends — today we announce the beginning of a new era for [Hanami](https://hanamirb.org), [Dry](https://hanakai.org/dry) and [Rom](https://hanakai.org/rom). We are establishing paid, ongoing maintenance for the very first time.
 
 I’m very proud of what we’ve built over our last decade of nights and weekends: an entire ecosystem of impressive breadth: from standalone libraries in Dry, to a powerful persistence toolkit in Rom, all the way to Hanami, the batteries-included framework experience that ties it all together.
 

@@ -618,7 +618,7 @@ end
 ```
 
 <p class="convention">
-  Accessing relations directly from app components like views and actions is not a commonly recommended pattern. Instead, a <a href="https://rom-rb.org/5.0/learn/repositories/quick-start/">ROM repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
+  Accessing relations directly from app components like views and actions is not a commonly recommended pattern. Instead, a <a href="https://hanakai.org/learn/rom/v5.0/repositories/quick-start/">ROM repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
 </p>
 
 Then we can update our template to include the author:

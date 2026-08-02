@@ -160,7 +160,7 @@ Now when `Users` relation reads it data, `birthday` values will be processed via
 
 ## Type System
 
-Schemas use a type system from [dry-types](http://dry-rb.org/gems/dry-types) and you can define your own schema types however you want. What types you need really depends on your application requirements, the adapter you're using, specific use cases of your application and so on.
+Schemas use a type system from [dry-types](https://hanakai.org/learn/dry/dry-types) and you can define your own schema types however you want. What types you need really depends on your application requirements, the adapter you're using, specific use cases of your application and so on.
 
 Here are a couple of guidelines that should help you in making right decisions:
 

@@ -308,7 +308,7 @@ Of course, returning a static list of books is not particularly useful.
 Let's address this by retrieving books from a database.
 
 <p class="notice">
-  Integrated support for persistence based on <a href="https://rom-rb.org/">ROM</a> is coming in Hanami's 2.2 release. For now, we can bring our own simple ROM configuration to allow us to store books in a database.
+  Integrated support for persistence based on <a href="https://hanakai.org/rom/">ROM</a> is coming in Hanami's 2.2 release. For now, we can bring our own simple ROM configuration to allow us to store books in a database.
 </p>
 
 ### Adding persistence using ROM
@@ -622,7 +622,7 @@ end
 ```
 
 <p class="convention">
-  Accessing relations directly from actions is not a commonly recommended pattern. Instead, a <a href="https://rom-rb.org/5.0/learn/repositories/quick-start/">rom repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
+  Accessing relations directly from actions is not a commonly recommended pattern. Instead, a <a href="https://hanakai.org/learn/rom/v5.0/repositories/quick-start/">rom repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
 </p>
 
 With this action in place, the spec passes once more:

@@ -31,7 +31,7 @@ After shipping and maintaining dozens of Rails apps over the years, I felt like 
 
 I knew I needed some kind of change to break out of the rut and begin a new stage of growth. But I loved Ruby, and didn’t want to leave. So instead I looked around for people who were doing things _differently_ with Ruby. I found [Roda](https://roda.jeremyevans.net) from [Jeremy Evans](https://github.com/jeremyevans). I found [Peter Solnica](https://github.com/solnic). It was this that set me off on my journey to Hanami.
 
-In 2015, I was part of the team that founded the [Dry](https://dry-rb.org) project. I spent the following years building production apps at Icelab composed of Dry, [Rom](https://rom-rb.org), and Roda. This was exactly the experience I hoped for! We built great things, and I learnt so much along the way.
+In 2015, I was part of the team that founded the [Dry](https://hanakai.org/dry) project. I spent the following years building production apps at Icelab composed of Dry, [Rom](https://hanakai.org/rom), and Roda. This was exactly the experience I hoped for! We built great things, and I learnt so much along the way.
 
 A few years later, the Dry and Hanami teams joined together to build the next version of Hanami. This is where I’ve focused my energy since. I drove most of the development towards [2.0](/blog/2022/11/22/announcing-hanami-200), [2.1](/blog/2024/02/27/hanami-210) and [2.2](/blog/2024/11/05/hanami-220).
 

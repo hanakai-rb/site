@@ -5,7 +5,7 @@ author: Peter Solnica
 org: dry
 ---
 
-We're very happy to announce the release of `dry-types` and `dry-struct` 1.0.0! `dry-types` is one of the most important and foundational gem in the dry-rb organization. It powers attributes in `dry-struct`, handles coercion in `dry-schema`, and is used extensively in [`rom-rb`](https://rom-rb.org/)'s relation schemas. With this 1.0.0 release, we hope it will be adopted by more projects. `dry-struct` was originally extracted from `dry-types` and it provides the famous `attribute` API for your PORO objects.
+We're very happy to announce the release of `dry-types` and `dry-struct` 1.0.0! `dry-types` is one of the most important and foundational gem in the dry-rb organization. It powers attributes in `dry-struct`, handles coercion in `dry-schema`, and is used extensively in [`rom-rb`](https://hanakai.org/rom/)'s relation schemas. With this 1.0.0 release, we hope it will be adopted by more projects. `dry-struct` was originally extracted from `dry-types` and it provides the famous `attribute` API for your PORO objects.
 
 Huge props go to [Nikita Shilnikov](https://github.com/flash-gordon) who has worked so hard to finalize these releases which bring a lot of improvements. Let's look at some of the highlights.
 

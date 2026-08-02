@@ -163,4 +163,4 @@ As we gather experience, together we'll figure out what's good and what's bad. S
 
 ## Dive in!
 
-The first version of dry-effects is already on [RubyGems.org](https://rubygems.org/gems/dry-effects), go grab it. We have [docs](https://dry-rb.org/gems/dry-effects/0.1) for most effects and specs for all of them. As always, share your experience and ask your questions in our [chat](https://dry-rb.zulipchat.com) and at our [forum](https://discourse.dry-rb.org/).
+The first version of dry-effects is already on [RubyGems.org](https://rubygems.org/gems/dry-effects), go grab it. We have [docs](https://hanakai.org/learn/dry/dry-effects) for most effects and specs for all of them. As always, share your experience and ask your questions in our [chat](https://dry-rb.zulipchat.com) and at our [forum](https://discourse.dry-rb.org/).

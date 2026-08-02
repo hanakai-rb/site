@@ -33,8 +33,8 @@ In April we managed [a smooth transition of project leadership](https://hanamirb
 This year we welcomed a number of folks to our contributors group:
 
 - [Sean Collins](https://github.com/cllns), a long-time Hanami team member who is back with a bang! Sean has worked a lot across our CLI, and has a great eye for the overall developer experience.
-- [Adam Lassek](https://github.com/alassek), one of the world’s leading experts in both [dry-system](https://github.com/dry-rb/dry-system) and [ROM](https://rom-rb.org), as well as how we bring the two of them together in Hanami. We couldn’t have built our database layer in 2.2 without Adam’s help.
-- [Marc Busqué](https://github.com/waiting-for-dev), who built [dry-operation](http://dry-rb.org/gems/dry-operation) from scratch for Hanami 2.2. This is a gem I’ve wanted to exist for years, and I’m so excited it’s now part of our stack.
+- [Adam Lassek](https://github.com/alassek), one of the world’s leading experts in both [dry-system](https://github.com/dry-rb/dry-system) and [ROM](https://hanakai.org/rom), as well as how we bring the two of them together in Hanami. We couldn’t have built our database layer in 2.2 without Adam’s help.
+- [Marc Busqué](https://github.com/waiting-for-dev), who built [dry-operation](https://hanakai.org/learn/dry/dry-operation) from scratch for Hanami 2.2. This is a gem I’ve wanted to exist for years, and I’m so excited it’s now part of our stack.
 - [Kyle Plump](https://github.com/kyleplump), who brings great energy and is ready to help with issues of all kinds.
 - [Aaron Moodie](https://github.com/aaronmoodie), the designer behind our [shiny new welcome screen](https://hanamirb.org/blog/2024/11/05/hanami-220), and our soon-to-be shiny new website (more on this later!).
 

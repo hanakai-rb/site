@@ -4,7 +4,7 @@ title: Custom step adapters
 
 You can provide your own step adapters to add custom behaviour to transaction steps. Your step adapters must provide a single `#call(step, input, *args)` method, which should return the step’s result wrapped in a `Result` object.
 
-You can provide your step adapter in a few different ways. You can add it to the built-in `StepAdapters` container (a [`dry-container`](http://dry-rb.org/gems/dry-container)) to make it available to all transactions in your codebase:
+You can provide your step adapter in a few different ways. You can add it to the built-in `StepAdapters` container (a [`dry-container`](https://hanakai.org/learn/dry/dry-container)) to make it available to all transactions in your codebase:
 
 ```ruby
 Dry::Transaction::StepAdapters.register :custom_adapter, MyAdapter.new

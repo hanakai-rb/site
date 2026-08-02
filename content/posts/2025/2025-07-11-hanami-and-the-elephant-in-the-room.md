@@ -27,7 +27,7 @@ This is where we are with Hanami, Dry and Rom. We’ve put ten years into constr
 
 ## That’s all well and good. But how does it help me now?
 
-We’re already helping thousands of Rails developers thanks to our [Dry](https://dry-rb.org/) gems (a billion downloads and counting!). These bring structure and precision to your app’s business logic. To get a taste, check out [dry-validation](https://dry-rb.org/gems/dry-validation), [dry-types](https://dry-rb.org/gems/dry-types)/[dry-struct](https://dry-rb.org/gems/dry-struct) and [dry-operation](https://dry-rb.org/gems/dry-operation).
+We’re already helping thousands of Rails developers thanks to our [Dry](https://hanakai.org/dry/) gems (a billion downloads and counting!). These bring structure and precision to your app’s business logic. To get a taste, check out [dry-validation](https://hanakai.org/learn/dry/dry-validation), [dry-types](https://hanakai.org/learn/dry/dry-types)/[dry-struct](https://hanakai.org/learn/dry/dry-struct) and [dry-operation](https://hanakai.org/learn/dry/dry-operation).
 
 If you’re in a Rails app and you aren’t using these tools, or if you haven’t yet played with Hanami, I think you should give them a try!
 

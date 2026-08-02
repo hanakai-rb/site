@@ -72,7 +72,7 @@ books.by_pk(id).one
 # => { id: 1, title: "Hanami", status: :released }
 ```
 
-The Types namespace available to Relations comes from `ROM::SQL::Types` and is built from [dry-types](https://dry-rb.org/gems/dry-types/).
+The Types namespace available to Relations comes from `ROM::SQL::Types` and is built from [dry-types](https://hanakai.org/learn/dry/dry-types/).
 
 Normally, dry-types model a single type with optional coercion logic. However, SQL introduces a two-fold coercion due to the difference between SQL and Ruby types. When these types diverge, the first type argument is the SQL type to be written, and you pass a `read:` argument with the Ruby type.
 

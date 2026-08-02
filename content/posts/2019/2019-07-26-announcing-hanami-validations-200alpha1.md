@@ -17,7 +17,7 @@ Today we're happy to announce `hanami-validations` `v2.0.0.alpha1` release 🙌.
 
 While we're continuing the work on Hanami 2, we decided to anticipate the release of the new `hanami-validations`.
 
-As result of the collaboration with [DRY](https://dry-rb.org) & [ROM](https://rom-rb.org), this new version is based on the now stable [`dry-validation`](https://dry-rb.org/gems/dry-validation/) gem.
+As result of the collaboration with [DRY](https://hanakai.org/dry) & [ROM](https://hanakai.org/rom), this new version is based on the now stable [`dry-validation`](https://hanakai.org/learn/dry/dry-validation/) gem.
 
 The most noteworthy change is the introduction of `Hanami::Validator`, a new superclass to inherit from:
 
@@ -51,7 +51,7 @@ puts result.success? # => false
 puts result.errors.to_h # => {:age=>["must be greater than 18"]}
 ```
 
-See more examples in the [`README`](https://github.com/hanami/validations/blob/main/README.md) and [`dry-validation` documentation](https://dry-rb.org/gems/dry-validation/)
+See more examples in the [`README`](https://github.com/hanami/validations/blob/main/README.md) and [`dry-validation` documentation](https://hanakai.org/learn/dry/dry-validation/)
 
 The old `Hanami::Validation` mixin is still present for backwards compatibility.
 

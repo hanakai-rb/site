@@ -17,10 +17,10 @@ We waited so long to release this version in order to have the largest possible 
 We've had a lot of new contributions: new features, bug fixes, and real world experiences.
 At this point **we're really close to 1.0**.
 
-In the meantime, we've started tech alliances with [dry-rb](http://dry-rb.org) and [ROM](http://rom-rb.org).
+In the meantime, we've started tech alliances with [dry-rb](https://hanakai.org/dry) and [ROM](https://hanakai.org/rom).
 We're working closely with these two amazing projects (and communities) to make the Ruby ecosystem stronger.
 
-As result of this collaboration, today we can ship a new, powerful validation syntax based on [dry-validation](http://dry-rb.org/gems/dry-validation).
+As result of this collaboration, today we can ship a new, powerful validation syntax based on [dry-validation](https://hanakai.org/learn/dry/dry-validation).
 
 ## Features
 

@@ -22,7 +22,7 @@ DATABASE_URL=mysql2://user:password@localhost/bookshelf_dev
 DATABASE_URL=sqlite://config/db/development.sqlite
 ```
 
-For more detail on the syntax of the URLs, see [ROM SQL: Connecting to a Database](https://rom-rb.org/learn/sql/3.3/#connecting-to-a-database)
+For more detail on the syntax of the URLs, see [ROM SQL: Connecting to a Database](https://hanakai.org/learn/rom/sql#connecting-to-a-database)
 
 ## Advanced Configuration
 

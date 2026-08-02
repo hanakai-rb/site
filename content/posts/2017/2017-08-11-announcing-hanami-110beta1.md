@@ -98,7 +98,7 @@ end
 We have rewritten from scratch our CLI, by replacing `thor` with a new gem `hanami-cli`.
 
 Despite the name, [`hanami-cli`](https://github.com/hanami/cli) is **not** about Hanami commands (eg. `hanami server`), but instead it's a **general purpose Command Line Interface (CLI) framework for Ruby**.
-We worked with [dry-rb](http://dry-rb.org) team to ship this new gem, which is be used by Hanami, and it will be used soon by dry-rb, [ROM](http://rom-rb.org/) and [Trailblazer](http://trailblazer.to/) to build their CLI too.
+We worked with [dry-rb](https://hanakai.org/dry) team to ship this new gem, which is be used by Hanami, and it will be used soon by dry-rb, [ROM](https://hanakai.org/rom/) and [Trailblazer](http://trailblazer.to/) to build their CLI too.
 
 Thanks to `hanami-cli` we built a new CLI architecture that allows third-party developers to integrate with Hanami CLI.
 Let's say we want to build a fictional gem `hanami-webpack`.

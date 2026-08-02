@@ -135,7 +135,7 @@ module MyApp
 end
 ```
 
-The `config.source_dirs.component_dirs` setting is provided by [dry-system’s](http://dry-rb.org/gems/dry-system/0.21/) own `Dry::System::Config::ComponentDirs`, so you can use this to configure any aspect of component loading as you require.
+The `config.source_dirs.component_dirs` setting is provided by [dry-system’s](https://hanakai.org/learn/dry/dry-system/) own `Dry::System::Config::ComponentDirs`, so you can use this to configure any aspect of component loading as you require.
 
 In addition to component dirs, you can also configure your own autoload paths, for source files you don’t want registered as components, but whose classes you still want to access inside your application. These directories are helpful for any classes that you will directly instantiate with their own data rather than dependencies, such as entities, structs, or any other kind of value class.
 
@@ -178,7 +178,7 @@ Closer to home, this is also the first step towards faster code reloading when r
 
 ## Route helpers via the view context
 
-Last month we made the [route helpers available in actions](/blog/2021/12/07/announcing-hanami-200alpha4), and now we’re making them available in views too, via our default [view context](https://dry-rb.org/gems/dry-view/0.7/context/). This means you can access `routes` inside any template:
+Last month we made the [route helpers available in actions](/blog/2021/12/07/announcing-hanami-200alpha4), and now we’re making them available in views too, via our default [view context](https://hanakai.org/learn/dry/dry-view/context/). This means you can access `routes` inside any template:
 
 ```slim
 / slices/main/web/templates/books/index.html.slim
@@ -188,7 +188,7 @@ Last month we made the [route helpers available in actions](/blog/2021/12/07/ann
     a href=routes.url(:book, id: book.id) = book.title
 ```
 
-Given the context is exposed to view [parts](https://dry-rb.org/gems/dry-view/0.7/parts/) and [scopes](https://dry-rb.org/gems/dry-view/0.7/scopes/), you can access `routes` there as well.
+Given the context is exposed to view [parts](https://hanakai.org/learn/dry/dry-view/parts/) and [scopes](https://hanakai.org/learn/dry/dry-view/scopes/), you can access `routes` there as well.
 
 ## RSS support in our default MIME type list
 
