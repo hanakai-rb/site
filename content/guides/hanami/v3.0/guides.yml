@@ -2,6 +2,9 @@ guides:
   - slug: getting-started
     title: Getting started
     description: Build your first Hanami app from scratch
+  - slug: for-rails-developers
+    title: For Rails developers
+    description: Learn Hanami from a Rails perspective
   - slug: cli-commands
     title: CLI commands
     description: Generators and CLI tools reference
@@ -38,9 +41,6 @@ guides:
   - slug: assets
     title: Assets
     description: Compiling and serving static assets
-  - slug: for-rails-developers
-    title: For Rails developers
-    description: Learn Hanami from a Rails perspective
   - slug: upgrade-notes
     title: Upgrade notes
     description: Migrating from earlier versions
