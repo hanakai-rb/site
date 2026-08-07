@@ -2,10 +2,10 @@
 title: Models
 ---
 
-Whenever you're building a Rails application you typically want to pull data from a data source. When you're building a Hanami application, you'll want to do the same thing. Rather than having one model class to use as a dumping ground, Hanami separates these into a few distinct classes called repositories, relations and structs.
+Whenever you're building a Rails application you typically want to pull data from a data source. When you're building a Hanami app, you'll want to do the same thing. Rather than having one model class to use as a dumping ground, Hanami separates these into a few distinct classes called repositories, relations and structs.
 
-1. **Repositories**: Defines the interactions between your database and your application.
-2. **Relations**: Provides a home for your application's complicated queries.
+1. **Repositories**: Defines the interactions between your database and your app.
+2. **Relations**: Provides a home for your app's complicated queries.
 3. **Structs**: Represents rows from your database in plain and simple Ruby objects.
 
 Let's take a look at each of these in turn by creating a table called `books`, and then inserting data into that table, and then requesting that data back out in various ways.
@@ -78,7 +78,7 @@ Relations in Hanami are pluralised, and match the name of the table. We can use 
 hanami console
 ```
 
-Hanami provides a _registry_ for our applications classes, and we can use this registry to get the relation:
+Hanami provides a _registry_ for our app's classes, and we can use this registry to get the relation:
 
 ```ruby
 books = app["relations.books"]
@@ -116,7 +116,7 @@ Hanami's documentation says this about repositories:
 
 > \[Repositories\] exist to bridge the gap between business objects and database objects.
 
-A repository in Hanami is where we provide the public API of a database layer back to our application. We'll see examples of this in a moment.
+A repository in Hanami is where we provide the public API of a database layer back to our app. We'll see examples of this in a moment.
 
 Let's generate a repository for our `books` table now, by exiting our `hanami console` session (with `exit`) then running this:
 
@@ -190,7 +190,7 @@ books = book_repo.all
 
 ## Scoping queries
 
-To further demonstrate what a repository and relation do within a Hanami application, we're now going to perform an action that would be common to a lot of Rails applications: adding a `by_year` scope to our queries. In Rails, we would add this to a model with this code:
+To further demonstrate what a repository and relation do within a Hanami app, we're now going to perform an action that would be common to a lot of Rails applications: adding a `by_year` scope to our queries. In Rails, we would add this to a model with this code:
 
 ```ruby
 scope :by_year, ->(year) { where(year: year) }
@@ -230,7 +230,7 @@ end
 
 This code can allow us to call `book_repo.by_year(2025)` to get all the books from the year 2025.
 
-As you can see by these `find` and `by_year` methods, we define the methods to interact with our database as we need them within a Hanami application.
+As you can see by these `find` and `by_year` methods, we define the methods to interact with our database as we need them within a Hanami app.
 
 Let's add one more of these to find by the author as well:
 
@@ -312,8 +312,8 @@ Great!
 
 As we can see from this "Model Layer" section of this guide, Hanami provides three distinct layers of separation here:
 
-1. **Repositories**: Defines the interactions between your database and your application.
-2. **Relations**: Provides a home for your application's complicated queries.
+1. **Repositories**: Defines the interactions between your database and your app.
+2. **Relations**: Provides a home for your app's complicated queries.
 3. **Structs**: Represents rows from your database in plain and simple Ruby objects.
 
 Rails would have you throw all of this into the one class (a model), leading to quite a lot of mess and making things harder to read. Hanami's separation is initially disorienting (which file was that code in?) but after a few days that disorientation will wear off!

@@ -4,7 +4,7 @@ title: Forms
 
 In the first two parts of this guide, we covered off the familiar concepts of models and controllers, and saw how Hanami approached these designs. We saw that Hanami split the responsibilities of models between **repositories**, **relations** and **structs**, and we saw that the responsibilities of a controller and its views were split between **actions**, **views** and **templates**.
 
-In this part, we're going to continue building on our application's foundation by introducing a form that lets us add further books to our application. In a Rails app, we would handle this by adding a `new` and `create` action to our controller. You'll see that Hanami isn't much different here when it comes to that.
+In this part, we're going to continue building on our app's foundation by introducing a form that lets us add further books to our app. In a Rails app, we would handle this by adding a `new` and `create` action to our controller. You'll see that Hanami isn't much different here when it comes to that.
 
 We'll be building out the `new` and `create` actions for books in this section, seeing how we can create books by using our existing `BookRepo` class. We'll also see how to add validations to our data in this chapter, not on the repository itself, but in the action.
 
@@ -99,7 +99,7 @@ end
 
 You'll notice that this action is a lot like a regular `create` action within Rails, with a few clear differences. In the Hanami action, we're pulling `params` from `request`, as we did in the last part with the `year` parameter. We're also working with the `response` object here, setting the flash and `redirect_to` specifically on those objects.
 
-To use `flash` within a Hanami application, we need to add session support to the application. Hanami applications don't come with this enabled by default, because they may instead be used in an API-only context. To add this session support, we'll go to Hanami's application configuration file, `config/app.rb`, and add this line:
+To use `flash` within a Hanami app, we need to add session support to the app. Hanami apps don't come with this enabled by default, because they may instead be used in an API-only context. To add this session support, we'll go to Hanami's app configuration file, `config/app.rb`, and add this line:
 
 ```ruby
 require "hanami"
@@ -115,7 +115,7 @@ module Bookshelf
 end
 ```
 
-Then we need to configure this as a setting for our application over in `config/settings.rb`:
+Then we need to configure this as a setting for our app over in `config/settings.rb`:
 
 ```ruby
 module Bookshelf
@@ -162,7 +162,7 @@ Now that we've got the happy path working for creating a book, let's work on add
 
 In a Rails application, the place to add these validations to would be the model. Hanami doesn't do this, and instead prefers to validate the parameters where we first come across them: in the actions themselves.
 
-To add validations in an Hanami application, we add them to the action that processes the parameters, which would be the `Books::Create` action in our app. Let's add this validation to `app/actions/books/create.rb` now:
+To add validations in an Hanami app, we add them to the action that processes the parameters, which would be the `Books::Create` action in our app. Let's add this validation to `app/actions/books/create.rb` now:
 
 ```ruby
 module Bookshelf

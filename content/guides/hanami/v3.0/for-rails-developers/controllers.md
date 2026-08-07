@@ -2,7 +2,7 @@
 title: Controllers
 ---
 
-In the first part we saw how to interact with a database by using Hanami's repositories and relations. In this part, we continue that by serving that data out through routes of our Hanami application.
+In the first part we saw how to interact with a database by using Hanami's repositories and relations. In this part, we continue that by serving that data out through routes of our Hanami app.
 
 To get started here, we can run the Hanami server (and its asset compilation step) by running:
 
@@ -14,7 +14,7 @@ This will run a server on localhost:2300 and once you come back to the browser t
 
 ## Routing
 
-In a Hanami application, you can find the routes in the familiar location of `config/routes.rb`. We can add a route to this application by changing this file to this code:
+In a Hanami app, you can find the routes in the familiar location of `config/routes.rb`. We can add a route to this app by changing this file to this code:
 
 ```ruby
 module Bookshelf
@@ -52,7 +52,7 @@ This has updated our `config/routes.rb` file to include a new `/books` route:
 get "/books", to: "books.index"
 ```
 
-Classes in Hanami applications are namespaced automatically under the application's name. You can see this by looking at the two classes generated for us here which are both created under the `Bookshelf` namespace: `Actions::Books::Index`, and `Views::Books::Index`.
+Classes in Hanami apps are namespaced automatically under the app's name. You can see this by looking at the two classes generated for us here which are both created under the `Bookshelf` namespace: `Actions::Books::Index`, and `Views::Books::Index`.
 
 Hanami has no controllers, and instead splits this logic between two classes: **actions** and **views**.
 
@@ -62,9 +62,9 @@ The purpose of views is to gather up and present the data once an action has dec
 
 ## Views
 
-Views typically have a template to render as well, and in this application we now have `app/templates/books/index.html.erb`. This is the same kind of file you'd get with Rails, only in Rails it would be under `app/views`. Views in Hanami have a different meaning, and that can take some time to get your head around.
+Views typically have a template to render as well, and in this app we now have `app/templates/books/index.html.erb`. This is the same kind of file you'd get with Rails, only in Rails it would be under `app/views`. Views in Hanami have a different meaning, and that can take some time to get your head around.
 
-At the moment, requests to http://localhost:2300/books shows very little, just a big H1 showing: `Bookshelf::Views::Books::Index`. This isn't going to drive engagement for our book application. We'll add some books to this page instead, by fetching them from the database and displaying them here.
+At the moment, requests to http://localhost:2300/books shows very little, just a big H1 showing: `Bookshelf::Views::Books::Index`. This isn't going to drive engagement for our book app. We'll add some books to this page instead, by fetching them from the database and displaying them here.
 
 To fetch these books from the database, we will open `app/views/books/index.rb` and fetch all the books with this code:
 
@@ -114,7 +114,7 @@ We're now able to display a list of books, but let's look at how we can display 
 
 ## Working with parameters
 
-In this Hanami application, we would like a route at `/books/year/2025` to return only the books from that specified year. Let's add that route to the `config/routes.rb` file in our application now:
+In this Hanami app, we would like a route at `/books/year/2025` to return only the books from that specified year. Let's add that route to the `config/routes.rb` file in our app now:
 
 ```ruby
 get "/books/year/:year", to: "books.index"
@@ -195,7 +195,7 @@ This view will now display a list of books from 2025 when we go to http://localh
 
 ![Books by year](/images/hanami/books_by_year.jpg)
 
-We've now added two ways to use the same action, with two different views. In a RESTful application, we would typically have more actions than this. You'd be familiar with the set of them from a Rails application:
+We've now added two ways to use the same action, with two different views. In a RESTful app, we would typically have more actions than this. You'd be familiar with the set of them from a Rails application:
 
 - index
 - show
@@ -209,7 +209,7 @@ In the remainder of this part, we'll cover off the show action. We'll leave the 
 
 ## Adding a show route
 
-We're now going to add a `show` action to our application, allowing us to display information about a single book. When we add this route, we will also add a link from our books "index" actions to the show action. Rather than starting with the route, we'll start with generating an action:
+We're now going to add a `show` action to our app, allowing us to display information about a single book. When we add this route, we will also add a link from our books "index" actions to the show action. Rather than starting with the route, we'll start with generating an action:
 
 ```ruby
 hanami g action books.show

@@ -40,7 +40,7 @@ hanami db migrate
 
 ## Review relation
 
-Next, we need to create the classes within our application that we'll use to manage these records in the table. The first of these that we'll need is a relation so that we can query that table. We'll generate one with this command:
+Next, we need to create the classes within our app that we'll use to manage these records in the table. The first of these that we'll need is a relation so that we can query that table. We'll generate one with this command:
 
 ```
 hanami g relation reviews
@@ -76,7 +76,7 @@ Now how would we return the reviews for a book? Well, we can simply ask for them
 reviews.where(book_id: 1).to_a
 ```
 
-However, we're going to want to display these reviews on a book's page eventually. In a Rails app it would be a simple matter of `book.reviews`. However in a Hanami application, the `book` object in question would be a simple struct with no association methods defined on it. This is by design, to remove a very large footgun in the shape of N+1 queries that are a bugbear of any Rails developer. In a Hanami application, it is impossible to do an N+1 query.
+However, we're going to want to display these reviews on a book's page eventually. In a Rails app it would be a simple matter of `book.reviews`. However in a Hanami app, the `book` object in question would be a simple struct with no association methods defined on it. This is by design, to remove a very large footgun in the shape of N+1 queries that are a bugbear of any Rails developer. In a Hanami app, it is impossible to do an N+1 query.
 
 ## Loading a book and its reviews
 
@@ -144,7 +144,7 @@ WHERE (`reviews`.`book_id` IN (1))
 ORDER BY `reviews`.`id`
 ```
 
-In a Hanami application, we load all the data we need up front, rather than letting method calls way down in the view template dictate what queries are run. This way, there's no surprises like N+1 queries.
+In a Hanami app, we load all the data we need up front, rather than letting method calls way down in the view template dictate what queries are run. This way, there's no surprises like N+1 queries.
 
 This combination can be setup to happen the other way as well. When we define an association from review to book, over in `app/relations/reviews.rb`:
 
@@ -181,7 +181,7 @@ This code will return all the information about a review and its book:
  }
 ```
 
-If we go back to the "book and its reviews" method, we can expose this method to our application through our `BookRepo` by defining this method in `app/repos/book_repo.rb`:
+If we go back to the "book and its reviews" method, we can expose this method to our app through our `BookRepo` by defining this method in `app/repos/book_repo.rb`:
 
 ```ruby
 def find_with_reviews(id)
@@ -189,7 +189,7 @@ def find_with_reviews(id)
 end
 ```
 
-When we go to load a book in our application, we could now use `find_with_reviews` to load that book and its reviews. We can do this in our `show` view by changing the code in `app/views/books/show.rb` to this:
+When we go to load a book in our app, we could now use `find_with_reviews` to load that book and its reviews. We can do this in our `show` view by changing the code in `app/views/books/show.rb` to this:
 
 ```ruby
 # frozen_string_literal: true
@@ -242,7 +242,7 @@ Book
 
 This will generate a query with an `INNER JOIN` between the `books` and `reviews` table, with a `GROUP` statement on `books.id`, and a `HAVING` statement that uses the raw SQL we've passed in.
 
-In a Rails app, we would add this code to our model. But in a Hanami application we'll have to do this on our relation, as that's the place we define relational query logic. Let's define a method in `app/relations/books.rb` for this now:
+In a Rails app, we would add this code to our model. But in a Hanami app we'll have to do this on our relation, as that's the place we define relational query logic. Let's define a method in `app/relations/books.rb` for this now:
 
 ```ruby
 def popular
@@ -376,7 +376,7 @@ def disliked
 end
 ```
 
-This syntax with `with_reviews` is going to be a mouthful. Fortunately, we can provide a clean interface by exposing these methods through our `BookRepo` class back to our application. Let's add in a few methods in `app/repos/book_repo.rb`
+This syntax with `with_reviews` is going to be a mouthful. Fortunately, we can provide a clean interface by exposing these methods through our `BookRepo` class back to our app. Let's add in a few methods in `app/repos/book_repo.rb`
 
 ```ruby
 def with_reviews
@@ -396,6 +396,6 @@ def popular_and_disliked
 end
 ```
 
-Our repository is now going to provide a cleaner facade back to our application, so that we can make calls such as `book_repo.popular` to get back a list of popular books, and the repo will take care of the `with_reviews` joining.
+Our repository is now going to provide a cleaner facade back to our app, so that we can make calls such as `book_repo.popular` to get back a list of popular books, and the repo will take care of the `with_reviews` joining.
 
-We can see here with the code in the relation and repository that the relation is taking care of the messy SQL-adjacent code, while the repository is using the methods of the relation to then provide a cleaner interface back up to the application.
+We can see here with the code in the relation and repository that the relation is taking care of the messy SQL-adjacent code, while the repository is using the methods of the relation to then provide a cleaner interface back up to the app.
