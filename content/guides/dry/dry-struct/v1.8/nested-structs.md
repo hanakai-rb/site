@@ -45,3 +45,24 @@ end
 User::Address
 # => User::Address
 ```
+
+### Optional nested structs
+
+If you have a `User` class defined like above and you will try to instntiate it without `address`, it will raise an exception.
+
+```ruby
+User.new(name: "Jane", address: nil)
+#=> [User.new] nil (NilClass) has invalid type for :address violates constraints ([User::Address.new] :city is missing in Hash input failed) (Dry::Struct::Error)
+```
+
+You can make it optional by setting the type of address as `Dry::Struct.optional`:
+
+```ruby
+class User < Dry::Struct
+  attribute :name, Types::String
+  attribute :address, Dry::Struct.optional do
+    attribute :city,   Types::String
+    attribute :street, Types::String
+  end
+end
+```
