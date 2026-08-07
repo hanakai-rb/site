@@ -4,11 +4,15 @@ title: Models
 
 Whenever you're building a Rails application you typically want to pull data from a data source. When you're building a Hanami app, you'll want to do the same thing. Rather than having one model class to use as a dumping ground, Hanami separates these into a few distinct classes called repositories, relations and structs.
 
-1. **Repositories**: Defines the interactions between your database and your app.
-2. **Relations**: Provides a home for your app's complicated queries.
-3. **Structs**: Represents rows from your database in plain and simple Ruby objects.
+1. **Repositories**: Defines the interactions between your database and your application, where persistence is handled.
+2. **Relations**: Provides a home for your application's querying code.
+3. **Structs**: Represents rows from your database in plain and simple Ruby objects and provides a home for your business logic.
 
-Let's take a look at each of these in turn by creating a table called `books`, and then inserting data into that table, and then requesting that data back out in various ways.
+Hanami avoids Rails-style callbacks as the Hanami style is more explicit, preferring code to explicitly declare what happens and when, rather than relying on hidden hooks that fire automatically.
+
+You'll also note here that validation wasn't mentioned in Hanami yet. Parameter validation is handled inside the controllers, which we'll see a little later on. We can also bring in [`dry-validation`](https://github.com/dry-rb/dry-validation) in contexts where we require validation outside of either the database or controller layers. Everything has a distinct place within Hanami applications.
+
+Let's take a look at each of repositories, relations and structs in turn by creating a table called `books`, and then inserting data into that table, and then requesting that data back out in various ways.
 
 ## Migrations
 
