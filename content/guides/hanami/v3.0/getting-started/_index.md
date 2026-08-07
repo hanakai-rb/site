@@ -211,3 +211,5 @@ It's time to get started building your app. Your next steps here will be based o
 
 - [Building a web app](//page/building-a-web-app)
 - [Building an API](//page/building-an-api)
+
+Or check [For Rails developers](//guide/for-rails-developers) to learn Hanami from a Rails perspective.
