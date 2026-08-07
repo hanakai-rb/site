@@ -6,7 +6,7 @@ In the first three parts of this guide, we set about building up a way that work
 
 In this part, we're going to cover how we can set up an association to books called `reviews`. We'll create a new table for this, and work out how to display reviews next to books on the `books.show` page. In this part, we'll be spending a lot of time working back on our repositories and relations.
 
-### Creating the table
+## Creating the table
 
 To get started, we first need to create a table called `reviews`. We can do this by generating a migration:
 
@@ -38,7 +38,7 @@ We can run this migration with:
 hanami db migrate
 ```
 
-### Review relation
+## Review relation
 
 Next, we need to create the classes within our application that we'll use to manage these records in the table. The first of these that we'll need is a relation so that we can query that table. We'll generate one with this command:
 
@@ -78,7 +78,7 @@ reviews.where(book_id: 1).to_a
 
 However, we're going to want to display these reviews on a book's page eventually. In a Rails app it would be a simple matter of `book.reviews`. However in a Hanami application, the `book` object in question would be a simple struct with no association methods defined on it. This is by design, to remove a very large footgun in the shape of N+1 queries that are a bugbear of any Rails developer. In a Hanami application, it is impossible to do an N+1 query.
 
-### Loading a book and its reviews
+## Loading a book and its reviews
 
 Hanami has a way of loading both the book _and_ its reviews together. We're now going to set this up, by first defining an association between books and reviews over in `app/relations/books.rb`. We define associations in Hanami by changing the `schema` call at the top of this file to this block form:
 
@@ -223,7 +223,7 @@ In the matching template, it then becomes a cinch to iterate through the reviews
 <% end %>
 ```
 
-### A more complicated query
+## A more complicated query
 
 Defining a `has_many` or `belongs_to` association feels like table stakes for a web app these days. Let's look at something more complicated than this to round out the end of this guide. Let's say that we want to add a few methods to find:
 

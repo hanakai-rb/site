@@ -2,8 +2,6 @@
 title: Models
 ---
 
-## The Model Layer
-
 Whenever you're building a Rails application you typically want to pull data from a data source. When you're building a Hanami application, you'll want to do the same thing. Rather than having one model class to use as a dumping ground, Hanami separates these into a few distinct classes called repositories, relations and structs.
 
 1. **Repositories**: Defines the interactions between your database and your application.
@@ -12,7 +10,7 @@ Whenever you're building a Rails application you typically want to pull data fro
 
 Let's take a look at each of these in turn by creating a table called `books`, and then inserting data into that table, and then requesting that data back out in various ways.
 
-### Migrations
+## Migrations
 
 Hanami, like Rails, supports database migrations. To create a migration, we use this command:
 
@@ -62,7 +60,7 @@ This creates our table, and creates a structure file at `config/db/structure.sql
 
 With our table now existing in our database, we need something to insert and read data from that table. That "something" is called a relation.
 
-### Relations
+## Relations
 
 A relation in Hanami is used as a class to store the relational logic of your queries. As Hanami's own documentation says:
 
@@ -112,7 +110,7 @@ We will now see the data as a Hash:
 
 The relation for Hanami works with data in its barest form. We passed a Hash to `insert`, and got one back for `first`. To get back proper Ruby objects, we need a repository.
 
-### Repository
+## Repository
 
 Hanami's documentation says this about repositories:
 
@@ -190,7 +188,7 @@ books = book_repo.all
 => [#<Bookshelf::Structs::Book id=1 title="Hanami for Rails Developers" author="Ryan Bigg">]
 ```
 
-### Scoping queries
+## Scoping queries
 
 To further demonstrate what a repository and relation do within a Hanami application, we're now going to perform an action that would be common to a lot of Rails applications: adding a `by_year` scope to our queries. In Rails, we would add this to a model with this code:
 

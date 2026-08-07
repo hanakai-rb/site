@@ -12,7 +12,7 @@ hanami dev
 
 This will run a server on localhost:2300 and once you come back to the browser to figure out why your muscle-memory'd localhost:3000 didn't work, change that 3000 to a 2300.
 
-### Routing
+## Routing
 
 In a Hanami application, you can find the routes in the familiar location of `config/routes.rb`. We can add a route to this application by changing this file to this code:
 
@@ -28,7 +28,7 @@ Note that the code here uses a dot to separate the controller and the action, ra
 
 A route by itself, like in a Rails app, doesn't do very much. We need a matching action for this.
 
-### Actions
+## Actions
 
 We generate an action in Hanami by running:
 
@@ -60,7 +60,7 @@ The purpose of actions is to handle all the parameter parsing and response handl
 
 The purpose of views is to gather up and present the data once an action has decided which version of a view to render. In a Rails app, you may see similar handling by way of `respond_to`.
 
-### Views
+## Views
 
 Views typically have a template to render as well, and in this application we now have `app/templates/books/index.html.erb`. This is the same kind of file you'd get with Rails, only in Rails it would be under `app/views`. Views in Hanami have a different meaning, and that can take some time to get your head around.
 
@@ -112,7 +112,7 @@ When we refresh this page, we'll now see our book coming back:
 
 We're now able to display a list of books, but let's look at how we can display books from a given year.
 
-### Working with parameters
+## Working with parameters
 
 In this Hanami application, we would like a route at `/books/year/2025` to return only the books from that specified year. Let's add that route to the `config/routes.rb` file in our application now:
 
@@ -207,7 +207,7 @@ We've now added two ways to use the same action, with two different views. In a 
 
 In the remainder of this part, we'll cover off the show action. We'll leave the forms to the next part of this guide.
 
-### Adding a show route
+## Adding a show route
 
 We're now going to add a `show` action to our application, allowing us to display information about a single book. When we add this route, we will also add a link from our books "index" actions to the show action. Rather than starting with the route, we'll start with generating an action:
 
