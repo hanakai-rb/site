@@ -88,7 +88,7 @@ We'll see this relation is already configured with our database, thanks to some 
 
 ````ruby
 #<Bookshelf::Relations::Books name=ROM::Relation::Name(books) dataset=#<Sequel::SQLite::Dataset...
-```****
+```
 
 We can insert a book into our table by running:
 
