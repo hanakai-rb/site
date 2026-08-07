@@ -17,4 +17,9 @@ In this guide series, we'll set up a Hanami project and build it out. Along the 
 
 </div>
 
-This series of guides is split into 4 parts.
+This series of guides is split into four parts, with more to come:
+
+- [Models](//page/models)
+- [Controllers](//page/controllers)
+- [Forms](//page/forms)
+- [Associations](//page/associations)
