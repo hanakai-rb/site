@@ -112,7 +112,7 @@ end
 
 If the rest of your business logic treats the identity as an opaque string, then you’re done. The encapsulation afforded by Repository restricts the knowledge of the persistence layer from where it does not belong.
 
-For more on Repositories, see [ROM: Repositories](https://rom-rb.org/learn/repository/5.2/)
+For more on Repositories, see [ROM: Repositories](https://rom-rb.org/learn/repository/)
 
 ## Structs
 
