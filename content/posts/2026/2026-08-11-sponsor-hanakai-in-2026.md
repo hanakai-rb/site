@@ -1,6 +1,6 @@
 ---
 title: Sponsor Hanakai in 2026!
-date: 2026-08-10 12:00:00 UTC
+date: 2026-08-11 07:00:00 UTC
 tags: announcements
 author: Tim Riley
 excerpt: >
@@ -44,7 +44,7 @@ It only makes sense that we kick off our sponsorship drive with a thankyou to [M
 > — Mike Perham, CEO, Contributed Systems
 
 <div style="background: #fff; border-radius: 12px; padding: 2rem; margin: 0 auto calc(var(--spacing) * 3); max-width: 300px;">
-  <a href="https://sidekiq.org" target="_blank"><img src="/blog/assets/2026-08-10-sponsor-hanakai-in-2026/sidekiq-square.svg" alt="Sidekiq logo" style="display: block; margin: 0 auto; width: 100%;"></a>
+  <a href="https://sidekiq.org" target="_blank"><img src="/blog/assets/2026-08-11-sponsor-hanakai-in-2026/sidekiq-square.svg" alt="Sidekiq logo" style="display: block; margin: 0 auto; width: 100%;"></a>
 </div>
 
 ## Let's do this together!
