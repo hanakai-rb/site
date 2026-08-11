@@ -4,7 +4,7 @@ date: 2026-08-11 07:00:00 UTC
 tags: announcements
 author: Tim Riley
 excerpt: >
-  Yay yay yay
+  Help us continue to build Hanakai and a diverse future for Ruby.
 ---
 
 It's been a whole year since we ran [our first sponsorship drive](/blog/2025/06/03/become-a-hanami-dry-and-rom-patron). We've been hard at work since then: we [shipped Hanami 2.3](/blog/2025/11/12/hanami-23-racked-and-ready), unified our ecosystem and [launched Hanakai](/blog/2026/05/01/welcome-to-hanakai) (plus this beautiful new site!), and [shipped Hanami 3.0](/blog/2026/06/30/hanami-3-0-in-full-bloom), our most complete release ever. (If you want to catch up on more behind this, hear me [on the Dead Code podcast](https://shows.acast.com/dead-code/episodes/bloom-of-the-undying-with-tim-riley).)
@@ -51,4 +51,4 @@ It only makes sense that we kick off our sponsorship drive with a thankyou to [M
 
 And with that, consider our sponsorship drive _launched!_
 
-We're excited to share more with you over the coming weeks. If you have questions or would like to get in touch about how you can help, come find us in our [chat](https://discord.com/invite/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org/). Our community is lovely and you're very welcome to become a part of it.
+We're excited to share more with you over the coming weeks. If you have questions or would like to get in touch about how you can help, come find us in our [chat](https://discord.com/invite/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org/). Our community is lovely, and we'd love you to become a part of it. :hanakai:
