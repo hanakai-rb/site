@@ -23,9 +23,9 @@ To make this happen, we need to raise at least another $15k+ for the year, and y
 
 - Share this post and [our sponsorship page](/sponsor) with your workplace and Ruby friends.
 - A few new business sponsors could help us quickly reach our goal: if you rely on [any of our gems](/status) (Rails shops, this includes you!) or simply want to bring about a healthier and more diverse Ruby, we want to hear from you!
-- There's strength in numbers, too: individuals can support us via [GitHub Sponsors](https://github.com/sponsors/hanami) or [Open Collective](https://opencollective.com/hanami) at any level. 
+- There's strength in numbers, too: individuals can support us via [GitHub Sponsors](https://github.com/sponsors/hanami) or [Open Collective](https://opencollective.com/hanami) at any level.
 
-As a special treat for this sponsorship drive, we've lined up some Q&As with Hanakai trailblazers. You'll hear about how they're working with Hanakai and what they're excited about for the future.  We'll have a bunch of returning sponsors to thank (Ruby heroes, all of ’em), and if we're lucky, we can share our progress towards our goal!
+As a special treat for this sponsorship drive, we've lined up some Q&As with Hanakai trailblazers. You'll hear about how they're working with Hanakai and what they're excited about for the future. We'll have a bunch of returning sponsors to thank (Ruby heroes, all of ’em), and if we're lucky, we can share our progress towards our goal!
 
 ## What you're supporting
 
@@ -39,12 +39,16 @@ With your help, we can keep moving Hanakai forward!
 
 It only makes sense that we kick off our sponsorship drive with a thankyou to [Mike Perham](https://www.mikeperham.com) and [Sidekiq](https://sidekiq.org). Mike was our very first sponsor, and his support gave me the confidence to go ahead, quit my job, and first a new work arrangement that could free up that day a week for Hanakai. Having Mike back for our second year of sponsorship has given us the boost we needed to get both Hanakai and Hanami 3.0 out the door. Thank you Mike!
 
-TODO LOGO HERE
+> “Competition fosters innovation and improvements. We support Hanakai because we want to see a strong ecosystem of open source Ruby frameworks for building applications.”
+>
+> — Mike Perham, CEO, Contributed Systems
 
-> “Competition fosters innovation and improvements. We support Hanakai because we want to see a strong ecosystem of open source Ruby frameworks for building applications.” Mike Perham, CEO, Contributed Systems
+<div style="background: #fff; border-radius: 12px; padding: 2rem; margin: 0 auto calc(var(--spacing) * 3); max-width: 300px;">
+  <a href="https://sidekiq.org" target="_blank"><img src="/blog/assets/2026-08-10-sponsor-hanakai-in-2026/sidekiq-square.svg" alt="Sidekiq logo" style="display: block; margin: 0 auto; width: 100%;"></a>
+</div>
 
 ## Let's do this together!
 
 And with that, consider our sponsorship drive _launched!_
 
-We're excited to share more with you over the coming weeks. And if you have questions or would like to get in touch about how you can help, come find us in our [chat](https://discord.com/invite/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org/). Our community is lovely and you're very welcome to become a part of it.
+We're excited to share more with you over the coming weeks. If you have questions or would like to get in touch about how you can help, come find us in our [chat](https://discord.com/invite/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org/). Our community is lovely and you're very welcome to become a part of it.
