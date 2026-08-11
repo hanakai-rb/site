@@ -1,6 +1,6 @@
 ---
 title: Sponsor Hanakai in 2026!
-date: 2026-08-11 07:00:00 UTC
+date: 2026-08-11 10:50:00 UTC
 tags: announcements
 author: Tim Riley
 excerpt: >
