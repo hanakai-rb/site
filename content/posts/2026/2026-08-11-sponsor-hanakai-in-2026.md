@@ -15,7 +15,7 @@ Now more than ever, Rubyists need real choice for their tools and the communitie
 
 ## Welcome to our 2026 sponsorship drive!
 
-We've come a long way, but there's plenty more to do. We need your help to make this happen. This is why we're here today — **welcome to our 2026 spnosorship drive!**
+We've come a long way, but there's plenty more to do. We need your help to make this happen. This is why we're here today — **welcome to our 2026 sponsorship drive!**
 
 Last year, our goal was to unlock steady ongoing maintenance for the first time. And we did it! This year, we can take things to the next level and offer an honorarium to our active maintainers. Hanakai is all about [community](/community), and this will be another meaningful way to demonstrate this.
 
