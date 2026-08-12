@@ -21,6 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.7"
+          bundler-cache: true
+
       - uses: actions/setup-node@v4
         name: Setup Node
         with:
@@ -33,6 +39,10 @@ jobs:
         run: npm run lint:format
       - name: Herb linting
         run: npm run lint:herb
+      - name: Rubocop
+        run: bundle exec rubocop
+      - name: Herb Analyze (Parse+Compile)
+        run: "bundle exec herb analyze"
 
   test-js:
     name: Test (JS)
@@ -71,10 +81,11 @@ jobs:
           cache: npm
       - run: npm ci
 
-      # Installing Netlify's CLI takes ~50s, which used to sit squarely on the path to a live site.
-      # Start it here and collect it just before deploying, so it downloads while the site builds.
+      # Installing Netlify's CLI takes considerable time. Start it in the background here and
+      # collect it in "Await Netlify CLI" below, so it downloads while we build the site.
+      #
       # Output must go to a file: the runner won't finish a step while a child still holds its pipes.
-      - name: Start Netlify CLI install
+      - name: Install Netlify CLI
         if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
         run: |
           (
@@ -96,14 +107,12 @@ jobs:
           TINYLYTICS_SITE_ID: o3yxA7q1wR3rjNYiCd84
         run: bin/static-build
 
-      - name: Rake
-        run: bundle exec rake
+      # Specs run here so search specs can read the Pagefind index without us having to run a second
+      # full static build.
+      - name: Specs
+        run: bundle exec rspec
 
-      - name: Herb Analyze (Parse+Compile)
-        run: "bundle exec herb analyze"
-
-      # This step's duration is how much of the CLI install the build didn't manage to hide.
-      - name: Await Netlify CLI install
+      - name: Await Netlify CLI
         if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
         run: |
           status_file="$RUNNER_TEMP/netlify-cli-install.status"
@@ -146,7 +155,7 @@ jobs:
         with:
           message: "❇️ **Deploy preview:** ${{ steps.deploy.outputs.deploy_url }}"
 
-      # Uploaded after deploying so the artifact's round-trip stays off the path to a live site.
+      # Upload after deploy to minimize the time to an updated live site.
       - name: Upload build
         uses: actions/upload-artifact@v4
         with:
