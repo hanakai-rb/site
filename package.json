@@ -16,6 +16,7 @@
   "dependencies": {
     "@icelab/defo": "^1.0.1",
     "@tailwindcss/cli": "^4.1.11",
+    "esbuild": "^0.28.1",
     "focus-trap": "^7.6.6",
     "hanami-assets": "^2.2.1",
     "js.foresight": "^3.3.0",

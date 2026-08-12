@@ -6,12 +6,12 @@ module Site
       class Index < Site::View
         include Deps["repos.post_repo"]
 
-        expose :posts do |page:|
+        decorate :posts do |page:|
           post_repo.latest(page:, per_page:)
         end
 
-        expose :per_page, decorate: false
-        expose :page, decorate: false
+        expose :per_page
+        expose :page
 
         private
 

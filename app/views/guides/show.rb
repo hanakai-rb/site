@@ -8,9 +8,9 @@ module Site
 
         # Main guide exposures
 
-        expose :org, decorate: false
+        expose :org
 
-        expose :guide do |version, org:, slug:|
+        decorate :guide do |version, org:, slug:|
           guide_repo.get(org:, version:, slug:)
         end
 
@@ -18,7 +18,7 @@ module Site
           guide.pages[path]
         end
 
-        expose :path_prefix, decorate: false do |guide, org, org_version: nil|
+        expose :path_prefix do |guide, org, org_version: nil|
           if org_version
             "/learn/#{org}"
           else
@@ -44,15 +44,15 @@ module Site
 
         # Versioning
 
-        expose :version, decorate: false do |org_version: nil, guide_version: nil|
+        expose :version do |org_version: nil, guide_version: nil|
           org_version || guide_version
         end
 
-        expose :latest_listed_version, decorate: false do |org:, slug:|
+        expose :latest_listed_version do |org:, slug:|
           guide_repo.latest_listed_org_version(org:) || guide_repo.latest_listed_guide_version(org:, slug:)
         end
 
-        expose :canonical_url, decorate: false do |version, latest_listed_version, org:, slug:, path:|
+        expose :canonical_url do |version, latest_listed_version, org:, slug:, path:|
           next nil if version == latest_listed_version
 
           latest_guide = guide_repo.find_by(org:, version: latest_listed_version, slug:)
@@ -70,7 +70,7 @@ module Site
           "#{settings.site_url}#{canonical_path}"
         end
 
-        private_expose :versions, decorate: false do |org:, slug:|
+        private_expose :versions do |org:, slug:|
           org_versions = guide_repo.org_versions(org:)
           next org_versions if org_versions.any?
 
@@ -91,7 +91,7 @@ module Site
         #     # ...
         #     "v2.0" => "/learn/hanami/v2.0/getting-started"
         #   }
-        expose :version_links, decorate: false do |versions, version, org:, slug:, path:|
+        expose :version_links do |versions, version, org:, slug:, path:|
           versions_to_show = versions.include?(version) ? versions : [version, *versions]
 
           versions_to_show.to_h do |other_version|
@@ -119,7 +119,7 @@ module Site
 
         # Navigation
 
-        expose :next_nav_item, decorate: false do |guide, path:|
+        expose :next_nav_item do |guide, path:|
           paths = guide.pages.paths
           current_page_path_index = paths.index(path)
           next_path = paths[current_page_path_index + 1]
@@ -132,7 +132,7 @@ module Site
           end
         end
 
-        expose :prev_nav_item, decorate: false do |guide, path:|
+        expose :prev_nav_item do |guide, path:|
           paths = guide.pages.paths
           current_page_path_index = paths.index(path)
           previous_path = (current_page_path_index > 0) ? paths[current_page_path_index - 1] : nil
