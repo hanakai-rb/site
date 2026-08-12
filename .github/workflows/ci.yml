@@ -51,7 +51,7 @@ jobs:
       - run: npm run test
 
   build:
-    name: Build
+    name: Build & deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -70,6 +70,18 @@ jobs:
           node-version: "22.15.0"
           cache: npm
       - run: npm ci
+
+      # Installing Netlify's CLI takes ~50s, which used to sit squarely on the path to a live site.
+      # Start it here and collect it just before deploying, so it downloads while the site builds.
+      # Output must go to a file: the runner won't finish a step while a child still holds its pipes.
+      - name: Start Netlify CLI install
+        if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+        run: |
+          (
+            set +e
+            npm install -g netlify-cli > "$RUNNER_TEMP/netlify-cli-install.log" 2>&1
+            echo $? > "$RUNNER_TEMP/netlify-cli-install.status"
+          ) </dev/null >/dev/null 2>&1 &
 
       - name: Restore og:image cache
         uses: actions/cache@v4
@@ -90,38 +102,38 @@ jobs:
       - name: Herb Analyze (Parse+Compile)
         run: "bundle exec herb analyze"
 
-      - name: Upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: build/
-          retention-days: 30
+      # This step's duration is how much of the CLI install the build didn't manage to hide.
+      - name: Await Netlify CLI install
+        if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+        run: |
+          status_file="$RUNNER_TEMP/netlify-cli-install.status"
 
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: [lint, test-js, build]
-    if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+          for _ in $(seq 1 300); do
+            if [ -f "$status_file" ]; then break; fi
+            sleep 1
+          done
 
-    steps:
-      - name: Download build
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: build/
+          status="$(cat "$status_file" 2>/dev/null || true)"
+          if [ "$status" != "0" ]; then
+            if [ -n "$status" ]; then
+              echo "::error::Netlify CLI install failed (exit $status)"
+            else
+              echo "::error::Netlify CLI install did not finish within 300s"
+            fi
+            cat "$RUNNER_TEMP/netlify-cli-install.log" 2>/dev/null || true
+            exit 1
+          fi
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.15.0"
+          netlify --version
 
       - name: Deploy to Netlify
         id: deploy
+        if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
         run: |
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            npx netlify-cli@latest deploy --prod --dir=build --message="Production deploy @ ${{ github.sha }}"
+            netlify deploy --prod --no-build --dir=build --message="Production deploy @ ${{ github.sha }}"
           else
-            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${{ github.event.pull_request.title }} @ ${{ github.sha }}" | jq -r '.deploy_url')
+            DEPLOY_URL=$(netlify deploy --no-build --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${{ github.event.pull_request.title }} @ ${{ github.sha }}" | jq -r '.deploy_url')
             echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           fi
         env:
@@ -133,6 +145,14 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: "❇️ **Deploy preview:** ${{ steps.deploy.outputs.deploy_url }}"
+
+      # Uploaded after deploying so the artifact's round-trip stays off the path to a live site.
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: build/
+          retention-days: 30
 
   workflow-keepalive:
     if: github.event_name == 'schedule'
