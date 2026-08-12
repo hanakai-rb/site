@@ -4,11 +4,11 @@ module Site
   module Views
     module Pages
       class Hanami < Site::View
-        expose :theme, layout: true, decorate: false do
+        expose :theme, layout: true do
           "hanami"
         end
 
-        expose :database_code, decorate: false do
+        expose :database_code do
           <<~'MARKDOWN'
             ```ruby
             # app/relations/articles.rb
@@ -49,7 +49,7 @@ module Site
           MARKDOWN
         end
 
-        expose :business_logic_code, decorate: false do
+        expose :business_logic_code do
           <<~MARKDOWN
             ```ruby
             # app/articles/update.rb
@@ -72,7 +72,7 @@ module Site
           MARKDOWN
         end
 
-        expose :routing_code, decorate: false do
+        expose :routing_code do
           <<~MARKDOWN
             ```ruby
             # config/routes.rb
@@ -87,7 +87,7 @@ module Site
           MARKDOWN
         end
 
-        expose :actions_code, decorate: false do
+        expose :actions_code do
           <<~MARKDOWN
             ```ruby
             # app/actions/articles/update.rb
@@ -112,7 +112,7 @@ module Site
           MARKDOWN
         end
 
-        expose :views_code, decorate: false do
+        expose :views_code do
           <<~MARKDOWN
             ```ruby
             # app/views/articles/show.rb
