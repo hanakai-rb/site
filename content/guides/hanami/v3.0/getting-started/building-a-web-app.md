@@ -864,7 +864,7 @@ end
 In the action, we can now delete the existing book, set a flash message and redirect to the book list:
 
 ```ruby
-# app/actions/books/delete.rb
+# app/actions/books/destroy.rb
 
 module Bookshelf
   module Actions
