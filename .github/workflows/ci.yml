@@ -21,6 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.7"
+          bundler-cache: true
+
       - uses: actions/setup-node@v4
         name: Setup Node
         with:
@@ -33,6 +39,10 @@ jobs:
         run: npm run lint:format
       - name: Herb linting
         run: npm run lint:herb
+      - name: Rubocop
+        run: bundle exec rubocop
+      - name: Herb Analyze (Parse+Compile)
+        run: "bundle exec herb analyze"
 
   test-js:
     name: Test (JS)
@@ -51,7 +61,7 @@ jobs:
       - run: npm run test
 
   build:
-    name: Build
+    name: Build & deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -71,6 +81,19 @@ jobs:
           cache: npm
       - run: npm ci
 
+      # Installing Netlify's CLI takes considerable time. Start it in the background here and
+      # collect it in "Await Netlify CLI" below, so it downloads while we build the site.
+      #
+      # Output must go to a file: the runner won't finish a step while a child still holds its pipes.
+      - name: Install Netlify CLI
+        if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+        run: |
+          (
+            set +e
+            npm install -g netlify-cli > "$RUNNER_TEMP/netlify-cli-install.log" 2>&1
+            echo $? > "$RUNNER_TEMP/netlify-cli-install.status"
+          ) </dev/null >/dev/null 2>&1 &
+
       - name: Restore og:image cache
         uses: actions/cache@v4
         with:
@@ -84,49 +107,49 @@ jobs:
           TINYLYTICS_SITE_ID: o3yxA7q1wR3rjNYiCd84
         run: bin/static-build
 
-      - name: Rake
-        run: bundle exec rake
+      # Specs run here so search specs can read the Pagefind index without us having to run a second
+      # full static build.
+      - name: Specs
+        run: bundle exec rspec
 
-      - name: Herb Analyze (Parse+Compile)
-        run: "bundle exec herb analyze"
+      - name: Await Netlify CLI
+        if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+        run: |
+          status_file="$RUNNER_TEMP/netlify-cli-install.status"
 
-      - name: Upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: build/
-          retention-days: 30
+          for _ in $(seq 1 300); do
+            if [ -f "$status_file" ]; then break; fi
+            sleep 1
+          done
 
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: [lint, test-js, build]
-    if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+          status="$(cat "$status_file" 2>/dev/null || true)"
+          if [ "$status" != "0" ]; then
+            if [ -n "$status" ]; then
+              echo "::error::Netlify CLI install failed (exit $status)"
+            else
+              echo "::error::Netlify CLI install did not finish within 300s"
+            fi
+            cat "$RUNNER_TEMP/netlify-cli-install.log" 2>/dev/null || true
+            exit 1
+          fi
 
-    steps:
-      - name: Download build
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: build/
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.15.0"
+          netlify --version
 
       - name: Deploy to Netlify
         id: deploy
+        if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
         run: |
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            npx netlify-cli@latest deploy --prod --dir=build --message="Production deploy @ ${{ github.sha }}"
+          if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+            netlify deploy --prod --no-build --dir=build --message="Production deploy @ $GITHUB_SHA"
           else
-            DEPLOY_URL=$(npx netlify-cli@latest deploy --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${{ github.event.pull_request.title }} @ ${{ github.sha }}" | jq -r '.deploy_url')
-            echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+            DEPLOY_URL=$(netlify deploy --no-build --dir=build --alias="pr-$PR_NUMBER" --json --message="Deploy preview #$PR_NUMBER $PR_TITLE @ $GITHUB_SHA" | jq -r '.deploy_url')
+            echo "deploy_url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
           fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          PR_NUMBER: ${{ github.event.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
 
       - name: Add comment
         if: github.event_name == 'pull_request' && steps.deploy.outputs.deploy_url
