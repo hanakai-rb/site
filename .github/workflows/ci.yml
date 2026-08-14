@@ -157,14 +157,6 @@ jobs:
         with:
           message: "❇️ **Deploy preview:** ${{ steps.deploy.outputs.deploy_url }}"
 
-      # Upload after deploy to minimize the time to an updated live site.
-      - name: Upload build
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: build/
-          retention-days: 30
-
   workflow-keepalive:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
