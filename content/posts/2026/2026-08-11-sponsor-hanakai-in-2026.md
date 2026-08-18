@@ -1,7 +1,6 @@
 ---
 title: Sponsor Hanakai in 2026!
 date: 2026-08-11 10:50:00 UTC
-tags: announcements
 author: Tim Riley
 excerpt: >
   Help us continue to build Hanakai — and a diverse future for Ruby.

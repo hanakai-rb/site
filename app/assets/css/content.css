@@ -505,6 +505,62 @@
   }
 }
 
+/* An image sat beside the running text, as a magazine would run a portrait
+   next to an interview. Below `sm` it becomes a centred block: a float there
+   would squeeze the text measure down to a few words per line. */
+.float-image {
+  display: block;
+  margin-block-end: calc(var(--spacing) * 5);
+  margin-inline: auto;
+  max-width: 18rem;
+  width: 100%;
+}
+
+.float-image--start,
+.float-image--end {
+  @variant sm {
+    /* Sits the top edge on the cap height of the first line of body copy,
+       rather than on the top of its line box. Derived from the browser's own
+       `1lh` and `1cap` rather than hand-tuned pixels, because engines disagree
+       about where text sits within a line box: a value that lands correctly in
+       Chrome is a few pixels high in Safari. The px value is a fallback for
+       engines without `cap` support. */
+    margin-block-start: 7px;
+    margin-block-start: calc((1lh - 1cap) / 2);
+    max-width: none;
+    width: 33%;
+  }
+
+  @variant lg {
+    /* Body copy steps up to `--text-xl` here, so the image has to as well:
+       `1lh` and `1cap` above resolve against the image's own font size, and
+       they need to match the text they're aligning to. (An `img` renders no
+       text, so this has no other effect.) */
+    font-size: var(--text-xl);
+  }
+}
+
+.float-image--start {
+  @variant sm {
+    float: inline-start;
+    /* Flush with the text's left margin: that edge is hard, since every line
+       starts on it, so there's nothing to optically correct for. */
+    margin-inline: 0 calc(var(--spacing) * 5);
+  }
+}
+
+.float-image--end {
+  @variant sm {
+    float: inline-end;
+    /* Pulled slightly in from the right margin. The text is ragged right, so
+       few lines actually reach the measure, and an edge set flush to it reads
+       as jutting out past the text. Kept small: the rag tightens at some
+       widths, and an inset deeper than the rag lets lines poke past the
+       image, which looks like a mistake rather than a correction. */
+    margin-inline: calc(var(--spacing) * 5) calc(var(--spacing) * 2);
+  }
+}
+
 .table-wrapper {
   margin-block-start: calc(var(--spacing) * 4);
   margin-block-end: calc(var(--spacing) * 6);
