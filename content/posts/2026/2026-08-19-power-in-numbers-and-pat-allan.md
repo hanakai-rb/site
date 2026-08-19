@@ -46,7 +46,7 @@ _Thank you Pat for sharing with us today!_
 
 ## Thank you Brandon!
 
-This week we'd also like to thank share our deepest thanks to our returning silver sponsor, [Brandon Weaver](https://baweaver.com). You'll all know Brandon as the mind behind [the beloved lemurs](https://www.rubyevents.org/profiles/baweaver), and author of some of the [deepest Ruby writing around](https://baweaver.com/writing/).
+This week we'd also like to share our thanks to our returning silver sponsor, [Brandon Weaver](https://baweaver.com). You'll all know Brandon as the mind behind [the beloved lemurs](https://www.rubyevents.org/profiles/baweaver), and author of some of the [deepest Ruby writing around](https://baweaver.com/writing/).
 
 We're also lucky to know Brandon as one of our earliest supporters, and another big factor in giving me the confidence to take the leap and commit a day every week to Hanakai maintenance. Brandon's also been forthcoming with advice about the mechanics of sponsorships, which has been very helpful across our program's short life so far.
 
