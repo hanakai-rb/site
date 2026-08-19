@@ -1,6 +1,6 @@
 ---
 title: Power in numbers, and Pat Allan
-date: 2026-08-17 10:50:00 UTC
+date: 2026-08-19 13:00:00 UTC
 author: Tim Riley
 excerpt: >
   “In code like in life, healthy relationships should have respectful boundaries.” Week two of our sponsorship drive.
@@ -18,9 +18,9 @@ We'd love to see more individuals get behind us, and if we can find 2-3 new busi
 
 ## Q&A with Pat
 
-<img src="/blog/assets/2026-08-19-power-in-numbers-and-pat-Allan/pat.webp" alt="Pat Allan" title="Pat Allan" class="float-image float-image--end">
+<img src="/blog/assets/2026-08-19-power-in-numbers-and-pat-allan/pat.webp" alt="Pat Allan" title="Pat Allan" class="float-image float-image--end">
 
-As a little treat this year, we're bringing you Q&As from leading Hanakai users. First up we have [Pat Allan](https://freelancing-gods.com/)! Pat is a friend, a leading voice in the Australian Ruby community, and an [inspiring speaker](https://www.rubyevents.org/profiles/pat). Thank you Pat for sharing with us today!
+As a little treat this year, we're bringing you Q&As from leading Hanakai users. First up we have [Pat Allan](https://freelancing-gods.com/)! Pat is a friend, a leading voice in the Australian Ruby community, and an [inspiring speaker](https://www.rubyevents.org/profiles/pat).
 
 **Who are you, and what are you building?**
 
@@ -32,7 +32,7 @@ The project was one I inherited from [Tim](https://timriley.info) and [Icelab](h
 
 In my own side projects, I’m also reaching for Hanakai more and more. Sometimes that’s for the clear separation between state and behaviour, sometimes that’s for the elegance of multiple slices in a single codebase, and sometimes it’s for the care for humans that underpins the ethos of Hanakai and the team around it.
 
-**Describe a moment building with Hanakai that made you think, "yes, this is why."**
+**What's a moment building with Hanakai that made you think, "yes, this is why"?**
 
 In some ways it’s actually the reverse - it’s when I step back to Rails for other work where I miss Hanakai. One moment lately was when writing unit tests alongside ActiveRecord models, and feeling frustrated by the deep (almost infinite) interface that those models can have, due to the combination of data and interactions kept all together. Hanami’s separation of repositories and data objects can lead to much cleaner - and more easily tested - code. In code like in life, healthy relationships should have respectful boundaries, and the Hanakai approach encourages that respect far better than Rails.
 
@@ -40,9 +40,13 @@ In some ways it’s actually the reverse - it’s when I step back to Rails for 
 
 I look forward to seeing the Ruby community stretch beyond just the Rails monoculture, to a point where it’s not presumed that Ruby and Rails are one and the same. And following that, I look forward to more and more Rubyists feeling comfortable with reaching for Hanakai as an option when developing web applications with Ruby.
 
+---
+
+_Thank you Pat for sharing with us today!_
+
 ## Thank you Brandon!
 
-This week we'd like to thank share our deepest thanks to our returning silver sponsor, [Brandon Weaver](https://baweaver.com). You'll all know Brandon as the mind behind [the beloved lemurs](https://www.rubyevents.org/profiles/baweaver), and author of some of the [deepest Ruby writing around](https://baweaver.com/writing/).
+This week we'd also like to thank share our deepest thanks to our returning silver sponsor, [Brandon Weaver](https://baweaver.com). You'll all know Brandon as the mind behind [the beloved lemurs](https://www.rubyevents.org/profiles/baweaver), and author of some of the [deepest Ruby writing around](https://baweaver.com/writing/).
 
 We're also lucky to know Brandon as one of our earliest supporters, and another big factor in giving me the confidence to take the leap and commit a day every week to Hanakai maintenance. Brandon's also been forthcoming with advice about the mechanics of sponsorships, which has been very helpful across our program's short life so far.
 
@@ -51,7 +55,7 @@ We're also lucky to know Brandon as one of our earliest supporters, and another 
 > — Brandon Weaver
 
 <div style="background: #fff; border-radius: 12px; padding: 2rem; margin: 0 auto calc(var(--spacing) * 3); max-width: 300px;">
-  <a href="https://baweaver.com" target="_blank"><img src="/blog/assets/2026-08-19-power-in-numbers-and-pat-Allan/brandon.webp" alt="Avatar of Brandon Weaver" style="display: block; margin: 0 auto; width: 100%;"></a>
+  <a href="https://baweaver.com" target="_blank"><img src="/blog/assets/2026-08-19-power-in-numbers-and-pat-allan/brandon.webp" alt="Avatar of Brandon Weaver" style="display: block; margin: 0 auto; width: 100%;"></a>
 </div>
 
 Thank you Brandon!

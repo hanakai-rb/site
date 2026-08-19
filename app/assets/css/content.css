@@ -247,6 +247,7 @@
   hr {
     border-top: 2px var(--hk-color-neutral-subtle) solid;
     border-radius: var(--radius-xs);
+    margin-block: calc(var(--spacing) * 7);
   }
 
   /* GitHub alerts */
