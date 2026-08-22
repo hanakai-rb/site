@@ -259,8 +259,7 @@ end
 > [!TIP]
 > In addition to the relation name in Repositories, the alias is also used by auto-mapping when you combine relations together. More on combines later.
 
-This is also useful for building multiple relation classes against the same table, if you have radically different
-use-cases and want to separate them.
+This is also useful for building multiple relation classes against the same table, if you have radically different use-cases and want to separate them.
 
 ### Custom Foreign Keys
 
