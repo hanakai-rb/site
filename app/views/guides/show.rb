@@ -35,7 +35,8 @@ module Site
             guide_repo.latest_for(org:).tap { |guides|
               # Ensure the currently selected guide (which may have an older version) is the one
               # that appears in the guides list.
-              guides[guide.position] = guide
+              index = guides.index { _1.slug == guide.slug }
+              guides[index] = guide if index
             }
           else
             guide_repo.latest_for(org:)
