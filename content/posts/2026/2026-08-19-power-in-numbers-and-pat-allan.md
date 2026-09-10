@@ -6,7 +6,7 @@ excerpt: >
   “In code like in life, healthy relationships should have respectful boundaries.” Week two of our sponsorship drive.
 ---
 
-Welcome to week two of our [2026 sponsorship drive](/blog/2026/08/11/sponsor-hanakai-in-2026)!
+Welcome to week two of our [2026 sponsorship drive](/blog/2026/08/11/sponsor-hanakai-in-2026)! (Don't forget to catch up on week [one](/blog/2026/08/11/sponsor-hanakai-in-2026), or even skip ahead to weeks [two](/blog/2026/08/19/power-in-numbers-and-pat-allan), [three](/blog/2026/09/02/thanking-our-silver-sponsors-and-carolyn-cole), or [four](/blog/2026/09/10/thanking-individual-sponsors-edouard-de-labareyre-and-merch)).
 
 ## Progress from week one
 

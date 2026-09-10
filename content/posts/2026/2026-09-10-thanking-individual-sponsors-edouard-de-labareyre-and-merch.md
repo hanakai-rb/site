@@ -6,7 +6,7 @@ excerpt: >
   “I was hooked, my choice was made.” Week four of our sponsorship drive.
 ---
 
-Welcome to week four of our [2026 sponsorship drive](/blog/2026/08/11/sponsor-hanakai-in-2026)! (Don't forget to up on weeks [one](/blog/2026/08/11/sponsor-hanakai-in-2026), [two](/blog/2026/08/19/power-in-numbers-and-pat-allan) and [three](/blog/2026/09/02/thanking-our-silver-sponsors-and-carolyn-cole)).
+Welcome to week four of our [2026 sponsorship drive](/blog/2026/08/11/sponsor-hanakai-in-2026)! (Don't forget to catch up on weeks [one](/blog/2026/08/11/sponsor-hanakai-in-2026), [two](/blog/2026/08/19/power-in-numbers-and-pat-allan) and [three](/blog/2026/09/02/thanking-our-silver-sponsors-and-carolyn-cole)).
 
 This will be our last post before we come back one last time to wrap things up. We do have some treats for you this week, though: a wonderful Q&A with long-time Hanami developer Edouard de Labareyre, a gaggle of individual sponsors to thank, and some news about merch!
 

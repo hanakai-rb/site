@@ -6,7 +6,7 @@ excerpt: >
   “Reading your code is a larger cost than creating it, so having more organization is a definite benefit.” Week three of our sponsorship drive.
 ---
 
-Welcome to week three of our [2026 sponsorship drive](/blog/2026/08/11/sponsor-hanakai-in-2026)!
+Welcome to week three of our [2026 sponsorship drive](/blog/2026/08/11/sponsor-hanakai-in-2026)! (Don't forget to catch up on weeks [one](/blog/2026/08/11/sponsor-hanakai-in-2026) and [two](/blog/2026/08/19/power-in-numbers-and-pat-allan), or skip ahead to week [four](/blog/2026/09/10/thanking-individual-sponsors-edouard-de-labareyre-and-merch)).
 
 ## Progress from week two
 
