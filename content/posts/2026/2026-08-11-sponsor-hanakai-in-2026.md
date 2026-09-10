@@ -50,4 +50,10 @@ It only makes sense that we kick off our sponsorship drive with a thankyou to [M
 
 And with that, consider our sponsorship drive _launched!_
 
-We're excited to share more with you over the coming weeks. If you have questions or would like to get in touch about how you can help, come find us in our [chat](https://discord.com/invite/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org/). Our community is lovely, and we'd love you to become a part of it. :hanakai:
+We're excited to share more with you over the coming weeks:
+
+- [Power in numbers, and Pat Allan](/blog/2026/08/19/power-in-numbers-and-pat-allan)
+- [Thanking our silver sponsors, and Carolyn Cole](/blog/2026/09/02/thanking-our-silver-sponsors-and-carolyn-cole)
+- [Thanking our individual sponsors, Edouard de Labareyre, and a merch announcement](https://hanakai.org/blog/2026/09/10/thanking-individual-sponsors-edouard-de-labareyre-and-merch)
+
+If you have questions or would like to get in touch about how you can help, come find us in our [chat](https://discord.com/invite/KFCxDmk3JQ) or [forum](https://discourse.hanakai.org/). Our community is lovely, and we'd love you to become a part of it. :hanakai:
