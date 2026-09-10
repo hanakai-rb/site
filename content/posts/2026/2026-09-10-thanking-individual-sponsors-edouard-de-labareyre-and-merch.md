@@ -12,7 +12,7 @@ This will be our last post before we come back one last time to wrap things up. 
 
 ## Q&A with Edouard de Labareyre
 
-<img src="/blog/assets/2026-09-10-individual-sponsors-edouard-de-labareyre-and-merch/edouard.webp" alt="Edouard de Labareyre" title="Edouard de Labareyre" class="float-image float-image--end">
+<img src="/blog/assets/2026-09-10-thanking-individual-sponsors-edouard-de-labareyre-and-merch/edouard.webp" alt="Edouard de Labareyre" title="Edouard de Labareyre" class="float-image float-image--end">
 
 We're wrapping up our Q&As with a great one, featuring [Edouard de Labareyre](https://github.com/inouire)!
 
@@ -69,7 +69,7 @@ One more thing.
 
 It's been a few months since we [launched Hanakai](/blog/2026/05/01/welcome-to-hanakai) and our beautiful new branding. Now we're going to give these logos what they deserve: a merch store!
 
-![A preview of Hanakai merch](/blog/assets/2026-09-10-individual-sponsors-edouard-de-labareyre-and-merch/hanakai-merch.webp "A preview of Hanakai merch")
+![A preview of Hanakai merch](/blog/assets/2026-09-10-thanking-individual-sponsors-edouard-de-labareyre-and-merch/hanakai-merch.webp "A preview of Hanakai merch")
 
 We're just beginning the planning for this, but I already know that our designers [Aaron](https://github.com/aaronmoodie) and [Max](https://github.com/makenosound) are going to put together something delightful.
 
