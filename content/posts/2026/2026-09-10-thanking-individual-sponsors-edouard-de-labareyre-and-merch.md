@@ -61,7 +61,7 @@ And now for the folks that joined us as part of this year's sponsorship drive:
 
 That's 29 of you, with 14 of you joining as part of this drive. You are true difference-makers for Ruby! Your support goes a long way towards making our ongoing maintenance of Hanakai viable.
 
-You can become part of this esteemed group! It's easy to do, and we'll love you forever. Go check out [our sponsorship page](/sponsor) for the deets.
+You too can become part of this esteemed group! It's easy to do, and we'll love you forever. Go check out [our sponsorship page](/sponsor) for the deets.
 
 ## Merch is coming! (And sponsors get a treat)
 
