@@ -1,0 +1,13 @@
+---
+private_count: 2
+sponsors:
+  - source: github
+    name: Ada Lovelace
+    handle: ada
+    profile_url: https://github.com/ada
+    avatar_url: https://example.com/ada.png
+  - source: open_collective
+    name: Grace Hopper
+    handle: grace
+    profile_url: https://opencollective.com/grace
+    avatar_url: https://example.com/grace.png
