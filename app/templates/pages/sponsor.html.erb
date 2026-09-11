@@ -60,7 +60,7 @@
       <p class="text-lg">
         For more than a decade, Hanami, Dry and Rom have offered Ruby developers
         something different: tools built around clarity, flexibility, and a
-        genuine belief that there’s more than one good way to build an app.
+        belief that there’s more than one good way to build an app.
       </p>
 
       <p class="text-lg">
@@ -81,7 +81,7 @@
 
       <p class="text-lg mb-7">
         Ruby is a better place when there are real alternatives to reach for. If
-        you believe this – or if Dry, Rom or Hanami are already doing important
+        you believe this — or if Dry, Rom or Hanami are already doing important
         work somewhere in your stack — sponsorship is how you grow Hanakai and
         Ruby’s diversity along with it.
       </p>
@@ -868,13 +868,14 @@
   <%# Individual sponsor count + avatars %>
   <div class="text-center mb-10 py-8">
     <p class="text-2xl text-balance mb-6 tracking-tight">
-      Thank you to our 19 individual sponsors
+      Thank you to our <%= individual_sponsors.length %> individual sponsors
     </p>
 
     <div class="flex flex-wrap justify-center gap-1">
       <% individual_sponsors.each do |sponsor| %>
-        <% if sponsor[:private] %>
+        <% if sponsor.private? %>
           <span
+            data-testid="individual-sponsor"
             class="
               w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900
               bg-neutral-100 dark:bg-neutral-800 flex items-center
@@ -897,12 +898,13 @@
           </span>
         <% else %>
           <a
-            href="https://github.com/<%= sponsor[:login] %>"
-            title="@<%= sponsor[:login] %>"
+            data-testid="individual-sponsor"
+            href="<%= sponsor.profile_url %>"
+            title="<%= sponsor.name %>"
           >
             <img
-              src="https://avatars.githubusercontent.com/u/<%= sponsor[:avatar_id] %>?s=96&v=4"
-              alt="@<%= sponsor[:login] %>"
+              src="<%= sponsor.avatar_url %>"
+              alt="<%= sponsor.name %>"
               width="48"
               height="48"
               class="
