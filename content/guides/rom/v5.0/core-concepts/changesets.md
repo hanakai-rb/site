@@ -111,7 +111,7 @@ changeset = users
   .changeset(:create, name: 'Joe', email: 'joe@doe.org')
   .map(:add_timestamps)
 
-changeset.commit(changeset)
+changeset.commit
 # => #<ROM::Struct[User] id=1 name="Joe" email="joe@doe.org" created_at=2016-07-22 14:45:02 +0200 updated_at=2016-07-22 14:45:02 +0200>
 ```
 

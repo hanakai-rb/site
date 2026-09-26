@@ -73,6 +73,7 @@ user.last_name
 ```ruby
 class Users < ROM::Relation[:sql]
   struct_namespace Entities
+  auto_struct true
 
   schema(infer: true)
 end
