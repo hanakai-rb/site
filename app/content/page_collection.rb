@@ -50,11 +50,11 @@ module Site
       private
 
       def build_page(path)
-        file_path = root.join(path)
+        file_path = "#{root.join(path)}.md"
 
         begin
           # Read file with explicit UTF-8 encoding
-          content = File.read("#{file_path}.md", encoding: "UTF-8")
+          content = File.read(file_path, encoding: "UTF-8")
           parsed_file = FrontMatterParser::Parser.new(:md).call(content)
         rescue Errno::ENOENT
           raise Content::NotFoundError, file_path
@@ -65,7 +65,8 @@ module Site
           url_path: (path == INDEX_PAGE_PATH) ? base_url_path : File.join(base_url_path, path),
           front_matter: parsed_file.front_matter,
           content: parsed_file.content,
-          source_dir: root.to_s
+          source_dir: root.to_s,
+          source_file_path: file_path
         )
       end
 
