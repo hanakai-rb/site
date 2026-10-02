@@ -82,6 +82,19 @@ RSpec.feature "Guides / Guide pages" do
     end
   end
 
+  it "does not duplicate the current self-versioned guide in the sidebar" do
+    visit "/learn/dry/dry-monads/v1.8/try"
+
+    within "[data-testid=guides-list]" do
+      guide_names = page.find_all("ol[data-testid='guides-list'] > li").map { |li|
+        li.find("div").text.gsub(/\s+/, " ").strip
+      }
+
+      expect(guide_names.count("Dry Monads")).to eq(1)
+      expect(guide_names).to include("Dry Monitor")
+    end
+  end
+
   it "replaces //page URLs with URLs within the current guide and version" do
     visit "/learn/hanami/v2.2/actions"
 
