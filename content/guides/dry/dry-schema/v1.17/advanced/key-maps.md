@@ -14,7 +14,7 @@ To access schema's key map use `Schema#key_map` method:
 ```ruby
 schema = Dry::Schema.Params do
   required(:email).filled(:string)
-  optional(:age).filled(:integer, gt?: 18)
+  optional(:age).filled(:integer, gt: 18)
 end
 
 schema.key_map

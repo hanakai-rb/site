@@ -13,7 +13,7 @@ For that reason, `dry-schema` ships with `Params` schemas:
 ```ruby
 schema = Dry::Schema.Params do
   required(:email).filled(:string)
-  required(:age).filled(:integer, gt?: 18)
+  required(:age).filled(:integer, gt: 18)
 end
 
 errors = schema.call('email' => '', 'age' => '18').errors

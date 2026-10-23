@@ -11,7 +11,7 @@ Dry::Schema.load_extensions(:hints)
 
 schema = Dry::Schema.Params do
   required(:email).filled(:string)
-  required(:age).filled(:integer, gt?: 18)
+  required(:age).filled(:integer, gt: 18)
 end
 
 result = schema.call(email: 'jane@doe.org', age: '')
