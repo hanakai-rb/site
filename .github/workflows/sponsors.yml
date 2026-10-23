@@ -1,0 +1,87 @@
+name: Sponsors
+
+on:
+  schedule:
+    # Mondays, early UTC.
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+# This workflow's own GITHUB_TOKEN only does reads. Use our own separate GitHub app to push and open
+# the pull request. This is because GitHub does not start other workflows from actions taken with
+# GITHUB_TOKEN, so a pull request opened with it would never run CI.
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    name: Refresh individual sponsors
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.SITE_UPDATES_APP_ID }}
+          private-key: ${{ secrets.SITE_UPDATES_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          # So that `git push` below acts as the app.
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.7"
+          bundler-cache: true
+
+      - name: Refresh sponsors list
+        env:
+          # A classic PAT with the `read:org` scope, from an admin of the GitHub org we receive
+          # sponsorships through. Needed to count the sponsors who chose to stay private. Their
+          # names are never read or published.
+          SPONSORS_GITHUB_TOKEN: ${{ secrets.SPONSORS_GITHUB_TOKEN }}
+          # Optional. Open Collective serves public data without a token; one only raises our rate
+          # limit.
+          SPONSORS_OPEN_COLLECTIVE_TOKEN: ${{ secrets.SPONSORS_OPEN_COLLECTIVE_TOKEN }}
+        run: bundle exec rake sponsors:refresh
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          BRANCH: sponsors-refresh
+        run: |
+          if git diff --quiet -- content/sponsors/sponsors.yml; then
+            echo "No change to the sponsors list."
+            exit 0
+          fi
+
+          # Commit as the app's bot account, so the commit matches who opens the pull request.
+          bot_id="$(gh api "/users/${APP_SLUG}[bot]" --jq .id)"
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+
+          git checkout -B "$BRANCH"
+          git add content/sponsors/sponsors.yml
+          git commit -m "Refresh individual sponsors"
+          git push --force origin "$BRANCH"
+
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            echo "Pull request already open for $BRANCH; updated it in place."
+            exit 0
+          fi
+
+          cat > /tmp/pr-body.md <<'BODY'
+          Rebuilt from GitHub Sponsors and Open Collective by the weekly `Sponsors` workflow.
+
+          Read the diff before merging. People who stopped sponsoring are removed, and anyone new is worth a welcome.
+          BODY
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "Refresh individual sponsors" \
+            --body-file /tmp/pr-body.md

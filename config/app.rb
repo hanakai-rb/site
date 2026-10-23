@@ -7,6 +7,7 @@ module Site
   class App < Hanami::App
     config.inflections do |inflections|
       inflections.acronym "AI"
+      inflections.acronym "GitHub"
     end
 
     require "site/content_file_middleware"
