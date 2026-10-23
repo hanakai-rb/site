@@ -36,7 +36,7 @@ Checks that a key's value is equal to the given value.
 describe 'eql?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(eql?: 1234)
+      required(:sample).value(eql: 1234)
     end
   end
 
@@ -62,7 +62,7 @@ Checks that a key's class is equal to the given value.
 describe 'type?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(type?: Integer)
+      required(:sample).value(type: Integer)
     end
   end
 
@@ -153,7 +153,7 @@ Checks that the value is greater than the given value.
 describe 'gt?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(gt?: 0)
+      required(:sample).value(gt: 0)
     end
   end
 
@@ -175,7 +175,7 @@ Checks that the value is greater than or equal to the given value.
 describe 'gteq?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(gteq?: 1)
+      required(:sample).value(gteq: 1)
     end
   end
 
@@ -197,7 +197,7 @@ Checks that the value is less than the given value.
 describe 'lt?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(lt?: 1)
+      required(:sample).value(lt: 1)
     end
   end
 
@@ -219,7 +219,7 @@ Checks that the value is less than or equal to the given value.
 describe 'lteq?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(lteq?: 1)
+      required(:sample).value(lteq: 1)
     end
   end
 
@@ -241,7 +241,7 @@ Check that an array's size (or a string's length) is less than or equal to the g
 describe 'max_size?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(max_size?: 3)
+      required(:sample).value(max_size: 3)
     end
   end
 
@@ -265,7 +265,7 @@ Checks that an array's size (or a string's length) is greater than or equal to t
 describe 'min_size?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(min_size?: 3)
+      required(:sample).value(min_size: 3)
     end
   end
 
@@ -289,7 +289,7 @@ Checks that an array's size (or a string's length) is equal to the given value.
 describe 'size?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(size?: 3)
+      required(:sample).value(size: 3)
     end
   end
 
@@ -313,7 +313,7 @@ Checks that an array's size (or a string's length) is within a range of values.
 describe 'size?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(size?: 0..3)
+      required(:sample).value(size: 0..3)
     end
   end
 
@@ -337,7 +337,7 @@ String's bytesize is less than or equal to the given value.
 describe 'max_bytesize?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(max_bytesize?: 3)
+      required(:sample).value(max_bytesize: 3)
     end
   end
 
@@ -359,7 +359,7 @@ String's bytesize is greater than or equal to the given value.
 describe 'min_binsize?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(min_bytesize?: 3)
+      required(:sample).value(min_bytesize: 3)
     end
   end
 
@@ -381,7 +381,7 @@ Checks that an array's size (or a string's length) is equal to the given value.
 describe 'bytesize?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(bytesize?: 3)
+      required(:sample).value(bytesize: 3)
     end
   end
 
@@ -403,7 +403,7 @@ Checks that an array's size (or a string's length) is within a range of values.
 describe 'bytesize?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(bytesize?: 0..3)
+      required(:sample).value(bytesize: 0..3)
     end
   end
 
@@ -425,7 +425,7 @@ Checks that a string matches a given regular expression.
 describe 'format?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(format?: /^a/)
+      required(:sample).value(format: /^a/)
     end
   end
 
@@ -447,7 +447,7 @@ Checks that a value is included in a given array.
 describe 'included_in?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(included_in?: [1,3,5])
+      required(:sample).value(included_in: [1,3,5])
     end
   end
 
@@ -469,7 +469,7 @@ Checks that a value is excluded from a given array.
 describe 'excluded_from?' do
   let(:schema) do
     Dry::Schema.Params do
-      required(:sample).value(excluded_from?: [1,3,5])
+      required(:sample).value(excluded_from: [1,3,5])
     end
   end
 

@@ -13,7 +13,7 @@ You can define which keys are optional and define rules for their values:
 ```ruby
 schema = Dry::Schema.Params do
   required(:email).filled(:string)
-  optional(:age).filled(:integer, gt?: 18)
+  optional(:age).filled(:integer, gt: 18)
 end
 
 errors = schema.call(email: 'jane@doe.org').errors
@@ -34,7 +34,7 @@ When it is allowed for a given value to be `nil` you can use `maybe` macro:
 ```ruby
 schema = Dry::Schema.Params do
   required(:email).filled(:string)
-  optional(:age).maybe(:integer, gt?: 18)
+  optional(:age).maybe(:integer, gt: 18)
 end
 
 errors = schema.call(email: 'jane@doe.org', age: nil).errors

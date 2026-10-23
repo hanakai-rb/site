@@ -23,7 +23,7 @@ In most common cases you can use symbols that identify built-in types. The types
 ```ruby
 UserSchema = Dry::Schema.Params do
   # expands to: `int? & gt?(18)`
-  required(:age).value(:integer, gt?: 18)
+  required(:age).value(:integer, gt: 18)
 end
 ```
 
@@ -34,7 +34,7 @@ To define an array with a member, you can use a shortcut method `array`. Here's 
 ```ruby
 UserSchema = Dry::Schema.Params do
   # expands to: `array? & each { int? } & size?(3)`
-  required(:nums).value(array[:integer], size?: 3)
+  required(:nums).value(array[:integer], size: 3)
 end
 ```
 
@@ -51,7 +51,7 @@ end
 
 UserSchema = Dry::Schema.Params do
   # expands to: `str? & min_size?(10)`
-  required(:login_time).value(StrippedString, min_size?: 10)
+  required(:login_time).value(StrippedString, min_size: 10)
 end
 ```
 

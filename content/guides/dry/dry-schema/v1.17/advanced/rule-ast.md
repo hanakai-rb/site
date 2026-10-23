@@ -13,7 +13,7 @@ To access schema's rule AST use `Schema#to_ast` method:
 ```ruby
 schema = Dry::Schema.Params do
   required(:email).filled(:string)
-  optional(:age).filled(:integer, gt?: 18)
+  optional(:age).filled(:integer, gt: 18)
 end
 
 schema.to_ast

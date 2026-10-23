@@ -9,7 +9,7 @@ To validate JSON data structures, you can use `JSON` schemas. The difference bet
 ```ruby
 schema = Dry::Schema.JSON do
   required(:email).filled(:string)
-  required(:age).value(:integer, gt?: 18)
+  required(:age).value(:integer, gt: 18)
 end
 
 errors = schema.call('email' => '', 'age' => 18).errors.to_h
