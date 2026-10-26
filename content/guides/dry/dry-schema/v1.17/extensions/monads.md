@@ -15,7 +15,7 @@ Dry::Schema.load_extensions(:monads)
 After loading the extension, you can leverage monad API:
 
 ```ruby
-schema = Dry::Schema.Params { required(:name).filled(:string, size?: 2..4) }
+schema = Dry::Schema.Params { required(:name).filled(:string, size: 2..4) }
 
 schema.call(name: 'Jane').to_monad # => Dry::Monads::Success(#<Dry::Schema::Result{:name=>"Jane"} errors={}>)
 
@@ -42,7 +42,7 @@ Dry::Schema.load_extensions(:monads)
 class Example
   include Dry::Monads[:result]
 
-  Schema = Dry::Schema.Params { required(:name).filled(:string, size?: 2..4) }
+  Schema = Dry::Schema.Params { required(:name).filled(:string, size: 2..4) }
 
   def call(input)
     case schema.call(input).to_monad

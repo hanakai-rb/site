@@ -13,9 +13,11 @@ Use it to quickly provide a list of all predicates that will be `AND`-ed automat
 ```ruby
 Dry::Schema.Params do
   # expands to `required(:age) { int? & gt?(18) }`
-  required(:age).value(:integer, gt?: 18)
+  required(:age).value(:integer, gt: 18)
 end
 ```
+
+Predicates given as keywords do not require the question mark, [as with `constrained` in Dry Types](//org_guide/dry/dry-types/constraints). Including the question mark (as in `gt?: 18`) still builds the same rule. Every macro that takes predicate keywords, such as `filled` and `maybe`, accepts both forms.
 
 Predicates passed as an array will be `OR`-ed automatically:
 
@@ -126,7 +128,7 @@ This works like `array` but does not prepend `array?` predicate. It's a simpler 
 ```ruby
 Dry::Schema.Params do
   # expands to: `required(:tags) { array? & each { str? } } }`
-  required(:tags).value(:array, min_size?: 2).each(:str?)
+  required(:tags).value(:array, min_size: 2).each(:str?)
 end
 ```
 

@@ -11,7 +11,7 @@ To define validation rules for a nested hash you can use the same DSL on a speci
 ```ruby
 schema = Dry::Schema.Params do
   required(:address).hash do
-    required(:city).filled(:string, min_size?: 3)
+    required(:city).filled(:string, min_size: 3)
     required(:street).filled(:string)
     required(:country).hash do
       required(:name).filled(:string)
@@ -53,7 +53,7 @@ If a nested hash could be `nil`, simply use `maybe` macro with a block:
 ```ruby
 schema = Dry::Schema.Params do
   required(:address).maybe(:hash) do
-    required(:city).filled(:string, min_size?: 3)
+    required(:city).filled(:string, min_size: 3)
     required(:street).filled(:string)
     required(:country).hash do
       required(:name).filled(:string)
@@ -95,7 +95,7 @@ You can use `array(:hash)` and `schema` to validate an array of hashes:
 schema = Dry::Schema.Params do
   required(:people).array(:hash) do
     required(:name).filled(:string)
-    required(:age).filled(:integer, gteq?: 18)
+    required(:age).filled(:integer, gteq: 18)
   end
 end
 
@@ -115,10 +115,10 @@ To add array predicates, use the full form:
 
 ```ruby
 schema = Dry::Schema.Params do
-  required(:people).value(:array, min_size?: 1).each do
+  required(:people).value(:array, min_size: 1).each do
     hash do
       required(:name).filled(:string)
-      required(:age).filled(:integer, gteq?: 18)
+      required(:age).filled(:integer, gteq: 18)
     end
   end
 end
