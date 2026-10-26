@@ -17,7 +17,7 @@ Dry::Schema.Params do
 end
 ```
 
-Predicate keywords leave off the question mark, as they do with `constrained` in dry-types. Writing it in, as in `gt?: 18`, builds the same rule. Every macro that takes predicate keywords, such as `filled` and `maybe`, accepts both forms.
+Predicates given as keywords do not require the question mark, [as with `constrained` in Dry Types](//org_guide/dry/dry-types/constraints). Including the question mark (as in `gt?: 18`) still builds the same rule. Every macro that takes predicate keywords, such as `filled` and `maybe`, accepts both forms.
 
 Predicates passed as an array will be `OR`-ed automatically:
 
