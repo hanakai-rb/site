@@ -2,7 +2,7 @@
 
 source "https://gem.coop"
 
-ruby "3.4.7"
+ruby "3.4.12"
 
 gem "hanami", "~> 3.0.0"
 gem "hanami-action", "~> 3.0.0"
