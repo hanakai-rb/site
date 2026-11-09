@@ -104,3 +104,69 @@ You can provide explicit locals to a partial via keyword arguments:
 ```
 
 When you provide explicit locals to a partial, only those locals will be available to the partial. When you provide no locals at all, then the partial will have access to the calling template's own set of locals.
+
+## Declaring locals
+
+A template can declare the locals it takes with a magic comment at its top, written like a Ruby method's keyword arguments:
+
+```erb
+<%# app/templates/books/_form.html.erb %>
+<%# locals: (form_title:, submit_label: "Save") %>
+
+<h2><%= form_title %></h2>
+```
+
+Rendering this partial without `form_title`, or with a local it does not declare, raises an `ArgumentError` (such as `missing keyword: :form_title` or `unknown keyword: :titel`). Locals with defaults, like `submit_label` above, are filled in when not given.
+
+In Haml, write the comment as `-# locals: (form_title:)`, and in Slim as `/# locals: (form_title:)`, with only comment syntax before it on its line.
+
+In ERB, Haml, and Slim, the declaration must open its comment, and it ends at the parenthesis matching its opening one. This means defaults can call methods, a note can follow the declaration, and an ERB declaration can span several lines:
+
+```erb
+<%# locals: (
+  book:,
+  heading: book.title.upcase,
+  show_author: true
+) Used by the books index and show pages %>
+```
+
+It also means a template whose text happens to show the syntax is not treated as declaring its locals. Templates in other languages use Tilt's own matching, which finds `# locals: (` anywhere in the template.
+
+### Partials
+
+A partial that declares its locals receives only the locals passed to it. It never receives its caller's locals, even when rendered without arguments, so pass it everything it needs:
+
+```erb
+<%= render "books/form", form_title: "New book" %>
+```
+
+A partial rendered from a [part](//page/parts) is given the part under its name, so a `user.render("avatar")` call can be declared with `<%# locals: (user:) %>`.
+
+If the partial uses a custom [scope](//page/scopes), it keeps its caller's scope class and its methods. However, scope methods that read a local will raise in a declaring partial unless that local is passed to it.
+
+### View templates
+
+In a view's template, the comment declares the view's [exposures](//page/input-and-exposures). Every exposure must be declared, including any added by a base view class, so declare the ones the template uses and accept the rest with `**`:
+
+```erb
+<%# app/templates/books/show.html.erb %>
+<%# locals: (book:, **) %>
+
+<h1><%= book.title %></h1>
+```
+
+Exposures are only run when a template reads them, so a template that declares its locals runs only the exposures it declares. Accepting the rest with `**` runs them all.
+
+### Turning off declared locals
+
+Templates without the comment are unaffected. Since the comment follows the same form as in Rails, a declaration kept from a Rails app is enforced too. To ignore these comments entirely, configure your view's renderer options:
+
+```ruby
+# app/view.rb
+
+module Bookshelf
+  class View < Hanami::View
+    config.renderer_options = {extract_fixed_locals: false}
+  end
+end
+```
