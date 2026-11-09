@@ -47,7 +47,7 @@ The default permitted schemes are:
 
 ```ruby
 sanitize_url("https://hanamirb.org")
-# => "http://hanamirb.org"
+# => "https://hanamirb.org"
 
 sanitize_url("javascript:alert('xss')")
 # => ""

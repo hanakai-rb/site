@@ -56,7 +56,7 @@ tag.p("<em>safe content</em>".html_safe)
 
 When used inside [view templates](//guide/views/templates-and-partials), all given as a block will be concatenated and used as the tag's contents.
 
-```sql
+```erb
 <%= tag.div(id: "el") do %>
   <p>Template content can be mixed in.</p>
   <%= tag.p("Also nested tag builders.") %>
@@ -95,7 +95,7 @@ link_to("/") { "Home" }
 # => <a href="/">Home</a>
 
 link_to("Home", "/", class: "button")
-# => <a href="/" class="button">Home</a>
+# => <a class="button" href="/">Home</a>
 ```
 
 The tag's contents are automatically escaped, unless marked as HTML safe.

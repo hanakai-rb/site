@@ -39,7 +39,7 @@ module Bookshelf
     module Pages
       class Contact < Bookshelf::Action
         def handle(request, response)
-          response.render(view, page: params[:page])
+          response.render(view, page: request.params[:page])
         end
       end
     end

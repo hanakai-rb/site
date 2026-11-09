@@ -227,7 +227,9 @@ module Bookshelf
 
     class Authors < Hanami::DB::Relation
       schema :authors, infer: true do
-        has_many :books, through: :authorships
+        associations do
+          has_many :books, through: :authorships
+        end
       end
     end
   end
@@ -281,7 +283,7 @@ end
 As with `Types.define` referenced earlier, this is just setting up metadata on your type definition:
 
 ```ruby
-Types::Nominal(::String).meta(db_type: "uuid", database: "postgres", foreign_key: true, target: :users)
+Types.Nominal(::String).meta(db_type: "uuid", database: "postgres", foreign_key: true, target: :users)
 ```
 
 ## Querying

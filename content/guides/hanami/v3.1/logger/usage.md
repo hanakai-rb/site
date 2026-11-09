@@ -84,7 +84,7 @@ begin
 rescue => e
   app["logger"].error(e, component: "admin")
 end
-# [bookshelf] [ERROR] [2022-11-20 13:56:36 +0100] component="console"
+# [bookshelf] [ERROR] [2022-11-20 13:56:36 +0100] component="admin"
 #   OH NOEZ! (RuntimeError)
 #   (pry):12:in `__pry__'
 ```

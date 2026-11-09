@@ -8,7 +8,7 @@ These facilities are exposed via methods on the context object. For example, the
 
 In templates and scopes, you can call these methods implicitly, without an explicit receiver:
 
-```sql
+```erb
 <%= inflector.pluralize("koala") %>
 ```
 
@@ -31,7 +31,7 @@ The standard context in Hanami apps includes the following methods:
 - `#inflector`: the app's configured inflector
 - `#routes`: the app's named routes helpers, via `#path` and `#url` methods
 - `#content_for`: a method to get and set content strings to be shared across templates, such as defining a page title (applied in the layout) from a template
-- `#assets`: low-level access to front end assets (but you should prefer the [assets helpers](//guide/helpers/assets)
+- `#assets`: low-level access to front end assets (but you should prefer the [assets helpers](//guide/helpers/assets))
 
 For views rendered from an action, the following methods are also available:
 
@@ -115,7 +115,7 @@ module Bookshelf
       def initialize(*)
         super
         # Imagine your context exposes methods that modify this hash
-        @my_hash = []
+        @my_hash = {}
       end
 
       def initialize_copy(source)
@@ -129,7 +129,7 @@ end
 
 ## Decorating context attributes
 
-Your custom context may have attributes that you want deocrated as [parts](//page/parts). To do this, declare these attributes using `decorate` in your context class:
+Your custom context may have attributes that you want decorated as [parts](//page/parts). To do this, declare these attributes using `decorate` in your context class:
 
 ```ruby
 # app/views/context.rb
@@ -163,7 +163,7 @@ Or when rendering in actions:
 ```ruby
 def handle(request, response)
   # ...
-  responder.render(view, context: my_alternative_context)
+  response.render(view, context: my_alternative_context)
 end
 ```
 

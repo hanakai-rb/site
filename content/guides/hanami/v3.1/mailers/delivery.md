@@ -95,7 +95,7 @@ result = welcome_mailer.deliver(user: user)
 result.success?   # => true
 result.message    # => the delivered Hanami::Mailer::Message
 
-deliver_method = welcome_mailer.delivery_method
+delivery_method = welcome_mailer.delivery_method
 delivery_method.deliveries        # => [result, ...]
 delivery_method.deliveries.size   # => 1
 delivery_method.clear             # reset between tests
@@ -117,7 +117,7 @@ smtp = Hanami::Mailer::Delivery::SMTP.new(
   enable_starttls_auto: true
 )
 
-result = WelcomeMailer.new(delivery_method: smtp).deliver(user: user)
+result = Bookshelf::Mailers::Welcome.new(delivery_method: smtp).deliver(user: user)
 
 result.success?   # => true if SMTP accepted the message
 result.response   # => the underlying Mail::Message
@@ -126,7 +126,7 @@ result.error      # => nil on success, an exception on failure
 
 ### Custom delivery methods
 
-A delivery method is any object responding to `#call(message)` that returns a `Hanami::Mailer::Delivery::Result`. A result is built from the `message`, an optional raw `response`, and an `error`; its `success?` is derived from the absence of an error. This is all you need to integrate a third-party email API:
+A delivery method is any object responding to `#call(message)` that returns a `Hanami::Mailer::Delivery::Result`. A result is built from the `message`, an optional raw `response`, and an `error`; its `success?` is derived from the absence of an error. This is all you need to deliver messages through a third-party email API (to support previewing, also define a `#preview(message)` hook, as described in [Preparing and previewing](#preparing-and-previewing)):
 
 ```ruby
 class MyAPIDelivery
@@ -198,7 +198,7 @@ message = welcome_mailer.prepare(user: {name: "Alice", email: "alice@example.com
 
 message.from       # => ["welcome@bookshelf.test"]
 message.to         # => ["alice@example.com"]
-message.subject    # => "Welcome, Alice!"
+message.subject    # => "Welcome to Bookshelf, Alice!"
 message.html_body  # => the rendered HTML
 message.text_body  # => the rendered text
 
@@ -212,4 +212,4 @@ To preview a message without sending it, use `preview`. It takes the same argume
 preview = welcome_mailer.preview(user: user)
 ```
 
-The test and SMTP methods return the message unchanged, so `preview` gives you back the prepared message. A third-party delivery method can override its `preview` hook to apply service-specific logic, such as resolving a template through a remote API, and `preview` returns the result.
+The test delivery method returns the message unchanged, so `preview` gives you back the prepared message. The SMTP delivery method doesn't define a `preview` hook, so calling `preview` with it raises a `NoMethodError`. A third-party delivery method can override its `preview` hook to apply service-specific logic, such as resolving a template through a remote API, and `preview` returns the result.

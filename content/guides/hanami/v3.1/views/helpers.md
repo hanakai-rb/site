@@ -20,7 +20,7 @@ format_number(1234) # => "1,234"
 
 You can call helpers directly by their method names in your templates:
 
-```sql
+```erb
 <p><%= format_number(1234) %></p>
 ```
 
@@ -33,7 +33,7 @@ Helpers in [parts](//page/parts) are available on a `helpers` object within the 
 ```ruby
 def word_count
   # Presuming a `body_text` method on the value wrapped by the part
-  helpers.format_number(body_text.split)
+  helpers.format_number(body_text.split.size)
 end
 ```
 
@@ -46,7 +46,7 @@ Like templates, helpers in [scopes](//page/scopes) are available directly as met
 ```ruby
 def post_word_count
   # Presuming a `post` local
-  format_number(post.body_text.split)
+  format_number(post.body_text.split.size)
 end
 ```
 

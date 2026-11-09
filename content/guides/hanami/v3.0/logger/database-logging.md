@@ -31,7 +31,7 @@ The default app log level in production is `:info`, which means the `:debug`-lev
 
 When colorized output is enabled (the default in development) and the [rouge gem](https://github.com/rouge-ruby/rouge) is bundled, Hanami syntax highlights your SQL queries in the log output.
 
-Rouge is an optional dependency. New Hanami apps include it in their `Gemfile` for the development and test environments:
+Rouge is an optional dependency. New Hanami apps with a database include it in their `Gemfile` for the development and test environments:
 
 ```ruby
 group :development, :test do

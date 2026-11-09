@@ -10,7 +10,7 @@ This means you can move much of your view logic out of templates and into parts.
 
 For example, a template might accumulate formatting logic inline:
 
-```sql
+```erb
 <h1><%= book.title %> (<%= book.publication_date.strftime("%Y") %>)</h1>
 ```
 
@@ -24,7 +24,7 @@ class Book < Bookshelf::Views::Part
 end
 ```
 
-```sql
+```erb
 <h1><%= book.display_name %></h1>
 ```
 
@@ -76,7 +76,7 @@ For example, given an exposure named `:book`, the `Views::Parts::Book` class wil
 
 For an exposure that returns an array, the exposure's name will be singularized and each element in the array will be decorated with the relevant part. Then the array itself will be decorated by a matching part.
 
-For example, given an exposure named `:books`, `Views::Part::Book` will be used to decorate each value in the array, and then `Views::Part::Books` will be used to decorate the whole array.
+For example, given an exposure named `:books`, `Views::Parts::Book` will be used to decorate each value in the array, and then `Views::Parts::Books` will be used to decorate the whole array.
 
 If you have no part class matching an exposure's name, then a generic `Hanami::View::Part` will be used.
 
@@ -99,7 +99,7 @@ decorate :current_user, as: Parts::User
 
 For exposures returning arrays:
 
-- `decorate :books, as: :item` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::Items` to decorate the array itself
+- `decorate :books, as: :item` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::Books` to decorate the array itself
 - `decorate :books, as: [:item_collection]` will look up `Views::Parts::Book` to decorate the array elements, and `Views::Parts::ItemCollection` for decorating the array itself
 - `decorate :books, as: [:item_collection, :item]` will look up `Views::Parts::Item` to decorate the array elements, and `Views::Parts::ItemCollection` for decorating the array itself
 
@@ -111,7 +111,7 @@ When using a part, you can call any methods that belong to the decorated value, 
 
 For example, from a template:
 
-```sql
+```erb
 <!-- All the book methods are callable directly on the part -->
 <p><%= book.title %></p>
 ```
@@ -141,7 +141,7 @@ end
 
 When output directly to a template, a part will use its value's `#to_s` (which you can also override in your own part classes):
 
-```sql
+```erb
 <p><%= book %></p>
 ```
 
@@ -157,7 +157,7 @@ class Book < Bookshelf::Views::Part
 end
 ```
 
-```sql
+```erb
 <%= book.info_box %>
 ```
 
@@ -165,11 +165,11 @@ This will render a `books/_info_box` partial template with the part available as
 
 You can also render such partials explicitly within templates:
 
-```sql
+```erb
 <%= book.render("books/info_box") %>
 ```
 
-To make the part available by another local name within the partial's scope, us the `as:` option:
+To make the part available by another local name within the partial's scope, use the `as:` option:
 
 ```ruby
 render("books/info_box", as: :item)
@@ -202,14 +202,14 @@ You can access the [context](//page/context) for the view's current rendering us
 ```ruby
 class Book < Bookshelf::Views::Part
   def path
-    context.routes.path(:book, id)
+    context.routes.path(:book, id: id)
   end
 end
 ```
 
 ## Decorating part attributes
 
-The value decorated by your part may have its own attributes that you also want decorated. To do this, declare these attribute `decorate` in your part class:
+The value decorated by your part may have its own attributes that you also want decorated. To do this, declare these attributes using `decorate` in your part class:
 
 ```ruby
 class Book < Bookshelf::Views::Part
@@ -227,14 +227,17 @@ decorate :author, as: :person
 
 ## Memoizing methods
 
-A part object lives for the entirety of a single view rendering, so you can memoize expensive operations to ensure they only run once. `decorate` has a secondary function of memoizing:
+A part object lives for the entirety of a single view rendering, so you can memoize expensive operations to ensure they only run once:
 
 ```ruby
 class Book < Bookshelf::Views::Part
-  # Returns the author as a Views::Parts::Author
-  decorate :author
+  def related_books
+    @related_books ||= value.related_books.to_a
+  end
 end
 ```
+
+Attributes declared with `decorate` are not memoized: each call decorates the value again.
 
 ## Building scopes
 
