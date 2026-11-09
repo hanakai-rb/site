@@ -18,7 +18,7 @@ module Bookshelf
     module Books
       class Index < Bookshelf::Action
         def handle(request, response)
-          # Sets `Cache-Control: public, max-age: 600`
+          # Sets `Cache-Control: public, max-age=600`
           response.cache_control :public, max_age: 600
         end
       end
@@ -33,12 +33,17 @@ The `cache_control` method accepts one or more of the following [Cache-Control d
 - `:private`
 - `:no_cache`
 - `:no_store`
-- `:must_validate`
+- `:no_transform`
+- `:must_revalidate`
+- `:must_understand`
 - `:proxy_revalidate`
+- `:immutable`
 - `max_age: N` (`N` here and below should be an integer representing a period in seconds)
 - `s_maxage: N`
 - `min_fresh: N`
 - `max_stale: N`
+- `stale_while_revalidate: N`
+- `stale_if_error: N`
 
 [mdn-cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 [mdn-cache-control-directives]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#cache_directives
@@ -74,7 +79,7 @@ end
 
 For example, for a conditional `GET` request, there is a two-step workflow:
 
-1. The response to an initial request includes a “validator” in its headers, either the date of last modification for the resource (a Last-Modified response header and a subsequent If-Modified-Since request header), or an string identifying the version of the resource (an ETag response header and a subsequent If-None-Match request header)
+1. The response to an initial request includes a “validator” in its headers, either the date of last modification for the resource (a Last-Modified response header and a subsequent If-Modified-Since request header), or a string identifying the version of the resource (an ETag response header and a subsequent If-None-Match request header)
 2. On the next request, the client sends its counterpart request header, and if the server determines the client's cache is fresh, it can return a `304 Not Modified` response allowing the client to use its cached resource
 
 For more detail on conditional requests, see the [MDN documentation][mdn-conditional-requests].
@@ -85,7 +90,7 @@ You can use the `#fresh` method on your action's response object to set the Last
 
 ### Last Modified
 
-Use the `#fresh` response method with a `last_modified_at:` option to return a Last-Modified response header and validate a conditional request by its If-Modified-Since header.
+Use the `#fresh` response method with a `last_modified:` option to return a Last-Modified response header and validate a conditional request by its If-Modified-Since header.
 
 In the below example:
 
@@ -99,14 +104,14 @@ For more detail on action halting, see the [control flow guide](//page/control-f
 
 module Bookshelf
   module Actions
-    module Show
-      class Index < Bookshelf::Action
-        include Deps["repos.user_repo"]
+    module Books
+      class Show < Bookshelf::Action
+        include Deps["repos.book_repo"]
 
         def handle(request, response)
-          user = user_repo.find(request.params[:id])
+          book = book_repo.find(request.params[:id])
 
-          response.fresh last_modified: user.updated_at
+          response.fresh last_modified: book.updated_at
 
           # <request processing logic here>
         end
@@ -116,11 +121,11 @@ module Bookshelf
 end
 
 # Case 1 (missing or non-matching Last-Modified)
-# GET /users/23
+# GET /books/23
 #  => 200, Last-Modified: Tue, 22 Nov 2022 10:04:30 GMT
 
 # Case 2 (matching Last-Modified)
-# GET /users/23, If-Modified-Since: Tue, 22 Nov 2022 10:04:30 GMT
+# GET /books/23, If-Modified-Since: Tue, 22 Nov 2022 10:04:30 GMT
 #  => 304
 ```
 
@@ -130,7 +135,7 @@ Use the `#fresh` response method with an `etag:` option to return an ETag respon
 
 In the below example:
 
-1. The firsts request to the action (or a request with a stale cache) will see the action handle the request in full before returning its response with an ETag header.
+1. The first request to the action (or a request with a stale cache) will see the action handle the request in full before returning its response with an ETag header.
 2. A subsequent request with a matching If-None-Match header will receive a `304 Not Modified` response, and the action will halt before its processing logic.
 
 For more detail on action halting, see the [control flow guide](//page/control-flow).
@@ -142,12 +147,12 @@ module Bookshelf
   module Actions
     module Books
       class Show < Bookshelf::Action
-        include Deps["user_repo"]
+        include Deps["repos.book_repo"]
 
         def handle(request, response)
-          user = user_repo.find(request.params[:id])
+          book = book_repo.find(request.params[:id])
 
-          response.fresh etag: "#{user.id}-#{user.updated_at}"
+          response.fresh etag: "#{book.id}-#{book.updated_at}"
 
           # ...
         end
@@ -157,10 +162,10 @@ module Bookshelf
 end
 
 # Case 1 (missing or non-matching If-None-Match)
-# GET /users/23
+# GET /books/23
 #  => 200, ETag: 84e037c89f8d55442366c4492baddeae
 
 # Case 2 (matching If-None-Match)
-# GET /users/23, If-None-Match: 84e037c89f8d55442366c4492baddeae
+# GET /books/23, If-None-Match: 84e037c89f8d55442366c4492baddeae
 #  => 304
 ```

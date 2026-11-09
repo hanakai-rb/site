@@ -127,7 +127,7 @@ When nonces are enabled, the `javascript_tag` and `stylesheet_tag` helpers autom
 <%= javascript_tag "app" %>
 
 # Renders as:
-# <script src="/assets/app.js" type="text/javascript" nonce="mSMnSwfVZVe+LyQy1SPCGw=="></script>
+# <script src="/assets/app.js" type="text/javascript" nonce="mSMnSwfVZVe-LyQy1SPCGw"></script>
 ```
 
 You can control nonce behavior on individual tags:

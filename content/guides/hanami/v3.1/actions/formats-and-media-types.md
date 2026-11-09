@@ -4,7 +4,7 @@ title: Formats and media types
 
 Hanami maps [over 50 of the most common media types][built-in-formats] to simple **format** names for you to use when configuring your actions.
 
-[built-in-formats]: https://github.com/hanami/controller/blob/dc5bb2a1db48b0ccf3faf52aac20eaef0fd135a3/lib/hanami/action/mime.rb#L15-L69
+[built-in-formats]: https://github.com/hanami/hanami-action/blob/main/lib/hanami/action/mime.rb
 
 Accepting one or more formats from your actions will:
 
@@ -13,7 +13,7 @@ Accepting one or more formats from your actions will:
 
 ## Accepting a format for all actions
 
-To accept a format for all actions, use `config.actions.format.accept` in your app class.
+To accept a format for all actions, use `config.actions.formats.accept` in your app class.
 
 ```ruby
 # config/app.rb
@@ -73,13 +73,13 @@ Once you accept a format, your actions will reject requests that do not match th
 The following kinds of requests will be accepted:
 
 - No `Accept` or `Content-Type` headers
-- `Accept` header that includes the format's media type
+- An `Accept` header that includes the format's media type, with either no `Content-Type` header or one that matches the format's media type
 - No `Accept` header, but a `Content-Type` header that matches the format's media type
 
 Whereas these kinds of requests will be rejected:
 
-- `Accept` does not include the format's media type, rejected as `406 Not acceptable`
-- No `Accept` header, but a `Content-Type` header is present and does not match the format's media type, rejected as `415 Unsupported media type`
+- `Accept` does not include the format's media type, rejected as `406 Not Acceptable`
+- `Content-Type` header is present and does not match the format's media type, rejected as `415 Unsupported Media Type`, even when the `Accept` header matches
 
 For example, if you configure `formats.accept :json`, then requests with these headers will be accepted:
 
