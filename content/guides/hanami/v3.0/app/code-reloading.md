@@ -2,7 +2,7 @@
 title: Code reloading
 ---
 
-Hanami offers fast code reloading in development via the [hanami-reloader](https://github.com/hanami/reloader) gem.
+Hanami offers fast code reloading in development via the [hanami-reloader](https://github.com/hanami/hanami-reloader) gem.
 
 When you run `hanami server` in development, `guard` watches the file system for code edits and restarts the Hanami server when changes occur.
 
@@ -12,11 +12,8 @@ Which directories are watched can be configured in the `Guardfile` of your proje
 # Guardfile
 
 group :server do
-  guard "puma", port: ENV["HANAMI_PORT"] || 2300 do
-    watch(%r{config/*})
-    watch(%r{lib/*})
-    watch(%r{app/*})
-    watch(%r{slices/*})
+  guard "puma", port: ENV.fetch("HANAMI_PORT", 2300), environment: ENV.fetch("HANAMI_ENV", "development") do
+    watch(%r{^(app|config|lib|slices)([\/][^\/]+)*.(rb|erb|haml|slim)$}i)
   end
 end
 ```
@@ -27,7 +24,7 @@ Hanami takes an "outside the framework" approach to code reloading. This has sev
 - Hanami internals are free from code reloading awareness.
 - if the hanami-reloader gem is not present (which is true in production), code reloading logic is eliminated.
 
-Thanks to [Zeitwerk](//page/autoloading) and [lazy loading](//page), code reloading is also very fast.
+Thanks to [Zeitwerk](//page/autoloading) and [lazy loading](//page/container-and-components#container-component-loading), code reloading is also very fast.
 
 ### Reloading in the console
 

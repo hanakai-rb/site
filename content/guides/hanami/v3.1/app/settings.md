@@ -83,7 +83,7 @@ Whether or not each setting is required for your application to boot is determin
 
 If a setting uses a constructor like `Types::String` or `Types::Params::Bool`, then Hanami will raise an exception if the setting is missing, rather than let your application boot in a potentially invalid state.
 
-The below settings will result in a `Hanami::Settings::InvalidSettingsError` when `DATABASE_URL` and `ANALYTICS_ENABLED` environment variables are not set:
+The below settings will result in a `Hanami::Settings::InvalidSettingsError` when `ANALYTICS_ENABLED` and `MAX_CART_ITEMS` environment variables are not set:
 
 ```ruby
 # config/settings.rb
@@ -263,7 +263,7 @@ This allows you to maintain specific sets of per-environment variables for your 
 
 ```shell
 # .env.development
-$ DATABASE_URL=postgres://localhost:5432/bookshelf_development
+DATABASE_URL=postgres://localhost:5432/bookshelf_development
 ANALYTICS_ENABLED=true
 ```
 
@@ -283,7 +283,7 @@ bookshelf[development]> Hanami.app["settings"].analytics_enabled
 
 ```shell
 # .env.test
-$ DATABASE_URL=postgres://localhost:5432/bookshelf_test
+DATABASE_URL=postgres://localhost:5432/bookshelf_test
 ANALYTICS_ENABLED=false
 ```
 

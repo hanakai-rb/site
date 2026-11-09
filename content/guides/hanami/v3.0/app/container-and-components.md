@@ -384,7 +384,7 @@ end
 
 If you have a whole class of objects that shouldn't be placed in your container, you can configure your Hanami application to exclude an entire directory from auto registration by adjusting its `no_auto_register_paths` configuration.
 
-Here for example, the `app/structs` directory is excluded, meaning nothing in the `app/structs` directory will be registered with the container:
+Here for example, the `app/serializers` directory is excluded, meaning nothing in the `app/serializers` directory will be registered with the container:
 
 ```ruby
 # config/app.rb
@@ -393,7 +393,7 @@ require "hanami"
 
 module Bookshelf
   class App < Hanami::App
-    config.no_auto_register_paths << "structs"
+    config.no_auto_register_paths << "serializers"
   end
 end
 ```

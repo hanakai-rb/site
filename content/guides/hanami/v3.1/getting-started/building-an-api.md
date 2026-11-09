@@ -2,7 +2,7 @@
 title: Building an API
 ---
 
-Now that we've [created our app](//page), let's turn it into an API.
+Now that we've [created our app](//guide/getting-started), let's turn it into an API.
 
 ## Adding our first functionality
 
@@ -17,7 +17,7 @@ First, let's look at our app's routes file at `config/routes.rb`:
 
 module Bookshelf
   class Routes < Hanami::Routes
-    # Add your routes here. See https://guides.hanamirb.org/routing/overview/ for details.
+    # Add your routes here. See https://hanakai.org/learn/hanami/routing/ for details.
   end
 end
 ```
@@ -183,7 +183,7 @@ Of course, returning a static list of books is not particularly useful. Let's ad
 To create a books table, we need to generate a migration:
 
 ```shell
-$ hanami generate migration create_books
+$ bundle exec hanami generate migration create_books
 ```
 
 Edit the migration file to create a books table with title and author columns and a primary key:
@@ -417,7 +417,7 @@ In this instance, the `params` block specifies the following:
 - if `page` is present, it must be an integer greater than 0
 - if `per_page` is present, it must be an integer greater than 0 and less than or equal to 100
 
-At the start of the handle method, the line `halt 422 unless request.params.valid?` ensures that the action halts and returns `422 Unprocessable` if an invalid parameter was given.
+At the start of the handle method, the line `halt 422 unless request.params.valid?` ensures that the action halts and returns `422 Unprocessable Content` if an invalid parameter was given.
 
 A helpful response revealing why parameter validation failed can also be rendered by passing a body when calling halt:
 
@@ -435,7 +435,7 @@ Test pagination with curl:
 $ curl http://localhost:2300/books?page=2
 $ curl http://localhost:2300/books?per_page=2
 $ curl http://localhost:2300/books?page=invalid
-{"errors":{"page":[{"text":"must be an integer","code":"int?","path":["page"],"input":"invalid"}]}}
+{"errors":{"page":["must be an integer"]}}
 ```
 
 The first request shows the second page of books, the second shows just 2 books per page, and the third demonstrates the validation error for an invalid parameter.
@@ -595,7 +595,7 @@ module Bookshelf
 end
 ```
 
-To enable convenient parsing of params from JSON request bodies, Hanami includes a body parser middleware that can be enabled through a config option on the app class. Enable it by adding the following to the `Bookshelf::App` class in `config/app.rb`:
+Actions parse JSON request bodies into params when they accept the JSON format. Since this is an API, we can configure all our actions to accept JSON by adding the following to the `Bookshelf::App` class in `config/app.rb`:
 
 ```ruby
 # config/app.rb
@@ -604,12 +604,12 @@ require "hanami"
 
 module Bookshelf
   class App < Hanami::App
-    config.middleware.use :body_parser, :json
+    config.actions.formats.accept :json
   end
 end
 ```
 
-With this parser in place, the `book` key from the JSON body will be available in the action via `request.params[:book]`.
+With this in place, the `book` key from the JSON body will be available in the action via `request.params[:book]`.
 
 First, let's add a method to our book repo to create new books:
 
@@ -672,7 +672,7 @@ Try creating a book with missing data to see the validation errors:
 $ curl -X POST http://localhost:2300/books \
   -H "Content-Type: application/json" \
   -d '{"book":{"title":""}}'
-{"title":[{"text":"must be filled","code":"filled?","path":["book","title"],"input":""}],"author":[{"text":"is missing","code":"required","path":["book","author"]}]}
+{"book":{"title":["must be filled"],"author":["is missing"]}}
 ```
 
 ## What's next

@@ -297,7 +297,7 @@ group :cli, :development, :test do
 end
 ```
 
-Then run `bundle exec hanami setup`. This generates the files below and appends the necessary test dependencies to your `Gemfile`. If you'd rather add them by hand, here is what `setup` creates.
+Then run `bundle exec hanami install`. This generates the files below and appends the necessary test dependencies to your `Gemfile`. If you'd rather add them by hand, here is what `install` creates.
 
 - Add capybara and rack-test (and, if you use hanami-db, database_cleaner-sequel) to your `test` group:
 
@@ -395,7 +395,7 @@ Then run `bundle exec hanami setup`. This generates the files below and appends 
   end
   ```
 
-If you use hanami-db, `setup` also creates these database support files:
+If you use hanami-db, `install` also creates these database support files:
 
 - Create `test/support/db.rb`:
 
@@ -415,10 +415,12 @@ If you use hanami-db, `setup` also creates these database support files:
     end
   end
 
-  class FeatureTest
+  class Hanami::Minitest::FeatureTest
     include TestSupport::DB
   end
   ```
+
+  hanami-minitest 3.0.0 generates `class FeatureTest` here instead, which defines a new, unrelated class. If your file has this, change it to `class Hanami::Minitest::FeatureTest` so that database cleaning applies to your feature tests.
 
 - Create `test/support/db/cleaning.rb`:
 
