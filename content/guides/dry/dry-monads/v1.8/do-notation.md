@@ -44,7 +44,6 @@ Embrace `Do`:
 
 ```ruby
 require 'dry/monads'
-require 'dry/monads/do'
 
 class CreateAccount
   include Dry::Monads[:result]
@@ -169,8 +168,7 @@ Note that `Do::All` will not automatically pass a block to methods inherited fro
 You can use methods from the `Do` module directly (starting with 1.3):
 
 ```ruby
-require 'dry/monads/do'
-require 'dry/monads/result'
+require 'dry/monads/all'
 
 # some random place in your code
 Dry::Monads::Do.call() do

@@ -117,23 +117,15 @@ end
 
 ### Interaction between monads and constructors availability
 
-Some values can be converted to others or they can have methods that use other monads. By default, dry-monads doesn't load all monads so you may have troubles like this:
+Some values can be converted to others or they can have methods that use other monads. Monads are autoloaded once you `require 'dry/monads'`, so these conversions work without loading anything else:
 
 ```ruby
 extend Dry::Monads[:result]
 
-Success(:foo).to_maybe # RuntimeError: Load Maybe first with require 'dry/monads/maybe'
-```
-
-To work around you may either load `dry/monads/maybe` add `maybe` to the mixin:
-
-```ruby
-extend Dry::Monads[:result, :maybe]
-
 Success(:foo).to_maybe # => Some(:foo)
 ```
 
-For the same reason `Dry::Monads.Some(...)`, `Dry::Monads.Success(...)`, and some other constructors are not available until you explicitly load the monads with `require 'dry/monads/%{monad_name}'`.
+However, module-level constructors such as `Dry::Monads.Some(...)` and `Dry::Monads.Success(...)`, and constants such as `Dry::Monads::Success`, are only defined once their monad has been loaded, either through a mixin like `Dry::Monads[:result]` or by loading everything.
 
 ### Loading everything
 
