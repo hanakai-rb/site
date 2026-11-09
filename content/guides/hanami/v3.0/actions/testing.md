@@ -58,7 +58,7 @@ The following test combines both params and headers.
 
 RSpec.describe Bookshelf::Actions::Books::Show do
   subject(:action) do
-    Bookshelf::Actions::Books::Index.new
+    Bookshelf::Actions::Books::Show.new
   end
 
   it "returns a successful JSON response with book id" do
@@ -78,9 +78,9 @@ Here's the example action that would make this test pass.
 
 module Bookshelf
   module Actions
-    module Users
-      class Show < Action
-        format :json
+    module Books
+      class Show < Bookshelf::Action
+        config.formats.accept :json
 
         def handle(request, response)
           response.body = {id: request.params[:id]}.to_json

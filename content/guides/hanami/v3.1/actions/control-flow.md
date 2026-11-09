@@ -34,7 +34,7 @@ module Bookshelf
         private
 
         def validate_params(request, response)
-          halt 422, request.params.errors.to_h unless request.params.valid?
+          halt 422 unless request.params.valid?
         end
       end
     end
@@ -42,7 +42,7 @@ module Bookshelf
 end
 ```
 
-If the action above, the `validate_params` method will be called before the action's handler. The callback ensures that if the `:id` parameter cannot be coerced to an integer, the action will be halted and a `422 Unprocessable` response returned.
+In the action above, the `validate_params` method will be called before the action's handler. The callback ensures that if the `:id` parameter cannot be coerced to an integer, the action will be halted and a `422 Unprocessable Content` response returned.
 
 With this callback in place, the `#handle` method can now proceed knowing that all parameters are valid.
 
@@ -56,7 +56,7 @@ module Bookshelf
   module Actions
     module Books
       class Show < Bookshelf::Action
-        before { |request, response| halt 422, request.params.errors.to_h unless request.params.valid? }
+        before { |request, response| halt 422 unless request.params.valid? }
 
         params do
           required(:id).filled(:integer)
@@ -86,7 +86,7 @@ This action will return a `401 Unauthorized` response when the `#authenticated?`
 ```ruby
 # app/actions/books/index.rb
 
-module Bookshellf
+module Bookshelf
   module Actions
     module Books
       class Index < Action

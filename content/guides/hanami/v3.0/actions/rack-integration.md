@@ -35,7 +35,12 @@ Use the `hanami middleware` command to inspect the Rack middleware stack.
 $ bundle exec hanami middleware
 
 /    Dry::Monitor::Rack::Middleware (instance)
+/    Hanami::Middleware::RenderErrors
+/    Hanami::Webconsole::Middleware
+/    Rack::MethodOverride
 ```
+
+The exact stack depends on your app's environment and config. For example, `Hanami::Webconsole::Middleware` is only included in development, and session and content security policy nonce middleware are included when you enable those features.
 
 ### Application-level middleware
 
@@ -55,6 +60,9 @@ end
 $ bundle exec hanami middleware
 
 /    Dry::Monitor::Rack::Middleware (instance)
+/    Hanami::Middleware::RenderErrors
+/    Hanami::Webconsole::Middleware
+/    Rack::MethodOverride
 /    Rack::Auth::Basic
 ```
 
@@ -66,17 +74,20 @@ Middleware will be included in the stack in the order in which it's added.
 module Bookshelf
   class App < Hanami::App
     config.middleware.use Rack::Auth::Basic
-    config.middleware.use Rack::MethodOverride
+    config.middleware.use Rack::ETag
   end
 end
 ```
 
 ```shell
-$  bundle exec hanami middleware
+$ bundle exec hanami middleware
 
 /    Dry::Monitor::Rack::Middleware (instance)
-/    Rack::Auth::Basic
+/    Hanami::Middleware::RenderErrors
+/    Hanami::Webconsole::Middleware
 /    Rack::MethodOverride
+/    Rack::Auth::Basic
+/    Rack::ETag
 ```
 
 If needed, you can use `before:` or `after:` to insert a middleware at a particular point in the stack:
@@ -87,19 +98,22 @@ If needed, you can use `before:` or `after:` to insert a middleware at a particu
 module Bookshelf
   class App < Hanami::App
     config.middleware.use Rack::Auth::Basic
-    config.middleware.use Rack::MethodOverride
+    config.middleware.use Rack::ETag
     config.middleware.use Rack::ShowStatus, before: Rack::Auth::Basic
   end
 end
 ```
 
 ```shell
-$  bundle exec hanami middleware
+$ bundle exec hanami middleware
 
 /    Dry::Monitor::Rack::Middleware (instance)
+/    Hanami::Middleware::RenderErrors
+/    Hanami::Webconsole::Middleware
+/    Rack::MethodOverride
 /    Rack::ShowStatus
 /    Rack::Auth::Basic
-/    Rack::MethodOverride
+/    Rack::ETag
 ```
 
 ## Router middleware
@@ -150,6 +164,9 @@ end
 $ bundle exec hanami middleware
 
 /              Dry::Monitor::Rack::Middleware (instance)
+/              Hanami::Middleware::RenderErrors
+/              Hanami::Webconsole::Middleware
+/              Rack::MethodOverride
 /              Rack::Runtime
 /restricted    Rack::Auth::Basic
 /admin         Rack::Auth::Basic

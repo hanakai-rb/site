@@ -24,7 +24,7 @@ Parameters for a request come from a number of sources:
 
 - [path variables](//guide/routing) as specified in the route that has matched the request (e.g. `/books/:id`)
 - the request's query string (e.g. `/books?page=2&per_page=10`)
-- the request's body (for example the JSON-formatted body of a `POST` request with an `application/json` content type).
+- the request's body (for example the JSON-formatted body of a `POST` request with an `application/json` content type, when the action accepts the `:json` format).
 
 ```ruby
 def handle(request, response)
@@ -115,7 +115,7 @@ end
 
 Importantly, now that our params schema is doing more than just type coercion, we need to explicitly check for and handle our parameters being invalid.
 
-The `#valid?` method on the params allows the action to check the parameters in order halt and return a `422 Unprocessable` response.
+The `#valid?` method on the params allows the action to check the parameters in order to halt and return a `422 Unprocessable Content` response.
 
 ```ruby
 # app/actions/books/index.rb
@@ -269,43 +269,6 @@ For example, verifying that an email address has been provided is something an a
 
 ## Body parsers
 
-Hanami automatically parses request bodies for requests with the following content types:
+Request bodies are parsed by your actions according to the formats they accept. For example, an action must accept the `:json` format for its JSON request bodies to be parsed into params. Multipart form bodies are parsed automatically when an action accepts no formats.
 
-- `multipart/form-data` (form submissions with file attachments)
-- `application/json` (JSON requests)
-- `application/vnd.api+json` (JSON API requests)
-
-If you need to parse different body types, you can declare a new body parser:
-
-```ruby
-# lib/foo_parser.rb
-class FooParser
-  def self.media_types = ["application/foo"]
-
-  def parse(body)
-    # Your parsing logic here
-  end
-end
-```
-
-Register that body parser directly and it will parse its own declared media types:
-
-```ruby
-# config/app.rb
-
-class App < Hanami::App
-  config.middleware.use :body_parser, FooParser
-end
-```
-
-You can also register a body parser to work on additional media types:
-
-```ruby
-config.middleware.use :body_parser, [FooParser: ["application/x-foo"]]
-```
-
-This is particularly useful if you need to activate Hanami's standard JSON parsing for additional content types:
-
-```ruby
-config.middleware.use :body_parser, [json: ["application/scim+json"]]
-```
+See [Parsing request bodies](//page/formats-and-media-types#parsing-request-bodies) for details, including how to register parsers for additional media types.

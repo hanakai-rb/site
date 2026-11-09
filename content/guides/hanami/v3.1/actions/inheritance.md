@@ -14,13 +14,13 @@ You can use action inheritance to ensure that broad collections of actions all h
 For example, consider the following base action class.
 
 ```ruby
-# apps/action.rb
+# app/action.rb
 
 module Bookshelf
   class Action < Hanami::Action
     include Deps["authenticator"]
 
-    format :json
+    config.formats.accept :json
 
     before :authenticate_user!
 
@@ -39,7 +39,7 @@ Any class that inherits from this will:
 - Expect JSON requests and return JSON responses
 - Ensure that requests are authenticated based on the `X-API-Token` and return a 401 error if not
 
-Courtesty of the inheritance, subclasses gain all this behavior without any additional code.
+Courtesy of the inheritance, subclasses gain all this behavior without any additional code.
 
 ```ruby
 # app/actions/books/index.rb
@@ -59,7 +59,7 @@ end
 When you create a new Hanami app, Hanami generates a standard base class for all your actions to inherit from.
 
 ```ruby
-# apps/action.rb
+# app/action.rb
 
 module Bookshelf
   class Action < Hanami::Action

@@ -2,7 +2,7 @@
 title: Cookies
 ---
 
-Actions can set [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) on outgoing requests via the `response` object.
+Actions can set [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) on outgoing responses via the `response` object.
 
 ```ruby
 module Bookshelf
@@ -41,8 +41,10 @@ You can set one or more of the following options for cookies issued by actions u
 - `:domain` - `String` (`nil` by default), the domain
 - `:path` - `String` (`nil` by default), a relative URL
 - `:max_age` - `Integer` (`nil` by default), cookie duration expressed in seconds
-- `:secure` - `Boolean` (`true` by default if using SSL), restrict cookies to secure connections
-- `:httponly` - `Boolean` (`true` by default), restrict JavaScript access to cookies
+- `:secure` - `Boolean` (`nil` by default), restrict cookies to secure connections
+- `:httponly` - `Boolean` (`nil` by default), restrict JavaScript access to cookies
+
+Neither `:secure` nor `:httponly` is enabled by default, so set them explicitly if your cookies should be restricted in these ways.
 
 ```ruby
 # config/app.rb
