@@ -15,21 +15,25 @@ Given this view:
 ```ruby
 # app/views/profile/show.rb
 
-module Profile
-  class Show < Main::View
-    include Deps[users_repo: "repos.user_repo"]
+module Bookshelf
+  module Views
+    module Profile
+      class Show < Bookshelf::View
+        include Deps[users_repo: "repos.user_repo"]
 
-    expose :current_user
+        expose :current_user
 
-    decorate :user do |id:|
-      user_repo.by_id(id)
+        decorate :user do |id:|
+          users_repo.by_id(id)
+        end
+      end
     end
   end
 end
 ```
 
-```sql
-<%# app/templates/views/profile/show.html.erb %>
+```erb
+<%# app/templates/profile/show.html.erb %>
 
 <% if current_user.id == user.id %>
   <p class="text-base">This is your profile. You can edit your data.</p>
@@ -43,15 +47,15 @@ A test could look like this:
 ```ruby
 # spec/unit/views/profile/show_spec.rb
 
-RSpec.describe Views::Profile::Show do
+RSpec.describe Bookshelf::Views::Profile::Show do
   subject(:view) { described_class.new(users_repo:) }
 
-  let(:user_repo) { double(:user_repo) }
+  let(:users_repo) { double(:users_repo) }
   let(:current_user) { double(:user, name: "Amy", id: 1) }
 
   context "user inspects their profile" do
     it "renders their profile" do
-      allow(user_repo).to receive(:by_id).with(1).and_return(current_user)
+      allow(users_repo).to receive(:by_id).with(1).and_return(current_user)
 
       output = view.call(current_user:, id: 1).to_s
 
@@ -102,7 +106,7 @@ end
 
 ## Testing parts
 
-To test part behavior, initialize a part and make your expecations against its methods.
+To test part behavior, initialize a part and make your expectations against its methods.
 
 ```ruby
 module MyApp
@@ -119,7 +123,7 @@ end
 
 RSpec.describe(MyApp::Views::Parts::User) do
   subject(:part) { described_class.new(value: user) }
-  let(:user) { double(:user, name: "Amy", email: "amy@example.com"}
+  let(:user) { double(:user, name: "Amy", email: "amy@example.com") }
 
   describe "#display_name" do
     it "includes the name and email" do
@@ -129,7 +133,7 @@ RSpec.describe(MyApp::Views::Parts::User) do
 end
 ```
 
-You can also use the same approach to test part behavior that requires helpers, renders partials, or accesses the context.
+To test part behavior that renders partials or accesses the context, also provide a `rendering:` from one of your views, as well as the part's `name:`, which becomes the name of the part within partials.
 
 ```ruby
 module MyApp
@@ -145,7 +149,7 @@ module MyApp
           helpers.tag.h1(display_name)
         end
 
-        # Rendering a partial at templates/users/_info_card.html
+        # Rendering a partial at templates/users/_info_card.html.erb
         def info_card
           render("users/info_card")
         end
@@ -155,8 +159,9 @@ module MyApp
 end
 
 RSpec.describe(MyApp::Views::Parts::User) do
-  subject(:part) { described_class.new(value: user) }
-  let(:user) { double(:user, name: "Amy", email: "amy@example.com"}
+  subject(:part) { described_class.new(name: :user, value: user, rendering:) }
+  let(:rendering) { MyApp::Views::Users::Show.new.rendering }
+  let(:user) { double(:user, name: "Amy", email: "amy@example.com") }
 
   describe "#title_tag" do
     it "includes the name and email in a h1 tag" do

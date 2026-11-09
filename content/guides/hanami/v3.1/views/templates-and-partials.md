@@ -42,8 +42,8 @@ Each view's template is rendered within a layout. Layouts are kept within the `t
 
 Every layout should `yield` at the appropriate location to include the content from the template. For example:
 
-```sql
-# app/templates/layouts/app.html.erb
+```erb
+<%# app/templates/layouts/app.html.erb %>
 
 <html>
   <body>
@@ -70,7 +70,7 @@ end
 
 You may choose to skip the auto-escaping of non-HTML safe strings by using particular template tags. In ERB:
 
-```sql
+```erb
 <%== "<p>Non-safe strings will not be auto-escaped</p>" %>
 ```
 
@@ -80,7 +80,7 @@ Similar tags also exist for Haml and Slim. Use these tags with caution. This is 
 
 Each template and partial is rendered within its own scope, which determines the variables and methods available for the template to use. These include:
 
-- Your template's locals: the values returned from its [exposures](//page/input-and-exposures), wrapped by [parts](//page/parts)
+- Your template's locals: the values returned from its [exposures](//page/input-and-exposures), with any [decorated exposures](//page/input-and-exposures#decorating-exposures) wrapped by [parts](//page/parts)
 - Your app or slice's [helpers](//page/helpers)
 - The public methods available on the view's [context](//page/context)
 - A `#render` method, for rendering partials
@@ -91,15 +91,15 @@ You may choose to provide custom scopes for templates and partials. To learn mor
 
 You can render a partial from your template using the `render` method:
 
-```sql
+```erb
 <%= render "path/to/my_partial" %>
 ```
 
-Partials are looked up within the templates directory, with the partial's file name expected to be prefixed by an underscore. For the example above, the partial template is expected to be at `templates/path/to/_my_partial.html.slim`.
+Partials are looked up within the templates directory, with the partial's file name expected to be prefixed by an underscore. For the example above, the partial template is expected to be at `templates/path/to/_my_partial.html.erb`.
 
 You can provide explicit locals to a partial via keyword arguments:
 
-```sql
+```erb
 <%= render "path/to/my_partial", my_locals: "go here" %>
 ```
 

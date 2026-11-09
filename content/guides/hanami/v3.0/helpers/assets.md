@@ -41,7 +41,7 @@ javascript_tag("app", "dashboard/app")
 #    <script src="/assets/dashboard/app-LSLFPUMX.js" type="text/javascript"></script>
 ```
 
-Provide HTML attributes for the sciprt tag by giving a single source along with keyword arguments.
+Provide HTML attributes for the script tag by giving a single source along with keyword arguments.
 
 ```ruby
 javascript_tag("app", async: true)
@@ -71,15 +71,15 @@ Multiple asset paths can be given to generate multiple link tags at once.
 
 ```ruby
 stylesheet_tag("app", "dashboard/app")
-#   # <link href="/assets/application.css" type="text/css" rel="stylesheet">
-#   # <link href="/assets/dashboard.css" type="text/css" rel="stylesheet">
+# => <link href="/assets/app-GVDAEYEC.css" type="text/css" rel="stylesheet">
+#    <link href="/assets/dashboard/app-GVDAEYEC.css" type="text/css" rel="stylesheet">
 ```
 
 Provide HTML attributes for the link tag by giving a single source along with keyword arguments.
 
 ```ruby
 stylesheet_tag("https://example.com/print.css", media: "print")
-# => <link href="https://example.com/stylesheet.css" type="text/css" rel="stylesheet" media="print">
+# => <link href="https://example.com/print.css" type="text/css" rel="stylesheet" media="print">
 ```
 
 ## image_tag
@@ -117,7 +117,7 @@ Provide HTML attributes for the tag as keyword arguments.
 
 ```ruby
 favicon_tag("fav.ico", id: "fav")
-# => <link id="fav" href="/assets/fav-EOLTKYGO.ico" rel="shortcut icon" type="image/x-icon">
+# => <link href="/assets/fav-EOLTKYGO.ico" rel="shortcut icon" type="image/x-icon" id="fav">
 ```
 
 ## video_tag

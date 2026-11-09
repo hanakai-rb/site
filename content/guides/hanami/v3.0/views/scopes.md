@@ -86,7 +86,7 @@ Within a scope class, or any partial rendered via that scope, you can access the
 
 For example, from a template:
 
-```sql
+```erb
 <!-- Given an `item:` local passed to the scope -->
 <%= item.title %>
 ```
@@ -124,7 +124,7 @@ For example:
 class MediaPlayer < Bookshelf::Views::Scope
   def item_url
     # `item` is a local, and `routes` is a method on the context
-    routes.path(:item, item.id)
+    routes.path(:item, id: item.id)
   end
 end
 ```

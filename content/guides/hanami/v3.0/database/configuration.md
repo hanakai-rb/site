@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-As of 2.3 Hanami will automatically generate DB configuration for your application.
+As of 2.2 Hanami will automatically generate DB configuration for your application.
 
 By default, it uses SQLite as its default database. It also supports MySQL and PostgreSQL.
 
@@ -22,7 +22,7 @@ hanami new bookshelf --skip-db
 
 The default posture is to share a single configuration for the whole application, however Slices support having their own separate config.
 
-DB persistence is provided by a new provider called db. It is activated by the presence of a config/db directory in the root Application or Slice.
+DB persistence is provided by a provider called `db`. It is activated in the app or a slice when any of the following are present: a `config/db/` directory, a `relations/` or `db/` directory in its source directory, or a `config/providers/db.rb` file. Slices also activate it when they import the database from their parent (see `import_from_parent` below).
 
 ## DATABASE_URL
 

@@ -116,7 +116,7 @@ Ruby syntax is not a requirement, however, and sometimes what you are doing is n
 ROM::SQL.migration do
   up do
     execute <<~SQL
-        CREATE TRIGGER posts_tsvector_update()
+        CREATE TRIGGER posts_tsvector_update
         BEFORE INSERT OR UPDATE ON public.posts
         FOR EACH ROW
         WHEN (
@@ -128,7 +128,7 @@ ROM::SQL.migration do
   end
 
   down do
-    execute "DROP TRIGGER posts_tsvector_update() ON public.posts"
+    execute "DROP TRIGGER posts_tsvector_update ON public.posts"
   end
 end
 ```

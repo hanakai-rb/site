@@ -105,7 +105,7 @@ module Bookshelf
   module Actions
     module Books
       class Index < Bookshelf::Action
-        def handle(*, response)
+        def handle(request, response)
           response.render view, page: request.params[:page], per_page: request.params[:per_page]
         end
       end
