@@ -65,16 +65,16 @@ Rolls back one or more migrations for a single database. This is a convenient al
 
 Call `rollback` on its own to roll back the most recent migration.
 
-Specify `--steps` to roll back that the n most recent migrations:
+Pass a number of steps to roll back the n most recent migrations:
 
 ```
-$ bundle exec hanami rollback --steps=2
+$ bundle exec hanami db rollback 2
 ```
 
 Specify `--target` to roll back to a specific migration version:
 
 ```
-$ bundle exec hanami rollback --target=20241009134756
+$ bundle exec hanami db rollback --target=20241009134756
 ```
 
 The rollback command operates on one database at a time. If your app has more than one database, specify the database with `--app`, `--slice=SLICE`, as well as `--gateway=GATEWAY` if you have multiple gateways configured.

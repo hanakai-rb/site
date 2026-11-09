@@ -10,8 +10,10 @@ Displays the Rack middleware stack as currently configured.
 $ bundle exec hanami middleware
 
 /    Dry::Monitor::Rack::Middleware (instance)
+/    Hanami::Middleware::RenderErrors
+/    Hanami::Webconsole::Middleware
+/    Rack::MethodOverride
 /    Rack::Session::Cookie
-/    Hanami::Middleware::BodyParser
 ```
 
 This command accepts a `--with-arguments` option that will include initialization arguments:
@@ -20,6 +22,8 @@ This command accepts a `--with-arguments` option that will include initializatio
 $ bundle exec hanami middleware --with-arguments
 
 /    Dry::Monitor::Rack::Middleware (instance) args: []
-/    Rack::Session::Cookie args: [{:key=>"my_app.session", :secret=>"secret", :expire_after=>31536000}]
-/    Hanami::Middleware::BodyParser args: [:json]
+/    Hanami::Middleware::RenderErrors args: [#<Hanami::Config ...>, #<Hanami::Middleware::PublicErrorsApp ...>]
+/    Hanami::Webconsole::Middleware args: [#<Hanami::Config ...>]
+/    Rack::MethodOverride args: []
+/    Rack::Session::Cookie args: [{key: "my_app.session", secret: "secret", expire_after: 31536000}]
 ```

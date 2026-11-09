@@ -27,8 +27,8 @@ Each route in Hanami's router is comprised of:
 Endpoints are usually actions within your application, but they can also be a block, a [Rack](https://github.com/rack/rack) application, or anything that responds to `#call`.
 
 ```ruby
-get "/books", to: "books.index"  # Invokes the Bookshelf::Actions:Books::Index action
-post "/books", to: "books.create" # Invokes the Bookshelf::Actions:Books::Create action
+get "/books", to: "books.index"  # Invokes the Bookshelf::Actions::Books::Index action
+post "/books", to: "books.create" # Invokes the Bookshelf::Actions::Books::Create action
 get "/rack-app", to: RackApp.new
 get "/my-lambda", to: ->(env) { [200, {}, ["A Rack compatible response"]] }
 ```
@@ -172,7 +172,7 @@ The path `"/books/:id"` matches requests like `"/books/1"`:
 get "/books/:id", to: "books.show"
 
 # GET /books/1
-# request.params[:id] # => 1
+# request.params[:id] # => "1"
 ```
 
 Paths support multiple dynamic variables. For example, the path `"/books/:book_id/reviews/:id"` matches requests like `"/books/17/reviews/6"`:
@@ -181,8 +181,8 @@ Paths support multiple dynamic variables. For example, the path `"/books/:book_i
 get "/books/:book_id/reviews/:id", to: "book_reviews.show"
 
 # GET /books/17/reviews/6
-# request.params[:book_id] # => 17
-# request.params[:id] # => 6
+# request.params[:book_id] # => "17"
+# request.params[:id] # => "6"
 ```
 
 Accessing these variables in a Hanami action looks like:
@@ -195,8 +195,8 @@ module Bookshelf
     module BookReviews
       class Show < Bookshelf::Action
         def handle(request, response)
-          request.params[:book_id] # 17
-          request.params[:id] # 6
+          request.params[:book_id] # "17"
+          request.params[:id] # "6"
         end
       end
     end
@@ -223,9 +223,9 @@ get "/books/award-winners/:year", year: /\d{4}/, to: "books.award_winners.index"
 
 ## Globbing and catch all routes
 
-Catch all routes can be added using globbing. These routes can be used to handle requests that do not match any preceeding routes.
+Catch all routes can be added using globbing. These routes can be used to handle requests that do not match any preceding routes.
 
-For example, in the absence of an earlier matching route, `"/pages/*match"` will match requests for paths like `"/pages/2022/my-page"`:
+For example, in the absence of an earlier matching route, `"/pages/*path"` will match requests for paths like `"/pages/2022/my-page"`:
 
 ```ruby
 get "/pages/*path", to: "page_catch_all"
@@ -280,7 +280,7 @@ end
 
 ```ruby
 Hanami.app["routes"].url(:book, id: 1)
-=> #<URI::HTTP https://bookshelf.example.com/books/1>
+=> #<URI::HTTPS https://bookshelf.example.com/books/1>
 ```
 
 ## Scopes
@@ -332,28 +332,29 @@ end
 
 ## Redirects
 
-Redirects can be added using `redirect`.
+Permanent (`301`) and temporary (`302`) redirects can be added using `redirect_permanent` and `redirect_temporary`.
 
 ```ruby
-redirect "/old", to: "/new"
+redirect_permanent "/old", to: "/new"
+redirect_temporary "/old", to: "/temporary-new"
 ```
 
-By default, redirects use a `301` status code. Use a different code via the `code` option:
+To use any other status code, use `redirect` and give the code via its required `code:` option:
 
 ```ruby
-redirect "/old", to: "/temporary-new", code: 302
+redirect "/old", to: "/new", code: 308
 ```
 
 Redirects can be made to absolute URLs as well:
 
 ```ruby
-redirect "/external", to: "http:/hanamirb.org"
+redirect_permanent "/external", to: "https://hanakai.org"
 ```
 
 Non-http protocols are also supported thanks to the URI class:
 
 ```ruby
-redirect "/custom", to: URI("xmpp://myapp.net")
+redirect_permanent "/custom", to: URI("xmpp://myapp.net")
 ```
 
 If you have many redirects or need to implement custom logic, you might consider using a Rack middleware.

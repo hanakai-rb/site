@@ -76,7 +76,7 @@ You can use two CLI commands to compile your assets:
 - `hanami assets compile` will compile all your assets for production.
 - `hanami assets watch` will watch for changes to your assets and compile the relevant files immediately.
 
-The [`hanami dev` command](//guide/cli-commands/dev) will start `hanami assets watch` by defalt, giving you
+The [`hanami dev` command](//guide/cli-commands/dev) will start `hanami assets watch` by default, giving you
 
 See the [assets CLI guide](//guide/cli-commands/assets) for more detail.
 
@@ -102,7 +102,7 @@ The default entry point for a Hanami app is `app/assets/js/app.js`, which looks 
 import "../css/app.css";
 ```
 
-It imports the default stylesheet, so it can be included in the bundle. You should include the rest of your app's JavsScript code in this file, or import it from other files.
+It imports the default stylesheet, so it can be included in the bundle. You should include the rest of your app's JavaScript code in this file, or import it from other files.
 
 > [!NOTE]
 > Only the JavaScript files and stylesheets referenced by an entry point will be included in the final bundle.
@@ -118,7 +118,7 @@ To create a new entry point, create any directory under `js/` and put a file nam
 > [!NOTE]
 > Hanami uses files named `app.js` as entry points. Other JavaScript extensions are also supported, including `.mjs`, `.ts`, `.mts`, `.tsx`, `.jsx`.
 
-For example, to crete an entry point for a "sign in" page, create an `app/assets/js/signin/app.js` file. In this entry point, you can import a matching stylesheet and a related JavaScript function:
+For example, to create an entry point for a "sign in" page, create an `app/assets/js/signin/app.js` file. In this entry point, you can import a matching stylesheet and a related JavaScript function:
 
 ```js
 import "../../css/signin/app.css";
@@ -131,13 +131,13 @@ At this point, your app will now have two entry points, `app.js` and `signin/app
 app/assets
 ├── css
 │   ├── app.css
-│   └── login
+│   └── signin
 │       └── app.css
 ├── images
 │   └── favicon.ico
 └── js
     ├── app.js # Entry point
-    └── login
+    └── signin
         ├── app.js # Entry point
         └── resetPassword.js
 ```
@@ -149,12 +149,12 @@ public/assets
 ├── assets.json
 ├── app-GVDAEYEC.css
 ├── app-LSLFPUMX.js # Bundle
-└── login
+└── signin
     ├── app-JPZQ4M77.css
     └── app-LSLFPUMX.js # Bundle
 ```
 
-Since `public/assets/login/app.js` is a bundle, it includes the content from the `app/assets/js/login/resetPassword.js` file it imported.
+Since `public/assets/signin/app.js` is a bundle, it includes the content from the `app/assets/js/signin/resetPassword.js` file it imported.
 
 ## Asset bundles
 

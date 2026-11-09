@@ -12,7 +12,7 @@ Slices exist in the `slices` directory.
 
 Hanami provides a slice generator. To create an API slice, run `bundle exec hanami generate slice api`.
 
-This creates a directory in `slices`, adding some slice-specific classes like actions:
+This creates a directory in `slices`, adding slice-specific base classes and directories for actions, views, templates, and more. Some of these depend on which Hanami gems your app uses:
 
 ```shell
 $ bundle exec hanami generate slice api
@@ -20,7 +20,34 @@ $ bundle exec hanami generate slice api
 slices
 └── api
     ├── action.rb
-    └── actions
+    ├── actions
+    ├── assets
+    │   ├── css
+    │   │   └── app.css
+    │   ├── images
+    │   │   └── favicon.ico
+    │   └── js
+    │       └── app.js
+    ├── config
+    │   └── i18n
+    │       └── en.yml
+    ├── db
+    │   ├── relation.rb
+    │   ├── repo.rb
+    │   └── struct.rb
+    ├── mailer.rb
+    ├── mailers
+    ├── operation.rb
+    ├── relations
+    ├── repos
+    ├── structs
+    ├── templates
+    │   └── layouts
+    │       └── app.html.erb
+    ├── view.rb
+    └── views
+        ├── context.rb
+        └── helpers.rb
 ```
 
 Simply creating a new directory in `slices` will also create a slice:
@@ -147,6 +174,8 @@ Since every slice is part of the larger app, a number of standard app components
 - `"inflector"` — the app’s [inflector](//page/inflector)
 - `"logger"` — the app’s logger
 - `"routes"` — the app’s routes helper
+- `"notifications"` — the app’s notifications
+- `"rack.monitor"` — the app’s Rack monitor
 
 If you have additional components in your app that you wish to make available to each slice, you can configure these via `config.shared_app_component_keys`:
 

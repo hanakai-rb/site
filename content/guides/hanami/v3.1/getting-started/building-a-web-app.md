@@ -2,7 +2,7 @@
 title: Building a web app
 ---
 
-Now that we've [created our app](//page), let's turn it into a web app.
+Now that we've [created our app](//guide/getting-started), let's turn it into a web app.
 
 ## Adding our first functionality
 
@@ -17,7 +17,7 @@ First, let's open our app's routes file at `config/routes.rb`:
 
 module Bookshelf
   class Routes < Hanami::Routes
-    # Add your routes here. See https://guides.hanamirb.org/routing/overview/ for details.
+    # Add your routes here. See https://hanakai.org/learn/hanami/routing/ for details.
   end
 end
 ```
@@ -90,7 +90,7 @@ Just like actions, every view in a Hanami app is an individual class. Views prep
 
 We can find this view's template at `app/templates/home/index.html.erb`. Let's adjust this template to include our desired "Welcome to Bookshelf" text.
 
-```sql
+```erb
 # app/templates/home/index.html.erb
 
 <h1>Welcome to Bookshelf</h1>
@@ -170,7 +170,7 @@ end
 
 Then we can update our template to present the books:
 
-```sql
+```erb
 <!-- app/templates/books/index.html.erb -->
 
 <h1>Books</h1>
@@ -288,7 +288,7 @@ end
 
 Then we can update our template to include the author:
 
-```sql
+```erb
 <!-- app/templates/books/index.html.erb -->
 
 <h1>Books</h1>
@@ -475,7 +475,7 @@ end
 
 Lastly, we can populate the template.
 
-```sql
+```erb
 <!-- app/templates/books/show.html.erb -->
 
 <h1><%= book.title %></h1>
@@ -554,7 +554,7 @@ $ bin/hanami generate action books.create --skip-route --skip-tests
 
 To show a form for creating a new book, we don't need any special handling in either its action or view classes, so we can jump straight to the template:
 
-```sql
+```erb
 <!-- app/templates/books/new.html.erb -->
 
 <h1>New book</h1>
@@ -617,7 +617,7 @@ SESSION_SECRET=__local_dev_secret_only_______________________________64_chars__
 
 Next we can update the app layout to show the flash messages, if there are any:
 
-```sql
+```erb
 <!-- app/templates/layouts/app.html.erb -->
 
 <!DOCTYPE html>
@@ -718,8 +718,8 @@ $ bin/hanami generate action books.update --skip-route --skip-tests
 
 To load the existing book in the edit view we need to update the view to expose the book:
 
-```sql
-<!-- app/views/books/edit.rb -->
+```ruby
+# app/views/books/edit.rb
 
 module Bookshelf
   module Views
@@ -738,7 +738,7 @@ end
 
 To show a form for updating an existing book we can change the generated template to include the following:
 
-```sql
+```erb
 <!-- app/templates/books/edit.html.erb -->
 
 <%= form_for :book, routes.path(:book, id: book.id), method: :patch do |f| %>
@@ -800,7 +800,7 @@ module Bookshelf
             response.redirect_to routes.path(:book, id: book[:id])
           else
             response.flash.now[:alert] = "Could not update book"
-            # Implicitly re-renders the "new" view
+            # Implicitly re-renders the "edit" view
           end
         end
       end
@@ -837,7 +837,7 @@ $ bin/hanami generate action books.destroy --skip-route --skip-tests --skip-view
 
 We are not planning any special view associated with deleting a book, we will just add a button in the show template:
 
-```sql
+```erb
 <!-- app/templates/books/show.html.erb -->
 
 <h1><%= book.title %></h1>

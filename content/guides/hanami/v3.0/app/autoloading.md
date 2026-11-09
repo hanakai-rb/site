@@ -99,6 +99,9 @@ The custom redis client below, for example, needs to be required (via `require "
 
 module CustomRedis
   class Client
+    def initialize(url:)
+      @url = url
+    end
   end
 end
 ```

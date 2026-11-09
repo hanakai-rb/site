@@ -41,7 +41,7 @@ See below for a description of all available `config` methods.
 
 ### `inflections`
 
-Along with `inflector`, customizes your your app's string inflection rules. See the [inflector guide](//page/inflector) for more detail.
+Along with `inflector`, customizes your app's string inflection rules. See the [inflector guide](//page/inflector) for more detail.
 
 ### `slices`
 
@@ -61,7 +61,7 @@ Sets the keys for the app components to be automatically imported into each slic
 
 ### `no_auto_register_paths`
 
-Sets an array of paths (relative to the root of the app or any slice) to be excluded from component auto-registration. Defaults to `["entities"]`. See the [containers and components guide](//page/container-and-components) for more detail.
+Sets an array of paths (relative to the root of the app or any slice) to be excluded from component auto-registration. Defaults to `["db", "entities", "relations", "structs"]`. See the [containers and components guide](//page/container-and-components) for more detail.
 
 ## Router
 
@@ -71,7 +71,7 @@ Sets the base URL for the app's web server. This is used when building URLs for 
 
 ### `middleware`
 
-Configures the Rack middleware stack to be used by the app's router. Defaults to an empty middleware stack.
+Configures the Rack middleware stack to be used by the app's router. Defaults to an empty middleware stack. Middleware added here comes after Hanami's own default middleware; see the [Rack integration guide](//guide/actions/rack-integration) for more detail.
 
 Add a middleware with `use`:
 
@@ -87,7 +87,7 @@ Use the `before:` or `after:` options to insert a middleware at a particular poi
 config.middleware.use MyMiddleware, before: AlreadyAddedMiddleware
 ```
 
-If you configure actions to use the `:json` format, then `Hanami::Middleware::BodyParser` will be added automatically and configured to parse JSON request bodies.
+Request bodies are parsed by actions according to the formats they accept, so you don't need middleware to parse JSON request bodies. See the [formats guide](//guide/actions/formats-and-media-types#parsing-request-bodies) for more detail.
 
 ## Actions
 
@@ -95,7 +95,7 @@ Sets the configuration to be used by all actions in the app.
 
 ```ruby
 # config/app.rb
-config.actions.format :json
+config.actions.formats.accept :json
 ```
 
 See the [actions guide](//guide/actions) for more detail.

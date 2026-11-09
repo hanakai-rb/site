@@ -27,7 +27,7 @@ You can permanently change the engine setting in your config:
 # config/app.rb
 
 module Bookshelf
-  class < Hanami::App
+  class App < Hanami::App
     config.console.engine = :pry
   end
 end

@@ -28,9 +28,23 @@ $ hanami new bookshelf --gem-source=gem.coop
 # source "https://gem.coop"
 ```
 
+### Choosing a test framework
+
+Provide `--test=TEST` to choose your app's test framework. Available options are `rspec` (default) and `minitest`.
+
+### Choosing a template engine
+
+Provide `--template-engine=ENGINE` to choose the default template engine used by generators. Available options are `erb` (default), `haml`, and `slim`.
+
+### Naming the app
+
+Provide `--name=NAME` to use a different name for the app's module namespace than the one derived from the directory name.
+
 ### Skipping features
 
-Skip the installation of certain Hanami features by passing `--skip-assets`, `--skip-view`, or `--skip-db`.
+Skip the installation of certain Hanami features by passing `--skip-assets`, `--skip-view`, `--skip-db`, or `--skip-mailer`.
+
+Pass `--skip-install` to skip installation steps such as bundling gems and installing third-party Hanami plugins.
 
 ### Using Hanami HEAD
 
