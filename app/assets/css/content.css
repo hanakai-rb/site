@@ -360,7 +360,8 @@
     background-color: var(--hk-color-bg-secondary-subtle);
     color: var(--hk-color-text-neutral);
 
-    .block {
+    .block,
+    .table {
       /*
        * Avoid Tailwind overridding these values, could possibly be avoiding instead using
        * css_class_prefix from the underlying lib
