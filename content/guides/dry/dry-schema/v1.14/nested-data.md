@@ -74,12 +74,12 @@ schema = Dry::Schema.Params do
   required(:phone_numbers).array(:str?)
 end
 
-errors = schema.call(phone_numbers: '').messages
+errors = schema.call(phone_numbers: '').errors
 
 puts errors.to_h.inspect
 # { :phone_numbers => ["must be an array"] }
 
-errors = schema.call(phone_numbers: ['123456789', 123456789]).messages
+errors = schema.call(phone_numbers: ['123456789', 123456789]).errors
 
 puts errors.to_h.inspect
 # {

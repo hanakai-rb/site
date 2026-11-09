@@ -228,7 +228,7 @@ Create formatters for specialized output needs.
 ### Simple custom formatter
 
 ```ruby
-class CustomFormatter
+class CustomFormatter < ::Logger::Formatter
   def call(_severity, _time, _progname, entry)
     # Must return a string
     "#{entry.severity} | #{entry.message} | #{entry.payload.inspect}\n"
@@ -238,7 +238,7 @@ end
 logger = Dry.Logger(:my_app, formatter: CustomFormatter.new)
 
 logger.info("Test", user_id: 42)
-# INFO | Test | {:user_id=>42}
+# info | Test | {user_id: 42}
 ```
 
 ### Extending built-in formatters

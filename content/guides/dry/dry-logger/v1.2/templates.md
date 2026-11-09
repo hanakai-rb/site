@@ -166,7 +166,7 @@ logger = Dry.Logger(:my_app,
 )
 
 logger.warn("Memory warning", usage: "85%")
-# [my_app] [WARN] Memory warning usage="85%"
+# [my_app] [WARN] Memory warning
 # (with colored progname and severity)
 ```
 
@@ -281,7 +281,6 @@ For team projects, register standard templates:
 
 ```ruby
 # config/logger_templates.rb
-Dry::Logger.register_template(:app_default, :details)
 Dry::Logger.register_template(:app_console, "<cyan>[%<severity>s]</cyan> %<message>s")
 Dry::Logger.register_template(:app_api, "%<verb>s %<path>s %<status>s %<elapsed>s")
 ```

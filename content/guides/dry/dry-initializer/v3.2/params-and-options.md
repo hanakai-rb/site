@@ -62,8 +62,8 @@ require 'dry-initializer'
 class User
   extend Dry::Initializer
 
-  option :phone
-  option :telephone, as: :phone
+  option :phone, optional: true
+  option :telephone, as: :phone, optional: true
   option :name, optional: true
 end
 

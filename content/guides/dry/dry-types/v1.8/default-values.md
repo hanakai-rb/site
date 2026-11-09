@@ -70,7 +70,7 @@ You can guard against these kind of errors by calling `freeze` when setting the 
 PostStatus = Types::Params::String.default('draft'.freeze)
 default = PostStatus.call()
 default << 'attempt to mutate default'
-# => RuntimeError: can't modify frozen string
+# => FrozenError: can't modify frozen String: "draft"
 
 # If you really want to mutate it, call `dup` on it first:
 default = default.dup

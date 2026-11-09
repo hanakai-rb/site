@@ -276,7 +276,7 @@ logger = Dry.Logger(:my_app)
   .add_backend(stream: "logs/app.log")
 
 logger.backends
-# => [#<Dry::Logger::Backends::Stream...>, #<Dry::Logger::Backends::File...>]
+# => [#<Dry::Logger::Backends::IO...>, #<Dry::Logger::Backends::File...>]
 
 logger.backends.size
 # => 2

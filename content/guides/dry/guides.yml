@@ -20,9 +20,6 @@ guides:
   - slug: dry-events
     title: Dry Events
     description: Publish-subscribe event system
-  - slug: dry-equalizer
-    title: Dry Equalizer
-    description: Equality and hash inspection helpers
   - slug: dry-files
     title: Dry Files
     description: File system abstraction and utilities

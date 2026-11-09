@@ -19,7 +19,7 @@ M::List[1, nil].bind { |x| [x + 1] } # => error
 
 ### `collect`
 
-Works differently than `Enumerable#collect`: the block must return `Maybe` types, `Some` values are retained and `None` is discarded. As in other monads if no block given the first argument will be treated as callable and used instead.
+Works differently than `Enumerable#collect`: the block must return `Maybe` types, `Some` values are retained and `None` is discarded. Without a block, `collect` expects the list to contain `Maybe` values, and returns an `Enumerator` over the values of its `Some` elements.
 
 ```ruby
 require 'dry/monads/list'
@@ -36,7 +36,7 @@ M::List[10, 5, 0].collect do |divisor|
 end
 # => List[2, 4]
 
-M::List[M::Some(1), M::None(), M::Some(2), M::None(), M::Some(3)].collect # => List[1, 2, 3]
+M::List[M::Some(1), M::None(), M::Some(2), M::None(), M::Some(3)].collect.to_a # => [1, 2, 3]
 
 leap_year = proc do |year|
   if year % 400 == 0
@@ -50,7 +50,7 @@ leap_year = proc do |year|
   end
 end
 
-M::List[2020, 2021, 2022, 2023, 2024].collect(leap_year) # => List[2020, 2024]
+M::List[2020, 2021, 2022, 2023, 2024].collect(&leap_year) # => List[2020, 2024]
 ```
 
 ### `fmap`

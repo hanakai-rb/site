@@ -122,7 +122,7 @@ class Client
 end
 
 client1 = Client.new.configure do |config|
-  config.adapter :grpc
+  config.adapter = :grpc
 end
 
 client2 = Client.new.configure do |config|
@@ -154,7 +154,7 @@ App.config.adapter = :http
 ```ruby
 App.config.finalize!(freeze_values: true)
 
-App.config.tags << "new"
+App.config.uploader.bucket << "-new"
 # => raises FrozenError
 ```
 

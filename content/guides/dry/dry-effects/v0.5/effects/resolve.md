@@ -156,7 +156,7 @@ require 'rack/test'
 
 RSpec.describe do
   include Rack::Test::Methods
-  include Dry::Effects::Handler.Provider
+  include Dry::Effects::Handler.Resolve
 
   let(:app) do
     # building an assembled rack app

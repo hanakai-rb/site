@@ -84,7 +84,7 @@ Structure apps around clear boundaries, loosely coupled components, and explicit
 These remain for reference but are no longer recommended for new projects.
 
 - **[Dry Container](//doc/dry/dry-container)** — now [part of Dry Core](//doc/dry/dry-core).
-- **[Dry Equalizer](//doc/dry/dry-equalizer)** — now [part of Dry Core](//doc/dry-core/equalizer).
-- **[Dry Matcher](//doc/dry/dry-matcher)** — superseded by [Dry Monads pattern matching](//doc/dry-monads/pattern-matching)
+- **Dry Equalizer** — now [part of Dry Core](//doc/dry/dry-core/equalizer).
+- **[Dry Matcher](//doc/dry/dry-matcher)** — superseded by [Dry Monads pattern matching](//doc/dry/dry-monads/pattern-matching)
 - **[Dry Transaction](//doc/dry/dry-transaction)** — superseded by [Dry Operation](//doc/dry/dry-operation).
 - **[Dry View](//doc/dry/dry-view)** — renamed to [Hanami View](//doc/hanami/views).

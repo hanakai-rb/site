@@ -78,7 +78,7 @@ and provide it in middleware
 ```ruby
 class HandleDefer
   include Dry::Effects::Handler.Defer
-  include Dry::Effects::Handler.Env(:environment)
+  include Dry::Effects.Env(:environment)
 
   def initialize(app)
     @app = app

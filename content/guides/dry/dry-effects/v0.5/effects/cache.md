@@ -17,7 +17,7 @@ class CacheMiddleware
   end
 
   def call(env)
-    with_cache { @app.env }
+    with_cache { @app.call(env) }
   end
 end
 ```
@@ -36,7 +36,7 @@ class ShowUsers
   prepend Dry::Effects.Cache(blog: :find_user)
 
   def call(user_ids)
-    users = user_ids.map { find_user(id) }
+    users = user_ids.map { |id| find_user(id) }
     # ...
   end
 
@@ -57,7 +57,7 @@ class ShowUsers
   include Dry::Effects.Cache(:blog)
 
   def call(user_ids)
-    users = user_ids.map { cache(:user, id) { user_repo.find(id) } }
+    users = user_ids.map { |id| cache(:user, id) { user_repo.find(id) } }
     # ...
   end
 end
@@ -77,6 +77,6 @@ require 'dry/effects'
 with_cache = Object.new.extend(Dry::Effects::Handler.Cache(:my_app, as: :call))
 
 RSpec.configure do |config|
-  config.around(:each) { with_cache.call(&ex) }
+  config.around(:each) { |ex| with_cache.call(&ex) }
 end
 ```

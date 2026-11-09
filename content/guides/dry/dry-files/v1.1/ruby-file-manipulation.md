@@ -48,13 +48,13 @@ files.inject_line_after_last(path, "foo", "def") # inject def after the last mat
 files.inject_line_at_block_top(path, "routes do", "route") # inject route, right after the routes block opening
 
 # inject content as the last line of the matching code block
-files.inject_line_at_block_bottom(path, "routes do", "route") # inject route, right after the routes block ending
+files.inject_line_at_block_bottom(path, "routes do", "route") # inject route, right before the routes block ending
 
 
 
 # remove the first matching line
-files.remove_line(line, "foo") # removes the first line that matches foo
+files.remove_line(path, "foo") # removes the first line that matches foo
 
 # remove the first matching block
-files.remove_block(line, "configure do") # removes the first block that matches configure
+files.remove_block(path, "configure do") # removes the first block that matches configure
 ```

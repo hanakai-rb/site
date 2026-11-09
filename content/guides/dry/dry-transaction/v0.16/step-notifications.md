@@ -38,7 +38,7 @@ module UserCreationListener
   extend self
 
   def on_step(event)
-    user = event[:value]
+    user = event[:args][0]
     NOTIFICATIONS << "Started creation of #{user[:email]}"
   end
 

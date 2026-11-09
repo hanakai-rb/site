@@ -109,7 +109,7 @@ The default time provider accepts a custom generator which is a simple callable 
 
 ```ruby
 frozen = Time.now
-with_fixed_time(proc { frozen }) do
+with_current_time(proc { frozen }) do
   # ...
 end
 ```
@@ -118,7 +118,7 @@ Or you can change time on every call:
 
 ```ruby
 start = Time.now
-with_fixed_time(proc { start += 0.1 }) do
+with_current_time(proc { start += 0.1 }) do
   # ...
 end
 ```
@@ -128,7 +128,7 @@ end
 If you pass `step: x` to the handler, it will shift the current time on every access by `x`:
 
 ```ruby
-with_fixed_time(step: 0.1) do
+with_current_time(step: 0.1) do
   current_time # => ... 18:00:00.000
   current_time # => ... 18:00:00.100
   current_time # => ... 18:00:00.200
@@ -139,7 +139,7 @@ You can also pass initial time:
 
 ```ruby
 initial = Time.new(1970)
-with_fixed_time(initial: initial, step: 60) do
+with_current_time(initial: initial, step: 60) do
   current_time # => 1970-01-01 00:00:00 +0000
   current_time # => 1970-01-01 00:01:00 +0000
   current_time # => 1970-01-01 00:02:00 +0000

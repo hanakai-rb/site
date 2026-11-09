@@ -79,7 +79,7 @@ App.config.to_data
 
 App.config.finalize!
 App.config.to_data
-# => #<data App adapter=:http, database=#<data ...>>
+# => #<data adapter=:http, database=#<data ...>>
 ```
 
 Finalizing matches the intended use case: once configuration is locked down at boot, the resulting `Data` is a stable, frozen snapshot.
@@ -113,8 +113,8 @@ class App
   extend Dry::Configurable
 
   setting :members
-  # => raises ArgumentError: setting name `:members` conflicts with a Data
-  #    instance method, which would break Config#to_data
+  # => raises ArgumentError: :members is not a valid setting name: it conflicts
+  #    with a Data instance method, which would break Config#to_data
 end
 ```
 

@@ -53,10 +53,7 @@ end
 MyClass.new(users_repository: my_repo)
 ```
 
-The `#initialize` method has two possible argument signatures:
-
-- If there is no `super` method for `#initialize`, or the `super` method takes no arguments, then the keyword arguments will be explicit, e.g. `#initialize(users_repository: nil)`.
-- If the `super` method for `#initialize` takes its own set of keyword arguments, then the arguments will be a single splat, e.g. `#initialize(**args)`.
+The generated `#initialize` accepts any keyword arguments (`#initialize(**kwargs)`). It assigns the dependencies it knows about, then passes on to `super` only the keyword arguments that the `super` method accepts. If the `super` method takes positional arguments, `#initialize` also accepts them and passes them through.
 
 ### Options hash (`hash`)
 

@@ -6,7 +6,7 @@ You can use Dry Transformer and its function registry feature stand-alone, witho
 
 ```ruby
 require 'json'
-require 'dry/transformer/all'
+require 'dry/transformer'
 
 # create your own local registry for transformation functions
 module Functions

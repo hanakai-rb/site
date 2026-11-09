@@ -86,14 +86,14 @@ logger.info("General message")  # Only goes to all.log
 
 ## Nested tags
 
-Tags only apply within their block and don't nest:
+Tags only apply within their block, and nested tags accumulate:
 
 ```ruby
 logger.tagged(:outer) do
   logger.info("Outer")  # [outer]
 
   logger.tagged(:inner) do
-    logger.info("Inner")  # [inner] (not [outer inner])
+    logger.info("Inner")  # [outer inner]
   end
 
   logger.info("Outer again")  # [outer]

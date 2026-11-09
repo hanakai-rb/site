@@ -51,7 +51,7 @@ end
 
 UserSchema = Dry::Schema.Params do
   # expands to: `str? & min_size?(10)`
-  required(:login_time).value(StrippedString, min_size?: 10)
+  required(:login_time).value(Types::StrippedString, min_size?: 10)
 end
 ```
 

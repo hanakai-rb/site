@@ -3,6 +3,7 @@ title: Introduction
 pages:
   - class-enhancement
   - result-matcher
+  - maybe-matcher
 ---
 
 Dry Matcher offers flexible, expressive pattern matching for Ruby.
@@ -27,8 +28,8 @@ success_case = Dry::Matcher::Case.new do |(code, value), _|
 end
 
 # Match `[:err, some_error_code, some_value]` for failure
-failure_case = Dry::Matcher::Case.new do |(code, value), patterns|
-  if code.equal?(:err) && (patterns.empty? || patterns.include?(value))
+failure_case = Dry::Matcher::Case.new do |(code, error_code, value), patterns|
+  if code.equal?(:err) && (patterns.empty? || patterns.include?(error_code))
     value
   else
     Dry::Matcher::Undefined

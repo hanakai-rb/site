@@ -45,7 +45,7 @@ class Example
   Schema = Dry::Schema.Params { required(:name).filled(:string, size: 2..4) }
 
   def call(input)
-    case schema.call(input).to_monad
+    case Schema.call(input).to_monad
     in Success(name:)
       "Hello #{name}" # name is captured from result
     in Failure(name:)

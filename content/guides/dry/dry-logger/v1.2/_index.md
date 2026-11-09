@@ -91,9 +91,10 @@ begin
   1 / 0
 rescue => e
   logger.error(e)
-  # ZeroDivisionError: divided by 0
-  #   /path/to/file.rb:10:in `/'
-  #   /path/to/file.rb:10:in `<main>'
+  #
+  #   divided by 0 (ZeroDivisionError)
+  #   /path/to/file.rb:10:in 'Integer#/'
+  #   /path/to/file.rb:10:in '<main>'
 end
 ```
 

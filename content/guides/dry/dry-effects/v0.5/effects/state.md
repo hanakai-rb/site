@@ -114,7 +114,7 @@ extend Dry::Effects::Handler.State(:counter)
 extend Dry::Effects.Reader(:counter)
 
 with_counter(100) { "Counter value is #{counter}" }
-# => [100, "Counter values is 100"]
+# => [100, "Counter value is 100"]
 ```
 
 ### Not providing an initial value
@@ -168,7 +168,7 @@ When no initial value is given, you can use a block for providing a default valu
 extend Dry::Effects::Handler.State(:artist)
 extend Dry::Effects.State(:artist)
 
-with_artist { artist { 'Unknown Artist' } } # => "Unknown Artist"
+with_artist { artist { 'Unknown Artist' } } # => [Undefined, "Unknown Artist"]
 ```
 
 ### When to use?

@@ -89,8 +89,8 @@ Every Interrupt effect has to have an identifier so that they don't overlap. It'
 
 ```ruby
 class Catcher
-  include Dry::Effects::Handler(:div_error, as: :catch_div)
-  include Dry::Effects::Handler(:sqrt_error, as: :catch_sqrt)
+  include Dry::Effects::Handler.Interrupt(:div_error, as: :catch_div)
+  include Dry::Effects::Handler.Interrupt(:sqrt_error, as: :catch_sqrt)
 
   def call
     _, div_result = catch_div do

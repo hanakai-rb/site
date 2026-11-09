@@ -67,10 +67,10 @@ en:
 Given the yaml file above, messages lookup works as follows:
 
 ```ruby
-messages = Dry::Schema::Messages::YAML.load(%w(/path/to/our/errors.yml))
+messages = Dry::Schema::Messages::YAML.build(load_paths: %w(/path/to/our/errors.yml))
 
 # matching arg type for size? predicate
-messages[:size?, rule: :name, arg_type: Fixnum] # => "size must be %{num}"
+messages[:size?, rule: :name, arg_type: Integer] # => "size must be %{num}"
 messages[:size?, rule: :name, arg_type: Range] # => "size must be within %{left} - %{right}"
 
 # matching val type for size? predicate

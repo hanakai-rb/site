@@ -140,7 +140,7 @@ You can compose `find_user` and `find_address` with `bind`:
 
 ```ruby
 find_user(params[:user_id]).bind do |user|
-  find_address(params[:address_id]).bind |address|
+  find_address(params[:address_id]).bind do |address|
     Success(user.update(address_id: address.id))
   end
 end
@@ -150,7 +150,7 @@ The inner block can be simplified with `fmap`:
 
 ```ruby
 find_user(params[:user_id]).bind do |user|
-  find_address(params[:address_id]).fmap |address|
+  find_address(params[:address_id]).fmap do |address|
     user.update(address_id: address.id)
   end
 end

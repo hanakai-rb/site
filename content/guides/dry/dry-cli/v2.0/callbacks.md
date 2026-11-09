@@ -45,7 +45,7 @@ Foo::CLI::Commands.after "hello", &->(args) { puts "bye, #{args.fetch(:name)}" }
 
 ```sh
 $ foo hello Anton
-debug: {:name=>"Anton"}
+debug: {name: "Anton"}
 hello Anton
 bye, Anton
 ```

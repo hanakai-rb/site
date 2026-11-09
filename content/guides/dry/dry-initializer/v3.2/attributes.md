@@ -72,10 +72,10 @@ end
 user = User.new "Joe", password: "foo"
 
 User.dry_initializer.attributes(user)
-# => { user: "Joe", password: "foo" }
+# => { name: "Joe", password: "foo" }
 
 User.dry_initializer.public_attributes(user)
-# => { user: "Joe", password: "-1844874613000160009" }
+# => { name: "Joe", password: "-1844874613000160009" }
 ```
 
 This feature works for the "extend Dry::Initializer" syntax. But what about "include Dry::Initializer.define ..."? Now we don't pollute class namespace with new methods, that's why `.dry_initializer` is absent.
@@ -93,10 +93,10 @@ end
 user = User.new "Joe"
 
 user.send(:__dry_initializer_config__).attributes(user)
-# => { user: "Joe" }
+# => { name: "Joe" }
 
 user.send(:__dry_initializer_config__).public_attributes(user)
-# => { user: "Joe" }
+# => { name: "Joe" }
 ```
 
 This is a hack because the `__dry_initializer_config__` is not a part of the gem's public interface; there's a possibility it can be changed or removed in the later releases.

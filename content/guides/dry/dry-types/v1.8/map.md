@@ -13,5 +13,5 @@ int_float_hash[100 => 300.0, 42 => 70.0]
 
 # Only accepts mappings of integers to floats
 int_float_hash[name: 'Jane']
-# => Dry::Types::MapError: input key :name is invalid: type?(Integer, :name)
+# => Dry::Types::MapError: :name violates constraints (type?(Integer, :name) failed)
 ```

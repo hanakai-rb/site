@@ -21,7 +21,7 @@ rails new my_app -MOPCSJT --template https://raw.githubusercontent.com/dry-rb/dr
 If you already have a Rails application, simply add `dry-rails` to your `Gemfile`:
 
 ```ruby
-gem "dry-rails", "~> 0.3"
+gem "dry-rails", "~> 0.7"
 ```
 
 ## Overview
@@ -31,7 +31,7 @@ The railtie integrates dry-system with the Rails runtime by setting up a system 
 1. The system container is defined as `Container` constant within your application namespace defined by `config/application.rb`. For example, if you generate a new rails application and call it `blog`, then the application namespace will be called `Blog`, and so your system container will be available as `Blog::Container`
 2. The auto-injection mixin is defined as `Deps` under the application namespace too
 3. You can tweak the system container via an initializer, it can be called however you want, but the convention that we use is to call it `config/initializers/system.rb`
-4. Bootable components are expected to be found in `config/system/*.rb` files
+4. Bootable components (providers) are expected to be found in `config/system/boot/*.rb` files
 
 The railtie supports code-reloading in development mode - `Container`, `Deps` and boot files get reloaded upon every request (or when you manually `reload!` in the console).
 

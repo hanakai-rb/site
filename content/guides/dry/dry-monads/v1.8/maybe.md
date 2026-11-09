@@ -119,7 +119,7 @@ Two values can be chained using `.and`:
 extend Dry::Monads[:maybe]
 
 Some(5).and(Some(10)) { |x, y| x + y } # => Some(15)
-Some(5).and(None) { |x, y| x + y }     # => None()
+Some(5).and(None()) { |x, y| x + y }   # => None()
 None().and(Some(10)) { |x, y| x + y }  # => None()
 
 Some(5).and(Some(10)) # => Some([5, 10])

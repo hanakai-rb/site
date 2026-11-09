@@ -20,6 +20,8 @@ Application.register_provider(:settings, from: :dry_system) do
   settings do
     setting :database_url, constructor: Types::String.constrained(filled: true)
 
+    setting :redis_url, constructor: Types::String.constrained(filled: true)
+
     setting :logger_level, default: :info, constructor: Types::Symbol
       .constructor { |value| value.to_s.downcase.to_sym }
       .enum(:trace, :unknown, :error, :fatal, :warn, :info, :debug)
@@ -39,7 +41,7 @@ You can use this settings object in other providers:
 ```ruby
 Application.register_provider(:redis) do
   start do
-    use :settings
+    target.start :settings
 
     uri = URI.parse(target[:settings].redis_url)
     redis = Redis.new(host: uri.host, port: uri.port, password: uri.password)
@@ -52,13 +54,12 @@ end
 Or as an injected dependency in your classes:
 
 ```ruby
-  module Operations
-    class CreateUser
-      include Import[:settings]
+module Operations
+  class CreateUser
+    include Import[:settings]
 
-      def call(params)
-        settings # => your settings struct
-      end
+    def call(params)
+      settings # => your settings struct
     end
   end
 end

@@ -60,8 +60,8 @@ logger.info("Payment processed",
     expiry: "12/25"
   }
 )
-# user={"email"=>"user@example.com", "password"=>"[FILTERED]"}
-# credit_card={"number"=>"[FILTERED]", "expiry"=>"12/25"}
+# user={email: "user@example.com", password: "[FILTERED]"}
+# credit_card={number: "[FILTERED]", expiry: "12/25"}
 ```
 
 ## Per-backend filtering

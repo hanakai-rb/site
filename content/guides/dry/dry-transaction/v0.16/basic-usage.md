@@ -31,7 +31,7 @@ end
 
 You can also define a transaction that relies upon operation objects in a container. Each operation must respond to `#call(input)`.
 
-The container will be checked for the operations using `#key?`, and the operations will be resolved from the container via `#[]`. For this example, we’ll use [dry-container](//org_guide/dry/dry-container):
+The container will be checked for the operations using `#key?`, and the operations will be resolved from the container via `#[]`. For this example, we’ll use a [Dry Core container](//doc/dry/dry-core/container):
 
 ```ruby
 require "dry/core"

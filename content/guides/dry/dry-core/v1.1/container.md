@@ -2,12 +2,12 @@
 title: Container
 ---
 
-`Dry::Core::Container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//org_guide/dry/dry-auto_inject). It used to be a separate gem ([Dry Container](//org_guide/dry/dry_container)) and it powers containers in [Dry System](/learn/dry/dry-system/v1.2/container).
+`Dry::Core::Container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//org_guide/dry/dry-auto_inject). It used to be a separate gem ([Dry Container](//org_guide/dry/dry-container)) and it powers containers in [Dry System](/learn/dry/dry-system/v1.2/container).
 
 ### Brief Example
 
 ```ruby
-require 'dry/core/container'
+require 'dry/core'
 
 container = Dry::Core::Container.new
 container.register(:parrot) { |a| puts a }
@@ -29,7 +29,9 @@ Note that dependency _injection_, dependency _inversion_, and _inversion of cont
 ### Detailed Example
 
 ```ruby
-require 'dry/core/container'
+require 'dry/core'
+require 'concurrent/array'
+require 'concurrent/map'
 
 User = Struct.new(:name, :email)
 
@@ -97,6 +99,13 @@ Repositories = Dry::Core::Container::Namespace.new('repositories') do
     register('users') { Concurrent::Array.new }
   end
 end
+
+class MyContainer
+  extend Dry::Core::Container::Mixin
+
+  import Repositories
+end
+MyContainer.resolve('repositories.authentication.users')
 # => []
 ```
 
@@ -105,7 +114,7 @@ end
 You can also get container behaviour at both the class and instance level via the mixin:
 
 ```ruby
-require 'dry/core/container'
+require 'dry/core'
 
 class Container
   extend Dry::Core::Container::Mixin
@@ -162,7 +171,7 @@ container.resolve(:key_2) # => "Integer: 282"
 ### Customization
 
 You can configure how items are registered and resolved from the container. Currently, registry can be as simple as a proc
-but custom resolver should subclass the default one or have the same public interface.
+but a custom resolver should be an instance of a class that subclasses the default one or have the same public interface.
 
 ```ruby
 class CustomResolver < Dry::Core::Container::Resolver
@@ -171,10 +180,10 @@ class CustomResolver < Dry::Core::Container::Resolver
   def call(container, key)
     container.fetch(key.to_s) {
       fallback_key = RENAMED_KEYS.fetch(key.to_s) {
-        raise Error, "Missing #{ key }"
+        raise KeyError, "Missing #{ key }"
       }
       container.fetch(fallback_key) {
-        raise Error, "Missing #{ key } and #{ fallback_key }"
+        raise KeyError, "Missing #{ key } and #{ fallback_key }"
       }
     }.call
   end
@@ -184,18 +193,18 @@ class Container
   extend Dry::Core::Container::Mixin
 
   config.registry = ->(container, key, item, options) { container[key] = item }
-  config.resolver = CustomResolver
+  config.resolver = CustomResolver.new
 end
 
 class ContainerObject
   include Dry::Core::Container::Mixin
 
   config.registry = ->(container, key, item, options) { container[key] = item }
-  config.resolver = CustomResolver
+  config.resolver = CustomResolver.new
 end
 ```
 
-This allows you to customise the behaviour of `Dry::Core::Container`. For example, the default registry (`Dry::Core::Container::Registry`) will raise a `Dry::Core::Container::Error` exception if you try to register under a key that is already used. Should you want to just overwrite the existing value in that scenario, configuration allows you to do so.
+This allows you to customise the behaviour of `Dry::Core::Container`. For example, the default registry (`Dry::Core::Container::Registry`) will raise a `Dry::Core::Container::KeyError` exception if you try to register under a key that is already used. Should you want to just overwrite the existing value in that scenario, configuration allows you to do so.
 
 ## Stubbing in tests
 
@@ -207,7 +216,7 @@ container.register(:redis) { "Redis instance" }
 
 container[:redis] # => "Redis instance"
 
-require 'dry/container/stub'
+require 'dry/core/container/stub'
 
 # before stub you need to enable stubs for specific container
 container.enable_stubs!
@@ -223,13 +232,14 @@ container = Dry::Core::Container.new
 container.register(:redis) { "Redis instance" }
 container[:redis] # => "Redis instance"
 
-require 'dry/container/stub'
+require 'dry/core/container/stub'
 container.enable_stubs!
 
 container.stub(:redis, "Stubbed redis instance")
 container[:redis] # => "Stubbed redis instance"
 
-container.unstub(:redis) # => "Redis instance"
+container.unstub(:redis)
+container[:redis] # => "Redis instance"
 ```
 
 To clear all stubs at once, call `#unstub` without any arguments:
@@ -239,7 +249,7 @@ container = Dry::Core::Container.new
 container.register(:redis) { "Redis instance" }
 container.register(:db) { "DB instance" }
 
-require 'dry/container/stub'
+require 'dry/core/container/stub'
 container.enable_stubs!
 container.stub(:redis, "Stubbed redis instance")
 container.stub(:db, "Stubbed DB instance")
@@ -247,5 +257,5 @@ container.stub(:db, "Stubbed DB instance")
 container.unstub # This will unstub all previously stubbed keys
 
 container[:redis] # => "Redis instance"
-container[:db] # => "Redis instance"
+container[:db] # => "DB instance"
 ```

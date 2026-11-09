@@ -33,7 +33,7 @@ class User
   param :name, type: Dry::Types['strict.string']
 end
 
-user = User.new :Andrew # => #<TypeError ...>
+user = User.new :Andrew # => #<Dry::Types::ConstraintError ...>
 ```
 
 ## Positional Argument
@@ -121,7 +121,7 @@ user.emails.class         # => Array
 user.emails.first.class   # => User::Emails
 user.emails.first.address # => "joe@example.com"
 
-user.emails.map(&:to_h) # => [{ address: "joe@example.com", description: "Job email" }]
+user.emails.map(&:to_h) # => [{ "address" => "joe@example.com", "description" => "Job email" }]
 ```
 
 Notice how we mixed array wrapper with a nested type.

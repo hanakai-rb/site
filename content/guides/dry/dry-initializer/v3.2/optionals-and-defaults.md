@@ -18,7 +18,7 @@ end
 user = User.new
 user.name  # => 'Unknown user'
 user.email # => 'unknown@example.com'
-user.phone # => Dry::Initializer::UNDEFINED
+user.phone # => nil
 
 user = User.new 'Vladimir', email: 'vladimir@example.com', phone: '71234567788'
 user.name  # => 'Vladimir'

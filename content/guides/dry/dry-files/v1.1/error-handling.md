@@ -43,7 +43,7 @@ begin
 rescue Dry::Files::Error => exception
   exception.class # => Dry::Files::IOError
   exception.cause # => Errno::EISDIR
-  exception.message # => "Is a directory - path/to/directory"
+  exception.message # => "Is a directory @ io_fread - path/to/directory"
 end
 ```
 

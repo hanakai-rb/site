@@ -34,7 +34,8 @@ container.enable_stubs!
 container.stub(:redis, "Stubbed redis instance")
 container[:redis] # => "Stubbed redis instance"
 
-container.unstub(:redis) # => "Redis instance"
+container.unstub(:redis)
+container[:redis] # => "Redis instance"
 ```
 
 To clear all stubs at once, call `#unstub` without any arguments:
@@ -52,5 +53,5 @@ container.stub(:db, "Stubbed DB instance")
 container.unstub # This will unstub all previously stubbed keys
 
 container[:redis] # => "Redis instance"
-container[:db] # => "Redis instance"
+container[:db] # => "DB instance"
 ```

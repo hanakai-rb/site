@@ -39,7 +39,7 @@ container.resolve(:key_2) # => "Integer: 282"
 ### Customization
 
 You can configure how items are registered and resolved from the container. Currently, registry can be as simple as a proc
-but custom resolver should subclass the default one or have the same public interface.
+but a custom resolver should be an instance of a class that subclasses the default one or have the same public interface.
 
 ```ruby
 class CustomResolver < Dry::Container::Resolver
@@ -48,10 +48,10 @@ class CustomResolver < Dry::Container::Resolver
   def call(container, key)
     container.fetch(key.to_s) {
       fallback_key = RENAMED_KEYS.fetch(key.to_s) {
-        raise Error, "Missing #{ key }"
+        raise KeyError, "Missing #{ key }"
       }
       container.fetch(fallback_key) {
-        raise Error, "Missing #{ key } and #{ fallback_key }"
+        raise KeyError, "Missing #{ key } and #{ fallback_key }"
       }
     }.call
   end
@@ -61,14 +61,14 @@ class Container
   extend Dry::Container::Mixin
 
   config.registry = ->(container, key, item, options) { container[key] = item }
-  config.resolver = CustomResolver
+  config.resolver = CustomResolver.new
 end
 
 class ContainerObject
   include Dry::Container::Mixin
 
   config.registry = ->(container, key, item, options) { container[key] = item }
-  config.resolver = CustomResolver
+  config.resolver = CustomResolver.new
 end
 ```
 

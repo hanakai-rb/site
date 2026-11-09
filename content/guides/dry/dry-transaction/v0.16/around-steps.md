@@ -12,7 +12,8 @@ An operation to wrap steps in a database transaction would work like this (repla
 
 ```ruby
 class MyContainer
-  extend Dry::Container
+  extend Dry::Core::Container::Mixin
+  extend Dry::Monads[:result]
 
   register "transaction" do |input, &block|
     result = nil

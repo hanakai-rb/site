@@ -36,7 +36,7 @@ The `Try` monad consists of two types: `Value` and `Error`. The first is returne
 Allows you to chain blocks that can raise exceptions.
 
 ```ruby
-Try[NetworkError, DBError] { grap_user_by_making_request }.bind { |user| user_repo.save(user) }
+Try[NetworkError, DBError] { grab_user_by_making_request }.bind { |user| user_repo.save(user) }
 
 # Possible outcomes:
 # => Value(persisted_user)
