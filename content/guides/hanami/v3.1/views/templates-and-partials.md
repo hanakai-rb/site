@@ -118,9 +118,9 @@ A template can declare the locals it takes with a magic comment at its top, writ
 
 Rendering this partial without `form_title`, or with a local it does not declare, raises an `ArgumentError` (such as `missing keyword: :form_title` or `unknown keyword: :titel`). Locals with defaults, like `submit_label` above, are filled in when not given.
 
-In Haml, write the comment as `-# locals: (form_title:)`, and in Slim as `/# locals: (form_title:)`, with only comment syntax before it on its line.
+In Haml, write it as a silent comment, `-# locals: (form_title:)`, and in Slim as a code comment, `/# locals: (form_title:)`, at the start of its line.
 
-In ERB, Haml, and Slim, the declaration must open its comment, and it ends at the parenthesis matching its opening one. This means defaults can call methods, a note can follow the declaration, and an ERB declaration can span several lines:
+In ERB, Haml, and Slim, the declaration must open its comment, and it ends at the parenthesis matching its opening one, skipping any inside quoted defaults. This means defaults can call methods, a note can follow the declaration, and an ERB declaration can span several lines:
 
 ```erb
 <%# locals: (
@@ -130,7 +130,7 @@ In ERB, Haml, and Slim, the declaration must open its comment, and it ends at th
 ) Used by the books index and show pages %>
 ```
 
-It also means a template whose text happens to show the syntax is not treated as declaring its locals. Templates in other languages use Tilt's own matching, which finds `# locals: (` anywhere in the template.
+It also means a template whose text happens to show the syntax is not treated as declaring its locals. Templates in other languages ignore the comment, unless you set `extract_fixed_locals: true` in your view's renderer options. These templates then use Tilt's own matching, which finds `# locals: (` anywhere in the template.
 
 ### Partials
 
