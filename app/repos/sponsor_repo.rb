@@ -4,9 +4,9 @@ module Site
   module Repos
     # Provides data about the individuals who sponsor Hanakai.
     #
-    # Loads its data from `content/sponsors.yml`.
+    # Loads its data from `content/sponsors/sponsors.yml`.
     class SponsorRepo
-      SPONSORS_YML_PATH = App.root.join("content/sponsors.yml")
+      SPONSORS_YML_PATH = App.root.join("content/sponsors/sponsors.yml")
 
       def individuals
         @individuals ||= named_sponsors + private_sponsors

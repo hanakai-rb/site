@@ -1,0 +1,27 @@
+---
+# Config for building content/sponsors/sponsors.yml. Edit this file by hand, then run:
+#
+#   bundle exec rake sponsors:refresh
+
+# The accounts we read sponsors from.
+github_login: hanami
+open_collective_slug: hanami
+
+# A one-off Open Collective donation counts as sponsorship for this many months.
+one_time_donation_months: 3
+
+# Accounts to keep out of the individual sponsors list. Use the GitHub login or the Open Collective
+# slug. Business sponsors belong here, because they have their own section on the page.
+exclude:
+  # Open Collective records our GitHub Sponsors income as a donation from this account.
+  - github-sponsors
+
+  # Business sponsors.
+  - contribsys
+  - serp_api
+
+# Sponsors that the APIs cannot tell us about. These are added to the sponsors.yml list as-is.
+extra: []
+  # - name: Some Person
+  #   profile_url: https://example.com
+  #   avatar_url: https://example.com/avatar.png
