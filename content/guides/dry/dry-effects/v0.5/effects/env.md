@@ -94,7 +94,7 @@ RSpec.describe SendRequest do
 
   let(:endpoint) { "fake server" }
 
-  around { with_env('THIRD_PARTY' => endpoint, &ex) }
+  around { |ex| with_env('THIRD_PARTY' => endpoint, &ex) }
 
   it 'sends a request to a fake server' do
     send_request.call(...)
