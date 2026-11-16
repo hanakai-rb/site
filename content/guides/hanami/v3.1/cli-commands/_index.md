@@ -50,3 +50,15 @@ Commands:
   hanami server                               # Start Hanami app server
   hanami version                              # Print Hanami app version
 ```
+
+If your Hanami app is defined in a file other than `config/app.rb`, you can set
+the environment variable `HANAMI_APP_PATH` to supply the file location:
+
+```shell
+# On Linux/Mac:
+HANAMI_APP_PATH=config/my_app.rb bundle exec hanami generate [SUBCOMMAND]
+
+# On Windows:
+set HANAMI_APP_PATH=config\my_app.rb
+bundle exec hanami generate [SUBCOMMAND]
+```
