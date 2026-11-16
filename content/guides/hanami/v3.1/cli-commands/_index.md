@@ -52,7 +52,7 @@ Commands:
 ```
 
 If your Hanami app is defined in a file other than `config/app.rb`, you can set
-the environment variable `HANAMI_APP_PATH` to supply your custom file name:
+the environment variable `HANAMI_APP_PATH` to supply the file location:
 
 ```shell
 # On Linux/Mac:
