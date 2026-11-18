@@ -34,13 +34,13 @@ Structured JSON logging with error file and filters:
 ```ruby
 require "dry/logger"
 
+# Filters match anywhere in a key, so :token also
+# filters access_token, refresh_token, and so on.
 PRODUCTION_FILTERS = [
   :password,
   :api_key,
-  :secret_token,
-  :access_token,
-  :ssn,
-  :credit_card_number
+  :token,
+  :credit_card
 ].freeze
 
 logger = Dry.Logger(:my_app) do |setup|
@@ -79,14 +79,12 @@ Combine different formatters and filters for different log types:
 require "dry/logger"
 
 # Define filters for sensitive data
+# (:password also covers password_confirmation)
 FILTER_PARAMS = [
   :password,
-  :password_confirmation,
   :api_key,
-  :secret_token,
-  :access_token,
-  :ssn,
-  :credit_card_number
+  :token,
+  :credit_card
 ].freeze
 
 logger = Dry.Logger(:rails_app) do |setup|
@@ -149,20 +147,16 @@ require "dry/logger"
 
 # API-specific filters
 API_FILTERS = [
-  # Auth headers
+  # Auth headers (these also match headers.authorization)
   :authorization,
   :api_key,
-  "headers.authorization",
-  "headers.x-api-key",
+  "x-api-key",
 
-  # Request data
+  # Request and response data (:token also matches
+  # response.access_token and response.refresh_token)
   :password,
   :secret,
-  :token,
-
-  # Response data
-  "response.access_token",
-  "response.refresh_token"
+  :token
 ].freeze
 
 # Custom template for API requests
@@ -209,13 +203,12 @@ require "dry/logger"
 # PCI compliance filters
 PAYMENT_FILTERS = [
   # Card data (PCI DSS requirement)
+  # (these also match nested keys like payment.card_number)
   :card_number,
   :cvv,
   :cvc,
   :expiry,
   :card_holder,
-  "payment.card_number",
-  "payment.cvv",
 
   # Billing data
   :billing_address,
@@ -223,7 +216,6 @@ PAYMENT_FILTERS = [
   :routing_number,
 
   # Customer PII
-  :ssn,
   :tax_id,
   :email,
   :phone
@@ -328,7 +320,7 @@ def setup_logger(env)
 end
 
 def production_filters
-  [:password, :api_key, :secret_token, :ssn, :credit_card_number]
+  [:password, :api_key, :token, :credit_card]
 end
 
 logger = setup_logger(ENV.fetch("RACK_ENV", "development"))
