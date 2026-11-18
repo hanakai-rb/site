@@ -215,11 +215,11 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/dry/dry-logger/v1.1"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/dry/dry-logger/v1.2")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/dry/dry-logger/v1.3")
     end
 
     it "doesn't add canonical URL for latest self-versioned guides" do
-      visit "/learn/dry/dry-logger/v1.2"
+      visit "/learn/dry/dry-logger/v1.3"
 
       expect(page).not_to have_selector('link[rel="canonical"]', visible: false)
     end
