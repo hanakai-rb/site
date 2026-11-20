@@ -117,6 +117,37 @@ puts schema.call(email: '').errors(locale: :pl).to_h
 
 Important: I18n must be initialized before using a schema, `dry-schema` does not try to do it for you, it only sets its default error translations automatically.
 
+### Custom backends
+
+If neither `:yaml` nor `:i18n` fits your needs, you can give your own messages backend. This is useful when your app or framework manages its own translations, such as an isolated `I18n` instance per part of an app instead of the global `I18n` module.
+
+The simplest custom backend is a subclass of one of the built-in backends. Override the methods you need, then pass the class to `config.messages.backend`:
+
+```ruby
+class ShoutingMessages < Dry::Schema::Messages::YAML
+  def get(key, options = EMPTY_HASH)
+    result = super
+    result&.merge(text: result[:text].upcase)
+  end
+end
+
+schema = Dry::Schema.Params do
+  config.messages.backend = ShoutingMessages
+
+  required(:name).filled(:string)
+end
+
+schema.call(name: "").errors.to_h
+# => {name: ["MUST BE FILLED"]}
+```
+
+The backend can be any object that responds to `build(options)` and returns an object that implements the `Dry::Schema::Messages::Abstract` interface. Subclasses of `Dry::Schema::Messages::Abstract` already respond to `build`.
+
+`build` receives your schema's message settings, such as `load_paths`, `top_namespace` and `default_locale`. It receives only the settings defined on `Dry::Schema::Messages::Abstract`. If your subclass adds its own settings, they keep their defaults unless your subclass sets them. Your `config.messages.namespace` is still applied for you after the backend builds its messages.
+
+> [!NOTE]
+> Give the backend class (or builder object), not a messages instance. `config.messages.backend = ShoutingMessages.build` raises an error.
+
 ### Full messages
 
 By default, messages do not include a rule's name, if you want it to be included simply use `:full` option:

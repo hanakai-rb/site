@@ -55,6 +55,25 @@ UserSchema = Dry::Schema.Params do
 end
 ```
 
+This includes types that you combine with `|` (sum types) and `&` (intersection types). An intersection type requires the value to match both sides:
+
+```ruby
+module Types
+  include Dry::Types()
+
+  Body =
+    Types::Hash.schema(a: Types::String) &
+    (Types::Hash.schema(b: Types::String) | Types::Hash.schema(c: Types::String))
+end
+
+RequestSchema = Dry::Schema.Params do
+  required(:body).value(Types::Body)
+end
+
+RequestSchema.call(body: {a: "test", b: "value"}).success? # => true
+RequestSchema.call(body: {b: "value"}).errors.to_h # => {body: {a: ["is missing"]}}
+```
+
 ### Learn more
 
 - [Built-in predicates](//page/basics/built-in-predicates)

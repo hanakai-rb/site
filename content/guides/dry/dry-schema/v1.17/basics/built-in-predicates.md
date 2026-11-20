@@ -482,3 +482,24 @@ describe 'excluded_from?' do
   end
 end
 ```
+
+## UUIDs
+
+### `uuid_v1?` to `uuid_v8?`
+
+Checks that a string is a valid UUID of the given version. There is one predicate for each UUID version, from `uuid_v1?` to `uuid_v8?`.
+
+```ruby
+describe 'uuid_v7?' do
+  let(:schema) do
+    Dry::Schema.Params do
+      required(:sample).value(:string, :uuid_v7?)
+    end
+  end
+
+  it 'with dry-schema' do
+    assert schema.call(sample: '019a9f3e-8b2c-7d4e-9f10-1a2b3c4d5e6f').success?
+    assert schema.call(sample: '019a9f3e-8b2c-4d4e-9f10-1a2b3c4d5e6f').failure?
+  end
+end
+```
