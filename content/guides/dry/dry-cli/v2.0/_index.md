@@ -2,311 +2,151 @@
 title: Introduction
 pages:
   - commands
-  - subcommands
   - arguments
   - options
-  - variadic-arguments
-  - commands-with-subcommands-and-params
+  - subcommands
   - callbacks
+  - output-and-styling
+  - spinners
+  - errors-and-exit-codes
+  - dependencies
+  - invoking-commands
+  - testing
+  - upgrade-notes
 ---
 
-`dry-cli` is a general-purpose framework for developing Command Line Interface (CLI) applications. It represents commands as objects that can be registered and offers support for arguments, options and forwarding variadic arguments to a sub-command.
+Dry CLI is a general-purpose framework for building command line interface (CLI) applications. Each command is a class. You register your commands under names, and Dry CLI parses the command line, finds the right command, and calls it with its arguments and options.
+
+It also gives you help output, errors for invalid input, styled text, spinners, and ways to test your commands without running a real process.
+
+## Installation
+
+Add the gem to your `Gemfile`:
+
+```ruby
+gem "dry-cli", "~> 2.0"
+```
 
 ## Usage
 
-The following is an elaborate example showcasing most of the available features.
-
-Imagine you want to build a CLI executable `foo` for your Ruby project. The entire program is defined as below:
+Here's a small CLI, called `mycli`, with three commands:
 
 ```ruby
 #!/usr/bin/env ruby
 require "bundler/setup"
 require "dry/cli"
 
-module Foo
-  module CLI
-    module Commands
-      extend Dry::CLI::Registry
+module MyCLI
+  module Commands
+    extend Dry::CLI::Registry
 
-      class Version < Dry::CLI::Command
-        desc "Print version"
+    class Version < Dry::CLI::Command
+      desc "Print version"
 
-        def call(*)
-          puts "1.0.0"
-        end
-      end
-
-      class Echo < Dry::CLI::Command
-        desc "Print input"
-
-        argument :input, desc: "Input to print"
-
-        example [
-          "             # Prints 'wuh?'",
-          "hello, folks # Prints 'hello, folks'"
-        ]
-
-        def call(input: nil, **)
-          if input.nil?
-            puts "wuh?"
-          else
-            puts input
-          end
-        end
-      end
-
-      class Start < Dry::CLI::Command
-        desc "Start Foo machinery"
-
-        argument :root, required: true, desc: "Root directory"
-
-        example [
-          "path/to/root # Start Foo at root directory"
-        ]
-
-        def call(root:, **)
-          puts "started - root: #{root}"
-        end
-      end
-
-      class Stop < Dry::CLI::Command
-        desc "Stop Foo machinery"
-
-        option :graceful, type: :boolean, default: true, desc: "Graceful stop"
-
-        def call(**options)
-          puts "stopped - graceful: #{options.fetch(:graceful)}"
-        end
-      end
-
-      class Exec < Dry::CLI::Command
-        desc "Execute a task"
-
-        argument :task, type: :string, required: true,  desc: "Task to be executed"
-        argument :dirs, type: :array,  required: false, desc: "Optional directories"
-
-        def call(task:, dirs: [], **)
-          puts "exec - task: #{task}, dirs: #{dirs.inspect}"
-        end
-      end
-
-      class Completion < Dry::CLI::Command
-        desc "Generate completion"
-
-        option :shell, default: "bash", values: %w[bash zsh]
-
-        def call(shell:, **)
-          puts "generated completion - shell: #{shell}"
-        end
-      end
-
-      module Generate
-        class Configuration < Dry::CLI::Command
-          desc "Generate configuration"
-
-          option :apps, type: :array, default: [], aliases: ["-a"], desc: "Generate configuration for specific apps"
-
-          def call(apps:, **)
-            puts "generated configuration for apps: #{apps.inspect}"
-          end
-        end
-
-        class Test < Dry::CLI::Command
-          desc "Generate tests"
-
-          option :framework, default: "minitest", values: %w[minitest rspec]
-
-          def call(framework:, **)
-            puts "generated tests - framework: #{framework}"
-          end
-        end
-      end
-
-      register "version",    Version, aliases: ["v", "-v", "--version"]
-      register "echo",       Echo
-      register "start",      Start
-      register "stop",       Stop
-      register "exec",       Exec
-      register "completion", Completion, hidden: true
-
-      register "generate", aliases: ["g"] do |prefix|
-        prefix.register "config", Generate::Configuration
-        prefix.register "test",   Generate::Test
+      def call
+        puts "1.0.0"
       end
     end
+
+    class Echo < Dry::CLI::Command
+      desc "Print input"
+
+      argument :input, desc: "Input to print"
+
+      example "", "Prints '(nothing to echo)'"
+      example "hello, folks", "Prints 'hello, folks'"
+
+      def call(input: nil)
+        puts input || "(nothing to echo)"
+      end
+    end
+
+    class Start < Dry::CLI::Command
+      desc "Start the server"
+
+      argument :root, required: true, desc: "Root directory"
+      option :port, default: 2300, cast: ->(value) { Integer(value) }, desc: "Port to listen on"
+
+      def call(root:, port:)
+        puts "started - root: #{root}, port: #{port}"
+      end
+    end
+
+    register "version", Version, aliases: ["v", "-v", "--version"]
+    register "echo", Echo
+    register "start", Start
   end
 end
 
-Dry::CLI.new(Foo::CLI::Commands).call
+Dry::CLI.new(MyCLI::Commands).call
 ```
 
-### Available commands
+Run `mycli` with no arguments to see the available commands:
 
-With this code in place, we can now have a look at the command line usage by issuing the command `foo` without any arguments or options:
-
-```sh
-$ foo
+```shell
+$ mycli
 Commands:
-  foo echo [INPUT]                       # Print input
-  foo exec TASK [DIRS]                   # Execute a task
-  foo generate [SUBCOMMAND]
-  foo start ROOT                         # Start Foo machinery
-  foo stop                               # Stop Foo machinery
-  foo version                            # Print version
+  mycli echo [INPUT]           # Print input
+  mycli start ROOT             # Start the server
+  mycli version                # Print version
 ```
 
-You can choose to hide a command from the help output by setting the `hidden` option to `true` when registering the command.
+Every command gets a `--help` option:
 
-### Help
-
-It is also possible to get help for a particular command using the `--help` flag:
-
-```sh
-$ foo echo --help
+```shell
+$ mycli echo --help
 Command:
-  foo echo
+  mycli echo
 
 Usage:
-  foo echo [INPUT]
+  mycli echo [INPUT]
 
 Description:
   Print input
 
 Arguments:
-  INPUT                 # Input to print
+  INPUT                    # Input to print
 
 Options:
-  --help, -h                        # Print this help
+  --help, -h               # Print this help
 
 Examples:
-  foo echo              # Prints 'wuh?'
-  foo echo hello, folks # Prints 'hello, folks'
+  mycli echo               # Prints '(nothing to echo)'
+  mycli echo hello, folks  # Prints 'hello, folks'
 ```
 
-### Optional arguments
+Each command's `#call` receives its arguments and options as keyword arguments:
 
-A command can have optional arguments, which enables a default action in case nothing is provided:
+```shell
+$ mycli echo
+(nothing to echo)
 
-```sh
-$ foo echo
-wuh?
-
-$ foo echo hello
+$ mycli echo hello
 hello
-```
 
-### Required arguments
+$ mycli start . --port 3000
+started - root: ., port: 3000
 
-On the other hand, required arguments will throw an error if not provided:
-
-```sh
-$ foo start .
-started - root: .
-```
-
-```sh
-$ foo start
-ERROR: "foo start" was called with no arguments
-Usage: "foo start ROOT"
-```
-
-### Array arguments
-
-Captures all the remaining arguments in a single array.
-Please note that `array` argument must be used as the last argument, as it works as a _"catch-all"_.
-
-```sh
-$ foo exec test
-exec - task: test, dirs: []
-```
-
-```sh
-$ foo exec test spec/bookshelf/entities spec/bookshelf/repositories
-exec - task: test, dirs: ["spec/bookshelf/entities", "spec/bookshelf/repositories"]
-```
-
-### Options
-
-An option is a named argument that is passed after the command name and the arguments:
-
-```sh
-$ foo generate test
-generated tests - framework: minitest
-```
-
-```sh
-$ foo generate test --framework=rspec
-generated tests - framework: rspec
-```
-
-```sh
-$ foo generate test --framework=unknown
-ERROR: "foo generate test" was called with arguments "--framework=unknown"
-```
-
-### Boolean options
-
-Boolean options are flags that change the behaviour of a command:
-
-```sh
-$ foo stop
-stopped - graceful: true
-```
-
-```sh
-$ foo stop --no-graceful
-stopped - graceful: false
-```
-
-### Array options
-
-Array options are similar to arguments but must be named:
-
-```sh
-$ foo generate config --apps=web,api
-generated configuration for apps: ["web", "api"]
-```
-
-### Subcommands
-
-Subcommands are simply commands that have been registered under a nested path:
-
-```sh
-$ foo generate
-Commands:
-  foo generate config           # Generate configuration
-  foo generate test             # Generate tests
-```
-
-### Aliases
-
-Aliases are supported:
-
-```sh
-$ foo version
+$ mycli v
 1.0.0
 ```
 
-```sh
-$ foo v
-1.0.0
+When the input is wrong, Dry CLI prints an error and exits with status 1, without calling the command:
+
+```shell
+$ mycli start
+Error: missing required argument ROOT
+
+Usage: mycli start ROOT
+Run "mycli start --help" for more information.
+
+$ mycli start . --port nope
+Error: invalid value "nope" for --port: invalid value for Integer(): "nope"
+
+Usage: mycli start ROOT
+Run "mycli start --help" for more information.
 ```
 
-```sh
-$ foo -v
-1.0.0
-```
+From here, see [Commands](//page/commands) to learn how to write and register commands, then [Arguments](//page/arguments) and [Options](//page/options) for the input they take.
 
-```sh
-$ foo --version
-1.0.0
-```
-
-### Subcommand aliases
-
-Work similarly to command aliases
-
-```sh
-$ foo g config
-generated configuration for apps: []
-```
+If you're upgrading from Dry CLI 1.x, see the [upgrade notes](//page/upgrade-notes).

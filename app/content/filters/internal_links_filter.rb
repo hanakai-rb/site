@@ -53,7 +53,11 @@ module Site
           replacement_proc = internal_links[uri.host.to_sym]
           return url unless replacement_proc
 
-          replacement_proc&.call(uri.path)
+          # Only the path is transformed, so keep any query and fragment, such as "#some-heading".
+          rewritten = replacement_proc.call(uri.path)
+          rewritten += "?#{uri.query}" if uri.query
+          rewritten += "##{uri.fragment}" if uri.fragment
+          rewritten
         end
 
         def internal_links = context[:internal_links]
