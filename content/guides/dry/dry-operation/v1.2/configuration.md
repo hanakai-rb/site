@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-By default, dry-operation automatically wraps the `#call` method of your operations with failure tracking and [error handling](//page/error-handling). This is what allows you to use `#step` directly in your `#call` method.
+By default, Dry Operation automatically wraps the `#call` method of your operations with failure tracking and [error handling](//page/error-handling). This is what allows you to use `#step` directly in your `#call` method.
 
 ```ruby
 class CreateUser < Dry::Operation

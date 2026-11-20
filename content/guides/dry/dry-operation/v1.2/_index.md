@@ -3,19 +3,25 @@ title: Introduction
 pages:
   - error-handling
   - configuration
-  - extensions
+  - extensions:
+      - validation
+      - rom
+      - sequel
+      - active-record
+  - other-monads
   - design-pattern
+  - migrating-from-dry-transaction
 ---
 
-dry-operation provides an expressive and flexible way for you to model your app's business operations. It provides a lightweight DSL around [dry-monads](//org_guide/dry/dry-monads), which allows you to chain together steps and operations with a focus on the happy path, while elegantly handling failures.
+Dry Operation provides an expressive and flexible way for you to model your app's business operations. It provides a lightweight DSL around [Dry Monads](//org_guide/dry/dry-monads), which allows you to chain together steps and operations with a focus on the happy path, while elegantly handling failures.
 
 ## Introduction
 
-In complex business logic, it's common to have a series of operations that depend on each other. Traditionally, this leads to deeply nested conditional statements or a series of guard clauses. dry-operation provides a more elegant solution by allowing you to define a linear flow of operations, automatically short-circuiting on failure.
+In complex business logic, it's common to have a series of operations that depend on each other. Traditionally, this leads to deeply nested conditional statements or a series of guard clauses. Dry Operation provides a more elegant solution by allowing you to define a linear flow of operations, automatically short-circuiting on failure.
 
 ## Basic usage
 
-To use dry-operation, create a class that inherits from `Dry::Operation` and define your flow in the `#call` method:
+To use Dry Operation, create a class that inherits from `Dry::Operation` and define your flow in the `#call` method:
 
 ```ruby
 class CreateUser < Dry::Operation
@@ -42,7 +48,7 @@ class CreateUser < Dry::Operation
 end
 ```
 
-Each step (`validate`, `persist`, `notify`) is expected to return either a `Success` or `Failure` from [dry-monads](//org_guide/dry/dry-monads).
+Each step (`validate`, `persist`, `notify`) is expected to return either a `Success` or `Failure` from [Dry Monads](//org_guide/dry/dry-monads).
 
 ## The step method
 
@@ -52,6 +58,8 @@ The `#step` method is the core of `Dry::Operation`. It does two main things:
 - If the result is a `Failure`, it short-circuits the operation and returns the failure.
 
 This behavior allows you to write your happy path in a linear fashion, without worrying about handling failures at each step.
+
+You can also pass to `#step` other objects that respond to `#to_result`, such as the `Maybe`, `Try` and `Validated` monads. `#step` converts these to a `Result` first. See [Other monads](//page/other-monads) for more.
 
 ## The call method
 
@@ -109,4 +117,4 @@ end
 
 This pattern matching allows you to handle different types of failures in a clear and explicit manner.
 
-You can read more about dry-monads' `Result` usage in the [dry-monads documentation](//org_guide/dry/dry-monads/result).
+You can read more about Dry Monads' `Result` usage in the [Dry Monads documentation](//org_guide/dry/dry-monads/result).

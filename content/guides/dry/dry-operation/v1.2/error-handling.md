@@ -2,7 +2,7 @@
 title: Error Handling
 ---
 
-When using dry-operation, errors are handled through the `Failure` type from [dry-monads](//org_guide/dry/dry-monads). Each step in your operation should return either a `Success` or `Failure` result. When a step returns a `Failure`, the operation short-circuits, skipping the remaining steps and returning the failure immediately.
+When using Dry Operation, errors are handled through the `Failure` type from [Dry Monads](//org_guide/dry/dry-monads). Each step in your operation should return either a `Success` or `Failure` result. When a step returns a `Failure`, the operation short-circuits, skipping the remaining steps and returning the failure immediately.
 
 You'll usually handle the failure from the call site, where you can pattern match on the result to handle success and failure cases. However, sometimes it's useful to encapsulate some error handling logic within the operation itself.
 
@@ -32,7 +32,7 @@ class CreateUser < Dry::Operation
 end
 ```
 
-The `#on_failure` method can optionally accept a second argument: the name of the wrapped method that encountered the failure. This is the method dry-operation prepended around (`:call` by default), not the inner `#step` whose result was a `Failure`. This can be useful when you've configured additional wrapped methods with [`.operate_on`](//page/configuration) and want to handle their failures differently:
+The `#on_failure` method can optionally accept a second argument: the name of the wrapped method that encountered the failure. This is the method Dry Operation prepended around (`:call` by default), not the inner `#step` whose result was a `Failure`. This can be useful when you've configured additional wrapped methods with [`.operate_on`](//page/configuration) and want to handle their failures differently:
 
 ```ruby
 class CreateUser < Dry::Operation
