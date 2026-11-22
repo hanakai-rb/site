@@ -35,4 +35,13 @@ RSpec.feature "Blog" do
 
     expect(page).to have_selector ".content"
   end
+
+  it "transforms //org_guide links in post content into versionless cross-org paths" do
+    visit "/blog/2019/10/03/introducing-dry-effects"
+
+    within ".content" do
+      # In the markdown, this is linked as "//org_guide/dry/dry-effects"
+      expect(page).to have_link "docs", href: "/learn/dry/dry-effects"
+    end
+  end
 end
