@@ -5,7 +5,7 @@ author: Peter Solnica
 org: dry
 ---
 
-What a busy week! New versions of [dry-types](//org_guide/dry/dry-types) and [dry-validation](//org_guide/dry/dry-types) have been released and there are really exciting new features awaiting for you. We're also very excited to see [Trailblazer](http://trailblazer.to) adopting some dry-rb libraries - Reform will soon support latest dry-validation, and Disposable has already replaced Virtus with dry-types for its coercion functionality.
+What a busy week! New versions of [dry-types](/learn/dry/dry-types) and [dry-validation](/learn/dry/dry-validation) have been released and there are really exciting new features awaiting for you. We're also very excited to see [Trailblazer](http://trailblazer.to) adopting some dry-rb libraries - Reform will soon support latest dry-validation, and Disposable has already replaced Virtus with dry-types for its coercion functionality.
 
 ## New dry-validation features
 

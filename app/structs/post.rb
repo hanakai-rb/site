@@ -61,7 +61,6 @@ module Site
             Content::Filters::SanitizeHeadingAnchorsFilter.new,
             Content::Filters::LinkableHeadingsFilter.new,
             Content::Filters::ImageDimensionsFilter.new,
-            Content::Filters::InternalLinksFilter.new,
             Content::Filters::TableWrapperFilter.new,
             Content::Filters::PreWrapperFilter.new
           ],
@@ -75,12 +74,7 @@ module Site
       def content_data
         @content_data ||= ContentPipeline.call(
           content_md,
-          context: {
-            image_paths: Site::ContentFileMiddleware.url_to_path,
-            # Posts aren't scoped to a guide or version, so only versionless
-            # cross-org links are supported (//org_guide/org-slug/...).
-            internal_links: {org_guide: ->(path) { "/learn#{path}" }}
-          }
+          context: {image_paths: Site::ContentFileMiddleware.url_to_path}
         )
       end
     end
