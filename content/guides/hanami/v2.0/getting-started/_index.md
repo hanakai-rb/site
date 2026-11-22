@@ -761,7 +761,7 @@ end
 ```
 
 <p class="convention">
-  Accessing relations directly from actions is not a commonly recommended pattern. Instead, a <a href="https://hanakai.org/learn/rom/v5.0/repositories/quick-start/">rom repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
+  Accessing relations directly from actions is not a commonly recommended pattern. Instead, a <a href="//org_guide/rom/v5.0/repositories/quick-start/">rom repository</a> should be used. Here, however, the repository is ommitted for brevity. Hanami's 2.2 release will offer repositories out of the box.
 </p>
 
 With this action in place, the spec passes once more:

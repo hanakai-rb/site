@@ -15,7 +15,7 @@ Above all else ROM favors:
 - **Speed**, because performance is a _feature_
 - **Flexibility** in your domain layer's design
 
-[ROM: Principles & Design](https://hanakai.org/learn/rom/v5.0/getting-started#principles-and-design)
+[ROM: Principles & Design](//org_guide/rom/v5.0/getting-started#principles-and-design)
 
 </blockquote>
 
@@ -115,7 +115,7 @@ end
 
 If the rest of your business logic treats the identity as an opaque string, then you’re done. The encapsulation afforded by Repository restricts the knowledge of the persistence layer from where it does not belong.
 
-For more on Repositories, see [ROM: Repositories](https://hanakai.org/learn/rom/repositories)
+For more on Repositories, see [ROM: Repositories](//org_guide/rom/repositories)
 
 ## Structs
 
