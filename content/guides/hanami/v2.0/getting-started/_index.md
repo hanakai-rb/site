@@ -451,7 +451,7 @@ Of course, returning a static list of books is not particularly useful.
 Let's address this by retrieving books from a database.
 
 <p class="notice">
-  Integrated support for persistence based on <a href="https://hanakai.org/rom/">rom-rb</a> is coming in Hanami's 2.2 release. For now, we can bring our own simple rom-rb configuration to allow us to store books in a database.
+  Integrated support for persistence based on <a href="/rom">rom-rb</a> is coming in Hanami's 2.2 release. For now, we can bring our own simple rom-rb configuration to allow us to store books in a database.
 </p>
 
 ### Adding persistence using rom-rb

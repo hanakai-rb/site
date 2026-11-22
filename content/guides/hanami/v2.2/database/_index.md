@@ -6,9 +6,9 @@ pages:
   - relations
 ---
 
-Hanami’s persistence layer is based on the [Ruby Object Mapper (ROM)](https://hanakai.org/rom/) project. ROM may be a radically different approach to persistence than what you're familiar with, but don’t let that scare you. ROM is designed to provide clear separation of responsibilities. The hardest part is shifting your perspective to think in a new paradigm.
+Hanami’s persistence layer is based on the [Ruby Object Mapper (ROM)](/rom) project. ROM may be a radically different approach to persistence than what you're familiar with, but don’t let that scare you. ROM is designed to provide clear separation of responsibilities. The hardest part is shifting your perspective to think in a new paradigm.
 
-<blockquote cite="https://hanakai.org/learn/rom/" class="quote">
+<blockquote cite="/learn/rom" class="quote">
 Above all else ROM favors:
 
 - **Explicitness** over "magic" whenever possible
