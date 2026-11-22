@@ -49,7 +49,7 @@ run Hanami.app
 
 Purely as an exercise, we can explore both preparing and booting by starting `irb` in a directory containing a Hanami project. This is not something that's needed in day to day development with Hanami - it's useful here as a demonstration of the booting behaviour.
 
-Assuming we have run `hanami new bookshelf` to generate a new app (see [Getting started](//guide/introduction) for a full guide to creating your first Hanami application), let's create a hello world component in `app/hello_world.rb`:
+Assuming we have run `hanami new bookshelf` to generate a new app (see [Getting started](//guide/getting-started) for a full guide to creating your first Hanami application), let's create a hello world component in `app/hello_world.rb`:
 
 ```ruby
 # app/hello_world.rb
