@@ -638,14 +638,15 @@ module Bookshelf
         end
 
         def handle(request, response)
+          response.format = :json
+
           if request.params.valid?
             book = book_repo.create(request.params[:book])
 
             response.status = 201
-            response.body = book.to_json
+            response.body = book.to_h.to_json
           else
             response.status = 422
-            response.format = :json
             response.body = request.params.errors.to_json
           end
         end
