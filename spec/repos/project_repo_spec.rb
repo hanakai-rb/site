@@ -18,7 +18,7 @@ RSpec.describe Site::Repos::ProjectRepo do
   describe "#rom_projects" do
     it "includes rom repos" do
       repo = described_class.new
-      expect(repo.rom_projects.map(&:repo)).to include "rom-rb/rom-sql"
+      expect(repo.rom_projects.map(&:repo)).to include "hanakai-rb/rom-sql"
     end
   end
 end
