@@ -23,15 +23,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
 
       - name: Create version
         run: |
           # Inputs
-          GEM_NAME="${{ inputs.gem_name }}"
-          VERSION="${{ inputs.version }}"
+          GEM_NAME="${INPUTS_GEM_NAME}"
+          VERSION="${INPUTS_VERSION}"
 
           # Extract major.minor version (e.g., v1.1.0 -> v1.1)
           VERSION_DIR=$(echo $VERSION | cut -d. -f1-2)
@@ -68,3 +69,6 @@ jobs:
           git push origin main
 
           echo "Successfully created ${GEM_NAME} ${VERSION_DIR} guide"
+        env:
+          INPUTS_GEM_NAME: ${{ inputs.gem_name }}
+          INPUTS_VERSION: ${{ inputs.version }}
