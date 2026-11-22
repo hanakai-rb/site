@@ -46,8 +46,8 @@ files.write("path/to/file", "Hello, World!") # create an in-memory file
 
 Checkout the [docs][docs] and the [CHANGELOG][changelog] to know more. Enjoy!
 
-[dry]: https://dry-rb.org
-[rom]: https://rom-rb.org
+[dry]: /dry
+[rom]: /rom
 [hanami]: https://hanamirb.org
-[docs]: https://dry-rb.org/gems/dry-files
+[docs]: /learn/dry/dry-files
 [changelog]: https://github.com/dry-rb/dry-files/releases/tag/v0.1.0

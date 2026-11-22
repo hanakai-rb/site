@@ -75,7 +75,7 @@ Types::Params::Date
 Types::Params::Time
 ```
 
-These types are provided by [dry-types](https://dry-rb.org/gems/dry-types), and the `Types` module is generated for you automatically when you subclass `Hanami::Settings`.
+These types are provided by [dry-types](//org_guide/dry/dry-types), and the `Types` module is generated for you automatically when you subclass `Hanami::Settings`.
 
 ## Required and optional settings
 
@@ -146,7 +146,7 @@ end
 
 ## Constraints
 
-To enforce additional contraints on settings, you can use a [constraint](https://dry-rb.org/gems/dry-types/1.2/constraints/) in your constructor type.
+To enforce additional contraints on settings, you can use a [constraint](//org_guide/dry/dry-types/constraints) in your constructor type.
 
 Here, the value of the `session_secret` must be at least 32 characters, while the value of the `from_email` setting must satisfy the EMAIL_FORMAT regular expression:
 

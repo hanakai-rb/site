@@ -203,7 +203,7 @@ end
 
 These methods are deprecated because they did not make it clear that configuring a format would immediately restrict requests based on that format, and conflated the registration of custom MIME types with immediately restricting based on those types, and did not allow for the default response format to be independently configured. This led to unexpected behaviors and made it difficult configure formats in the app or base action classes.
 
-The new format config API is documented in [Formats and MIME types](/v2.3/actions/formats-and-mime-types). To use it, make the following changes wherever you configure your actions (in your app class using `config.actions`, or directly in your action classes using `config` or `format`).
+The new format config API is documented in [Formats and MIME types](//guide/actions/formats-and-media-types). To use it, make the following changes wherever you configure your actions (in your app class using `config.actions`, or directly in your action classes using `config` or `format`).
 
 Change `format` and `config.format` to `config.formats.accept`. For example:
 

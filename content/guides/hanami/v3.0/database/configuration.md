@@ -40,7 +40,7 @@ DATABASE_URL=postgres://localhost/bookshelf_development
 DATABASE_URL=mysql2://user:password@localhost/bookshelf_dev
 ```
 
-For more detail on the syntax of the URLs, see [ROM SQL: Connecting to a Database](https://rom-rb.org/learn/sql/#connecting-to-a-database)
+For more detail on the syntax of the URLs, see [ROM SQL: Connecting to a Database](//org_guide/rom/sql#connecting-to-a-database)
 
 ## Advanced Configuration
 
@@ -94,10 +94,6 @@ end
 ```
 
 More on [Sequel Extensions](http://sequel.jeremyevans.net/rdoc/files/doc/extensions_rdoc.html)
-
-## Query logging
-
-Hanami logs every SQL query your app runs. Query logging has its own log level, `config.db.log_level` (defaulting to `:debug`), which is separate from the rest of your app's logging. For the full details — including the separate log level, SQL syntax highlighting, and customizing the highlighting theme — see [Database logging](//guide/logger/database-logging) in the logger guide.
 
 ## Slice Configuration
 

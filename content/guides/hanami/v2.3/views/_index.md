@@ -19,7 +19,7 @@ Hanami provides a complete view system for rendering HTML, JSON and other format
 In addition to helpers, templates and partials, features like exposures, parts and contexts provide a comprehensive toolset for well-architected view code.
 
 > [!NOTE]
-> For a guided walk-through of Hanami with some example use of views, be sure to check out the [Getting Started Guide](//guide/introduction).
+> For a guided walk-through of Hanami with some example use of views, be sure to check out the [Getting Started Guide](//guide/getting-started).
 
 ## Introduction
 

@@ -111,6 +111,18 @@ RSpec.feature "Guides / Guide pages" do
     end
   end
 
+  it "transforms //org_guide links, preserving fragments, into versionless cross-org paths" do
+    visit "/learn/hanami/v2.2/database/configuration"
+
+    within ".content" do
+      # In the markdown, this is linked as "//org_guide/rom/sql#connecting-to-a-database"
+      expect(page).to have_link(
+        "ROM SQL: Connecting to a Database",
+        href: "/learn/rom/sql#connecting-to-a-database"
+      )
+    end
+  end
+
   it "renders next nav link to next page in the same guide" do
     visit "/learn/hanami/v2.2/getting-started"
     within "nav[aria-label='Pagination']" do

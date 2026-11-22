@@ -2,7 +2,7 @@
 title: Container
 ---
 
-`Dry::Core::Container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//org_guide/dry/dry-auto_inject). It used to be a separate gem ([Dry Container](//org_guide/dry/dry_container)) and it powers containers in [Dry System](/learn/dry/dry-system/v1.2/container).
+`Dry::Core::Container` is a simple, thread-safe container, intended to be one half of a dependency injection system, possibly in combination with [dry-auto_inject](//org_guide/dry/dry-auto_inject). It used to be a separate gem ([Dry Container](//org_guide/dry/dry-container)) and it powers containers in [Dry System](/learn/dry/dry-system/v1.2/container).
 
 ### Brief Example
 

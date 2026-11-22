@@ -2,7 +2,7 @@
 title: ROM
 ---
 
-The `ROM` extension adds transaction support to your operations when working with the [ROM](https://rom-rb.org) database persistence toolkit. When a step returns a `Failure`, the transaction will automatically roll back, ensuring data consistency.
+The `ROM` extension adds transaction support to your operations when working with the [ROM](/rom) database persistence toolkit. When a step returns a `Failure`, the transaction will automatically roll back, ensuring data consistency.
 
 First, make sure you have rom-sql installed:
 

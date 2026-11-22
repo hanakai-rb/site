@@ -155,4 +155,4 @@ offset.location.parameter == offset # true
 ```
 
 [dry-types]: https://github.com/dry-rb/dry-types
-[dry-types-docs]: http://dry-rb.org/gems/dry-types/
+[dry-types-docs]: //org_guide/dry/dry-types/
