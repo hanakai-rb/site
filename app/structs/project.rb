@@ -17,7 +17,7 @@ module Site
           :dry
         in "hanami"
           :hanami
-        in "rom-rb"
+        in "hanakai-rb" if label.start_with?("rom")
           :rom
         else
           nil
