@@ -14,7 +14,7 @@ pages:
 
 ROM supports SQL databases via the <code>rom-sql</code> adapter which augments and enhances `Relation`. <code>rom-sql</code> supports a sql-specific query DSL and association macros that simplify constructing joins and exposes the flexibility & power of the RDMS to relation users.
 
-Direct interactions between the database and ROM happen through the use of the excellent [Sequel](http://sequel.jeremyevans.net/) gem by Jeremy Evans. However, Sequel is an implementation detail of ROM and as such should not be relied upon for functionality. If <code>rom-sql</code> is missing functionality that can be accomplished in Sequel then please leave a report in our [issue tracker](https://github.com/rom-rb/rom-rb.org/issues).
+Direct interactions between the database and ROM happen through the use of the excellent [Sequel](http://sequel.jeremyevans.net/) gem by Jeremy Evans. However, Sequel is an implementation detail of ROM and as such should not be relied upon for functionality. If <code>rom-sql</code> is missing functionality that can be accomplished in Sequel then please leave a report in our [issue tracker](https://github.com/rom-rb/rom-sql/issues).
 
 > [!NOTE]
 > The SQL Adapter documentation is still being created & revised. If something isn't documented or requires more information, please click the "Provide Feedback" buttons at the bottom of the pages and let us know. In the mean time you may need to look towards [Sequel's](http://sequel.jeremyevans.net/documentation.html) Databases & Datasets documentation for further guidance.

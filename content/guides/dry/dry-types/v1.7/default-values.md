@@ -49,9 +49,9 @@ CallableDateTime[]
 **Be careful:** types will return the **same instance** of the default value every time. This may cause problems if you mutate the returned value after receiving it:
 
 ```ruby
-default_0 = PostStatus.()
+default_0 = PostStatus.call()
 # => "draft"
-default_1 = PostStatus.()
+default_1 = PostStatus.call()
 # => "draft"
 
 # Both variables point to the same string:
@@ -60,7 +60,7 @@ default_0.object_id == default_1.object_id
 
 # Mutating the string will change the default value of type:
 default_0 << '_mutated'
-PostStatus.(nil)
+PostStatus.call(nil)
 # => "draft_mutated" # not "draft"
 ```
 
@@ -68,7 +68,7 @@ You can guard against these kind of errors by calling `freeze` when setting the 
 
 ```ruby
 PostStatus = Types::Params::String.default('draft'.freeze)
-default = PostStatus.()
+default = PostStatus.call()
 default << 'attempt to mutate default'
 # => RuntimeError: can't modify frozen string
 

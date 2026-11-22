@@ -6,7 +6,7 @@ module Site
       class Show < Site::View
         include Deps["repos.post_repo", "repos.team_member_repo"]
 
-        expose :post do |permalink:|
+        decorate :post do |permalink:|
           post_repo.get(permalink)
         end
 
@@ -14,7 +14,7 @@ module Site
           team_member_repo.find_by_name(post.author) if post.author
         end
 
-        expose :org, decorate: false do |post|
+        expose :org do |post|
           post.org
         end
       end

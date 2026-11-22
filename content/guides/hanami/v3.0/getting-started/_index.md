@@ -75,12 +75,14 @@ $ tree --gitignore --filesfirst .
 ├── Gemfile
 ├── Gemfile.lock
 ├── Guardfile
+├── package-lock.json
 ├── package.json
 ├── Procfile.dev
 ├── Rakefile
 ├── README.md
 ├── app
 │   ├── action.rb
+│   ├── mailer.rb
 │   ├── operation.rb
 │   ├── view.rb
 │   ├── actions
@@ -95,6 +97,7 @@ $ tree --gitignore --filesfirst .
 │   │   ├── relation.rb
 │   │   ├── repo.rb
 │   │   └── struct.rb
+│   ├── mailers
 │   ├── relations
 │   ├── repos
 │   ├── structs
@@ -115,14 +118,17 @@ $ tree --gitignore --filesfirst .
 │   ├── puma.rb
 │   ├── routes.rb
 │   ├── settings.rb
-│   └── db
-│       ├── seeds.rb
-│       └── migrate
+│   ├── db
+│   │   ├── seeds.rb
+│   │   └── migrate
+│   └── i18n
+│       └── en.yml
 ├── db
 ├── lib
 │   ├── bookshelf
 │   │   └── types.rb
 │   └── tasks
+├── log
 ├── public
 │   ├── 404.html
 │   └── 500.html
@@ -139,7 +145,7 @@ $ tree --gitignore --filesfirst .
         └── db
             └── cleaning.rb
 
-27 directories, 41 files
+30 directories, 44 files
 ```
 
 Here's how these files and directories are used:

@@ -174,7 +174,7 @@ Now let's see it in action:
 ```ruby
 contract = NewSongContract.new
 
-contract.(artist: "Queen", title: "Bohemian Rhapsody", tags: ["rock", 123, "ab"]).errors.to_h
+contract.call(artist: "Queen", title: "Bohemian Rhapsody", tags: ["rock", 123, "ab"]).errors.to_h
 # => {:tags=>{1=>["must be a string"], 2=>["tag length must be at least 3"]}
 ```
 

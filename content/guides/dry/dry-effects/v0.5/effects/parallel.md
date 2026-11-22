@@ -15,7 +15,7 @@ class MakeRequests
 
   def call(urls)
     # Run every request in parallel and combine their results
-    urls.map { |url| par { make_request.(url) } }.then { |pars| join(pars) }
+    urls.map { |url| par { make_request.call(url) } }.then { |pars| join(pars) }
   end
 end
 ```

@@ -171,13 +171,13 @@ These assumptions tend to hold true for typically organised projects, and they e
 
 ##### The root namespace may be explicitly configured
 
-There may be cases where you want different namespace rules to apply when loading components from the root of the component dir. To support this, you can configure the root namespace explicitly via `namespaces.root`.
+There may be cases where you want different namespace rules to apply when loading components from the root of the component dir. To support this, you can configure the root namespace explicitly via `namespaces.add_root`.
 
 In this example, files in `lib/` are all expected to provide class constants in the `Admin` namespace:
 
 ```ruby
 config.component_dirs.add "lib" do |dir|
-  dir.namespaces.root const: "admin"
+  dir.namespaces.add_root const: "admin"
 end
 ```
 

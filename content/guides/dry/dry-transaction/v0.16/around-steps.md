@@ -19,7 +19,7 @@ class MyContainer
 
     begin
       MyDB.transaction do
-        result = block.(Success(input))
+        result = block.call(Success(input))
         raise MyDB::Rollback if result.failure?
         result
       end

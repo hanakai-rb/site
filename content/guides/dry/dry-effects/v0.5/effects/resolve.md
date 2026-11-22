@@ -35,7 +35,7 @@ RSpec.describe CreateUser do
       name: 'John Doe'
     )
 
-    provide(user_repo: user_repo) { create_user.(first_name: 'John', last_name: 'Doe') }
+    provide(user_repo: user_repo) { create_user.call(first_name: 'John', last_name: 'Doe') }
   end
 end
 ```
@@ -52,7 +52,7 @@ class ProviderMiddleware
   end
 
   def call(env)
-    provide(@dependencies) { @app.(env) }
+    provide(@dependencies) { @app.call(env) }
   end
 end
 ```
@@ -73,7 +73,7 @@ Any object that responds to `.key?` and `.[]` can be used for providing dependen
 ```ruby
 def call(env)
   # Assuming App is a subclass of Dry::System::Container
-  provide(App) { @app.(env) }
+  provide(App) { @app.call(env) }
 end
 ```
 
@@ -91,7 +91,7 @@ class ProviderMiddleware
 
   def call(env)
     # Here Application will be used for resolving dependencies
-    provide { @app.(env) }
+    provide { @app.call(env) }
   end
 end
 ```
@@ -112,7 +112,7 @@ class CreateUser
   )
 
   def call(values)
-    result = schema.(values)
+    result = schema.call(values)
 
     if result.success?
       user = repo.create(result.to_h)
@@ -139,7 +139,7 @@ class ProviderMiddleware
   end
 
   def call(env)
-    provide(Application, overridable: overridable?) { @app.(env) }
+    provide(Application, overridable: overridable?) { @app.call(env) }
   end
 
   def overridable?

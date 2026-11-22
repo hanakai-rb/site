@@ -17,7 +17,7 @@ UserSchema = Dry::Schema.Params do
   required(:address).hash(AddressSchema)
 end
 
-UserSchema.(
+UserSchema.call(
   email: 'jane@doe',
   name: 'Jane',
   address: { street: nil, city: 'NYC', zipcode: '123' }

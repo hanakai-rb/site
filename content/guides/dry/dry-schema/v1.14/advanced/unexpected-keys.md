@@ -46,7 +46,7 @@ input = {
   roles: [{ name: 'admin' }, { name: 'editor', foo: 'unexpected' }]
 }
 
-UserSchema.(input).errors.to_h
+UserSchema.call(input).errors.to_h
 # {
 #  :foo=>["is not allowed"],
 #  :address=>{:bar=>["is not allowed"]},

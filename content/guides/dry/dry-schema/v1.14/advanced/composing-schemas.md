@@ -32,13 +32,13 @@ User = Dry::Schema.JSON do
   required(:role).hash(Role & Expirable)
 end
 
-puts User.(name: "Jane", role: { id: "admin", expires_on: "2020-05-01" }).errors.to_h.inspect
+puts User.call(name: "Jane", role: { id: "admin", expires_on: "2020-05-01" }).errors.to_h.inspect
 # {}
 
-puts User.(name: "Jane", role: { id: "", expires_on: "2020-05-01" }).errors.to_h.inspect
+puts User.call(name: "Jane", role: { id: "", expires_on: "2020-05-01" }).errors.to_h.inspect
 # {role: {id: ["must be filled"]}}
 
-puts User.(name: "Jane", role: { id: "admin", expires_on: "oops" }).errors.to_h.inspect
+puts User.call(name: "Jane", role: { id: "admin", expires_on: "oops" }).errors.to_h.inspect
 # {role: {expires_on: ["must be a date"]}}
 ```
 
@@ -60,15 +60,15 @@ User = Dry::Schema.JSON do
   required(:role).hash(RoleID | RoleTitle)
 end
 
-puts User.(name: "Jane", role: {id: "admin"}).errors.to_h.inspect
+puts User.call(name: "Jane", role: {id: "admin"}).errors.to_h.inspect
 # {}
 
-puts User.(name: "Jane", role: {title: "Admin"}).errors.to_h.inspect
+puts User.call(name: "Jane", role: {title: "Admin"}).errors.to_h.inspect
 
-puts User.(name: "Jane", role: { id: ""}).errors.to_h.inspect
+puts User.call(name: "Jane", role: { id: ""}).errors.to_h.inspect
 # {:role=>{:or=>[{:id=>["must be filled"]}, {:title=>["is missing"]}]}}
 
-puts User.(name: "Jane", role: { title: ""}).errors.to_h.inspect
+puts User.call(name: "Jane", role: { title: ""}).errors.to_h.inspect
 # {:role=>{:or=>[{:id=>["is missing"]}, {:title=>["must be filled"]}]}}
 ```
 
@@ -90,15 +90,15 @@ User = Dry::Schema.JSON do
   required(:role).hash(RoleID > RoleTitle)
 end
 
-puts User.(name: "Jane", role: {id: "admin", title: "Admin"}).errors.to_h.inspect
+puts User.call(name: "Jane", role: {id: "admin", title: "Admin"}).errors.to_h.inspect
 # {}
 
-puts User.(name: "Jane", role: { id: ""}).errors.to_h.inspect
+puts User.call(name: "Jane", role: { id: ""}).errors.to_h.inspect
 # {}
 
-puts User.(name: "Jane", role: {title: "Admin"}).errors.to_h.inspect
+puts User.call(name: "Jane", role: {title: "Admin"}).errors.to_h.inspect
 # {}
 
-puts User.(name: "Jane", role: { id: "admin", title: ""}).errors.to_h.inspect
+puts User.call(name: "Jane", role: { id: "admin", title: ""}).errors.to_h.inspect
 # {:role=>{:title=>["must be filled"]}}
 ```

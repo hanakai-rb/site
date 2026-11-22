@@ -82,6 +82,17 @@ RSpec.feature "Guides / Guide pages" do
     end
   end
 
+  it "does not duplicate the current self-versioned guide in the sidebar" do
+    visit "/learn/dry/dry-monads/v1.8/try"
+
+    guide_names = page.find_all("ol[data-testid='guides-list'] > li > div").map { |div|
+      div.text.gsub(/\s+/, " ").strip
+    }
+
+    expect(guide_names.count("Dry Monads")).to eq(1)
+    expect(guide_names).to include("Dry Monitor")
+  end
+
   it "replaces //page URLs with URLs within the current guide and version" do
     visit "/learn/hanami/v2.2/actions"
 
@@ -184,18 +195,18 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/hanami/v2.0/getting-started"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v2.3/getting-started")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v3.0/getting-started")
     end
 
     it "adds canonical URL to old org-versioned guide pages" do
       visit "/learn/hanami/v2.0/actions/parameters"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v2.3/actions/parameters")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/hanami/v3.0/actions/parameters")
     end
 
     it "doesn't add canonical URL for latest org-versioned guides" do
-      visit "/learn/hanami/v2.3/getting-started"
+      visit "/learn/hanami/v3.0/getting-started"
 
       expect(page).not_to have_selector('link[rel="canonical"]', visible: false)
     end
@@ -204,11 +215,11 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/dry/dry-logger/v1.1"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/dry/dry-logger/v1.2")
+      expect(canonical_tag[:href]).to eq("https://hanakai.org/learn/dry/dry-logger/v1.3")
     end
 
     it "doesn't add canonical URL for latest self-versioned guides" do
-      visit "/learn/dry/dry-logger/v1.2"
+      visit "/learn/dry/dry-logger/v1.3"
 
       expect(page).not_to have_selector('link[rel="canonical"]', visible: false)
     end
@@ -217,7 +228,7 @@ RSpec.feature "Guides / Guide pages" do
       visit "/learn/hanami/v2.1/getting-started"
 
       canonical_tag = page.find('link[rel="canonical"]', visible: false)
-      expect(canonical_tag[:href]).to start_with("https://hanakai.org/learn/hanami/v2.3/")
+      expect(canonical_tag[:href]).to start_with("https://hanakai.org/learn/hanami/v3.0/")
     end
   end
 end

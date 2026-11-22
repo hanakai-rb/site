@@ -22,7 +22,7 @@ end
 # And now `MyOperation#call` offers the matcher block API
 operation = MyOperation.new
 
-operation.() do |m|
+operation.call() do |m|
   # Use the matcher's API here
 end
 ```

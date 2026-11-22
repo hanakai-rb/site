@@ -214,7 +214,7 @@ class PersonContract < Dry::Validation::Contract
   end
 end
 
-PersonContract.new.(email: nil, name: 'foo').errors.to_h
+PersonContract.new.call(email: nil, name: 'foo').errors.to_h
 # { email: ['must be a string'], name: ['first introduce a valid email'] }
 ```
 
@@ -232,7 +232,7 @@ class FooContract < Dry::Validation::Contract
   end
 end
 
-FooContract.new.(foo: 'foo').errors.to_h
+FooContract.new.call(foo: 'foo').errors.to_h
 # { foo: ['failure added', 'failure added after checking'] }
 ```
 

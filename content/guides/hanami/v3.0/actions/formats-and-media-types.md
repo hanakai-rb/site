@@ -118,9 +118,38 @@ module Bookshelf
 end
 ```
 
+## Responding to multiple formats
+
+When an action accepts more than one format, the response format is negotiated from the request's `Accept` header before `#handle` runs, and made available on `response.format`. Inside your action, you can branch on it with a `case` expression to prepare a response appropriate to the negotiated format.
+
+```ruby
+# app/actions/users/show.rb
+
+module Bookshelf
+  module Actions
+    module Users
+      class Show < Bookshelf::Action
+        config.formats.accept :json, :html
+
+        def handle(request, response)
+          user = users.get(request.params[:id])
+
+          case response.format
+          when :json then response.body = user.to_json
+          when :html then response.render(view, user: user)
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+Because your action has already rejected anything it doesn't accept, `response.format` is guaranteed to be one of your accepted formats. Your `case` expression only needs to handle those.
+
 ## Default character set
 
-The default character set for actions is `utf-8`. This is included in your response's `Content-Type` header:
+Alongside its media type, your response's `Content-Type` header includes a character set, which defaults to `utf-8`:
 
 ```text
 Content-Type: application/json; charset=utf-8
@@ -189,16 +218,100 @@ module Bookshelf
 end
 ```
 
-You can also configure a format to map to multiple media types:
+You can also configure a format to map to multiple media types, via the `accept_types:` and `content_types:` options. These determine the media types matched against the request's `Accept` and `Content-Type` headers respectively:
 
 ```ruby
 # config/app.rb
 
 module Bookshelf
   class App < Hanami::App
-    config.actions.formats.add :json, ["application/json+scim", "application/json"]
+    config.actions.formats.register(
+      :json,
+      "application/json",
+      accept_types: ["application/json", "application/json+scim"],
+      content_types: ["application/json", "application/json+scim"]
+    )
   end
 end
 ```
 
 In this case, requests for both these media types will be accepted.
+
+## Parsing request bodies
+
+When an action accepts a format, it parses matching request bodies for you, merging the data into the request's params alongside any route and query string params. A body is parsed only when its `Content-Type` matches one of the formats the action accepts, so to have JSON bodies parsed, for example, your action must accept `:json`.
+
+Hanami includes two body parsers out of the box:
+
+- **JSON**, for the `application/json` and `application/vnd.api+json` media types.
+- **Multipart forms**, for the `multipart/form-data` media type (used for file uploads).
+
+For example, an action that accepts `:json` will parse a JSON request body and expose its data via `request.params`:
+
+```ruby
+# app/actions/books/create.rb
+
+module Bookshelf
+  module Actions
+    module Books
+      class Create < Bookshelf::Action
+        config.formats.accept :json
+
+        def handle(request, response)
+          # For a request body of {"title": "Hanami"}
+          request.params[:title] # => "Hanami"
+
+          response.status = 201
+        end
+      end
+    end
+  end
+end
+```
+
+String keys in the parsed body are symbolized, so you access them as symbols in your params. When the parsed body is not a hash (such as a top-level JSON array), it is made available under the `:_` key:
+
+```ruby
+# For a request body of [1, 2, 3]
+request.params[:_] # => [1, 2, 3]
+```
+
+### Form submissions
+
+Ordinary `application/x-www-form-urlencoded` form submissions are handled by Rack itself, so their params are always available regardless of your accepted formats.
+
+`multipart/form-data` bodies (used for file uploads) are parsed automatically when an action accepts no formats, as a sensible default. Once an action accepts one or more formats, however, you must accept `:html` for multipart bodies to be parsed.
+
+### Registering custom parsers
+
+You can register a parser for any media type by passing a `parser:` to `formats.register` (see [Registering additional formats and media types](#registering-additional-formats-and-media-types) above). A parser is any callable that receives the request body (a string) and the Rack env, and returns the parsed data:
+
+```ruby
+# config/app.rb
+
+module Bookshelf
+  class App < Hanami::App
+    config.actions.formats.register(
+      :xml,
+      "application/xml",
+      parser: ->(body, env) { MyXMLParser.parse(body) }
+    )
+    config.actions.formats.accept :xml
+  end
+end
+```
+
+As with the built-in formats, your actions must accept the format for their request bodies to be parsed.
+
+Your parser does not need to symbolize the keys in the data it returns. They're symbolized for you when the action builds the request's `params`.
+
+If a parser cannot parse a body, it should raise `Hanami::Action::BodyParsingError`. You can handle this like any other exception in your actions:
+
+```ruby
+config.handle_exception Hanami::Action::BodyParsingError => :handle_bad_request
+
+def handle_bad_request(request, response, exception)
+  response.status = 400
+  response.body = "Invalid request body"
+end
+```

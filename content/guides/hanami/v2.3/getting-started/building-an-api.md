@@ -71,10 +71,10 @@ end
 
 For more details on actions, see the [Actions guide](//guide/actions).
 
-Let's adjust our home action to return our "Welcome to Bookshelf" message.
+Let's adjust our home index action to return our "Welcome to Bookshelf" message.
 
 ```ruby
-# app/actions/home/show.rb
+# app/actions/home/index.rb
 
 module Bookshelf
   module Actions

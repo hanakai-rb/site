@@ -60,16 +60,16 @@ class DivideThenRoot
   end
 
   def call(x, y)
-    divide.(x, y).bind(sqrt)
+    divide.call(x, y).bind(sqrt)
   end
 end
 ```
 
 ```ruby
 op = DivideThenRoot.new
-op.(1.0, 2.0) # => Success(0.7071067811865476)
-op.(1.0, 0.0) # => Failure(:division_by_zero)
-op.(-1.0, 2.0) # => Failure(:negative_number)
+op.call(1.0, 2.0) # => Success(0.7071067811865476)
+op.call(1.0, 0.0) # => Failure(:division_by_zero)
+op.call(-1.0, 2.0) # => Failure(:negative_number)
 ```
 
 `DivideThenRoot` can be composed with other objects or methods returning `Result`s in a similar manner. In the end, you can use [`dry-matcher`](/learn/dry/dry-matcher/result-matcher) for processing the result (or use the `Result`'s [API](/learn/dry/dry-monads/result) for it).

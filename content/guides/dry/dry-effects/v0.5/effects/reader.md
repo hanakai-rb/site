@@ -16,7 +16,7 @@ class SetLocaleMiddleware
 
   def call(env)
     with_locale(detect_locale(env)) do
-      @app.(env)
+      @app.call(env)
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe GreetUser do
 
     examples.each do |locale, expected_greeting|
       with_locale(locale) do
-        expect(greet.(user)).to eql(expected_greeting)
+        expect(greet.call(user)).to eql(expected_greeting)
       end
     end
   end
@@ -80,7 +80,7 @@ locale_provider = Object.new.extend(Dry::Effects::Handler.Reader(:locale, as: :c
 
 RSpec.configure do |config|
   config.around(:each) do |ex|
-    locale_provider.(:en, &ex)
+    locale_provider.call(:en, &ex)
   end
 end
 ```

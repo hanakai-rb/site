@@ -14,6 +14,7 @@ Commands:
   hanami db drop                                    # Delete databases
   hanami db migrate                                 # Migrates database
   hanami db prepare                                 # Prepare databases
+  hanami db rollback [STEPS]                        # Rollback database to a previous migration
   hanami db seed                                    # Load seed data
   hanami db structure [SUBCOMMAND]
   hanami db version                                 # Print schema version
@@ -45,6 +46,19 @@ By default, migrating will also generate a structure dump file (such a `config/d
 
 For more on migrations, see the [migrations guide](//guide/database/migrations).
 
+## hanami db prepare
+
+Prepares the app's databases for use, from whatever state they may be in.
+
+For each database, runs the following commands:
+
+- `db create` (if the database does not exist)
+- `db structure load` (if the database does not exist)
+- `db migrate`
+- `db seed` (once per slice only)
+
+This command operates idempotently, so you can run it at any stage of your development process.
+
 ## hanami db rollback
 
 Rolls back one or more migrations for a single database. This is a convenient alternative to calling `db migrate` with a specific `--target`.
@@ -64,19 +78,6 @@ $ bundle exec hanami rollback --target=20241009134756
 ```
 
 The rollback command operates on one database at a time. If your app has more than one database, specify the database with `--app`, `--slice=SLICE`, as well as `--gateway=GATEWAY` if you have multiple gateways configured.
-
-## hanami db prepare
-
-Prepares the app's databases for use, from whatever state they may be in.
-
-For each database, runs the following commands:
-
-- `db create` (if the database does not exist)
-- `db structure load` (if the database does not exist)
-- `db migrate`
-- `db seed` (once per slice only)
-
-This command operates idempotently, so you can run it at any stage of your development process.
 
 ## hanami db seed
 

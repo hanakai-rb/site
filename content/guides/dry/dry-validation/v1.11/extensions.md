@@ -25,7 +25,7 @@ end
 
 my_contract = MyContract.new
 
-my_contract.(name: "")
+my_contract.call(name: "")
   .to_monad
   .fmap { |r| puts "passed: #{r.to_h.inspect}" }
   .or   { |r| puts "failed: #{r.errors.to_h.inspect}" }
@@ -54,7 +54,7 @@ class AgeContract < ApplicationContract
   rule(:age).validate(gteq?: 18)
 end
 
-AgeContract.new.(age: 17).errors.first.text
+AgeContract.new.call(age: 17).errors.first.text
 # => 'must be greater than or equal to 18'
 ```
 

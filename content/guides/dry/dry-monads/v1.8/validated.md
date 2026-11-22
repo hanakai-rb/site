@@ -81,6 +81,6 @@ end
 Here all validations will be processed at once, if any of them fails the result will be converted to a `Failure` wrapping the `List` of errors:
 
 ```ruby
-create_account.(form)
+create_account.call(form)
 # => Failure(List[:invalid_name, :invalid_email])
 ```

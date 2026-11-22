@@ -105,10 +105,10 @@ UserSchema = Dry::Validation.Schema do
   required(:login).filled(:str?, min_size?: 3)
 end
 
-UserSchema.(login: "").messages
+UserSchema.call(login: "").messages
 # {:login=>["must be filled", "please make sure it has at least 3 chars"]}
 
-UserSchema.(login: "fo").messages
+UserSchema.call(login: "fo").messages
 {:login=>["size can't be less than 3"]}
 ```
 
@@ -125,7 +125,7 @@ UserSchema = Dry::Validation.Schema do
   required(:name).filled(:str?)
 end
 
-UserSchema.(nil).messages # ["must be a hash"]
+UserSchema.call(nil).messages # ["must be a hash"]
 ```
 
 Notice that when a root-level rule fails, `messages` returns a flat array rather than a hash.
@@ -153,15 +153,15 @@ UserSchema = Dry::Validation.Schema do
   end
 end
 
-UserSchema.(name: "Jane", login_time: nil).messages
+UserSchema.call(name: "Jane", login_time: nil).messages
 # {}
 
 schema = UserSchema.with(current_user: { id: 1 })
 
-schema.(name: "Jane", login_time: DateTime.now).messages
+schema.call(name: "Jane", login_time: DateTime.now).messages
 # {}
 
-schema.(name: "Jane", login_time: nil).messages
+schema.call(name: "Jane", login_time: nil).messages
 # {:login_time=>["must be filled"]}
 ```
 
@@ -188,7 +188,7 @@ UserSchema = Dry::Validation.Schema do
   required(:data).value(source_valid?: "TADA")
 end
 
-UserSchema.(data: "w00t").messages
+UserSchema.call(data: "w00t").messages
 # {:data=>["my message has access to TADA and w00t :D"]}
 ```
 

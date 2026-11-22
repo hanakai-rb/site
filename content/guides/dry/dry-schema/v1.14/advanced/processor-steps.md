@@ -29,6 +29,6 @@ end
 Now when the schema is applied, it'll remove all keys with `nil` values before coercions and rules are applied:
 
 ```ruby
-schema.(name: "Jane", age: nil)
+schema.call(name: "Jane", age: nil)
 # => #<Dry::Schema::Result{:name=>"jane"} errors={}>
 ```

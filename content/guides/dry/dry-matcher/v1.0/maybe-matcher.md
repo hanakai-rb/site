@@ -10,7 +10,7 @@ require "dry/matcher/maybe_matcher"
 
 value = Dry::Monads::Maybe("success!")
 
-result = Dry::Matcher::MaybeMatcher.(value) do |m|
+result = Dry::Matcher::MaybeMatcher.call(value) do |m|
   m.some(Integer) do |i|
     "Got int: #{i}"
   end

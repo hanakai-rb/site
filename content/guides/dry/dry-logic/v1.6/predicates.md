@@ -21,7 +21,7 @@ Predicates[:key?]
 In the end predicates return true or false.
 
 ```ruby
-Predicates[:key?].(:name, {name: 'John'})
+Predicates[:key?].call(:name, {name: 'John'})
 # => true
 ```
 
@@ -90,12 +90,12 @@ name_key = Rule::Predicate.new(Predicates[:key?]).curry(:name)
 hash_with_key = is_hash & name_key
 # => #<Dry::Logic::Operations::And rules=[#<Dry::Logic::Rule::Predicate predicate=#<Method: Module(Dry::Logic::Predicates::Methods)#type?> options={:args=>[:hash]}>, #<Dry::Logic::Rule::Predicate predicate=#<Method: Module(Dry::Logic::Predicates::Methods)#key?> options={:args=>[:name]}>] options={}>
 
-hash_with_key.(name: 'John').success?
+hash_with_key.call(name: 'John').success?
 # => true
 
-hash_with_key.(not_valid: 'John').success?
+hash_with_key.call(not_valid: 'John').success?
 # => false
 
-hash_with_key.([1,2]).success?
+hash_with_key.call([1,2]).success?
 # => false
 ```

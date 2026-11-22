@@ -4,11 +4,11 @@ module Site
   module Views
     module Pages
       class Rom < Site::View
-        expose :theme, layout: true, decorate: false do
+        expose :theme, layout: true do
           "rom"
         end
 
-        expose :repositories_code, decorate: false do
+        expose :repositories_code do
           <<~MARKDOWN
             ```ruby
             class ArticleRepo < ROM::Repository
@@ -30,7 +30,7 @@ module Site
           MARKDOWN
         end
 
-        expose :queries_code, decorate: false do
+        expose :queries_code do
           <<~MARKDOWN
             ```ruby
             class Articles < ROM::Relation[:sql]
@@ -60,7 +60,7 @@ module Site
           MARKDOWN
         end
 
-        expose :layers_code, decorate: false do
+        expose :layers_code do
           <<~MARKDOWN
             ```ruby
             class CreateArticleChangeset < ROM::Changeset::Create
@@ -82,7 +82,7 @@ module Site
           MARKDOWN
         end
 
-        expose :adapters_code, decorate: false do
+        expose :adapters_code do
           <<~MARKDOWN
             ```ruby
             class Organizations < ROM::Relation[:http]

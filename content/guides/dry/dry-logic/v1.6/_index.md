@@ -33,18 +33,18 @@ has_min_age = Operations::Key.new(min_18, name: [:user, :age])
 
 user_rule = user_present & has_min_age
 
-user_rule.(user: { age: 19 }).success?
+user_rule.call(user: { age: 19 }).success?
 # => true
 
-user_rule.(user: { age: 18 }).success?
+user_rule.call(user: { age: 18 }).success?
 # => false
 
-user_rule.(user: { age: 'seventeen' })
+user_rule.call(user: { age: 'seventeen' })
 # => ArgumentError: comparison of String with 18 failed
 
-user_rule.(user: { })
+user_rule.call(user: { })
 # => NoMethodError: undefined method `>' for nil:NilClass
 
-user_rule.({}).success?
+user_rule.call({}).success?
 # => false
 ```

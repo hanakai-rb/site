@@ -125,7 +125,7 @@ class Users < ROM::Relation[:sql]
   end
 
   def by_ids(ids)
-    where(ids: ids)
+    where(id: ids)
     # ... WHERE ("id" IN (1, 2)) ...
   end
 end

@@ -115,7 +115,7 @@ You can also trigger lifecycle transitions directly by using `Hanami.app.prepare
 
 Within a provider, the `target` method (also available as `target_container`) can be used to access the app container.
 
-This is useful if your provider needs to use other components within the container, for example the application's settings or logger (via `target["settings]` and `target["logger"]`). It can also be used when a provider wants to ensure another provider has started before starting itself, via `target.start(:provider_name)`:
+This is useful if your provider needs to use other components within the container, for example the application's settings or logger (via `target["settings"]` and `target["logger"]`). It can also be used when a provider wants to ensure another provider has started before starting itself, via `target.start(:provider_name)`:
 
 ```ruby title="config/providers/uploads_bucket"
 Hanami.app.register_provider(:uploads_bucket) do

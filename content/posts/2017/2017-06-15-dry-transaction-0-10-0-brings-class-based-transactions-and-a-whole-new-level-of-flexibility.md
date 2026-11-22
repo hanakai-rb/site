@@ -20,7 +20,7 @@ class MyTransaction
 end
 
 my_trans = MyTransaction.new
-my_trans.(some_input)
+my_trans.call(some_input)
 ```
 
 Transactions may resolve their operations from containers as before, but they can also now work entirely with local methods ("look ma, no container!"):

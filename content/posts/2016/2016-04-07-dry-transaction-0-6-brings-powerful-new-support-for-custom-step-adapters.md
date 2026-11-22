@@ -36,7 +36,7 @@ module Admin
       include Admin::Import("admin.enqueue_background_job")
 
       def call(step, *args, input)
-        enqueue_background_job.(step.operation_name, *args, input)
+        enqueue_background_job.call(step.operation_name, *args, input)
         Right(input)
       end
     end

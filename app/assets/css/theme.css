@@ -84,6 +84,13 @@
     --hk-color-text-link-active: var(--color-hanakai-200);
   }
 
+  html[data-theme-pref="light"] .theme-hanakai,
+  html[data-theme-pref="light"] .theme-hanami,
+  html[data-theme-pref="light"] .theme-dry,
+  html[data-theme-pref="light"] .theme-rom {
+    --hk-color-bg-secondary-subtle: oklch(from var(--color-rom-50) l c h / 0.4);
+  }
+
   .theme-hanakai,
   .theme-hanami,
   .theme-dry,

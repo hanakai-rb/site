@@ -10,7 +10,7 @@ require "dry/matcher/result_matcher"
 
 value = Dry::Monads::Success("success!")
 
-result = Dry::Matcher::ResultMatcher.(value) do |m|
+result = Dry::Matcher::ResultMatcher.call(value) do |m|
   m.success(Integer) do |i|
     "Got int: #{i}"
   end

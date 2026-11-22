@@ -60,7 +60,7 @@
       <p class="text-lg">
         For more than a decade, Hanami, Dry and Rom have offered Ruby developers
         something different: tools built around clarity, flexibility, and a
-        genuine belief that there’s more than one good way to build an app.
+        belief that there’s more than one good way to build an app.
       </p>
 
       <p class="text-lg">
@@ -81,7 +81,7 @@
 
       <p class="text-lg mb-7">
         Ruby is a better place when there are real alternatives to reach for. If
-        you believe this – or if Dry, Rom or Hanami are already doing important
+        you believe this — or if Dry, Rom or Hanami are already doing important
         work somewhere in your stack — sponsorship is how you grow Hanakai and
         Ruby’s diversity along with it.
       </p>
@@ -569,7 +569,26 @@
           Silver
         </span>
 
-        <%= image_tag "sponsors/serp-api.webp", alt: "serp-api", width: 520, height: 134, class: "max-h-12 w-auto" %>
+        <%= image_tag "sponsors/serp-api.webp", alt: "SerpApi", width: 520, height: 134, class: "max-h-12 w-auto" %>
+      </a>
+
+      <a
+        href="https://thoughtbot.com"
+        class="
+          relative flex-1 flex items-center justify-center px-6 py-3 bg-white
+          rounded-2xl border-3 b-primary hover:opacity-90 transition-opacity shadow-lg
+        "
+      >
+        <span
+          class="
+            absolute -top-3 left-3 bg-primary text-primary-reversed text-xs
+            font-bold uppercase px-2 py-1 rounded-xl
+          "
+        >
+          Silver
+        </span>
+
+        <%= image_tag "sponsors/thoughtbot.webp", alt: "thoughtbot", width: 690, height: 134, class: "max-h-14 w-auto translate-y-0.5" %>
       </a>
     </div>
   </div>
@@ -680,6 +699,41 @@
           </p>
         </div>
       </blockquote>
+
+      <blockquote class="theme-rom mb-10">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            “thoughtbot has built web apps and open-source Ruby libraries for
+            over 20 years. We know how much any framework depends on the people
+            who maintain it. Ruby is stronger with a diversity of thoughts,
+            opinions, and approaches. The Hanakai projects show there’s more
+            than one good way to build a Ruby app. We’re glad to help keep that
+            work going.”
+          </p>
+
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
+
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Rob Whittaker</p>
+
+          <p class="opacity-60">
+            <a href="https://thoughtbot.com" class="hover:underline">
+              thoughtbot
+            </a>
+          </p>
+        </div>
+      </blockquote>
     </div>
 
     <%# Right column – offset down to stagger %>
@@ -719,7 +773,7 @@
         </div>
       </blockquote>
 
-      <blockquote class="theme-rom">
+      <blockquote class="theme-rom mb-10">
         <div
           class="
             relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
@@ -749,6 +803,37 @@
             <a href="https://www.appsignal.com" class="hover:underline">
               AppSignal
             </a>
+          </p>
+        </div>
+      </blockquote>
+
+      <blockquote class="theme-rom">
+        <div
+          class="
+            relative bg-neutral border-3 b-primary rounded-2xl p-8 pt-7
+            shadow-lg mb-4
+          "
+        >
+          <p class="text-xl">
+            “SerpApi is proud to sponsor open source community initiatives and
+            support the continued development of the Hanakai projects. At
+            SerpApi, we are Rubyists at heart and want to see our ecosystem
+            grow.”
+          </p>
+
+          <div
+            class="
+              absolute bottom-0 translate-y-1/2 left-12 w-5 h-5 rotate-45
+              bg-neutral border-b-3 border-r-3 b-primary rounded-br-md
+            "
+          ></div>
+        </div>
+
+        <div class="pl-10 text-xl">
+          <p class="font-bold text-primary">Josef Strzibny</p>
+
+          <p class="opacity-60">
+            <a href="https://serpapi.com" class="hover:underline"> SerpApi </a>
           </p>
         </div>
       </blockquote>
@@ -837,13 +922,14 @@
   <%# Individual sponsor count + avatars %>
   <div class="text-center mb-10 py-8">
     <p class="text-2xl text-balance mb-6 tracking-tight">
-      Thank you to our 19 individual sponsors
+      Thank you to our <%= individual_sponsors.length %> individual sponsors
     </p>
 
     <div class="flex flex-wrap justify-center gap-1">
       <% individual_sponsors.each do |sponsor| %>
-        <% if sponsor[:private] %>
+        <% if sponsor.private? %>
           <span
+            data-testid="individual-sponsor"
             class="
               w-12 h-12 rounded-full ring-2 ring-white dark:ring-neutral-900
               bg-neutral-100 dark:bg-neutral-800 flex items-center
@@ -866,12 +952,13 @@
           </span>
         <% else %>
           <a
-            href="https://github.com/<%= sponsor[:login] %>"
-            title="@<%= sponsor[:login] %>"
+            data-testid="individual-sponsor"
+            href="<%= sponsor.profile_url %>"
+            title="<%= sponsor.name %>"
           >
             <img
-              src="https://avatars.githubusercontent.com/u/<%= sponsor[:avatar_id] %>?s=96&v=4"
-              alt="@<%= sponsor[:login] %>"
+              src="<%= sponsor.avatar_url %>"
+              alt="<%= sponsor.name %>"
               width="48"
               height="48"
               class="

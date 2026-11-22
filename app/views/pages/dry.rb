@@ -4,11 +4,11 @@ module Site
   module Views
     module Pages
       class Dry < Site::View
-        expose :theme, layout: true, decorate: false do
+        expose :theme, layout: true do
           "dry"
         end
 
-        expose :validation_code, decorate: false do
+        expose :validation_code do
           <<~MARKDOWN
             ```ruby
             class UserContract < Dry::Validation::Contract
@@ -23,7 +23,7 @@ module Site
           MARKDOWN
         end
 
-        expose :types_code, decorate: false do
+        expose :types_code do
           <<~MARKDOWN
             ```ruby
             Types = Dry.Types(default: :strict)
@@ -43,7 +43,7 @@ module Site
           MARKDOWN
         end
 
-        expose :operations_code, decorate: false do
+        expose :operations_code do
           <<~MARKDOWN
             ```ruby
             class CreateUser < Dry::Operation
@@ -72,7 +72,7 @@ module Site
           MARKDOWN
         end
 
-        expose :logging_code, decorate: false do
+        expose :logging_code do
           <<~MARKDOWN
             ```ruby
             # From simple logging
@@ -90,7 +90,7 @@ module Site
           MARKDOWN
         end
 
-        expose :inflections_code, decorate: false do
+        expose :inflections_code do
           <<~MARKDOWN
             ```ruby
             inflector = Dry::Inflector.new
@@ -109,7 +109,7 @@ module Site
           MARKDOWN
         end
 
-        expose :initializers_code, decorate: false do
+        expose :initializers_code do
           <<~MARKDOWN
             ```ruby
             class User
@@ -125,7 +125,7 @@ module Site
           MARKDOWN
         end
 
-        expose :configuration_code, decorate: false do
+        expose :configuration_code do
           <<~MARKDOWN
             ```ruby
             class CacheStore
@@ -148,7 +148,7 @@ module Site
           MARKDOWN
         end
 
-        expose :systems_code, decorate: false do
+        expose :systems_code do
           <<~MARKDOWN
             ```ruby
             class App < Dry::System::Container
@@ -173,7 +173,7 @@ module Site
           MARKDOWN
         end
 
-        expose :cli_code, decorate: false do
+        expose :cli_code do
           <<~'MARKDOWN'
             ```ruby
             module MyApp

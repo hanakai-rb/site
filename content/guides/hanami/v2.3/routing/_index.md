@@ -117,15 +117,24 @@ This generates nested routes like `/books/:book_id/reviews`.
 
 The actions for nested resources are namespaced by any parent resources. In the above example, the reviews index route will have a `to:` of `"books.reviews.index"`.
 
-Basic routes can also be nested within resources:
+Basic routes can also be nested within resources. These routes apply to a single member of the resource, so their paths include the resource's ID:
 
 ```ruby
 resources :books do
-  get "/latest", to: "books.latest"
+  get "/preview", to: "books.preview"
 end
 ```
 
-This generates a route at "/books/latest".
+This generates a route at `"/books/:book_id/preview"`.
+
+To add a route for the resource's whole collection instead, define it outside the `resources` block:
+
+```ruby
+resources :books
+get "/books/latest", to: "books.latest"
+```
+
+This generates a route at `"/books/latest"`.
 
 ## Root request routing
 

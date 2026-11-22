@@ -5,5 +5,6 @@ group :server do
     # Edit the following regular expression for your needs.
     # See: https://guides.hanamirb.org/app/code-reloading/
     watch(%r{^(app|config|lib|slices)(/[^/]+)*.(rb|erb|haml|slim)$}i)
+    watch(%r{^content/.+$})
   end
 end

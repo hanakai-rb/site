@@ -323,7 +323,7 @@ Now refresh [http://localhost:2300/books](http://localhost:2300/books) in your b
 
 ## Using request parameters
 
-Of course, returning _every_ book in the database when a visitor makes a request to `/books` is not going to be a good strategy for very long. Luckily, relations offer pagination support. Let's add pagination with a default page size of 5:
+Of course, returning _every_ book in the database when a visitor makes a request to `/books` is not going to be a good strategy for very long. Luckily, relations offer pagination support. Let's add pagination with a default page size of 2:
 
 ```ruby
 # app/relations/books.rb
@@ -864,12 +864,12 @@ end
 In the action, we can now delete the existing book, set a flash message and redirect to the book list:
 
 ```ruby
-# app/actions/books/delete.rb
+# app/actions/books/destroy.rb
 
 module Bookshelf
   module Actions
     module Books
-      class Delete < Bookshelf::Action
+      class Destroy < Bookshelf::Action
         include Deps["repos.book_repo"]
 
         params do

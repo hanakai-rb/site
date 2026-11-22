@@ -135,7 +135,7 @@ $ bundle exec hanami generate action home.index --skip-view --skip-route --skip-
 We can find this action in our `app` directory at `app/actions/home/index.rb`:
 
 ```ruby
-# app/actions/home/show.rb
+# app/actions/home/index.rb
 
 module Bookshelf
   module Actions
@@ -161,10 +161,10 @@ end
 
 For more details on actions, see the [Actions guide](//guide/actions).
 
-For now, let's adjust our home action to return our desired "Welcome to Bookshelf" message.
+For now, let's adjust our home index action to return our desired "Welcome to Bookshelf" message.
 
 ```ruby
-# app/actions/home/show.rb
+# app/actions/home/index.rb
 
 module Bookshelf
   module Actions

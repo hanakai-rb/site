@@ -6,7 +6,7 @@ module Site
       class Index < Site::View
         include Deps["repos.guide_repo"]
 
-        expose :guides do
+        decorate :guides do
           guide_repo.latest_by_org
         end
 
@@ -14,7 +14,7 @@ module Site
           guide_repo.listed_versions_by_org
         end
 
-        expose :hanami_version_links, decorate: false do |versions|
+        expose :hanami_version_links do |versions|
           versions.fetch("hanami", []).to_h do |version|
             first_guide = guide_repo.all_for(org: "hanami", version: version).min_by(&:position)
             url = first_guide ? first_guide.url_path : "/learn/hanami/#{version}"
@@ -22,7 +22,7 @@ module Site
           end
         end
 
-        expose :rom_version_links, decorate: false do |versions|
+        expose :rom_version_links do |versions|
           versions.fetch("rom", []).to_h do |version|
             first_guide = guide_repo.all_for(org: "rom", version: version).min_by(&:position)
             url = first_guide ? first_guide.url_path : "/learn/rom/#{version}"

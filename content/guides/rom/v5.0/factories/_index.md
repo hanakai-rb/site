@@ -147,7 +147,7 @@ Attributes can be based on the values of other attributes:
 
 ```ruby
 Factory.define(:user) do |f|
-  f.full_name { fake(:name) }
+  f.full_name { fake(:name, :name) }
   # Dependent attributes are inferred from the block parameter names:
   f.login { |full_name| full_name.downcase.gsub(/\s+/, '_') }
   # Works with sequences too:

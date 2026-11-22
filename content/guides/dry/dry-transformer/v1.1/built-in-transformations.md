@@ -27,7 +27,7 @@ module T
   import Dry::Transformer::Recursion
 end
 
-T[:to_string].(:abc) # => 'abc'
+T[:to_string].call(:abc) # => 'abc'
 ```
 
 Or import selectively with:
@@ -39,7 +39,7 @@ module T
   import :to_string, from: Dry::Transformer::Coercions, as: :stringify
 end
 
-T[:stringify].(:abc) # => 'abc'
-T[:to_string].(:abc)
+T[:stringify].call(:abc) # => 'abc'
+T[:to_string].call(:abc)
 # => Dry::Transformer::FunctionNotFoundError: No registered function T[:to_string]
 ```

@@ -14,7 +14,7 @@ end
 
 contract = PersonContract.new
 
-case contract.('first_name' => 'John', 'last_name' => 'Doe')
+case contract.call('first_name' => 'John', 'last_name' => 'Doe')
 in { first_name:, last_name: } => result if result.success?
   puts "Hello #{first_name} #{last_name}"
 in _ => result
@@ -40,7 +40,7 @@ end
 
 contract = AddressContract.new(address_repo: AddressRepo.new)
 
-case contract.('name' => 'John Doe', 'address' => 'Pedro Moreno 10, Ciudad de México')
+case contract.call('name' => 'John Doe', 'address' => 'Pedro Moreno 10, Ciudad de México')
 in [{ name: }, { address: }] => result if result.success?
   # adding person to existing address
 in { name:, address: } => result if result.success?
@@ -77,7 +77,7 @@ class CreatePerson
   end
 
   def call(input)
-    case contract.(input).to_monad
+    case contract.call(input).to_monad
     in Success(first_name:, last_name:)
       Success(repo.create(first_name, last_name))
     in Failure(result)

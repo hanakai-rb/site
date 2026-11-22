@@ -1,0 +1,134 @@
+# The people who sponsor Hanakai as individuals. Shown on the sponsor page.
+---
+private_count: 6
+sponsors:
+  - source: github
+    name: Aaron Allen
+    handle: aaronmallen
+    profile_url: https://github.com/aaronmallen
+    avatar_url: https://avatars.githubusercontent.com/u/931094?s=96&u=3784f18e72bdb90ca509951cd1ed0cfc02a05bfd&v=4
+  - source: github
+    name: Andrea Fomera
+    handle: afomera
+    profile_url: https://github.com/afomera
+    avatar_url: https://avatars.githubusercontent.com/u/1741179?s=96&u=ab8f90670994563272deb787a8f04e7b6dfbe6ad&v=4
+  - source: github
+    name: Andreas Wagner
+    handle: whysthatso
+    profile_url: https://github.com/whysthatso
+    avatar_url: https://avatars.githubusercontent.com/u/1685114?s=96&v=4
+  - source: github
+    name: Andrew Nesbitt
+    handle: andrew
+    profile_url: https://github.com/andrew
+    avatar_url: https://avatars.githubusercontent.com/u/1060?s=96&u=e1d45ea20885a12b3628d68ed8119d67bd259b3e&v=4
+  - source: open_collective
+    name: Atelier Mirai
+    handle: atelier-mirai
+    profile_url: https://opencollective.com/atelier-mirai
+    avatar_url: https://images.opencollective.com/atelier-mirai/0234148/avatar/96.png
+  - source: open_collective
+    name: Ben Sheldon
+    handle: bensheldon
+    profile_url: https://opencollective.com/bensheldon
+    avatar_url: https://images.opencollective.com/bensheldon/51749c8/avatar/96.png
+  - source: github
+    name: Ben Sinclair
+    handle: bensinc
+    profile_url: https://github.com/bensinc
+    avatar_url: https://avatars.githubusercontent.com/u/46116?s=96&u=a4b6d0348ebeeef1b7169a4d014dacedbbb41205&v=4
+  - source: github
+    name: Caius Durling
+    handle: caius
+    profile_url: https://github.com/caius
+    avatar_url: https://avatars.githubusercontent.com/u/696?s=96&v=4
+  - source: github
+    name: CG3 Media
+    handle: CG3-Media
+    profile_url: https://github.com/CG3-Media
+    avatar_url: https://avatars.githubusercontent.com/u/188250871?s=96&v=4
+  - source: github
+    name: Dalma Boros
+    handle: dalmaboros
+    profile_url: https://github.com/dalmaboros
+    avatar_url: https://avatars.githubusercontent.com/u/2686072?s=96&u=0abdf7930417b1bdc5f166a0f936f63766eb4b01&v=4
+  - source: github
+    name: Dan Healy
+    handle: danhealy
+    profile_url: https://github.com/danhealy
+    avatar_url: https://avatars.githubusercontent.com/u/38642?s=96&u=d4880f559efba339e906bf3af627311296b1ef03&v=4
+  - source: github
+    name: Jack Bracken
+    handle: JackBracken
+    profile_url: https://github.com/JackBracken
+    avatar_url: https://avatars.githubusercontent.com/u/295749?s=96&u=fc40238805278758bd5d3ff5c25622f963a10bcb&v=4
+  - source: github
+    name: Jared Smith
+    handle: jaredsmithse
+    profile_url: https://github.com/jaredsmithse
+    avatar_url: https://avatars.githubusercontent.com/u/2102795?s=96&u=5ecb5cceecfe53ff8968324002c62a405fc78b55&v=4
+  - source: github
+    name: Jojo Hall
+    handle: josephinehall
+    profile_url: https://github.com/josephinehall
+    avatar_url: https://avatars.githubusercontent.com/u/1491374?s=96&u=7653e9557fd100c73b58d6b14406feee7f4838bd&v=4
+  - source: github
+    name: Junwoo Hwang
+    handle: zzulu
+    profile_url: https://github.com/zzulu
+    avatar_url: https://avatars.githubusercontent.com/u/10704866?s=96&u=f041c358405fe4db48455714e62eb10069d30ed5&v=4
+  - source: github
+    name: Mahad Kalam
+    handle: skyfallwastaken
+    profile_url: https://github.com/skyfallwastaken
+    avatar_url: https://avatars.githubusercontent.com/u/55807755?s=96&u=491ebcb97d9e6282c6fe0cfd71517704a4aa6cab&v=4
+  - source: github
+    name: Mathew Button
+    handle: mathewdbutton
+    profile_url: https://github.com/mathewdbutton
+    avatar_url: https://avatars.githubusercontent.com/u/1100707?s=96&u=abb4923bc0ca30ad8fe12f59a9f0a8f6e46cc30c&v=4
+  - source: github
+    name: Michael MacDonald
+    handle: schlick
+    profile_url: https://github.com/schlick
+    avatar_url: https://avatars.githubusercontent.com/u/18456?s=96&v=4
+  - source: github
+    name: Practical Computer
+    handle: practical-computer
+    profile_url: https://github.com/practical-computer
+    avatar_url: https://avatars.githubusercontent.com/u/128624803?s=96&v=4
+  - source: github
+    name: Rachael Wright-Munn
+    handle: ChaelCodes
+    profile_url: https://github.com/ChaelCodes
+    avatar_url: https://avatars.githubusercontent.com/u/8124558?s=96&v=4
+  - source: github
+    name: Robert Pawlas
+    handle: hedselu
+    profile_url: https://github.com/hedselu
+    avatar_url: https://avatars.githubusercontent.com/u/13008532?s=96&u=0bfdc2fb96b7b5c72f26bb945d43a338bda1d047&v=4
+  - source: github
+    name: Rosa Gutierrez
+    handle: rosa
+    profile_url: https://github.com/rosa
+    avatar_url: https://avatars.githubusercontent.com/u/813033?s=96&u=9d30b2e7dad100c407ded917712e84a71bf7581f&v=4
+  - source: open_collective
+    name: Sangwon Yi
+    handle: yisangwon
+    profile_url: https://opencollective.com/yisangwon
+    avatar_url: https://images.opencollective.com/yisangwon/4530150/avatar/96.png
+  - source: open_collective
+    name: Soulcutter
+    handle: soulcutter
+    profile_url: https://opencollective.com/soulcutter
+    avatar_url: https://images.opencollective.com/soulcutter/avatar/96.png
+  - source: github
+    name: Tom de Bruijn
+    handle: tombruijn
+    profile_url: https://github.com/tombruijn
+    avatar_url: https://avatars.githubusercontent.com/u/282402?s=96&u=55ec6c75996d485d7273c579ebabe990ece829ea&v=4
+  - source: open_collective
+    name: Tracy Hall
+    handle: tracy-hall
+    profile_url: https://opencollective.com/tracy-hall
+    avatar_url: https://images.opencollective.com/tracy-hall/avatar/96.png
