@@ -20,7 +20,7 @@ At this point **we're really close to 1.0**.
 In the meantime, we've started tech alliances with [dry-rb](https://hanakai.org/dry) and [ROM](https://hanakai.org/rom).
 We're working closely with these two amazing projects (and communities) to make the Ruby ecosystem stronger.
 
-As result of this collaboration, today we can ship a new, powerful validation syntax based on [dry-validation](https://hanakai.org/learn/dry/dry-validation).
+As result of this collaboration, today we can ship a new, powerful validation syntax based on [dry-validation](//org_guide/dry/dry-validation).
 
 ## Features
 

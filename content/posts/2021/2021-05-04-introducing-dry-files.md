@@ -49,5 +49,5 @@ Checkout the [docs][docs] and the [CHANGELOG][changelog] to know more. Enjoy!
 [dry]: https://hanakai.org/dry
 [rom]: https://hanakai.org/rom
 [hanami]: https://hanamirb.org
-[docs]: https://hanakai.org/learn/dry/dry-files
+[docs]: //org_guide/dry/dry-files
 [changelog]: https://github.com/dry-rb/dry-files/releases/tag/v0.1.0
