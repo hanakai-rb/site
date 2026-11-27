@@ -206,6 +206,8 @@ module Bookshelf
 end
 ```
 
+Exposures can't depend on each other in a cycle, such as `book` depending on `author` while `author` depends on `book`. Hanami raises an error if they do.
+
 ## Accessing the context
 
 To access the [context object](//page/context) from an exposure, include a `context:` keyword parameter:
@@ -262,5 +264,60 @@ Exposure values are made available only to the template by default. To make an e
 ```ruby
 expose :recommended_books, layout: true do
   book_repo.recommended_listing
+end
+```
+
+## When exposures run
+
+Exposures are lazy. An exposure runs only when a template (or another exposure) first reads it. Its value is then kept for the rest of the rendering, so the exposure runs only once.
+
+If your templates never read an exposure, it never runs. Here, the `reviews` exposure runs only for books that have reviews:
+
+```ruby
+expose :book do |id:|
+  book_repo.get!(id)
+end
+
+expose :reviews do |book|
+  review_repo.for_book(book.id)
+end
+```
+
+```erb
+<h1><%= book.title %></h1>
+
+<% if book.reviews_count > 0 %>
+  <%= render "reviews", reviews: %>
+<% end %>
+```
+
+Exposures run in the order that templates read them, not the order you define them. A private exposure runs only when an exposure that depends on it runs.
+
+## Eager exposures
+
+You may want some exposures to run before the template renders. To make an exposure eager, use `expose!`:
+
+```ruby
+expose! :book do |id:|
+  book_repo.get!(id)
+end
+```
+
+Eager exposures run before rendering starts, along with the exposures they depend on. Use them when an exposure's errors must raise before rendering, such as a "not found" error from `get!` above.
+
+To define an eager exposure that is decorated with a [part](//page/parts), use `decorate!`. You can also pass `eager: true` to `expose`, `decorate` or `private_expose`:
+
+```ruby
+decorate! :book do |id:|
+  book_repo.get!(id)
+end
+
+# Equivalent to the above
+decorate :book, eager: true do |id:|
+  book_repo.get!(id)
+end
+
+private_expose :author, eager: true do |author_id:|
+  author_repo.get!(author_id)
 end
 ```

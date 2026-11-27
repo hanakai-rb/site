@@ -19,7 +19,7 @@ Hanami provides a complete view system for rendering HTML, JSON and other format
 In addition to helpers, templates and partials, features like exposures, parts and contexts provide a comprehensive toolset for well-architected view code.
 
 > [!NOTE]
-> For a guided walk-through of Hanami with some example use of views, be sure to check out the [Getting Started Guide](//guide/introduction).
+> For a guided walkthrough of Hanami with some example use of views, check out the [Getting Started Guide](//guide/getting-started).
 
 ## Introduction
 
@@ -28,9 +28,10 @@ A typical Hanami view has a view class and a template. Both are created for you 
 ```shell
 $ bundle exec hanami generate action home.show
 
-Created app/actions/home/show.rb
-Created app/views/home/show.rb              <- view
-Created app/templates/home/show.html.erb    <- template
+  update  config/routes.rb
+  create  app/actions/home/show.rb
+  create  app/views/home/show.rb              <- view
+  create  app/templates/home/show.html.erb    <- template
 ```
 
 You can also generate a view independently of an action. This is useful for standalone views that render emails, instant messages or other background rendered content:
@@ -38,8 +39,8 @@ You can also generate a view independently of an action. This is useful for stan
 ```shell
 $ bundle exec hanami generate view emails.welcome
 
-Created app/views/emails/welcome.rb
-Created app/templates/emails/welcome.html.erb
+  create  app/views/emails/welcome.rb
+  create  app/templates/emails/welcome.html.erb
 ```
 
 ### Rendering a home page

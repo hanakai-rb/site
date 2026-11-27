@@ -102,7 +102,7 @@ class MediaPlayer < Bookshelf::Views::Scope
 end
 ```
 
-You can also access a full hash of locals via `#locals` (or `#_locals` as an alias, in case there is a local itself called `locals`). This is useful for providing default values for locals that may not be provided when the scope is built:
+You can also access all the scope's locals via `#locals` (or `#_locals` as an alias, in case there is a local itself called `locals`). This is useful for providing default values for locals that may not be given:
 
 ```ruby
 class MediaPlayer < Bookshelf::Views::Scope

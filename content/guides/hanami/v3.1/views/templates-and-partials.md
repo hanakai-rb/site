@@ -85,6 +85,16 @@ Each template and partial is rendered within its own scope, which determines the
 - The public methods available on the view's [context](//page/context)
 - A `#render` method, for rendering partials
 
+To access the locals together, use `locals` (or `_locals`, in case you have a local named `locals`). In a view's template and layout, this returns a `Hanami::View::Locals` object. It behaves like a hash, but runs each exposure only when you read it:
+
+```erb
+<%= locals[:book].title %>
+<%= locals.fetch(:subtitle, "No subtitle") %>
+<% if locals.key?(:author) %>...<% end %>
+```
+
+`locals[:book]` and `locals.fetch(:book)` run only the `book` exposure, and `locals.key?(:book)` runs none. To get a plain hash, call `locals.to_h`, which runs every exposure. In a partial rendered with explicit locals, `locals` is a plain hash.
+
 You may choose to provide custom scopes for templates and partials. To learn more, see [Scopes](//page/scopes).
 
 ## Rendering partials
@@ -95,7 +105,23 @@ You can render a partial from your template using the `render` method:
 <%= render "path/to/my_partial" %>
 ```
 
-Partials are looked up within the templates directory, with the partial's file name expected to be prefixed by an underscore. For the example above, the partial template is expected to be at `templates/path/to/_my_partial.html.slim`.
+Partials are looked up within the templates directory, with the partial's file name expected to be prefixed by an underscore. For the example above, the partial template is expected to be at `templates/path/to/_my_partial.html.erb`.
+
+### How partials are looked up
+
+Hanami looks for a partial in these places, in order:
+
+1. The directory of the template calling `render`
+2. The directories of the templates that rendered it, nearest first
+3. The root of the templates directory
+
+For example, from `books/edit.html.erb`, `render "form"` renders `books/_form.html.erb` if it exists, and `_form.html.erb` if not.
+
+The second step matters when partials render other partials. If `books/edit.html.erb` renders `shared/_card.html.erb`, and that partial calls `render "badge"`, Hanami looks for `shared/_badge.html.erb`, then `books/_badge.html.erb`, then `_badge.html.erb`.
+
+The same applies to partial names with a directory. From `books/edit.html.erb`, `render "shared/fields"` looks for `books/shared/_fields.html.erb` before `shared/_fields.html.erb`.
+
+### Passing locals to partials
 
 You can provide explicit locals to a partial via keyword arguments:
 
@@ -104,6 +130,14 @@ You can provide explicit locals to a partial via keyword arguments:
 ```
 
 When you provide explicit locals to a partial, only those locals will be available to the partial. When you provide no locals at all, then the partial will have access to the calling template's own set of locals.
+
+To pass some of the template's own locals to a partial, name them:
+
+```erb
+<%= render "books/card", book:, author: %>
+```
+
+You can't pass all of a template's locals to a partial with `**locals`, since that would run all your [exposures](//page/input-and-exposures#when-exposures-run), even ones the partial never uses. It's better to provide only the locals the partial needs. If you really do want every local, use `**locals.to_h`.
 
 ## Declaring locals
 

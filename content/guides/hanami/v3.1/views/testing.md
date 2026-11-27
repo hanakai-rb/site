@@ -100,6 +100,18 @@ describe "exposures" do
 end
 ```
 
+Reading an exposure from `rendered` runs it, even if the template didn't read it during rendering.
+
+`rendered.locals` returns a `Hanami::View::Locals`, not a hash. To use it with matchers that expect a hash, such as `include`, call `#to_h` first. This runs every exposure:
+
+```ruby
+it "exposes the user and current user" do
+  expect(rendered.locals.to_h).to include(:user, current_user:)
+end
+```
+
+When you compare two `Rendered` objects with `==`, only their rendered HTML is compared, not their locals.
+
 ## Testing parts
 
 To test part behavior, initialize a part and make your expecations against its methods.
