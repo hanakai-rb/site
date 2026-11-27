@@ -1,515 +1,243 @@
 ---
-title: Upgrade to 3.0
+title: Upgrade to 3.1
 pages:
+  - v3.0
   - v2.3
   - v2.2
   - v2.1
 ---
 
-These notes cover an upgrade from 2.3 to 3.0.
+These notes cover an upgrade from 3.0 to 3.1.
 
-Hanami 3.0 adds first-class mailer and i18n integrations, optional Minitest support, and a range of performance improvements. For a complete overview of everything new in this release, see the [Hanami 3.0 release announcement](#). The notes below focus on the specific steps to upgrade an existing app.
+<!-- TODO: Link "Hanami 3.1 release announcement" below once it's published. -->
+
+Hanami 3.1 brings in-place code reloading, a new development error page, lazy view exposures, response streaming, and much more. For a complete overview of everything new in this release, see the Hanami 3.1 release announcement. The notes below focus on the specific steps to upgrade an existing app.
 
 ## Required changes
 
-These changes are necessary for a baseline upgrade to 3.0.
-
-### Use a supported Ruby version
-
-Hanami 3.0 requires Ruby 3.3 or newer. Make sure your app is running a supported Ruby before you begin.
+These changes are necessary for a baseline upgrade to 3.1.
 
 ### Upgrade your Hanami gems
 
-Hanami 3.0 renames the actions gem from hanami-controller to hanami-action, and retires hanami-validations in favour of depending on dry-validation directly. Update your `Gemfile` accordingly:
+Edit your `Gemfile` and update the versions of all your Hanami gems to `"~> 3.1"`, including those in your `development`, `test` and `cli` groups (such as hanami-webconsole, hanami-reloader and hanami-rspec):
 
 ```ruby
-# Update the versions of your existing Hanami gems to "~> 3.0"
-gem "hanami", "~> 3.0"
-gem "hanami-assets", "~> 3.0"
-gem "hanami-db", "~> 3.0"
-gem "hanami-router", "~> 3.0"
-gem "hanami-view", "~> 3.0"
-
-# Rename this:
-#   gem "hanami-controller", "~> 2.3"
-# to:
-gem "hanami-action", "~> 3.0"
-
-# Remove this:
-#   gem "hanami-validations", "~> 2.3"
-# and, if your actions use `params` or `contract` validations, add dry-validation directly:
-gem "dry-validation"
+gem "hanami", "~> 3.1"
+gem "hanami-action", "~> 3.1"
+gem "hanami-assets", "~> 3.1"
+gem "hanami-db", "~> 3.1"
+gem "hanami-router", "~> 3.1"
+gem "hanami-view", "~> 3.1"
 ```
 
-Also update the versions of any Hanami gems in your `development`, `test` and `cli` groups (such as hanami-webconsole, hanami-reloader and hanami-rspec) to `"~> 3.0"`.
+Hanami now checks that its gems share the same major and minor version. If any are out of step, requiring `hanami` raises a `Hanami::GemVersionError` that lists the mismatched gems. If you need to skip this check, set the `HANAMI_SKIP_GEM_VERSION_CHECK` env var.
 
-Your `app/action.rb` and other action classes do not need to change. `require "hanami/action"` and `Hanami::Action` continue to work as before, now provided by the renamed hanami-action gem.
+### Remove your Guardfile
 
-### Update your assets dependencies
+Code reloading no longer uses Guard. `hanami server` now keeps a single process running and reloads your app's code in place on the next request after a file changes. See [Code reloading](//guide/app/code-reloading) for details.
 
-esbuild is now a peer dependency of hanami-assets (the npm package), so your app must depend on it directly. This lets you update esbuild on your own schedule without waiting for a new hanami-assets release.
+Delete the `Guardfile` from your app. Running `bundle exec hanami install` also removes it for you, if it is the one Hanami generated. hanami-reloader no longer depends on guard or guard-puma, so if you added these to your `Gemfile` yourself, you can remove them too.
 
-Edit `package.json` to bump hanami-assets and add esbuild:
+### Review your response bodies
 
-```json
-{
-  "dependencies": {
-    "esbuild": "^0.28.1",
-    "hanami-assets": "^3.0.0"
-  }
-}
-```
+`response.body=` now raises a `Hanami::Action::InvalidBodyError` when given an object that responds to `#each`, such as an Array or an Enumerator. Previously, it sent the `#inspect` output of that object to the client.
 
-Then run `npm install`.
-
-### Review your view exposures
-
-Hanami View now defaults to undecorated exposures. If your views rely on exposures being automatically wrapped in their parts, you have two options:
-
-- Decorate individual exposures by replacing `expose` with `decorate`, or adding the `decorate: true` option for `expose`.
-- Restore the previous behaviour for a view by setting `config.decorate_exposures = true`.
-
-### Review your action params and contracts
-
-Defining action params by subclassing `Hanami::Action::Params` was a legacy approach that we had preserved until now. As of 3.0 it is no longer supported. Move your params block into a `Dry::Validation::Contract` subclass and pass that contract to `Hanami::Action.params` or `Hanami::Action.contract`:
-
-```ruby
-# Before
-# class SignupParams < Hanami::Action::Params
-#   params do
-#     required(:email).filled(:str?)
-#   end
-# end
-
-# After
-class SignupContract < Dry::Validation::Contract
-  params do
-    required(:email).filled(:str?)
-  end
-end
-
-class Signup < Hanami::Action
-  params SignupContract
-end
-```
-
-### Review your action formats config
-
-The format config methods deprecated in 2.3 (`Action.format`, `config.format`, `config.formats.add` and `config.formats.values`) have now been removed. If you have not already migrated away from these, see [Formats and media types](//guide/actions/formats-and-media-types) for the current API.
-
-### Review your request body parsing
-
-In Hanami 2.3, request body parsing was provided by middleware enabled at the app level. In 3.0 this functionality has moved into Hanami Action and is now driven by your formats config:
-
-- JSON bodies are parsed when you `config.actions.formats.accept :json`.
-- Multipart form bodies are parsed when you `config.actions.formats.accept :html` (or whenever no formats are configured at all).
-
-If your app relies on parsed JSON request bodies, make sure the relevant formats are accepted in your action or app config.
-
-### Review your memoized components
-
-Hanami 3.0 memoizes auto-registered container components by default. Each component is now resolved only once, with the same instance returned on every subsequent resolution. Previously, a new instance was built on each resolution.
-
-For typical components, which are stateless and can function as a long-lived instance already, this is a transparent performance improvement. But if you have a component that holds mutable per-resolution state, or that is otherwise not safe to share as a single long-lived instance, sharing it across the app could now cause subtle bugs. Review any such components and opt them out of memoization.
-
-You can opt components out of memoization in a few ways:
-
-- For an individual component, add a `# memoize: false` magic comment to the top of its source file:
-
-  ```ruby
-  # memoize: false
-  # frozen_string_literal: true
-
-  module Bookshelf
-    class Worker
-      # ...
-    end
-  end
-  ```
-
-- For groups of components, set `config.no_memoize` in your app (or slice) class. It accepts an array of key prefixes:
-
-  ```ruby
-  module Bookshelf
-    class App < Hanami::App
-      config.no_memoize = ["workers", "jobs"]
-    end
-  end
-  ```
-
-- Or, for full control, a proc that receives a `Dry::System::Component` and returns `true` for components that should _not_ be memoized:
-
-  ```ruby
-  config.no_memoize = ->(component) {
-    component.key.start_with?("workers")
-  }
-  ```
-
-Components are **not** memoized in the test env, so you can continue to use [container stubbing](//org_guide/dry/dry-system/test-mode) where you need.
-
-### Review your redirect routes
-
-If you define redirect routes in `config/routes.rb`, `redirect` now requires an explicit `code:` argument. For the common cases, switch to the new `redirect_permanent` (301) and `redirect_temporary` (302) helpers:
+To send a response in chunks, use the new `response.stream` instead:
 
 ```ruby
 # Before:
-#   redirect "/legacy", to: "/new"
+# response.body = ["Hello, ", "world"]
+
 # After:
-redirect_temporary "/legacy", to: "/new"
+response.stream(["Hello, ", "world"])
 ```
 
-For less common status codes (such as `303`, `307` or `308`), continue to use `redirect` and pass `code:` explicitly.
+`response.write` also raises an `InvalidBodyError` when the body is a stream. See [Streaming responses](//guide/actions/request-and-response#streaming-responses) for more.
+
+### Review your view exposures
+
+View exposures are now lazy. An exposure runs only when a template (or another exposure) first reads it, and exposures that no template reads never run at all.
+
+For most views, this is a transparent performance improvement. But if an exposure has side effects, or must raise an error before rendering starts (such as a "not found" error), define it with `expose!` to make it eager:
+
+```ruby
+expose!(:book) do |id:|
+  book_repo.get!(id)
+end
+```
+
+See [When exposures run](//guide/views/input-and-exposures#when-exposures-run) and [Eager exposures](//guide/views/input-and-exposures#eager-exposures) for details.
+
+### Review your use of view locals
+
+Inside a view's template and layout, `locals` (and `_locals`) now return a `Hanami::View::Locals` object rather than a Hash. This lets Hanami resolve each local only when you read it. `Locals` supports `#[]`, `#fetch`, `#key?` and `#to_h`.
+
+- Splatting locals into a partial, such as `render("item", **locals)`, now raises a `TypeError`. Pass only the locals the partial needs (`render("item", item: book)`), or convert them first with `**locals.to_h`.
+- `Rendered#locals` also returns a `Locals`. In your view tests, add `.to_h` wherever you treat it as a Hash, such as with RSpec's `include` matcher:
+
+  ```ruby
+  expect(rendered.locals.to_h).to include(title: "Hello")
+  ```
+
+- `Rendered#==` now compares the rendered output only, not the locals.
+
+See [Passing locals to partials](//guide/views/templates-and-partials#passing-locals-to-partials) and [Testing exposures](//guide/views/testing#testing-exposures) for details.
+
+### Review your locals magic comments
+
+Hanami View now supports declaring a template's locals with a magic comment, such as `<%# locals: (title:) %>`. If your templates already have comments in this form (for example, kept from a Rails app), they are now enforced.
+
+To ignore these comments, set `config.renderer_options = {extract_fixed_locals: false}` in your view class.
+
+See [Declaring locals](//guide/views/templates-and-partials#declaring-locals) for details.
+
+### Review your resource routes
+
+Resource routes now give more consistent names and params. Review your routes with `bundle exec hanami routes` if you use any of the following:
+
+- **The `as:` option on `resources`** now goes through the inflector. Member routes and routes nested under the resource use its singular form, and the index and create routes use its plural form. For example, `resources :books, as: :publications` gives `publication`, `edit_publication` and `publication_reviews`, while the index route keeps its `publications` name.
+- **The `path:` option on `resources`** no longer changes the names of nested params. `resources :posts, path: "articles" do resources :comments end` now gives `/articles/:post_id/comments`. If your actions read the old param name (`article_id`), change them to read the new one (`post_id`).
+- **Uncountable resource names**, like `news`, now give their index and create routes an `_index` suffix (`news_index`), so they no longer clash with the show route.
+- **Routes nested under a singular `resource`** use the resource's name as given. `resource :settings do resources :items end` now gives `settings_items` rather than `setting_items`.
+
+See [Resource routes](//guide/routing#resource-routes) for details.
+
+### Review your SQLite databases
+
+For apps using SQLite, Hanami now applies a set of default pragmas to every database connection, including `journal_mode = wal`. Your existing SQLite databases will switch to WAL mode on upgrade. SQLite stores this mode in the database file, and creates `-wal` and `-shm` files beside the database while it is in use.
+
+A read-only connection cannot switch a database to WAL mode. Hanami leaves out the `journal_mode` pragma for gateways with `connection_options readonly: true`, but it does not detect `?readonly=true` in a database URL. If you make a gateway read-only through its URL, move the option to `connection_options`, or skip the default pragmas for that gateway:
+
+```ruby
+# config/providers/db.rb
+
+Hanami.app.configure_provider :db do
+  config.gateway :archive do |gw|
+    gw.adapter :sql do |adapter|
+      adapter.skip_defaults :connect_sqls
+    end
+  end
+end
+```
+
+Also update your `.gitignore` to ignore the new files, by changing `db/*.sqlite` to `db/*.sqlite*`.
+
+See [SQLite](//guide/database/configuration#sqlite) in the database configuration guide for the full list of pragmas and how to change them.
+
+### Review your translation files
+
+Each slice's `i18n` component now loads only the translation files configured for that slice. It no longer loads the files in the global `I18n.load_path`.
+
+If you added translation files to `I18n.load_path` and used them via the `i18n` component, add them to your i18n config instead. Use `config.i18n.load_path` for a single slice, or `config.i18n.shared_load_path` for every slice:
+
+```ruby
+# config/app.rb
+
+config.i18n.shared_load_path += ["config/locales/**/*.yml"]
+```
+
+Calling `I18n.t` directly still uses the global `I18n.load_path`, as before.
+
+See [i18n configuration](//guide/i18n/configuration) for details.
+
+### Review your validation error messages
+
+Error messages from your Dry Validation contracts are now translated with your slice's i18n, using its current locale. This includes contracts in your slices as well as `params do` and `contract do` blocks in your actions. Messages fall back to Dry Validation's built-in English messages, so apps that use only English will see no change.
+
+To keep the previous behaviour for a contract, set `config.messages.backend = :yaml` in that contract.
+
+This requires dry-schema 1.17 or later. See [Translating validation messages](//guide/i18n#translating-validation-messages) for how to add your own translations.
+
+### Review your handling of bad requests
+
+Actions now respond with 400 Bad Request when a request's body or params cannot be parsed. This covers invalid JSON bodies, conflicting param types (such as `?a=1&a[b]=2`), invalid percent-encoding, and params that exceed Rack's limits. Previously, these raised errors that typically became 500 responses.
+
+- If your tests expect these errors to be raised, change them to expect a 400 response instead.
+- If you already handle `Hanami::Action::BodyParsingError` with `config.handle_exception`, your handler still runs. If it only returns a 400, you can remove it.
+- To respond your own way to query strings and form bodies that can't be parsed, handle the new `Hanami::Action::ParamsParsingError` too.
+
+Params contracts now receive params with symbol keys rather than string keys.
+
+See [Malformed requests](//guide/actions/parameters#malformed-requests) for details.
+
+### Update your Minitest support files
+
+> [!NOTE]
+> This is only relevant if your app uses hanami-minitest.
+
+The test support files generated by Hanami 3.0 did not apply database cleaning to feature tests. To fix this, make your support files define their own `FeatureTest` and `RequestTest` classes:
+
+```ruby
+# test/support/features.rb
+
+class FeatureTest < Hanami::Minitest::FeatureTest
+  # Add custom feature test helpers here.
+end
+```
+
+```ruby
+# test/support/requests.rb
+
+class RequestTest < Hanami::Minitest::RequestTest
+  # Add custom request test helpers here.
+end
+```
+
+Then change your feature and request tests to inherit from these classes, such as `class RootTest < RequestTest`.
+
+### Update your custom CLI commands
+
+Hanami CLI now uses Dry CLI 2.0. If your app or gem defines its own commands, follow the [Dry CLI 2.0 upgrade notes](//org_guide/dry/dry-cli/upgrade-notes) first. These cover the main changes, such as using `stdout` and `stderr` in place of `out` and `err`.
+
+Then make these Hanami-specific changes:
+
+- A command's `fs:` is now assigned before `#initialize` runs, along with its I/O streams. Your `#initialize` needs to take only its own arguments, and no longer needs to call `super`:
+
+  ```ruby
+  # Before:
+  # def initialize(fs:, out:, err:, generator: MyGenerator.new(fs: fs), **opts)
+  #   super(fs: fs, out: out, err: err, **opts)
+  #   @generator = generator
+  # end
+
+  # After:
+  def initialize(generator: MyGenerator.new(fs:))
+    @generator = generator
+  end
+  ```
+
+- `Hanami::CLI::SystemCall::Result#out` and `#err` are now `#stdout` and `#stderr`.
+- `Hanami::CLI::InteractiveSystemCall` is removed. Pass `stdout:` and `stderr:` to `Hanami::CLI::SystemCall#call` to write a command's output as it arrives.
 
 ## Recommended changes
 
-These changes are optional, but recommended to bring your app in line with what we now generate for new 3.0 apps.
+These changes are optional, but recommended.
 
-### Update your Puma config
+### Review your log filters
 
-New apps no longer include `preload_app!` in `config/puma.rb`. Recent versions of Puma enable preloading by default in cluster mode, so the call is redundant. If you wish to match, you can remove these lines from within the `if puma_cluster_mode` block:
+Hanami's default log filters are now broader: `["passw", "secret", "token", "_key", "crypt"]`. Each filters any param whose name contains that text, ignoring case, such as `password_confirmation`, `client_secret` and `api_key`.
 
-```ruby
-# Preload the application before starting the workers. Only in cluster mode.
-preload_app!
-```
-
-Make sure to upgrade your puma gem to 7.0 or later to take advantage of this change.
-
-### Syntax highlight SQL logs
-
-If you add the rouge gem, Hanami will syntax highlight SQL in your logs. Add it to your `development` and `test` groups:
+If you set `config.logger.filters` in your app, consider appending to the defaults rather than replacing them:
 
 ```ruby
-group :development, :test do
-  gem "rouge"
-end
+config.logger.filters += ["ssn"]
 ```
 
-Hanami 3.0 also changes the default log level for SQL (and other database) statements from `:info` to `:debug`. You can adjust this with the new `config.db.log_level` setting.
-
-### Update your operations spec support
-
-If you have a `spec/support/operations.rb`, switch from including the Dry Monads result mixin to loading its RSpec extension. This provides `be_success` and `be_failure` matchers for operation results, along with `Success` and `Failure` constructors for use within your examples:
-
-```ruby
-# frozen_string_literal: true
-
-require "dry/monads"
-
-# Load Dry Monads' RSpec extension.
-#
-# This provides `be_success` and `be_failure` matchers for operation results, along with `Success`
-# and `Failure` constructors for use within your examples.
-Dry::Monads.load_extensions(:rspec)
-```
-
-### Update your database cleaning spec support
-
-In `spec/support/db/cleaning.rb`, change the `:db` setup hook from `config.before` to `config.prepend_before`. This ensures the database cleaning hook runs before any other `before` hooks that might touch the database, preventing factory calls in spec-level `before` blocks from leaking records across tests:
-
-```ruby
-config.prepend_before :each, :db do |example|
-  # ...
-end
-```
+See [Log filters](//guide/logger/configuration#log-filters) for details.
 
 ## Optional new features
 
-Hanami 3.0 adds several new features and integrations. Adopt any of these if you want the capability. Otherwise, you can safely skip them.
-
-### Add i18n support
-
-Hanami 3.0 integrates the i18n gem when it is bundled. To adopt it:
-
-- Add the gem to your `Gemfile`:
-
-  ```ruby
-  gem "i18n"
-  ```
-
-- Create a `config/i18n/en.yml` (and one in `config/i18n/` for each slice) with your translations:
-
-  ```yaml
-  # Add your translations here. See https://hanakai.org/learn/hanami/i18n for details.
-  en:
-    hello: "Hello"
-  ```
-
-Hanami registers an `"i18n"` component in each slice, configurable via `config.i18n` or a dedicated `:i18n` provider. Translations are loaded from `config/i18n/` within each slice, and shared translations from `config/i18n/shared/` at the app level. Translation and localization helpers are made available in views and actions, where relative keys (those with a leading `.`) are prefixed with the current template or action name.
-
-### Add mailer support
-
-Hanami 3.0 integrates the rewritten hanami-mailer gem. To adopt it:
-
-- Add the gem to your `Gemfile`:
-
-  ```ruby
-  gem "hanami-mailer", "~> 3.0"
-  ```
-
-- Add an `app/mailer.rb` (and a `mailer.rb` in any slices):
-
-  ```ruby
-  # auto_register: false
-  # frozen_string_literal: true
-
-  require "hanami/mailer"
-
-  module Bookshelf
-    class Mailer < Hanami::Mailer
-      # Add common mailer behavior here. See https://hanakai.org/learn/hanami/mailers for details.
-    end
-  end
-  ```
-
-- Create an `app/mailers/` directory (and `mailers/` in any slices) with a `.keep` file inside.
-- Mailer templates are loaded from `templates/mailers/`.
-- Add sample SMTP settings to your `.env`. Hanami registers an SMTP delivery method in the development and production envs when the `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD` and `SMTP_AUTHENTICATION` env vars are present, and a test delivery method otherwise (and always in the test env):
-
-  ```shell
-  # SMTP delivery for Hanami Mailer (in development and production envs only).
-  #
-  # See https://hanakai.org/learn/hanami/mailers for details.
-  #
-  # Set these in `.env.local` or another `.env` file not checked into source control.
-  #
-  # SMTP_ADDRESS=smtp.example.com
-  # SMTP_PORT=587
-  # SMTP_USERNAME=mailer@example.com
-  # SMTP_PASSWORD=s3cr3t
-  # SMTP_AUTHENTICATION=plain
-  ```
-
-You can generate new mailers with `hanami generate mailer`.
-
-### Use Minitest instead of RSpec
-
-> [!NOTE]
-> This is only relevant if you want to switch your app's test framework from RSpec to Minitest.
-
-Hanami 3.0 introduces the new hanami-minitest gem, giving you a fully integrated Minitest setup as an alternative to RSpec.
-
-Add the gem to your `Gemfile`, replacing hanami-rspec:
-
-```ruby
-group :cli, :development, :test do
-  gem "hanami-minitest"
-end
-```
-
-Then run `bundle exec hanami setup`. This generates the files below and appends the necessary test dependencies to your `Gemfile`. If you'd rather add them by hand, here is what `setup` creates.
-
-- Add capybara and rack-test (and, if you use hanami-db, database_cleaner-sequel) to your `test` group:
-
-  ```ruby
-  group :test do
-    # Database
-    gem "database_cleaner-sequel"
-
-    # Web integration
-    gem "capybara"
-    gem "rack-test"
-  end
-  ```
-
-- Add the following to your `.gitignore`:
-
-  ```text
-  .test_results/
-  ```
-
-- Create `test/test_helper.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  require "pathname"
-  TEST_ROOT = Pathname(__dir__).realpath.freeze
-
-  ENV["HANAMI_ENV"] ||= "test"
-  require "hanami/minitest"
-  require "hanami/prepare"
-
-  require_relative "support/minitest"
-  TEST_ROOT.glob("support/**/*.rb").each { |f| require f }
-  ```
-
-  - Create `test/support/minitest.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  class Hanami::Minitest::Test
-    # Add helper methods to be used by all tests here.
-  end
-  ```
-
-- Create `test/support/features.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  class Hanami::Minitest::FeatureTest
-    # Add custom feature test helpers here.
-  end
-  ```
-
-- Create `test/support/requests.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  class Hanami::Minitest::RequestTest
-    # Add custom request test helpers here.
-  end
-  ```
-
-- Create `test/support/operations.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  require "dry/monads"
-
-  class Hanami::Minitest::Test
-    # Provide `Success` and `Failure` for testing operation results.
-    include Dry::Monads[:result]
-  end
-  ```
-
-- Create a starter request test at `test/requests/root_test.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  require "test_helper"
-
-  class RootTest < Hanami::Minitest::RequestTest
-    test "not found" do
-      get "/"
-
-      # Generate new action via:
-      #   `bundle exec hanami generate action home.index --url=/`
-      assert_equal 404, last_response.status
-    end
-  end
-  ```
-
-If you use hanami-db, `setup` also creates these database support files:
-
-- Create `test/support/db.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  require_relative "features"
-  require_relative "db/cleaning"
-
-  module TestSupport
-    module DB
-      def self.included(mod)
-        mod.include DB::Cleaning
-      end
-
-      # Add helper methods to be used by DB tests here.
-    end
-  end
-
-  class FeatureTest
-    include TestSupport::DB
-  end
-  ```
-
-- Create `test/support/db/cleaning.rb`:
-
-  ```ruby
-  # frozen_string_literal: true
-
-  require "database_cleaner/sequel"
-
-  module TestSupport
-    module DB
-      module Cleaning
-        def self.included(base)
-          base.extend(ClassMethods)
-        end
-
-        module ClassMethods
-          def db_cleaning_with_truncation!
-            @db_cleaning_with_truncation = true
-          end
-
-          def js! = db_cleaning_with_truncation!
-        end
-
-        def setup
-          # Clean all databases before the first test
-          Cleaning.once do
-            Cleaning.all_databases.each do |db|
-              DatabaseCleaner[:sequel, db: db].clean_with :truncation, except: ["schema_migrations"]
-            end
-          end
-
-          use_truncation = self.class.instance_variable_get(:@db_cleaning_with_truncation)
-          strategy = use_truncation ? :truncation : :transaction
-
-          Cleaning.all_databases.each do |db|
-            DatabaseCleaner[:sequel, db: db].strategy = strategy
-            DatabaseCleaner[:sequel, db: db].start
-          end
-
-          super
-        end
-
-        def teardown
-          Cleaning.all_databases.each do |db|
-            DatabaseCleaner[:sequel, db: db].clean
-          end
-
-          super
-        end
-
-        class << self
-          def once
-            @cleaned_once ||= false
-            return if @cleaned_once
-
-            yield
-
-            @cleaned_once = true
-          end
-
-          def all_databases
-            @all_databases ||= begin
-              slices = [Hanami.app] + Hanami.app.slices.with_nested
-
-              slices.each_with_object([]) { |slice, dbs|
-                next unless slice.key?("db.rom")
-
-                dbs.concat slice["db.rom"].gateways.values.map(&:connection)
-              }.uniq
-            end
-          end
-        end
-      end
-    end
-  end
-  ```
-
-Database cleaning is wired into feature tests automatically. For other tests that need database access, include the `TestSupport::DB` module in the test class.
-
-The test support files use compact class notation to re-open Hanami's Minitest classes (such as `class Hanami::Minitest::Test`). If these cause RuboCop issues in your app, exclude these files from the `Style/ClassAndModuleChildren` in your RuboCop config:
-
-```yaml
-Style/ClassAndModuleChildren:
-  Exclude:
-    - "test/support/**/*"
-```
-
-Once your Minitest setup is in place, and your RSpec-based tests ported over, you can remove hanami-rspec along with your `spec/` directory and `.rspec` file.
+Hanami 3.1 adds several new features. Adopt any of these if you want the capability. Otherwise, you can safely skip them.
+
+- **Settings from YAML files.** Hanami now reads settings from `config/settings/default.yml` and a file for each env, such as `config/settings/production.yml`. Values in `ENV` still take precedence. See [YAML settings files](//guide/app/settings#yaml-settings-files).
+- **Collection and member routes.** Use `collection` and `member` blocks inside `resources` to add your own routes to a resource. See [Resource routes](//guide/routing#resource-routes).
+- **Response streaming.** Use `response.stream` to send a response in chunks. `send_file` now streams files too, rather than reading them into memory. See [Streaming responses](//guide/actions/request-and-response#streaming-responses).
+- **Eager exposures and declared locals.** Use `expose!` for exposures that must run before rendering, and declare your templates' locals to catch mistakes early. See [Eager exposures](//guide/views/input-and-exposures#eager-exposures) and [Declaring locals](//guide/views/templates-and-partials#declaring-locals).
+- **Database URLs from separate env vars.** Instead of a single `DATABASE_URL`, you can now give its parts as `DATABASE_HOST`, `DATABASE_NAME` and other env vars. See [Building the URL from separate env vars](//guide/database/configuration#building-the-url-from-separate-env-vars).
+- **A custom app file location.** Set `HANAMI_APP_PATH` to load your app class from a file other than `config/app.rb`. See [Using a different app file](//guide/app#using-a-different-app-file).
 
 ## Getting help
 
-Thank you for upgrading to Hanami 3.0! We hope the process is a smooth one for you.
+Thank you for upgrading to Hanami 3.1! We hope the process is a smooth one for you.
 
 If you run into any trouble or have questions along the way, please [reach out to our community](/community). We'd love to help, and your feedback helps us make these upgrades better for everyone.
