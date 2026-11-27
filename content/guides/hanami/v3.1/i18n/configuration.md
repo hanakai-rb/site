@@ -56,6 +56,16 @@ To replace the default entirely:
 config.i18n.load_path = ["translations/**/*.yml"]
 ```
 
+Each slice's i18n backend loads only the files from its `load_path` and [`shared_load_path`](#shared-load-path), along with the [bundled English defaults](#bundled-english-defaults). It does not load the files in the global `I18n.load_path`. To use translation files from somewhere else, such as a gem, add their paths here or to `shared_load_path`:
+
+```ruby
+config.i18n.shared_load_path += ["config/locales/**/*.yml"]
+```
+
+Calling `I18n.t` directly on the global `I18n` module still uses `I18n.load_path`, as usual.
+
+Calling `reload!` on the `"i18n"` component loads the slice's translation files again.
+
 ## shared_load_path
 
 The list of file path patterns for translation files that should be loaded into _every_ slice's i18n backend. Defaults to `["config/i18n/shared/**/*.{yml,yaml,json,rb}"]`.

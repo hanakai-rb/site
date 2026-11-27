@@ -154,6 +154,63 @@ end
 
 This is the recommended approach when setting the locale per-request (for example, from an action).
 
+## Translating validation messages
+
+Hanami integrates with [Dry Validation](//org_guide/dry/dry-validation) for validating input. This is used in the `params` and `contract` blocks in your [actions](//guide/actions/parameters#parameter-validation), and you can also use Dry Validation contract classes of your own throughout your code.
+
+When input is invalid, a contract gives you error messages such as "must be filled". When your app bundles the i18n gem, Hanami translates these messages using your slice's translations. They follow the slice's default locale and current locale, just like the rest of your app.
+
+Add your messages under the `dry_validation.errors` key, using the same keys as Dry Validation:
+
+```yaml
+# config/i18n/tl.yml
+tl:
+  dry_validation:
+    errors:
+      filled?: "dapat may laman"
+```
+
+Error messages then follow the current locale:
+
+```ruby
+# app/contracts/signup.rb
+
+module Bookshelf
+  module Contracts
+    class Signup < Dry::Validation::Contract
+      params do
+        required(:name).filled(:string)
+      end
+    end
+  end
+end
+```
+
+```ruby
+Hanami.app["i18n"].with_locale(:tl) do
+  Bookshelf::Contracts::Signup.new.call(name: "").errors.to_h
+end
+# => {name: ["dapat may laman"]}
+```
+
+When a message is missing from the current locale, Hanami falls back to the slice's [default locale](//page/configuration#default-locale), then to Dry Validation's bundled English messages. For example, if your default locale is `:en` and the current locale is `:tl`, Hanami looks for the `filled?` message in your `tl.yml`, then in your `en.yml`, and finally uses Dry Validation's "must be filled".
+
+Your translations always come first, even before messages from a contract's own `config.messages.load_paths`. This means you can also add English translations to reword Dry Validation's messages across your whole app.
+
+To share validation messages across all your slices, put them in [`config/i18n/shared/`](//page/slices#shared-translations-via-config-i18n-shared).
+
+To keep Dry Validation's own messages for a contract, give the contract its own messages backend. Hanami doesn't change a backend that you set:
+
+```ruby
+class Signup < Dry::Validation::Contract
+  config.messages.backend = :yaml
+end
+```
+
+### Setting the locale for actions
+
+Actions validate their params _before_ they run their `before` callbacks. If you set the locale in a `before` callback, your validation messages won't use it. Set the locale earlier instead, such as in a [Rack middleware](//guide/actions/rack-integration#rack-middleware).
+
 ## Next steps
 
 - [Configuration](//page/configuration) covers all the available i18n configuration options.

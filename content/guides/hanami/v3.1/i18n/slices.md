@@ -43,7 +43,7 @@ slices/admin/config/i18n/en.yml  # Admin-only translations
 slices/main/config/i18n/en.yml   # Main-only translations
 ```
 
-Each slice's i18n instance sees only the translations from its own `config/i18n/` directory:
+Each slice's i18n instance sees only the translations from its own `config/i18n/` directory (along with any [shared translations](#shared-translations-via-config-i18n-shared)). It never loads the files in the global `I18n.load_path`:
 
 ```ruby
 Hanami.app["i18n"].t("admin_message")     # => "admin_message" (missing)
