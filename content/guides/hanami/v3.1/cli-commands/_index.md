@@ -51,14 +51,10 @@ Commands:
   hanami version                              # Print Hanami app version
 ```
 
-If your Hanami app is defined in a file other than `config/app.rb`, you can set
-the environment variable `HANAMI_APP_PATH` to supply the file location:
+If your app class is in a file other than `config/app.rb`, set the `HANAMI_APP_PATH` environment variable. See [Using a different app file](//guide/app#using-a-different-app-file).
 
-```shell
-# On Linux/Mac:
-HANAMI_APP_PATH=config/my_app.rb bundle exec hanami generate [SUBCOMMAND]
+## Command output
 
-# On Windows:
-set HANAMI_APP_PATH=config\my_app.rb
-bundle exec hanami generate [SUBCOMMAND]
-```
+When you run a command in a terminal, its output is styled with colours. When you pipe its output to another program or a file, the output is plain text.
+
+To turn off colours in your terminal too, set the `NO_COLOR` environment variable. To keep colours when piping, set `FORCE_COLOR`.

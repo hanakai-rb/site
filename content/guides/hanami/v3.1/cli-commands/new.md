@@ -4,14 +4,43 @@ title: New
 
 ## hanami new
 
-Generates a Hanami application with the given APP name, in a new directory from the current location.
+Generates a Hanami app with the given name, in a new directory from the current location.
 
 ```shell
 $ hanami new bookshelf # generates a new Bookshelf application in ./bookshelf
 $ hanami new my_app # generates a new MyApp application in ./my_app
 ```
 
-On the application generation, Hanami performs gem bundling, NPM bundling, and general application setup.
+Hanami then installs your app's gems and npm packages, and finishes setting it up. When it's done, it shows you how to start your app:
+
+```shell
+$ hanami new bookshelf
+
+Creating bookshelf/
+  create  .gitignore
+  create  .env
+  create  README.md
+  create  Gemfile
+  ...
+
+Installing
+  ✓ bundle install in 14.2s
+  ✓ npm install in 6.8s
+  ✓ hanami install in 2.1s
+  ✓ bundle binstubs hanami-cli rake in 0.4s
+  ✓ git init
+
+🌸 Your new Hanami app is ready! (24.6s)
+
+  cd bookshelf
+  bin/setup
+  bin/dev
+
+View your app at http://localhost:2300
+
+📚 Learn more   https://hanakai.org/learn/hanami
+💬 Join us      https://hanakai.org/community
+```
 
 ### Specify a database
 
@@ -30,7 +59,15 @@ $ hanami new bookshelf --gem-source=gem.coop
 
 ### Skipping features
 
-Skip the installation of certain Hanami features by passing `--skip-assets`, `--skip-view`, or `--skip-db`.
+Skip the installation of certain Hanami features by passing `--skip-assets`, `--skip-view`, `--skip-db`, or `--skip-mailer`.
+
+### Skipping git
+
+By default, Hanami initializes a git repository for your app and generates a `.gitignore`. Pass `--skip-git` to skip both:
+
+```shell
+$ hanami new bookshelf --skip-git
+```
 
 ### Using Hanami HEAD
 

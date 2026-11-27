@@ -6,12 +6,10 @@ title: Server
 
 Launches Hanami's development server for developing against your application locally.
 
+<!-- TODO: Update the output below to show more recent versions -->
 ```shell
 $ bundle exec hanami server
 
-12:30:50 - INFO - Using Guardfile at bookshelf/Guardfile.
-12:30:50 - INFO - Puma starting on port 2300 in development environment.
-12:30:50 - INFO - Guard is now watching at 'bookshelf'
 Puma starting in single mode...
 * Puma version: 6.4.0 (ruby 3.2.3-p53) ("The Eagle of Durango")
 *  Min threads: 5
@@ -30,22 +28,18 @@ Use Ctrl-C to stop
 $ bundle exec puma -C config/puma.rb
 ```
 
-### Code Reloading
+<!-- TODO: Confirm how debuggers interact with reloading and document any gotchas here. -->
 
-Hanami offers a useful development feature: code reloading.
+### Code reloading
 
-When the application code changes, the application is reloaded, so for new incoming HTTP requests, the app works with the most recent version of the code.
-It's convenient feature to avoid developers to stop and start the web server for each code change.
+In development, the server reloads your app whenever you change its code. The reload happens in place on the next request, so the server keeps running and you don't need to restart it after each change.
 
-This feature is provided by the `hanami-reloader` Ruby gem.
+This feature is provided by the hanami-reloader gem. See the [code reloading guide](//guide/app/code-reloading) for more detail.
 
-In case you want to disable permanently this feature, remove the gem from the app's `Gemfile`.
-
-In case you want to disable temporarly, start the server with the `--no-code-reloading` CLI option.
+To disable code reloading, start the server with the `--no-code-reloading` option:
 
 ```shell
 $ bundle exec hanami server --no-code-reloading
 ```
 
-> [!NOTE]
-> Disabling code reloading is essential to debug application code with debuggin Ruby gems like `byebug`, `debug`, or `pry`.
+If you want to disable code reloading permanently, remove the gem from your app's `Gemfile`.

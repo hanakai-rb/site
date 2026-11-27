@@ -26,3 +26,5 @@ GET,/books,books.index,"",""
 GET,/books/:id,books.show,"",""
 POST,/books,books.create,"",""
 ```
+
+These formats come from Hanami Router's formatters. To use them in your own code, see [Inspecting routes](//guide/routing#inspecting-routes).

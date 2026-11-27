@@ -22,6 +22,8 @@ Commands:
 
 Each of the commands below will target all the databases in your app and slices by default. To target an individual database, provide an `--app` or `--slice=SLICE` option, as well as `--gateway=GATEWAY` if you have multiple gateways configured.
 
+These commands support SQLite, PostgreSQL and MySQL databases. For MySQL URLs, they also work with MariaDB: if you have MariaDB's command line tools installed, the commands prefer them (such as `mariadb-dump` in place of `mysqldump`). On JRuby, they also work with [JDBC database URLs](//guide/database/configuration#jruby).
+
 ## hanami db create
 
 Creates the databases for the current environment.
@@ -65,17 +67,19 @@ Rolls back one or more migrations for a single database. This is a convenient al
 
 Call `rollback` on its own to roll back the most recent migration.
 
-Specify `--steps` to roll back that the n most recent migrations:
+Give a number of steps to roll back the n most recent migrations:
 
 ```
-$ bundle exec hanami rollback --steps=2
+$ bundle exec hanami db rollback 2
 ```
 
 Specify `--target` to roll back to a specific migration version:
 
 ```
-$ bundle exec hanami rollback --target=20241009134756
+$ bundle exec hanami db rollback --target=20241009134756
 ```
+
+By default, rolling back will also generate a structure dump file. To skip this, provide the `--no-dump` flag.
 
 The rollback command operates on one database at a time. If your app has more than one database, specify the database with `--app`, `--slice=SLICE`, as well as `--gateway=GATEWAY` if you have multiple gateways configured.
 
