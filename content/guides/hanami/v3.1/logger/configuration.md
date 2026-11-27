@@ -70,18 +70,34 @@ end
 
 ### Log filters
 
-To avoid sensitive information leaking into your log streams, Hanami configures log filtering to filter out the following keys:
+To avoid sensitive information leaking into your log streams, Hanami filters out the values of any key that contains one of these words:
 
-- `_csrf`
-- `password`
-- `password_confirmation`
+- `_key`
+- `crypt`
+- `passw`
+- `secret`
+- `token`
 
-To add your own keys:
+Filters match any part of a key, ignoring case. This means the defaults filter keys such as `password`, `password_confirmation`, `client_secret`, `_csrf_token`, `api_key` and `encrypted_password`.
+
+To filter more keys, append to the defaults:
 
 ```ruby
 module Bookshelf
   class App < Hanami::App
-    config.logger.filters += ["token"]
+    config.logger.filters += ["ssn"]
+  end
+end
+```
+
+Assigning a new array (using `=` rather than `+=`) replaces the defaults, so your app will no longer filter keys like `password`.
+
+Because filters match any part of a key, a short filter can match more keys than you want. For example, `"pin"` also matches `shipping_address`. To match a short key exactly, use a regexp:
+
+```ruby
+module Bookshelf
+  class App < Hanami::App
+    config.logger.filters += [/\Apin\z/]
   end
 end
 ```
