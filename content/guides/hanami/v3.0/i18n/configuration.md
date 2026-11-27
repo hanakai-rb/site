@@ -62,7 +62,7 @@ The list of file path patterns for translation files that should be loaded into 
 
 Relative patterns are resolved against the **app root**, regardless of which slice is being loaded. This is the recommended place for foundational translation data needed everywhere in your app, such as base validation messages or shared `date.*` and `time.*` keys.
 
-Shared files are loaded into each slice's backend _before_ that slice's own [`load_path`](#load-path) files, so slice-specific translations can override the shared ones.
+Shared files are loaded into each slice's backend _before_ that slice's own [`load_path`](#load_path) files, so slice-specific translations can override the shared ones.
 
 To disable shared translations for the app entirely:
 
@@ -82,7 +82,7 @@ See [Slices](//page/slices) for more on how shared translations work across slic
 
 Configures locale fallbacks for missing translations. Defaults to `nil` (fallbacks disabled).
 
-Set to `true` to enable fallback to the [default locale](#default-locale):
+Set to `true` to enable fallback to the [default locale](#default_locale):
 
 ```ruby
 config.i18n.fallbacks = true

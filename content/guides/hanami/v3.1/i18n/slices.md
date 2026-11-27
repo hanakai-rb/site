@@ -43,7 +43,7 @@ slices/admin/config/i18n/en.yml  # Admin-only translations
 slices/main/config/i18n/en.yml   # Main-only translations
 ```
 
-Each slice's i18n instance sees only the translations from its own `config/i18n/` directory (along with any [shared translations](#shared-translations-via-config-i18n-shared)). It never loads the files in the global `I18n.load_path`:
+Each slice's i18n instance sees only the translations from its own `config/i18n/` directory (along with any [shared translations](#shared-translations)). It never loads the files in the global `I18n.load_path`:
 
 ```ruby
 Hanami.app["i18n"].t("admin_message")     # => "admin_message" (missing)
@@ -53,7 +53,7 @@ Main::Slice["i18n"].t("admin_message")    # => "admin_message" (missing)
 
 This is the simplest pattern and a good fit for apps where each slice has its own translation needs.
 
-## Shared translations via config/i18n/shared/
+## Shared translations
 
 Files under `config/i18n/shared/` in your app are loaded into _every_ slice's i18n backend by default, without needing to duplicate them per-slice. Each slice still has its own i18n instance with its own locale state, but they all share these base translations.
 
@@ -94,7 +94,7 @@ This is the recommended pattern for apps that need common base translations (val
 
 ### Disabling or relocating shared translations
 
-To disable shared translations for the whole app, set [`shared_load_path`](//page/configuration#shared-load-path) to `[]`:
+To disable shared translations for the whole app, set [`shared_load_path`](//page/configuration#shared_load_path) to `[]`:
 
 ```ruby
 # config/app.rb
@@ -165,7 +165,7 @@ With this configuration, the `search` slice has its own isolated i18n backend (a
 
 ## Shared base translations with slice-specific overrides
 
-If you want each slice to have its own i18n instance (and its own locale state) while still inheriting a common base set of translations from the app, configure the app's [`load_path`](//page/configuration#load-path) with absolute paths so that slices can include them:
+If you want each slice to have its own i18n instance (and its own locale state) while still inheriting a common base set of translations from the app, configure the app's [`load_path`](//page/configuration#load_path) with absolute paths so that slices can include them:
 
 ```ruby
 # config/app.rb
@@ -191,4 +191,4 @@ end
 
 The app's load path uses an absolute path (via `root.join(...).to_s`), so each slice that inherits it can still resolve those files. Each slice then appends its own relative `config/i18n/**/*.yml` to add slice-specific translations.
 
-In most cases, the [shared translations directory](#shared-translations-via-config-i18n-shared) is a simpler way to achieve the same outcome. Reach for this pattern only when you need finer-grained control over which paths each slice loads.
+In most cases, the [shared translations directory](#shared-translations) is a simpler way to achieve the same outcome. Reach for this pattern only when you need finer-grained control over which paths each slice loads.

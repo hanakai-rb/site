@@ -193,11 +193,11 @@ end
 # => {name: ["dapat may laman"]}
 ```
 
-When a message is missing from the current locale, Hanami falls back to the slice's [default locale](//page/configuration#default-locale), then to Dry Validation's bundled English messages. For example, if your default locale is `:en` and the current locale is `:tl`, Hanami looks for the `filled?` message in your `tl.yml`, then in your `en.yml`, and finally uses Dry Validation's "must be filled".
+When a message is missing from the current locale, Hanami falls back to the slice's [default locale](//page/configuration#default_locale), then to Dry Validation's bundled English messages. For example, if your default locale is `:en` and the current locale is `:tl`, Hanami looks for the `filled?` message in your `tl.yml`, then in your `en.yml`, and finally uses Dry Validation's "must be filled".
 
 Your translations always come first, even before messages from a contract's own `config.messages.load_paths`. This means you can also add English translations to reword Dry Validation's messages across your whole app.
 
-To share validation messages across all your slices, put them in [`config/i18n/shared/`](//page/slices#shared-translations-via-config-i18n-shared).
+To share validation messages across all your slices, put them in [`config/i18n/shared/`](//page/slices#shared-translations).
 
 To keep Dry Validation's own messages for a contract, give the contract its own messages backend. Hanami doesn't change a backend that you set:
 
