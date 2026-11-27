@@ -74,7 +74,6 @@ $ tree --gitignore --filesfirst .
 ├── config.ru
 ├── Gemfile
 ├── Gemfile.lock
-├── Guardfile
 ├── package-lock.json
 ├── package.json
 ├── Procfile.dev
@@ -145,7 +144,7 @@ $ tree --gitignore --filesfirst .
         └── db
             └── cleaning.rb
 
-30 directories, 44 files
+30 directories, 43 files
 ```
 
 Here's how these files and directories are used:
@@ -153,7 +152,6 @@ Here's how these files and directories are used:
 | Location     | Purpose                                                                                                                |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------- |
 | Gemfile      | The app's gem dependencies, installed using bundler.                                                                   |
-| Guardfile    | Supports code reloading in development.                                                                                |
 | Procfile.dev | For running Hanami dev server processes: both the server and assets watcher.                                           |
 | package.json | The app's Node.js package dependencies, for assets management, installed using npm.                                    |
 | README.md    | The app's README document.                                                                                             |
@@ -178,9 +176,6 @@ If all has gone well, you should see output similar to:
 08:14:33 web.1    | started with pid 56242
 08:14:33 assets.1 | started with pid 56243
 08:14:34 assets.1 | [gsg_app] [watch] build finished, watching for changes...
-08:14:34 web.1    | 08:14:34 - INFO - Using Guardfile at /Users/tim/Source/scratch/gsg_app/Guardfile.
-08:14:34 web.1    | 08:14:34 - INFO - Puma starting on port 2300 in development environment.
-08:14:34 web.1    | 08:14:34 - INFO - Guard is now watching at '/Users/tim/Source/scratch/gsg_app'
 08:14:35 web.1    | Puma starting in single mode...
 08:14:35 web.1    | * Puma version: 6.4.2 (ruby 3.3.0-p0) ("The Eagle of Durango")
 08:14:35 web.1    | *  Min threads: 5

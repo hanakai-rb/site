@@ -56,13 +56,23 @@ To replace the default entirely:
 config.i18n.load_path = ["translations/**/*.yml"]
 ```
 
+Each slice's i18n backend loads only the files from its `load_path` and [`shared_load_path`](#shared_load_path), along with the [bundled English defaults](#bundled-english-defaults). It does not load the files in the global `I18n.load_path`. To use translation files from somewhere else, such as a gem, add their paths here or to `shared_load_path`:
+
+```ruby
+config.i18n.shared_load_path += ["config/locales/**/*.yml"]
+```
+
+Calling `I18n.t` directly on the global `I18n` module still uses `I18n.load_path`, as usual.
+
+Calling `reload!` on the `"i18n"` component loads the slice's translation files again.
+
 ## shared_load_path
 
 The list of file path patterns for translation files that should be loaded into _every_ slice's i18n backend. Defaults to `["config/i18n/shared/**/*.{yml,yaml,json,rb}"]`.
 
 Relative patterns are resolved against the **app root**, regardless of which slice is being loaded. This is the recommended place for foundational translation data needed everywhere in your app, such as base validation messages or shared `date.*` and `time.*` keys.
 
-Shared files are loaded into each slice's backend _before_ that slice's own [`load_path`](#load-path) files, so slice-specific translations can override the shared ones.
+Shared files are loaded into each slice's backend _before_ that slice's own [`load_path`](#load_path) files, so slice-specific translations can override the shared ones.
 
 To disable shared translations for the app entirely:
 
@@ -82,7 +92,7 @@ See [Slices](//page/slices) for more on how shared translations work across slic
 
 Configures locale fallbacks for missing translations. Defaults to `nil` (fallbacks disabled).
 
-Set to `true` to enable fallback to the [default locale](#default-locale):
+Set to `true` to enable fallback to the [default locale](#default_locale):
 
 ```ruby
 config.i18n.fallbacks = true

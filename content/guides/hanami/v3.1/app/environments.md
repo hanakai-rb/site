@@ -6,7 +6,7 @@ Hanami supports different environments based on a `HANAMI_ENV` environment varia
 
 Setting `HANAMI_ENV` allows your code to act differently, depending on the environment.
 
-If `HANAMI_ENV` is not set, Hanami will fallback to checking `RACK_ENV`. If neither variable is set, the environment defaults to `:development`.
+If `HANAMI_ENV` is not set, Hanami will fallback to checking `APP_ENV`, then `RACK_ENV`. If none of these variables are set, the environment defaults to `:development`.
 
 By convention, Hanami expects `HANAMI_ENV` to be either `development`, `test`, or `production`.
 
@@ -97,6 +97,10 @@ end
 ```
 
 See the [app config guide](//page/app-config) for information on supported config options.
+
+## Environment specific settings
+
+To give your app's settings different values in each environment, use `.env` files or YAML settings files named after the environment, such as `.env.development` or `config/settings/production.yml`. See the [settings guide](//page/settings) for more detail.
 
 ## Production deployments
 

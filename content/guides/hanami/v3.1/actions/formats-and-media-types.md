@@ -305,7 +305,13 @@ As with the built-in formats, your actions must accept the format for their requ
 
 Your parser does not need to symbolize the keys in the data it returns. They're symbolized for you when the action builds the request's `params`.
 
-If a parser cannot parse a body, it should raise `Hanami::Action::BodyParsingError`. You can handle this like any other exception in your actions:
+If a parser cannot parse a body, it should raise `Hanami::Action::BodyParsingError`.
+
+### Handling unparseable bodies
+
+When a request body can't be parsed, such as a JSON body with a syntax error, your action responds with `400 Bad Request` by default, and your `#handle` method isn't called.
+
+To respond differently, handle `Hanami::Action::BodyParsingError` like any other exception in your actions:
 
 ```ruby
 config.handle_exception Hanami::Action::BodyParsingError => :handle_bad_request
@@ -315,3 +321,5 @@ def handle_bad_request(request, response, exception)
   response.body = "Invalid request body"
 end
 ```
+
+Query strings and form bodies that can't be parsed also get a `400 Bad Request`. See [Malformed requests](//page/parameters#malformed-requests) for details.

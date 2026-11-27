@@ -57,6 +57,42 @@ request.params.dig(:book, :title)             # => "Hanami"
 request.params.dig(:deeply, :nested, :param)  # => nil instead of NoMethodError
 ```
 
+## Malformed requests
+
+If Hanami can't read a request's params, your action returns `400 Bad Request` and doesn't call your `#handle` method. This happens when:
+
+- a JSON body isn't valid JSON
+- a multipart body can't be read
+- a query string or form body has conflicting param types, such as `?a=1&a[b]=2`
+- a query string or form body has invalid percent-encoding
+- the params are over Rack's limits: too many, nested too deeply, or too large
+- a param name isn't valid UTF-8 (only for actions without a params schema or contract)
+
+In these cases, Hanami raises `Hanami::Action::BodyParsingError` or `Hanami::Action::ParamsParsingError`. To send a different response, handle both exceptions with `handle_exception`:
+
+```ruby
+# app/action.rb
+
+module Bookshelf
+  class Action < Hanami::Action
+    handle_exception(
+      Hanami::Action::BodyParsingError => :handle_bad_request,
+      Hanami::Action::ParamsParsingError => :handle_bad_request
+    )
+
+    private
+
+    def handle_bad_request(request, response, exception)
+      response.status = 400
+      response.format = :json
+      response.body = {error: "We couldn't read your request"}.to_json
+    end
+  end
+end
+```
+
+See [Exception handling](//page/exception-handling) for more on `handle_exception`.
+
 ## Parameter validation
 
 The parameters associated with a web request are untrusted input.
@@ -209,30 +245,36 @@ Action validations use the [dry-validation](//org_guide/dry/dry-validation) gem,
 
 Consult the [dry-validation](//org_guide/dry/dry-validation) and [dry-schema](//org_guide/dry/dry-schema) gems for further documentation.
 
+## Translating validation messages
+
+If your app bundles the i18n gem, Hanami translates your validation error messages using your slice's translations. Add your messages under the `dry_validation.errors` key in your translation files.
+
+Hanami validates params before your action's `before` callbacks run. If you set the locale for each request, set it before the action is called, such as in a [Rack middleware](//page/rack-integration#rack-middleware).
+
+See [Translating validation messages](//guide/i18n#translating-validation-messages) for details.
+
 ## Using concrete classes
 
 In addition to specifying parameter validations "inline" in a `params` block, actions can also hand over their validation responsibilities to a separate class.
 
 This makes action validations reusable and easier to test independently of the action.
 
-For example:
+To do this, define a `Dry::Validation::Contract` with a `params` block:
 
 ```ruby
-# app/actions/users/params/create.rb
+# app/actions/users/create_contract.rb
 
 module Bookshelf
   module Actions
     module Users
-      module Params
-        class Create < Hanami::Action::Params
-          params do
-            required(:email).filled(:string)
-            required(:password).filled(:string)
+      class CreateContract < Dry::Validation::Contract
+        params do
+          required(:email).filled(:string)
+          required(:password).filled(:string)
 
-            required(:address).hash do
-              required(:street).filled(:string)
-              required(:country).filled(:string)
-            end
+          required(:address).hash do
+            required(:street).filled(:string)
+            required(:country).filled(:string)
           end
         end
       end
@@ -241,6 +283,8 @@ module Bookshelf
 end
 ```
 
+Then pass the contract class to `params`:
+
 ```ruby
 # app/actions/users/create.rb
 
@@ -248,7 +292,7 @@ module Bookshelf
   module Actions
     module Users
       class Create < Bookshelf::Action
-        params Params::Create
+        params CreateContract
 
         def handle(request, response)
           # ...

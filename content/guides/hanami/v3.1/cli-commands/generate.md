@@ -4,7 +4,7 @@ title: Generate
 
 ## hanami generate
 
-Hanami 3.0 provides a few generators:
+Hanami provides a few generators:
 
 ```shell
 $ bin/hanami generate --help
@@ -74,6 +74,12 @@ Generates a [migration](//guide/database/migrations):
 
 ```shell
 $ bundle exec hanami generate migration create_posts
+```
+
+Pass `--sql` to generate a migration written in SQL instead of Ruby:
+
+```shell
+$ bundle exec hanami generate migration create_posts --sql
 ```
 
 Use the `--help` option to access all accepted options:

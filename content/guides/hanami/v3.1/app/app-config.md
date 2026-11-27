@@ -47,6 +47,10 @@ Along with `inflector`, customizes your your app's string inflection rules. See 
 
 Specifies the slices to load. See the [slices guide](//page/slices) for more detail.
 
+### `settings_store`
+
+Sets the store that your app's settings are read from. By default, settings are read from `ENV`, then from `config/settings/[HANAMI_ENV].yml`, then from `config/settings/default.yml`. See the [settings guide](//page/settings) for more detail.
+
 ## Code loading
 
 ### `root`
@@ -62,6 +66,10 @@ Sets the keys for the app components to be automatically imported into each slic
 ### `no_auto_register_paths`
 
 Sets an array of paths (relative to the root of the app or any slice) to be excluded from component auto-registration. Defaults to `["entities"]`. See the [containers and components guide](//page/container-and-components) for more detail.
+
+### `code_reloading`
+
+Sets whether the app can be reloaded in place, using `Hanami.app.reload`. Defaults to `true` in development and `false` in all other environments. This setting is app-wide, and must be set before the app is prepared. See the [code reloading guide](//page/code-reloading) for more detail.
 
 ## Router
 

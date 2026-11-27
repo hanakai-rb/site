@@ -80,7 +80,7 @@ module Bookshelf
   module Actions
     module Users
       class Show < Action
-        format :json
+        config.formats.accept :json
 
         def handle(request, response)
           response.body = {id: request.params[:id]}.to_json

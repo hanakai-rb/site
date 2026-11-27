@@ -29,7 +29,7 @@ end
 
 In the above action, when `StandardError` is raised in the `#handle` method, a basic `500 Internal Server Error` will be returned.
 
-![Default error response](//file/default-error-response.webp")
+![Default error response](//file/default-error-response.webp)
 
 ## Using string class names
 
@@ -113,7 +113,7 @@ module Bookshelf
 end
 ```
 
-In development, where seeing a stack trace can be useful, reraise exceptions in order to make them visible in your browser.
+In development, where seeing a stack trace can be useful, reraise exceptions in order to make them visible in your browser on the [development error page](//guide/app/error-pages).
 
 ```ruby
 def handle_standard_error(request, response, exception)

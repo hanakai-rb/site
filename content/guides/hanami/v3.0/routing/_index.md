@@ -332,28 +332,34 @@ end
 
 ## Redirects
 
-Redirects can be added using `redirect`.
+Redirects can be added using `redirect_permanent`, which uses a `301` status code:
 
 ```ruby
-redirect "/old", to: "/new"
+redirect_permanent "/old", to: "/new"
 ```
 
-By default, redirects use a `301` status code. Use a different code via the `code` option:
+For a temporary redirect with a `302` status code, use `redirect_temporary`:
 
 ```ruby
-redirect "/old", to: "/temporary-new", code: 302
+redirect_temporary "/old", to: "/temporary-new"
+```
+
+For any other redirect status code, use `redirect` and give the code via the `code` option:
+
+```ruby
+redirect "/old", to: "/new", code: 308
 ```
 
 Redirects can be made to absolute URLs as well:
 
 ```ruby
-redirect "/external", to: "http:/hanamirb.org"
+redirect_permanent "/external", to: "https://hanamirb.org"
 ```
 
 Non-http protocols are also supported thanks to the URI class:
 
 ```ruby
-redirect "/custom", to: URI("xmpp://myapp.net")
+redirect_permanent "/custom", to: URI("xmpp://myapp.net")
 ```
 
 If you have many redirects or need to implement custom logic, you might consider using a Rack middleware.

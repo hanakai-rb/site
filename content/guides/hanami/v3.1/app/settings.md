@@ -20,7 +20,7 @@ Using this class, you can specify what settings exist within your application, w
 
 These "app settings" are unrelated to ["app configs"](//page/app-config), which configure framework behaviours. App settings are your own to define and use.
 
-Each app setting is read from an environment variable matching its name. For example, the Redis URL and Sentry DSN settings below are sourced from the `REDIS_URL` and `SENTRY_DSN` environment variables respectively.
+Each app setting is read from an environment variable matching its name. For example, the Redis URL and Sentry DSN settings below are sourced from the `REDIS_URL` and `SENTRY_DSN` environment variables respectively. You can also provide setting values in [YAML files](#yaml-settings-files).
 
 ```ruby
 # config/settings.rb
@@ -143,6 +143,71 @@ module Bookshelf
   end
 end
 ```
+
+## YAML settings files
+
+As well as environment variables, Hanami reads setting values from two optional YAML files:
+
+- `config/settings/default.yml`, for values in every environment.
+- `config/settings/[HANAMI_ENV].yml`, for values in one environment, such as `config/settings/production.yml`.
+
+Each top-level key in a file gives the value for the setting with the same name:
+
+```yaml
+# config/settings/default.yml
+analytics_enabled: false
+max_cart_items: 100
+```
+
+```yaml
+# config/settings/production.yml
+analytics_enabled: true
+```
+
+For each setting, Hanami uses the first value it finds, in this order:
+
+1. The environment variable, such as `ANALYTICS_ENABLED`.
+2. `config/settings/[HANAMI_ENV].yml`.
+3. `config/settings/default.yml`.
+4. The setting's `default:`.
+
+This means an environment variable always wins, so you can use one to override a value from a file.
+
+YAML values can be strings, numbers, booleans and more. Your setting constructors still apply to them, so a value is coerced and checked in the same way as one from an environment variable.
+
+Hanami evaluates each file as ERB before it parses the YAML, so you can compute values:
+
+```yaml
+# config/settings/default.yml
+support_email: support@<%= ENV.fetch("APP_DOMAIN", "localhost") %>
+```
+
+Slices don't have their own YAML settings files. Like environment variables, the files in your app's `config/settings/` are shared by your app and all its slices.
+
+Hanami reads these files once, when it first loads your settings. [Code reloading](//page/code-reloading) does not pick up changes to them, so restart your server or console after you change them, just as you would after changing your `.env` files.
+
+If you check these files into git, keep secrets such as API keys in environment variables instead.
+
+### Custom settings stores
+
+To read settings from somewhere else, set `config.settings_store` in your app class. A settings store is any object with a `#fetch` method that works like `Hash#fetch`.
+
+Hanami provides `Hanami::Settings::YAMLFileStore` for reading a YAML file, and `Hanami::Settings::CompositeStore` for combining stores. A composite store tries each store in order, and uses the first value it finds:
+
+```ruby
+# config/app.rb
+
+module Bookshelf
+  class App < Hanami::App
+    config.settings_store = Hanami::Settings::CompositeStore.new(
+      Hanami::Settings::EnvStore.new,
+      Hanami::Settings::YAMLFileStore.new { config.root.join("config/my_settings.yml") }
+    )
+  end
+end
+```
+
+Give `YAMLFileStore` a block, like above, to find the file's path when the settings are first loaded, rather than when the store is made.
 
 ## Constraints
 

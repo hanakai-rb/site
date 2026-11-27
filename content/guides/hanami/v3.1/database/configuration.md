@@ -2,11 +2,9 @@
 title: Configuration
 ---
 
-As of 2.3 Hanami will automatically generate DB configuration for your application.
+New Hanami apps come with a database, set up and ready to go.
 
-By default, it uses SQLite as its default database. It also supports MySQL and PostgreSQL.
-
-You can specify which database you'd like to use when creating your app, with the --database option:
+Hanami supports SQLite, PostgreSQL and MySQL (including MariaDB). New apps use SQLite by default. To choose a different database, use the `--database` option when you create your app:
 
 ```console
 hanami new bookshelf --database=sqlite # default
@@ -14,15 +12,13 @@ hanami new bookshelf --database=postgres
 hanami new bookshelf --database=mysql
 ```
 
-You can also suppress the DB layer entirely with --skip-db
+To create an app without a database, use `--skip-db`:
 
 ```console
 hanami new bookshelf --skip-db
 ```
 
-The default posture is to share a single configuration for the whole application, however Slices support having their own separate config.
-
-DB persistence is provided by a new provider called db. It is activated by the presence of a config/db directory in the root Application or Slice.
+Your database connection comes from the `db` provider. Hanami turns it on when your app or a slice has a `config/db/` directory. By default, your app and all its slices share one database configuration, but each slice can have its own. See [Slice configuration](#slice-configuration).
 
 ## DATABASE_URL
 
@@ -35,12 +31,61 @@ Note that the value you set is the **development** database URL, and the _test_ 
 For example:
 
 ```
-DATABASE_URL=sqlite://config/db/development.sqlite
+DATABASE_URL=sqlite://db/bookshelf.sqlite
 DATABASE_URL=postgres://localhost/bookshelf_development
 DATABASE_URL=mysql2://user:password@localhost/bookshelf_dev
 ```
 
 For more detail on the syntax of the URLs, see [ROM SQL: Connecting to a Database](//org_guide/rom/sql#connecting-to-a-database)
+
+### Building the URL from separate env vars
+
+If it suits your setup better, you can give the parts of your database connection as separate env vars, instead of a single URL. When `DATABASE_URL` isn't set, Hanami builds the URL from these:
+
+| Env var             | Value                                                                       |
+| ------------------- | --------------------------------------------------------------------------- |
+| `DATABASE_SCHEME`   | The URL scheme, such as `postgres`, `mysql2`, `sqlite` or `jdbc:postgresql` |
+| `DATABASE_USER`     | The user name                                                               |
+| `DATABASE_PASSWORD` | The password                                                                |
+| `DATABASE_HOST`     | The host (defaults to `localhost`)                                          |
+| `DATABASE_PORT`     | The port (defaults to the database driver's default port)                   |
+| `DATABASE_NAME`     | The database name                                                           |
+
+For example:
+
+```
+DATABASE_SCHEME=postgres
+DATABASE_USER=bookshelf
+DATABASE_PASSWORD=s3cret
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=bookshelf_development
+```
+
+This gives a URL of `postgres://bookshelf:s3cret@localhost:5432/bookshelf_development`. Hanami escapes the user, password and database name for you.
+
+`DATABASE_SCHEME` is required. You can leave out any of the other env vars that your database doesn't need.
+
+For SQLite, give the path to the database file as `DATABASE_NAME`. Hanami ignores the other env vars:
+
+```
+DATABASE_SCHEME=sqlite
+DATABASE_NAME=db/bookshelf.sqlite
+```
+
+If you set `DATABASE_URL`, it always takes precedence, and Hanami ignores these separate env vars.
+
+### JRuby
+
+On JRuby, use a JDBC database URL. Hanami supports these JDBC URLs:
+
+```
+DATABASE_URL=jdbc:sqlite:db/bookshelf.sqlite
+DATABASE_URL=jdbc:postgresql://localhost/bookshelf_development
+DATABASE_URL=jdbc:mysql://localhost/bookshelf_dev
+```
+
+Each of these needs its matching JDBC gem in your `Gemfile`: jdbc-sqlite3, jdbc-postgres or jdbc-mysql.
 
 ## Advanced Configuration
 
@@ -82,18 +127,61 @@ By default you are adding to the defaults above, but you can tell Hanami to skip
 
 ```ruby
 gw.adapter :sql do |sql|
-  # skip everything
+  # Skip everything
   sql.skip_defaults
 
-  # skip ROM plugins
+  # Skip ROM plugins
   sql.skip_defaults :plugins
 
-  # skip Sequel extensions
+  # Skip Sequel extensions
   sql.skip_defaults :extensions
+
+  # Skip SQLite pragmas
+  sql.skip_defaults :connect_sqls
 end
 ```
 
 More on [Sequel Extensions](http://sequel.jeremyevans.net/rdoc/files/doc/extensions_rdoc.html)
+
+## SQLite
+
+For apps using SQLite, Hanami applies these [pragmas](https://www.sqlite.org/pragma.html) to every new database connection:
+
+| Pragma               | Value              |
+| -------------------- | ------------------ |
+| `journal_mode`       | `wal`              |
+| `synchronous`        | `normal`           |
+| `mmap_size`          | 128MiB (134217728) |
+| `journal_size_limit` | 64MiB (67108864)   |
+| `cache_size`         | `2000`             |
+
+These settings give SQLite better performance and concurrency in a web app. They need SQLite 3.30 or newer.
+
+In WAL (write-ahead logging) mode, SQLite keeps `-wal` and `-shm` files next to your database file. New apps ignore these in their `.gitignore`, and `hanami db drop` cleans them up too.
+
+To change a pragma or add your own, give `connect_sqls` in the gateway's connection options. These run after Hanami's pragmas, so your values take precedence:
+
+```ruby
+# config/providers/db.rb
+Hanami.app.configure_provider :db do
+  config.gateway :default do |gw|
+    gw.connection_options connect_sqls: ["PRAGMA cache_size = 10000"]
+  end
+end
+```
+
+To turn off Hanami's pragmas, call `skip_defaults :connect_sqls` in your SQL adapter config:
+
+```ruby
+# config/providers/db.rb
+Hanami.app.configure_provider :db do
+  config.adapter :sql do |sql|
+    sql.skip_defaults :connect_sqls
+  end
+end
+```
+
+A read-only connection cannot write to the database file, so for a gateway with `connection_options readonly: true`, Hanami does not apply the `journal_mode` pragma. This works only when you give `readonly: true` in the connection options, not as a param in the database URL.
 
 ## Query logging
 
@@ -115,6 +203,8 @@ end
 ```
 
 You would define a `MAIN__DATABASE_URL` environment variable and a `slices/main/config/db` directory.
+
+The [separate database env vars](#building-the-url-from-separate-env-vars) take the same slice prefix, such as `MAIN__DATABASE_HOST` or `MAIN__DATABASE_NAME`. For each part of the URL, Hanami uses the slice's env var if you set it, and the app's env var if you don't. This way, a slice can share the database server with the app and give only its own database name.
 
 Slice configuration is hierarchical, so if you have database configuration in the parent it will be inherited by all child slices by default. You can opt out of this via the configure_from_parent setting.
 
@@ -153,6 +243,15 @@ This works in concert with Slice configuration, as well:
 
 ```
 MAIN__DATABASE_URL__LEGACY=mysql://localhost:3306/legacy
+```
+
+The separate database env vars take the same gateway suffix. Hanami adds a gateway for each suffix it finds, and for each part of the URL, uses the gateway's env var if you set it, and the default gateway's env var if you don't. For example, this adds an `:extra` gateway with its own database on the same server as the default gateway:
+
+```
+DATABASE_SCHEME=postgres
+DATABASE_HOST=localhost
+DATABASE_NAME=bookshelf_development
+DATABASE_NAME__EXTRA=extra_development
 ```
 
 Sometimes you will want additional connection options used when opening the connection. These may be added as query parameters on the DATABASE_URL:

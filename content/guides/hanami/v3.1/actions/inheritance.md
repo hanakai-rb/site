@@ -20,7 +20,7 @@ module Bookshelf
   class Action < Hanami::Action
     include Deps["authenticator"]
 
-    format :json
+    config.formats.accept :json
 
     before :authenticate_user!
 

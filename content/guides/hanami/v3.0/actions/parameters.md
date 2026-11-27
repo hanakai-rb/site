@@ -215,24 +215,22 @@ In addition to specifying parameter validations "inline" in a `params` block, ac
 
 This makes action validations reusable and easier to test independently of the action.
 
-For example:
+To do this, define a `Dry::Validation::Contract` with a `params` block:
 
 ```ruby
-# app/actions/users/params/create.rb
+# app/actions/users/create_contract.rb
 
 module Bookshelf
   module Actions
     module Users
-      module Params
-        class Create < Hanami::Action::Params
-          params do
-            required(:email).filled(:string)
-            required(:password).filled(:string)
+      class CreateContract < Dry::Validation::Contract
+        params do
+          required(:email).filled(:string)
+          required(:password).filled(:string)
 
-            required(:address).hash do
-              required(:street).filled(:string)
-              required(:country).filled(:string)
-            end
+          required(:address).hash do
+            required(:street).filled(:string)
+            required(:country).filled(:string)
           end
         end
       end
@@ -241,6 +239,8 @@ module Bookshelf
 end
 ```
 
+Then pass the contract class to `params`:
+
 ```ruby
 # app/actions/users/create.rb
 
@@ -248,7 +248,7 @@ module Bookshelf
   module Actions
     module Users
       class Create < Bookshelf::Action
-        params Params::Create
+        params CreateContract
 
         def handle(request, response)
           # ...

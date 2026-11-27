@@ -8,7 +8,7 @@ Actions support control flow through callbacks, halting and redirects.
 
 Callbacks allow logic to be executed either before or after an action's `#handle` method. They are useful for encapsulating code used for tasks like checking whether a user is signed in, handling 404 responses or tidying up a response.
 
-A callback can be added using the `before` or `after` methods. These methods accept either a symbol representing the name of a method to be called, or a proc.
+A callback can be added using the `before` or `after` methods. These methods accept a symbol representing the name of a method to be called, a proc, or any object that responds to `#call`.
 
 Like the `#handle` method, callbacks receive the request and response as arguments.
 
@@ -70,6 +70,48 @@ module Bookshelf
   end
 end
 ```
+
+Lambdas work too, and are also bound to the action. A lambda receives only as many arguments as it declares, so a callback that needs only the request can take just that:
+
+```ruby
+before ->(request) { halt 401 unless request.session[:user_id] }
+```
+
+### Callable objects
+
+To reuse a callback across many actions, use any object that responds to `#call`. Like a method callback, it receives the request and response:
+
+```ruby
+# app/authenticate_user.rb
+
+module Bookshelf
+  class AuthenticateUser
+    def call(request, response)
+      response.redirect_to("/sign-in") unless request.session[:user_id]
+    end
+  end
+end
+```
+
+```ruby
+# app/actions/books/index.rb
+
+module Bookshelf
+  module Actions
+    module Books
+      class Index < Bookshelf::Action
+        before AuthenticateUser.new
+
+        def handle(request, response)
+          # ...
+        end
+      end
+    end
+  end
+end
+```
+
+Unlike procs and lambdas, a callable object isn't bound to the action, so it can't call action methods like `halt`. Like a lambda, its `#call` method receives only as many arguments as it declares.
 
 ## Halt
 

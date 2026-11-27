@@ -9,6 +9,7 @@ pages:
   - app-config
   - inflector
   - code-reloading
+  - error-pages
   - slices
 ---
 
@@ -49,7 +50,7 @@ run Hanami.app
 
 Purely as an exercise, we can explore both preparing and booting by starting `irb` in a directory containing a Hanami project. This is not something that's needed in day to day development with Hanami - it's useful here as a demonstration of the booting behaviour.
 
-Assuming we have run `hanami new bookshelf` to generate a new app (see [Getting started](//guide/introduction) for a full guide to creating your first Hanami application), let's create a hello world component in `app/hello_world.rb`:
+Assuming we have run `hanami new bookshelf` to generate a new app (see [Getting started](//guide/getting-started) for a full guide to creating your first Hanami application), let's create a hello world component in `app/hello_world.rb`:
 
 ```ruby
 # app/hello_world.rb
@@ -166,3 +167,15 @@ irb(main)> Hanami.app.keys
 ```
 
 You can read more about components and containers in more detail in the [container and components guide](//page/container-and-components). Providers are covered in the [providers guide](//page/providers).
+
+## Using a different app file
+
+Hanami looks for your app class in `config/app.rb`. It searches the current directory first, then each parent directory in turn.
+
+If your app class is in a different file, set the `HANAMI_APP_PATH` environment variable to that file's path, relative to the current directory:
+
+```shell
+$ HANAMI_APP_PATH=app/hanami.rb bundle exec hanami server
+```
+
+This is useful when you combine Hanami with another framework. It applies everywhere your app is loaded, including the server, the console, `hanami` commands and your tests.

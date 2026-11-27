@@ -65,7 +65,7 @@ When used inside [view templates](//guide/views/templates-and-partials), all giv
 
 ## token_list
 
-Returns a string of space-separated tokens from a range of given arguments. This is intended for building an HTML tag attribute value, such as a list of class names (it is also aliased as `class_names`).
+Returns a string of space-separated tokens from a range of given arguments. This is intended for building an HTML tag attribute value, such as a list of class names (it is also aliased as `class_names`). Duplicate tokens are removed, and `nil`, `false` and empty values are left out.
 
 ```ruby
 token_list("foo", "bar")
