@@ -18,6 +18,8 @@ end
 
 ## Defining routes
 
+<!-- TODO: Add `query` to this list once a released Rack defines Rack::QUERY. -->
+
 Each route in Hanami's router is comprised of:
 
 - a HTTP method (i.e. `get`, `post`, `put`, `patch`, `delete`, `options` or `trace`)
@@ -102,8 +104,18 @@ Customize route names using the `as` option:
 
 ```ruby
 resources :books, as: :publications
-# Named routes will use :publications (e.g., :publications_path)
 ```
+
+Like the resource name, the `as` option goes through your app's inflector. The index and create routes use its plural form, and all other routes use its singular form:
+
+```
+GET     /books          books.index    as :publications
+GET     /books/:id      books.show     as :publication
+GET     /books/new      books.new      as :new_publication
+GET     /books/:id/edit books.edit     as :edit_publication
+```
+
+If a resource name is uncountable (such as `news`), its plural and singular forms are the same. In this case, the index and create routes get an `_index` suffix, so that their name is different from the show route's name: `resources :news` gives `news_index` and `news`. To change how a name is inflected, add a custom inflection with `config.inflections` in your app.
 
 Resources can be nested (to any level) to represent hierarchical relationships:
 
@@ -113,11 +125,15 @@ resources :books do
 end
 ```
 
-This generates nested routes like `/books/:book_id/reviews`.
+This generates nested routes like `/books/:book_id/reviews`, with names like `book_reviews`.
 
 The actions for nested resources are namespaced by any parent resources. In the above example, the reviews index route will have a `to:` of `"books.reviews.index"`.
 
-Basic routes can also be nested within resources. These routes apply to a single member of the resource, so their paths include the resource's ID:
+The parent's ID param is named after the resource name (or its `as` option), not its `path`. For example, `resources :posts, path: "articles"` with nested `resources :comments` gives `/articles/:post_id/comments`.
+
+Resources nested under a singular `resource` use its name as given. For example, `resource :settings` with nested `resources :items` gives route names like `settings_items`.
+
+Basic routes can also be nested within resources. These routes apply to a single member of the resource, so their paths include the resource's ID as `:<name>_id`:
 
 ```ruby
 resources :books do
@@ -127,14 +143,43 @@ end
 
 This generates a route at `"/books/:book_id/preview"`.
 
-To add a route for the resource's whole collection instead, define it outside the `resources` block:
+To add routes for the resource's whole collection, use a `collection` block:
 
 ```ruby
-resources :books
-get "/books/latest", to: "books.latest"
+resources :books do
+  collection do
+    get "/latest", to: "books.latest", as: :latest
+  end
+end
 ```
 
-This generates a route at `"/books/latest"`.
+This generates a route at `"/books/latest"`, named `books_latest`.
+
+To add routes for actions on a single member of the resource, use a `member` block. These routes receive the resource's ID as `:id`, the same as the resource's own `show` route:
+
+```ruby
+resources :books do
+  member do
+    post "/publish", to: "books.publish", as: :publish
+  end
+end
+```
+
+This generates a route at `"/books/:id/publish"`, named `book_publish`.
+
+Use `member` for actions on the resource itself, such as publishing a book. For child resources with their own actions, such as a book's reviews, use `resources` or `resource` directly inside the `resources` block, so their actions receive the parent's ID as `:book_id`.
+
+Route names in `collection` and `member` blocks start with the resource name. To put the route's own name first, like the `new_book` and `edit_book` routes, give `nil` as the second element of an `as` array:
+
+```ruby
+resources :books do
+  member do
+    post "/publish", to: "books.publish", as: [:publish, nil] # Named :publish_book
+  end
+end
+```
+
+You can use `collection` and `member` only directly inside a `resources` block.
 
 ## Root request routing
 
@@ -332,28 +377,34 @@ end
 
 ## Redirects
 
-Redirects can be added using `redirect`.
+Redirects can be added using `redirect_permanent`, which uses a `301` status code:
 
 ```ruby
-redirect "/old", to: "/new"
+redirect_permanent "/old", to: "/new"
 ```
 
-By default, redirects use a `301` status code. Use a different code via the `code` option:
+For a temporary redirect with a `302` status code, use `redirect_temporary`:
 
 ```ruby
-redirect "/old", to: "/temporary-new", code: 302
+redirect_temporary "/old", to: "/temporary-new"
+```
+
+For any other redirect status code, use `redirect` and give the code via the `code` option:
+
+```ruby
+redirect "/old", to: "/new", code: 308
 ```
 
 Redirects can be made to absolute URLs as well:
 
 ```ruby
-redirect "/external", to: "http:/hanamirb.org"
+redirect_permanent "/external", to: "https://hanamirb.org"
 ```
 
-Non-http protocols are also supported thanks to the URI class:
+Non-HTTP protocols are also supported thanks to the URI class:
 
 ```ruby
-redirect "/custom", to: URI("xmpp://myapp.net")
+redirect_permanent "/custom", to: URI("xmpp://myapp.net")
 ```
 
 If you have many redirects or need to implement custom logic, you might consider using a Rack middleware.
@@ -373,4 +424,19 @@ POST    /books                        books.create
 GET     /books/:id/edit               books.edit
 PATCH   /books/:id                    books.update
 DELETE  /books/:id                    books.destroy
+```
+
+You can also read the routes in your own code. Call `#routes` on a slice's router to get a frozen array of its routes, in the order they were defined. This includes the `HEAD` route that Hanami adds for each `GET` route:
+
+```ruby
+routes = Hanami.app.router.routes
+
+routes.first.http_method # => "GET"
+routes.first.path # => "/"
+```
+
+To render the routes as text, give them to one of Hanami Router's formatters, `Hanami::Router::Formatter::HumanFriendly` or `Hanami::Router::Formatter::CSV`. The `hanami routes` command uses these same formatters:
+
+```ruby
+Hanami::Router::Formatter::HumanFriendly.new.call(Hanami.app.router.routes)
 ```
