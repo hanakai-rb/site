@@ -32,11 +32,28 @@ gem "hanami-view", "~> 3.1"
 
 Hanami now checks that its gems share the same major and minor version. If any are out of step, requiring `hanami` raises a `Hanami::GemVersionError` that lists the mismatched gems. If you need to skip this check, set the `HANAMI_SKIP_GEM_VERSION_CHECK` env var.
 
+### Upgrade your assets package
+
+> [!NOTE]
+> This is only relevant if your app uses hanami-assets.
+
+Edit your `package.json` and update the version of `"hanami-assets"` to `"^3.1.0"`:
+
+```json
+{
+  "dependencies": {
+    "hanami-assets": "^3.1.0"
+  }
+}
+```
+
+Then run `npm install`.
+
 ### Remove your Guardfile
 
 Code reloading no longer uses Guard. `hanami server` now keeps a single process running and reloads your app's code in place on the next request after a file changes. See [Code reloading](//guide/app/code-reloading) for details.
 
-Delete the `Guardfile` from your app. Running `bundle exec hanami install` also removes it for you, if it is the one Hanami generated. hanami-reloader no longer depends on guard or guard-puma, so if you added these to your `Gemfile` yourself, you can remove them too.
+Delete the `Guardfile` from your app. hanami-reloader no longer depends on guard or guard-puma, so if you added these to your `Gemfile` yourself, you can remove them too.
 
 ### Review your response bodies
 
@@ -96,7 +113,7 @@ See [Declaring locals](//guide/views/templates-and-partials#declaring-locals) fo
 Resource routes now give more consistent names and params. Review your routes with `bundle exec hanami routes` if you use any of the following:
 
 - **The `as:` option on `resources`** now goes through the inflector. Member routes and routes nested under the resource use its singular form, and the index and create routes use its plural form. For example, `resources :books, as: :publications` gives `publication`, `edit_publication` and `publication_reviews`, while the index route keeps its `publications` name.
-- **The `path:` option on `resources`** no longer changes the names of nested params. `resources :posts, path: "articles" do resources :comments end` now gives `/articles/:post_id/comments`. If your actions read the old param name (`article_id`), change them to read the new one (`post_id`).
+- **The `path:` option on `resources`** no longer changes the names of nested params. `resources :posts, path: "articles" do resources :comments end` now gives `/articles/:post_id/comments`. If your actions read the old param name (`article_id`), change them to read the new one (`post_id`). Change your route helper calls to match, such as `routes.path(:post_comments, post_id: post.id)`.
 - **Uncountable resource names**, like `news`, now give their index and create routes an `_index` suffix (`news_index`), so they no longer clash with the show route.
 - **Routes nested under a singular `resource`** use the resource's name as given. `resource :settings do resources :items end` now gives `settings_items` rather than `setting_items`.
 
@@ -128,7 +145,7 @@ See [SQLite](//guide/database/configuration#sqlite) in the database configuratio
 
 Each slice's `i18n` component now loads only the translation files configured for that slice. It no longer loads the files in the global `I18n.load_path`.
 
-If you added translation files to `I18n.load_path` and used them via the `i18n` component, add them to your i18n config instead. Use `config.i18n.load_path` for a single slice, or `config.i18n.shared_load_path` for every slice:
+If you added translation files to `I18n.load_path` and used them via the `i18n` component, add them to your i18n config instead. Otherwise, their translations will be missing. This does not raise an error, so check your pages for missing text. Use `config.i18n.load_path` for a single slice, or `config.i18n.shared_load_path` for every slice:
 
 ```ruby
 # config/app.rb
@@ -185,6 +202,27 @@ end
 
 Then change your feature and request tests to inherit from these classes, such as `class RootTest < RequestTest`.
 
+### Review your error page configuration
+
+> [!NOTE]
+> This is only relevant if your app configures better_errors directly.
+
+Hanami's development error page no longer uses better_errors. hanami-webconsole now has its own error page, and no longer depends on the better_errors gem. Remove any code that refers to `BetterErrors`, and use these replacements instead:
+
+- In place of `BetterErrors.editor`, set the `HANAMI_EDITOR` env var. See [Opening files in your editor](//guide/app/error-pages#opening-files-in-your-editor).
+- In place of `BetterErrors::Middleware.allow_ip!`, call `Hanami::Webconsole::Middleware.allow_ip!`:
+
+  ```ruby
+  # config/app.rb
+
+  if Hanami.bundled?("hanami-webconsole")
+    require "hanami/webconsole"
+    Hanami::Webconsole::Middleware.allow_ip!("192.168.0.0/16")
+  end
+  ```
+
+See [Error pages](//guide/app/error-pages) for details.
+
 ### Update your custom CLI commands
 
 Hanami CLI now uses Dry CLI 2.0. If your app or gem defines its own commands, follow the [Dry CLI 2.0 upgrade notes](//org_guide/dry/dry-cli/upgrade-notes) first. These cover the main changes, such as using `stdout` and `stderr` in place of `out` and `err`.
@@ -215,7 +253,7 @@ These changes are optional, but recommended.
 
 ### Review your log filters
 
-Hanami's default log filters are now broader: `["passw", "secret", "token", "_key", "crypt"]`. Each filters any param whose name contains that text, ignoring case, such as `password_confirmation`, `client_secret` and `api_key`.
+Hanami's default log filters are now broader: `["passw", "secret", "token", "_key", "crypt"]`. Each filters any param whose name contains that text, ignoring case, such as `password_confirmation`, `client_secret` and `api_key`. These defaults first shipped in Hanami 3.0.3, so you may already have them.
 
 If you set `config.logger.filters` in your app, consider appending to the defaults rather than replacing them:
 

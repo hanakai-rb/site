@@ -7,6 +7,7 @@ title: Server
 Launches Hanami's development server for developing against your application locally.
 
 <!-- TODO: Update the output below to show more recent versions -->
+
 ```shell
 $ bundle exec hanami server
 
