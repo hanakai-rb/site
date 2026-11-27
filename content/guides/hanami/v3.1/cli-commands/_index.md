@@ -2,7 +2,6 @@
 title: Commands
 pages:
   - new
-  - install
   - console
   - server
   - dev
